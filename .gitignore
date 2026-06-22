@@ -1,0 +1,115 @@
+# MountainRS local Git ignore rules
+
+## macOS / system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+## Python caches / build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+## Virtual environments / local runtime
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+## Secrets / credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+credentials.json
+token.json
+secrets.*
+
+## Logs / temporary files
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+.cache/
+
+## Remote sensing / GIS heavy data
+*.tif
+*.tiff
+*.vrt
+*.ovr
+*.aux.xml
+*.tfw
+*.prj
+*.cpg
+*.shp
+*.shx
+*.dbf
+*.gpkg
+*.geojson
+*.kml
+*.kmz
+*.nc
+*.hdf
+*.h5
+*.npy
+*.npz
+*.zarr/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+## Stage raw data and generated outputs
+**/data/
+**/outputs/
+
+## Keep source, reports, and notes trackable
+!**/scripts/
+!**/scripts/**/*.py
+!**/reports/
+!**/reports/**/*.md
+!**/obsidian_drafts/
+!**/obsidian_drafts/**/*.md
+!MRS Obsidian/
+!MRS Obsidian/**/*.md
+
+## Obsidian state/cache/temp files
+**/.obsidian/workspace*.json
+**/.obsidian/cache/
+**/.obsidian/plugins/*/data.json
+**/.obsidian/plugins/*/main.js.map
+**/.obsidian/trash/
+**/.trash/
+
+## Matplotlib / notebook / analysis caches
+**/.matplotlib/
+.ipynb_checkpoints/
+
+## QGIS / GIS editor sidecars and locks
+*.qgz~
+*.qgs~
+*.lock
+*.lck
+
+# Ignore Obsidian vaults / drafts / local configs
+MRS Obsidian/
+**/obsidian_drafts/
+**/.obsidian/
