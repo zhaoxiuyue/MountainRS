@@ -108,8 +108,3 @@ temp/
 *.qgs~
 *.lock
 *.lck
-
-# Ignore Obsidian vaults / drafts / local configs
-MRS Obsidian/
-**/obsidian_drafts/
-**/.obsidian/
