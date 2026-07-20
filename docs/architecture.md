@@ -92,7 +92,7 @@ L5 只在带来源和不确定性的规范状态估计上进行任务适配与�
 
 任务可在明确记录编译规则后从这些因子生成 `effective_weight`，但不得只保存该合成数值。各因子须可回溯到输入、算法版本、适用范围与时间。
 
-对 `support_mask = 0` 或无观测支持的区域，输出只能明确标为以下之一：
+所有输出必须标注为 `observed/inferred`、`prior_only` 或 `unsupported`。其中 `support_mask = 0` 或无合格观测支持时，只允许标为 `prior_only` 或 `unsupported`，不得标为 `observed/inferred`。
 
 - **observed/inferred：** 有合格观测支持并经模型推断；
 - **prior_only：** 仅由先验或初始化提供，保留来源与高不确定性；

@@ -63,11 +63,11 @@ def main() -> None:
     ))
     styles.add(ParagraphStyle(
         name="MRS-Body", parent=styles["BodyText"], fontName="MRS-Songti", fontSize=9.7,
-        leading=16, alignment=TA_JUSTIFY, spaceAfter=5, wordWrap="CJK", allowWidows=0, allowOrphans=0,
+        leading=14.8, alignment=TA_JUSTIFY, spaceAfter=5, wordWrap="CJK", allowWidows=0, allowOrphans=0,
     ))
     styles.add(ParagraphStyle(
         name="MRS-Bullet", parent=styles["BodyText"], fontName="MRS-Songti", fontSize=9.7,
-        leading=15.5, leftIndent=11, firstLineIndent=-9, alignment=TA_JUSTIFY, spaceAfter=3, wordWrap="CJK",
+        leading=14.6, leftIndent=11, firstLineIndent=-9, alignment=TA_JUSTIFY, spaceAfter=3, wordWrap="CJK",
     ))
     styles.add(ParagraphStyle(
         name="MRS-Quote", parent=styles["BodyText"], fontName="MRS-Songti", fontSize=10.2,
@@ -118,7 +118,7 @@ def main() -> None:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(
         str(OUTPUT), pagesize=A4, leftMargin=19 * mm, rightMargin=19 * mm,
-        topMargin=22 * mm, bottomMargin=20 * mm, title="山地遥感物理基座·架构文档 v3",
+        topMargin=20 * mm, bottomMargin=15 * mm, title="山地遥感物理基座·架构文档 v3",
         author="MountainRS", subject="Derived publication of docs/architecture.md",
     )
     doc.build(story, onFirstPage=draw_header_footer, onLaterPages=draw_header_footer)
