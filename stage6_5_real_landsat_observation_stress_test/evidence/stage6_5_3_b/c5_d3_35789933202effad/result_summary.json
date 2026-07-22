@@ -1,0 +1,136 @@
+{
+  "schema": "mountainrs-stage-6-5-3-b-result-summary-v1",
+  "run_id": "c5_d3_35789933202effad",
+  "contract_anchors": {
+    "config_sha256": "dc6224964aca5ca910dc38952aebaae6a0429597137286ffc1d5add3057d5d59",
+    "executor_contract_sha256": "2c91e41c77aa4ab5dbb69c27979f59a4b0d2978f20cdc0c1bd785853934e9ee3",
+    "approved_manifest_content_hash": "d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37",
+    "approved_manifest_file_sha256": "4430bf356a0f8661a510326fca1d709bca43bbc5deb0cdad9a2536c2e3f97fe8",
+    "method_contract_sha256": "0662e61b78fb110e19eb40243848d5a07589cca56a9b774e8bd70621edb1c910"
+  },
+  "execution_source_hash": "93862c96ad6ac967abaad980b93a7d5fa1d3fd594bd0dd4f43da6469a4cc6851",
+  "git_commit_before_run": "fef7b898f85a2203011d2653b4a16ee18a6a64e5",
+  "scalar_results_hash": "5dac993df75fb513978b7b17fd08ee97201575846a27aedcaf567e79c4d5faa6",
+  "method_summary": [
+    {
+      "scene": "clean_a",
+      "band": "B4",
+      "method": "hard_mask",
+      "median_fold_mae": 0.023309684185704112,
+      "median_fold_p90": 0.03953916539998264,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "clean_a",
+      "band": "B4",
+      "method": "soft_weight_k30",
+      "median_fold_mae": 0.023309683961343915,
+      "median_fold_p90": 0.03953916511976907,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "clean_a",
+      "band": "B4",
+      "method": "bounded_scene_constant_diffuse",
+      "median_fold_mae": 0.023309685032140426,
+      "median_fold_p90": 0.0395391653999826,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "clean_a",
+      "band": "B5",
+      "method": "hard_mask",
+      "median_fold_mae": 0.05201700084211928,
+      "median_fold_p90": 0.10212538302777835,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "clean_a",
+      "band": "B5",
+      "method": "soft_weight_k30",
+      "median_fold_mae": 0.052017005229932904,
+      "median_fold_p90": 0.10212541044434499,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "clean_a",
+      "band": "B5",
+      "method": "bounded_scene_constant_diffuse",
+      "median_fold_mae": 0.05204412445091575,
+      "median_fold_p90": 0.10206141391920362,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "shadow_risk_b",
+      "band": "B4",
+      "method": "hard_mask",
+      "median_fold_mae": 0.0767866514904577,
+      "median_fold_p90": 0.14062727575685388,
+      "median_maximum_coverage": 0.8722982351774737
+    },
+    {
+      "scene": "shadow_risk_b",
+      "band": "B4",
+      "method": "soft_weight_k30",
+      "median_fold_mae": 0.06470929762885462,
+      "median_fold_p90": 0.1351246581240032,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "shadow_risk_b",
+      "band": "B4",
+      "method": "bounded_scene_constant_diffuse",
+      "median_fold_mae": 0.06467703854124379,
+      "median_fold_p90": 0.135052048529724,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "shadow_risk_b",
+      "band": "B5",
+      "method": "hard_mask",
+      "median_fold_mae": 0.06752696864935426,
+      "median_fold_p90": 0.1262908219720924,
+      "median_maximum_coverage": 0.8722982351774737
+    },
+    {
+      "scene": "shadow_risk_b",
+      "band": "B5",
+      "method": "soft_weight_k30",
+      "median_fold_mae": 0.06541714921553188,
+      "median_fold_p90": 0.1233511136622637,
+      "median_maximum_coverage": 1.0
+    },
+    {
+      "scene": "shadow_risk_b",
+      "band": "B5",
+      "method": "bounded_scene_constant_diffuse",
+      "median_fold_mae": 0.06221783882199424,
+      "median_fold_p90": 0.12053242476703302,
+      "median_maximum_coverage": 1.0
+    }
+  ],
+  "surface_heterogeneity_sensitive_count": 20,
+  "surface_heterogeneity_diagnostic_count": 40,
+  "spatial_warning_count": 0,
+  "spatial_no_warning_count": 0,
+  "spatial_inconclusive_count": 60,
+  "method_verdicts": [
+    {
+      "method": "hard_mask",
+      "verdict": "WARNING",
+      "reason": "硬掩膜的最大 coverage 中位数为 0.9700697870292383；cos_i<=0.1 保留为 unsupported，不能把排除当作低风险成功。"
+    },
+    {
+      "method": "soft_weight_k30",
+      "verdict": "INCONCLUSIVE",
+      "reason": "只在当前样本、当前 shared-fold 设计下描述 residual 与 coverage；w30 不是正确概率。"
+    },
+    {
+      "method": "bounded_scene_constant_diffuse",
+      "verdict": "WARNING",
+      "reason": "D1 边界命中 17 / 20 个 scene×fold×band 拟合；只检验当前场景级常数参数化。"
+    }
+  ],
+  "overall_verdict": "WARNING",
+  "overall_reason": "当前结果受表面异质性敏感或 residual 空间诊断限制；不得宣称稳定机制优势。"
+}

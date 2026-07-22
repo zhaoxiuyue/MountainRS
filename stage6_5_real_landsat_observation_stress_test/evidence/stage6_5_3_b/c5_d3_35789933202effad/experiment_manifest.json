@@ -1,0 +1,332 @@
+{
+  "schema": "mountainrs-stage-6-5-3-b-experiment-evidence-v1",
+  "run_id": "c5_d3_35789933202effad",
+  "protocol_version": "c5-d3-approved-experiment-v1",
+  "contract_anchors": {
+    "config_sha256": "dc6224964aca5ca910dc38952aebaae6a0429597137286ffc1d5add3057d5d59",
+    "executor_contract_sha256": "2c91e41c77aa4ab5dbb69c27979f59a4b0d2978f20cdc0c1bd785853934e9ee3",
+    "approved_manifest_content_hash": "d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37",
+    "approved_manifest_file_sha256": "4430bf356a0f8661a510326fca1d709bca43bbc5deb0cdad9a2536c2e3f97fe8",
+    "method_contract_sha256": "0662e61b78fb110e19eb40243848d5a07589cca56a9b774e8bd70621edb1c910"
+  },
+  "execution_source_hash": "93862c96ad6ac967abaad980b93a7d5fa1d3fd594bd0dd4f43da6469a4cc6851",
+  "git_commit_before_run": "fef7b898f85a2203011d2653b4a16ee18a6a64e5",
+  "approved_manifest": {
+    "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
+    "content_hash": "d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37"
+  },
+  "guard": {
+    "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+    "project_revision": 40,
+    "route_revision": 1,
+    "node_id": "node_b702a65b-aaa2-4f53-98ee-39db6e7ffb80",
+    "node_contract_revision": 2,
+    "node_contract_hash": "0b0366ff930b0ba27fb5b2ebfc320fbb148c43e664eb9e7d1070ec2818f31cfd"
+  },
+  "scalar_results_hash": "5dac993df75fb513978b7b17fd08ee97201575846a27aedcaf567e79c4d5faa6",
+  "result_summary_sha256": "02f0527b41150f88940d4172c723c83cad9b5e217af427fefba9d8c46ea2243f",
+  "formal_files": [
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fit_parameters.csv",
+      "sha256": "645d3f707a0f46f5e39ee8f6a65d2b610b87c42b5837756358ab316c7cecf4dd"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fold_metrics.csv",
+      "sha256": "fadcec4528cf6bfb6784acde356a7fcdade88fa33c84cc2fc0f99e59ec3a0ed4"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/partition_metrics.csv",
+      "sha256": "1832dc56daef1eff635016d4a7dc2082dfaae19bb31e7809bc444dd593db21dc"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/risk_coverage.csv",
+      "sha256": "5688a5363aaed2fe60b21147dc4457cfafeea00ef544b43bcdca1f482a521847"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/coverage_summary.csv",
+      "sha256": "5da29672d336dc110d7f20e7d6ce1c2be5761236557036425c582de83db7a8eb"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_diagnostics.csv",
+      "sha256": "4abaa8452777581ca5a818b88946422daae0340774b7b2ac1e1a70688005c46d"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_verdicts.csv",
+      "sha256": "5fc3e88ddc04b151d0aed61fb5c45b8d2a80b5695df127763fb320a08a85cf6c"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/residual_spatial_diagnostics.csv",
+      "sha256": "ea0117e1ed2f993df1eac380011280c6000a2c639d1d3a6ee293d0f531297da6"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/result_summary.json",
+      "sha256": "02f0527b41150f88940d4172c723c83cad9b5e217af427fefba9d8c46ea2243f"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+      "sha256": "ebba6e667679b7b024347c4466d507e3a5ba1f959dfe14cab9344f6d5eb52f20"
+    }
+  ],
+  "generated_output_files": [
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_hard_mask.tif",
+      "sha256": "9f3408e4f2f35415c43b63a736861884b76b49bacc38f64e9df0aad2c6716a0a"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_soft_weight_k30.tif",
+      "sha256": "d58582ddfaa05b923751941dd41e1a5055025f9b983f9111a7f2b7354efec177"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "1e0c8822fbe9597892ec8d039ceff86e7bf289448a3f6c2c160e77ee7de70b1d"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_hard_mask.tif",
+      "sha256": "a81d6e6b9b64b6a1575ad3c020ecf07e2b548c9541dd7025da4288fd2262dbeb"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_soft_weight_k30.tif",
+      "sha256": "06fdbafde18a681b6aee162a748ed056943b1fc2ee0b2b5ca8b6546eff34fd33"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "f5c07711dc2b45722f61460a6e8dba48d513a3101a30f5a76635503ba53aa7bd"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_hard_mask.tif",
+      "sha256": "5c54d2f0bc39e0bbcc322c0918d4d814a5accd34898b8c2c09470e5fbd463b27"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_soft_weight_k30.tif",
+      "sha256": "5d26666b6afdef295410b48b00ca5d6a0fc1d5b9fb59bb4b6c24f04cf648d486"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "60eb626723d28ccde7350d484c93367b64ced69b38d37c07cd06126536ee2a9a"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_hard_mask.tif",
+      "sha256": "4a72258138be1504ba356875907d6303c0270e9816e02a6e4ea01fed0ee3e262"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_soft_weight_k30.tif",
+      "sha256": "9ba7d2628ed60b5e63f79201aa77d7b1cf35fbb0c4acd14c0570a8f3dae2cd09"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "216792cf00fea7716f9a7ccb98916a95aae675e1a94a5ab6ef7e80f5301c57b0"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_hard_mask.tif",
+      "sha256": "26ae0e3fde054eb1f8e983ababe0fa016da7cc4287f4d97e90db9007ae12e224"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_soft_weight_k30.tif",
+      "sha256": "164d35a12431a71066fbf403f7e7feaf0f5dd9827a2a2547fea0b1b2707126a9"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "8ce7fc00bb2a5fc01c03d7f2bc76a54fa772cd0b498a0d9105683813db1ad0c7"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_hard_mask.tif",
+      "sha256": "8df413c8b3099b752b3c5d7f148c902996d8eb8c911aedf9f0e3a4b606c92654"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_soft_weight_k30.tif",
+      "sha256": "15de0d691a00e1550f00248b21c914ab9e7afbf383ef8790961bdff6ea8532f0"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "97385ca0573fdf51743b57f3a489e5856be3291a4d91a8d5b0b8068f5df86c50"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_hard_mask.tif",
+      "sha256": "e849690f07aca0129e0a12152b7252ee2b76e272bf52728c829c2d2fc614bf51"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_soft_weight_k30.tif",
+      "sha256": "8575c4c796b160cd66ff3947118204267462096da66174bb9c40de3b1a530912"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "d1fb5bbd5675190ef9134cbd998743ec0bd09d7afcdae1a3610596382422b50e"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_hard_mask.tif",
+      "sha256": "2f38aa5a13f72a7d3ba29895e1f33df0c13d50a1d093d6e2caf869c4ecb78887"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_soft_weight_k30.tif",
+      "sha256": "8469cc561e05b6e471ff83e8a4c0c52a86e18b130a606f821887c3d81b212752"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "c9f9bcb4720cf49136ac33362887ca89be922e866f053c1082adacd79149ea60"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_hard_mask.tif",
+      "sha256": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_soft_weight_k30.tif",
+      "sha256": "2bfee41c4bdbcf7e48b0e935875640959e2d8afc8f1ba541ba0a68e9137c14df"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_hard_mask.tif",
+      "sha256": "1cffdf47d64bdaabf746f7e7eceba8a7fdbde15f91990ebfee9a04f524fd17dd"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_soft_weight_k30.tif",
+      "sha256": "1ca669dea26e3ab93b964b349c5b549f3dcbac548898a349b5dec03c60ff0fe6"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "9f395daf728c9b3d1ccd129ce378f987a23c90e8a55abe418bfb77f61e97cbcc"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_hard_mask.tif",
+      "sha256": "f65771d5a70066670be55397410373d254d96a175265261fe5bcfa692b91dd6d"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_soft_weight_k30.tif",
+      "sha256": "bcf8721d37d21e4c98488ce163a2e8b3c1d133662de8c3bdcf843474183d9fed"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "7ee9ea7ae084a120e154d7289039d0f84f1e27783bd7ddea322141758b3890dc"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_hard_mask.tif",
+      "sha256": "2b5ca2ea52a059bd4e63d5b5f1a5f8c11a7228a1645ab7695cdc380e7ec4fac7"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_soft_weight_k30.tif",
+      "sha256": "cbbf2048f7c4adb3aecb74ce3576cebe6e013ae7b19634a384b2ef2572e52cab"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "9f06592e5a9d63d3380dbea0abc4a1101bb7097c9df2e97dcc3c293872a52076"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_hard_mask.tif",
+      "sha256": "ece99ddbbcd3b32a22ee57def6fa3eebecf952d93d09795ae58ffe78d3d66e65"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_soft_weight_k30.tif",
+      "sha256": "3f5492daf256f5b16059fa21cd15a311fa001e9f200fc468857d263a71ba3620"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "01a95a9739c4762c9aa529afe4ef0df1304518375533702fb354d24c69b33bf4"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_hard_mask.tif",
+      "sha256": "e0b341d81ff03f57342850a611d39e423432158a6aa9749f88d170c4bfbd7b1c"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_soft_weight_k30.tif",
+      "sha256": "c0f9d7ffdd470ae035e13d438a346a7da2467f168d8feed1673d6be561ba6be1"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "bfb14b02ef621e013d6c22ab9dbad388edbad901b86655ee0d8f29cb86bd4ba5"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_hard_mask.tif",
+      "sha256": "6c707293357b58fd4ab1dae9311e3c7b0b0e47399994c726664d209165f3f690"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_soft_weight_k30.tif",
+      "sha256": "0d64145337ad7da7fe34dc1a11ddec29b8dfcd9152c942b3632d5c4f2f3c133a"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "a7647aaef6e9cdb048ae210e40259943e0b789e383d9937a33d54fba5420e3f2"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_hard_mask.tif",
+      "sha256": "e79ca3a674b54d69f33363b0f4168e75264c0eebf45a0be5fb9ee8eb70610264"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_soft_weight_k30.tif",
+      "sha256": "bdaf652a8751877c6b68658d134fec3c7920ae4e8a9f943e69c7dcce0ed740f1"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "68791177786f0cb622ec5e21fa5b972638335837c04bce3da096f8d1cfed9ebc"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_hard_mask.tif",
+      "sha256": "a165db241f50c2eee7a2787bc6c2968123d9c17c8520de06e1fad3637cd7087e"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_soft_weight_k30.tif",
+      "sha256": "682f0bd8a622cbd5bc5d30f01b22d585d5d704ef34c4adde4204816924105902"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "c5129017a901bc0a16cb59677488e00cd14885a37f66601dbfec3f07e15c55de"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_hard_mask.tif",
+      "sha256": "cde058036faeb77158001942917042f04e40d8edfc793e4a68a77eae66a0262a"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_soft_weight_k30.tif",
+      "sha256": "4db28198cbbd1defa124bafba3d761a4a7ea988d06c14acefc7e01986ff45ccc"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "7c5287da71a4ca7974e6d1b6f6194c807d84b8862284143da3d83fc13317b0bd"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_hard_mask.tif",
+      "sha256": "7b3e85b4a3848e750b9ba20cc36f2888f16669bdbc58f7a4050692b193881d5b"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_soft_weight_k30.tif",
+      "sha256": "d537d0942496925e8101c2b6375d18f89318922309174859f0c254b5def3f325"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_bounded_scene_constant_diffuse.tif",
+      "sha256": "1ceb84a668ec772ba6272e5293eaeedc25a57bb0e9a10386265abe372591dbca"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_hard_mask.tif",
+      "sha256": "2a012ccc70d34a2b14fe4d26daf8516cc2a020aa02001f30b6199264c3267ad3"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_soft_weight_k30.tif",
+      "sha256": "e1d92b82bfc7be8ab5332c96ebfac6f747b7a79d0bdb6b967ebcaf6b83e30377"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_bounded_scene_constant_diffuse.tif",
+      "sha256": "459d12b407fba9faa6cb696c938f3c6ce675df5304eb1f4f01105b89bbf2778a"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B4_risk_coverage.png",
+      "sha256": "cb8c677a0307bfb85778179bc2b7bedf197bc09f16f651774021088e4c300b66"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B5_risk_coverage.png",
+      "sha256": "dde1ba74d52a4628d0ff54069c811f0798172da132ba6a828879db6b570a7fbc"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B4_risk_coverage.png",
+      "sha256": "840db060db5a961e7d70f07f2391d100987c6ce9420849193a401d97e1e5d684"
+    },
+    {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B5_risk_coverage.png",
+      "sha256": "48f6e5335588438adce8a2b2d325aef85e905c98e6ceb7dd729d084309f35f74"
+    }
+  ],
+  "idempotency": "同一合同输入与同一 execution source hash 重跑时复用现有 evidence，不覆盖结果。",
+  "pf2_writeback": "none",
+  "node_completed": false,
+  "evidence_manifest_sha256": "9b26601ade1429142bd4be3f667bab861276f4a1a445e56bcb03d68cda069454"
+}

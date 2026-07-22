@@ -1505,7 +1505,7 @@ def validate_approved_experiment_contract(config_path: Path) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run Stage 6.5.3-B deterministic preflight or contract validation only.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit", "propose-folds", "validate-approved-contract"), default="preflight")
+    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit", "propose-folds", "validate-approved-contract", "run-approved-experiment"), default="preflight")
     args = parser.parse_args()
     try:
         if args.mode == "preflight":
@@ -1514,6 +1514,10 @@ def main() -> int:
             summary = run_buffered_leave_region_out_audit(args.config.resolve())
         elif args.mode == "propose-folds":
             summary = run_fold_proposal(args.config.resolve())
+        elif args.mode == "run-approved-experiment":
+            from stage6_5_3_b_experiment import run_approved_experiment
+
+            summary = run_approved_experiment(args.config.resolve(), PROJECT_ROOT, SCRIPT_PATH)
         else:
             summary = validate_approved_experiment_contract(args.config.resolve())
     except PreflightError as exc:
@@ -1526,6 +1530,9 @@ def main() -> int:
         print(json.dumps({"status": summary["status"], "manifest_sha256": summary["manifest_sha256"], "clean_a_fold_count": len(summary["fold_groups"]["clean_a_lit_control"]["folds"]), "shadow_risk_b_fold_count": len(summary["fold_groups"]["shadow_risk_b_combined_risk"]["folds"]), "formal_experiment_eligibility": summary["formal_experiment_eligibility"]}, ensure_ascii=False))
         return 0
     if args.mode == "validate-approved-contract":
+        print(json.dumps(summary, ensure_ascii=False))
+        return 0
+    if args.mode == "run-approved-experiment":
         print(json.dumps(summary, ensure_ascii=False))
         return 0
     print(json.dumps({"audit_status": summary["audit_status"], "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"], "candidate_counts": {scene: value["candidate_count"] for scene, value in summary["scenes"].items()}}, ensure_ascii=False))

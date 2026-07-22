@@ -1,0 +1,301 @@
+scene,fold_id,band,method,partition,population_count,supported_count,unsupported_count,coverage,reliability,count,bias,mae,median_absolute_error,p90_absolute_error
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,hard_mask,lit,43262,43262,0,1.0,lit=1; cos_i<=0.1 unsupported,43262,-0.013798016939131397,0.020251769377946278,0.011350454795327512,0.048488427145592546
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k15,lit,43262,43262,0,1.0,w_30 observation-support ranking,43262,-0.013797906681622462,0.02025174418196503,0.011350564308464269,0.04848831677991041
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k30,lit,43262,43262,0,1.0,w_30 observation-support ranking,43262,-0.013798023848723329,0.02025177095711086,0.011350447932383725,0.048488434061963445
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,soft_weight_k60,lit,43262,43262,0,1.0,w_30 observation-support ranking,43262,-0.01379801752585956,0.020251769512041072,0.011350454212560479,0.04848842773289634
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B4,bounded_scene_constant_diffuse,lit,43262,43262,0,1.0,w_30 observation-support ranking; not diffuse-success probability,43262,-0.01379800132482588,0.02025176580934793,0.01135047030421749,0.048488411515967896
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,hard_mask,lit,43262,43262,0,1.0,lit=1; cos_i<=0.1 unsupported,43262,0.01821114947545217,0.04659891163517451,0.037504507746342064,0.09980702245284563
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k15,lit,43262,43262,0,1.0,w_30 observation-support ranking,43262,0.018207103557181286,0.0465981073328645,0.037501881949882965,0.09980293124203107
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k30,lit,43262,43262,0,1.0,w_30 observation-support ranking,43262,0.01821094967115398,0.04659887191537598,0.03750450810994324,0.09980682041181295
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,soft_weight_k60,lit,43262,43262,0,1.0,w_30 observation-support ranking,43262,0.018211146988319705,0.04659891114074871,0.03750450775086814,0.09980701993787067
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_01,B5,bounded_scene_constant_diffuse,lit,43262,43262,0,1.0,w_30 observation-support ranking; not diffuse-success probability,43262,0.018011406987260597,0.046558787861373165,0.03748403471975259,0.09965747486330113
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,hard_mask,lit,3600,3600,0,1.0,lit=1; cos_i<=0.1 unsupported,3600,0.022090431413650937,0.02565378224109366,0.026275822257685367,0.031112191522773842
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k15,lit,3600,3600,0,1.0,w_30 observation-support ranking,3600,0.022090473540138097,0.025653820300970707,0.02627586466644444,0.03111223384322157
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k30,lit,3600,3600,0,1.0,w_30 observation-support ranking,3600,0.02209042996094225,0.025653780928619783,0.026275820795242686,0.03111219006337653
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,soft_weight_k60,lit,3600,3600,0,1.0,w_30 observation-support ranking,3600,0.022090431298172133,0.025653782136762414,0.02627582214143279,0.031112191406763346
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B4,bounded_scene_constant_diffuse,lit,3600,3600,0,1.0,w_30 observation-support ranking; not diffuse-success probability,3600,0.0220904377931762,0.025653788004782102,0.02627582867995715,0.031112197931671987
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,hard_mask,lit,3600,3600,0,1.0,lit=1; cos_i<=0.1 unsupported,3600,-0.03921577282784516,0.05047421442226908,0.04499294991616959,0.09651782368210249
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k15,lit,3600,3600,0,1.0,w_30 observation-support ranking,3600,-0.039216393869025486,0.050474657942641055,0.04499357174225388,0.09651845571967244
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k30,lit,3600,3600,0,1.0,w_30 observation-support ranking,3600,-0.039215832433152666,0.050474256989765404,0.04499300959680938,0.09651788434280408
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,soft_weight_k60,lit,3600,3600,0,1.0,w_30 observation-support ranking,3600,-0.03921577324413824,0.05047421471956733,0.04499295033298881,0.09651782410576658
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_02,B5,bounded_scene_constant_diffuse,lit,3600,3600,0,1.0,w_30 observation-support ranking; not diffuse-success probability,3600,-0.038907186991307054,0.05018664284880881,0.04473422684537917,0.09584453746669648
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,hard_mask,lit,3702,3702,0,1.0,lit=1; cos_i<=0.1 unsupported,3702,-0.005918336756600161,0.023309684185704112,0.01710949818565988,0.04568956808516835
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k15,lit,3702,3702,0,1.0,w_30 observation-support ranking,3702,-0.00591820371763939,0.023309700906633223,0.017109630985055167,0.04568943587810995
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k30,lit,3702,3702,0,1.0,w_30 observation-support ranking,3702,-0.005918338541707165,0.023309683961343915,0.017109496403767348,0.045689569859112954
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,soft_weight_k60,lit,3702,3702,0,1.0,w_30 observation-support ranking,3702,-0.005918336903968287,0.023309684167182234,0.01710949803855712,0.04568956823161497
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B4,bounded_scene_constant_diffuse,lit,3702,3702,0,1.0,w_30 observation-support ranking; not diffuse-success probability,3702,-0.005918330021985936,0.023309685032140426,0.017109504908146972,0.04568956139266617
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,hard_mask,lit,3702,3702,0,1.0,lit=1; cos_i<=0.1 unsupported,3702,0.03583507188296868,0.05502335111519449,0.04337092966448969,0.12146197512848117
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k15,lit,3702,3702,0,1.0,w_30 observation-support ranking,3702,0.03583307034199816,0.055022456329396334,0.043368956184726304,0.12145994505528936
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k30,lit,3702,3702,0,1.0,w_30 observation-support ranking,3702,0.035834977263021955,0.055023308815493506,0.04337083637109587,0.12146187915971506
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,soft_weight_k60,lit,3702,3702,0,1.0,w_30 observation-support ranking,3702,0.035835070574149065,0.05502335053008871,0.043370928374019485,0.12146197380100415
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_03,B5,bounded_scene_constant_diffuse,lit,3702,3702,0,1.0,w_30 observation-support ranking; not diffuse-success probability,3702,0.0357397318766581,0.0549742023226994,0.043269277568571574,0.12152268811122445
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,hard_mask,lit,3694,3694,0,1.0,lit=1; cos_i<=0.1 unsupported,3694,-0.00344492789090424,0.014289627911935091,0.011777871335971263,0.028920641204337887
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k15,lit,3694,3694,0,1.0,w_30 observation-support ranking,3694,-0.0034448494732205476,0.014289624807224545,0.011777871569128132,0.028920563620392147
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k30,lit,3694,3694,0,1.0,w_30 observation-support ranking,3694,-0.0034449279729566154,0.014289627915183704,0.011777871335727302,0.02892064128551788
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,soft_weight_k60,lit,3694,3694,0,1.0,w_30 observation-support ranking,3694,-0.003444927882209002,0.01428962791159083,0.011777871335997114,0.02892064119573509
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B4,bounded_scene_constant_diffuse,lit,3694,3694,0,1.0,w_30 observation-support ranking; not diffuse-success probability,3694,-0.0034449278909042956,0.014289627911935093,0.011777871335971263,0.028920641204337943
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,hard_mask,lit,3694,3694,0,1.0,lit=1; cos_i<=0.1 unsupported,3694,-0.008206880609410265,0.05201700084211928,0.04684725888509242,0.10212538302777835
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k15,lit,3694,3694,0,1.0,w_30 observation-support ranking,3694,-0.00820804794639603,0.05201718672864094,0.04684725092805256,0.10212654451061526
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k30,lit,3694,3694,0,1.0,w_30 observation-support ranking,3694,-0.008206908164162896,0.052017005229932904,0.04684725869726811,0.10212541044434499
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,soft_weight_k60,lit,3694,3694,0,1.0,w_30 observation-support ranking,3694,-0.008206881595457469,0.05201700099913725,0.04684725887837113,0.10212538400888058
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_04,B5,bounded_scene_constant_diffuse,lit,3694,3694,0,1.0,w_30 observation-support ranking; not diffuse-success probability,3694,-0.008353613545887997,0.05204412445091575,0.04674592377501341,0.10206141391920362
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,hard_mask,lit,42994,42994,0,1.0,lit=1; cos_i<=0.1 unsupported,42994,0.010101063420230693,0.026191696938966173,0.02501897873757342,0.03953916539998264
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k15,lit,42994,42994,0,1.0,w_30 observation-support ranking,42994,0.010101145921716495,0.02619174037119688,0.025019060914733764,0.039539160229772025
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k30,lit,42994,42994,0,1.0,w_30 observation-support ranking,42994,0.010101064090193892,0.0261916972916628,0.025018979404902896,0.03953916511976907
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,soft_weight_k60,lit,42994,42994,0,1.0,w_30 observation-support ranking,42994,0.010101063421472475,0.026191696939619893,0.025018978738810323,0.039539165399463255
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B4,bounded_scene_constant_diffuse,lit,42994,42994,0,1.0,w_30 observation-support ranking; not diffuse-success probability,42994,0.010101063420230804,0.026191696938966225,0.02501897873757353,0.0395391653999826
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,hard_mask,shadow,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,hard_mask,near_zero,0,0,0,,lit=1; cos_i<=0.1 unsupported,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,hard_mask,lit,42994,42994,0,1.0,lit=1; cos_i<=0.1 unsupported,42994,-0.017943111007184962,0.05478541257871406,0.04682977553180004,0.11103762763017058
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k15,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k15,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k15,lit,42994,42994,0,1.0,w_30 observation-support ranking,42994,-0.017943689800194725,0.05478558465016739,0.04682919921680642,0.1110382155186853
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k30,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k30,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k30,lit,42994,42994,0,1.0,w_30 observation-support ranking,42994,-0.017943121447651034,0.054785415682597725,0.04682976513603326,0.11103763823470447
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k60,shadow,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k60,near_zero,0,0,0,,w_30 observation-support ranking,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,soft_weight_k60,lit,42994,42994,0,1.0,w_30 observation-support ranking,42994,-0.017943111031929485,0.05478541258607044,0.04682977550716147,0.11103762765530392
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,bounded_scene_constant_diffuse,shadow,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,bounded_scene_constant_diffuse,near_zero,0,0,0,,w_30 observation-support ranking; not diffuse-success probability,0,,,,
+clean_a,stage_6_5_3_b_clean_a_lit_control_05,B5,bounded_scene_constant_diffuse,lit,42994,42994,0,1.0,w_30 observation-support ranking; not diffuse-success probability,42994,-0.01771418618266254,0.05466554057478345,0.04665392067124355,0.11081119247567023
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,hard_mask,shadow,852,0,852,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,hard_mask,near_zero,1344,0,1344,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,hard_mask,lit,12029,12029,0,1.0,lit=1; cos_i<=0.1 unsupported,12029,0.08042992503890327,0.0922133518000273,0.08819804963841626,0.16524987621044704
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k15,shadow,852,852,0,1.0,w_30 observation-support ranking,852,-0.010778526964286826,0.01499497650060084,0.00975625030696392,0.03517750091850757
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k15,near_zero,1344,1344,0,1.0,w_30 observation-support ranking,1344,0.0056800761989728756,0.015646083423020953,0.012241532566095526,0.03271052243496502
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k15,lit,12029,12029,0,1.0,w_30 observation-support ranking,12029,0.08049080939786157,0.0922633165708883,0.08827755130655804,0.1653355529074986
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k30,shadow,852,852,0,1.0,w_30 observation-support ranking,852,-0.010778526964286826,0.01499497650060084,0.00975625030696392,0.03517750091850757
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k30,near_zero,1344,1344,0,1.0,w_30 observation-support ranking,1344,0.005676746516440526,0.015644399651822242,0.012237766547402877,0.032708742452487456
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k30,lit,12029,12029,0,1.0,w_30 observation-support ranking,12029,0.08045154634186821,0.09223109533000518,0.08822916052000784,0.1652782355571566
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k60,shadow,852,852,0,1.0,w_30 observation-support ranking,852,-0.010778526964286826,0.01499497650060084,0.00975625030696392,0.03517750091850757
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k60,near_zero,1344,1344,0,1.0,w_30 observation-support ranking,1344,0.0056755685626392206,0.015643803978011066,0.012236434229384061,0.03270811274166508
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,soft_weight_k60,lit,12029,12029,0,1.0,w_30 observation-support ranking,12029,0.08043765610890792,0.09221969630537975,0.08820917387102523,0.16525795819135367
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,bounded_scene_constant_diffuse,shadow,852,852,0,1.0,w_30 observation-support ranking; not diffuse-success probability,852,-0.007376628198732522,0.013468334856940276,0.007809999864548445,0.03299851938008489
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,bounded_scene_constant_diffuse,near_zero,1344,1344,0,1.0,w_30 observation-support ranking; not diffuse-success probability,1344,0.008846660545666166,0.016871725451012575,0.013854077757796452,0.0341159948814114
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B4,bounded_scene_constant_diffuse,lit,12029,12029,0,1.0,w_30 observation-support ranking; not diffuse-success probability,12029,0.08111792014263101,0.09285087338218313,0.08883504392250159,0.1650234882202019
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,hard_mask,shadow,852,0,852,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,hard_mask,near_zero,1344,0,1344,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,hard_mask,lit,12029,12029,0,1.0,lit=1; cos_i<=0.1 unsupported,12029,0.03598739909217872,0.06435195927666161,0.054067472507368125,0.1262908219720924
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k15,shadow,852,852,0,1.0,w_30 observation-support ranking,852,-0.05284678103536025,0.052854216481213835,0.04175249859690666,0.09669750183820722
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k15,near_zero,1344,1344,0,1.0,w_30 observation-support ranking,1344,-0.03545279686664263,0.037158229320912686,0.02852734332349339,0.0815426834866027
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k15,lit,12029,12029,0,1.0,w_30 observation-support ranking,12029,0.03593577513164209,0.06432281890857838,0.05402382486751717,0.126324576108683
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k30,shadow,852,852,0,1.0,w_30 observation-support ranking,852,-0.05284678103536025,0.052854216481213835,0.04175249859690666,0.09669750183820722
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k30,near_zero,1344,1344,0,1.0,w_30 observation-support ranking,1344,-0.03544985580790236,0.03715621466583102,0.028523194231186988,0.08154252030010123
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k30,lit,12029,12029,0,1.0,w_30 observation-support ranking,12029,0.03597045560128953,0.06434239301355033,0.05405473125795682,0.12628976946190681
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k60,shadow,852,852,0,1.0,w_30 observation-support ranking,852,-0.05284678103536025,0.052854216481213835,0.04175249859690666,0.09669750183820722
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k60,near_zero,1344,1344,0,1.0,w_30 observation-support ranking,1344,-0.035448836263262624,0.03715551626740691,0.028521755910774393,0.08154246373002307
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,soft_weight_k60,lit,12029,12029,0,1.0,w_30 observation-support ranking,12029,0.035982477900078885,0.064349180661341,0.05406938026020763,0.12628567611643085
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,bounded_scene_constant_diffuse,shadow,852,852,0,1.0,w_30 observation-support ranking; not diffuse-success probability,852,-0.016164189849809756,0.02366586520302486,0.01262634095607261,0.06001491065265672
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,bounded_scene_constant_diffuse,near_zero,1344,1344,0,1.0,w_30 observation-support ranking; not diffuse-success probability,1344,-0.001229481452035017,0.02589456530193815,0.020614886463081572,0.050275331546133416
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_01,B5,bounded_scene_constant_diffuse,lit,12029,12029,0,1.0,w_30 observation-support ranking; not diffuse-success probability,12029,0.043619000353777936,0.06618833994594885,0.0573446305504913,0.12454521878673361
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,hard_mask,shadow,265,0,265,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,hard_mask,near_zero,413,0,413,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,hard_mask,lit,7527,7527,0,1.0,lit=1; cos_i<=0.1 unsupported,7527,0.031756942633056444,0.04074140055509655,0.03457402412397351,0.08364852816215558
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k15,shadow,265,265,0,1.0,w_30 observation-support ranking,265,-0.010260018859957679,0.013482226413155864,0.009742500260472298,0.03166200071573257
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k15,near_zero,413,413,0,1.0,w_30 observation-support ranking,413,-0.008803885206958144,0.015578348382469935,0.012156460640518969,0.03305665871512025
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k15,lit,7527,7527,0,1.0,w_30 observation-support ranking,7527,0.031961901326964186,0.040890780294053276,0.03478333743523984,0.08387002456744187
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k30,shadow,265,265,0,1.0,w_30 observation-support ranking,265,-0.010260018859957679,0.013482226413155864,0.009742500260472298,0.03166200071573257
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k30,near_zero,413,413,0,1.0,w_30 observation-support ranking,413,-0.008813243171661466,0.015580738524857933,0.012162313915646364,0.033071539712046676
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k30,lit,7527,7527,0,1.0,w_30 observation-support ranking,7527,0.031809570897213486,0.040779685861768354,0.034630791104516445,0.08370938744822407
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k60,shadow,265,265,0,1.0,w_30 observation-support ranking,265,-0.010260018859957679,0.013482226413155864,0.009742500260472298,0.03166200071573257
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k60,near_zero,413,413,0,1.0,w_30 observation-support ranking,413,-0.008815594081997394,0.015581338977052661,0.012158787372382298,0.03307527811997963
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,soft_weight_k60,lit,7527,7527,0,1.0,w_30 observation-support ranking,7527,0.03177130240688136,0.040751841060665886,0.03458951315851372,0.08366513379407384
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,bounded_scene_constant_diffuse,shadow,265,265,0,1.0,w_30 observation-support ranking; not diffuse-success probability,265,-0.010260018859957679,0.013482226413155864,0.009742500260472298,0.03166200071573257
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,bounded_scene_constant_diffuse,near_zero,413,413,0,1.0,w_30 observation-support ranking; not diffuse-success probability,413,-0.008817149846623984,0.015581736338989542,0.012156453607805862,0.03307775209048075
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B4,bounded_scene_constant_diffuse,lit,7527,7527,0,1.0,w_30 observation-support ranking; not diffuse-success probability,7527,0.031745977424187735,0.04073342812282439,0.03456219660489285,0.08364548570756417
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,hard_mask,shadow,265,0,265,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,hard_mask,near_zero,413,0,413,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,hard_mask,lit,7527,7527,0,1.0,lit=1; cos_i<=0.1 unsupported,7527,0.059323387722507226,0.06752696864935426,0.06264497576083605,0.12560104913835626
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k15,shadow,265,265,0,1.0,w_30 observation-support ranking,265,-0.043148047202881776,0.04316666984473759,0.036389999091625214,0.07407599836587904
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k15,near_zero,413,413,0,1.0,w_30 observation-support ranking,413,-0.04102414678995108,0.041541470756227404,0.03703069529472917,0.07432571892100462
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k15,lit,7527,7527,0,1.0,w_30 observation-support ranking,7527,0.05929996217780141,0.06750709705919002,0.06261756153716241,0.12557319231009612
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k30,shadow,265,265,0,1.0,w_30 observation-support ranking,265,-0.043148047202881776,0.04316666984473759,0.036389999091625214,0.07407599836587904
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k30,near_zero,413,413,0,1.0,w_30 observation-support ranking,413,-0.041023895719925624,0.04154124574103305,0.0370306389311877,0.07432555456937638
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k30,lit,7527,7527,0,1.0,w_30 observation-support ranking,7527,0.05930404913539177,0.06751056294852356,0.06262234438302294,0.12557805237534245
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k60,shadow,265,265,0,1.0,w_30 observation-support ranking,265,-0.043148047202881776,0.04316666984473759,0.036389999091625214,0.07407599836587904
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k60,near_zero,413,413,0,1.0,w_30 observation-support ranking,413,-0.04102301729437478,0.041540458474230935,0.03703044173052678,0.07432497954784881
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,soft_weight_k60,lit,7527,7527,0,1.0,w_30 observation-support ranking,7527,0.05931834828546409,0.06752269241943512,0.06263907825637993,0.12559505641827223
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,bounded_scene_constant_diffuse,shadow,265,265,0,1.0,w_30 observation-support ranking; not diffuse-success probability,265,-0.02389156142314995,0.024377360445342007,0.017216013590843127,0.054819512586147215
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,bounded_scene_constant_diffuse,near_zero,413,413,0,1.0,w_30 observation-support ranking; not diffuse-success probability,413,-0.022987058073243714,0.026961215007315152,0.020429532572899558,0.055956890107429144
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_02,B5,bounded_scene_constant_diffuse,lit,7527,7527,0,1.0,w_30 observation-support ranking; not diffuse-success probability,7527,0.058706909672640445,0.06548457356429202,0.060070592980928234,0.12275085001663576
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,hard_mask,shadow,280,0,280,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,hard_mask,near_zero,318,0,318,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,hard_mask,lit,2550,2550,0,1.0,lit=1; cos_i<=0.1 unsupported,2550,0.07012348620911782,0.0767866514904577,0.07657772605846849,0.14062727575685388
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k15,shadow,280,280,0,1.0,w_30 observation-support ranking,280,-0.011421669638028625,0.012554776775894944,0.009550000075250864,0.02944349981844425
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k15,near_zero,318,318,0,1.0,w_30 observation-support ranking,318,-0.004404656097836213,0.013547474198678201,0.009947630679945876,0.028527271037441033
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k15,lit,2550,2550,0,1.0,w_30 observation-support ranking,2550,0.07023090465853568,0.07688032208118709,0.07669772343683147,0.1407563590399954
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k30,shadow,280,280,0,1.0,w_30 observation-support ranking,280,-0.011421669638028625,0.012554776775894944,0.009550000075250864,0.02944349981844425
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k30,near_zero,318,318,0,1.0,w_30 observation-support ranking,318,-0.004411703683068627,0.013546530116546227,0.009946392264630679,0.028530364175142625
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k30,lit,2550,2550,0,1.0,w_30 observation-support ranking,2550,0.07015756256420323,0.07681636661228317,0.07661579282722725,0.14067599662306837
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k60,shadow,280,280,0,1.0,w_30 observation-support ranking,280,-0.011421669638028625,0.012554776775894944,0.009550000075250864,0.02944349981844425
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k60,near_zero,318,318,0,1.0,w_30 observation-support ranking,318,-0.004413955893453025,0.013546228414401276,0.00994820212125031,0.02853135265511444
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,soft_weight_k60,lit,2550,2550,0,1.0,w_30 observation-support ranking,2550,0.07013412448988106,0.0767959282399252,0.0765896101045406,0.1406436838834261
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,bounded_scene_constant_diffuse,shadow,280,280,0,1.0,w_30 observation-support ranking; not diffuse-success probability,280,-0.011421669638028625,0.012554776775894944,0.009550000075250864,0.02944349981844425
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,bounded_scene_constant_diffuse,near_zero,318,318,0,1.0,w_30 observation-support ranking; not diffuse-success probability,318,-0.004416084050441984,0.01354594333023116,0.00994991228964344,0.028532286688886344
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B4,bounded_scene_constant_diffuse,lit,2550,2550,0,1.0,w_30 observation-support ranking; not diffuse-success probability,2550,0.07011197740183728,0.07677661562806719,0.07656486954537195,0.14060952495944998
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,hard_mask,shadow,280,0,280,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,hard_mask,near_zero,318,0,318,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,hard_mask,lit,2550,2550,0,1.0,lit=1; cos_i<=0.1 unsupported,2550,0.05053618287079952,0.07644048279058216,0.06484355205270151,0.1594222899953717
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k15,shadow,280,280,0,1.0,w_30 observation-support ranking,280,-0.046438303513319366,0.046438303513319366,0.03748999908566475,0.0821994975209236
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k15,near_zero,318,318,0,1.0,w_30 observation-support ranking,318,-0.037059211347424514,0.03811392573547596,0.03136911684853435,0.08370644382460832
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k15,lit,2550,2550,0,1.0,w_30 observation-support ranking,2550,0.05050597028756778,0.07642171301444135,0.06480866481195686,0.15937713873282575
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k30,shadow,280,280,0,1.0,w_30 observation-support ranking,280,-0.046438303513319366,0.046438303513319366,0.03748999908566475,0.0821994975209236
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k30,near_zero,318,318,0,1.0,w_30 observation-support ranking,318,-0.0370573614921742,0.038112555636787365,0.031367184463818115,0.08370321640573225
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k30,lit,2550,2550,0,1.0,w_30 observation-support ranking,2550,0.05052522117333867,0.07643367108276486,0.06482664772020968,0.15940590826209827
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k60,shadow,280,280,0,1.0,w_30 observation-support ranking,280,-0.046438303513319366,0.046438303513319366,0.03748999908566475,0.0821994975209236
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k60,near_zero,318,318,0,1.0,w_30 observation-support ranking,318,-0.03705653837870818,0.038111945996287026,0.03136632462795734,0.08370178033015988
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,soft_weight_k60,lit,2550,2550,0,1.0,w_30 observation-support ranking,2550,0.05053378706697182,0.07643899299439899,0.06483985741830445,0.15941870958098595
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,bounded_scene_constant_diffuse,shadow,280,280,0,1.0,w_30 observation-support ranking; not diffuse-success probability,280,-0.010351194412234635,0.017741069193071096,0.009528749622404575,0.046112388419838876
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,bounded_scene_constant_diffuse,near_zero,318,318,0,1.0,w_30 observation-support ranking; not diffuse-success probability,318,-0.003377252024273843,0.0239445404759171,0.019805488928226332,0.05180686515063179
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_03,B5,bounded_scene_constant_diffuse,lit,2550,2550,0,1.0,w_30 observation-support ranking; not diffuse-success probability,2550,0.06156341091645104,0.07961435670287392,0.06781044094183886,0.16249109950573212
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,hard_mask,shadow,263,0,263,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,hard_mask,near_zero,381,0,381,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,hard_mask,lit,4399,4399,0,1.0,lit=1; cos_i<=0.1 unsupported,4399,0.024807723305024686,0.05419561742509523,0.04496702076399406,0.10666447959334434
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k15,shadow,263,263,0,1.0,w_30 observation-support ranking,263,-0.009924439163567602,0.015028355472928981,0.011282499879598618,0.03241050094366074
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k15,near_zero,381,381,0,1.0,w_30 observation-support ranking,381,0.0054407710277512185,0.016474546840461683,0.012260955629243463,0.03464575320411455
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k15,lit,4399,4399,0,1.0,w_30 observation-support ranking,4399,0.024966012630263896,0.054265184270939966,0.045039257226231824,0.10678084003663621
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k30,shadow,263,263,0,1.0,w_30 observation-support ranking,263,-0.009924439163567602,0.015028355472928981,0.011282499879598618,0.03241050094366074
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k30,near_zero,381,381,0,1.0,w_30 observation-support ranking,381,0.005428161680535021,0.016468778797087066,0.012264735418660393,0.03465059815570631
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k30,lit,4399,4399,0,1.0,w_30 observation-support ranking,4399,0.024853333566281624,0.05421565450958385,0.04496448969070117,0.10673197876002276
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k60,shadow,263,263,0,1.0,w_30 observation-support ranking,263,-0.009924439163567602,0.015028355472928981,0.011282499879598618,0.03241050094366074
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k60,near_zero,381,381,0,1.0,w_30 observation-support ranking,381,0.005424542112088008,0.01646712305492676,0.012265820423797875,0.0346519889203199
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,soft_weight_k60,lit,4399,4399,0,1.0,w_30 observation-support ranking,4399,0.024820988546540617,0.054201442117519504,0.044976480173853306,0.10668948947874994
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,bounded_scene_constant_diffuse,shadow,263,263,0,1.0,w_30 observation-support ranking; not diffuse-success probability,263,-0.009924439163567602,0.015028355472928981,0.011282499879598618,0.03241050094366074
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,bounded_scene_constant_diffuse,near_zero,381,381,0,1.0,w_30 observation-support ranking; not diffuse-success probability,381,0.005422834821980399,0.01646634206894669,0.012266332202636995,0.03465264492080768
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B4,bounded_scene_constant_diffuse,lit,4399,4399,0,1.0,w_30 observation-support ranking; not diffuse-success probability,4399,0.02480573193983661,0.05419474341555969,0.044965600726562346,0.10666072513360875
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,hard_mask,shadow,263,0,263,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,hard_mask,near_zero,381,0,381,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,hard_mask,lit,4399,4399,0,1.0,lit=1; cos_i<=0.1 unsupported,4399,0.011465146949974811,0.052851257216114646,0.04043720932157649,0.11343106538743894
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k15,shadow,263,263,0,1.0,w_30 observation-support ranking,263,-0.04997113118737851,0.04999156845042999,0.04136750102043152,0.08218849897384646
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k15,near_zero,381,381,0,1.0,w_30 observation-support ranking,381,-0.035521365990306225,0.03650415025341903,0.029538250944097594,0.07581231168752711
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k15,lit,4399,4399,0,1.0,w_30 observation-support ranking,4399,0.011466373246078004,0.05285156663489501,0.04043612816426634,0.11343125948932667
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k30,shadow,263,263,0,1.0,w_30 observation-support ranking,263,-0.04997113118737851,0.04999156845042999,0.04136750102043152,0.08218849897384646
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k30,near_zero,381,381,0,1.0,w_30 observation-support ranking,381,-0.03552230701462627,0.03650485196495163,0.029538429081734294,0.0758123581933834
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k30,lit,4399,4399,0,1.0,w_30 observation-support ranking,4399,0.01145796410817817,0.052849447576070074,0.040443542035099755,0.11342232570522227
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k60,shadow,263,263,0,1.0,w_30 observation-support ranking,263,-0.04997113118737851,0.04999156845042999,0.04136750102043152,0.08218849897384646
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k60,near_zero,381,381,0,1.0,w_30 observation-support ranking,381,-0.035521695504900086,0.036504395968843965,0.02953831332181702,0.07581232797229046
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,soft_weight_k60,lit,4399,4399,0,1.0,w_30 observation-support ranking,4399,0.011463428653041697,0.052850824246790606,0.04043872424875064,0.11343023930563902
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,bounded_scene_constant_diffuse,shadow,263,263,0,1.0,w_30 observation-support ranking; not diffuse-success probability,263,-0.02517534525685253,0.02619451638452518,0.017066713038313665,0.05739271304332049
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,bounded_scene_constant_diffuse,near_zero,381,381,0,1.0,w_30 observation-support ranking; not diffuse-success probability,381,-0.012481495342232895,0.024060274249014482,0.016622256927901986,0.05165461754085551
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_04,B5,bounded_scene_constant_diffuse,lit,4399,4399,0,1.0,w_30 observation-support ranking; not diffuse-success probability,4399,0.02057103043959988,0.054192427757291155,0.04254834079103628,0.1148481611998634
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,hard_mask,shadow,500,0,500,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,hard_mask,near_zero,495,0,495,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,hard_mask,lit,15627,15627,0,1.0,lit=1; cos_i<=0.1 unsupported,15627,0.07696504097519707,0.08747704640001301,0.08495831933369849,0.15349695279085152
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k15,shadow,500,500,0,1.0,w_30 observation-support ranking,500,-0.01146399998729612,0.013773729991873552,0.010086250025779009,0.030329000763595113
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k15,near_zero,495,495,0,1.0,w_30 observation-support ranking,495,-0.0003615821794534571,0.013017174826123797,0.010091854791167518,0.028172241425546356
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k15,lit,15627,15627,0,1.0,w_30 observation-support ranking,15627,0.07704102320095536,0.08753891766478637,0.08503138933971402,0.15358854018380155
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k30,shadow,500,500,0,1.0,w_30 observation-support ranking,500,-0.01146399998729612,0.013773729991873552,0.010086250025779009,0.030329000763595113
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k30,near_zero,495,495,0,1.0,w_30 observation-support ranking,495,-0.000365573003077932,0.013016095964811332,0.010086970437165728,0.028170661628260995
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k30,lit,15627,15627,0,1.0,w_30 observation-support ranking,15627,0.07699143797557423,0.08749854110858807,0.08498646582072217,0.15352909171419374
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k60,shadow,500,500,0,1.0,w_30 observation-support ranking,500,-0.01146399998729612,0.013773729991873552,0.010086250025779009,0.030329000763595113
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k60,near_zero,495,495,0,1.0,w_30 observation-support ranking,495,-0.0003669129372303863,0.013015733733038055,0.010085330496803657,0.02817013120533686
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,soft_weight_k60,lit,15627,15627,0,1.0,w_30 observation-support ranking,15627,0.07697478954828273,0.08748498452686472,0.08496871400286296,0.15350882189107576
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,bounded_scene_constant_diffuse,shadow,500,500,0,1.0,w_30 observation-support ranking; not diffuse-success probability,500,-0.01146399998729612,0.013773729991873552,0.010086250025779009,0.030329000763595113
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,bounded_scene_constant_diffuse,near_zero,495,495,0,1.0,w_30 observation-support ranking; not diffuse-success probability,495,-0.00036737949544269596,0.013015607605788985,0.010084759477964993,0.028169946514790087
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B4,bounded_scene_constant_diffuse,lit,15627,15627,0,1.0,w_30 observation-support ranking; not diffuse-success probability,15627,0.07696899265112875,0.08748026419450937,0.08496253291076192,0.15350176404243412
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,hard_mask,shadow,500,0,500,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,hard_mask,near_zero,495,0,495,0.0,lit=1; cos_i<=0.1 unsupported,0,,,,
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,hard_mask,lit,15627,15627,0,1.0,lit=1; cos_i<=0.1 unsupported,15627,0.04287837871410491,0.07013381578043734,0.05796337084626717,0.14321944857975383
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k15,shadow,500,500,0,1.0,w_30 observation-support ranking,500,-0.05022382008493878,0.05022382008493878,0.04260500147938728,0.08412174656987191
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k15,near_zero,495,495,0,1.0,w_30 observation-support ranking,495,-0.04178511221699745,0.04243901139703201,0.03466586616270691,0.08436351126108903
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k15,lit,15627,15627,0,1.0,w_30 observation-support ranking,15627,0.042839302307164845,0.07011257291958896,0.05792394887739727,0.14318917469420467
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k30,shadow,500,500,0,1.0,w_30 observation-support ranking,500,-0.05022382008493878,0.05022382008493878,0.04260500147938728,0.08412174656987191
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k30,near_zero,495,495,0,1.0,w_30 observation-support ranking,495,-0.04178302491385367,0.042437279191258656,0.03466212763857205,0.08436160655250523
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k30,lit,15627,15627,0,1.0,w_30 observation-support ranking,15627,0.04286523665219284,0.07012667132578658,0.0579471377618791,0.14320058117284218
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k60,shadow,500,500,0,1.0,w_30 observation-support ranking,500,-0.05022382008493878,0.05022382008493878,0.04260500147938728,0.08412174656987191
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k60,near_zero,495,495,0,1.0,w_30 observation-support ranking,495,-0.0417822332504529,0.04243662220766839,0.034660709707142544,0.08436088414278749
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,soft_weight_k60,lit,15627,15627,0,1.0,w_30 observation-support ranking,15627,0.042875072919551935,0.07013201856599242,0.057961059545430293,0.14321470261436314
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,bounded_scene_constant_diffuse,shadow,500,500,0,1.0,w_30 observation-support ranking; not diffuse-success probability,500,-0.013599799462496762,0.019274566432362025,0.011165271238754042,0.04749772594742989
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,bounded_scene_constant_diffuse,near_zero,495,495,0,1.0,w_30 observation-support ranking; not diffuse-success probability,495,-0.007524203995524953,0.024585693849409042,0.01771666711231075,0.04999995083908239
+shadow_risk_b,stage_6_5_3_b_shadow_risk_b_combined_risk_05,B5,bounded_scene_constant_diffuse,lit,15627,15627,0,1.0,w_30 observation-support ranking; not diffuse-success probability,15627,0.050102100277626745,0.07264043059987976,0.06161551170682089,0.1463328589985907
