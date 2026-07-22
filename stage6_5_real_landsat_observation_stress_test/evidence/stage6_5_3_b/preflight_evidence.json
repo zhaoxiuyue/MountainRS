@@ -1,0 +1,1829 @@
+{
+  "schema": "mountainrs-stage-6-5-3-b-preflight-evidence-v1",
+  "stage": "Stage 6.5.3-B",
+  "preflight_only": true,
+  "project_guard": {
+    "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+    "project_revision": 39,
+    "route_revision": 1,
+    "node_id": "node_b702a65b-aaa2-4f53-98ee-39db6e7ffb80",
+    "node_contract_revision": 1,
+    "node_contract_hash": "5e5243ef38dc8b19df3ae0e0c4be8683e3b24d91c0d099b26e51fc829cf22664"
+  },
+  "config_sha256": "0be64cfc87e775fdaa64006d047c688ff94f98b94d8a67f7b75aa65b9e22cf38",
+  "executor_sha256": "7b9f7318f91f368a7267fa098558096a0992155e36c8b296b3fd8e38b3d2bf72",
+  "verdict": "BLOCKED",
+  "blockers": [
+    "clean_a 独立 calibration/holdout candidate blocks 不足：独立候选 blocks 不足：calibration=1, holdout=0, minimum=2",
+    "shadow_risk_b 独立 calibration/holdout candidate blocks 不足：独立候选 blocks 不足：calibration=1, holdout=0, minimum=2"
+  ],
+  "scenes": {
+    "clean_a": {
+      "scene": "clean_a",
+      "metadata": {
+        "relative_path": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+        "row_count": 1,
+        "selected_fields": {
+          "image_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+          "date": "2023-08-13",
+          "SUN_AZIMUTH": "123.53706884",
+          "SUN_ELEVATION": "62.94220054",
+          "VALID_PIXEL_COVERAGE": "1.0"
+        }
+      },
+      "grid": {
+        "b4": {
+          "shape": [
+            746,
+            645
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            377670.0,
+            0.0,
+            -30.0,
+            3441390.0
+          ],
+          "nodata": null,
+          "dtype": "float32"
+        },
+        "b5": {
+          "shape": [
+            746,
+            645
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            377670.0,
+            0.0,
+            -30.0,
+            3441390.0
+          ],
+          "nodata": null,
+          "dtype": "float32"
+        },
+        "qa_pixel": {
+          "shape": [
+            746,
+            645
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            377670.0,
+            0.0,
+            -30.0,
+            3441390.0
+          ],
+          "nodata": null,
+          "dtype": "uint16"
+        },
+        "cos_i": {
+          "shape": [
+            746,
+            645
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            377670.0,
+            0.0,
+            -30.0,
+            3441390.0
+          ],
+          "nodata": -9999.0,
+          "dtype": "float32"
+        }
+      },
+      "grid_failures": {},
+      "qa": {
+        "clear_bits": {
+          "0": "fill",
+          "1": "dilated_cloud",
+          "2": "cirrus",
+          "3": "cloud",
+          "4": "cloud_shadow",
+          "5": "snow"
+        },
+        "flagged_counts": {
+          "fill": 0,
+          "dilated_cloud": 0,
+          "cirrus": 0,
+          "cloud": 0,
+          "cloud_shadow": 0,
+          "snow": 0
+        },
+        "water_bit": 7,
+        "water_all_qa_valid": {
+          "count": 2136,
+          "ratio": 0.004439179499968826
+        },
+        "water_in_base_valid": {
+          "count": 2136,
+          "ratio": 0.004528589903958276
+        }
+      },
+      "canonical": {
+        "total_pixel_count": 481170,
+        "base_valid": {
+          "count": 471670,
+          "ratio": 0.9802564582164308
+        },
+        "base_valid_land": {
+          "count": 469534,
+          "ratio": 0.975817278716462
+        },
+        "water_excluded_from_land_count": 2136,
+        "partitions_on_base_valid": {
+          "shadow": {
+            "count": 0,
+            "ratio": 0.0
+          },
+          "near_zero": {
+            "count": 3,
+            "ratio": 6.360379078593084e-06
+          },
+          "lit": {
+            "count": 471667,
+            "ratio": 0.9999936396209214
+          }
+        },
+        "partitions_on_base_valid_land": {
+          "shadow": {
+            "count": 0,
+            "ratio": 0.0
+          },
+          "near_zero": {
+            "count": 3,
+            "ratio": 6.38931365992665e-06
+          },
+          "lit": {
+            "count": 469531,
+            "ratio": 0.9999936106863401
+          }
+        },
+        "integrity": {
+          "pairwise_overlap_count": 0,
+          "union_difference_count": 0,
+          "passes": true
+        }
+      },
+      "prior_cross_checks": {
+        "qa_valid_mask_vs_qa_bits_only": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 481170,
+            "agreement_count": 471670,
+            "symmetric_difference_count": 9500,
+            "symmetric_difference_ratio": 0.019743541783569216,
+            "reference_only_count": 0,
+            "canonical_only_count": 9500
+          }
+        },
+        "qa_valid_mask_vs_base_valid": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 481170,
+            "agreement_count": 481170,
+            "symmetric_difference_count": 0,
+            "symmetric_difference_ratio": 0.0,
+            "reference_only_count": 0,
+            "canonical_only_count": 0
+          }
+        },
+        "shadow_mask_vs_canonical_shadow": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 471670,
+            "agreement_count": 471670,
+            "symmetric_difference_count": 0,
+            "symmetric_difference_ratio": 0.0,
+            "reference_only_count": 0,
+            "canonical_only_count": 0
+          }
+        },
+        "near_zero_mask_vs_canonical_near_zero": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 471670,
+            "agreement_count": 471670,
+            "symmetric_difference_count": 0,
+            "symmetric_difference_ratio": 0.0,
+            "reference_only_count": 0,
+            "canonical_only_count": 0
+          }
+        },
+        "confidence_vs_frozen_sigmoid": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 471670,
+            "median_absolute_difference": 4.731148806058627e-11,
+            "p95_absolute_difference": 6.817475806109021e-10,
+            "interpretation": "仅核对既有 confidence 与冻结 sigmoid 公式；不拟合、校准或将其解释为正确概率。"
+          }
+        }
+      },
+      "canonical_mask_output": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_clean_a_canonical_masks.tif"
+    },
+    "shadow_risk_b": {
+      "scene": "shadow_risk_b",
+      "metadata": {
+        "relative_path": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+        "row_count": 1,
+        "selected_fields": {
+          "image_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+          "date": "2023-01-01",
+          "SUN_AZIMUTH": "155.66673554",
+          "SUN_ELEVATION": "31.1368308",
+          "VALID_PIXEL_COVERAGE": "0.5199480114198468"
+        }
+      },
+      "grid": {
+        "b4": {
+          "shape": [
+            752,
+            650
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            292230.0,
+            0.0,
+            -30.0,
+            3473790.0
+          ],
+          "nodata": null,
+          "dtype": "float32"
+        },
+        "b5": {
+          "shape": [
+            752,
+            650
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            292230.0,
+            0.0,
+            -30.0,
+            3473790.0
+          ],
+          "nodata": null,
+          "dtype": "float32"
+        },
+        "qa_pixel": {
+          "shape": [
+            752,
+            650
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            292230.0,
+            0.0,
+            -30.0,
+            3473790.0
+          ],
+          "nodata": null,
+          "dtype": "uint16"
+        },
+        "cos_i": {
+          "shape": [
+            752,
+            650
+          ],
+          "crs": "EPSG:32648",
+          "is_projected": true,
+          "resolution": [
+            30.0,
+            30.0
+          ],
+          "transform": [
+            30.0,
+            0.0,
+            292230.0,
+            0.0,
+            -30.0,
+            3473790.0
+          ],
+          "nodata": -9999.0,
+          "dtype": "float32"
+        }
+      },
+      "grid_failures": {},
+      "qa": {
+        "clear_bits": {
+          "0": "fill",
+          "1": "dilated_cloud",
+          "2": "cirrus",
+          "3": "cloud",
+          "4": "cloud_shadow",
+          "5": "snow"
+        },
+        "flagged_counts": {
+          "fill": 0,
+          "dilated_cloud": 23475,
+          "cirrus": 0,
+          "cloud": 8029,
+          "cloud_shadow": 28016,
+          "snow": 180518
+        },
+        "water_bit": 7,
+        "water_all_qa_valid": {
+          "count": 149203,
+          "ratio": 0.30524345335515546
+        },
+        "water_in_base_valid": {
+          "count": 137965,
+          "ratio": 0.5744066081844563
+        }
+      },
+      "canonical": {
+        "total_pixel_count": 488800,
+        "base_valid": {
+          "count": 240187,
+          "ratio": 0.49138093289689033
+        },
+        "base_valid_land": {
+          "count": 102222,
+          "ratio": 0.20912847790507366
+        },
+        "water_excluded_from_land_count": 137965,
+        "partitions_on_base_valid": {
+          "shadow": {
+            "count": 64967,
+            "ratio": 0.27048508037487456
+          },
+          "near_zero": {
+            "count": 29336,
+            "ratio": 0.12213816734461065
+          },
+          "lit": {
+            "count": 145884,
+            "ratio": 0.6073767522805148
+          }
+        },
+        "partitions_on_base_valid_land": {
+          "shadow": {
+            "count": 4063,
+            "ratio": 0.039746825536577254
+          },
+          "near_zero": {
+            "count": 4559,
+            "ratio": 0.04459900999784782
+          },
+          "lit": {
+            "count": 93600,
+            "ratio": 0.9156541644655749
+          }
+        },
+        "integrity": {
+          "pairwise_overlap_count": 0,
+          "union_difference_count": 0,
+          "passes": true
+        }
+      },
+      "prior_cross_checks": {
+        "qa_valid_mask_vs_qa_bits_only": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 488800,
+            "agreement_count": 470282,
+            "symmetric_difference_count": 18518,
+            "symmetric_difference_ratio": 0.037884615384615385,
+            "reference_only_count": 0,
+            "canonical_only_count": 18518
+          }
+        },
+        "qa_valid_mask_vs_base_valid": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 488800,
+            "agreement_count": 484182,
+            "symmetric_difference_count": 4618,
+            "symmetric_difference_ratio": 0.009447626841243862,
+            "reference_only_count": 4618,
+            "canonical_only_count": 0
+          }
+        },
+        "shadow_mask_vs_canonical_shadow": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 240187,
+            "agreement_count": 240187,
+            "symmetric_difference_count": 0,
+            "symmetric_difference_ratio": 0.0,
+            "reference_only_count": 0,
+            "canonical_only_count": 0
+          }
+        },
+        "near_zero_mask_vs_canonical_near_zero": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 240187,
+            "agreement_count": 175220,
+            "symmetric_difference_count": 64967,
+            "symmetric_difference_ratio": 0.27048508037487456,
+            "reference_only_count": 64967,
+            "canonical_only_count": 0
+          }
+        },
+        "confidence_vs_frozen_sigmoid": {
+          "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif",
+          "grid_matches": true,
+          "grid_failures": [],
+          "comparison": {
+            "support_count": 240187,
+            "median_absolute_difference": 1.1592700410734125e-09,
+            "p95_absolute_difference": 2.5764540834138924e-08,
+            "interpretation": "仅核对既有 confidence 与冻结 sigmoid 公式；不拟合、校准或将其解释为正确概率。"
+          }
+        }
+      },
+      "canonical_mask_output": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif"
+    }
+  },
+  "semivariograms": {
+    "clean_a": {
+      "cos_i": {
+        "land_pixel_count": 469534,
+        "sample_point_count": 6000,
+        "candidate_pair_samples": 1000000,
+        "accepted_pair_count": 444798,
+        "maximum_lag_m": 9675.0,
+        "lag_bins": [
+          {
+            "lag_lower_m": 0.0,
+            "lag_upper_m": 403.125,
+            "mean_lag_m": 269.2367238599209,
+            "pair_count": 1194,
+            "semivariance": 0.0021318464463729704,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 403.125,
+            "lag_upper_m": 806.25,
+            "mean_lag_m": 623.4433231641885,
+            "pair_count": 3344,
+            "semivariance": 0.002562743151523971,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 806.25,
+            "lag_upper_m": 1209.375,
+            "mean_lag_m": 1022.6702700978351,
+            "pair_count": 5840,
+            "semivariance": 0.002606553905078501,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1209.375,
+            "lag_upper_m": 1612.5,
+            "mean_lag_m": 1419.4543118213173,
+            "pair_count": 7644,
+            "semivariance": 0.002357823858260051,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1612.5,
+            "lag_upper_m": 2015.625,
+            "mean_lag_m": 1820.1196867544172,
+            "pair_count": 9649,
+            "semivariance": 0.002316676033996253,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2015.625,
+            "lag_upper_m": 2418.75,
+            "mean_lag_m": 2222.7821811133917,
+            "pair_count": 11417,
+            "semivariance": 0.002457135997501347,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2418.75,
+            "lag_upper_m": 2821.875,
+            "mean_lag_m": 2625.266693081378,
+            "pair_count": 13214,
+            "semivariance": 0.002521772402933543,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2821.875,
+            "lag_upper_m": 3225.0,
+            "mean_lag_m": 3026.2288762172884,
+            "pair_count": 14828,
+            "semivariance": 0.0026106119836323293,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3225.0,
+            "lag_upper_m": 3628.125,
+            "mean_lag_m": 3430.5879943968844,
+            "pair_count": 16506,
+            "semivariance": 0.0023795996063463234,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3628.125,
+            "lag_upper_m": 4031.25,
+            "mean_lag_m": 3831.758400982215,
+            "pair_count": 17881,
+            "semivariance": 0.0024554341537270283,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4031.25,
+            "lag_upper_m": 4434.375,
+            "mean_lag_m": 4236.413765805795,
+            "pair_count": 19070,
+            "semivariance": 0.002286795383947623,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4434.375,
+            "lag_upper_m": 4837.5,
+            "mean_lag_m": 4638.812677691288,
+            "pair_count": 20245,
+            "semivariance": 0.002355612892503535,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4837.5,
+            "lag_upper_m": 5240.625,
+            "mean_lag_m": 5040.322855217423,
+            "pair_count": 21633,
+            "semivariance": 0.0022575068679167396,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5240.625,
+            "lag_upper_m": 5643.75,
+            "mean_lag_m": 5443.831732870015,
+            "pair_count": 22732,
+            "semivariance": 0.002318212068310137,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5643.75,
+            "lag_upper_m": 6046.875,
+            "mean_lag_m": 5846.915298446597,
+            "pair_count": 23401,
+            "semivariance": 0.002395014757282163,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6046.875,
+            "lag_upper_m": 6450.0,
+            "mean_lag_m": 6249.169506163605,
+            "pair_count": 23999,
+            "semivariance": 0.002470491086052543,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6450.0,
+            "lag_upper_m": 6853.125,
+            "mean_lag_m": 6653.331850099246,
+            "pair_count": 25046,
+            "semivariance": 0.0023620739971559014,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6853.125,
+            "lag_upper_m": 7256.25,
+            "mean_lag_m": 7054.8766953116365,
+            "pair_count": 25778,
+            "semivariance": 0.002309753382687505,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7256.25,
+            "lag_upper_m": 7659.375,
+            "mean_lag_m": 7458.036978268916,
+            "pair_count": 26270,
+            "semivariance": 0.002445110626548574,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7659.375,
+            "lag_upper_m": 8062.5,
+            "mean_lag_m": 7862.116832365344,
+            "pair_count": 26460,
+            "semivariance": 0.002476176384914323,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8062.5,
+            "lag_upper_m": 8465.625,
+            "mean_lag_m": 8264.72475831218,
+            "pair_count": 27069,
+            "semivariance": 0.0025564560563411456,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8465.625,
+            "lag_upper_m": 8868.75,
+            "mean_lag_m": 8668.421952418985,
+            "pair_count": 27147,
+            "semivariance": 0.0026878654786791846,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8868.75,
+            "lag_upper_m": 9271.875,
+            "mean_lag_m": 9070.274145610203,
+            "pair_count": 27193,
+            "semivariance": 0.0025733257853666797,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 9271.875,
+            "lag_upper_m": 9675.0,
+            "mean_lag_m": 9473.472195610644,
+            "pair_count": 27238,
+            "semivariance": 0.0026185461901658737,
+            "sufficient_pairs": true
+          }
+        ],
+        "tail_sill": 0.0025733257853666797,
+        "threshold_95pct_sill": 0.0024446594960983456,
+        "stability_tolerance": 0.000514665157073336,
+        "reliable": true,
+        "correlation_range_m": 806.25,
+        "range_lag_index": 1,
+        "range_rule": "使用首次满足阈值的 lag 上边界，保持 buffer 的保守性。"
+      },
+      "b4": {
+        "land_pixel_count": 469534,
+        "sample_point_count": 6000,
+        "candidate_pair_samples": 1000000,
+        "accepted_pair_count": 437471,
+        "maximum_lag_m": 9675.0,
+        "lag_bins": [
+          {
+            "lag_lower_m": 0.0,
+            "lag_upper_m": 403.125,
+            "mean_lag_m": 264.5413415986294,
+            "pair_count": 1171,
+            "semivariance": 0.0006952695770788518,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 403.125,
+            "lag_upper_m": 806.25,
+            "mean_lag_m": 623.6701637520453,
+            "pair_count": 3522,
+            "semivariance": 0.0009151279768244347,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 806.25,
+            "lag_upper_m": 1209.375,
+            "mean_lag_m": 1020.4769363655189,
+            "pair_count": 5696,
+            "semivariance": 0.0009583499706106778,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1209.375,
+            "lag_upper_m": 1612.5,
+            "mean_lag_m": 1422.8173394741905,
+            "pair_count": 7469,
+            "semivariance": 0.0009217642935587057,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1612.5,
+            "lag_upper_m": 2015.625,
+            "mean_lag_m": 1823.0933887125211,
+            "pair_count": 9680,
+            "semivariance": 0.00108206077311491,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2015.625,
+            "lag_upper_m": 2418.75,
+            "mean_lag_m": 2224.574374254374,
+            "pair_count": 11229,
+            "semivariance": 0.0010255302547746402,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2418.75,
+            "lag_upper_m": 2821.875,
+            "mean_lag_m": 2627.1528042209707,
+            "pair_count": 13072,
+            "semivariance": 0.0009369272769654061,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2821.875,
+            "lag_upper_m": 3225.0,
+            "mean_lag_m": 3028.235224125646,
+            "pair_count": 14659,
+            "semivariance": 0.000988976224822632,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3225.0,
+            "lag_upper_m": 3628.125,
+            "mean_lag_m": 3430.1358374646306,
+            "pair_count": 16195,
+            "semivariance": 0.0009566611510777,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3628.125,
+            "lag_upper_m": 4031.25,
+            "mean_lag_m": 3832.960383493074,
+            "pair_count": 17523,
+            "semivariance": 0.001001987493905124,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4031.25,
+            "lag_upper_m": 4434.375,
+            "mean_lag_m": 4235.981499469463,
+            "pair_count": 18680,
+            "semivariance": 0.0009744382869040155,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4434.375,
+            "lag_upper_m": 4837.5,
+            "mean_lag_m": 4638.795007588157,
+            "pair_count": 20225,
+            "semivariance": 0.0009300866699143245,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4837.5,
+            "lag_upper_m": 5240.625,
+            "mean_lag_m": 5039.087599208507,
+            "pair_count": 21050,
+            "semivariance": 0.0009356631646788528,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5240.625,
+            "lag_upper_m": 5643.75,
+            "mean_lag_m": 5443.406361746301,
+            "pair_count": 22131,
+            "semivariance": 0.0009628071901621341,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5643.75,
+            "lag_upper_m": 6046.875,
+            "mean_lag_m": 5846.244582647406,
+            "pair_count": 23276,
+            "semivariance": 0.0009935782677591575,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6046.875,
+            "lag_upper_m": 6450.0,
+            "mean_lag_m": 6248.758787855382,
+            "pair_count": 23574,
+            "semivariance": 0.0009937108333153892,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6450.0,
+            "lag_upper_m": 6853.125,
+            "mean_lag_m": 6652.965709929388,
+            "pair_count": 24496,
+            "semivariance": 0.0009935821454904055,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6853.125,
+            "lag_upper_m": 7256.25,
+            "mean_lag_m": 7055.251829002956,
+            "pair_count": 25081,
+            "semivariance": 0.0009964357263884105,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7256.25,
+            "lag_upper_m": 7659.375,
+            "mean_lag_m": 7458.042967718973,
+            "pair_count": 25705,
+            "semivariance": 0.0009760246692815205,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7659.375,
+            "lag_upper_m": 8062.5,
+            "mean_lag_m": 7860.909302522298,
+            "pair_count": 26092,
+            "semivariance": 0.001080870888086643,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8062.5,
+            "lag_upper_m": 8465.625,
+            "mean_lag_m": 8263.93699947785,
+            "pair_count": 26438,
+            "semivariance": 0.0010391271602375142,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8465.625,
+            "lag_upper_m": 8868.75,
+            "mean_lag_m": 8667.228690263379,
+            "pair_count": 26507,
+            "semivariance": 0.0010811935961042155,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8868.75,
+            "lag_upper_m": 9271.875,
+            "mean_lag_m": 9070.369319448477,
+            "pair_count": 27122,
+            "semivariance": 0.0010835279829393503,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 9271.875,
+            "lag_upper_m": 9675.0,
+            "mean_lag_m": 9473.300998572939,
+            "pair_count": 26878,
+            "semivariance": 0.0010767665660116454,
+            "sufficient_pairs": true
+          }
+        ],
+        "tail_sill": 0.001080870888086643,
+        "threshold_95pct_sill": 0.0010268273436823108,
+        "stability_tolerance": 0.00021617417761732858,
+        "reliable": true,
+        "correlation_range_m": 2015.625,
+        "range_lag_index": 4,
+        "range_rule": "使用首次满足阈值的 lag 上边界，保持 buffer 的保守性。"
+      },
+      "b5": {
+        "land_pixel_count": 469534,
+        "sample_point_count": 6000,
+        "candidate_pair_samples": 1000000,
+        "accepted_pair_count": 438052,
+        "maximum_lag_m": 9675.0,
+        "lag_bins": [
+          {
+            "lag_lower_m": 0.0,
+            "lag_upper_m": 403.125,
+            "mean_lag_m": 264.1884749008441,
+            "pair_count": 1173,
+            "semivariance": 0.003106839307783362,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 403.125,
+            "lag_upper_m": 806.25,
+            "mean_lag_m": 622.8517546654505,
+            "pair_count": 3339,
+            "semivariance": 0.003305303919975485,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 806.25,
+            "lag_upper_m": 1209.375,
+            "mean_lag_m": 1018.2384296497515,
+            "pair_count": 5677,
+            "semivariance": 0.003679244267734895,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1209.375,
+            "lag_upper_m": 1612.5,
+            "mean_lag_m": 1418.305729181202,
+            "pair_count": 7529,
+            "semivariance": 0.0037579086040821037,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1612.5,
+            "lag_upper_m": 2015.625,
+            "mean_lag_m": 1821.3273872489933,
+            "pair_count": 9699,
+            "semivariance": 0.0036751238871843,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2015.625,
+            "lag_upper_m": 2418.75,
+            "mean_lag_m": 2222.980322973126,
+            "pair_count": 11441,
+            "semivariance": 0.003718849136790681,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2418.75,
+            "lag_upper_m": 2821.875,
+            "mean_lag_m": 2626.0778969800626,
+            "pair_count": 13041,
+            "semivariance": 0.0037798109163830374,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2821.875,
+            "lag_upper_m": 3225.0,
+            "mean_lag_m": 3028.7604003556503,
+            "pair_count": 14650,
+            "semivariance": 0.0037587518882234395,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3225.0,
+            "lag_upper_m": 3628.125,
+            "mean_lag_m": 3430.0063321396974,
+            "pair_count": 16409,
+            "semivariance": 0.0038369043539112613,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3628.125,
+            "lag_upper_m": 4031.25,
+            "mean_lag_m": 3832.89254103929,
+            "pair_count": 17313,
+            "semivariance": 0.003683715413640574,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4031.25,
+            "lag_upper_m": 4434.375,
+            "mean_lag_m": 4235.662218817911,
+            "pair_count": 18648,
+            "semivariance": 0.0037284465028718065,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4434.375,
+            "lag_upper_m": 4837.5,
+            "mean_lag_m": 4638.659787943269,
+            "pair_count": 20233,
+            "semivariance": 0.0037803189046959097,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4837.5,
+            "lag_upper_m": 5240.625,
+            "mean_lag_m": 5040.675748772754,
+            "pair_count": 20976,
+            "semivariance": 0.0036738682643445205,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5240.625,
+            "lag_upper_m": 5643.75,
+            "mean_lag_m": 5443.5118028926745,
+            "pair_count": 22125,
+            "semivariance": 0.003758421712860314,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5643.75,
+            "lag_upper_m": 6046.875,
+            "mean_lag_m": 5846.302494744438,
+            "pair_count": 23089,
+            "semivariance": 0.0038201706801826918,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6046.875,
+            "lag_upper_m": 6450.0,
+            "mean_lag_m": 6249.131040304257,
+            "pair_count": 23547,
+            "semivariance": 0.0038377252386954056,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6450.0,
+            "lag_upper_m": 6853.125,
+            "mean_lag_m": 6652.122689665684,
+            "pair_count": 24524,
+            "semivariance": 0.0037795330127178618,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6853.125,
+            "lag_upper_m": 7256.25,
+            "mean_lag_m": 7056.736266915698,
+            "pair_count": 25125,
+            "semivariance": 0.0038273976008061763,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7256.25,
+            "lag_upper_m": 7659.375,
+            "mean_lag_m": 7457.38107322379,
+            "pair_count": 25467,
+            "semivariance": 0.003878001021515572,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7659.375,
+            "lag_upper_m": 8062.5,
+            "mean_lag_m": 7861.228311564495,
+            "pair_count": 26084,
+            "semivariance": 0.003889986029486699,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8062.5,
+            "lag_upper_m": 8465.625,
+            "mean_lag_m": 8264.41893709834,
+            "pair_count": 26394,
+            "semivariance": 0.003916596474848995,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8465.625,
+            "lag_upper_m": 8868.75,
+            "mean_lag_m": 8667.649369251783,
+            "pair_count": 26980,
+            "semivariance": 0.0040148485804075195,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8868.75,
+            "lag_upper_m": 9271.875,
+            "mean_lag_m": 9071.4537678256,
+            "pair_count": 27092,
+            "semivariance": 0.0039230642256666845,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 9271.875,
+            "lag_upper_m": 9675.0,
+            "mean_lag_m": 9472.332549104518,
+            "pair_count": 27497,
+            "semivariance": 0.003927575841286469,
+            "sufficient_pairs": true
+          }
+        ],
+        "tail_sill": 0.0039230642256666845,
+        "threshold_95pct_sill": 0.0037269110143833503,
+        "stability_tolerance": 0.000784612845133337,
+        "reliable": true,
+        "correlation_range_m": 1612.5,
+        "range_lag_index": 3,
+        "range_rule": "使用首次满足阈值的 lag 上边界，保持 buffer 的保守性。"
+      }
+    },
+    "shadow_risk_b": {
+      "cos_i": {
+        "land_pixel_count": 102222,
+        "sample_point_count": 6000,
+        "candidate_pair_samples": 1000000,
+        "accepted_pair_count": 412946,
+        "maximum_lag_m": 9750.0,
+        "lag_bins": [
+          {
+            "lag_lower_m": 0.0,
+            "lag_upper_m": 406.25,
+            "mean_lag_m": 258.83637149003874,
+            "pair_count": 3202,
+            "semivariance": 0.02563393148494928,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 406.25,
+            "lag_upper_m": 812.5,
+            "mean_lag_m": 624.5944706712271,
+            "pair_count": 7244,
+            "semivariance": 0.05071355790333152,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 812.5,
+            "lag_upper_m": 1218.75,
+            "mean_lag_m": 1023.9619172291918,
+            "pair_count": 9813,
+            "semivariance": 0.07401268774557677,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1218.75,
+            "lag_upper_m": 1625.0,
+            "mean_lag_m": 1428.9711175754153,
+            "pair_count": 11885,
+            "semivariance": 0.09136164539877553,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1625.0,
+            "lag_upper_m": 2031.25,
+            "mean_lag_m": 1834.5933469514264,
+            "pair_count": 13689,
+            "semivariance": 0.09776922470631924,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2031.25,
+            "lag_upper_m": 2437.5,
+            "mean_lag_m": 2236.731796029846,
+            "pair_count": 15284,
+            "semivariance": 0.10351895628500123,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2437.5,
+            "lag_upper_m": 2843.75,
+            "mean_lag_m": 2641.6755304843214,
+            "pair_count": 16991,
+            "semivariance": 0.10024683711819357,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2843.75,
+            "lag_upper_m": 3250.0,
+            "mean_lag_m": 3048.49612202511,
+            "pair_count": 17933,
+            "semivariance": 0.09729586099570363,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3250.0,
+            "lag_upper_m": 3656.25,
+            "mean_lag_m": 3455.282880212252,
+            "pair_count": 18689,
+            "semivariance": 0.09652661208898551,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3656.25,
+            "lag_upper_m": 4062.5,
+            "mean_lag_m": 3860.638294910011,
+            "pair_count": 19289,
+            "semivariance": 0.09415727664524332,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4062.5,
+            "lag_upper_m": 4468.75,
+            "mean_lag_m": 4266.930089120361,
+            "pair_count": 19725,
+            "semivariance": 0.0932500164347003,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4468.75,
+            "lag_upper_m": 4875.0,
+            "mean_lag_m": 4671.365725355159,
+            "pair_count": 19357,
+            "semivariance": 0.0930926455840356,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4875.0,
+            "lag_upper_m": 5281.25,
+            "mean_lag_m": 5078.881135386589,
+            "pair_count": 19737,
+            "semivariance": 0.09707217336914217,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5281.25,
+            "lag_upper_m": 5687.5,
+            "mean_lag_m": 5484.958857102488,
+            "pair_count": 20659,
+            "semivariance": 0.09934952294727085,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5687.5,
+            "lag_upper_m": 6093.75,
+            "mean_lag_m": 5891.493200978959,
+            "pair_count": 20575,
+            "semivariance": 0.09889521292703986,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6093.75,
+            "lag_upper_m": 6500.0,
+            "mean_lag_m": 6297.652662104971,
+            "pair_count": 20555,
+            "semivariance": 0.09725583789584581,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6500.0,
+            "lag_upper_m": 6906.25,
+            "mean_lag_m": 6701.970384130571,
+            "pair_count": 20535,
+            "semivariance": 0.0977327578198764,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6906.25,
+            "lag_upper_m": 7312.5,
+            "mean_lag_m": 7106.687212887683,
+            "pair_count": 20443,
+            "semivariance": 0.09726972491783574,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7312.5,
+            "lag_upper_m": 7718.75,
+            "mean_lag_m": 7513.8123138359815,
+            "pair_count": 19978,
+            "semivariance": 0.09792357962686639,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7718.75,
+            "lag_upper_m": 8125.0,
+            "mean_lag_m": 7921.38230761371,
+            "pair_count": 19289,
+            "semivariance": 0.10478114724508789,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8125.0,
+            "lag_upper_m": 8531.25,
+            "mean_lag_m": 8328.87042449697,
+            "pair_count": 19200,
+            "semivariance": 0.10985480101029649,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8531.25,
+            "lag_upper_m": 8937.5,
+            "mean_lag_m": 8734.505207805494,
+            "pair_count": 19453,
+            "semivariance": 0.10939149403138211,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8937.5,
+            "lag_upper_m": 9343.75,
+            "mean_lag_m": 9140.55312187713,
+            "pair_count": 19600,
+            "semivariance": 0.10490862887351127,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 9343.75,
+            "lag_upper_m": 9750.0,
+            "mean_lag_m": 9546.509966370906,
+            "pair_count": 19821,
+            "semivariance": 0.10595167243921765,
+            "sufficient_pairs": true
+          }
+        ],
+        "tail_sill": 0.10595167243921765,
+        "threshold_95pct_sill": 0.10065408881725676,
+        "stability_tolerance": 0.02119033448784353,
+        "reliable": true,
+        "correlation_range_m": 2437.5,
+        "range_lag_index": 5,
+        "range_rule": "使用首次满足阈值的 lag 上边界，保持 buffer 的保守性。"
+      },
+      "b4": {
+        "land_pixel_count": 102222,
+        "sample_point_count": 6000,
+        "candidate_pair_samples": 1000000,
+        "accepted_pair_count": 416725,
+        "maximum_lag_m": 9750.0,
+        "lag_bins": [
+          {
+            "lag_lower_m": 0.0,
+            "lag_upper_m": 406.25,
+            "mean_lag_m": 264.67223426103175,
+            "pair_count": 3191,
+            "semivariance": 0.0038072446354737795,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 406.25,
+            "lag_upper_m": 812.5,
+            "mean_lag_m": 622.7332943996187,
+            "pair_count": 7186,
+            "semivariance": 0.006258800096691566,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 812.5,
+            "lag_upper_m": 1218.75,
+            "mean_lag_m": 1024.2850560657378,
+            "pair_count": 10003,
+            "semivariance": 0.00813747913340458,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1218.75,
+            "lag_upper_m": 1625.0,
+            "mean_lag_m": 1428.197482301468,
+            "pair_count": 12058,
+            "semivariance": 0.008823493104185048,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1625.0,
+            "lag_upper_m": 2031.25,
+            "mean_lag_m": 1834.4011570344635,
+            "pair_count": 13326,
+            "semivariance": 0.009917270354823695,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2031.25,
+            "lag_upper_m": 2437.5,
+            "mean_lag_m": 2237.415565080706,
+            "pair_count": 15337,
+            "semivariance": 0.010228271865923993,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2437.5,
+            "lag_upper_m": 2843.75,
+            "mean_lag_m": 2640.2684485468876,
+            "pair_count": 16657,
+            "semivariance": 0.009903402320191455,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2843.75,
+            "lag_upper_m": 3250.0,
+            "mean_lag_m": 3048.506735204538,
+            "pair_count": 17629,
+            "semivariance": 0.01026134782256405,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3250.0,
+            "lag_upper_m": 3656.25,
+            "mean_lag_m": 3455.238497992637,
+            "pair_count": 18468,
+            "semivariance": 0.01099574192511907,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3656.25,
+            "lag_upper_m": 4062.5,
+            "mean_lag_m": 3860.345654072781,
+            "pair_count": 18920,
+            "semivariance": 0.01123140539766735,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4062.5,
+            "lag_upper_m": 4468.75,
+            "mean_lag_m": 4266.518278260791,
+            "pair_count": 19574,
+            "semivariance": 0.011651050098779935,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4468.75,
+            "lag_upper_m": 4875.0,
+            "mean_lag_m": 4673.1811042135605,
+            "pair_count": 20429,
+            "semivariance": 0.012555555210484489,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4875.0,
+            "lag_upper_m": 5281.25,
+            "mean_lag_m": 5079.391221593264,
+            "pair_count": 20085,
+            "semivariance": 0.01269877257275929,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5281.25,
+            "lag_upper_m": 5687.5,
+            "mean_lag_m": 5484.100110548958,
+            "pair_count": 20414,
+            "semivariance": 0.013256656861383161,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5687.5,
+            "lag_upper_m": 6093.75,
+            "mean_lag_m": 5890.162081344695,
+            "pair_count": 20839,
+            "semivariance": 0.013412228938024422,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6093.75,
+            "lag_upper_m": 6500.0,
+            "mean_lag_m": 6296.785768698732,
+            "pair_count": 21019,
+            "semivariance": 0.014070681686249684,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6500.0,
+            "lag_upper_m": 6906.25,
+            "mean_lag_m": 6701.457655060868,
+            "pair_count": 21083,
+            "semivariance": 0.01470461087945834,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6906.25,
+            "lag_upper_m": 7312.5,
+            "mean_lag_m": 7108.391468081215,
+            "pair_count": 20182,
+            "semivariance": 0.01471694508172655,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7312.5,
+            "lag_upper_m": 7718.75,
+            "mean_lag_m": 7515.904811454014,
+            "pair_count": 20451,
+            "semivariance": 0.01561788227697794,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7718.75,
+            "lag_upper_m": 8125.0,
+            "mean_lag_m": 7921.905629181625,
+            "pair_count": 19650,
+            "semivariance": 0.016438994749217235,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8125.0,
+            "lag_upper_m": 8531.25,
+            "mean_lag_m": 8327.875296873353,
+            "pair_count": 19742,
+            "semivariance": 0.016878555020669598,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8531.25,
+            "lag_upper_m": 8937.5,
+            "mean_lag_m": 8733.712327495288,
+            "pair_count": 20172,
+            "semivariance": 0.017080412972891573,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8937.5,
+            "lag_upper_m": 9343.75,
+            "mean_lag_m": 9140.347777708446,
+            "pair_count": 20296,
+            "semivariance": 0.016806630357492747,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 9343.75,
+            "lag_upper_m": 9750.0,
+            "mean_lag_m": 9547.252684767587,
+            "pair_count": 20014,
+            "semivariance": 0.016105549797457732,
+            "sufficient_pairs": true
+          }
+        ],
+        "tail_sill": 0.016806630357492747,
+        "threshold_95pct_sill": 0.015966298839618108,
+        "stability_tolerance": 0.0033613260714985497,
+        "reliable": true,
+        "correlation_range_m": 8125.0,
+        "range_lag_index": 19,
+        "range_rule": "使用首次满足阈值的 lag 上边界，保持 buffer 的保守性。"
+      },
+      "b5": {
+        "land_pixel_count": 102222,
+        "sample_point_count": 6000,
+        "candidate_pair_samples": 1000000,
+        "accepted_pair_count": 417807,
+        "maximum_lag_m": 9750.0,
+        "lag_bins": [
+          {
+            "lag_lower_m": 0.0,
+            "lag_upper_m": 406.25,
+            "mean_lag_m": 263.7789407304515,
+            "pair_count": 3193,
+            "semivariance": 0.005835796088711256,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 406.25,
+            "lag_upper_m": 812.5,
+            "mean_lag_m": 623.5384999325007,
+            "pair_count": 7295,
+            "semivariance": 0.009197875655639889,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 812.5,
+            "lag_upper_m": 1218.75,
+            "mean_lag_m": 1023.9089081065566,
+            "pair_count": 10003,
+            "semivariance": 0.011976420274603768,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1218.75,
+            "lag_upper_m": 1625.0,
+            "mean_lag_m": 1428.1606516334855,
+            "pair_count": 11836,
+            "semivariance": 0.013833451944715825,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 1625.0,
+            "lag_upper_m": 2031.25,
+            "mean_lag_m": 1832.9004087805556,
+            "pair_count": 13699,
+            "semivariance": 0.015202888867257597,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2031.25,
+            "lag_upper_m": 2437.5,
+            "mean_lag_m": 2237.754307774939,
+            "pair_count": 15362,
+            "semivariance": 0.015808993062627903,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2437.5,
+            "lag_upper_m": 2843.75,
+            "mean_lag_m": 2641.797733426924,
+            "pair_count": 16694,
+            "semivariance": 0.015908490497349968,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 2843.75,
+            "lag_upper_m": 3250.0,
+            "mean_lag_m": 3049.0047914230327,
+            "pair_count": 17950,
+            "semivariance": 0.0162568309179867,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3250.0,
+            "lag_upper_m": 3656.25,
+            "mean_lag_m": 3456.4781840260353,
+            "pair_count": 18702,
+            "semivariance": 0.01659214244139554,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 3656.25,
+            "lag_upper_m": 4062.5,
+            "mean_lag_m": 3861.029281909901,
+            "pair_count": 19361,
+            "semivariance": 0.016638968450881902,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4062.5,
+            "lag_upper_m": 4468.75,
+            "mean_lag_m": 4265.918597252077,
+            "pair_count": 19073,
+            "semivariance": 0.01687808403168638,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4468.75,
+            "lag_upper_m": 4875.0,
+            "mean_lag_m": 4673.620545162193,
+            "pair_count": 19975,
+            "semivariance": 0.017652143069156617,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 4875.0,
+            "lag_upper_m": 5281.25,
+            "mean_lag_m": 5079.726169578048,
+            "pair_count": 20273,
+            "semivariance": 0.018415752975705166,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5281.25,
+            "lag_upper_m": 5687.5,
+            "mean_lag_m": 5485.010704739245,
+            "pair_count": 20723,
+            "semivariance": 0.01859576495193172,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 5687.5,
+            "lag_upper_m": 6093.75,
+            "mean_lag_m": 5890.450558667682,
+            "pair_count": 20923,
+            "semivariance": 0.0191136086658038,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6093.75,
+            "lag_upper_m": 6500.0,
+            "mean_lag_m": 6298.012438863145,
+            "pair_count": 20785,
+            "semivariance": 0.019460661368429992,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6500.0,
+            "lag_upper_m": 6906.25,
+            "mean_lag_m": 6702.3769248465915,
+            "pair_count": 20967,
+            "semivariance": 0.019696025782140407,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 6906.25,
+            "lag_upper_m": 7312.5,
+            "mean_lag_m": 7109.976588139056,
+            "pair_count": 21068,
+            "semivariance": 0.020407688591558518,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7312.5,
+            "lag_upper_m": 7718.75,
+            "mean_lag_m": 7514.149213406246,
+            "pair_count": 20229,
+            "semivariance": 0.02107084948614526,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 7718.75,
+            "lag_upper_m": 8125.0,
+            "mean_lag_m": 7919.6959542308405,
+            "pair_count": 19803,
+            "semivariance": 0.022000338095306333,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8125.0,
+            "lag_upper_m": 8531.25,
+            "mean_lag_m": 8326.814385884194,
+            "pair_count": 19464,
+            "semivariance": 0.022652923206726773,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8531.25,
+            "lag_upper_m": 8937.5,
+            "mean_lag_m": 8733.992807532964,
+            "pair_count": 19927,
+            "semivariance": 0.02231119845883117,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 8937.5,
+            "lag_upper_m": 9343.75,
+            "mean_lag_m": 9140.052644380226,
+            "pair_count": 20334,
+            "semivariance": 0.02167340678182267,
+            "sufficient_pairs": true
+          },
+          {
+            "lag_lower_m": 9343.75,
+            "lag_upper_m": 9750.0,
+            "mean_lag_m": 9546.452283899069,
+            "pair_count": 20168,
+            "semivariance": 0.021339365991052715,
+            "sufficient_pairs": true
+          }
+        ],
+        "tail_sill": 0.022000338095306333,
+        "threshold_95pct_sill": 0.020900321190541016,
+        "stability_tolerance": 0.004400067619061267,
+        "reliable": true,
+        "correlation_range_m": 7718.75,
+        "range_lag_index": 18,
+        "range_rule": "使用首次满足阈值的 lag 上边界，保持 buffer 的保守性。"
+      }
+    }
+  },
+  "conservative_correlation_range_m": 8125.0,
+  "candidate_blocks": {
+    "clean_a": {
+      "reliable": false,
+      "reason": "独立候选 blocks 不足：calibration=1, holdout=0, minimum=2",
+      "pixel_size_m": 30.0,
+      "buffer_m": 8125.0,
+      "buffer_pixels": 271,
+      "block_edge_m": 16260.0,
+      "block_edge_pixels": 542,
+      "gap_pixels": 271,
+      "candidate_grid_rows": 1,
+      "candidate_grid_columns": 1,
+      "calibration_candidate_blocks": 1,
+      "holdout_candidate_blocks": 0,
+      "blocks": [
+        {
+          "grid_row": 0,
+          "grid_column": 0,
+          "row_start": 0,
+          "column_start": 0,
+          "edge_pixels": 542,
+          "land_pixel_count": 288429,
+          "split": "calibration_candidate"
+        }
+      ],
+      "no_scoring_performed": true
+    },
+    "shadow_risk_b": {
+      "reliable": false,
+      "reason": "独立候选 blocks 不足：calibration=1, holdout=0, minimum=2",
+      "pixel_size_m": 30.0,
+      "buffer_m": 8125.0,
+      "buffer_pixels": 271,
+      "block_edge_m": 16260.0,
+      "block_edge_pixels": 542,
+      "gap_pixels": 271,
+      "candidate_grid_rows": 1,
+      "candidate_grid_columns": 1,
+      "calibration_candidate_blocks": 1,
+      "holdout_candidate_blocks": 0,
+      "blocks": [
+        {
+          "grid_row": 0,
+          "grid_column": 0,
+          "row_start": 0,
+          "column_start": 0,
+          "edge_pixels": 542,
+          "land_pixel_count": 59673,
+          "split": "calibration_candidate"
+        }
+      ],
+      "no_scoring_performed": true
+    }
+  },
+  "mechanism_execution": {
+    "hard_mask_fitted": false,
+    "soft_weight_fitted": false,
+    "bounded_scene_constant_diffuse_fitted": false,
+    "holdout_scored": false,
+    "residual_computed": false,
+    "risk_coverage_computed": false
+  },
+  "pending_decisions": [
+    "bounded_scene_constant_diffuse 的数值边界必须以 calibration-only 证据冻结。",
+    "仅在本预检 PASS 后，才可另行授权正式拟合与严格空间隔离 holdout 评分。"
+  ]
+}

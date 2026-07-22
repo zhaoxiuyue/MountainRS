@@ -1,0 +1,155 @@
+{
+  "schema": "mountainrs-stage-6-5-3-b-preflight-v1",
+  "stage": "Stage 6.5.3-B",
+  "project_guard": {
+    "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+    "project_revision": 39,
+    "route_revision": 1,
+    "node_id": "node_b702a65b-aaa2-4f53-98ee-39db6e7ffb80",
+    "node_contract_revision": 1,
+    "node_contract_hash": "5e5243ef38dc8b19df3ae0e0c4be8683e3b24d91c0d099b26e51fc829cf22664"
+  },
+  "execution": {
+    "mode": "deterministic_preflight_only",
+    "permitted_operations": [
+      "read declared local raster and prior-result inputs",
+      "recompute canonical masks and partitions",
+      "write preflight-only masks, summaries, report, and evidence",
+      "estimate spatial correlation range and candidate isolated blocks"
+    ],
+    "forbidden_operations": [
+      "fit hard_mask, soft_weight, or bounded_scene_constant_diffuse",
+      "score a holdout",
+      "select parameters from holdout results",
+      "compute residual, risk-coverage, or final mechanism comparison",
+      "write outside declared output boundaries"
+    ]
+  },
+  "inputs": {
+    "clean_a": {
+      "b4": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+      "b5": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif",
+      "qa_pixel": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif",
+      "metadata": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+      "cos_i": "stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif",
+      "prior_results": {
+        "qa_valid_mask": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+        "confidence": "stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif",
+        "shadow_mask": "stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif",
+        "near_zero_mask": "stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif"
+      }
+    },
+    "shadow_risk_b": {
+      "b4": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+      "b5": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif",
+      "qa_pixel": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif",
+      "metadata": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+      "cos_i": "stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif",
+      "prior_results": {
+        "qa_valid_mask": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+        "confidence": "stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif",
+        "shadow_mask": "stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif",
+        "near_zero_mask": "stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif"
+      }
+    }
+  },
+  "canonical_analysis_domain": {
+    "qa_pixel_clear_bits": {
+      "0": "fill",
+      "1": "dilated_cloud",
+      "2": "cirrus",
+      "3": "cloud",
+      "4": "cloud_shadow",
+      "5": "snow"
+    },
+    "qa_water_bit": 7,
+    "higher_confidence_bits": {
+      "hard_exclusion": false,
+      "reason": "本节点的 canonical domain 已冻结为 QA_PIXEL bits 0–5、数值有效性与反射率范围；高位 confidence bits 留作后续敏感性或质量诊断，不能被悄悄追加为 hard exclusion。"
+    },
+    "reflectance_range": {
+      "minimum": -0.05,
+      "maximum": 1.0
+    },
+    "land_metrics": {
+      "exclude_qa_water_bit_7": true,
+      "reason": "water 独立统计；不得与云、阴影或 unsupported 混为同一来源。"
+    }
+  },
+  "canonical_partitions": {
+    "shadow": "cos_i <= 0",
+    "near_zero": "0 < cos_i <= 0.1",
+    "lit": "cos_i > 0.1",
+    "integrity_requirement": "在 base_valid 上两两互斥且并集等于 base_valid。"
+  },
+  "mechanisms": {
+    "hard_mask": {
+      "identity": "hard_mask",
+      "future_calibration_support": "cos_i > 0.1",
+      "future_unsupported": "cos_i <= 0.1",
+      "preflight_action": "冻结定义；不拟合。"
+    },
+    "soft_weight": {
+      "identity": "soft_weight",
+      "formula": "sigmoid(k * (cos_i - 0.1))",
+      "primary_k": 30,
+      "primary_k_basis": "继承 Stage 5/6 的经验基线，不是真理值。",
+      "future_sensitivity_k": [15, 30, 60],
+      "sensitivity_interpretation": "三个 k 是同一机制的敏感性检查，不构成额外方法。",
+      "reliability_interpretation": "仅为排序分数；未经独立校准不得解释为正确概率。",
+      "preflight_action": "只允许与既有 confidence 做非拟合的数值差异核对。"
+    },
+    "bounded_scene_constant_diffuse": {
+      "identity": "bounded_scene_constant_diffuse",
+      "sharing_rule": "仅允许场景级或场景×波段共享参数。",
+      "prohibited": [
+        "逐像元 diffuse",
+        "逐像元自由参数吸收 residual"
+      ],
+      "numeric_bounds": null,
+      "bounds_status": "pending_calibration_only_constraint",
+      "bounds_decision_rule": "当前 Architecture 与已读材料未提供可冻结数值边界；后续必须在不读取 holdout 结果的 calibration-only 裁决中确定。",
+      "permitted_negative_conclusion": "当前场景级常数化 diffuse 参数化未带来可验证改善。"
+    }
+  },
+  "spatial_isolation": {
+    "method": "deterministic empirical semivariogram from base-valid land pixels",
+    "seed": 6536531,
+    "fields": ["cos_i", "b4", "b5"],
+    "sample_max_points": 6000,
+    "sample_min_points": 2000,
+    "candidate_pair_samples": 1000000,
+    "lag_bin_count": 24,
+    "maximum_lag_fraction_of_shorter_scene_extent": 0.5,
+    "minimum_pairs_per_lag": 200,
+    "minimum_populated_lag_bins": 20,
+    "sill_tail_lag_bins": 5,
+    "range_sill_fraction": 0.95,
+    "post_threshold_stability_relative_tolerance": 0.2,
+    "range_definition": "最小达到约 95% tail-sill、且其后有效 lag 均在 tail-sill ±20% 内的 lag 上边界。",
+    "failure_conditions": [
+      "base-valid land 样本少于 sample_min_points",
+      "没有足够已填充 lag bins 或 tail-sill 不可估计",
+      "没有达到并保持稳定的 95% sill correlation range",
+      "CRS 非投影或空间单位不可解释为线性距离"
+    ],
+    "candidate_block_design": {
+      "buffer_rule": "取 A/B 与 cos_i/B4/B5 的最大可靠 correlation range，向上取整到像元尺寸。",
+      "block_edge_rule": "block_edge >= 2 * buffer。",
+      "gap_rule": "候选 core blocks 之间保留至少一个 buffer 宽度的未评分 gap。",
+      "minimum_land_pixels_per_block": 1000,
+      "minimum_blocks_per_split": 2,
+      "assignment_rule": "在固定网格中按 (row + column) parity 指派 calibration 或 holdout candidate；此处仅设计，不评分。"
+    }
+  },
+  "outputs": {
+    "allowed_output_prefixes": [
+      "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b",
+      "stage6_5_real_landsat_observation_stress_test/reports",
+      "stage6_5_real_landsat_observation_stress_test/evidence"
+    ],
+    "results_directory": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b",
+    "report": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md",
+    "evidence": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/preflight_evidence.json"
+  }
+}
