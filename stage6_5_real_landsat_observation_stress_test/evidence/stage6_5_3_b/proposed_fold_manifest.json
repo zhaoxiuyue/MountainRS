@@ -1,8 +1,8 @@
 {
   "schema": "mountainrs-stage-6-5-3-b-proposed-fold-manifest-v1",
-  "status": "proposal_pending_user_confirmation",
-  "formal_experiment_eligibility": false,
-  "user_confirmation_required_before_formal_experiment": true,
+  "status": "approved_for_stage_6_5_3_b",
+  "formal_experiment_eligibility": true,
+  "user_confirmation_required_before_formal_experiment": false,
   "project_guard": {
     "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
     "project_revision": 39,
@@ -587,5 +587,10 @@
     "residual_computed": false,
     "risk_coverage_computed": false
   },
-  "manifest_sha256": "d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc"
+  "approval": {
+    "approval_basis_proposal_manifest_sha256": "d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc",
+    "approved_contract": "D1 bounded_scene_constant_diffuse reparameterization plus the fixed Stage 6.5.3-B method, evaluation, surface-heterogeneity, and post-hoc spatial-diagnostic contract.",
+    "fold_identity_invariant": "fold_id, scene, core bounds, counts, frozen buffer, and source-audit identities are unchanged from the approved proposal basis."
+  },
+  "manifest_sha256": "d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37"
 }

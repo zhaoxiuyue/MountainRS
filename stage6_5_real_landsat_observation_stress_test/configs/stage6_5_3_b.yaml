@@ -1,16 +1,16 @@
 {
-  "schema": "mountainrs-stage-6-5-3-b-preflight-v1",
+  "schema": "mountainrs-stage-6-5-3-b-contract-v2",
   "stage": "Stage 6.5.3-B",
   "project_guard": {
     "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
-    "project_revision": 39,
+    "project_revision": 40,
     "route_revision": 1,
     "node_id": "node_b702a65b-aaa2-4f53-98ee-39db6e7ffb80",
-    "node_contract_revision": 1,
-    "node_contract_hash": "5e5243ef38dc8b19df3ae0e0c4be8683e3b24d91c0d099b26e51fc829cf22664"
+    "node_contract_revision": 2,
+    "node_contract_hash": "0b0366ff930b0ba27fb5b2ebfc320fbb148c43e664eb9e7d1070ec2818f31cfd"
   },
   "execution": {
-    "mode": "deterministic_preflight_only",
+    "mode": "deterministic_preflight_and_contract_validation_only",
     "permitted_operations": [
       "read declared local raster and prior-result inputs",
       "recompute canonical masks and partitions",
@@ -85,30 +85,43 @@
   "mechanisms": {
     "hard_mask": {
       "identity": "hard_mask",
-      "future_calibration_support": "cos_i > 0.1",
-      "future_unsupported": "cos_i <= 0.1",
-      "preflight_action": "冻结定义；不拟合。"
+      "formula": "rho_hat = alpha * max(cos_i, 0)",
+      "alpha_bounds": [0.0, 1.0],
+      "calibration_support": "仅 calibration lit，即 cos_i > 0.1。",
+      "objective": "ordinary_least_squares",
+      "holdout_unsupported": "cos_i <= 0.1；保留在 coverage 分母且不得计作低误差成功。"
     },
     "soft_weight": {
       "identity": "soft_weight",
-      "formula": "sigmoid(k * (cos_i - 0.1))",
+      "forward_formula": "rho_hat = alpha * max(cos_i, 0)",
+      "alpha_bounds": [0.0, 1.0],
+      "weight_formula": "w_k = sigmoid(k * (cos_i - 0.1))",
+      "calibration_support": "全部 calibration base_valid_land。",
+      "objective": "sum(w_k * residual^2)",
       "primary_k": 30,
       "primary_k_basis": "继承 Stage 5/6 的经验基线，不是真理值。",
-      "future_sensitivity_k": [15, 30, 60],
+      "sensitivity_k": [15, 30, 60],
       "sensitivity_interpretation": "三个 k 是同一机制的敏感性检查，不构成额外方法。",
-      "reliability_interpretation": "仅为排序分数；未经独立校准不得解释为正确概率。",
-      "preflight_action": "只允许与既有 confidence 做非拟合的数值差异核对。"
+      "reliability": "w_30；仅为排序分数，未经独立校准不得解释为正确概率。",
+      "primary_risk": "使用未加权 absolute residual；低权重不得自动解释为成功。"
     },
     "bounded_scene_constant_diffuse": {
       "identity": "bounded_scene_constant_diffuse",
-      "sharing_rule": "仅允许场景级或场景×波段共享参数。",
+      "formula": "rho_hat = alpha * (max(cos_i, 0) + delta)",
+      "reparameterization": "d = alpha * delta",
+      "alpha_bounds": [0.0, 1.0],
+      "delta_bounds": [0.0, 0.1],
+      "parameter_units": "alpha、delta 与 d 均以无量纲 surface-reflectance 标度解释；delta 只是 tau=0.1 限制下的 illumination-equivalent 常数，不是真实 diffuse irradiance。",
+      "calibration_support": "全部 calibration base_valid_land。",
+      "objective": "ordinary_least_squares",
+      "sharing_rule": "alpha、delta 为 scene × band × fold 共享常数；同一 fold 内所有 calibration/holdout 像元共享。",
       "prohibited": [
         "逐像元 diffuse",
         "逐像元自由参数吸收 residual"
       ],
-      "numeric_bounds": null,
-      "bounds_status": "pending_calibration_only_constraint",
-      "bounds_decision_rule": "当前 Architecture 与已读材料未提供可冻结数值边界；后续必须在不读取 holdout 结果的 calibration-only 裁决中确定。",
+      "report_parameters": ["alpha", "delta", "d", "boundary_hit", "fit_status"],
+      "boundary_hit_rule": "优化器报告 delta 位于下界 0 或上界 0.1 时必须标记 boundary_hit；不得改写边界或借由 holdout 解除约束。",
+      "bounds_status": "approved_D1_tau_limited_reparameterization",
       "permitted_negative_conclusion": "当前场景级常数化 diffuse 参数化未带来可验证改善。"
     }
   },
@@ -194,10 +207,12 @@
   },
   "fold_proposal": {
     "mode": "deterministic_buffered_leave_region_out_proposal_only",
-    "status": "proposal_pending_user_confirmation",
-    "purpose": "仅从既有 geometry-only audit 选择固定 fold；不得读取或计算正式机制、残差、评分或风险覆盖率。",
-    "formal_experiment_eligibility": false,
-    "user_confirmation_required_before_formal_experiment": true,
+    "status": "approved_for_stage_6_5_3_b",
+    "purpose": "已批准的 zero-fit geometry audit fold；仅可由本节点冻结的实验合同使用。",
+    "formal_experiment_eligibility": true,
+    "user_confirmation_required_before_formal_experiment": false,
+    "proposal_source_manifest_sha256": "d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc",
+    "approved_manifest_sha256": "d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37",
     "frozen_buffer": {
       "pixels": 271,
       "meters": 8130.0,
@@ -229,5 +244,44 @@
       "manifest": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
       "report_append_marker": "<!-- stage6_5_3_b_fold_proposal -->"
     }
+  },
+  "approved_experiment_contract": {
+    "status": "approved_contract_not_executed_this_round",
+    "manifest": {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
+      "approved_manifest_sha256": "d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37",
+      "proposal_source_manifest_sha256": "d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc",
+      "expected_fold_groups": {"clean_a_lit_control": 5, "shadow_risk_b_combined_risk": 5},
+      "frozen_buffer": {"pixels": 271, "meters": 8130.0},
+      "interpretation": "geographic cores 两两不重叠；calibration 可以重叠，只作描述性空间挑战，不作为独立统计重复。"
+    },
+    "fit_scope": "每个 scene × band × fold 独立拟合；B4 与 B5 分开报告；所有参数仅用 calibration 估计。",
+    "residual_and_risk_coverage": {
+      "residual": "rho_hat - rho_obs",
+      "absolute_error": "abs(residual)",
+      "required_metrics": ["bias", "mae", "median_absolute_error", "p90_absolute_error", "supported_count", "unsupported_count"],
+      "report_axes": ["band", "scene", "fold", "canonical_partition"],
+      "reliability": {"hard_mask": "lit=1; cos_i<=0.1 is unsupported", "soft_weight": "w_30", "bounded_scene_constant_diffuse": "w_30; observation support, not diffuse-success probability"},
+      "coverage_denominator": "geographic core 内全部 base_valid_land；water 不在分母。",
+      "coverage_order": "reliability descending, then fixed row-major pixel order.",
+      "comparison_rule": "只在三种方法共同可达的 coverage 上比较；同时报告各方法最大可达 coverage；unsupported 不得从分母消失。",
+      "summary_rule": "每折是主结果；仅允许 fold-level median/min/max 等描述性汇总，禁止像元级 p-value 或把五折称为独立区域。"
+    },
+    "surface_heterogeneity_countercheck": {
+      "purpose": "诊断全局 alpha 的残差是否主要来自植被/土壤表面异质性；不增加拟合参数。",
+      "ndvi": {"formula": "(B5 - B4) / (B5 + B4)", "safe_denominator_rule": "只在 B4、B5 finite 且 abs(B5+B4) >= 1e-6 时计算；其余像元只从本诊断分层排除，不改变 canonical domain 或主评价。"},
+      "brightness": {"formula": "(B4 + B5) / 2", "validity": "B4、B5 finite。"},
+      "strata": "每 fold 仅从 calibration 计算 NDVI 与 brightness 的 25%、50%、75% 分位点；将同一阈值应用到 holdout；不得按分层重新拟合 alpha 或 delta。",
+      "metrics": ["mae", "p90_absolute_error"],
+      "minimum_holdout_pixels": 100,
+      "insufficient_support": "少于 100 个 holdout 像元的分层标记 insufficient_support。",
+      "sensitivity_verdict": "若全局 MAE 方法排序在至少两个充分支持分层中反转，或优势只存在于单一充分支持表面分层，标记 surface_heterogeneity_sensitive；不得宣称稳定光照机制优势。"
+    },
+    "posthoc_holdout_spatial_check": {
+      "timing": "仅在正式 holdout 评分完成后执行；只读诊断，不重新选 fold、不调参。",
+      "method": "对 holdout residual 使用冻结的经验半变异函数口径。",
+      "warning_rule": "若在 >=8,130 m 的至少两个有效 lag bins 中 residual semivariance 持续低于其 tail-sill 的 95%，标记 spatial_dependence_warning，并进一步限制泛化结论。"
+    },
+    "this_round": {"execute_fits": false, "score_holdout": false, "compute_residuals": false, "compute_risk_coverage": false}
   }
 }

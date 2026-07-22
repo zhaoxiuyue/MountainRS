@@ -1,124 +1,100 @@
-# Stage 6.5.3-B｜方法与评价合同草案
+# Stage 6.5.3-B｜已批准的方法与评价合同
 
-- **状态：** `proposal_pending_user_confirmation`。本文件不是 Node Contract，也不授权执行 hard_mask、soft_weight 或 bounded_scene_constant_diffuse。
-- **适用范围：**只限 Stage 6.5.3-B 的 Clean A lit/control 与 Shadow-risk B shadow/near-zero 压力测试。它不验证完整 L0–L5，不形成反演真误差结论，也不推断真实漫射、sky-view、邻坡散射或大气机制。
-- **空间边界：**正式执行前只可使用 `proposed_fold_manifest.json` 中经确认的 8,130 m buffered leave-region-out folds。每折是描述性挑战；其 calibration 区可重叠，不能当作独立统计重复。
+- **状态：** `approved_for_stage_6_5_3_b`；本轮只冻结合同与校验接口，尚未运行任何拟合、holdout 评分、residual 或 risk–coverage 计算。
+- **fold basis：**`evidence/stage6_5_3_b/proposed_fold_manifest.json` 的 approved content hash 为 `d0dc8cc339edef91ff2bf519d37af08549385de88eab4119ce0b882f30ff3b37`；其批准前 proposal source hash 为 `d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc`。五个 Clean A lit/control 与五个 Shadow-risk B combined-risk cores 的身份、坐标、计数和 8,130 m / 271 px buffer 均不变。
+- **统计边界：**geographic cores 两两不重叠；不同 fold 的 calibration 可以重叠，故每折只作为描述性空间挑战，不能被当作独立统计重复。
+- **适用范围：**只限 Stage 6.5.3-B 的机制压力测试。它不验证完整 L0–L5，不把 residual 称为反演真误差，也不推断真实 diffuse irradiance、sky-view、邻坡散射、BRDF 或大气辐射传输机制。
 
-## 1. 通用记号、输入和训练边界
+## 1. 共同输入、分区与训练边界
 
 对 scene `s`、band `b∈{B4,B5}`、fold `f`、像元 `p`：
 
 ```text
-rho_obs(s,b,p) = Landsat L2 SR B4 或 B5 的观测 surface reflectance（无量纲）
+rho_obs(s,b,p) = Landsat L2 SR B4 或 B5 的观测 surface reflectance
 mu(p)          = max(cos_i(p), 0)
 tau            = 0.1
-w_k(p)         = sigmoid(k * (cos_i(p) - tau))
 ```
 
-输入只限正式 alias 所解析的 B4、B5、QA_PIXEL、metadata、cos_i、Architecture source，以及 Stage 6.5.2-A/B 的 prior reports。canonical analysis domain 仍由本节点 config 重新生成：QA_PIXEL bits 0–5 clear、B4/B5/cos_i 有效且 B4/B5 位于 `[-0.05,1.0]`；water bit 7 从 land 指标排除。`shadow=cos_i<=0`、`near_zero=0<cos_i<=0.1`、`lit=cos_i>0.1`。
+每个 `(scene, band, fold)` 独立拟合，B4 与 B5 分开报告。canonical base-valid land 仍由 QA_PIXEL bits 0–5 clear、B4/B5/cos_i 有效、B4/B5 位于 `[-0.05,1.0]` 重建；QA water bit 7 单独统计且不进入 land 主指标。分区固定为 `shadow=cos_i<=0`、`near_zero=0<cos_i<=0.1`、`lit=cos_i>0.1`。
 
-任何可拟合参数都只由当前 fold 的 calibration land 估计。holdout core、其 buffer，及 holdout 中的 `rho_obs` 均不得参与参数、边界、模型选择或阈值选择。每个 `(s,b,f)` 是独立的 calibration-only 拟合实例；这不允许任何逐像元、逐块或依据 holdout 调整的自由参数。
+所有可拟合参数、NDVI/brightness 分位点与任何参数边界只可使用当前 fold 的 calibration 数据。holdout、buffer 和 holdout `rho_obs` 不得进入参数估计、阈值、fold 选择或模型选择。若 manifest hash 不匹配、任一训练像元至其 core 的最小距离低于 8,130 m，或输入/partition 与 manifest 支持量不一致，停止执行。
 
-`alpha(s,b,f)` 表示 scene×band×fold 共享的直接光 gain/albedo-like scalar，并继承 Stage 6 toy 中 sigmoid parameterization 的物理范围：`0<=alpha<=1`。它是前向 baseline 的受限比例参数，不是已验证的地表真 albedo 产品。
+## 2. 三种冻结机制
 
-## 2. hard_mask 合同
-
-**精确输入。** canonical base-valid land 中的 `rho_obs` 与 `cos_i`；QA/water 规则同上。仅以 `C_hard = calibration ∩ {cos_i>0.1}` 训练。
-
-**前向式与拟合。**
+### hard_mask
 
 ```text
-rho_hat_hard(s,b,p) = alpha_hard(s,b,f) * mu(p)
-
-alpha_hard = clip_[0,1]( sum_{p in C_hard}(mu(p)*rho_obs(s,b,p))
-                          / sum_{p in C_hard}(mu(p)^2) )
+rho_hat = alpha * mu
+0 <= alpha <= 1
+calibration support = calibration ∩ lit = {cos_i > 0.1}
+objective = ordinary least squares
 ```
 
-若分母为零或 `C_hard` 为空，该 `(s,b,f)` 是 execution blocker，不能以替代参数、邻折或 holdout 补足。
+`alpha` 是 scene×band×fold 共享的直接光 gain/albedo-like scalar，不是已验证真 albedo 产品。holdout 中 `cos_i<=0.1` 固定标为 `unsupported_by_hard_mask`：不进入 hard_mask 评分成功集合，却仍保留在 coverage 分母中，绝不能因被排除而被称为低风险成功。
 
-**输出与 unsupported。** `cos_i<=0.1` 的像元固定标为 `unsupported_by_hard_mask`：不拟合、不在 hard-mask residual/risk 成功集合中，也不能因被排除而被记为低风险成功。hard_mask 的最大可覆盖比例因此可能低于 1；coverage 分母仍是所有 base-valid land，而不是只取 lit。
-
-## 3. soft_weight 合同
-
-**精确公式。** Stage 5/6 已有 observability 形式被冻结为：
+### soft_weight
 
 ```text
-w_k(p) = sigmoid(k * (cos_i(p) - 0.1))
-rho_hat_soft(s,b,p) = alpha_soft(s,b,f;k) * mu(p)
-
-alpha_soft(k) = clip_[0,1]( sum_{p in calibration}(w_k(p)*mu(p)*rho_obs(s,b,p))
-                             / sum_{p in calibration}(w_k(p)*mu(p)^2) )
+rho_hat = alpha * mu
+0 <= alpha <= 1
+w_k = sigmoid(k * (cos_i - 0.1))
+calibration support = 全部 calibration base_valid_land
+objective = sum(w_k * (rho_hat - rho_obs)^2)
 ```
 
-主配置是 `k=30`；这是继承 Stage 5/6 的经验基线，不是真理值。`k∈{15,30,60}` 仅是同一 soft_weight 机制的预注册敏感性检查，不能计作额外三种方法，也不能用 holdout 表现选择其中一个。
+主值为 `k=30`；`k=15` 和 `k=60` 仅属于同一机制的预注册敏感性分析，不能计作额外方法，也不能依据 holdout 表现选择。`w_30` 是 observability/reliability 排序分数，不是正确概率。主要风险始终使用未加权 absolute residual；低权重不是低误差成功。
 
-**权重进入何处。** `w_k` 进入 calibration 的加权平方前向损失，等价于上式闭式解；在 holdout 它只作为 reliability/ranking score。主要 holdout risk 一律以未加权 `|rho_hat-rho_obs|` 计算，不能用低 `w_k` 把高残差折减为成功。若保存加权诊断，它必须明确为次要诊断，不能替代主要风险统计。
-
-`w_k` 是照明可观测性排序分数，不是正确概率、校准概率、云质量概率或阴影真值概率；shadow 与 near_zero 仍须按 canonical 分区单独报告。
-
-## 4. bounded_scene_constant_diffuse 合同
-
-**精确方程与单位。**
+### bounded_scene_constant_diffuse（D1，已采纳）
 
 ```text
-rho_hat_diffuse(s,b,p) = alpha_diffuse(s,b,f) * mu(p) + d(s,b,f)
+rho_hat = alpha * (mu + delta)
+0 <= alpha <= 1
+0 <= delta <= 0.1
+d = alpha * delta
+calibration support = 全部 calibration base_valid_land
+objective = ordinary least squares
 ```
 
-`rho_hat`、`alpha`、`d` 都以无量纲 surface-reflectance 标度表达；`mu` 无量纲。`d` 是每个 scene×band×fold 的单一、空间常数 additive term。一个 fold 内的所有 calibration 与 holdout 像元共享同一个 `d`；严禁逐像元 diffuse、逐像元自由残差项、按 shadow/near_zero 区分别拟合，或从 holdout 重估 `d`。
+`alpha`、`delta` 和 `d` 都是 scene×band×fold 共享常数；同一 fold 内的所有 calibration 和 holdout 像元共享它们。`delta` 是受 `tau=0.1` 限制的无量纲 illumination-equivalent 常数；`d` 使用 surface-reflectance 标度。严禁逐像元 diffuse、分区专属参数或逐像元自由 residual 项。
 
-给定一个预先确认的边界 `0<=d<=D(s,b,f)`，参数由 calibration-only 的 `k=30` 加权最小二乘共同拟合：
+每个 `(scene,band,fold)` 必须报告 `alpha`、`delta`、`d`、拟合状态与边界状态。优化器把 `delta` 约束在 `0` 或 `0.1` 时，必须标记 `boundary_hit`；不得根据 holdout 放宽、移动或替换边界。该探针不代表真实 diffuse irradiance 或物理反演值。允许的负面结论严格是：
+
+> 当前场景级常数化 diffuse 参数化未带来可验证改善。
+
+## 3. Residual、reliability 与 risk–coverage
 
 ```text
-(alpha_diffuse, d) = argmin_{0<=alpha<=1, 0<=d<=D}
-  sum_{p in calibration} w_30(p) * (rho_obs(s,b,p) - alpha*mu(p) - d)^2
+residual      = rho_hat - rho_obs
+absolute_error = abs(residual)
 ```
 
-这是场景级常数化近似，不是可识别的真实 sky-view、邻坡反射、地形遮挡、大气路径辐射、BRDF 或散射模型。即使获得改善，也不能把该项解释成真实 diffuse 机制量。
+residual 的单位为无量纲 surface reflectance；正值表示指定 forward baseline 过预测，负值表示低预测。它不是反演真误差、地表真 albedo error 或真实光学机制的证明。
 
-### 两个 calibration-only diffuse 边界候选
+每个 `band × scene × fold × canonical partition` 都必须报告：bias、MAE、median absolute error、P90 absolute error、supported 数和 unsupported 数。reliability 固定为：hard_mask 的 lit=`1`、其余 `unsupported`；soft_weight 的 `w_30`；bounded diffuse 的 `w_30`（只表示观测支持度，不表示 diffuse 成功概率）。
 
-两案均不预读 holdout，并共同禁止逐像元自由度。它们只允许从当前 fold 的 calibration land 求解；若必要集合为空，返回 blocker，不能回填默认数值。
+coverage 分母是 geographic core 内**全部** base-valid land；water 不在分母。像元按 reliability 降序、同分按固定 row-major 顺序形成 coverage 前缀。方法比较只在三种方法共同可达的 coverage 上进行，并同时报告每种方法最大可达 coverage。unsupported 不得从分母消失。
 
-| 候选 | 数学边界与单位 | calibration-only 依据与共享 | 防止吸收 residual | 已知物理缺项与可证伪范围 |
-|---|---|---|---|---|
-| **D1：geometry-anchored（推荐）** | `D_1(s,b,f)=tau*alpha_diffuse(s,b,f)`，即 `0<=d<=0.1*alpha`；`d` 为 reflectance，`d/alpha` 为无量纲 illumination-equivalent。 | `tau=0.1` 是本节点已冻结的 near-zero/lit 分界；每个 scene×band×fold 仅一个 `alpha,d`。只由 calibration 加权目标求解。 | 上界把常数项限制为在 observability 门槛 `mu=tau` 处不超过直接项；没有像元/区域自由项，也不以 holdout 调边界。 | 缺 sky-view、邻坡散射、遮挡、BRDF、大气与真实谱间关系。若无改善，只能证伪“当前以 `d/alpha<=0.1` 限制的 scene-constant 参数化”在本节点可验证改善。 |
-| **D2：calibration-envelope（保守备选）** | `D_2(s,b,f)=min(0.1*alpha_diffuse, max(0, min_{p in calibration∩lit} rho_obs(s,b,p)))`；`d` 为 reflectance。 | 第二项只使用 calibration lit 观测，确保拟合常数项不超过任一 calibration lit 观测；仍是 scene×band×fold 单一参数。 | 同时受 D1 几何限制与 calibration lit non-negative envelope 约束；无逐像元参数、无 holdout。 | 同样缺所有真实辐射传输项；且可能被单个低值/噪声观测压至零。若无改善，只能证伪这个更保守的场景常数近似。 |
+每折结果是主结果；仅允许 fold-level median、min、max 等描述性汇总。禁止像元级 p-value、置信区间，或把共享/重叠 calibration 的五折称为五个独立区域。
 
-**推荐 D1。** 它只使用已冻结的 `tau=0.1` 与参数单位关系，避免为边界另造数值；比 D2 不易被单一低 reflectance 像元偶然钳死。D2 仍保留为用户可选的更保守方案。两案不得通过拟合或 holdout 比较来选择，必须由用户在执行前确认其一。
+## 4. 表面异质性反证检查
 
-## 5. 评价合同草案（定义，不计算结果）
-
-**Residual baseline。** 对已评分像元，
+此检查只诊断“全局 alpha 的残差是否主要来自植被/土壤表面异质性”，不增加任何拟合参数，也不按分层重新拟合 `alpha` 或 `delta`。
 
 ```text
-r(s,b,p) = rho_hat(s,b,p) - rho_obs(s,b,p)
-abs_r     = |r|
+NDVI       = (B5 - B4) / (B5 + B4)
+brightness = (B4 + B5) / 2
 ```
 
-单位为无量纲 Landsat surface reflectance；`r>0` 表示该指定 forward baseline 过预测，`r<0` 表示低预测。它是 model–observation residual，绝不是反演真误差、地表真 albedo error 或机制真实性证明。
+NDVI 只在 B4/B5 finite 且 `abs(B5+B4)>=1e-6` 时计算；不满足安全分母规则的像元只从本诊断分层排除，不改变 canonical domain 或主要评价。每 fold 只用 calibration 计算 NDVI 和 brightness 的 25%、50%、75% 分位点，并把同一分界应用到 holdout。
 
-**Reliability 与 coverage。** reliability 是固定的排序键：hard_mask 为 lit-support indicator（unsupported 无键）；soft_weight 与 diffuse 为 `w_k`（主值 `k=30`）。把可评分像元按 reliability 降序、再按稳定像元索引升序排序；每个可达前缀的 coverage 为：
+每个有效表面分层分别报告三种方法的 MAE 与 P90 absolute error。任一分层的 holdout 像元少于 `100`，标记 `insufficient_support`。对同一 scene/band/fold，global 方法排序定义为共同可达 coverage 上的全 core MAE 升序；若该排序在至少两个充分支持分层中反转，或某方法优势只存在于单一充分支持表面分层，标记 `surface_heterogeneity_sensitive`，不得宣称稳定的光照机制优势。
 
-```text
-coverage = scored_selected_base_valid_land_pixels / all_base_valid_land_pixels_in_holdout_core
-```
+## 5. 拟合后只读空间检查
 
-water 不在分母；hard_mask 的 unsupported 仍留在分母并单列，因此不能凭排除而提高 coverage。主要 risk 统计为所选前缀的 band-specific `median(abs_r)` 与 `p90(abs_r)`；每个 fold、每个 band、每个 canonical 分区单独报告。低 reliability 或低 coverage 从不是自动低 risk。
+正式 holdout 评分结束后，使用冻结的经验半变异函数口径对 holdout residual 做事后诊断。它不重新选 fold、不调参、不修改 mask 或方法合同。若在 `>=8,130 m` 的至少两个有效 lag bins 中 residual semivariance 持续低于 tail-sill 的 `95%`，标记 `spatial_dependence_warning`，并进一步限制泛化结论。
 
-**Unsupported / prior_only。** hard_mask 的 unsupported 必须分别计数、报告来源与 coverage 影响；不与 QA、water 或其他失效原因合并。既有 `qa_valid_mask`、`shadow_mask`、`near_zero_mask`、`confidence` 只属 `prior_only` cross-check：它们既不重写 canonical mask，也不充当正式 residual、reliability 或评分输入。
+## 6. 失败边界与依据
 
-**样本职责与汇总。** A 只承担 lit/control；B 承担 shadow/near-zero stress。报告先逐 fold、逐 band、逐分区给出值；允许跨五折做纯描述性的 median/range，但不得输出像元级 p-value、置信区间，或宣称五个重叠 calibration folds 是五个独立区域。
+停止条件包括：manifest/hash 不匹配；calibration–holdout 最小距离不足 8,130 m；holdout 信息进入参数、阈值或 fold 选择；alpha/delta 越界或优化不可复现；required fold/partition 支持量与 manifest 不一致；current-task stale；或输出越过 Workspace Contract。
 
-## 6. 本草案的最小待确认项
-
-1. 在正式实验前，确认使用 **D1（推荐）** 或 **D2（更保守）** 的 diffuse 上界；确认后不得依据 holdout 修改。
-2. 单独授权正式机制执行与 holdout 评分；本次 proposal 本身不构成该授权。
-
-## 7. 依据（只读审计）
-
-- `docs/architecture.md`（V3 canonical architecture）。
-- `stage5_gradient_friendly_model/scripts/gradient_friendly_forward_check.py` 与其报告：`hard_observed=albedo*max(cos_i,0)`、softplus forward toy、`sigmoid(k*(cos_i-0.1))` observability。
-- `stage6_differentiable_inversion_toy/scripts/differentiable_albedo_inversion_toy.py` 与其报告：bounded sigmoid albedo toy 与 weighted forward loss。
-- Stage 6.5.2-A/B local checks、当前 Stage 6.5.3-B config/executor、以及 C5-D1A geometry-only audit。
-
-本草案未读取或生成任何正式机制结果、residual、risk–coverage 曲线或方法排名。
+合同依据为 `docs/architecture.md` V3、Stage 5/6 的 hard/soft forward toy、Stage 6.5.2-A/B 本地检查、C5-D1 canonical preflight，以及 C5-D1A buffered leave-region-out geometry audit。此轮未运行三种机制、未计算 residual/risk–coverage、未生成方法排名，也没有节点完成或 PF2 结果写回。

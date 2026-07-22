@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Deterministic Stage 6.5.3-B First Action preflight only.
+"""Deterministic Stage 6.5.3-B preflight and contract validation only.
 
 This executor recomputes canonical masks, validates grids and estimates a
-spatial-isolation design.  It intentionally contains no model fitting,
-holdout scoring, residual computation, risk-coverage curve, or final
-mechanism comparison.
+spatial-isolation design.  It also validates the approved method interface
+without running it.  It intentionally contains no model fitting, holdout
+scoring, residual computation, risk-coverage curve, or final mechanism
+comparison.
 """
 
 from __future__ import annotations
@@ -88,10 +89,10 @@ def load_config(path: Path) -> dict[str, Any]:
         parsed = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         raise PreflightError(f"config 不是 JSON-compatible YAML：{exc}") from exc
-    if parsed.get("schema") != "mountainrs-stage-6-5-3-b-preflight-v1":
+    if parsed.get("schema") not in {"mountainrs-stage-6-5-3-b-preflight-v1", "mountainrs-stage-6-5-3-b-contract-v2"}:
         raise PreflightError("不支持的 Stage 6.5.3-B config schema")
-    if parsed.get("execution", {}).get("mode") != "deterministic_preflight_only":
-        raise PreflightError("executor 只接受 deterministic_preflight_only")
+    if parsed.get("execution", {}).get("mode") not in {"deterministic_preflight_only", "deterministic_preflight_and_contract_validation_only"}:
+        raise PreflightError("executor 只接受预检与合同验证模式")
     forbidden = parsed.get("execution", {}).get("forbidden_operations", [])
     if "score a holdout" not in forbidden or "fit hard_mask, soft_weight, or bounded_scene_constant_diffuse" not in forbidden:
         raise PreflightError("config 未冻结本轮禁止的正式实验操作")
@@ -1433,18 +1434,88 @@ def run_fold_proposal(config_path: Path) -> dict[str, Any]:
     return manifest
 
 
+def validate_approved_experiment_contract(config_path: Path) -> dict[str, Any]:
+    """Validate the frozen C5-D2 interface without fitting or scoring anything."""
+    config = load_config(config_path)
+    approved = config.get("approved_experiment_contract")
+    if not approved or approved.get("status") != "approved_contract_not_executed_this_round":
+        raise PreflightError("缺少已批准且本轮未执行的实验合同")
+    if any(approved.get("this_round", {}).get(name) is not False for name in ("execute_fits", "score_holdout", "compute_residuals", "compute_risk_coverage")):
+        raise PreflightError("本轮合同不得启用拟合、评分、residual 或 risk–coverage 计算")
+    manifest_config = approved.get("manifest", {})
+    manifest_path = relative_path(PROJECT_ROOT, manifest_config.get("relative_path", ""))
+    if not manifest_path.is_file():
+        raise PreflightError("缺少 approved fold manifest")
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise PreflightError(f"approved fold manifest 不可解析：{exc}") from exc
+    claimed_hash = manifest.get("manifest_sha256")
+    canonical_manifest = dict(manifest)
+    canonical_manifest.pop("manifest_sha256", None)
+    computed_hash = canonical_json_sha256(canonical_manifest)
+    if claimed_hash != computed_hash or claimed_hash != manifest_config.get("approved_manifest_sha256"):
+        raise PreflightError("approved fold manifest hash 不匹配")
+    if manifest.get("status") != "approved_for_stage_6_5_3_b" or manifest.get("formal_experiment_eligibility") is not True:
+        raise PreflightError("fold manifest 未处于已批准的正式实验状态")
+    approval = manifest.get("approval", {})
+    if approval.get("approval_basis_proposal_manifest_sha256") != manifest_config.get("proposal_source_manifest_sha256"):
+        raise PreflightError("approved manifest 缺少正确的 proposal source hash 锚点")
+    expected_groups = manifest_config.get("expected_fold_groups", {})
+    actual_groups = manifest.get("fold_groups", {})
+    for name, expected_count in expected_groups.items():
+        folds = actual_groups.get(name, {}).get("folds", [])
+        if len(folds) != int(expected_count):
+            raise PreflightError(f"approved manifest 的 {name} fold 数不匹配")
+        for fold in folds:
+            distance = fold.get("minimum_train_to_geographic_core_distance", {}).get("meters")
+            if distance is None or float(distance) + 1e-9 < float(manifest_config["frozen_buffer"]["meters"]):
+                raise PreflightError(f"{fold.get('fold_id')} 未满足冻结的最小隔离距离")
+    frozen = manifest_config.get("frozen_buffer", {})
+    if int(frozen.get("pixels", -1)) != 271 or float(frozen.get("meters", -1)) != 8130.0:
+        raise PreflightError("approved contract 不得降低 271 px / 8,130 m buffer")
+    hard = config.get("mechanisms", {}).get("hard_mask", {})
+    soft = config.get("mechanisms", {}).get("soft_weight", {})
+    diffuse = config.get("mechanisms", {}).get("bounded_scene_constant_diffuse", {})
+    if hard.get("formula") != "rho_hat = alpha * max(cos_i, 0)" or hard.get("alpha_bounds") != [0.0, 1.0] or hard.get("objective") != "ordinary_least_squares":
+        raise PreflightError("hard_mask 合同不匹配")
+    if soft.get("forward_formula") != "rho_hat = alpha * max(cos_i, 0)" or soft.get("weight_formula") != "w_k = sigmoid(k * (cos_i - 0.1))" or soft.get("primary_k") != 30 or soft.get("sensitivity_k") != [15, 30, 60] or soft.get("objective") != "sum(w_k * residual^2)":
+        raise PreflightError("soft_weight 合同不匹配")
+    if diffuse.get("formula") != "rho_hat = alpha * (max(cos_i, 0) + delta)" or diffuse.get("reparameterization") != "d = alpha * delta" or diffuse.get("alpha_bounds") != [0.0, 1.0] or diffuse.get("delta_bounds") != [0.0, 0.1] or diffuse.get("objective") != "ordinary_least_squares":
+        raise PreflightError("bounded_scene_constant_diffuse D1 合同不匹配")
+    risk = approved.get("residual_and_risk_coverage", {})
+    if risk.get("residual") != "rho_hat - rho_obs" or risk.get("absolute_error") != "abs(residual)" or "row-major" not in risk.get("coverage_order", "") or "base_valid_land" not in risk.get("coverage_denominator", ""):
+        raise PreflightError("residual 或 risk–coverage 合同不匹配")
+    heterogeneity = approved.get("surface_heterogeneity_countercheck", {})
+    if heterogeneity.get("minimum_holdout_pixels") != 100 or "1e-6" not in heterogeneity.get("ndvi", {}).get("safe_denominator_rule", "") or "calibration" not in heterogeneity.get("strata", ""):
+        raise PreflightError("表面异质性反证检查合同不匹配")
+    spatial = approved.get("posthoc_holdout_spatial_check", {})
+    if "8,130" not in spatial.get("warning_rule", "") or "不重新选 fold" not in spatial.get("timing", ""):
+        raise PreflightError("事后空间检查合同不匹配")
+    return {
+        "status": approved["status"],
+        "manifest_sha256": claimed_hash,
+        "proposal_source_manifest_sha256": approval["approval_basis_proposal_manifest_sha256"],
+        "fold_counts": {name: len(actual_groups[name]["folds"]) for name in expected_groups},
+        "mechanism_interfaces": [hard["identity"], soft["identity"], diffuse["identity"]],
+        "side_effects": {"fits_run": False, "holdout_scored": False, "residuals_computed": False, "risk_coverage_computed": False},
+    }
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run Stage 6.5.3-B deterministic preflight only.")
+    parser = argparse.ArgumentParser(description="Run Stage 6.5.3-B deterministic preflight or contract validation only.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit", "propose-folds"), default="preflight")
+    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit", "propose-folds", "validate-approved-contract"), default="preflight")
     args = parser.parse_args()
     try:
         if args.mode == "preflight":
             summary = run(args.config.resolve())
         elif args.mode == "buffered-leave-region-out-audit":
             summary = run_buffered_leave_region_out_audit(args.config.resolve())
-        else:
+        elif args.mode == "propose-folds":
             summary = run_fold_proposal(args.config.resolve())
+        else:
+            summary = validate_approved_experiment_contract(args.config.resolve())
     except PreflightError as exc:
         print(f"PRECHECK_ERROR: {exc}", file=sys.stderr)
         return 2
@@ -1453,6 +1524,9 @@ def main() -> int:
         return 0 if summary["verdict"] == "PASS" else 2
     if args.mode == "propose-folds":
         print(json.dumps({"status": summary["status"], "manifest_sha256": summary["manifest_sha256"], "clean_a_fold_count": len(summary["fold_groups"]["clean_a_lit_control"]["folds"]), "shadow_risk_b_fold_count": len(summary["fold_groups"]["shadow_risk_b_combined_risk"]["folds"]), "formal_experiment_eligibility": summary["formal_experiment_eligibility"]}, ensure_ascii=False))
+        return 0
+    if args.mode == "validate-approved-contract":
+        print(json.dumps(summary, ensure_ascii=False))
         return 0
     print(json.dumps({"audit_status": summary["audit_status"], "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"], "candidate_counts": {scene: value["candidate_count"] for scene, value in summary["scenes"].items()}}, ensure_ascii=False))
     return 0
