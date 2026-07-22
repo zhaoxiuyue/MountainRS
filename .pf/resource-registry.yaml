@@ -81,3 +81,27 @@ resources:
   stage_6_5_3_b_evidence:
     resolver: relative_path
     relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b
+  c5_d3_approved_contract:
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md
+  c5_d3_runner:
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py
+  c5_d3_experiment_report:
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md
+  c5_d3_evidence_manifest:
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json
+  stage_7_0_baseline_spec:
+    resolver: relative_path
+    relative_path: docs/stage7_0/baseline_spec.md
+  stage_7_0_evaluation_protocol:
+    resolver: relative_path
+    relative_path: docs/stage7_0/evaluation_protocol.md
+  stage_7_0_leakage_audit:
+    resolver: relative_path
+    relative_path: docs/stage7_0/leakage_audit.md
+  stage_7_0_data_gap_report:
+    resolver: relative_path
+    relative_path: docs/stage7_0/data_gap_report.md
