@@ -1,0 +1,591 @@
+{
+  "schema": "mountainrs-stage-6-5-3-b-proposed-fold-manifest-v1",
+  "status": "proposal_pending_user_confirmation",
+  "formal_experiment_eligibility": false,
+  "user_confirmation_required_before_formal_experiment": true,
+  "project_guard": {
+    "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+    "project_revision": 39,
+    "route_revision": 1,
+    "node_id": "node_b702a65b-aaa2-4f53-98ee-39db6e7ffb80",
+    "node_contract_revision": 1,
+    "node_contract_hash": "5e5243ef38dc8b19df3ae0e0c4be8683e3b24d91c0d099b26e51fc829cf22664"
+  },
+  "source_audit": {
+    "json": {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_audit.json",
+      "sha256": "c371a5db1c3d4b2fb5631459fc836b9ee4cc004a7c74ddb119847c1d80efddcb"
+    },
+    "csv": {
+      "relative_path": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_candidates.csv",
+      "sha256": "0d64aa25cebd10d5d0b280e693e5d886c17436374aa253c8494ec354c9850be0"
+    },
+    "audit_status": "COMPLETED_GEOMETRY_ONLY"
+  },
+  "inputs": {
+    "clean_a": {
+      "aliases": {
+        "clean_a_b4": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+        "clean_a_b5": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif",
+        "clean_a_qa_pixel": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif",
+        "clean_a_metadata": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+        "clean_a_cos_i": "stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif"
+      },
+      "canonical_masks": {
+        "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_clean_a_canonical_masks.tif",
+        "sha256": "af654caf9b9e6ca46d9434c2bfed4dd0970f32cafc34b7a471340075e1a67ac7",
+        "band_schema": [
+          "base_valid",
+          "qa_water_bit_7",
+          "shadow",
+          "near_zero",
+          "lit"
+        ],
+        "canonical_mask_basis": {
+          "base_valid": "QA_PIXEL bits 0–5 clear; B4/B5/cos_i finite and non-nodata; B4/B5 in [-0.05, 1.0].",
+          "land_metrics": "QA water bit 7 excluded from land metrics.",
+          "partitions": "shadow=cos_i<=0; near_zero=0<cos_i<=0.1; lit=cos_i>0.1; mutually exclusive on base_valid_land."
+        }
+      }
+    },
+    "shadow_risk_b": {
+      "aliases": {
+        "shadow_risk_b_b4": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+        "shadow_risk_b_b5": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif",
+        "shadow_risk_b_qa_pixel": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif",
+        "shadow_risk_b_metadata": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+        "shadow_risk_b_cos_i": "stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif"
+      },
+      "canonical_masks": {
+        "relative_path": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif",
+        "sha256": "8531e9805d68fde0895f0bb567542e8aef234206a43cb49b835acec32dc7f885",
+        "band_schema": [
+          "base_valid",
+          "qa_water_bit_7",
+          "shadow",
+          "near_zero",
+          "lit"
+        ],
+        "canonical_mask_basis": {
+          "base_valid": "QA_PIXEL bits 0–5 clear; B4/B5/cos_i finite and non-nodata; B4/B5 in [-0.05, 1.0].",
+          "land_metrics": "QA water bit 7 excluded from land metrics.",
+          "partitions": "shadow=cos_i<=0; near_zero=0<cos_i<=0.1; lit=cos_i>0.1; mutually exclusive on base_valid_land."
+        }
+      }
+    }
+  },
+  "frozen_buffer": {
+    "pixels": 271,
+    "meters": 8130.0,
+    "distance_metric": "像元中心欧氏距离",
+    "rule": "calibration 与完整方形 geographic core 的最小距离必须 >= 8,130 m；scoreable holdout 仅为 core 内 base_valid_land。"
+  },
+  "selection_algorithm": {
+    "source": "C5-D1A deterministic geometry-only candidate audit; only canonical masks and geometry counts were used.",
+    "common_requirements": {
+      "minimum_calibration_land_pixels": 20000,
+      "minimum_holdout_land_pixels": 2500,
+      "minimum_train_to_holdout_m": 8130.0,
+      "geographic_core_overlap": "同一 scene 内选中的 cores 两两不重叠；A 与 B 是不同输入 scene，分别核验。"
+    },
+    "clean_a": {
+      "fold_count": 5,
+      "role": "lit_control",
+      "eligibility": "holdout shadow=0、holdout near_zero=0，且满足 common_requirements。",
+      "first_selection": "holdout land descending；tie-break calibration land descending、core edge ascending、row ascending、column ascending。",
+      "subsequent_selection": "在未与已选 core 重叠的候选中，最大化至已选 geographic-core centroid 的最小欧氏距离；tie-break 与 first_selection 相同。"
+    },
+    "shadow_risk_b": {
+      "fold_count": 5,
+      "role": "combined_risk_stress",
+      "minimum_shadow_pixels": 250,
+      "minimum_near_zero_pixels": 250,
+      "first_selection": "min(shadow, near_zero) descending；tie-break shadow+near_zero descending、holdout land descending、calibration land descending、core edge ascending、row ascending、column ascending。",
+      "subsequent_selection": "在未与已选 core 重叠的候选中，最大化至已选 geographic-core centroid 的最小欧氏距离；tie-break 与 first_selection 相同。"
+    },
+    "statistical_interpretation": "各 fold 仅为描述性挑战；calibration 区可重叠，不能作为独立统计重复或用于像元级 p-value。"
+  },
+  "fold_groups": {
+    "clean_a_lit_control": {
+      "requested_fold_count": 5,
+      "eligible_candidate_count": 12890,
+      "folds": [
+        {
+          "fold_id": "stage_6_5_3_b_clean_a_lit_control_01",
+          "scene": "clean_a",
+          "role": "lit_control",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 384,
+              "row_end_exclusive": 592,
+              "column_start": 416,
+              "column_end_exclusive": 624,
+              "edge_pixels": 208
+            },
+            "centroid_m": {
+              "x": 393270.0,
+              "y": 3426750.0
+            },
+            "geographic_bounds_m": {
+              "left": 390150.0,
+              "right": 396390.0,
+              "bottom": 3423630.0,
+              "top": 3429870.0
+            }
+          },
+          "counts": {
+            "calibration_land": 176924,
+            "holdout_land": 43262,
+            "buffer_excluded_land": 249348,
+            "holdout": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 43262
+            },
+            "calibration": {
+              "shadow": 0,
+              "near_zero": 3,
+              "lit": 176921
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_clean_a_lit_control_02",
+          "scene": "clean_a",
+          "role": "lit_control",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 0,
+              "row_end_exclusive": 64,
+              "column_start": 0,
+              "column_end_exclusive": 64,
+              "edge_pixels": 64
+            },
+            "centroid_m": {
+              "x": 378630.0,
+              "y": 3440430.0
+            },
+            "geographic_bounds_m": {
+              "left": 377670.0,
+              "right": 379590.0,
+              "bottom": 3439470.0,
+              "top": 3441390.0
+            }
+          },
+          "counts": {
+            "calibration_land": 376431,
+            "holdout_land": 3600,
+            "buffer_excluded_land": 89503,
+            "holdout": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 3600
+            },
+            "calibration": {
+              "shadow": 0,
+              "near_zero": 3,
+              "lit": 376428
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_clean_a_lit_control_03",
+          "scene": "clean_a",
+          "role": "lit_control",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 682,
+              "row_end_exclusive": 746,
+              "column_start": 0,
+              "column_end_exclusive": 64,
+              "edge_pixels": 64
+            },
+            "centroid_m": {
+              "x": 378630.0,
+              "y": 3419970.0
+            },
+            "geographic_bounds_m": {
+              "left": 377670.0,
+              "right": 379590.0,
+              "bottom": 3419010.0,
+              "top": 3420930.0
+            }
+          },
+          "counts": {
+            "calibration_land": 375702,
+            "holdout_land": 3702,
+            "buffer_excluded_land": 90130,
+            "holdout": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 3702
+            },
+            "calibration": {
+              "shadow": 0,
+              "near_zero": 3,
+              "lit": 375699
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_clean_a_lit_control_04",
+          "scene": "clean_a",
+          "role": "lit_control",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 0,
+              "row_end_exclusive": 64,
+              "column_start": 581,
+              "column_end_exclusive": 645,
+              "edge_pixels": 64
+            },
+            "centroid_m": {
+              "x": 396060.0,
+              "y": 3440430.0
+            },
+            "geographic_bounds_m": {
+              "left": 395100.0,
+              "right": 397020.0,
+              "bottom": 3439470.0,
+              "top": 3441390.0
+            }
+          },
+          "counts": {
+            "calibration_land": 376137,
+            "holdout_land": 3694,
+            "buffer_excluded_land": 89703,
+            "holdout": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 3694
+            },
+            "calibration": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 376137
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_clean_a_lit_control_05",
+          "scene": "clean_a",
+          "role": "lit_control",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 272,
+              "row_end_exclusive": 480,
+              "column_start": 64,
+              "column_end_exclusive": 272,
+              "edge_pixels": 208
+            },
+            "centroid_m": {
+              "x": 382710.0,
+              "y": 3430110.0
+            },
+            "geographic_bounds_m": {
+              "left": 379590.0,
+              "right": 385830.0,
+              "bottom": 3426990.0,
+              "top": 3433230.0
+            }
+          },
+          "counts": {
+            "calibration_land": 102509,
+            "holdout_land": 42994,
+            "buffer_excluded_land": 324031,
+            "holdout": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 42994
+            },
+            "calibration": {
+              "shadow": 0,
+              "near_zero": 0,
+              "lit": 102509
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        }
+      ]
+    },
+    "shadow_risk_b_combined_risk": {
+      "requested_fold_count": 5,
+      "eligible_candidate_count": 1950,
+      "folds": [
+        {
+          "fold_id": "stage_6_5_3_b_shadow_risk_b_combined_risk_01",
+          "scene": "shadow_risk_b",
+          "role": "combined_risk_stress",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 0,
+              "row_end_exclusive": 208,
+              "column_start": 96,
+              "column_end_exclusive": 304,
+              "edge_pixels": 208
+            },
+            "centroid_m": {
+              "x": 298230.0,
+              "y": 3470670.0
+            },
+            "geographic_bounds_m": {
+              "left": 295110.0,
+              "right": 301350.0,
+              "bottom": 3467550.0,
+              "top": 3473790.0
+            }
+          },
+          "counts": {
+            "calibration_land": 44141,
+            "holdout_land": 14225,
+            "buffer_excluded_land": 43856,
+            "holdout": {
+              "shadow": 852,
+              "near_zero": 1344,
+              "lit": 12029
+            },
+            "calibration": {
+              "shadow": 1188,
+              "near_zero": 1313,
+              "lit": 41640
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_shadow_risk_b_combined_risk_02",
+          "scene": "shadow_risk_b",
+          "role": "combined_risk_stress",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 624,
+              "row_end_exclusive": 752,
+              "column_start": 522,
+              "column_end_exclusive": 650,
+              "edge_pixels": 128
+            },
+            "centroid_m": {
+              "x": 309810.0,
+              "y": 3453150.0
+            },
+            "geographic_bounds_m": {
+              "left": 307890.0,
+              "right": 311730.0,
+              "bottom": 3451230.0,
+              "top": 3455070.0
+            }
+          },
+          "counts": {
+            "calibration_land": 69005,
+            "holdout_land": 8205,
+            "buffer_excluded_land": 25012,
+            "holdout": {
+              "shadow": 265,
+              "near_zero": 413,
+              "lit": 7527
+            },
+            "calibration": {
+              "shadow": 3302,
+              "near_zero": 3598,
+              "lit": 62105
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_shadow_risk_b_combined_risk_03",
+          "scene": "shadow_risk_b",
+          "role": "combined_risk_stress",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 0,
+              "row_end_exclusive": 112,
+              "column_start": 538,
+              "column_end_exclusive": 650,
+              "edge_pixels": 112
+            },
+            "centroid_m": {
+              "x": 310050.0,
+              "y": 3472110.0
+            },
+            "geographic_bounds_m": {
+              "left": 308370.0,
+              "right": 311730.0,
+              "bottom": 3470430.0,
+              "top": 3473790.0
+            }
+          },
+          "counts": {
+            "calibration_land": 66967,
+            "holdout_land": 3148,
+            "buffer_excluded_land": 32107,
+            "holdout": {
+              "shadow": 280,
+              "near_zero": 318,
+              "lit": 2550
+            },
+            "calibration": {
+              "shadow": 2439,
+              "near_zero": 3079,
+              "lit": 61449
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_shadow_risk_b_combined_risk_04",
+          "scene": "shadow_risk_b",
+          "role": "combined_risk_stress",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 288,
+              "row_end_exclusive": 448,
+              "column_start": 352,
+              "column_end_exclusive": 512,
+              "edge_pixels": 160
+            },
+            "centroid_m": {
+              "x": 305190.0,
+              "y": 3462750.0
+            },
+            "geographic_bounds_m": {
+              "left": 302790.0,
+              "right": 307590.0,
+              "bottom": 3460350.0,
+              "top": 3465150.0
+            }
+          },
+          "counts": {
+            "calibration_land": 22479,
+            "holdout_land": 5043,
+            "buffer_excluded_land": 74700,
+            "holdout": {
+              "shadow": 263,
+              "near_zero": 381,
+              "lit": 4399
+            },
+            "calibration": {
+              "shadow": 1277,
+              "near_zero": 1501,
+              "lit": 19701
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        },
+        {
+          "fold_id": "stage_6_5_3_b_shadow_risk_b_combined_risk_05",
+          "scene": "shadow_risk_b",
+          "role": "combined_risk_stress",
+          "core": {
+            "shape": "square",
+            "pixel_bounds": {
+              "row_start": 48,
+              "row_end_exclusive": 256,
+              "column_start": 304,
+              "column_end_exclusive": 512,
+              "edge_pixels": 208
+            },
+            "centroid_m": {
+              "x": 304470.0,
+              "y": 3469230.0
+            },
+            "geographic_bounds_m": {
+              "left": 301350.0,
+              "right": 307590.0,
+              "bottom": 3466110.0,
+              "top": 3472350.0
+            }
+          },
+          "counts": {
+            "calibration_land": 38397,
+            "holdout_land": 16622,
+            "buffer_excluded_land": 47203,
+            "holdout": {
+              "shadow": 500,
+              "near_zero": 495,
+              "lit": 15627
+            },
+            "calibration": {
+              "shadow": 937,
+              "near_zero": 1016,
+              "lit": 36444
+            }
+          },
+          "minimum_train_to_geographic_core_distance": {
+            "pixels": 271.0,
+            "meters": 8130.0,
+            "passes_frozen_buffer": true
+          },
+          "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。"
+        }
+      ]
+    }
+  },
+  "mechanism_execution": {
+    "hard_mask_fitted": false,
+    "soft_weight_fitted": false,
+    "bounded_scene_constant_diffuse_fitted": false,
+    "holdout_scored": false,
+    "residual_computed": false,
+    "risk_coverage_computed": false
+  },
+  "manifest_sha256": "d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc"
+}

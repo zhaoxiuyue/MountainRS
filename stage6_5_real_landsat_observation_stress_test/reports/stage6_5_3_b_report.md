@@ -130,3 +130,25 @@
 
 
 审查没有改变 C5-D1 原有严格固定 block 设计的 `BLOCKED` 结论；这里只报告另一种仍保持 8.13 km 隔离的 leave-region-out 几何候选。后续正式拟合仍需单独授权。
+
+<!-- stage6_5_3_b_fold_proposal -->
+## C5-D1B｜Buffered Leave-Region-Out Fold 提案
+
+- **状态：** `proposal_pending_user_confirmation`；未获用户确认前，executor 不得将其作为正式实验输入。
+- **隔离：**每个 calibration 像元到完整 geographic holdout core 的最小距离均为至少 8,130 m；buffer 像元不进入拟合或评分。
+- **统计边界：**各 fold 是描述性挑战，calibration 可重叠；不是独立统计重复，不得由此输出像元级 p-value 或把五折视为五个独立区域。
+
+| Fold | Scene / role | core row,col / edge px | holdout land | calibration land | excluded buffer | holdout shadow / near-zero / lit | min distance m |
+|---|---|---|---:|---:|---:|---:|---:|
+| stage_6_5_3_b_clean_a_lit_control_01 | clean_a / lit_control | [384,592), [416,624) / 208 | 43262 | 176924 | 249348 | 0 / 0 / 43262 | 8130.000 |
+| stage_6_5_3_b_clean_a_lit_control_02 | clean_a / lit_control | [0,64), [0,64) / 64 | 3600 | 376431 | 89503 | 0 / 0 / 3600 | 8130.000 |
+| stage_6_5_3_b_clean_a_lit_control_03 | clean_a / lit_control | [682,746), [0,64) / 64 | 3702 | 375702 | 90130 | 0 / 0 / 3702 | 8130.000 |
+| stage_6_5_3_b_clean_a_lit_control_04 | clean_a / lit_control | [0,64), [581,645) / 64 | 3694 | 376137 | 89703 | 0 / 0 / 3694 | 8130.000 |
+| stage_6_5_3_b_clean_a_lit_control_05 | clean_a / lit_control | [272,480), [64,272) / 208 | 42994 | 102509 | 324031 | 0 / 0 / 42994 | 8130.000 |
+| stage_6_5_3_b_shadow_risk_b_combined_risk_01 | shadow_risk_b / combined_risk_stress | [0,208), [96,304) / 208 | 14225 | 44141 | 43856 | 852 / 1344 / 12029 | 8130.000 |
+| stage_6_5_3_b_shadow_risk_b_combined_risk_02 | shadow_risk_b / combined_risk_stress | [624,752), [522,650) / 128 | 8205 | 69005 | 25012 | 265 / 413 / 7527 | 8130.000 |
+| stage_6_5_3_b_shadow_risk_b_combined_risk_03 | shadow_risk_b / combined_risk_stress | [0,112), [538,650) / 112 | 3148 | 66967 | 32107 | 280 / 318 / 2550 | 8130.000 |
+| stage_6_5_3_b_shadow_risk_b_combined_risk_04 | shadow_risk_b / combined_risk_stress | [288,448), [352,512) / 160 | 5043 | 22479 | 74700 | 263 / 381 / 4399 | 8130.000 |
+| stage_6_5_3_b_shadow_risk_b_combined_risk_05 | shadow_risk_b / combined_risk_stress | [48,256), [304,512) / 208 | 16622 | 38397 | 47203 | 500 / 495 / 15627 | 8130.000 |
+
+- **manifest SHA-256：** `d45df2aceeeb3607b08ced88ca04d154bbe78015ff03af9ed3bcd82776ad4fdc`。

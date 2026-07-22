@@ -191,5 +191,43 @@
       "csv": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_candidates.csv",
       "report_append_marker": "<!-- stage6_5_3_b_buffered_leave_region_out_audit -->"
     }
+  },
+  "fold_proposal": {
+    "mode": "deterministic_buffered_leave_region_out_proposal_only",
+    "status": "proposal_pending_user_confirmation",
+    "purpose": "仅从既有 geometry-only audit 选择固定 fold；不得读取或计算正式机制、残差、评分或风险覆盖率。",
+    "formal_experiment_eligibility": false,
+    "user_confirmation_required_before_formal_experiment": true,
+    "frozen_buffer": {
+      "pixels": 271,
+      "meters": 8130.0,
+      "distance_metric": "像元中心欧氏距离",
+      "rule": "calibration 与完整方形 geographic core 的最小距离必须 >= 8,130 m；scoreable holdout 仅为 core 内 base_valid_land。"
+    },
+    "common_requirements": {
+      "minimum_calibration_land_pixels": 20000,
+      "minimum_holdout_land_pixels": 2500,
+      "minimum_train_to_holdout_m": 8130.0,
+      "geographic_core_overlap": "同一 scene 内选中的 cores 两两不重叠；A 与 B 是不同输入 scene，分别核验。"
+    },
+    "clean_a": {
+      "fold_count": 5,
+      "role": "lit_control",
+      "eligibility": "holdout shadow=0、holdout near_zero=0，且满足 common_requirements。",
+      "first_selection": "holdout land descending；tie-break calibration land descending、core edge ascending、row ascending、column ascending。",
+      "subsequent_selection": "在未与已选 core 重叠的候选中，最大化至已选 geographic-core centroid 的最小欧氏距离；tie-break 与 first_selection 相同。"
+    },
+    "shadow_risk_b": {
+      "fold_count": 5,
+      "role": "combined_risk_stress",
+      "minimum_shadow_pixels": 250,
+      "minimum_near_zero_pixels": 250,
+      "first_selection": "min(shadow, near_zero) descending；tie-break shadow+near_zero descending、holdout land descending、calibration land descending、core edge ascending、row ascending、column ascending。",
+      "subsequent_selection": "在未与已选 core 重叠的候选中，最大化至已选 geographic-core centroid 的最小欧氏距离；tie-break 与 first_selection 相同。"
+    },
+    "evidence": {
+      "manifest": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
+      "report_append_marker": "<!-- stage6_5_3_b_fold_proposal -->"
+    }
   }
 }

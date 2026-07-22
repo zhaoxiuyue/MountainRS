@@ -1116,19 +1116,344 @@ def run_buffered_leave_region_out_audit(config_path: Path) -> dict[str, Any]:
     return summary
 
 
+def canonical_json_sha256(value: Any) -> str:
+    """Hash a JSON value independently of display indentation or key order."""
+    encoded = json.dumps(json_ready(value), ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def load_audit_candidates(path: Path) -> list[dict[str, Any]]:
+    if not path.is_file():
+        raise PreflightError(f"缺少 C5-D1A candidate audit：{path.name}")
+    integer_fields = {
+        "row_start", "row_end_exclusive", "column_start", "column_end_exclusive", "core_edge_pixels",
+        "holdout_land_pixels", "calibration_land_pixels", "buffer_excluded_land_pixels",
+        "holdout_shadow_pixels", "calibration_shadow_pixels", "buffer_excluded_shadow_pixels",
+        "holdout_near_zero_pixels", "calibration_near_zero_pixels", "buffer_excluded_near_zero_pixels",
+        "holdout_lit_pixels", "calibration_lit_pixels", "buffer_excluded_lit_pixels", "holdout_combined_risk_pixels",
+    }
+    float_fields = {"core_center_x", "core_center_y", "minimum_train_to_geometric_core_pixels", "minimum_train_to_geometric_core_m"}
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    if not rows:
+        raise PreflightError("C5-D1A candidate audit 为空")
+    parsed: list[dict[str, Any]] = []
+    for row in rows:
+        if not row.get("scene"):
+            raise PreflightError("C5-D1A candidate audit 缺少 scene")
+        item: dict[str, Any] = {}
+        for key, raw in row.items():
+            if key in integer_fields:
+                item[key] = int(raw)
+            elif key in float_fields:
+                item[key] = float(raw) if raw not in ("", None) else None
+            elif key == "distance_rule_passes":
+                item[key] = raw == "True"
+            else:
+                item[key] = raw
+        parsed.append(item)
+    return parsed
+
+
+def proposal_common_eligible(candidate: dict[str, Any], requirements: dict[str, Any]) -> bool:
+    return (
+        candidate["distance_rule_passes"]
+        and float(candidate["minimum_train_to_geometric_core_m"] or -math.inf) + 1e-9 >= float(requirements["minimum_train_to_holdout_m"])
+        and candidate["calibration_land_pixels"] >= int(requirements["minimum_calibration_land_pixels"])
+        and candidate["holdout_land_pixels"] >= int(requirements["minimum_holdout_land_pixels"])
+    )
+
+
+def proposal_core_overlaps(left: dict[str, Any], right: dict[str, Any]) -> bool:
+    """Cores in the same source grid overlap iff their half-open pixel rectangles overlap."""
+    if left["scene"] != right["scene"]:
+        return False
+    return core_overlaps(left, right)
+
+
+def centroid_distance(left: dict[str, Any], right: dict[str, Any]) -> float:
+    return float(math.hypot(left["core_center_x"] - right["core_center_x"], left["core_center_y"] - right["core_center_y"]))
+
+
+def clean_a_tie_key(candidate: dict[str, Any]) -> tuple[Any, ...]:
+    return (-candidate["holdout_land_pixels"], -candidate["calibration_land_pixels"], candidate["core_edge_pixels"], candidate["row_start"], candidate["column_start"])
+
+
+def shadow_risk_b_tie_key(candidate: dict[str, Any]) -> tuple[Any, ...]:
+    minimum_risk = min(candidate["holdout_shadow_pixels"], candidate["holdout_near_zero_pixels"])
+    return (
+        -minimum_risk,
+        -candidate["holdout_combined_risk_pixels"],
+        -candidate["holdout_land_pixels"],
+        -candidate["calibration_land_pixels"],
+        candidate["core_edge_pixels"],
+        candidate["row_start"],
+        candidate["column_start"],
+    )
+
+
+def select_maximin_folds(candidates: list[dict[str, Any]], count: int, tie_key: Any, role: str) -> list[dict[str, Any]]:
+    """Select a deterministic, non-overlapping geographic-core proposal."""
+    if not candidates:
+        raise PreflightError(f"{role} 没有满足冻结门槛的候选 fold")
+    selected = [sorted(candidates, key=tie_key)[0]]
+    while len(selected) < count:
+        available = [
+            candidate
+            for candidate in candidates
+            if candidate not in selected and not any(proposal_core_overlaps(candidate, earlier) for earlier in selected)
+        ]
+        if not available:
+            raise PreflightError(f"{role} 只能形成 {len(selected)} 个两两不重叠的候选 fold，少于要求的 {count}")
+        ranked = sorted(
+            available,
+            key=lambda candidate: (-min(centroid_distance(candidate, earlier) for earlier in selected), *tie_key(candidate)),
+        )
+        selected.append(ranked[0])
+    return selected
+
+
+def core_geographic_bounds(master: Raster, candidate: dict[str, Any]) -> dict[str, float]:
+    row_start = candidate["row_start"]
+    row_end = candidate["row_end_exclusive"]
+    col_start = candidate["column_start"]
+    col_end = candidate["column_end_exclusive"]
+    points = [master.transform * pair for pair in ((col_start, row_start), (col_end, row_start), (col_start, row_end), (col_end, row_end))]
+    xs = [point[0] for point in points]
+    ys = [point[1] for point in points]
+    return {"left": float(min(xs)), "right": float(max(xs)), "bottom": float(min(ys)), "top": float(max(ys))}
+
+
+def geographic_bounds_overlap(left: dict[str, float], right: dict[str, float]) -> bool:
+    return not (
+        left["right"] <= right["left"]
+        or right["right"] <= left["left"]
+        or left["top"] <= right["bottom"]
+        or right["top"] <= left["bottom"]
+    )
+
+
+def proposal_alias_identities(config: dict[str, Any], scene: str) -> dict[str, str]:
+    prefix = "clean_a" if scene == "clean_a" else "shadow_risk_b"
+    paths = config["inputs"][scene]
+    return {
+        f"{prefix}_b4": paths["b4"],
+        f"{prefix}_b5": paths["b5"],
+        f"{prefix}_qa_pixel": paths["qa_pixel"],
+        f"{prefix}_metadata": paths["metadata"],
+        f"{prefix}_cos_i": paths["cos_i"],
+    }
+
+
+def proposal_fold_record(candidate: dict[str, Any], fold_id: str, role: str, master: Raster) -> dict[str, Any]:
+    return {
+        "fold_id": fold_id,
+        "scene": candidate["scene"],
+        "role": role,
+        "core": {
+            "shape": "square",
+            "pixel_bounds": {
+                "row_start": candidate["row_start"],
+                "row_end_exclusive": candidate["row_end_exclusive"],
+                "column_start": candidate["column_start"],
+                "column_end_exclusive": candidate["column_end_exclusive"],
+                "edge_pixels": candidate["core_edge_pixels"],
+            },
+            "centroid_m": {"x": candidate["core_center_x"], "y": candidate["core_center_y"]},
+            "geographic_bounds_m": core_geographic_bounds(master, candidate),
+        },
+        "counts": {
+            "calibration_land": candidate["calibration_land_pixels"],
+            "holdout_land": candidate["holdout_land_pixels"],
+            "buffer_excluded_land": candidate["buffer_excluded_land_pixels"],
+            "holdout": {
+                "shadow": candidate["holdout_shadow_pixels"],
+                "near_zero": candidate["holdout_near_zero_pixels"],
+                "lit": candidate["holdout_lit_pixels"],
+            },
+            "calibration": {
+                "shadow": candidate["calibration_shadow_pixels"],
+                "near_zero": candidate["calibration_near_zero_pixels"],
+                "lit": candidate["calibration_lit_pixels"],
+            },
+        },
+        "minimum_train_to_geographic_core_distance": {
+            "pixels": candidate["minimum_train_to_geometric_core_pixels"],
+            "meters": candidate["minimum_train_to_geometric_core_m"],
+            "passes_frozen_buffer": candidate["distance_rule_passes"],
+        },
+        "scoreable_holdout_definition": "仅为完整 geographic core 内的 canonical base_valid_land；water 与非 base_valid 像元不评分。",
+    }
+
+
+def proposal_markdown(manifest: dict[str, Any], marker: str) -> str:
+    lines = [
+        marker,
+        "## C5-D1B｜Buffered Leave-Region-Out Fold 提案",
+        "",
+        f"- **状态：** `{manifest['status']}`；未获用户确认前，executor 不得将其作为正式实验输入。",
+        "- **隔离：**每个 calibration 像元到完整 geographic holdout core 的最小距离均为至少 8,130 m；buffer 像元不进入拟合或评分。",
+        "- **统计边界：**各 fold 是描述性挑战，calibration 可重叠；不是独立统计重复，不得由此输出像元级 p-value 或把五折视为五个独立区域。",
+        "",
+        "| Fold | Scene / role | core row,col / edge px | holdout land | calibration land | excluded buffer | holdout shadow / near-zero / lit | min distance m |",
+        "|---|---|---|---:|---:|---:|---:|---:|",
+    ]
+    for group in ("clean_a_lit_control", "shadow_risk_b_combined_risk"):
+        for fold in manifest["fold_groups"][group]["folds"]:
+            core = fold["core"]["pixel_bounds"]
+            counts = fold["counts"]
+            holdout = counts["holdout"]
+            lines.append(
+                f"| {fold['fold_id']} | {fold['scene']} / {fold['role']} | [{core['row_start']},{core['row_end_exclusive']}), [{core['column_start']},{core['column_end_exclusive']}) / {core['edge_pixels']} | {counts['holdout_land']} | {counts['calibration_land']} | {counts['buffer_excluded_land']} | {holdout['shadow']} / {holdout['near_zero']} / {holdout['lit']} | {fold['minimum_train_to_geographic_core_distance']['meters']:.3f} |"
+            )
+    lines.extend(["", f"- **manifest SHA-256：** `{manifest['manifest_sha256']}`。", ""])
+    return "\n".join(lines)
+
+
+def run_fold_proposal(config_path: Path) -> dict[str, Any]:
+    config = load_config(config_path)
+    proposal = config.get("fold_proposal")
+    if not proposal or proposal.get("mode") != "deterministic_buffered_leave_region_out_proposal_only":
+        raise PreflightError("缺少冻结的 C5-D1B fold proposal 配置")
+    if proposal.get("formal_experiment_eligibility") is not False or proposal.get("user_confirmation_required_before_formal_experiment") is not True:
+        raise PreflightError("fold proposal 必须保持未确认且不可用于正式实验")
+    frozen = proposal["frozen_buffer"]
+    if int(frozen["pixels"]) != 271 or float(frozen["meters"]) != 8130.0:
+        raise PreflightError("fold proposal 不得降低冻结的 271 px / 8,130 m buffer")
+    audit_config = config.get("buffered_leave_region_out_audit")
+    if not audit_config:
+        raise PreflightError("缺少 C5-D1A audit 配置")
+    audit_json_path = relative_path(PROJECT_ROOT, audit_config["evidence"]["json"])
+    audit_csv_path = relative_path(PROJECT_ROOT, audit_config["evidence"]["csv"])
+    manifest_path = relative_path(PROJECT_ROOT, proposal["evidence"]["manifest"])
+    report_path = relative_path(PROJECT_ROOT, config["outputs"]["report"])
+    allowed = config["outputs"]["allowed_output_prefixes"]
+    for path in (audit_json_path, audit_csv_path, manifest_path, report_path):
+        relative = relative_text(PROJECT_ROOT, path)
+        if not any(relative == prefix or relative.startswith(prefix + "/") for prefix in allowed):
+            raise PreflightError(f"fold proposal 路径越过 Workspace Contract：{relative}")
+    if manifest_path.exists():
+        raise PreflightError(f"拒绝覆盖既有 fold proposal：{manifest_path.name}")
+    try:
+        audit = json.loads(audit_json_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise PreflightError(f"C5-D1A audit JSON 不可解析：{exc}") from exc
+    if audit.get("schema") != "mountainrs-stage-6-5-3-buffered-leave-region-out-audit-v1" or audit.get("audit_status") != "COMPLETED_GEOMETRY_ONLY":
+        raise PreflightError("C5-D1A audit 不是已完成的 geometry-only evidence")
+    if audit.get("project_guard") != config.get("project_guard"):
+        raise PreflightError("C5-D1A audit project guard 与当前 config 不一致")
+    audit_buffer = audit.get("frozen_buffer", {})
+    if int(audit_buffer.get("pixels", -1)) != 271 or float(audit_buffer.get("meters", -1)) != 8130.0:
+        raise PreflightError("C5-D1A audit 未保持冻结 buffer")
+    candidates = load_audit_candidates(audit_csv_path)
+    by_scene = {scene: [item for item in candidates if item["scene"] == scene] for scene in ("clean_a", "shadow_risk_b")}
+    if any(not values for values in by_scene.values()):
+        raise PreflightError("C5-D1A candidate audit 缺少 A 或 B scene")
+    requirements = proposal["common_requirements"]
+    clean_candidates = [
+        item
+        for item in by_scene["clean_a"]
+        if proposal_common_eligible(item, requirements)
+        and item["holdout_shadow_pixels"] == 0
+        and item["holdout_near_zero_pixels"] == 0
+    ]
+    b_config = proposal["shadow_risk_b"]
+    b_candidates = [
+        item
+        for item in by_scene["shadow_risk_b"]
+        if proposal_common_eligible(item, requirements)
+        and item["holdout_shadow_pixels"] >= int(b_config["minimum_shadow_pixels"])
+        and item["holdout_near_zero_pixels"] >= int(b_config["minimum_near_zero_pixels"])
+    ]
+    selected_a = select_maximin_folds(clean_candidates, int(proposal["clean_a"]["fold_count"]), clean_a_tie_key, "Clean A lit/control")
+    selected_b = select_maximin_folds(b_candidates, int(b_config["fold_count"]), shadow_risk_b_tie_key, "Shadow-risk B combined-risk")
+    masters: dict[str, Raster] = {}
+    canonical_identities: dict[str, Any] = {}
+    results_dir = relative_path(PROJECT_ROOT, config["outputs"]["results_directory"])
+    for scene in ("clean_a", "shadow_risk_b"):
+        mask_path = results_dir / f"preflight_{scene}_canonical_masks.tif"
+        master, _ = read_canonical_scene(mask_path)
+        masters[scene] = master
+        canonical_identities[scene] = {
+            "relative_path": relative_text(PROJECT_ROOT, mask_path),
+            "sha256": sha256_file(mask_path),
+            "band_schema": ["base_valid", "qa_water_bit_7", "shadow", "near_zero", "lit"],
+            "canonical_mask_basis": {
+                "base_valid": "QA_PIXEL bits 0–5 clear; B4/B5/cos_i finite and non-nodata; B4/B5 in [-0.05, 1.0].",
+                "land_metrics": "QA water bit 7 excluded from land metrics.",
+                "partitions": "shadow=cos_i<=0; near_zero=0<cos_i<=0.1; lit=cos_i>0.1; mutually exclusive on base_valid_land.",
+            },
+        }
+    folds_a = [proposal_fold_record(item, f"stage_6_5_3_b_clean_a_lit_control_{index:02d}", "lit_control", masters["clean_a"]) for index, item in enumerate(selected_a, start=1)]
+    folds_b = [proposal_fold_record(item, f"stage_6_5_3_b_shadow_risk_b_combined_risk_{index:02d}", "combined_risk_stress", masters["shadow_risk_b"]) for index, item in enumerate(selected_b, start=1)]
+    all_folds = folds_a + folds_b
+    for index, left in enumerate(all_folds):
+        for right in all_folds[index + 1 :]:
+            if geographic_bounds_overlap(left["core"]["geographic_bounds_m"], right["core"]["geographic_bounds_m"]):
+                raise PreflightError(f"selected geographic cores 重叠：{left['fold_id']} 与 {right['fold_id']}")
+    manifest: dict[str, Any] = {
+        "schema": "mountainrs-stage-6-5-3-b-proposed-fold-manifest-v1",
+        "status": proposal["status"],
+        "formal_experiment_eligibility": False,
+        "user_confirmation_required_before_formal_experiment": True,
+        "project_guard": config["project_guard"],
+        "source_audit": {
+            "json": {"relative_path": relative_text(PROJECT_ROOT, audit_json_path), "sha256": sha256_file(audit_json_path)},
+            "csv": {"relative_path": relative_text(PROJECT_ROOT, audit_csv_path), "sha256": sha256_file(audit_csv_path)},
+            "audit_status": audit["audit_status"],
+        },
+        "inputs": {
+            "clean_a": {"aliases": proposal_alias_identities(config, "clean_a"), "canonical_masks": canonical_identities["clean_a"]},
+            "shadow_risk_b": {"aliases": proposal_alias_identities(config, "shadow_risk_b"), "canonical_masks": canonical_identities["shadow_risk_b"]},
+        },
+        "frozen_buffer": frozen,
+        "selection_algorithm": {
+            "source": "C5-D1A deterministic geometry-only candidate audit; only canonical masks and geometry counts were used.",
+            "common_requirements": requirements,
+            "clean_a": proposal["clean_a"],
+            "shadow_risk_b": b_config,
+            "statistical_interpretation": "各 fold 仅为描述性挑战；calibration 区可重叠，不能作为独立统计重复或用于像元级 p-value。",
+        },
+        "fold_groups": {
+            "clean_a_lit_control": {"requested_fold_count": int(proposal["clean_a"]["fold_count"]), "eligible_candidate_count": len(clean_candidates), "folds": folds_a},
+            "shadow_risk_b_combined_risk": {"requested_fold_count": int(b_config["fold_count"]), "eligible_candidate_count": len(b_candidates), "folds": folds_b},
+        },
+        "mechanism_execution": {
+            "hard_mask_fitted": False,
+            "soft_weight_fitted": False,
+            "bounded_scene_constant_diffuse_fitted": False,
+            "holdout_scored": False,
+            "residual_computed": False,
+            "risk_coverage_computed": False,
+        },
+    }
+    manifest["manifest_sha256"] = canonical_json_sha256(manifest)
+    write_text(manifest_path, json.dumps(json_ready(manifest), ensure_ascii=False, indent=2) + "\n")
+    append_audit_report(report_path, proposal["evidence"]["report_append_marker"], proposal_markdown(manifest, proposal["evidence"]["report_append_marker"]))
+    return manifest
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run Stage 6.5.3-B deterministic preflight only.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit"), default="preflight")
+    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit", "propose-folds"), default="preflight")
     args = parser.parse_args()
     try:
-        summary = run(args.config.resolve()) if args.mode == "preflight" else run_buffered_leave_region_out_audit(args.config.resolve())
+        if args.mode == "preflight":
+            summary = run(args.config.resolve())
+        elif args.mode == "buffered-leave-region-out-audit":
+            summary = run_buffered_leave_region_out_audit(args.config.resolve())
+        else:
+            summary = run_fold_proposal(args.config.resolve())
     except PreflightError as exc:
         print(f"PRECHECK_ERROR: {exc}", file=sys.stderr)
         return 2
     if args.mode == "preflight":
         print(json.dumps({"verdict": summary["verdict"], "blocker_count": len(summary["blockers"]), "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"]}, ensure_ascii=False))
         return 0 if summary["verdict"] == "PASS" else 2
+    if args.mode == "propose-folds":
+        print(json.dumps({"status": summary["status"], "manifest_sha256": summary["manifest_sha256"], "clean_a_fold_count": len(summary["fold_groups"]["clean_a_lit_control"]["folds"]), "shadow_risk_b_fold_count": len(summary["fold_groups"]["shadow_risk_b_combined_risk"]["folds"]), "formal_experiment_eligibility": summary["formal_experiment_eligibility"]}, ensure_ascii=False))
+        return 0
     print(json.dumps({"audit_status": summary["audit_status"], "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"], "candidate_counts": {scene: value["candidate_count"] for scene, value in summary["scenes"].items()}}, ensure_ascii=False))
     return 0
 
