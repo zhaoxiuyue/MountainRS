@@ -1,0 +1,169 @@
+schema: pf2-local-resource-registry-v1
+project_id: project_e47b176e-4ca2-4462-9996-80f832b5c41c
+workspace:
+  root_alias: canonical_repo
+  resolver: relative_path
+  workspace_contract_revision: 1
+resources:
+  canonical_repo:
+    alias_id: project_resource_1135ceb1-38ec-4823-a4fb-9c8eac058bad
+    kind: repository
+    resolver: relative_path
+    relative_path: "."
+    state: exists
+  architecture_source:
+    alias_id: project_resource_9ed7bbeb-58ea-4d73-8870-7a19f55a1c4a
+    kind: file
+    resolver: relative_path
+    relative_path: docs/architecture.md
+    state: exists
+  clean_a_b4:
+    alias_id: project_resource_8a51076e-2e8c-4d99-b5a1-02c0370014cf
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif
+    state: exists
+  clean_a_b5:
+    alias_id: project_resource_05d57c22-83b7-414e-a545-27f55d7cb1f4
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif
+    state: exists
+  clean_a_qa_pixel:
+    alias_id: project_resource_85190eba-fb37-4a93-a239-d79d8c35d73f
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif
+    state: exists
+  clean_a_metadata:
+    alias_id: project_resource_6be688a2-4180-4a66-afc5-dd390db94ef0
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv
+    state: exists
+  clean_a_cos_i:
+    alias_id: project_resource_1129e666-5bc5-4f41-b701-32fb46b9a2cc
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif
+    state: exists
+  clean_a_qa_valid_mask:
+    alias_id: project_resource_14a72f4c-dc7b-4fa8-b726-3b2f8b17b018
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif
+    state: exists
+  clean_a_confidence:
+    alias_id: project_resource_dda599c1-8fd8-4e15-b131-9f4fc7b3ccd4
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif
+    state: exists
+  clean_a_shadow_mask:
+    alias_id: project_resource_528ad7d3-f8b5-4dc4-988f-937dd232d8f4
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif
+    state: exists
+  clean_a_near_zero_mask:
+    alias_id: project_resource_c3c03c69-3a11-4acd-b6fa-32f001727e55
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif
+    state: exists
+  shadow_risk_b_b4:
+    alias_id: project_resource_9b2d95f6-175b-47df-a38f-013bca0c7220
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif
+    state: exists
+  shadow_risk_b_b5:
+    alias_id: project_resource_d5306232-fdf8-4391-a4f5-a14d0f154397
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif
+    state: exists
+  shadow_risk_b_qa_pixel:
+    alias_id: project_resource_48311e8d-f761-4e5e-8842-768d96cfa964
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif
+    state: exists
+  shadow_risk_b_metadata:
+    alias_id: project_resource_f42c1945-0228-49e9-8ee4-1e7aa458be4e
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv
+    state: exists
+  shadow_risk_b_cos_i:
+    alias_id: project_resource_39fa4ab3-6aaa-41d0-84bc-0dd9bebf0e63
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif
+    state: exists
+  shadow_risk_b_qa_valid_mask:
+    alias_id: project_resource_bb26af69-f377-4e56-bae6-fcaede50803b
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif
+    state: exists
+  shadow_risk_b_confidence:
+    alias_id: project_resource_5532231c-174d-4fd0-873d-47976646bb42
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif
+    state: exists
+  shadow_risk_b_shadow_mask:
+    alias_id: project_resource_3d790dce-8c84-436e-9efc-2d2f6fd4941d
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif
+    state: exists
+  shadow_risk_b_near_zero_mask:
+    alias_id: project_resource_3fc7b3a7-a77e-4d0b-9066-888f8ca547b0
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif
+    state: exists
+  stage_6_5_2_a_report:
+    alias_id: project_resource_96d5339a-187c-4f48-8cff-0cc79ee245ce
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md
+    state: exists
+  stage_6_5_2_b_report:
+    alias_id: project_resource_b4f12ded-8985-4bd5-ab0e-a916729a6ece
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md
+    state: exists
+  stage_6_5_3_b_config:
+    alias_id: project_resource_5cbe66c2-0288-4399-86f6-4d8d19247880
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml
+    state: missing
+  stage_6_5_3_b_executor:
+    alias_id: project_resource_3d48d5b0-73b9-4129-a770-113db1eac756
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py
+    state: missing
+  stage_6_5_3_b_results:
+    alias_id: project_resource_c9efd6ee-006b-4a67-9bb4-a1ba871dc04f
+    kind: directory
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b
+    state: missing
+  stage_6_5_3_b_report:
+    alias_id: project_resource_afc94154-cf7a-4bbc-997a-3e8c806f71cf
+    kind: file
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md
+    state: missing
+  stage_6_5_3_b_evidence:
+    alias_id: project_resource_e6b2ff23-29e3-4d4d-9bde-053b2306763c
+    kind: directory
+    resolver: relative_path
+    relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b
+    state: missing
