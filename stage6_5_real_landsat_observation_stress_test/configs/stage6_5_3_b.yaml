@@ -151,5 +151,45 @@
     "results_directory": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b",
     "report": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md",
     "evidence": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/preflight_evidence.json"
+  },
+  "buffered_leave_region_out_audit": {
+    "mode": "deterministic_buffered_leave_region_out_geometry_only",
+    "purpose": "在不降低冻结 8,130 m 隔离距离的前提下审查 buffered leave-region-out 的几何可行性；不拟合、不评分。",
+    "random_seed": null,
+    "determinism": "不使用随机数；edge、位置、阈值网格和排序均由配置固定。",
+    "buffer": {
+      "pixels": 271,
+      "meters": 8130.0,
+      "distance_metric": "像元中心欧氏距离",
+      "strict_rule": "calibration 像元到完整方形 holdout geographic core 的最小距离必须 >= 271 px；该 core buffer 是对实际 scored holdout land pixels 的严格上界。"
+    },
+    "holdout_core": {
+      "shape": "square",
+      "edge_start_pixels": 32,
+      "edge_step_pixels": 16,
+      "edge_maximum_pixels": 256,
+      "scene_short_side_divisor": 3,
+      "placement_stride_pixels": 16,
+      "include_all_edges_and_corners": true,
+      "scored_holdout": "core 内的 base_valid_land 像元；完整方形 core 仍作为几何隔离区域。"
+    },
+    "threshold_matrix": {
+      "calibration_minimum_land_pixels": [5000, 10000, 20000],
+      "holdout_minimum_land_pixels": [500, 1000, 2500],
+      "risk_minimum_pixels_per_class": [50, 100, 250],
+      "combined_risk_definition": "同一 fold 的 shadow 与 near_zero 均达到该风险门槛。"
+    },
+    "selection_and_interpretation": {
+      "clean_a_role": "lit/control；不要求 shadow 或 near_zero 证据。",
+      "shadow_risk_b_role": "shadow/near_zero 压力测试主体；位置只可用 canonical shadow/near_zero 计数选择。",
+      "candidate_sort": "edge ascending, row ascending, column ascending；用于 non-overlap greedy lower-bound，不是统计重复或最优 packing 声明。",
+      "top_candidate_sort": "风险类计数 descending、holdout land descending、calibration land descending、edge ascending、row ascending、column ascending。",
+      "fold_overlap_note": "不同 fold 的 calibration 区可以重叠；它们不是相互独立统计重复，后续只能分别报告或描述性汇总，不能据此计算像元级 p-value 或置信区间。"
+    },
+    "evidence": {
+      "json": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_audit.json",
+      "csv": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_candidates.csv",
+      "report_append_marker": "<!-- stage6_5_3_b_buffered_leave_region_out_audit -->"
+    }
   }
 }

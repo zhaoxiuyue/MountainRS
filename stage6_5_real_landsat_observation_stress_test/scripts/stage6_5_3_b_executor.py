@@ -669,17 +669,468 @@ def run(config_path: Path) -> dict[str, Any]:
     return summary
 
 
+@dataclass
+class LandIndex:
+    mask: np.ndarray
+    integral: np.ndarray
+    row_prefix: np.ndarray
+    last_land: np.ndarray
+    next_land: np.ndarray
+    total: int
+
+
+def build_land_index(mask: np.ndarray) -> LandIndex:
+    height, width = mask.shape
+    integer = mask.astype(np.int64, copy=False)
+    integral = np.zeros((height + 1, width + 1), dtype=np.int64)
+    integral[1:, 1:] = integer.cumsum(axis=0).cumsum(axis=1)
+    row_prefix = np.zeros((height, width + 1), dtype=np.int64)
+    row_prefix[:, 1:] = integer.cumsum(axis=1)
+    column_grid = np.broadcast_to(np.arange(width, dtype=np.int32), (height, width))
+    last_land = np.where(mask, column_grid, -1).astype(np.int32, copy=False)
+    np.maximum.accumulate(last_land, axis=1, out=last_land)
+    next_land = np.where(mask, column_grid, width).astype(np.int32, copy=False)
+    next_land = np.minimum.accumulate(next_land[:, ::-1], axis=1)[:, ::-1]
+    return LandIndex(mask=mask, integral=integral, row_prefix=row_prefix, last_land=last_land, next_land=next_land, total=int(mask.sum()))
+
+
+def rectangle_count(index: LandIndex, row_start: int, row_end: int, column_start: int, column_end: int) -> int:
+    return int(
+        index.integral[row_end, column_end]
+        - index.integral[row_start, column_end]
+        - index.integral[row_end, column_start]
+        + index.integral[row_start, column_start]
+    )
+
+
+def scan_positions(length: int, edge: int, stride: int) -> tuple[list[int], list[int]]:
+    if edge > length:
+        return [], []
+    positions = list(range(0, length - edge + 1, stride))
+    boundary = length - edge
+    added: list[int] = []
+    if boundary not in positions:
+        positions.append(boundary)
+        added.append(boundary)
+    if 0 not in positions:
+        positions.append(0)
+        added.append(0)
+    return sorted(set(positions)), sorted(set(added))
+
+
+def buffer_count(index: LandIndex, row_start: int, row_end: int, column_start: int, column_end: int, buffer_pixels: int) -> int:
+    """Count pixels at Euclidean distance strictly less than buffer from a square core."""
+    height, width = index.mask.shape
+    low = max(0, row_start - (buffer_pixels - 1))
+    high = min(height, row_end + (buffer_pixels - 1))
+    rows = np.arange(low, high, dtype=np.int32)
+    row_distance = np.maximum(np.maximum(row_start - rows, rows - (row_end - 1)), 0)
+    radius = np.sqrt(np.maximum(0, buffer_pixels * buffer_pixels - row_distance.astype("float64") ** 2))
+    horizontal_excluded = np.ceil(radius).astype(np.int32) - 1
+    left = np.clip(column_start - horizontal_excluded, 0, width)
+    right = np.clip(column_end + horizontal_excluded, 0, width)
+    return int((index.row_prefix[rows, right] - index.row_prefix[rows, left]).sum())
+
+
+def true_minimum_distance_to_geometric_core(index: LandIndex, row_start: int, row_end: int, column_start: int, column_end: int, buffer_pixels: int) -> float | None:
+    """Exact nearest selected-calibration center to the complete square geographic core.
+
+    The audit defines the geographic core as the buffered holdout region, while
+    only base_valid_land pixels inside it are scoreable holdout samples.  This
+    stronger envelope certifies the requested isolation for every scoreable
+    holdout pixel without treating invalid pixels as observations.
+    """
+    height, width = index.mask.shape
+    rows = np.arange(height, dtype=np.int32)
+    row_distance = np.maximum(np.maximum(row_start - rows, rows - (row_end - 1)), 0)
+    candidates: list[np.ndarray] = []
+    near_rows = row_distance < buffer_pixels
+    if near_rows.any():
+        local_rows = rows[near_rows]
+        local_distance = row_distance[near_rows].astype("float64")
+        required_horizontal = np.ceil(np.sqrt(buffer_pixels * buffer_pixels - local_distance * local_distance)).astype(np.int32)
+        left_limit = column_start - required_horizontal
+        right_limit = (column_end - 1) + required_horizontal
+        valid_left = left_limit >= 0
+        if valid_left.any():
+            left_column = index.last_land[local_rows[valid_left], left_limit[valid_left]]
+            found = left_column >= 0
+            if found.any():
+                vertical = local_distance[valid_left][found]
+                horizontal = column_start - left_column[found]
+                candidates.append(np.hypot(vertical, horizontal))
+        valid_right = right_limit < width
+        if valid_right.any():
+            right_column = index.next_land[local_rows[valid_right], right_limit[valid_right]]
+            found = right_column < width
+            if found.any():
+                vertical = local_distance[valid_right][found]
+                horizontal = right_column[found] - (column_end - 1)
+                candidates.append(np.hypot(vertical, horizontal))
+    far_rows = row_distance >= buffer_pixels
+    if far_rows.any():
+        local_rows = rows[far_rows]
+        local_distance = row_distance[far_rows].astype("float64")
+        inside_count = index.row_prefix[local_rows, column_end] - index.row_prefix[local_rows, column_start]
+        if (inside_count > 0).any():
+            candidates.append(local_distance[inside_count > 0])
+        outside = inside_count == 0
+        if outside.any() and column_start > 0:
+            left_column = index.last_land[local_rows[outside], column_start - 1]
+            found = left_column >= 0
+            if found.any():
+                vertical = local_distance[outside][found]
+                horizontal = column_start - left_column[found]
+                candidates.append(np.hypot(vertical, horizontal))
+        if outside.any() and column_end < width:
+            right_column = index.next_land[local_rows[outside], column_end]
+            found = right_column < width
+            if found.any():
+                vertical = local_distance[outside][found]
+                horizontal = right_column[found] - (column_end - 1)
+                candidates.append(np.hypot(vertical, horizontal))
+    if not candidates:
+        return None
+    return float(np.concatenate(candidates).min())
+
+
+def read_canonical_scene(path: Path) -> tuple[Raster, dict[str, np.ndarray]]:
+    if not path.is_file():
+        raise PreflightError(f"缺少 C5-D1 canonical mask：{path.name}")
+    with rasterio.open(path) as source:
+        expected = ("base_valid", "qa_water_bit_7", "shadow", "near_zero", "lit")
+        if source.count != 5 or tuple(source.descriptions) != expected:
+            raise PreflightError(f"canonical mask band schema 不匹配：{path.name}")
+        data = source.read()
+        master = Raster(
+            path=path,
+            data=data[0],
+            profile=source.profile.copy(),
+            crs=source.crs,
+            transform=source.transform,
+            nodata=source.nodata,
+            shape=(source.height, source.width),
+            resolution=tuple(float(value) for value in source.res),
+        )
+    base = data[0] == 1
+    water = data[1] == 1
+    land = base & ~water
+    masks = {
+        "base_valid_land": land,
+        "shadow": land & (data[2] == 1),
+        "near_zero": land & (data[3] == 1),
+        "lit": land & (data[4] == 1),
+    }
+    if not np.array_equal(masks["shadow"] | masks["near_zero"] | masks["lit"], land):
+        raise PreflightError(f"canonical land partitions 不完整：{path.name}")
+    return master, masks
+
+
+def raster_bounds(raster: Raster) -> dict[str, float]:
+    corners = [raster.transform * pair for pair in ((0, 0), (raster.shape[1], 0), (0, raster.shape[0]), (raster.shape[1], raster.shape[0]))]
+    xs = [point[0] for point in corners]
+    ys = [point[1] for point in corners]
+    return {"left": float(min(xs)), "right": float(max(xs)), "bottom": float(min(ys)), "top": float(max(ys))}
+
+
+def candidate_record(scene: str, master: Raster, indexes: dict[str, LandIndex], row_start: int, column_start: int, edge: int, buffer_pixels: int) -> dict[str, Any]:
+    row_end = row_start + edge
+    column_end = column_start + edge
+    land = indexes["base_valid_land"]
+    holdout_land = rectangle_count(land, row_start, row_end, column_start, column_end)
+    buffered_land = buffer_count(land, row_start, row_end, column_start, column_end, buffer_pixels)
+    calibration_land = land.total - buffered_land
+    minimum_pixels = true_minimum_distance_to_geometric_core(land, row_start, row_end, column_start, column_end, buffer_pixels)
+    if minimum_pixels is not None and minimum_pixels + 1e-9 < buffer_pixels:
+        raise PreflightError("候选存在小于冻结 buffer 的 train–holdout 距离")
+    center_column = column_start + (edge - 1) / 2.0 + 0.5
+    center_row = row_start + (edge - 1) / 2.0 + 0.5
+    center_x, center_y = master.transform * (center_column, center_row)
+    record: dict[str, Any] = {
+        "scene": scene,
+        "row_start": row_start,
+        "row_end_exclusive": row_end,
+        "column_start": column_start,
+        "column_end_exclusive": column_end,
+        "core_edge_pixels": edge,
+        "core_center_x": float(center_x),
+        "core_center_y": float(center_y),
+        "holdout_land_pixels": holdout_land,
+        "calibration_land_pixels": calibration_land,
+        "buffer_excluded_land_pixels": buffered_land - holdout_land,
+        "minimum_train_to_geometric_core_pixels": minimum_pixels,
+        "minimum_train_to_geometric_core_m": (minimum_pixels * max(master.resolution) if minimum_pixels is not None else None),
+        "distance_rule_passes": bool(minimum_pixels is None or minimum_pixels + 1e-9 >= buffer_pixels),
+    }
+    for name in ("shadow", "near_zero", "lit"):
+        index = indexes[name]
+        holdout = rectangle_count(index, row_start, row_end, column_start, column_end)
+        buffered = buffer_count(index, row_start, row_end, column_start, column_end, buffer_pixels)
+        record[f"holdout_{name}_pixels"] = holdout
+        record[f"calibration_{name}_pixels"] = index.total - buffered
+        record[f"buffer_excluded_{name}_pixels"] = buffered - holdout
+    record["holdout_combined_risk_pixels"] = record["holdout_shadow_pixels"] + record["holdout_near_zero_pixels"]
+    return record
+
+
+def scan_scene_candidates(scene: str, master: Raster, masks: dict[str, np.ndarray], audit: dict[str, Any]) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    indexes = {name: build_land_index(mask) for name, mask in masks.items()}
+    core = audit["holdout_core"]
+    maximum = min(int(core["edge_maximum_pixels"]), min(master.shape) // int(core["scene_short_side_divisor"]))
+    edges = list(range(int(core["edge_start_pixels"]), maximum + 1, int(core["edge_step_pixels"])))
+    stride = int(core["placement_stride_pixels"])
+    buffer_pixels = int(audit["buffer"]["pixels"])
+    candidates: list[dict[str, Any]] = []
+    boundary_additions: dict[str, Any] = {}
+    for edge in edges:
+        row_positions, row_added = scan_positions(master.shape[0], edge, stride)
+        column_positions, column_added = scan_positions(master.shape[1], edge, stride)
+        boundary_additions[str(edge)] = {"rows": row_added, "columns": column_added}
+        for row_start in row_positions:
+            for column_start in column_positions:
+                candidates.append(candidate_record(scene, master, indexes, row_start, column_start, edge, buffer_pixels))
+    context = {
+        "scene": scene,
+        "shape": list(master.shape),
+        "crs": master.crs.to_string() if master.crs else None,
+        "resolution_m": list(master.resolution),
+        "bounds": raster_bounds(master),
+        "edge_values_pixels": edges,
+        "candidate_count": len(candidates),
+        "boundary_positions_added": boundary_additions,
+        "base_valid_land_pixels": indexes["base_valid_land"].total,
+        "shadow_pixels": indexes["shadow"].total,
+        "near_zero_pixels": indexes["near_zero"].total,
+        "lit_pixels": indexes["lit"].total,
+    }
+    return candidates, context
+
+
+def qualifies(candidate: dict[str, Any], kind: str, calibration_minimum: int, holdout_minimum: int, risk_minimum: int) -> bool:
+    if not candidate["distance_rule_passes"]:
+        return False
+    if candidate["calibration_land_pixels"] < calibration_minimum or candidate["holdout_land_pixels"] < holdout_minimum:
+        return False
+    if kind == "clean_a":
+        return True
+    if kind == "shadow":
+        return candidate["holdout_shadow_pixels"] >= risk_minimum
+    if kind == "near_zero":
+        return candidate["holdout_near_zero_pixels"] >= risk_minimum
+    if kind == "combined_risk":
+        return candidate["holdout_shadow_pixels"] >= risk_minimum and candidate["holdout_near_zero_pixels"] >= risk_minimum
+    raise PreflightError(f"未知 candidate kind：{kind}")
+
+
+def core_overlaps(left: dict[str, Any], right: dict[str, Any]) -> bool:
+    return not (
+        left["row_end_exclusive"] <= right["row_start"]
+        or right["row_end_exclusive"] <= left["row_start"]
+        or left["column_end_exclusive"] <= right["column_start"]
+        or right["column_end_exclusive"] <= left["column_start"]
+    )
+
+
+def greedy_nonoverlap(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    ordered = sorted(candidates, key=lambda item: (item["core_edge_pixels"], item["row_start"], item["column_start"]))
+    selected: list[dict[str, Any]] = []
+    for candidate in ordered:
+        if not any(core_overlaps(candidate, existing) for existing in selected):
+            selected.append(candidate)
+    return selected
+
+
+def summary_values(candidates: list[dict[str, Any]], field: str) -> dict[str, Any]:
+    values = [candidate[field] for candidate in candidates if candidate[field] is not None]
+    if not values:
+        return {"count": 0, "minimum": None, "median": None, "maximum": None}
+    values_array = np.asarray(values, dtype="float64")
+    return {"count": len(values), "minimum": float(values_array.min()), "median": float(np.median(values_array)), "maximum": float(values_array.max())}
+
+
+def candidate_support(candidates: list[dict[str, Any]]) -> dict[str, Any]:
+    fields = (
+        "calibration_land_pixels",
+        "holdout_land_pixels",
+        "buffer_excluded_land_pixels",
+        "holdout_shadow_pixels",
+        "holdout_near_zero_pixels",
+        "holdout_lit_pixels",
+        "calibration_shadow_pixels",
+        "calibration_near_zero_pixels",
+        "calibration_lit_pixels",
+        "minimum_train_to_geometric_core_m",
+    )
+    return {
+        "candidate_fold_count": len(candidates),
+        "greedy_nonoverlapping_holdout_core_count": len(greedy_nonoverlap(candidates)),
+        "summaries": {field: summary_values(candidates, field) for field in fields},
+    }
+
+
+def top_candidates(candidates: list[dict[str, Any]], kind: str, calibration_minimum: int, holdout_minimum: int, risk_minimum: int, limit: int = 5) -> list[dict[str, Any]]:
+    eligible = [candidate for candidate in candidates if qualifies(candidate, kind, calibration_minimum, holdout_minimum, risk_minimum)]
+    if kind == "shadow":
+        primary = "holdout_shadow_pixels"
+    elif kind == "near_zero":
+        primary = "holdout_near_zero_pixels"
+    elif kind == "combined_risk":
+        primary = "holdout_combined_risk_pixels"
+    else:
+        primary = "holdout_land_pixels"
+    ordered = sorted(eligible, key=lambda item: (-item[primary], -item["holdout_land_pixels"], -item["calibration_land_pixels"], item["core_edge_pixels"], item["row_start"], item["column_start"]))
+    return ordered[:limit]
+
+
+def write_csv(path: Path, candidates: list[dict[str, Any]]) -> None:
+    if path.exists():
+        raise PreflightError(f"拒绝覆盖既有 audit evidence：{path.name}")
+    if not candidates:
+        raise PreflightError("没有 candidate rows 可写入")
+    fields = list(candidates[0].keys())
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(candidates)
+
+
+def audit_markdown(audit: dict[str, Any], marker: str) -> str:
+    lines = [
+        marker,
+        "## C5-D1A｜8.13 km Buffered Leave-Region-Out 几何可行性审查",
+        "",
+        f"- **审查状态：** `{audit['audit_status']}`（几何设计审查，不是正式实验）。",
+        "- **隔离定义：**完整方形 geographic core 以像元中心欧氏距离缓冲 271 px / 8,130 m；scoreable holdout 仅为 core 内 base_valid_land。此 envelope 比只对 scoreable 像元缓冲更严格，因此不会降低隔离。",
+        "- **方法边界：**未拟合 hard_mask、soft_weight、bounded diffuse；未评分 holdout、未计算 residual、risk–coverage 或方法排名。",
+        "- **候选选择：**只用 canonical land/shadow/near_zero/lit 计数；不使用 B4/B5 residual、任何拟合或方法表现。不同 fold 的 calibration 可重叠，不能被当作统计重复。",
+        "",
+        "### Raster 空间范围",
+        "",
+    ]
+    for scene, context in audit["scenes"].items():
+        bounds = context["bounds"]
+        lines.append(f"- **{scene}**：shape={context['shape']}，CRS={context['crs']}，resolution={context['resolution_m']} m，bounds=({bounds['left']:.3f}, {bounds['bottom']:.3f})–({bounds['right']:.3f}, {bounds['top']:.3f})；扫描 {context['candidate_count']} cores。")
+    lines.extend(["", "### 可行性矩阵", "", "| cal min | holdout min | risk/class min | A folds / non-overlap | B shadow folds / non-overlap | B near-zero folds / non-overlap | B combined folds / non-overlap |", "|---:|---:|---:|---:|---:|---:|---:|"])
+    for row in audit["matrix"]:
+        lines.append(f"| {row['calibration_minimum_land_pixels']} | {row['holdout_minimum_land_pixels']} | {row['risk_minimum_pixels_per_class']} | {row['clean_a']['candidate_fold_count']} / {row['clean_a']['greedy_nonoverlapping_holdout_core_count']} | {row['shadow_risk_b']['shadow']['candidate_fold_count']} / {row['shadow_risk_b']['shadow']['greedy_nonoverlapping_holdout_core_count']} | {row['shadow_risk_b']['near_zero']['candidate_fold_count']} / {row['shadow_risk_b']['near_zero']['greedy_nonoverlapping_holdout_core_count']} | {row['shadow_risk_b']['combined_risk']['candidate_fold_count']} / {row['shadow_risk_b']['combined_risk']['greedy_nonoverlapping_holdout_core_count']} |")
+    lines.extend(["", "### Top candidates", ""])
+    for name, candidates in audit["top_candidates"].items():
+        lines.append(f"#### {name}")
+        if not candidates:
+            lines.append("- 无候选满足 strict matrix row。")
+            continue
+        for candidate in candidates:
+            lines.append(f"- edge={candidate['core_edge_pixels']} px, row=[{candidate['row_start']},{candidate['row_end_exclusive']}), col=[{candidate['column_start']},{candidate['column_end_exclusive']}), holdout land={candidate['holdout_land_pixels']}, calibration land={candidate['calibration_land_pixels']}, buffer-excluded land={candidate['buffer_excluded_land_pixels']}, holdout shadow/near_zero/lit={candidate['holdout_shadow_pixels']}/{candidate['holdout_near_zero_pixels']}/{candidate['holdout_lit_pixels']}, min geometry distance={candidate['minimum_train_to_geometric_core_m']:.3f} m。")
+    lines.extend(["", "### 风险区域结论", ""])
+    for risk, item in audit["risk_spatiality"].items():
+        lines.append(f"- **{risk}**：在最低 matrix 门槛下有 {item['greedy_nonoverlapping_holdout_core_count']} 个贪心空间不重叠 core；{item['interpretation']}。")
+    lines.extend(["", "", "审查没有改变 C5-D1 原有严格固定 block 设计的 `BLOCKED` 结论；这里只报告另一种仍保持 8.13 km 隔离的 leave-region-out 几何候选。后续正式拟合仍需单独授权。", ""])
+    return "\n".join(lines)
+
+
+def append_audit_report(path: Path, marker: str, text: str) -> None:
+    existing = path.read_text(encoding="utf-8")
+    if marker in existing:
+        raise PreflightError("审查报告 marker 已存在；拒绝重复追加")
+    path.write_text(existing.rstrip() + "\n\n" + text, encoding="utf-8")
+
+
+def run_buffered_leave_region_out_audit(config_path: Path) -> dict[str, Any]:
+    config = load_config(config_path)
+    audit_config = config.get("buffered_leave_region_out_audit")
+    if not audit_config or audit_config.get("mode") != "deterministic_buffered_leave_region_out_geometry_only":
+        raise PreflightError("缺少冻结的 buffered leave-region-out audit 配置")
+    if audit_config["buffer"]["pixels"] != 271 or float(audit_config["buffer"]["meters"]) != 8130.0:
+        raise PreflightError("audit 不得降低冻结的 271 px / 8,130 m buffer")
+    results_dir = relative_path(PROJECT_ROOT, config["outputs"]["results_directory"])
+    report_path = relative_path(PROJECT_ROOT, config["outputs"]["report"])
+    json_path = relative_path(PROJECT_ROOT, audit_config["evidence"]["json"])
+    csv_path = relative_path(PROJECT_ROOT, audit_config["evidence"]["csv"])
+    allowed = config["outputs"]["allowed_output_prefixes"]
+    for path in (report_path, json_path, csv_path):
+        relative = relative_text(PROJECT_ROOT, path)
+        if not any(relative == prefix or relative.startswith(prefix + "/") for prefix in allowed):
+            raise PreflightError(f"audit 输出越过 Workspace Contract：{relative}")
+    scenes: dict[str, Any] = {}
+    candidates_by_scene: dict[str, list[dict[str, Any]]] = {}
+    for scene in ("clean_a", "shadow_risk_b"):
+        master, masks = read_canonical_scene(results_dir / f"preflight_{scene}_canonical_masks.tif")
+        candidates, context = scan_scene_candidates(scene, master, masks, audit_config)
+        scenes[scene] = context
+        candidates_by_scene[scene] = candidates
+    matrix: list[dict[str, Any]] = []
+    thresholds = audit_config["threshold_matrix"]
+    for calibration_minimum in thresholds["calibration_minimum_land_pixels"]:
+        for holdout_minimum in thresholds["holdout_minimum_land_pixels"]:
+            for risk_minimum in thresholds["risk_minimum_pixels_per_class"]:
+                clean = [item for item in candidates_by_scene["clean_a"] if qualifies(item, "clean_a", calibration_minimum, holdout_minimum, risk_minimum)]
+                shadow = [item for item in candidates_by_scene["shadow_risk_b"] if qualifies(item, "shadow", calibration_minimum, holdout_minimum, risk_minimum)]
+                near = [item for item in candidates_by_scene["shadow_risk_b"] if qualifies(item, "near_zero", calibration_minimum, holdout_minimum, risk_minimum)]
+                combined = [item for item in candidates_by_scene["shadow_risk_b"] if qualifies(item, "combined_risk", calibration_minimum, holdout_minimum, risk_minimum)]
+                matrix.append({
+                    "calibration_minimum_land_pixels": calibration_minimum,
+                    "holdout_minimum_land_pixels": holdout_minimum,
+                    "risk_minimum_pixels_per_class": risk_minimum,
+                    "clean_a": candidate_support(clean),
+                    "shadow_risk_b": {"shadow": candidate_support(shadow), "near_zero": candidate_support(near), "combined_risk": candidate_support(combined)},
+                })
+    strict_calibration = max(thresholds["calibration_minimum_land_pixels"])
+    strict_holdout = max(thresholds["holdout_minimum_land_pixels"])
+    strict_risk = max(thresholds["risk_minimum_pixels_per_class"])
+    low_calibration = min(thresholds["calibration_minimum_land_pixels"])
+    low_holdout = min(thresholds["holdout_minimum_land_pixels"])
+    low_risk = min(thresholds["risk_minimum_pixels_per_class"])
+    top = {
+        "clean_a_lit_control": top_candidates(candidates_by_scene["clean_a"], "clean_a", strict_calibration, strict_holdout, strict_risk),
+        "shadow_risk_b_shadow_supported": top_candidates(candidates_by_scene["shadow_risk_b"], "shadow", strict_calibration, strict_holdout, strict_risk),
+        "shadow_risk_b_near_zero_supported": top_candidates(candidates_by_scene["shadow_risk_b"], "near_zero", strict_calibration, strict_holdout, strict_risk),
+        "shadow_risk_b_combined_risk": top_candidates(candidates_by_scene["shadow_risk_b"], "combined_risk", strict_calibration, strict_holdout, strict_risk),
+    }
+    risk_spatiality: dict[str, Any] = {}
+    for kind in ("shadow", "near_zero", "combined_risk"):
+        eligible = [item for item in candidates_by_scene["shadow_risk_b"] if qualifies(item, kind, low_calibration, low_holdout, low_risk)]
+        count = len(greedy_nonoverlap(eligible))
+        interpretation = "至少两个空间不同的 risk-supported holdout regions。" if count >= 2 else ("只有单一空间区域证据。" if count == 1 else "没有满足最低审查门槛的区域证据。")
+        risk_spatiality[kind] = {"thresholds": {"calibration": low_calibration, "holdout": low_holdout, "risk_per_class": low_risk}, "greedy_nonoverlapping_holdout_core_count": count, "interpretation": interpretation}
+    summary = {
+        "schema": "mountainrs-stage-6-5-3-buffered-leave-region-out-audit-v1",
+        "audit_status": "COMPLETED_GEOMETRY_ONLY",
+        "project_guard": config["project_guard"],
+        "config_sha256": sha256_file(config_path),
+        "executor_sha256": sha256_file(SCRIPT_PATH),
+        "frozen_buffer": audit_config["buffer"],
+        "geometric_core_envelope": audit_config["holdout_core"],
+        "scenes": scenes,
+        "matrix": matrix,
+        "top_candidates": top,
+        "risk_spatiality": risk_spatiality,
+        "candidate_selection_inputs": "只使用 canonical base_valid_land、shadow、near_zero、lit 掩膜；不读取 B4/B5 residual 或任何方法结果。",
+        "mechanism_execution": {"hard_mask_fitted": False, "soft_weight_fitted": False, "bounded_scene_constant_diffuse_fitted": False, "holdout_scored": False, "residual_computed": False, "risk_coverage_computed": False},
+        "limitations": ["calibration 是相对于完整方形 geographic core 的严格几何 buffer；这不会降低对 scoreable holdout land pixels 的隔离，但会比逐个有效像元 buffer 更保守。", audit_config["selection_and_interpretation"]["fold_overlap_note"]],
+    }
+    all_candidates = candidates_by_scene["clean_a"] + candidates_by_scene["shadow_risk_b"]
+    write_text(json_path, json.dumps(json_ready(summary), ensure_ascii=False, indent=2) + "\n")
+    write_csv(csv_path, all_candidates)
+    append_audit_report(report_path, audit_config["evidence"]["report_append_marker"], audit_markdown(summary, audit_config["evidence"]["report_append_marker"]))
+    return summary
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run Stage 6.5.3-B deterministic preflight only.")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--mode", choices=("preflight", "buffered-leave-region-out-audit"), default="preflight")
     args = parser.parse_args()
     try:
-        summary = run(args.config.resolve())
+        summary = run(args.config.resolve()) if args.mode == "preflight" else run_buffered_leave_region_out_audit(args.config.resolve())
     except PreflightError as exc:
         print(f"PRECHECK_ERROR: {exc}", file=sys.stderr)
         return 2
-    print(json.dumps({"verdict": summary["verdict"], "blocker_count": len(summary["blockers"]), "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"]}, ensure_ascii=False))
-    return 0 if summary["verdict"] == "PASS" else 2
+    if args.mode == "preflight":
+        print(json.dumps({"verdict": summary["verdict"], "blocker_count": len(summary["blockers"]), "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"]}, ensure_ascii=False))
+        return 0 if summary["verdict"] == "PASS" else 2
+    print(json.dumps({"audit_status": summary["audit_status"], "config_sha256": summary["config_sha256"], "executor_sha256": summary["executor_sha256"], "candidate_counts": {scene: value["candidate_count"] for scene, value in summary["scenes"].items()}}, ensure_ascii=False))
+    return 0
 
 
 if __name__ == "__main__":

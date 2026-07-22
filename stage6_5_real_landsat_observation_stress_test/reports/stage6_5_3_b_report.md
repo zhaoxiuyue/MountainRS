@@ -49,3 +49,84 @@
 
 - bounded_scene_constant_diffuse 的数值边界与依据必须在 calibration-only 条件下另行冻结；不得读取 holdout 后调整。
 - 本报告不提供三种机制的拟合、残差、risk–coverage 或最终优劣结论。
+
+<!-- stage6_5_3_b_buffered_leave_region_out_audit -->
+## C5-D1A｜8.13 km Buffered Leave-Region-Out 几何可行性审查
+
+- **审查状态：** `COMPLETED_GEOMETRY_ONLY`（几何设计审查，不是正式实验）。
+- **隔离定义：**完整方形 geographic core 以像元中心欧氏距离缓冲 271 px / 8,130 m；scoreable holdout 仅为 core 内 base_valid_land。此 envelope 比只对 scoreable 像元缓冲更严格，因此不会降低隔离。
+- **方法边界：**未拟合 hard_mask、soft_weight、bounded diffuse；未评分 holdout、未计算 residual、risk–coverage 或方法排名。
+- **候选选择：**只用 canonical land/shadow/near_zero/lit 计数；不使用 B4/B5 residual、任何拟合或方法表现。不同 fold 的 calibration 可重叠，不能被当作统计重复。
+
+### Raster 空间范围
+
+- **clean_a**：shape=[746, 645]，CRS=EPSG:32648，resolution=[30.0, 30.0] m，bounds=(377670.000, 3419010.000)–(397020.000, 3441390.000)；扫描 16910 cores。
+- **shadow_risk_b**：shape=[752, 650]，CRS=EPSG:32648，resolution=[30.0, 30.0] m，bounds=(292230.000, 3451230.000)–(311730.000, 3473790.000)；扫描 16910 cores。
+
+### 可行性矩阵
+
+| cal min | holdout min | risk/class min | A folds / non-overlap | B shadow folds / non-overlap | B near-zero folds / non-overlap | B combined folds / non-overlap |
+|---:|---:|---:|---:|---:|---:|---:|
+| 5000 | 500 | 50 | 16910 / 460 | 8648 / 48 | 8621 / 49 | 7818 / 37 |
+| 5000 | 500 | 100 | 16910 / 460 | 6224 / 26 | 6528 / 28 | 5276 / 23 |
+| 5000 | 500 | 250 | 16910 / 460 | 2636 / 9 | 2994 / 11 | 2082 / 8 |
+| 5000 | 1000 | 50 | 16644 / 406 | 8090 / 41 | 8124 / 39 | 7530 / 34 |
+| 5000 | 1000 | 100 | 16644 / 406 | 6013 / 26 | 6334 / 27 | 5253 / 22 |
+| 5000 | 1000 | 250 | 16644 / 406 | 2555 / 9 | 2994 / 11 | 2082 / 8 |
+| 5000 | 2500 | 50 | 13315 / 110 | 6123 / 28 | 6179 / 24 | 5965 / 24 |
+| 5000 | 2500 | 100 | 13315 / 110 | 5083 / 19 | 5348 / 19 | 4768 / 18 |
+| 5000 | 2500 | 250 | 13315 / 110 | 2305 / 10 | 2874 / 11 | 2073 / 8 |
+| 10000 | 500 | 50 | 16910 / 460 | 8648 / 48 | 8621 / 49 | 7818 / 37 |
+| 10000 | 500 | 100 | 16910 / 460 | 6224 / 26 | 6528 / 28 | 5276 / 23 |
+| 10000 | 500 | 250 | 16910 / 460 | 2636 / 9 | 2994 / 11 | 2082 / 8 |
+| 10000 | 1000 | 50 | 16644 / 406 | 8090 / 41 | 8124 / 39 | 7530 / 34 |
+| 10000 | 1000 | 100 | 16644 / 406 | 6013 / 26 | 6334 / 27 | 5253 / 22 |
+| 10000 | 1000 | 250 | 16644 / 406 | 2555 / 9 | 2994 / 11 | 2082 / 8 |
+| 10000 | 2500 | 50 | 13315 / 110 | 6123 / 28 | 6179 / 24 | 5965 / 24 |
+| 10000 | 2500 | 100 | 13315 / 110 | 5083 / 19 | 5348 / 19 | 4768 / 18 |
+| 10000 | 2500 | 250 | 13315 / 110 | 2305 / 10 | 2874 / 11 | 2073 / 8 |
+| 20000 | 500 | 50 | 16910 / 460 | 8468 / 48 | 8441 / 49 | 7638 / 37 |
+| 20000 | 500 | 100 | 16910 / 460 | 6047 / 26 | 6348 / 28 | 5099 / 23 |
+| 20000 | 500 | 250 | 16910 / 460 | 2512 / 9 | 2834 / 11 | 1959 / 8 |
+| 20000 | 1000 | 50 | 16644 / 406 | 7910 / 41 | 7944 / 39 | 7350 / 34 |
+| 20000 | 1000 | 100 | 16644 / 406 | 5836 / 26 | 6154 / 27 | 5076 / 22 |
+| 20000 | 1000 | 250 | 16644 / 406 | 2431 / 9 | 2834 / 11 | 1959 / 8 |
+| 20000 | 2500 | 50 | 13315 / 110 | 5943 / 28 | 5999 / 24 | 5785 / 24 |
+| 20000 | 2500 | 100 | 13315 / 110 | 4906 / 19 | 5168 / 19 | 4591 / 18 |
+| 20000 | 2500 | 250 | 13315 / 110 | 2181 / 10 | 2714 / 11 | 1950 / 8 |
+
+### Top candidates
+
+#### clean_a_lit_control
+- edge=208 px, row=[384,592), col=[416,624), holdout land=43262, calibration land=176924, buffer-excluded land=249348, holdout shadow/near_zero/lit=0/0/43262, min geometry distance=8130.000 m。
+- edge=208 px, row=[352,560), col=[432,640), holdout land=43262, calibration land=173368, buffer-excluded land=252904, holdout shadow/near_zero/lit=0/0/43262, min geometry distance=8130.000 m。
+- edge=208 px, row=[368,576), col=[416,624), holdout land=43262, calibration land=169773, buffer-excluded land=256499, holdout shadow/near_zero/lit=0/0/43262, min geometry distance=8130.000 m。
+- edge=208 px, row=[336,544), col=[432,640), holdout land=43262, calibration land=167004, buffer-excluded land=259268, holdout shadow/near_zero/lit=0/0/43262, min geometry distance=8130.000 m。
+- edge=208 px, row=[384,592), col=[400,608), holdout land=43262, calibration land=166927, buffer-excluded land=259345, holdout shadow/near_zero/lit=0/0/43262, min geometry distance=8130.000 m。
+#### shadow_risk_b_shadow_supported
+- edge=208 px, row=[0,208), col=[96,304), holdout land=14225, calibration land=44141, buffer-excluded land=43856, holdout shadow/near_zero/lit=852/1344/12029, min geometry distance=8130.000 m。
+- edge=208 px, row=[16,224), col=[352,560), holdout land=18190, calibration land=43905, buffer-excluded land=40127, holdout shadow/near_zero/lit=834/662/16694, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[112,320), holdout land=14338, calibration land=43320, buffer-excluded land=44564, holdout shadow/near_zero/lit=832/1343/12163, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[80,288), holdout land=14351, calibration land=44670, buffer-excluded land=43201, holdout shadow/near_zero/lit=818/1298/12235, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[352,560), holdout land=17224, calibration land=44940, buffer-excluded land=40058, holdout shadow/near_zero/lit=816/612/15796, min geometry distance=8130.000 m。
+#### shadow_risk_b_near_zero_supported
+- edge=208 px, row=[0,208), col=[96,304), holdout land=14225, calibration land=44141, buffer-excluded land=43856, holdout shadow/near_zero/lit=852/1344/12029, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[112,320), holdout land=14338, calibration land=43320, buffer-excluded land=44564, holdout shadow/near_zero/lit=832/1343/12163, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[48,256), holdout land=14084, calibration land=46003, buffer-excluded land=42135, holdout shadow/near_zero/lit=800/1305/11979, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[80,288), holdout land=14351, calibration land=44670, buffer-excluded land=43201, holdout shadow/near_zero/lit=818/1298/12235, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[64,272), holdout land=14180, calibration land=45127, buffer-excluded land=42915, holdout shadow/near_zero/lit=768/1265/12147, min geometry distance=8130.000 m。
+#### shadow_risk_b_combined_risk
+- edge=208 px, row=[0,208), col=[96,304), holdout land=14225, calibration land=44141, buffer-excluded land=43856, holdout shadow/near_zero/lit=852/1344/12029, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[112,320), holdout land=14338, calibration land=43320, buffer-excluded land=44564, holdout shadow/near_zero/lit=832/1343/12163, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[80,288), holdout land=14351, calibration land=44670, buffer-excluded land=43201, holdout shadow/near_zero/lit=818/1298/12235, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[48,256), holdout land=14084, calibration land=46003, buffer-excluded land=42135, holdout shadow/near_zero/lit=800/1305/11979, min geometry distance=8130.000 m。
+- edge=208 px, row=[0,208), col=[128,336), holdout land=14159, calibration land=42673, buffer-excluded land=45390, holdout shadow/near_zero/lit=770/1265/12124, min geometry distance=8130.000 m。
+
+### 风险区域结论
+
+- **shadow**：在最低 matrix 门槛下有 48 个贪心空间不重叠 core；至少两个空间不同的 risk-supported holdout regions。。
+- **near_zero**：在最低 matrix 门槛下有 49 个贪心空间不重叠 core；至少两个空间不同的 risk-supported holdout regions。。
+- **combined_risk**：在最低 matrix 门槛下有 37 个贪心空间不重叠 core；至少两个空间不同的 risk-supported holdout regions。。
+
+
+审查没有改变 C5-D1 原有严格固定 block 设计的 `BLOCKED` 结论；这里只报告另一种仍保持 8.13 km 隔离的 leave-region-out 几何候选。后续正式拟合仍需单独授权。
