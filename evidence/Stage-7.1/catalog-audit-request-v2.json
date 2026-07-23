@@ -1,0 +1,212 @@
+{
+  "schema": "mountainrs-stage7.1-catalog-audit-request-v2",
+  "request_id": "mountainrs-stage7.1-catalog-audit-request-v2",
+  "manifest_revision": 2,
+  "status": "preregistered",
+  "created_at_utc": "2026-07-23T15:34:31Z",
+  "supersedes_execution_channel_only": true,
+  "scientific_scope_unchanged_from_v1": true,
+  "superseded_request": {
+    "request_id": "mountainrs-stage7.1-catalog-audit-request-v1",
+    "relative_path": "evidence/Stage-7.1/catalog-audit-request.json",
+    "sha256": "5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0",
+    "preregistration_commit": "39de8434fb34da04aee6476aeaad29ec0d298a91",
+    "execution_status": "browser_channel_not_executed"
+  },
+  "project_identity": {
+    "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+    "project_revision": 83,
+    "route_revision": 3,
+    "node_id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+    "node_code": "Stage 7.1",
+    "node_contract_revision": 2,
+    "node_contract_hash": "2648735063f0a1561264b3363625b8027ef7d350818fd921a772a47acb12791c",
+    "current_task_hash": "e25e36e1a80d448ca25c17ca4bb3ae70270118d14890139607c016007e0251b7",
+    "current_task_generated_at_utc": "2026-07-23T15:33:26.916Z",
+    "current_task_local_status": "unknown",
+    "current_task_blockers": [],
+    "current_task_unknowns": [
+      "earth_engine_auth_session uses the required manual resolver; the local compiler cannot promote a manual resolver to ready from an external health-probe record"
+    ]
+  },
+  "execution_channel": {
+    "foundation_commit": "ae73971cfa08ab078f808c6c1155d910ca9c7fc9",
+    "python_executor": {
+      "relative_path": "scripts/stage7_1/gee_catalog_audit.py",
+      "sha256": "a02d4f0f06a035d4efeacbd905a8274478f844575d1b8122b57567484eeb96ce"
+    },
+    "equivalence_test": {
+      "relative_path": "scripts/stage7_1/tests/test_gee_catalog_executor.py",
+      "sha256": "9681acfc73ab59e5a0b5541862f069bdc7603cbfe5f56861908960c122adbf20",
+      "result": "passed_5_tests"
+    },
+    "runtime_lock": {
+      "relative_path": "configs/stage7_1/earthengine-runtime.lock",
+      "sha256": "0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602",
+      "python_version": "3.14.2",
+      "earthengine_api_version": "1.7.36"
+    },
+    "cloud_project_config": {
+      "relative_path": "configs/stage7_1/earthengine-project.yaml",
+      "sha256": "16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18",
+      "cloud_project_id": "gee-et-playground"
+    },
+    "credential_boundary": {
+      "resolver": "manual",
+      "provider": "official_earthengine_client",
+      "authentication_mode": "localhost",
+      "credential_content_inspected": false,
+      "credential_path_recorded": false,
+      "credential_hash_recorded": false
+    },
+    "health_probe": {
+      "status": "passed",
+      "last_verified_at_utc": "2026-07-23T15:30:41.314001Z",
+      "echo": "pf2-stage7-1-health",
+      "public_asset_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+      "landsat_product_id": "LC08_L2SP_130038_20230813_20230818_02_T1",
+      "system_index": "LC08_130038_20230813",
+      "system_time_start_ms": 1691897943416,
+      "export_task_created": false
+    }
+  },
+  "frozen_contract_files": [
+    {
+      "relative_path": "configs/stage7_1/observation-schema.yaml",
+      "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced"
+    },
+    {
+      "relative_path": "configs/stage7_1/target-grid.yaml",
+      "sha256": "329129636c6c586fdff9e15b9a2981286c0f5b7f1918e16f16e407263f34e0b0"
+    },
+    {
+      "relative_path": "docs/stage7_1/selection-protocol.md",
+      "sha256": "8988b48213fdb892d0b3e4924c9bee9a3d1c04f3d607850b6885f37652a7a670"
+    },
+    {
+      "relative_path": "scripts/stage7_1/gee_catalog_audit.js",
+      "sha256": "6c74238fdcfc493150d9500c9574dfe28cf0dc09470d36d46825982b017eb888",
+      "role": "frozen_semantic_reference"
+    }
+  ],
+  "operation_boundary": {
+    "operation_type": "metadata_query",
+    "query_only": true,
+    "exports_allowed": false,
+    "export_tasks_allowed": false,
+    "asset_creation_allowed": false,
+    "local_imagery_allowed": false,
+    "formal_query_authorized": false,
+    "executor_relative_path": "scripts/stage7_1/gee_catalog_audit.py",
+    "executor_sha256": "a02d4f0f06a035d4efeacbd905a8274478f844575d1b8122b57567484eeb96ce",
+    "executor_mutation_after_preregistration_allowed": false
+  },
+  "query_scope": {
+    "platform": "LANDSAT_8",
+    "sensor": "OLI_TIRS",
+    "collection": "LANDSAT/LC08/C02/T1_L2",
+    "tier": "T1",
+    "processing_level": "L2",
+    "wrs_path": 130,
+    "wrs_row": 38,
+    "time_window": {
+      "start_utc": "2023-01-01T00:00:00Z",
+      "start_inclusive": true,
+      "end_utc": "2024-01-01T00:00:00Z",
+      "end_inclusive": false
+    },
+    "candidate_enumeration": "complete_without_cloud_or_quality_truncation",
+    "minimum_target_roi_footprint_coverage": 0.999999
+  },
+  "target_roi_grid": {
+    "grid_id": "shadow-risk-b-b4-grid-v1",
+    "source_relative_path": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+    "source_sha256": "678bef90b5d25379dd25f10bdf132ae335757866664c40b0ce5486279f7440c7",
+    "crs": "EPSG:32648",
+    "transform": [
+      30.0,
+      0.0,
+      292230.0,
+      0.0,
+      -30.0,
+      3473790.0
+    ],
+    "shape": {
+      "height": 752,
+      "width": 650
+    },
+    "bounds": [
+      292230.0,
+      3451230.0,
+      311730.0,
+      3473790.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "target_pixel_count": 488800,
+    "nodata": null
+  },
+  "expected_output": {
+    "catalog_relative_path": "data/raw/stage7_1/acquisition-catalog.json",
+    "audit_report_relative_path": "reports/Stage-7.1/candidate-audit.md",
+    "catalog_schema": "mountainrs-stage7.1-acquisition-catalog-v1",
+    "catalog_envelope_required_fields": [
+      "schema",
+      "request_manifest_sha256",
+      "operation",
+      "query_scope",
+      "target_roi_grid",
+      "counts",
+      "candidates"
+    ],
+    "candidate_required_fields": [
+      "acquisition_id",
+      "earth_engine_asset_id",
+      "system_index",
+      "system_time_start_ms",
+      "system_time_start_utc",
+      "platform",
+      "sensor",
+      "collection",
+      "tier",
+      "processing_level",
+      "wrs_path",
+      "wrs_row",
+      "source_footprint",
+      "source_footprint_area_m2",
+      "target_roi_area_m2",
+      "target_roi_intersection_area_m2",
+      "target_roi_footprint_coverage",
+      "sun_azimuth_deg",
+      "sun_elevation_deg",
+      "sun_azimuth_source_field",
+      "sun_elevation_source_field",
+      "solar_geometry_missing_fields",
+      "qa_summary",
+      "land_valid_support_summary",
+      "cataloged",
+      "cataloged_reasons",
+      "exportable",
+      "exportable_reasons",
+      "stack_eligible",
+      "formal_split"
+    ],
+    "state_constraints": {
+      "stack_eligible": "not_yet_evaluated",
+      "formal_split": null,
+      "model_eligible": "not_adjudicated_stage_7_2"
+    },
+    "preview_split_allowed": true,
+    "preview_split_is_formal": false
+  },
+  "stop_conditions": [
+    "The current task must not be reported ready while the required manual credential resolver remains unknown to the local compiler.",
+    "GEE authentication, authorization, API, required field, or complete-result persistence fails.",
+    "The Python executor, runtime lock, project config, frozen contract, or V2 request hash differs from the preregistered SHA-256.",
+    "The query scope, target ROI/grid, footprint threshold, or complete-enumeration rule differs from V1.",
+    "Any Export task, asset creation, local imagery download, fitting, scoring, residual-based selection, or formal split assignment would occur.",
+    "Any executor revision is required; a new executor hash and request manifest revision must be committed first."
+  ]
+}
