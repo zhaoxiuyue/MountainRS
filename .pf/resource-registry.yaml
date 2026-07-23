@@ -139,8 +139,8 @@ resources:
     resolver: relative_path
     relative_path: .cache/earthengine/venv/bin/python
   earth_engine_auth_session:
-    resolver: manual
-    reference: 由官方 Earth Engine 客户端管理；不得读取凭据正文，仅以非秘密健康探针确认会话可用
+    resolver: relative_path
+    relative_path: .cache/earthengine/session/auth-attestation.json
   earth_engine_cloud_project:
     resolver: relative_path
     relative_path: configs/stage7_1/earthengine-project.yaml

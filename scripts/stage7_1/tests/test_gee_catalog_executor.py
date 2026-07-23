@@ -1,14 +1,31 @@
 from __future__ import annotations
 
 import ast
+import datetime as dt
+import importlib.util
+import json
 import re
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 SCRIPT_DIR = Path(__file__).resolve().parents[1]
 PYTHON_EXECUTOR = SCRIPT_DIR / "gee_catalog_audit.py"
 JAVASCRIPT_REFERENCE = SCRIPT_DIR / "gee_catalog_audit.js"
+
+
+def load_executor_module():
+    spec = importlib.util.spec_from_file_location(
+        "stage7_1_gee_catalog_audit",
+        PYTHON_EXECUTOR,
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load Python executor")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def python_constants() -> dict[str, object]:
@@ -46,6 +63,7 @@ class FrozenSemanticsTest(unittest.TestCase):
         cls.python_source = PYTHON_EXECUTOR.read_text(encoding="utf-8")
         cls.javascript_source = JAVASCRIPT_REFERENCE.read_text(encoding="utf-8")
         cls.python_values = python_constants()
+        cls.executor = load_executor_module()
 
     def test_frozen_constants_match_javascript(self) -> None:
         for name in (
@@ -123,6 +141,155 @@ class FrozenSemanticsTest(unittest.TestCase):
         for pattern in forbidden:
             self.assertNotRegex(self.python_source, pattern)
             self.assertNotRegex(self.javascript_source, pattern)
+
+    def test_attestation_has_exact_non_secret_fields_and_30_minute_ttl(
+        self,
+    ) -> None:
+        verified_at = dt.datetime(2026, 7, 23, 15, 0, tzinfo=dt.timezone.utc)
+        probe = {
+            "verified_at": self.executor.format_utc(verified_at),
+            "health_probe_input_sha256": self.executor.sha256_text(
+                self.executor.HEALTH_PROBE_INPUT
+            ),
+            "health_probe_response_sha256": self.executor.sha256_text(
+                self.executor.HEALTH_PROBE_INPUT
+            ),
+        }
+        attestation = self.executor.build_attestation(
+            "gee-et-playground",
+            probe,
+        )
+        self.assertEqual(set(attestation), self.executor.ATTESTATION_FIELDS)
+        self.assertFalse(attestation["credential_body_read"])
+        self.assertEqual(
+            self.executor.parse_utc(attestation["valid_until"])
+            - self.executor.parse_utc(attestation["verified_at"]),
+            dt.timedelta(minutes=30),
+        )
+        serialized = json.dumps(attestation).lower()
+        for forbidden_secret_field in (
+            "email",
+            "token",
+            "refresh_token",
+            "authorization_code",
+            "credential_path",
+        ):
+            self.assertNotIn(forbidden_secret_field, serialized)
+
+    def test_attestation_project_and_expiry_fail_closed(self) -> None:
+        verified_at = dt.datetime(2026, 7, 23, 15, 0, tzinfo=dt.timezone.utc)
+        probe = {
+            "verified_at": self.executor.format_utc(verified_at),
+            "health_probe_input_sha256": self.executor.sha256_text(
+                self.executor.HEALTH_PROBE_INPUT
+            ),
+            "health_probe_response_sha256": self.executor.sha256_text(
+                self.executor.HEALTH_PROBE_INPUT
+            ),
+        }
+        attestation = self.executor.build_attestation(
+            "gee-et-playground",
+            probe,
+        )
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "auth-attestation.json"
+            path.write_text(json.dumps(attestation), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "project mismatch"):
+                self.executor.validate_session_attestation(
+                    path,
+                    "wrong-project",
+                    now=verified_at + dt.timedelta(minutes=1),
+                )
+            with self.assertRaisesRegex(ValueError, "expired"):
+                self.executor.validate_session_attestation(
+                    path,
+                    "gee-et-playground",
+                    now=verified_at + dt.timedelta(minutes=30),
+                )
+
+    def test_catalog_requires_fresh_attestation_and_live_reverification(
+        self,
+    ) -> None:
+        verified_at = dt.datetime(2026, 7, 23, 15, 0, tzinfo=dt.timezone.utc)
+        probe = {
+            "verified_at": self.executor.format_utc(verified_at),
+            "health_probe_input_sha256": self.executor.sha256_text(
+                self.executor.HEALTH_PROBE_INPUT
+            ),
+            "health_probe_response_sha256": self.executor.sha256_text(
+                self.executor.HEALTH_PROBE_INPUT
+            ),
+        }
+        attestation = self.executor.build_attestation(
+            "gee-et-playground",
+            probe,
+        )
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "auth-attestation.json"
+            path.write_text(json.dumps(attestation), encoding="utf-8")
+            with mock.patch.object(
+                self.executor,
+                "run_live_health_probe",
+                return_value=probe,
+            ) as live_probe:
+                resolved, resolved_probe = (
+                    self.executor.verify_authenticated_session(
+                        path,
+                        "gee-et-playground",
+                        now=verified_at + dt.timedelta(minutes=1),
+                    )
+                )
+            self.assertEqual(resolved, attestation)
+            self.assertEqual(resolved_probe, probe)
+            live_probe.assert_called_once_with(
+                "gee-et-playground",
+                now=verified_at + dt.timedelta(minutes=1),
+            )
+            with mock.patch.object(
+                self.executor,
+                "run_live_health_probe",
+                side_effect=RuntimeError("live probe failed"),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "live probe failed"):
+                    self.executor.verify_authenticated_session(
+                        path,
+                        "gee-et-playground",
+                        now=verified_at + dt.timedelta(minutes=1),
+                    )
+
+    def test_live_probe_initializes_exact_project_and_rejects_bad_echo(
+        self,
+    ) -> None:
+        fixed_now = dt.datetime(2026, 7, 23, 15, 0, tzinfo=dt.timezone.utc)
+        with (
+            mock.patch.object(self.executor.ee, "Initialize") as initialize,
+            mock.patch.object(self.executor.ee, "String") as ee_string,
+        ):
+            ee_string.return_value.getInfo.return_value = "unexpected"
+            with self.assertRaisesRegex(RuntimeError, "unexpected response"):
+                self.executor.run_live_health_probe(
+                    "gee-et-playground",
+                    now=fixed_now,
+                )
+        initialize.assert_called_once_with(project="gee-et-playground")
+        ee_string.assert_called_once_with(self.executor.HEALTH_PROBE_INPUT)
+
+    def test_audit_verifies_session_before_building_catalog(self) -> None:
+        tree = ast.parse(self.python_source)
+        run_audit = next(
+            node
+            for node in tree.body
+            if isinstance(node, ast.FunctionDef) and node.name == "run_audit"
+        )
+        calls = [
+            node.func.id
+            for node in ast.walk(run_audit)
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+        ]
+        self.assertLess(
+            calls.index("verify_authenticated_session"),
+            calls.index("build_candidate_collection"),
+        )
 
 
 if __name__ == "__main__":

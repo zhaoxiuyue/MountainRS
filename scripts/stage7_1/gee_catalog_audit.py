@@ -44,6 +44,26 @@ REQUIRED_EXPORTABLE_PROPERTIES = [
     "SUN_AZIMUTH",
     "SUN_ELEVATION",
 ]
+HEALTH_PROBE_INPUT = "pf2-stage7-1-health"
+ATTESTATION_SCHEMA = "mountainrs-stage7.1-earthengine-auth-attestation"
+ATTESTATION_VERSION = 1
+ATTESTATION_TTL = dt.timedelta(minutes=30)
+ATTESTATION_FIELDS = {
+    "schema",
+    "version",
+    "project_id",
+    "earth_engine_api_version",
+    "verified_at",
+    "valid_until",
+    "health_probe_input_sha256",
+    "health_probe_response_sha256",
+    "credential_managed_by",
+    "credential_body_read",
+}
+KNOWN_ACQUISITIONS = {
+    "Clean A": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+    "Shadow-risk B": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+}
 
 
 def sha256_file(path: Path) -> str:
@@ -61,6 +81,145 @@ def canonical_json(value: Any) -> str:
         sort_keys=True,
         separators=(",", ":"),
     )
+
+
+def sha256_text(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def utc_now() -> dt.datetime:
+    return dt.datetime.now(dt.timezone.utc)
+
+
+def format_utc(value: dt.datetime) -> str:
+    if value.tzinfo is None:
+        raise ValueError("UTC timestamp must be timezone-aware")
+    return value.astimezone(dt.timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def parse_utc(value: str) -> dt.datetime:
+    parsed = dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise ValueError("UTC timestamp must include a timezone")
+    return parsed.astimezone(dt.timezone.utc)
+
+
+def atomic_write_text(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(content, encoding="utf-8")
+    temporary.replace(path)
+
+
+def run_live_health_probe(
+    project_id: str,
+    *,
+    now: dt.datetime | None = None,
+) -> dict[str, str]:
+    ee.Initialize(project=project_id)
+    response = ee.String(HEALTH_PROBE_INPUT).getInfo()
+    if response != HEALTH_PROBE_INPUT:
+        raise RuntimeError("Earth Engine health probe returned an unexpected response")
+    verified_at = now or utc_now()
+    return {
+        "verified_at": format_utc(verified_at),
+        "health_probe_input_sha256": sha256_text(HEALTH_PROBE_INPUT),
+        "health_probe_response_sha256": sha256_text(str(response)),
+    }
+
+
+def build_attestation(
+    project_id: str,
+    probe: dict[str, str],
+) -> dict[str, Any]:
+    verified_at = parse_utc(probe["verified_at"])
+    valid_until = verified_at + ATTESTATION_TTL
+    return {
+        "schema": ATTESTATION_SCHEMA,
+        "version": ATTESTATION_VERSION,
+        "project_id": project_id,
+        "earth_engine_api_version": ee.__version__,
+        "verified_at": format_utc(verified_at),
+        "valid_until": format_utc(valid_until),
+        "health_probe_input_sha256": probe["health_probe_input_sha256"],
+        "health_probe_response_sha256": probe["health_probe_response_sha256"],
+        "credential_managed_by": "official_earthengine_client",
+        "credential_body_read": False,
+    }
+
+
+def generate_session_attestation(
+    project_id: str,
+    output_path: Path,
+    *,
+    now: dt.datetime | None = None,
+) -> dict[str, Any]:
+    probe = run_live_health_probe(project_id, now=now)
+    attestation = build_attestation(project_id, probe)
+    if set(attestation) != ATTESTATION_FIELDS:
+        raise RuntimeError("auth attestation contains a forbidden or missing field")
+    atomic_write_text(output_path, canonical_json(attestation) + "\n")
+    return attestation
+
+
+def validate_session_attestation(
+    path: Path,
+    project_id: str,
+    *,
+    now: dt.datetime | None = None,
+) -> dict[str, Any]:
+    attestation = json.loads(path.read_text(encoding="utf-8"))
+    if set(attestation) != ATTESTATION_FIELDS:
+        raise ValueError("auth attestation contains a forbidden or missing field")
+    if attestation["schema"] != ATTESTATION_SCHEMA:
+        raise ValueError("auth attestation schema mismatch")
+    if attestation["version"] != ATTESTATION_VERSION:
+        raise ValueError("auth attestation version mismatch")
+    if attestation["project_id"] != project_id:
+        raise ValueError("auth attestation project mismatch")
+    if attestation["earth_engine_api_version"] != ee.__version__:
+        raise ValueError("auth attestation API version mismatch")
+    if attestation["credential_managed_by"] != "official_earthengine_client":
+        raise ValueError("auth attestation credential manager mismatch")
+    if attestation["credential_body_read"] is not False:
+        raise ValueError("auth attestation must state credential_body_read=false")
+    if (
+        attestation["health_probe_input_sha256"]
+        != sha256_text(HEALTH_PROBE_INPUT)
+    ):
+        raise ValueError("auth attestation health probe input mismatch")
+    verified_at = parse_utc(attestation["verified_at"])
+    valid_until = parse_utc(attestation["valid_until"])
+    if valid_until - verified_at != ATTESTATION_TTL:
+        raise ValueError("auth attestation TTL must be exactly 30 minutes")
+    checked_at = now or utc_now()
+    if checked_at < verified_at:
+        raise ValueError("auth attestation is not yet valid")
+    if checked_at >= valid_until:
+        raise ValueError("auth attestation has expired")
+    return attestation
+
+
+def verify_authenticated_session(
+    attestation_path: Path,
+    project_id: str,
+    *,
+    now: dt.datetime | None = None,
+) -> tuple[dict[str, Any], dict[str, str]]:
+    attestation = validate_session_attestation(
+        attestation_path,
+        project_id,
+        now=now,
+    )
+    live_probe = run_live_health_probe(project_id, now=now)
+    if (
+        live_probe["health_probe_input_sha256"]
+        != attestation["health_probe_input_sha256"]
+        or live_probe["health_probe_response_sha256"]
+        != attestation["health_probe_response_sha256"]
+    ):
+        raise RuntimeError("live Earth Engine health probe does not match attestation")
+    return attestation, live_probe
 
 
 def read_project_id(path: Path) -> str:
@@ -377,13 +536,109 @@ def preview_split(candidates: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def run(args: argparse.Namespace) -> dict[str, Any]:
+def known_acquisition_recovery(
+    candidates: list[dict[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    by_id = {item["acquisition_id"]: item for item in candidates}
+    result: dict[str, dict[str, Any]] = {}
+    for label, acquisition_id in KNOWN_ACQUISITIONS.items():
+        candidate = by_id.get(acquisition_id)
+        result[label] = {
+            "acquisition_id": acquisition_id,
+            "status": "recovered" if candidate else "not_recovered",
+            "system_time_start_utc": (
+                candidate["system_time_start_utc"] if candidate else None
+            ),
+            "target_roi_footprint_coverage": (
+                candidate["target_roi_footprint_coverage"] if candidate else None
+            ),
+            "exportable": candidate["exportable"] if candidate else False,
+        }
+    return result
+
+
+def render_audit_report(result: dict[str, Any]) -> str:
+    operation = result["operation"]
+    counts = result["counts"]
+    lines = [
+        "# Stage 7.1 GEE candidate audit",
+        "",
+        "## Query boundary",
+        "",
+        f"- Request SHA-256: `{result['request_manifest_sha256']}`",
+        f"- Attestation SHA-256: `{operation['auth_attestation_sha256']}`",
+        f"- Executed at UTC: `{operation['executed_at_utc']}`",
+        f"- Live health verified at UTC: `{operation['live_health_verified_at_utc']}`",
+        "- Operation: metadata query only",
+        "- Export task ID: `not_applicable`",
+        "- Asset ID: `not_applicable`",
+        "- Formal split assigned: no",
+        "- stack_eligible adjudicated: no",
+        "",
+        "## Counts",
+        "",
+        f"- cataloged: {counts['cataloged']}",
+        f"- exportable: {counts['exportable']}",
+        f"- incomplete: {counts['incomplete']}",
+        "",
+        "## Candidates",
+        "",
+        "| Product ID | UTC sensing time | Footprint coverage | Sun azimuth | Sun elevation | Missing solar fields | Exportable | stack_eligible |",
+        "|---|---|---:|---:|---:|---|---|---|",
+    ]
+    for item in result["candidates"]:
+        missing = ", ".join(item["solar_geometry_missing_fields"]) or "none"
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{item['earth_engine_asset_id']}`",
+                    f"`{item['system_time_start_utc']}`",
+                    f"{item['target_roi_footprint_coverage']:.12f}",
+                    str(item["sun_azimuth_deg"]),
+                    str(item["sun_elevation_deg"]),
+                    missing,
+                    str(item["exportable"]).lower(),
+                    item["stack_eligible"],
+                ]
+            )
+            + " |"
+        )
+    lines.extend(["", "## Known acquisition recovery", ""])
+    for label, recovery in result["known_acquisition_recovery"].items():
+        lines.append(
+            f"- {label}: `{recovery['acquisition_id']}` — "
+            f"{recovery['status']}; UTC `{recovery['system_time_start_utc']}`; "
+            f"coverage `{recovery['target_roi_footprint_coverage']}`; "
+            f"exportable `{str(recovery['exportable']).lower()}`."
+        )
+    lines.extend(
+        [
+            "",
+            "## Interpretation boundary",
+            "",
+            "- Acquisition IDs are unique; repeated exports, filenames, crops, or ROIs do not create new acquisitions.",
+            "- Every candidate remains `stack_eligible=not_yet_evaluated` until local files and common-grid integrity are checked.",
+            "- The split shown in the JSON, if present, is hypothetical only and is not a formal train/validation/test assignment.",
+            "- This audit does not establish model readiness, trainability, generalization, or Stage 7.1 completion.",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     project_config = Path(args.project_config)
     request_path = Path(args.request_manifest)
+    attestation_path = Path(args.attestation)
     output_path = Path(args.output)
+    report_path = Path(args.report)
     project_id = read_project_id(project_config)
     request = validate_request_manifest(request_path)
-    ee.Initialize(project=project_id)
+    attestation, live_probe = verify_authenticated_session(
+        attestation_path,
+        project_id,
+    )
     raw = build_candidate_collection().getInfo()
     raw_features = raw.get("features", [])
     candidates = sorted(
@@ -395,9 +650,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise RuntimeError("duplicate acquisition_id returned by frozen query")
     cataloged_count = len(candidates)
     exportable_count = sum(item["exportable"] for item in candidates)
-    executed_at = dt.datetime.now(dt.timezone.utc).isoformat().replace(
-        "+00:00", "Z"
-    )
+    executed_at = format_utc(utc_now())
     result = {
         "schema": OUTPUT_SCHEMA,
         "request_manifest_sha256": sha256_file(request_path),
@@ -412,6 +665,16 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "earthengine_api_version": ee.__version__,
             "executed_at_utc": executed_at,
             "gee_request_identity": "not_exposed_by_python_client",
+            "auth_attestation_sha256": sha256_file(attestation_path),
+            "attestation_verified_at_utc": attestation["verified_at"],
+            "attestation_valid_until_utc": attestation["valid_until"],
+            "live_health_verified_at_utc": live_probe["verified_at"],
+            "live_health_probe_input_sha256": live_probe[
+                "health_probe_input_sha256"
+            ],
+            "live_health_probe_response_sha256": live_probe[
+                "health_probe_response_sha256"
+            ],
             "raw_result_sha256": hashlib.sha256(
                 canonical_json(raw).encode("utf-8")
             ).hexdigest(),
@@ -424,28 +687,59 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "incomplete": cataloged_count - exportable_count,
         },
         "candidates": candidates,
+        "known_acquisition_recovery": known_acquisition_recovery(candidates),
         "split_preview": preview_split(candidates),
     }
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    encoded = canonical_json(result) + "\n"
-    temporary = output_path.with_suffix(output_path.suffix + ".tmp")
-    temporary.write_text(encoded, encoding="utf-8")
-    temporary.replace(output_path)
+    atomic_write_text(output_path, canonical_json(result) + "\n")
+    atomic_write_text(report_path, render_audit_report(result))
     return result
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Run the frozen Stage 7.1 query-only GEE catalog audit."
+        description="Verify a GEE session or run the frozen Stage 7.1 catalog audit."
     )
-    parser.add_argument("--project-config", required=True)
-    parser.add_argument("--request-manifest", required=True)
-    parser.add_argument("--output", required=True)
+    subparsers = parser.add_subparsers(dest="mode", required=True)
+
+    verify_parser = subparsers.add_parser(
+        "verify-session",
+        help="Create a 30-minute non-secret Earth Engine auth attestation.",
+    )
+    verify_parser.add_argument("--project-config", required=True)
+    verify_parser.add_argument("--attestation", required=True)
+
+    audit_parser = subparsers.add_parser(
+        "audit",
+        help="Run the frozen query-only catalog audit.",
+    )
+    audit_parser.add_argument("--project-config", required=True)
+    audit_parser.add_argument("--request-manifest", required=True)
+    audit_parser.add_argument("--attestation", required=True)
+    audit_parser.add_argument("--output", required=True)
+    audit_parser.add_argument("--report", required=True)
     return parser.parse_args()
 
 
 def main() -> int:
-    result = run(parse_args())
+    args = parse_args()
+    if args.mode == "verify-session":
+        project_id = read_project_id(Path(args.project_config))
+        attestation = generate_session_attestation(
+            project_id,
+            Path(args.attestation),
+        )
+        print(
+            canonical_json(
+                {
+                    "status": "succeeded",
+                    "mode": "verify-session",
+                    "project_id": project_id,
+                    "valid_until": attestation["valid_until"],
+                }
+            )
+        )
+        return 0
+    result = run_audit(args)
     print(
         canonical_json(
             {
