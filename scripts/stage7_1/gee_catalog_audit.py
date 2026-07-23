@@ -29,6 +29,11 @@ TARGET_BOUNDS = [292230, 3451230, 311730, 3473790]
 TARGET_SHAPE = {"height": 752, "width": 650}
 TARGET_RESOLUTION = [30, 30]
 TARGET_PIXEL_COUNT = 488800
+SUMMARY_REDUCTION_BAND_COUNT = 12
+SUMMARY_REDUCTION_PIXEL_DEMAND = (
+    TARGET_PIXEL_COUNT * SUMMARY_REDUCTION_BAND_COUNT
+)
+SUMMARY_REDUCTION_MAX_PIXELS = 10_000_000
 TARGET_GRID_ID = "shadow-risk-b-b4-grid-v1"
 MIN_FOOTPRINT_COVERAGE = 0.999999
 OUTPUT_SCHEMA = "mountainrs-stage7.1-acquisition-catalog-v1"
@@ -272,7 +277,22 @@ def validate_request_manifest(path: Path) -> dict[str, Any]:
     return request
 
 
+def validate_reduction_budget(
+    *,
+    target_pixel_count: int = TARGET_PIXEL_COUNT,
+    reduction_band_count: int = SUMMARY_REDUCTION_BAND_COUNT,
+    max_pixels: int = SUMMARY_REDUCTION_MAX_PIXELS,
+) -> int:
+    pixel_demand = target_pixel_count * reduction_band_count
+    if pixel_demand > max_pixels:
+        raise ValueError(
+            "frozen summary reduction pixel demand exceeds maxPixels budget"
+        )
+    return pixel_demand
+
+
 def build_candidate_collection() -> ee.FeatureCollection:
+    validate_reduction_budget()
     target_roi = ee.Geometry.Rectangle(TARGET_BOUNDS, TARGET_CRS, False)
     target_area_m2 = target_roi.area(1)
 
@@ -339,7 +359,7 @@ def build_candidate_collection() -> ee.FeatureCollection:
             geometry=target_roi,
             crs=TARGET_CRS,
             crsTransform=TARGET_TRANSFORM,
-            maxPixels=1_000_000,
+            maxPixels=SUMMARY_REDUCTION_MAX_PIXELS,
             tileScale=4,
         )
 

@@ -57,6 +57,46 @@ def javascript_scalar(source: str, name: str) -> object:
     return int(value)
 
 
+def python_summary_band_count(source: str) -> int:
+    tree = ast.parse(source)
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        if not any(
+            isinstance(target, ast.Name) and target.id == "summary_image"
+            for target in node.targets
+        ):
+            continue
+        call = node.value
+        if (
+            isinstance(call, ast.Call)
+            and isinstance(call.func, ast.Attribute)
+            and call.func.attr == "unmask"
+            and isinstance(call.func.value, ast.Call)
+            and call.func.value.args
+            and isinstance(call.func.value.args[0], ast.List)
+        ):
+            return len(call.func.value.args[0].elts)
+    raise AssertionError("Python summary_image band list is missing")
+
+
+def javascript_summary_band_count(source: str) -> int:
+    match = re.search(
+        r"var summaryImage = ee\.Image\.cat\(\[(.*?)\]\)\.unmask\(0\);",
+        source,
+        re.DOTALL,
+    )
+    if not match:
+        raise AssertionError("JavaScript summaryImage band list is missing")
+    return len(
+        re.findall(
+            r"^    (?:ee\.Image|qaClear|water|numericValid|baseValid|baseValidLand|qa\.bitwiseAnd)",
+            match.group(1),
+            re.MULTILINE,
+        )
+    )
+
+
 class FrozenSemanticsTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -75,6 +115,8 @@ class FrozenSemanticsTest(unittest.TestCase):
             "TARGET_CRS",
             "TARGET_TRANSFORM",
             "TARGET_PIXEL_COUNT",
+            "SUMMARY_REDUCTION_BAND_COUNT",
+            "SUMMARY_REDUCTION_MAX_PIXELS",
             "MIN_FOOTPRINT_COVERAGE",
         ):
             self.assertEqual(
@@ -90,6 +132,39 @@ class FrozenSemanticsTest(unittest.TestCase):
             self.python_values["TARGET_BOUNDS"],
             [292230, 3451230, 311730, 3473790],
         )
+
+    def test_frozen_summary_reduction_budget(self) -> None:
+        target_pixels = self.python_values["TARGET_PIXEL_COUNT"]
+        reduction_bands = self.python_values["SUMMARY_REDUCTION_BAND_COUNT"]
+        max_pixels = self.python_values["SUMMARY_REDUCTION_MAX_PIXELS"]
+        pixel_demand = target_pixels * reduction_bands
+        self.assertEqual(target_pixels, 650 * 752)
+        self.assertEqual(reduction_bands, 12)
+        self.assertEqual(
+            python_summary_band_count(self.python_source),
+            reduction_bands,
+        )
+        self.assertEqual(
+            javascript_summary_band_count(self.javascript_source),
+            reduction_bands,
+        )
+        self.assertEqual(pixel_demand, 5_865_600)
+        self.assertLess(pixel_demand, max_pixels)
+        self.assertEqual(max_pixels, 10_000_000)
+        self.assertEqual(
+            self.executor.validate_reduction_budget(),
+            pixel_demand,
+        )
+        with self.assertRaisesRegex(ValueError, "exceeds maxPixels budget"):
+            self.executor.validate_reduction_budget(
+                max_pixels=pixel_demand - 1,
+            )
+        self.assertIn(
+            "SUMMARY_REDUCTION_PIXEL_DEMAND > SUMMARY_REDUCTION_MAX_PIXELS",
+            self.javascript_source,
+        )
+        for source in (self.python_source, self.javascript_source):
+            self.assertNotIn("bestEffort", source)
 
     def test_exportable_fields_match_javascript(self) -> None:
         match = re.search(

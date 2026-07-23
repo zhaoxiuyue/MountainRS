@@ -11,7 +11,17 @@ var WRS_ROW = 38;
 var TARGET_CRS = 'EPSG:32648';
 var TARGET_TRANSFORM = [30, 0, 292230, 0, -30, 3473790];
 var TARGET_PIXEL_COUNT = 488800;
+var SUMMARY_REDUCTION_BAND_COUNT = 12;
+var SUMMARY_REDUCTION_PIXEL_DEMAND =
+  TARGET_PIXEL_COUNT * SUMMARY_REDUCTION_BAND_COUNT;
+var SUMMARY_REDUCTION_MAX_PIXELS = 10000000;
 var MIN_FOOTPRINT_COVERAGE = 0.999999;
+
+if (SUMMARY_REDUCTION_PIXEL_DEMAND > SUMMARY_REDUCTION_MAX_PIXELS) {
+  throw new Error(
+    'Frozen summary reduction pixel demand exceeds maxPixels budget'
+  );
+}
 
 var targetRoi = ee.Geometry.Rectangle(
   [292230, 3451230, 311730, 3473790],
@@ -80,7 +90,7 @@ function qaAndCoverageSummary(image) {
     geometry: targetRoi,
     crs: TARGET_CRS,
     crsTransform: TARGET_TRANSFORM,
-    maxPixels: 1000000,
+    maxPixels: SUMMARY_REDUCTION_MAX_PIXELS,
     tileScale: 4
   });
 }
