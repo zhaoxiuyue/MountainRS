@@ -1,0 +1,131 @@
+schema: mountainrs-stage7.1-target-grid-v1
+status: frozen_candidate
+frozen_date: "2026-07-23"
+grid_id: shadow-risk-b-b4-grid-v1
+
+source:
+  alias: shadow_risk_b_b4
+  acquisition_id: LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101
+  relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif
+  sha256: 678bef90b5d25379dd25f10bdf132ae335757866664c40b0ce5486279f7440c7
+  read_method:
+    library: rasterio
+    version: 1.5.0
+    mode: local_header_read
+  value_source: real_local_raster_header
+  hand_entered_or_inferred: false
+
+grid:
+  crs: EPSG:32648
+  axis_order:
+    - easting
+    - northing
+  linear_unit: metre
+  transform:
+    - 30.0
+    - 0.0
+    - 292230.0
+    - 0.0
+    - -30.0
+    - 3473790.0
+  shape:
+    height: 752
+    width: 650
+  pixel_count: 488800
+  bounds:
+    left: 292230.0
+    bottom: 3451230.0
+    right: 311730.0
+    top: 3473790.0
+  resolution:
+    x: 30.0
+    y: 30.0
+  nodata: null
+  dtype: float32
+  target_roi_polygon_projected:
+    - [292230.0, 3451230.0]
+    - [311730.0, 3451230.0]
+    - [311730.0, 3473790.0]
+    - [292230.0, 3473790.0]
+    - [292230.0, 3451230.0]
+
+alignment_evidence:
+  required_equalities:
+    - crs
+    - transform
+    - shape
+    - bounds
+    - resolution
+    - pixel_alignment
+  members:
+    B5:
+      alias: shadow_risk_b_b5
+      sha256: c0f146ee69acb415260c5776056d95f4c46e4047b8a7a9744a101f9fa5c6d64f
+      exact_match: true
+    QA_PIXEL:
+      alias: shadow_risk_b_qa_pixel
+      sha256: 7a06caf2fa2049371db12e70391f3a069e30a078c355610d8bd9466a47d09d0b
+      exact_match: true
+    dem:
+      relative_path: stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif
+      sha256: 05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4
+      exact_match: true
+    slope:
+      relative_path: stage6_5_real_landsat_observation_stress_test/outputs/slope_on_shadowrisk_grid.tif
+      sha256: af6d1d9924d7d3d464a00cd9163e625293523fc2232845f625d645a443b726ce
+      exact_match: true
+    aspect:
+      relative_path: stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_shadowrisk_grid.tif
+      sha256: 83ed77e9db455a808f797e1d96b03471770429319ebeb402159d80d085d475b5
+      exact_match: true
+    cos_i:
+      alias: shadow_risk_b_cos_i
+      sha256: afb0728e1cf627beb91ca4071177b554176e8c7080c61f94ebcb6b03328d9b1a
+      exact_match: true
+
+support_evidence:
+  source: docs/stage7_0/data_gap_report.md
+  rules:
+    qa_clear: QA_PIXEL bits 0-5 are all zero
+    reflectance_range: "[-0.05, 1.0]"
+    water: QA_PIXEL bit 7 excluded and counted separately
+    shadow: cos_i <= 0
+    near_zero: 0 < cos_i <= 0.1
+    lit_supported: cos_i > 0.1
+  counts:
+    base_valid_land: 102222
+    shadow: 4063
+    near_zero: 4559
+    lit_supported: 93600
+  partition_integrity: 4063 + 4559 + 93600 = 102222
+
+selection_rationale:
+  allowed:
+    - Existing B4, B5, QA_PIXEL, DEM, slope, aspect, and cos_i passed exact CRS and grid-alignment checks.
+    - The ROI contains nonzero lit, near-zero, and shadow support domains under the frozen Stage 7.0 semantics.
+    - The grid is frozen before any new candidate acquisition is viewed.
+    - The ROI is a geometry stress-test prototype for the observation stack.
+  prohibited:
+    - residual_based_roi_choice
+    - fit_performance_based_roi_choice
+    - future_test_result_based_roi_choice
+    - claim_that_roi_represents_all_of_longmenshan
+  geographic_scope_statement: >-
+    This grid is a geometry pressure-test ROI. It does not represent the whole
+    Longmenshan region and cannot support region-wide generalization claims.
+
+canonical_stack_constraints:
+  exact_grid_match_required: true
+  accepted_without_resampling: true
+  mismatch_action: stop_and_report
+  silent_resampling: prohibited
+  qa_continuous_interpolation: prohibited
+  candidate_footprint_minimum_ratio: 0.999999
+
+pending_external_validation:
+  - complete_2023_candidate_count
+  - per_candidate_full_sensing_timestamp
+  - per_candidate_source_footprint_coverage
+  - per_candidate_solar_geometry
+  - per_candidate_qa_summary
+  - availability_of_at_least_three_stack_eligible_acquisitions

@@ -105,3 +105,33 @@ resources:
   stage_7_0_data_gap_report:
     resolver: relative_path
     relative_path: docs/stage7_0/data_gap_report.md
+  stage_7_1_observation_schema:
+    resolver: relative_path
+    relative_path: configs/stage7_1/observation-schema.yaml
+  stage_7_1_selection_protocol:
+    resolver: relative_path
+    relative_path: docs/stage7_1/selection-protocol.md
+  stage_7_1_catalog_auditor:
+    resolver: relative_path
+    relative_path: scripts/stage7_1/gee_catalog_audit.js
+  stage_7_1_candidate_audit:
+    resolver: relative_path
+    relative_path: evidence/Stage-7.1/candidate_audit.json
+  stage_7_1_acquisition_catalog:
+    resolver: relative_path
+    relative_path: configs/stage7_1/acquisition_catalog.yaml
+  stage_7_1_target_grid_spec:
+    resolver: relative_path
+    relative_path: configs/stage7_1/target-grid.yaml
+  stage_7_1_terrain_stack:
+    resolver: relative_path
+    relative_path: data/derived/stage7_1/terrain_stack
+  stage_7_1_observation_stack:
+    resolver: relative_path
+    relative_path: data/raw/stage7_1/observation_stack
+  stage_7_1_stack_manifest:
+    resolver: relative_path
+    relative_path: evidence/Stage-7.1/stack_manifest.json
+  stage_7_1_readiness_report:
+    resolver: relative_path
+    relative_path: reports/Stage-7.1/readiness_report.md

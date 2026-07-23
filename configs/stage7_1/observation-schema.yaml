@@ -1,0 +1,368 @@
+schema: mountainrs-stage7.1-observation-record-v1
+status: frozen_prospective
+frozen_date: "2026-07-23"
+scope:
+  platform: LANDSAT_8
+  sensor: OLI_TIRS
+  collection: LANDSAT/LC08/C02/T1_L2
+  tier: T1
+  processing_level: L2
+  wrs_path: 130
+  wrs_row: 38
+  time_window:
+    start_utc: "2023-01-01T00:00:00Z"
+    start_inclusive: true
+    end_utc: "2024-01-01T00:00:00Z"
+    end_inclusive: false
+  target_grid_id: shadow-risk-b-b4-grid-v1
+
+identity:
+  acquisition_id:
+    required: true
+    type: string
+    canonical_source: full_earth_engine_asset_id
+    rule: >-
+      The complete Earth Engine product/asset identity is the canonical acquisition
+      key. system:index is retained as a component but is not sufficient by itself.
+  observation_id:
+    required: true
+    type: string
+    components:
+      - acquisition_id
+      - roi_id
+      - grid_version
+    rule: >-
+      observation_id may distinguish one acquisition observed on one ROI/grid, but
+      it must never replace or redefine acquisition_id.
+  deduplication:
+    canonical_key:
+      - earth_engine_asset_id
+    do_not_create_new_acquisition_for:
+      - repeated_export
+      - different_crop
+      - different_filename
+      - same_scene_different_roi
+      - derived_raster
+      - composite_or_mosaic
+    collision_action: stop_and_report
+
+candidate_state_machine:
+  ordered_states:
+    - cataloged
+    - exportable
+    - stack_eligible
+    - model_eligible
+  cataloged:
+    authority: gee_catalog_audit
+    requirements:
+      - collection_time_and_wrs_match
+      - complete_target_roi_footprint_coverage
+  exportable:
+    authority: gee_catalog_audit
+    requirements:
+      - cataloged
+      - full_asset_and_product_identity
+      - system_time_start_utc
+      - solar_geometry
+      - qa_pixel_available
+  stack_eligible:
+    authority: local_catalog_auditor
+    requirements:
+      - exportable
+      - b4_b5_qa_members_present
+      - member_hashes_verified
+      - exact_target_grid_match
+      - nonzero_base_valid_land
+  model_eligible:
+    authority: stage_7_2_only
+    status_in_stage_7_1: not_adjudicated
+    prohibited_in_stage_7_1:
+      - minimum_calibration_lit_threshold
+      - alpha_fit
+      - scoring
+      - mechanism_comparison
+
+record:
+  required_fields:
+    - observation_id
+    - acquisition_id
+    - earth_engine_asset_id
+    - system_index
+    - system_time_start_utc
+    - platform
+    - sensor
+    - collection
+    - tier
+    - processing_level
+    - wrs_path
+    - wrs_row
+    - source_footprint
+    - target_roi_coverage
+    - export_request
+    - members
+    - solar_geometry
+    - qa_definition
+    - grid
+    - terrain_geometry
+    - counts
+    - acquisition_split
+    - candidate_state
+  fields:
+    observation_id:
+      type: string
+      nullable: false
+    acquisition_id:
+      type: string
+      nullable: false
+    earth_engine_asset_id:
+      type: string
+      nullable: false
+      expected_prefix: LANDSAT/LC08/C02/T1_L2/
+    system_index:
+      source_field: "system:index"
+      type: string
+      nullable: false
+    system_time_start_utc:
+      source_field: "system:time_start"
+      type: string
+      format: RFC3339_UTC
+      nullable: false
+      date_only_is_invalid: true
+    platform:
+      source_field: SPACECRAFT_ID
+      expected: LANDSAT_8
+    sensor:
+      source_field: SENSOR_ID
+      expected: OLI_TIRS
+    collection:
+      expected: LANDSAT/LC08/C02/T1_L2
+    tier:
+      expected: T1
+    processing_level:
+      source_field: PROCESSING_LEVEL
+      allowed:
+        - L2SP
+        - L2SR
+    wrs_path:
+      source_field: WRS_PATH
+      expected: 130
+    wrs_row:
+      source_field: WRS_ROW
+      expected: 38
+    source_footprint:
+      type: geojson_geometry
+      crs: EPSG:4326
+      required_subfields:
+        - geometry
+        - area_m2
+        - geometry_hash
+    target_roi_coverage:
+      type: object
+      required_subfields:
+        - target_grid_id
+        - intersection_area_m2
+        - target_area_m2
+        - footprint_coverage_ratio
+      catalog_minimum_ratio: 0.999999
+    export_request:
+      type: object
+      required_subfields:
+        - request_manifest_id
+        - request_manifest_sha256
+        - gee_task_id
+        - gee_asset_id
+        - status
+      status_enum:
+        - not_requested
+        - requested
+        - running
+        - succeeded
+        - failed
+        - cancelled
+        - unknown
+      success_rule: >-
+        A submitted request is not success. succeeded requires a real task or asset
+        identity, terminal status, local member hashes, and reconciliation with the
+        frozen request manifest.
+    members:
+      type: object
+      required_members:
+        - B4
+        - B5
+        - QA_PIXEL
+      member_schema:
+        required_fields:
+          - source_band_id
+          - member_id
+          - relative_path
+          - sha256
+          - byte_size
+          - dtype
+          - nodata
+        relative_path_must_be_workspace_relative: true
+        sha256_pattern: "^[0-9a-f]{64}$"
+    solar_geometry:
+      type: object
+      required_subfields:
+        - azimuth_deg
+        - elevation_deg
+        - azimuth_source_field
+        - elevation_source_field
+      azimuth_source_field: SUN_AZIMUTH
+      elevation_source_field: SUN_ELEVATION
+    qa_definition:
+      type: object
+      required_subfields:
+        - product
+        - definition_version
+        - clear_bits
+        - water_bit
+      product: QA_PIXEL
+      definition_version: Landsat_Collection_2_Level_2_QA_PIXEL
+      clear_bits:
+        0: fill
+        1: dilated_cloud
+        2: cirrus
+        3: cloud
+        4: cloud_shadow
+        5: snow
+      clear_rule: all_bits_0_through_5_equal_zero
+      water_bit: 7
+      water_rule: exclude_from_base_valid_land_and_count_separately
+    grid:
+      type: object
+      required_subfields:
+        - grid_id
+        - crs
+        - transform
+        - shape
+        - bounds
+        - resolution
+        - nodata
+        - source_sha256
+      exact_match_required:
+        - crs
+        - transform
+        - shape
+        - bounds
+        - resolution
+        - pixel_alignment
+    terrain_geometry:
+      type: object
+      required_components:
+        - dem
+        - slope
+        - aspect
+        - cos_i
+      component_anchor_fields:
+        - algorithm
+        - algorithm_version
+        - implementation_relative_path
+        - source_relative_path
+        - source_sha256
+        - output_sha256
+        - grid_id
+      cos_i_additional_inputs:
+        - sun_azimuth_deg
+        - sun_elevation_deg
+    counts:
+      type: object
+      required_fields:
+        - base_valid
+        - base_valid_land
+        - supported
+        - unsupported_by_direct_only
+        - qa_fill
+        - qa_dilated_cloud
+        - qa_cirrus
+        - qa_cloud
+        - qa_cloud_shadow
+        - qa_snow
+        - qa_water
+        - reflectance_out_of_range
+        - member_nodata_or_nonfinite
+        - observation_count
+        - valid_count
+        - valid_ratio
+      count_unit: pixels_on_frozen_target_grid
+      valid_ratio_definition: valid_count / observation_count
+      zero_observation_ratio: null
+    acquisition_split:
+      enum:
+        - unassigned
+        - train
+        - validation
+        - test
+      assignment_unit: acquisition_id
+      all_rois_same_split: true
+    candidate_state:
+      enum:
+        - cataloged
+        - exportable
+        - stack_eligible
+        - model_eligible
+
+surface_reflectance:
+  product_bands:
+    red: SR_B4
+    nir: SR_B5
+  scale: 0.0000275
+  offset: -0.2
+  formula: reflectance = DN * 0.0000275 - 0.2
+  analysis_range:
+    minimum: -0.05
+    maximum: 1.0
+    inclusive: true
+  numeric_validity:
+    - finite
+    - source_mask_valid
+    - nodata_valid
+
+mask_and_support_semantics:
+  base_valid: >-
+    QA_PIXEL bits 0 through 5 are all zero; B4, B5, and cos_i are finite and
+    nodata-valid; scaled B4 and B5 are both inside [-0.05, 1.0].
+  base_valid_land: base_valid AND QA_PIXEL water bit 7 equals zero
+  water: base_valid AND QA_PIXEL water bit 7 equals one
+  supported: base_valid_land AND cos_i > 0.1
+  unsupported_by_direct_only: base_valid_land AND cos_i <= 0.1
+  coverage_denominator: base_valid_land
+  unsupported_in_coverage_denominator: true
+  unsupported_is_not_success: true
+  calibration_lit_count:
+    recorded: true
+    used_for_acquisition_selection: false
+    minimum_threshold_in_stage_7_1: null
+    model_eligibility_owner: Stage_7_2
+
+stack_counts:
+  observation_count: number_of_cataloged_acquisitions_covering_the_pixel
+  valid_count: number_of_stack_eligible_acquisitions_where_base_valid_land_is_true
+  valid_ratio: valid_count / observation_count
+  canonical_source: per_acquisition_records
+  composite_may_not_replace_records: true
+
+split_policy:
+  eligible_population: stack_eligible_acquisitions_only
+  stable_sort:
+    - system_time_start_utc_ascending
+    - earth_engine_asset_id_ascending
+  minimum_n: 3
+  n_train: max(1, floor(0.6 * N))
+  n_validation: max(1, floor(0.2 * N))
+  n_test: N - n_train - n_validation
+  test_must_be_nonempty: true
+  allocation: contiguous_time_segments
+  earlier: train
+  middle: validation
+  later: test
+  post_freeze_reordering_by_model_result: prohibited
+  member_failure_action: explicit_protocol_revision_no_silent_backfill
+
+boundaries:
+  catalog_must_be_exhaustive: true
+  cloud_cover_top_n_truncation: prohibited
+  continuous_resampling_of_qa: prohibited
+  silent_resampling_into_target_grid: prohibited
+  model_fit_or_scoring_in_stage_7_1: prohibited
+  composite_as_canonical_acquisition: prohibited
