@@ -1,0 +1,21 @@
+schema: mountainrs-stage7.1-earthengine-project-v1
+project_id: gee-et-playground
+source: user_confirmed_google_cloud_project_information
+confirmed_at_utc: "2026-07-23T15:20:27Z"
+authentication:
+  provider: official_earthengine_client
+  mode: localhost
+  credential_storage: official_client_managed
+  credential_content_recorded: false
+health_probe:
+  status: passed
+  executed_at_utc: "2026-07-23T15:22:06.692998Z"
+  api_version: "1.7.36"
+  cloud_project_id: gee-et-playground
+  echo: pf2-stage7-1-health
+  public_asset:
+    asset_id: LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813
+    landsat_product_id: LC08_L2SP_130038_20230813_20230818_02_T1
+    system_index: LC08_130038_20230813
+    system_time_start_ms: 1691897943416
+    system_time_start_utc: "2023-08-13T03:39:03.416Z"

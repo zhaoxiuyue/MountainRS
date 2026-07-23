@@ -135,3 +135,15 @@ resources:
   stage_7_1_readiness_report:
     resolver: relative_path
     relative_path: reports/Stage-7.1/readiness_report.md
+  earth_engine_python_runtime:
+    resolver: relative_path
+    relative_path: .cache/earthengine/venv/bin/python
+  earth_engine_auth_session:
+    resolver: manual
+    reference: 由官方 Earth Engine 客户端管理；不得读取凭据正文，仅以非秘密健康探针确认会话可用
+  earth_engine_cloud_project:
+    resolver: relative_path
+    relative_path: configs/stage7_1/earthengine-project.yaml
+  stage_7_1_catalog_executor:
+    resolver: relative_path
+    relative_path: scripts/stage7_1/gee_catalog_audit.py
