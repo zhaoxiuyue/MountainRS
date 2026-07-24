@@ -138,3 +138,94 @@ identity, terminal status and local output hashes reconciled to that manifest.
   footprint without admitting incomplete grid coverage.
 
 None of these assumptions has been verified in this First Action.
+
+## 9. Export-set and raw-evidence amendment
+
+Status: **frozen by user decision on 2026-07-24 before any Stage 7.1 Export task**.
+
+This amendment resolves only the acquisition-export and raw-file transaction
+semantics. It does not make any acquisition `stack_eligible`, does not assign a
+split, and does not authorize this protocol-editing run to create an Export task.
+
+### 9.1 Complete export set
+
+The Export set is exactly the complete 21-acquisition V5 candidate universe with
+identity hash
+`15d5522991f9ff7eddba2f6983603f19b906026cceb4954579a892e6bd1bfe60`.
+Every acquisition in that universe is included once, in the canonical V5 order.
+No cloud, QA, residual, fit, validation, test or model-result criterion may remove,
+replace or reorder a member. Complete acquisition is an evidence-acquisition
+decision only; it does not imply that any or all 21 acquisitions will pass the
+later local stack gate.
+
+### 9.2 Raw bands and deferred reflectance derivation
+
+Each acquisition maps to one Export task and one three-band GeoTIFF containing,
+in order, raw `SR_B4` DN, raw `SR_B5` DN and raw `QA_PIXEL`. Export must not apply
+`DN × 0.0000275 − 0.2`; that conversion belongs to a later traceable local
+derived layer. The task must not fit, score, mask by scene quality or alter raw
+band values for analysis convenience.
+
+No shared numeric nodata value is set and `unmask` is prohibited. In particular,
+legal `QA_PIXEL = 0` must never be reclassified as missing. Source-band mask,
+surface-reflectance fill and QA bit 0 are distinct semantics:
+
+- source-band mask is an Earth Engine validity property and is not a QA value;
+- raw SR fill remains a raw DN value and is interpreted with the product QA;
+- QA bit 0 remains the authoritative fill flag; the complete QA word is retained;
+- `QA_PIXEL = 0` is a legitimate all-zero QA word, not nodata.
+
+A three-band file is lossless under this contract only when all three selected
+source-band masks are verified all-valid over the complete frozen target grid
+before task creation. The local GeoTIFF must later verify `nodata is None`, three
+`uint16` bands, an all-valid mask, exact raw QA words and exact grid geometry. If
+any source mask is not all-valid, or the external format would collapse a mask,
+SR fill and legal QA zero into one value, stop before task creation. Do not add a
+fourth band, split the task, invent a shared sentinel or silently relax the rule.
+
+### 9.3 Grid and resampling transaction
+
+The Export must use the exact frozen CRS and six-element affine transform; it
+must not substitute `scale`, `dimensions`, `bestEffort` or a shifted grid. Earth
+Engine's default nearest-neighbor reprojection is the only admitted resampling
+semantics. Calls that request bilinear, bicubic or resolution aggregation are
+prohibited for all three bands. If the resulting file does not match the frozen
+CRS, transform, width, height, bounds, resolution and pixel alignment exactly,
+the acquisition fails reconciliation and is not admitted to the stack.
+
+### 9.4 Task, file and path identity
+
+Task granularity is exactly one acquisition to one Export task to one three-band
+GeoTIFF. At most one Export task may be active. The local target root resolves
+only through the `stage_7_1_observation_stack` resource Alias; manifests and task
+records store no absolute path. For short product ID `<id>`, the path relative to
+that Alias is:
+
+```text
+<id>/<id>__SR_B4_SR_B5_QA_PIXEL.tif
+```
+
+The complete acquisition ID, short product ID, manifest request ID, attempt
+number, external task ID and local file hash remain separate linked identities.
+An external Drive output is a transfer intermediate, not the canonical local
+member and not a new acquisition. An Earth Engine asset is not created.
+
+### 9.5 Idempotency, retry and reconciliation
+
+An existing local target is never overwritten. Before any submission, reconcile
+the frozen manifest identity, attempt lineage, external task ID, task state and
+local file hash. `unknown` is not retryable: no new task may be submitted until
+the same attempt has been reconciled to a real terminal state.
+
+Only an explicitly terminal `failed` attempt that satisfies the manifest's
+frozen retry classification may create the next attempt. Every attempt retains
+its immutable task ID and status history. `cancelled`, expired authentication,
+schema failure, grid or mask failure, destination conflict, identity drift and
+logic errors are fail-closed and are not silently retried. A submitted or running
+task is not success. `succeeded` requires terminal external status plus a unique
+local file whose hash, band schema, raw semantics and exact grid reconcile to the
+same acquisition and manifest.
+
+The versioned Export Manifest may set `exports_allowed=true` only to state that a
+future separately authorized execution may follow that exact manifest. It does
+not authorize task creation in the run that writes or audits the manifest.
