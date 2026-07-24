@@ -1,0 +1,321 @@
+{
+  "schema": "mountainrs-stage7.1-catalog-audit-request-v5",
+  "request_id": "mountainrs-stage7.1-catalog-audit-request-v5",
+  "manifest_revision": 5,
+  "status": "preregistered",
+  "created_at_utc": "2026-07-24T01:00:25Z",
+  "supersedes": {
+    "request_id": "mountainrs-stage7.1-catalog-audit-request-v4",
+    "relative_path": "evidence/Stage-7.1/catalog-audit-request-v4.json",
+    "sha256": "eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097",
+    "commit": "62c7f683d65de3ae5cb624e45dc349f3c6194bc6"
+  },
+  "supersedes_aggregation_execution_topology_only": true,
+  "scientific_query_scope_unchanged": true,
+  "target_roi_grid_unchanged": true,
+  "product_and_time_window_unchanged": true,
+  "selection_and_deduplication_unchanged": true,
+  "output_fields_and_schema_unchanged": true,
+  "v4_failure": {
+    "classification": "deterministic_concurrent_aggregation_resource_limit",
+    "http_status": 429,
+    "exact_error": "Too many concurrent aggregations.",
+    "mechanism": "V4 mapped a candidate feature containing reduceRegion across the complete cataloged ImageCollection and then materialized the complete FeatureCollection with one getInfo call. Multiple per-acquisition aggregations therefore entered the same server-side graph.",
+    "not_inferred_from_summary_band_count": true,
+    "result_boundary": {
+      "catalog_created": false,
+      "audit_report_created": false,
+      "partial_formal_result_created": false,
+      "catalog_counts_available": false,
+      "export_task_created": false,
+      "asset_created": false,
+      "task_id": "not_applicable",
+      "asset_id": "not_applicable",
+      "result_commit_created": false,
+      "retry_performed": false
+    },
+    "verified_no_result_at_utc": "2026-07-23T16:14:31Z"
+  },
+  "project_identity": {
+    "project_id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+    "project_revision": 83,
+    "route_revision": 3,
+    "node_id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+    "node_code": "Stage 7.1",
+    "node_contract_revision": 2,
+    "node_contract_hash": "2648735063f0a1561264b3363625b8027ef7d350818fd921a772a47acb12791c",
+    "continuity_source_revision": "project_e47b176e-4ca2-4462-9996-80f832b5c41c:project:83:route:3:roots:1f8090f2a5bef8b20121a6971b8c5ebae77766fb5d6d3707a6ffa0f861d9ddb3:knowledge:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945:assets:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945:charter:2:architecture:2:basis:2:workspace:b61d58ea81e5c2fb156375995703397cf0bd8c1830dfd63138a389522614bb15:node-contract:2:2648735063f0a1561264b3363625b8027ef7d350818fd921a772a47acb12791c:node-results:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "architecture_drift": "clear",
+    "current_task_hash": "a444840b4ba87063c4c468a36b082c0ba31e4c22c782bc5fe5a938a84fc66085",
+    "current_task_file_sha256": "e5c01cfa8f70fbbd5e8046b040d533f19cabfd05c0faba952da4ac8873065ba8",
+    "current_task_local_status": "ready",
+    "current_task_blockers": [],
+    "current_task_unknowns": [],
+    "current_task_stale": false
+  },
+  "readiness_attestation": {
+    "relative_path": ".cache/earthengine/session/auth-attestation.json",
+    "sha256": "21d6c82ad3ea7f593dabea4f413a74a6abfe8ade76673c11f8f66c0a5adfd7aa",
+    "schema": "mountainrs-stage7.1-earthengine-auth-attestation",
+    "version": 1,
+    "project_id": "gee-et-playground",
+    "earth_engine_api_version": "1.7.36",
+    "verified_at": "2026-07-24T00:58:10.303549Z",
+    "valid_until": "2026-07-24T01:28:10.303549Z",
+    "ttl_minutes": 30,
+    "credential_managed_by": "official_earthengine_client",
+    "credential_body_read": false,
+    "query_precondition": "attestation must be unexpired and a new live ee.Initialize plus exact health probe must succeed before the catalog query"
+  },
+  "execution_topology": {
+    "stages": [
+      "candidate_universe",
+      "sequential_summary",
+      "atomic_assembly"
+    ],
+    "candidate_universe_metadata_only": true,
+    "candidate_universe_summary_reduction_allowed": false,
+    "candidate_order": "lexicographic_full_earth_engine_asset_id",
+    "candidate_order_controls_execution_only": true,
+    "candidate_universe_identity_hash": "sha256_of_canonical_ordered_full_asset_id_array",
+    "summary_batch_size": 1,
+    "maximum_in_flight_summary_aggregations": 1,
+    "next_summary_starts_only_after_complete_response": true,
+    "threads_or_parallel_futures_allowed": false,
+    "complete_collection_summary_graph_allowed": false,
+    "single_summary_max_pixels": 10000000,
+    "best_effort": false,
+    "atomic_formal_assembly": true,
+    "assembly_requires_every_candidate_once": true,
+    "assembly_rejects_missing_duplicate_or_drifted_sets": true
+  },
+  "staging_boundary": {
+    "root_template": ".cache/earthengine/catalog-audit-v5/{v5_request_sha256}",
+    "formal_result": false,
+    "counts_as_cataloged_or_exportable": false,
+    "candidate_universe_record": "candidate-universe.json",
+    "summary_record_filename": "summary-{sha256(full_asset_id)}.json",
+    "summary_record_required_bindings": [
+      "V5 request SHA-256",
+      "executor SHA-256",
+      "full Earth Engine asset/product ID",
+      "single-summary response schema",
+      "summary response SHA-256",
+      "completed_at_utc"
+    ],
+    "same_request_valid_record_is_reused_without_requery": true,
+    "record_drift_fails_closed": true,
+    "partial_staging_may_survive_failure": true,
+    "partial_formal_catalog_or_report_allowed": false
+  },
+  "resource_budget": {
+    "target_grid_width": 650,
+    "target_grid_height": 752,
+    "target_pixel_count": 488800,
+    "fixed_summary_band_count": 12,
+    "per_acquisition_pixel_demand": 5865600,
+    "max_pixels": 10000000,
+    "best_effort": false,
+    "roi_grid_scale_and_crs_unchanged": true
+  },
+  "execution_channel": {
+    "implementation_commit": "bd47aba22903e0a162f2ed918cc3b9b31da2be89",
+    "python_executor": {
+      "relative_path": "scripts/stage7_1/gee_catalog_audit.py",
+      "sha256": "803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4"
+    },
+    "frozen_javascript_reference": {
+      "relative_path": "scripts/stage7_1/gee_catalog_audit.js",
+      "sha256": "066bd2fee5b20e14e30791944c6b0340a1d050ae6f1610f3f166f309c6035e73"
+    },
+    "equivalence_and_safety_test": {
+      "relative_path": "scripts/stage7_1/tests/test_gee_catalog_executor.py",
+      "sha256": "73135f9f7b9c25ed234351dcc7815a64c7033478e962c6a9bc3c809b7f92108f",
+      "result": "passed_15_tests",
+      "coverage": [
+        "candidate universe contains no summary reduceRegion",
+        "maximum in-flight summary aggregation is one",
+        "batch_size is fixed at one in Python and JavaScript",
+        "Python and JavaScript frozen scientific semantics",
+        "maxPixels remains 10000000 and bestEffort is absent",
+        "query scope, fields, state boundaries and output schema",
+        "staging records are not formal results",
+        "same-request staging reread does not requery a candidate",
+        "missing candidate summary prevents atomic assembly",
+        "forbidden Export, asset write, download, fitting, scoring and residual actions",
+        "attestation project, TTL, live reverification and failure closure"
+      ]
+    },
+    "local_registry": {
+      "relative_path": ".pf/resource-registry.yaml",
+      "sha256": "f4dae4833e1b9a2e10e484644199ecb7dacd7e459ee0092cdbad3e4e72a88f42",
+      "auth_session_resolver": "relative_path",
+      "auth_session_relative_path": ".cache/earthengine/session/auth-attestation.json",
+      "unchanged_by_v5": true
+    },
+    "runtime_lock": {
+      "relative_path": "configs/stage7_1/earthengine-runtime.lock",
+      "sha256": "0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602",
+      "earthengine_api_version": "1.7.36"
+    },
+    "cloud_project_config": {
+      "relative_path": "configs/stage7_1/earthengine-project.yaml",
+      "sha256": "16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18",
+      "cloud_project_id": "gee-et-playground"
+    }
+  },
+  "frozen_contract_files": [
+    {
+      "relative_path": "configs/stage7_1/observation-schema.yaml",
+      "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced"
+    },
+    {
+      "relative_path": "configs/stage7_1/target-grid.yaml",
+      "sha256": "329129636c6c586fdff9e15b9a2981286c0f5b7f1918e16f16e407263f34e0b0"
+    },
+    {
+      "relative_path": "docs/stage7_1/selection-protocol.md",
+      "sha256": "8988b48213fdb892d0b3e4924c9bee9a3d1c04f3d607850b6885f37652a7a670"
+    }
+  ],
+  "operation_boundary": {
+    "operation_type": "metadata_query",
+    "query_only": true,
+    "exports_allowed": false,
+    "export_tasks_allowed": false,
+    "asset_creation_allowed": false,
+    "local_imagery_allowed": false,
+    "formal_query_authorized": true,
+    "attestation_must_be_unexpired": true,
+    "live_health_probe_required_before_query": true,
+    "failure_mode": "closed",
+    "executor_relative_path": "scripts/stage7_1/gee_catalog_audit.py",
+    "executor_sha256": "803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4",
+    "executor_mutation_after_preregistration_allowed": false
+  },
+  "query_scope": {
+    "platform": "LANDSAT_8",
+    "sensor": "OLI_TIRS",
+    "collection": "LANDSAT/LC08/C02/T1_L2",
+    "tier": "T1",
+    "processing_level": "L2",
+    "wrs_path": 130,
+    "wrs_row": 38,
+    "time_window": {
+      "start_utc": "2023-01-01T00:00:00Z",
+      "start_inclusive": true,
+      "end_utc": "2024-01-01T00:00:00Z",
+      "end_inclusive": false
+    },
+    "candidate_enumeration": "complete_without_cloud_or_quality_truncation",
+    "minimum_target_roi_footprint_coverage": 0.999999
+  },
+  "target_roi_grid": {
+    "grid_id": "shadow-risk-b-b4-grid-v1",
+    "source_relative_path": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+    "source_sha256": "678bef90b5d25379dd25f10bdf132ae335757866664c40b0ce5486279f7440c7",
+    "crs": "EPSG:32648",
+    "transform": [
+      30.0,
+      0.0,
+      292230.0,
+      0.0,
+      -30.0,
+      3473790.0
+    ],
+    "shape": {
+      "height": 752,
+      "width": 650
+    },
+    "bounds": [
+      292230.0,
+      3451230.0,
+      311730.0,
+      3473790.0
+    ],
+    "resolution": [
+      30.0,
+      30.0
+    ],
+    "target_pixel_count": 488800,
+    "nodata": null
+  },
+  "expected_output": {
+    "catalog_relative_path": "data/raw/stage7_1/acquisition-catalog.json",
+    "audit_report_relative_path": "reports/Stage-7.1/candidate-audit.md",
+    "catalog_schema": "mountainrs-stage7.1-acquisition-catalog-v1",
+    "catalog_envelope_required_fields": [
+      "schema",
+      "request_manifest_sha256",
+      "operation",
+      "query_scope",
+      "target_roi_grid",
+      "counts",
+      "candidates"
+    ],
+    "candidate_required_fields": [
+      "acquisition_id",
+      "earth_engine_asset_id",
+      "system_index",
+      "system_time_start_ms",
+      "system_time_start_utc",
+      "platform",
+      "sensor",
+      "collection",
+      "tier",
+      "processing_level",
+      "wrs_path",
+      "wrs_row",
+      "source_footprint",
+      "source_footprint_area_m2",
+      "target_roi_area_m2",
+      "target_roi_intersection_area_m2",
+      "target_roi_footprint_coverage",
+      "sun_azimuth_deg",
+      "sun_elevation_deg",
+      "sun_azimuth_source_field",
+      "sun_elevation_source_field",
+      "solar_geometry_missing_fields",
+      "qa_summary",
+      "land_valid_support_summary",
+      "cataloged",
+      "cataloged_reasons",
+      "exportable",
+      "exportable_reasons",
+      "stack_eligible",
+      "formal_split"
+    ],
+    "state_constraints": {
+      "stack_eligible": "not_yet_evaluated",
+      "formal_split": null,
+      "model_eligible": "not_adjudicated_stage_7_2"
+    },
+    "preview_split_allowed": true,
+    "preview_split_is_formal": false
+  },
+  "retry_policy": {
+    "maximum_retries_per_candidate": 1,
+    "allowed_only_for": "explicit query timeout or server-side HTTP 5xx transient failure",
+    "not_allowed_for": [
+      "HTTP 429",
+      "resource limit",
+      "schema error",
+      "candidate universe drift",
+      "logic or determinism error"
+    ],
+    "request_manifest_candidate_and_executor_must_be_identical": true
+  },
+  "stop_conditions": [
+    "The attestation is expired or the live ee.Initialize plus exact health probe fails.",
+    "The current task is not ready, has blockers or unknowns, or becomes stale.",
+    "Any Python executor, JavaScript reference, test, registry, current-task, attestation, project config, frozen contract or V5 request hash differs from the preregistered value.",
+    "The candidate universe query contains a per-pixel summary aggregation.",
+    "More than one summary aggregation is in flight or a complete collection summary graph is constructed.",
+    "The candidate universe identity set is missing, duplicated or changes during sequential execution.",
+    "Any single-summary response has an invalid schema, identity or content hash.",
+    "The complete staging set does not contain exactly one valid summary per candidate.",
+    "HTTP 429, a resource limit, schema error, candidate-universe drift, logic error or determinism error occurs; no retry or in-place repair is allowed.",
+    "Any Export task, asset creation, imagery download, fitting, scoring, residual-based selection or formal split assignment would occur.",
+    "Any implementation revision is required; a new executor hash and request manifest revision must be committed first."
+  ]
+}
