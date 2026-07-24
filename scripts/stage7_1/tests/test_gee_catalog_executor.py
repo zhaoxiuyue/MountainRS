@@ -117,6 +117,7 @@ class FrozenSemanticsTest(unittest.TestCase):
             "TARGET_PIXEL_COUNT",
             "SUMMARY_REDUCTION_BAND_COUNT",
             "SUMMARY_REDUCTION_MAX_PIXELS",
+            "SUMMARY_BATCH_SIZE",
             "MIN_FOOTPRINT_COVERAGE",
         ):
             self.assertEqual(
@@ -151,6 +152,7 @@ class FrozenSemanticsTest(unittest.TestCase):
         self.assertEqual(pixel_demand, 5_865_600)
         self.assertLess(pixel_demand, max_pixels)
         self.assertEqual(max_pixels, 10_000_000)
+        self.assertEqual(self.python_values["SUMMARY_BATCH_SIZE"], 1)
         self.assertEqual(
             self.executor.validate_reduction_budget(),
             pixel_demand,
@@ -189,6 +191,125 @@ class FrozenSemanticsTest(unittest.TestCase):
         self.assertIn(".toList(cataloged.size())", self.javascript_source)
         self.assertIn(".toList(cataloged.size())", self.python_source)
         self.assertIn("duplicate acquisition_id", self.python_source)
+
+    def test_candidate_universe_contains_no_summary_aggregation(self) -> None:
+        tree = ast.parse(self.python_source)
+        universe = next(
+            node
+            for node in tree.body
+            if isinstance(node, ast.FunctionDef)
+            and node.name == "build_candidate_universe"
+        )
+        universe_source = ast.get_source_segment(self.python_source, universe)
+        self.assertIsNotNone(universe_source)
+        self.assertNotIn("reduceRegion", universe_source)
+        self.assertNotIn("qa_and_coverage_summary", universe_source)
+        javascript_universe = re.search(
+            r"function buildCandidateUniverse\(\) \{(.*?)\n\}",
+            self.javascript_source,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(javascript_universe)
+        self.assertNotIn("reduceRegion", javascript_universe.group(1))
+        self.assertNotIn("qaAndCoverageSummary", javascript_universe.group(1))
+
+    def test_summary_execution_is_strictly_serial_batch_size_one(self) -> None:
+        self.assertEqual(self.python_values["SUMMARY_BATCH_SIZE"], 1)
+        self.assertEqual(
+            javascript_scalar(self.javascript_source, "SUMMARY_BATCH_SIZE"),
+            1,
+        )
+        self.assertEqual(
+            javascript_scalar(
+                self.javascript_source,
+                "MAXIMUM_IN_FLIGHT_SUMMARY_AGGREGATIONS",
+            ),
+            1,
+        )
+        self.assertIn(
+            "for asset_id in ordered_asset_ids:",
+            self.python_source,
+        )
+        self.assertIn(
+            "buildSingleSummary(assetIds[index]).getInfo(",
+            self.javascript_source,
+        )
+        self.assertIn(
+            "runNext(index + SUMMARY_BATCH_SIZE)",
+            self.javascript_source,
+        )
+        for forbidden_parallelism in (
+            "ThreadPool",
+            "ProcessPool",
+            "concurrent.futures",
+            "asyncio.gather",
+            "Promise.all",
+        ):
+            self.assertNotIn(forbidden_parallelism, self.python_source)
+            self.assertNotIn(forbidden_parallelism, self.javascript_source)
+
+    def test_staging_reuse_is_idempotent_and_not_a_formal_result(self) -> None:
+        asset_id = (
+            "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101"
+        )
+        response = {
+            "schema": self.executor.SUMMARY_RESPONSE_SCHEMA,
+            "earth_engine_asset_id": asset_id,
+            "summary": {
+                field: index
+                for index, field in enumerate(self.executor.SUMMARY_FIELDS)
+            },
+        }
+        fetch = mock.Mock(return_value=response)
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            first = self.executor.load_or_fetch_single_summary(
+                directory,
+                request_sha256="a" * 64,
+                executor_sha256="b" * 64,
+                asset_id=asset_id,
+                fetch_summary=fetch,
+            )
+            second = self.executor.load_or_fetch_single_summary(
+                directory,
+                request_sha256="a" * 64,
+                executor_sha256="b" * 64,
+                asset_id=asset_id,
+                fetch_summary=fetch,
+            )
+            record_path = self.executor.summary_staging_path(
+                directory,
+                asset_id,
+            )
+            record = json.loads(record_path.read_text(encoding="utf-8"))
+        self.assertEqual(first, second)
+        fetch.assert_called_once_with(asset_id)
+        self.assertEqual(record["schema"], self.executor.STAGING_RECORD_SCHEMA)
+        self.assertNotEqual(record["schema"], self.executor.OUTPUT_SCHEMA)
+        self.assertTrue(
+            str(self.executor.STAGING_ROOT).startswith(
+                ".cache/earthengine/catalog-audit-v5"
+            )
+        )
+
+    def test_atomic_assembly_fails_when_any_candidate_is_missing(self) -> None:
+        asset_id = (
+            "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101"
+        )
+        universe = [
+            {
+                "type": "Feature",
+                "geometry": None,
+                "properties": {
+                    "earth_engine_asset_id": asset_id,
+                },
+            }
+        ]
+        with self.assertRaisesRegex(
+            RuntimeError,
+            "requires one summary per candidate",
+        ):
+            self.executor.assemble_raw_features(universe, {})
 
     def test_output_schema_and_state_boundaries(self) -> None:
         for required in (
@@ -363,7 +484,7 @@ class FrozenSemanticsTest(unittest.TestCase):
         ]
         self.assertLess(
             calls.index("verify_authenticated_session"),
-            calls.index("build_candidate_collection"),
+            calls.index("build_candidate_universe"),
         )
 
 

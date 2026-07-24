@@ -34,10 +34,29 @@ SUMMARY_REDUCTION_PIXEL_DEMAND = (
     TARGET_PIXEL_COUNT * SUMMARY_REDUCTION_BAND_COUNT
 )
 SUMMARY_REDUCTION_MAX_PIXELS = 10_000_000
+SUMMARY_BATCH_SIZE = 1
 TARGET_GRID_ID = "shadow-risk-b-b4-grid-v1"
 MIN_FOOTPRINT_COVERAGE = 0.999999
 OUTPUT_SCHEMA = "mountainrs-stage7.1-acquisition-catalog-v1"
 OBSERVATION_SCHEMA = "mountainrs-stage7.1-observation-record-v1"
+CANDIDATE_UNIVERSE_SCHEMA = "mountainrs-stage7.1-candidate-universe-v1"
+SUMMARY_RESPONSE_SCHEMA = "mountainrs-stage7.1-single-summary-v1"
+STAGING_RECORD_SCHEMA = "mountainrs-stage7.1-summary-staging-record-v1"
+STAGING_ROOT = Path(".cache/earthengine/catalog-audit-v5")
+SUMMARY_FIELDS = (
+    "target_pixel_count",
+    "qa_clear_count",
+    "qa_water_count",
+    "reflectance_numeric_valid_count",
+    "base_valid_count",
+    "base_valid_land_count",
+    "qa_fill_count",
+    "qa_dilated_cloud_count",
+    "qa_cirrus_count",
+    "qa_cloud_count",
+    "qa_cloud_shadow_count",
+    "qa_snow_count",
+)
 REQUIRED_EXPORTABLE_PROPERTIES = [
     "system:index",
     "system:time_start",
@@ -242,10 +261,18 @@ def validate_request_manifest(path: Path) -> dict[str, Any]:
     boundary = request["operation_boundary"]
     scope = request["query_scope"]
     grid = request["target_roi_grid"]
+    topology = request["execution_topology"]
     if boundary["query_only"] is not True:
         raise ValueError("request manifest must set query_only=true")
     if boundary["exports_allowed"] is not False:
         raise ValueError("request manifest must set exports_allowed=false")
+    if (
+        topology.get("candidate_universe_metadata_only") is not True
+        or topology.get("summary_batch_size") != SUMMARY_BATCH_SIZE
+        or topology.get("maximum_in_flight_summary_aggregations") != 1
+        or topology.get("atomic_formal_assembly") is not True
+    ):
+        raise ValueError("request execution topology drift")
     expected_scope = {
         "collection": COLLECTION_ID,
         "wrs_path": WRS_PATH,
@@ -291,8 +318,54 @@ def validate_reduction_budget(
     return pixel_demand
 
 
-def build_candidate_collection() -> ee.FeatureCollection:
+def target_roi_geometry() -> ee.Geometry:
+    return ee.Geometry.Rectangle(TARGET_BOUNDS, TARGET_CRS, False)
+
+
+def qa_and_coverage_summary(image: ee.Image) -> ee.Dictionary:
     validate_reduction_budget()
+    target_roi = target_roi_geometry()
+    image = ee.Image(image)
+    qa = image.select("QA_PIXEL")
+    scaled = image.select(["SR_B4", "SR_B5"]).multiply(0.0000275).add(-0.2)
+    qa_clear = qa.bitwiseAnd(63).eq(0).rename("qa_clear_count")
+    water = qa.bitwiseAnd(1 << 7).neq(0).rename("qa_water_count")
+    source_mask_valid = scaled.mask().reduce(ee.Reducer.min())
+    reflectance_in_range = (
+        scaled.gte(-0.05).And(scaled.lte(1.0)).reduce(ee.Reducer.min())
+    )
+    numeric_valid = source_mask_valid.And(reflectance_in_range).rename(
+        "reflectance_numeric_valid_count"
+    )
+    base_valid = qa_clear.And(numeric_valid).rename("base_valid_count")
+    base_valid_land = base_valid.And(water.Not()).rename("base_valid_land_count")
+    summary_image = ee.Image.cat(
+        [
+            ee.Image.constant(1).rename("target_pixel_count"),
+            qa_clear,
+            water,
+            numeric_valid,
+            base_valid,
+            base_valid_land,
+            qa.bitwiseAnd(1 << 0).neq(0).rename("qa_fill_count"),
+            qa.bitwiseAnd(1 << 1).neq(0).rename("qa_dilated_cloud_count"),
+            qa.bitwiseAnd(1 << 2).neq(0).rename("qa_cirrus_count"),
+            qa.bitwiseAnd(1 << 3).neq(0).rename("qa_cloud_count"),
+            qa.bitwiseAnd(1 << 4).neq(0).rename("qa_cloud_shadow_count"),
+            qa.bitwiseAnd(1 << 5).neq(0).rename("qa_snow_count"),
+        ]
+    ).unmask(0)
+    return summary_image.reduceRegion(
+        reducer=ee.Reducer.sum(),
+        geometry=target_roi,
+        crs=TARGET_CRS,
+        crsTransform=TARGET_TRANSFORM,
+        maxPixels=SUMMARY_REDUCTION_MAX_PIXELS,
+        tileScale=4,
+    )
+
+
+def build_candidate_universe() -> ee.FeatureCollection:
     target_roi = ee.Geometry.Rectangle(TARGET_BOUNDS, TARGET_CRS, False)
     target_area_m2 = target_roi.area(1)
 
@@ -317,52 +390,6 @@ def build_candidate_collection() -> ee.FeatureCollection:
             }
         )
 
-    def qa_and_coverage_summary(image: ee.Image) -> ee.Dictionary:
-        image = ee.Image(image)
-        qa = image.select("QA_PIXEL")
-        scaled = image.select(["SR_B4", "SR_B5"]).multiply(0.0000275).add(-0.2)
-        qa_clear = qa.bitwiseAnd(63).eq(0).rename("qa_clear_count")
-        water = qa.bitwiseAnd(1 << 7).neq(0).rename("qa_water_count")
-        source_mask_valid = scaled.mask().reduce(ee.Reducer.min())
-        reflectance_in_range = (
-            scaled.gte(-0.05).And(scaled.lte(1.0)).reduce(ee.Reducer.min())
-        )
-        numeric_valid = source_mask_valid.And(reflectance_in_range).rename(
-            "reflectance_numeric_valid_count"
-        )
-        base_valid = qa_clear.And(numeric_valid).rename("base_valid_count")
-        base_valid_land = base_valid.And(water.Not()).rename(
-            "base_valid_land_count"
-        )
-        summary_image = ee.Image.cat(
-            [
-                ee.Image.constant(1).rename("target_pixel_count"),
-                qa_clear,
-                water,
-                numeric_valid,
-                base_valid,
-                base_valid_land,
-                qa.bitwiseAnd(1 << 0).neq(0).rename("qa_fill_count"),
-                qa.bitwiseAnd(1 << 1)
-                .neq(0)
-                .rename("qa_dilated_cloud_count"),
-                qa.bitwiseAnd(1 << 2).neq(0).rename("qa_cirrus_count"),
-                qa.bitwiseAnd(1 << 3).neq(0).rename("qa_cloud_count"),
-                qa.bitwiseAnd(1 << 4)
-                .neq(0)
-                .rename("qa_cloud_shadow_count"),
-                qa.bitwiseAnd(1 << 5).neq(0).rename("qa_snow_count"),
-            ]
-        ).unmask(0)
-        return summary_image.reduceRegion(
-            reducer=ee.Reducer.sum(),
-            geometry=target_roi,
-            crs=TARGET_CRS,
-            crsTransform=TARGET_TRANSFORM,
-            maxPixels=SUMMARY_REDUCTION_MAX_PIXELS,
-            tileScale=4,
-        )
-
     scoped = (
         ee.ImageCollection(COLLECTION_ID)
         .filterDate(START_UTC, END_UTC)
@@ -382,7 +409,7 @@ def build_candidate_collection() -> ee.FeatureCollection:
     exportable_ids = ee.List(exportable.aggregate_array("system:index"))
     cataloged_list = cataloged.toList(cataloged.size())
 
-    def candidate_feature(item: Any) -> ee.Feature:
+    def candidate_metadata_feature(item: Any) -> ee.Feature:
         image = ee.Image(item)
         is_exportable = exportable_ids.contains(image.get("system:index"))
         state = ee.String(
@@ -432,12 +459,216 @@ def build_candidate_collection() -> ee.FeatureCollection:
                 "stack_eligible": "not_evaluated_local_only",
                 "model_eligible": "not_adjudicated_stage_7_2",
             }
-        ).combine(qa_and_coverage_summary(image), True)
+        )
         return ee.Feature(image.geometry(), properties)
 
-    return ee.FeatureCollection(cataloged_list.map(candidate_feature)).sort(
+    return ee.FeatureCollection(cataloged_list.map(candidate_metadata_feature)).sort(
         "stable_sort_key"
     )
+
+
+def build_single_summary(asset_id: str) -> ee.Dictionary:
+    """Build exactly one per-acquisition aggregation graph."""
+    if not asset_id.startswith(COLLECTION_ID + "/"):
+        raise ValueError("single-summary asset identity is outside frozen collection")
+    return ee.Dictionary(
+        {
+            "schema": SUMMARY_RESPONSE_SCHEMA,
+            "earth_engine_asset_id": asset_id,
+            "summary": qa_and_coverage_summary(ee.Image(asset_id)),
+        }
+    )
+
+
+def candidate_universe_identity(
+    raw_features: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[str], str]:
+    ordered = sorted(
+        raw_features,
+        key=lambda feature: feature["properties"]["earth_engine_asset_id"],
+    )
+    asset_ids = [
+        feature["properties"]["earth_engine_asset_id"] for feature in ordered
+    ]
+    if len(asset_ids) != len(set(asset_ids)):
+        raise RuntimeError("duplicate acquisition_id in candidate universe")
+    if any(not asset_id.startswith(COLLECTION_ID + "/") for asset_id in asset_ids):
+        raise RuntimeError("candidate universe contains an out-of-scope asset")
+    return ordered, asset_ids, sha256_text(canonical_json(asset_ids))
+
+
+def validate_single_summary_response(
+    response: dict[str, Any],
+    expected_asset_id: str,
+) -> dict[str, Any]:
+    if set(response) != {"schema", "earth_engine_asset_id", "summary"}:
+        raise RuntimeError("single-summary response schema fields mismatch")
+    if response["schema"] != SUMMARY_RESPONSE_SCHEMA:
+        raise RuntimeError("single-summary response schema mismatch")
+    if response["earth_engine_asset_id"] != expected_asset_id:
+        raise RuntimeError("single-summary response asset identity mismatch")
+    summary = response["summary"]
+    if not isinstance(summary, dict) or set(summary) != set(SUMMARY_FIELDS):
+        raise RuntimeError("single-summary count fields mismatch")
+    if any(value is None for value in summary.values()):
+        raise RuntimeError("single-summary contains a missing count")
+    return response
+
+
+def staging_directory(request_sha256: str) -> Path:
+    if len(request_sha256) != 64 or any(
+        character not in "0123456789abcdef" for character in request_sha256
+    ):
+        raise ValueError("V5 request SHA-256 is invalid")
+    return STAGING_ROOT / request_sha256
+
+
+def summary_staging_path(directory: Path, asset_id: str) -> Path:
+    return directory / f"summary-{sha256_text(asset_id)}.json"
+
+
+def ensure_candidate_universe_staging(
+    directory: Path,
+    *,
+    request_sha256: str,
+    executor_sha256: str,
+    ordered_asset_ids: list[str],
+    candidate_universe_sha256: str,
+) -> dict[str, Any]:
+    path = directory / "candidate-universe.json"
+    expected = {
+        "schema": CANDIDATE_UNIVERSE_SCHEMA,
+        "request_manifest_sha256": request_sha256,
+        "executor_sha256": executor_sha256,
+        "ordered_asset_ids": ordered_asset_ids,
+        "candidate_universe_sha256": candidate_universe_sha256,
+    }
+    if path.exists():
+        record = json.loads(path.read_text(encoding="utf-8"))
+        comparable = {key: record.get(key) for key in expected}
+        if comparable != expected or set(record) != set(expected) | {
+            "completed_at_utc"
+        }:
+            raise RuntimeError("candidate universe staging record drift")
+        return record
+    record = {**expected, "completed_at_utc": format_utc(utc_now())}
+    atomic_write_text(path, canonical_json(record) + "\n")
+    return record
+
+
+def load_or_fetch_single_summary(
+    directory: Path,
+    *,
+    request_sha256: str,
+    executor_sha256: str,
+    asset_id: str,
+    fetch_summary: Any,
+) -> dict[str, Any]:
+    path = summary_staging_path(directory, asset_id)
+    if path.exists():
+        record = json.loads(path.read_text(encoding="utf-8"))
+        required_fields = {
+            "schema",
+            "request_manifest_sha256",
+            "executor_sha256",
+            "earth_engine_asset_id",
+            "response_schema",
+            "summary_response",
+            "summary_response_sha256",
+            "completed_at_utc",
+        }
+        if set(record) != required_fields:
+            raise RuntimeError("summary staging record fields mismatch")
+        response = validate_single_summary_response(
+            record["summary_response"],
+            asset_id,
+        )
+        expected = {
+            "schema": STAGING_RECORD_SCHEMA,
+            "request_manifest_sha256": request_sha256,
+            "executor_sha256": executor_sha256,
+            "earth_engine_asset_id": asset_id,
+            "response_schema": SUMMARY_RESPONSE_SCHEMA,
+            "summary_response_sha256": sha256_text(canonical_json(response)),
+        }
+        if any(record.get(key) != value for key, value in expected.items()):
+            raise RuntimeError("summary staging record identity or hash drift")
+        return response
+    response = validate_single_summary_response(fetch_summary(asset_id), asset_id)
+    record = {
+        "schema": STAGING_RECORD_SCHEMA,
+        "request_manifest_sha256": request_sha256,
+        "executor_sha256": executor_sha256,
+        "earth_engine_asset_id": asset_id,
+        "response_schema": SUMMARY_RESPONSE_SCHEMA,
+        "summary_response": response,
+        "summary_response_sha256": sha256_text(canonical_json(response)),
+        "completed_at_utc": format_utc(utc_now()),
+    }
+    atomic_write_text(path, canonical_json(record) + "\n")
+    return response
+
+
+def validate_complete_staging_set(
+    directory: Path,
+    asset_ids: list[str],
+) -> None:
+    expected = {"candidate-universe.json"} | {
+        summary_staging_path(directory, asset_id).name for asset_id in asset_ids
+    }
+    observed = {path.name for path in directory.glob("*.json")}
+    if observed != expected:
+        raise RuntimeError("staging set is missing, duplicated, or has drifted")
+
+
+def assemble_raw_features(
+    universe_features: list[dict[str, Any]],
+    summaries: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    ordered_features, asset_ids, _ = candidate_universe_identity(universe_features)
+    if set(summaries) != set(asset_ids) or len(summaries) != len(asset_ids):
+        raise RuntimeError("atomic assembly requires one summary per candidate")
+    assembled: list[dict[str, Any]] = []
+    for feature in ordered_features:
+        asset_id = feature["properties"]["earth_engine_asset_id"]
+        response = validate_single_summary_response(summaries[asset_id], asset_id)
+        combined = {
+            **feature,
+            "properties": {
+                **feature["properties"],
+                **response["summary"],
+            },
+        }
+        assembled.append(combined)
+    return {"type": "FeatureCollection", "features": assembled}
+
+
+def atomic_publish_catalog_and_report(
+    output_path: Path,
+    output_content: str,
+    report_path: Path,
+    report_content: str,
+) -> None:
+    if output_path.exists() or report_path.exists():
+        raise RuntimeError("formal catalog or audit report already exists")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    output_temporary = output_path.with_suffix(output_path.suffix + ".tmp")
+    report_temporary = report_path.with_suffix(report_path.suffix + ".tmp")
+    published_output = False
+    try:
+        output_temporary.write_text(output_content, encoding="utf-8")
+        report_temporary.write_text(report_content, encoding="utf-8")
+        output_temporary.replace(output_path)
+        published_output = True
+        report_temporary.replace(report_path)
+    except Exception:
+        if published_output and output_path.exists() and not report_path.exists():
+            output_path.unlink()
+        raise
+    finally:
+        output_temporary.unlink(missing_ok=True)
+        report_temporary.unlink(missing_ok=True)
 
 
 def normalize_candidate(feature: dict[str, Any]) -> dict[str, Any]:
@@ -659,8 +890,35 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
         attestation_path,
         project_id,
     )
-    raw = build_candidate_collection().getInfo()
-    raw_features = raw.get("features", [])
+    request_sha256 = sha256_file(request_path)
+    executor_sha256 = sha256_file(Path(__file__).resolve())
+    raw_universe = build_candidate_universe().getInfo()
+    raw_features = raw_universe.get("features", [])
+    ordered_features, ordered_asset_ids, candidate_universe_sha256 = (
+        candidate_universe_identity(raw_features)
+    )
+    directory = staging_directory(request_sha256)
+    ensure_candidate_universe_staging(
+        directory,
+        request_sha256=request_sha256,
+        executor_sha256=executor_sha256,
+        ordered_asset_ids=ordered_asset_ids,
+        candidate_universe_sha256=candidate_universe_sha256,
+    )
+    summaries: dict[str, dict[str, Any]] = {}
+    for asset_id in ordered_asset_ids:
+        summaries[asset_id] = load_or_fetch_single_summary(
+            directory,
+            request_sha256=request_sha256,
+            executor_sha256=executor_sha256,
+            asset_id=asset_id,
+            fetch_summary=lambda current_asset_id: build_single_summary(
+                current_asset_id
+            ).getInfo(),
+        )
+    validate_complete_staging_set(directory, ordered_asset_ids)
+    raw = assemble_raw_features(ordered_features, summaries)
+    raw_features = raw["features"]
     candidates = sorted(
         (normalize_candidate(feature) for feature in raw_features),
         key=lambda item: (item["system_time_start_ms"], item["acquisition_id"]),
@@ -673,7 +931,7 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     executed_at = format_utc(utc_now())
     result = {
         "schema": OUTPUT_SCHEMA,
-        "request_manifest_sha256": sha256_file(request_path),
+        "request_manifest_sha256": request_sha256,
         "operation": {
             "operation_type": "metadata_query",
             "channel": "official_earthengine_python_api",
@@ -710,8 +968,12 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
         "known_acquisition_recovery": known_acquisition_recovery(candidates),
         "split_preview": preview_split(candidates),
     }
-    atomic_write_text(output_path, canonical_json(result) + "\n")
-    atomic_write_text(report_path, render_audit_report(result))
+    atomic_publish_catalog_and_report(
+        output_path,
+        canonical_json(result) + "\n",
+        report_path,
+        render_audit_report(result),
+    )
     return result
 
 

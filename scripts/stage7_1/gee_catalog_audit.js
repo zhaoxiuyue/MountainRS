@@ -15,7 +15,10 @@ var SUMMARY_REDUCTION_BAND_COUNT = 12;
 var SUMMARY_REDUCTION_PIXEL_DEMAND =
   TARGET_PIXEL_COUNT * SUMMARY_REDUCTION_BAND_COUNT;
 var SUMMARY_REDUCTION_MAX_PIXELS = 10000000;
+var SUMMARY_BATCH_SIZE = 1;
+var MAXIMUM_IN_FLIGHT_SUMMARY_AGGREGATIONS = 1;
 var MIN_FOOTPRINT_COVERAGE = 0.999999;
+var SUMMARY_RESPONSE_SCHEMA = 'mountainrs-stage7.1-single-summary-v1';
 
 if (SUMMARY_REDUCTION_PIXEL_DEMAND > SUMMARY_REDUCTION_MAX_PIXELS) {
   throw new Error(
@@ -107,77 +110,130 @@ var requiredExportableProperties = [
   'SUN_ELEVATION'
 ];
 
-var scoped = ee.ImageCollection(COLLECTION_ID)
-  .filterDate(START_UTC, END_UTC)
-  .filter(ee.Filter.eq('WRS_PATH', WRS_PATH))
-  .filter(ee.Filter.eq('WRS_ROW', WRS_ROW))
-  .map(withFootprintCoverage);
+function buildCandidateUniverse() {
+  var scoped = ee.ImageCollection(COLLECTION_ID)
+    .filterDate(START_UTC, END_UTC)
+    .filter(ee.Filter.eq('WRS_PATH', WRS_PATH))
+    .filter(ee.Filter.eq('WRS_ROW', WRS_ROW))
+    .map(withFootprintCoverage);
 
-var cataloged = scoped
-  .filter(
-    ee.Filter.gte(
-      'target_roi_footprint_coverage',
-      MIN_FOOTPRINT_COVERAGE
+  var cataloged = scoped
+    .filter(
+      ee.Filter.gte(
+        'target_roi_footprint_coverage',
+        MIN_FOOTPRINT_COVERAGE
+      )
     )
-  )
-  .sort('stable_sort_key');
+    .sort('stable_sort_key');
+  var exportable = cataloged.filter(
+    ee.Filter.notNull(requiredExportableProperties)
+  );
+  var exportableIds = ee.List(exportable.aggregate_array('system:index'));
+  var catalogedList = cataloged.toList(cataloged.size());
+  return ee.FeatureCollection(
+    catalogedList.map(function (item) {
+      var image = ee.Image(item);
+      var isExportable = exportableIds.contains(image.get('system:index'));
+      var state = ee.String(
+        ee.Algorithms.If(isExportable, 'exportable', 'cataloged')
+      );
+      var fullAssetId = ee.String(COLLECTION_ID)
+        .cat('/')
+        .cat(ee.String(image.get('system:index')));
+      var properties = ee.Dictionary({
+        observation_schema: 'mountainrs-stage7.1-observation-record-v1',
+        candidate_state: state,
+        acquisition_id: fullAssetId,
+        earth_engine_asset_id: fullAssetId,
+        system_index: image.get('system:index'),
+        system_time_start_ms: image.get('system:time_start'),
+        system_time_start_utc: ee.Date(image.get('system:time_start'))
+          .format("YYYY-MM-dd'T'HH:mm:ss.SSS'Z'", 'UTC'),
+        platform: image.get('SPACECRAFT_ID'),
+        sensor: image.get('SENSOR_ID'),
+        collection: COLLECTION_ID,
+        tier: 'T1',
+        processing_level: image.get('PROCESSING_LEVEL'),
+        wrs_path: image.get('WRS_PATH'),
+        wrs_row: image.get('WRS_ROW'),
+        sun_azimuth_deg: image.get('SUN_AZIMUTH'),
+        sun_elevation_deg: image.get('SUN_ELEVATION'),
+        sun_azimuth_source_field: 'SUN_AZIMUTH',
+        sun_elevation_source_field: 'SUN_ELEVATION',
+        cloud_cover_report_only: image.get('CLOUD_COVER'),
+        source_footprint_area_m2: image.geometry().area(1),
+        target_roi_area_m2: image.get('target_roi_area_m2'),
+        target_roi_intersection_area_m2: image.get(
+          'target_roi_intersection_area_m2'
+        ),
+        target_roi_footprint_coverage: image.get(
+          'target_roi_footprint_coverage'
+        ),
+        target_grid_id: 'shadow-risk-b-b4-grid-v1',
+        target_crs: TARGET_CRS,
+        target_transform: TARGET_TRANSFORM,
+        target_pixel_count_declared: TARGET_PIXEL_COUNT,
+        stable_sort_key: image.get('stable_sort_key'),
+        stack_eligible: 'not_evaluated_local_only',
+        model_eligible: 'not_adjudicated_stage_7_2'
+      });
+      return ee.Feature(image.geometry(), properties);
+    })
+  ).sort('stable_sort_key');
+}
 
-var exportable = cataloged.filter(
-  ee.Filter.notNull(requiredExportableProperties)
-);
-var exportableIds = ee.List(exportable.aggregate_array('system:index'));
-var catalogedList = cataloged.toList(cataloged.size());
+function buildSingleSummary(assetId) {
+  return ee.Dictionary({
+    schema: SUMMARY_RESPONSE_SCHEMA,
+    earth_engine_asset_id: assetId,
+    summary: qaAndCoverageSummary(ee.Image(assetId))
+  });
+}
 
-var candidateCatalog = ee.FeatureCollection(
-  catalogedList.map(function (item) {
-    var image = ee.Image(item);
-    var isExportable = exportableIds.contains(image.get('system:index'));
-    var state = ee.String(
-      ee.Algorithms.If(isExportable, 'exportable', 'cataloged')
-    );
-    var fullAssetId = ee.String(COLLECTION_ID)
-      .cat('/')
-      .cat(ee.String(image.get('system:index')));
-    var properties = ee.Dictionary({
-      observation_schema: 'mountainrs-stage7.1-observation-record-v1',
-      candidate_state: state,
-      acquisition_id: fullAssetId,
-      earth_engine_asset_id: fullAssetId,
-      system_index: image.get('system:index'),
-      system_time_start_ms: image.get('system:time_start'),
-      system_time_start_utc: ee.Date(image.get('system:time_start'))
-        .format("YYYY-MM-dd'T'HH:mm:ss.SSS'Z'", 'UTC'),
-      platform: image.get('SPACECRAFT_ID'),
-      sensor: image.get('SENSOR_ID'),
-      collection: COLLECTION_ID,
-      tier: 'T1',
-      processing_level: image.get('PROCESSING_LEVEL'),
-      wrs_path: image.get('WRS_PATH'),
-      wrs_row: image.get('WRS_ROW'),
-      sun_azimuth_deg: image.get('SUN_AZIMUTH'),
-      sun_elevation_deg: image.get('SUN_ELEVATION'),
-      sun_azimuth_source_field: 'SUN_AZIMUTH',
-      sun_elevation_source_field: 'SUN_ELEVATION',
-      cloud_cover_report_only: image.get('CLOUD_COVER'),
-      source_footprint_area_m2: image.geometry().area(1),
-      target_roi_area_m2: image.get('target_roi_area_m2'),
-      target_roi_intersection_area_m2: image.get(
-        'target_roi_intersection_area_m2'
-      ),
-      target_roi_footprint_coverage: image.get(
-        'target_roi_footprint_coverage'
-      ),
-      target_grid_id: 'shadow-risk-b-b4-grid-v1',
-      target_crs: TARGET_CRS,
-      target_transform: TARGET_TRANSFORM,
-      target_pixel_count_declared: TARGET_PIXEL_COUNT,
-      stable_sort_key: image.get('stable_sort_key'),
-      stack_eligible: 'not_evaluated_local_only',
-      model_eligible: 'not_adjudicated_stage_7_2'
-    }).combine(qaAndCoverageSummary(image), true);
-    return ee.Feature(image.geometry(), properties);
-  })
-).sort('stable_sort_key');
+function runSequentialCandidateSummaries(candidateUniverse, onComplete, onError) {
+  candidateUniverse.getInfo(function (rawUniverse, universeError) {
+    if (universeError) {
+      onError(universeError);
+      return;
+    }
+    var features = rawUniverse.features.slice().sort(function (left, right) {
+      var leftId = left.properties.earth_engine_asset_id;
+      var rightId = right.properties.earth_engine_asset_id;
+      return leftId < rightId ? -1 : leftId > rightId ? 1 : 0;
+    });
+    var assetIds = features.map(function (feature) {
+      return feature.properties.earth_engine_asset_id;
+    });
+    if (new Set(assetIds).size !== assetIds.length) {
+      onError(new Error('Duplicate acquisition in candidate universe'));
+      return;
+    }
+    var summaries = [];
+    function runNext(index) {
+      if (index === assetIds.length) {
+        onComplete({
+          candidate_universe: rawUniverse,
+          ordered_asset_ids: assetIds,
+          summaries: summaries
+        });
+        return;
+      }
+      buildSingleSummary(assetIds[index]).getInfo(
+        function (summary, summaryError) {
+          if (summaryError) {
+            onError(summaryError);
+            return;
+          }
+          summaries.push(summary);
+          runNext(index + SUMMARY_BATCH_SIZE);
+        }
+      );
+    }
+    runNext(0);
+  });
+}
+
+var candidateUniverse = buildCandidateUniverse();
 
 print('Frozen Stage 7.1 scope', {
   collection: COLLECTION_ID,
@@ -189,6 +245,18 @@ print('Frozen Stage 7.1 scope', {
   target_transform: TARGET_TRANSFORM,
   minimum_footprint_coverage: MIN_FOOTPRINT_COVERAGE
 });
-print('Cataloged acquisition count', cataloged.size());
-print('Exportable acquisition count', exportable.size());
-print('Complete structured candidate catalog', candidateCatalog);
+print('Frozen sequential topology', {
+  summary_batch_size: SUMMARY_BATCH_SIZE,
+  maximum_in_flight_summary_aggregations:
+    MAXIMUM_IN_FLIGHT_SUMMARY_AGGREGATIONS,
+  max_pixels_per_acquisition: SUMMARY_REDUCTION_MAX_PIXELS
+});
+runSequentialCandidateSummaries(
+  candidateUniverse,
+  function (completeResult) {
+    print('Complete sequential candidate summaries', completeResult);
+  },
+  function (error) {
+    throw error;
+  }
+);
