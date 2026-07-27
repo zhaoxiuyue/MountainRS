@@ -26,7 +26,7 @@ acquisition.
 
 The prospective common grid is `shadow-risk-b-b4-grid-v1`, read from the real
 local Shadow-risk B B4 raster. Its normative machine-readable definition is
-`configs/stage7_1/target-grid.yaml`.
+`stage7_real_weak_closure/stage7_1_observation_stack/configs/target-grid.yaml`.
 
 The choice is justified only because:
 
@@ -111,7 +111,7 @@ observation. QA_PIXEL must never use continuous interpolation.
 
 ## 7. Prospective catalog auditor boundary
 
-`scripts/stage7_1/gee_catalog_audit.js` is a reviewable, not-yet-authorized query.
+`stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.js` is a reviewable, not-yet-authorized query.
 When separately authorized, it may only:
 
 - query the complete frozen collection/time/WRS range;

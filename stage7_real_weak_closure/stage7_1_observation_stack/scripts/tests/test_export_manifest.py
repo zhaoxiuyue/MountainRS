@@ -9,9 +9,9 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
-AUDITOR_PATH = REPO_ROOT / "scripts/stage7_1/audit_export_manifest.py"
-CATALOG_PATH = REPO_ROOT / "data/raw/stage7_1/acquisition-catalog.json"
-PROTOCOL_PATH = REPO_ROOT / "docs/stage7_1/selection-protocol.md"
+AUDITOR_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py"
+CATALOG_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json"
+PROTOCOL_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md"
 
 
 def load_auditor():
@@ -94,7 +94,7 @@ def valid_manifest() -> dict[str, object]:
         },
         "path_policy": {
             "root_alias": "stage_7_1_observation_stack",
-            "root_relative_path": "data/raw/stage7_1/observation_stack",
+            "root_relative_path": "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack",
             "absolute_paths_allowed": False,
             "overwrite_existing_target": False,
         },

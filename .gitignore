@@ -81,6 +81,12 @@ temp/
 
 ## Stage raw data and generated outputs
 **/data/
+!/stage7_real_weak_closure/stage7_1_observation_stack/data/
+/stage7_real_weak_closure/stage7_1_observation_stack/data/*
+!/stage7_real_weak_closure/stage7_1_observation_stack/data/raw/
+/stage7_real_weak_closure/stage7_1_observation_stack/data/raw/*
+!/stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json
+/stage7_real_weak_closure/historical_unadmitted/
 **/outputs/
 
 ## Keep source, reports, and notes trackable

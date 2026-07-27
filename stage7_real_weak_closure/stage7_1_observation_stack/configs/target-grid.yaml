@@ -84,7 +84,7 @@ alignment_evidence:
       exact_match: true
 
 support_evidence:
-  source: docs/stage7_0/data_gap_report.md
+  source: stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md
   rules:
     qa_clear: QA_PIXEL bits 0-5 are all zero
     reflectance_range: "[-0.05, 1.0]"

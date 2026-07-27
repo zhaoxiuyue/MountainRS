@@ -95,46 +95,49 @@ resources:
     relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json
   stage_7_0_baseline_spec:
     resolver: relative_path
-    relative_path: docs/stage7_0/baseline_spec.md
+    relative_path: stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md
   stage_7_0_evaluation_protocol:
     resolver: relative_path
-    relative_path: docs/stage7_0/evaluation_protocol.md
+    relative_path: stage7_real_weak_closure/stage7_0_baseline/docs/evaluation_protocol.md
   stage_7_0_leakage_audit:
     resolver: relative_path
-    relative_path: docs/stage7_0/leakage_audit.md
+    relative_path: stage7_real_weak_closure/stage7_0_baseline/docs/leakage_audit.md
   stage_7_0_data_gap_report:
     resolver: relative_path
-    relative_path: docs/stage7_0/data_gap_report.md
+    relative_path: stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md
   stage_7_1_observation_schema:
     resolver: relative_path
-    relative_path: configs/stage7_1/observation-schema.yaml
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/configs/observation-schema.yaml
   stage_7_1_selection_protocol:
     resolver: relative_path
-    relative_path: docs/stage7_1/selection-protocol.md
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md
   stage_7_1_catalog_auditor:
     resolver: relative_path
-    relative_path: scripts/stage7_1/gee_catalog_audit.js
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.js
   stage_7_1_candidate_audit:
     resolver: relative_path
-    relative_path: evidence/Stage-7.1/candidate_audit.json
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/reports/candidate-audit.md
   stage_7_1_acquisition_catalog:
     resolver: relative_path
-    relative_path: configs/stage7_1/acquisition_catalog.yaml
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json
+  stage_7_1_export_manifest_v1:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json
   stage_7_1_target_grid_spec:
     resolver: relative_path
-    relative_path: configs/stage7_1/target-grid.yaml
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/configs/target-grid.yaml
   stage_7_1_terrain_stack:
     resolver: relative_path
-    relative_path: data/derived/stage7_1/terrain_stack
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/data/terrain_stack
   stage_7_1_observation_stack:
     resolver: relative_path
-    relative_path: data/raw/stage7_1/observation_stack
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack
   stage_7_1_stack_manifest:
     resolver: relative_path
-    relative_path: evidence/Stage-7.1/stack_manifest.json
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/evidence/stack_manifest.json
   stage_7_1_readiness_report:
     resolver: relative_path
-    relative_path: reports/Stage-7.1/readiness_report.md
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/reports/readiness_report.md
   earth_engine_python_runtime:
     resolver: relative_path
     relative_path: .cache/earthengine/venv/bin/python
@@ -143,7 +146,7 @@ resources:
     relative_path: .cache/earthengine/session/auth-attestation.json
   earth_engine_cloud_project:
     resolver: relative_path
-    relative_path: configs/stage7_1/earthengine-project.yaml
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-project.yaml
   stage_7_1_catalog_executor:
     resolver: relative_path
-    relative_path: scripts/stage7_1/gee_catalog_audit.py
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.py

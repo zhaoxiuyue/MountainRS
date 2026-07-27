@@ -155,7 +155,7 @@ def validate_manifest(
 
     path_policy = manifest.get("path_policy", {})
     require(path_policy.get("root_alias") == "stage_7_1_observation_stack", "output Alias drift")
-    require(path_policy.get("root_relative_path") == "data/raw/stage7_1/observation_stack", "registry-resolved root drift")
+    require(path_policy.get("root_relative_path") == "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack", "registry-resolved root drift")
     require(path_policy.get("absolute_paths_allowed") is False, "absolute paths must be prohibited")
     require(path_policy.get("overwrite_existing_target") is False, "overwrite must be prohibited")
 

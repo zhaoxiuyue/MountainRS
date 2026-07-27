@@ -1,0 +1,1405 @@
+{
+  "schema": "relocation-manifest-v2",
+  "artifactRole": "prepared_local_execution_manifest_not_completion_proof",
+  "projectId": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+  "layoutProfile": {
+    "id": "workspace_layout_c1d38f17-aace-4497-9780-bc2b0225c7d2",
+    "revision": 1,
+    "hash": "90e98c6fe8ca5b29e55b89a6cae1f71c752208e4c5587459307f622e0336cffd"
+  },
+  "immediatePredecessor": {
+    "planId": "workspace_relocation_v2_cb12c383-823b-4326-acd7-2357b52539ae",
+    "contractVersion": "pf2-workspace-relocation-v2",
+    "state": "prepared",
+    "stateRevision": 1,
+    "manifestHash": "7d53a742fbe871ca4f3b8e33eff074e21643367e70ab028dbdb824e12586d636"
+  },
+  "operationCount": 32,
+  "referenceMutationCount": 14,
+  "projectionMutationCount": 7,
+  "immutableHistoricalExceptionCount": 11,
+  "selfArtifact": {
+    "selfCreateOperationEntryId": "relocation_manifest_v2",
+    "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json",
+    "finalHashBinding": "canonical_plan.operations[entryId=relocation_manifest_v2].after.sha256",
+    "bodyContainsOwnFinalHash": false,
+    "circularHashDependency": false
+  },
+  "operations": [
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-project.yaml",
+        "sha256": "16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18"
+      },
+      "before": {
+        "exists": true,
+        "locator": "configs/stage7_1/earthengine-project.yaml",
+        "sha256": "16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "earth_engine_cloud_project",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json",
+        "sha256Binding": "selfCreateOperationEntryId.after.sha256"
+      },
+      "before": {
+        "exists": false,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json",
+        "sha256": null
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "create_from_frozen_after_hash",
+      "entryId": "relocation_manifest_v2",
+      "inverseOperation": "delete_created_file",
+      "kind": "create",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": ".pf/resource-registry.yaml",
+        "sha256": "b88bb09fd161c78c738a7b6964238d728fd81986386dcfe21b9c58cdd0ee0425"
+      },
+      "before": {
+        "exists": true,
+        "locator": ".pf/resource-registry.yaml",
+        "sha256": "f4dae4833e1b9a2e10e484644199ecb7dacd7e459ee0092cdbad3e4e72a88f42"
+      },
+      "containment": {
+        "containerId": null,
+        "rootRelativePath": ".pf",
+        "scope": "project_global"
+      },
+      "contentEditPolicy": "replace_with_frozen_after_hash",
+      "entryId": "resource_registry",
+      "inverseOperation": "restore_before_hash_in_place",
+      "kind": "rewrite_in_place",
+      "owner": {
+        "id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c",
+        "kind": "project"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md",
+        "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+      },
+      "before": {
+        "exists": true,
+        "locator": "docs/stage7_0/baseline_spec.md",
+        "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+      },
+      "containment": {
+        "containerId": "stage7_0_baseline",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_0_baseline",
+        "scope": "cross_container_reference"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_0_baseline_spec",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "stage7_0_baseline",
+        "kind": "project"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md",
+        "sha256": "bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73"
+      },
+      "before": {
+        "exists": true,
+        "locator": "docs/stage7_0/data_gap_report.md",
+        "sha256": "bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73"
+      },
+      "containment": {
+        "containerId": "stage7_0_baseline",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_0_baseline",
+        "scope": "cross_container_reference"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_0_data_gap_report",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "stage7_0_baseline",
+        "kind": "project"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/evaluation_protocol.md",
+        "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+      },
+      "before": {
+        "exists": true,
+        "locator": "docs/stage7_0/evaluation_protocol.md",
+        "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+      },
+      "containment": {
+        "containerId": "stage7_0_baseline",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_0_baseline",
+        "scope": "cross_container_reference"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_0_evaluation_protocol",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "stage7_0_baseline",
+        "kind": "project"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/leakage_audit.md",
+        "sha256": "ee251d93a98c388deb4118559191be7fa6fc1bfd4bbcf33f4c645f6124567cf9"
+      },
+      "before": {
+        "exists": true,
+        "locator": "docs/stage7_0/leakage_audit.md",
+        "sha256": "ee251d93a98c388deb4118559191be7fa6fc1bfd4bbcf33f4c645f6124567cf9"
+      },
+      "containment": {
+        "containerId": "stage7_0_baseline",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_0_baseline",
+        "scope": "cross_container_reference"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_0_leakage_audit",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "stage7_0_baseline",
+        "kind": "project"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json",
+        "sha256": "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda"
+      },
+      "before": {
+        "exists": true,
+        "locator": "data/raw/stage7_1/acquisition-catalog.json",
+        "sha256": "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_acquisition_catalog",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/reports/candidate-audit.md",
+        "sha256": "11cb0ba3b9caaf0953b46c1b01d53a6a49279a51c1bfe3c333932d423b7ea67b"
+      },
+      "before": {
+        "exists": true,
+        "locator": "reports/Stage-7.1/candidate-audit.md",
+        "sha256": "11cb0ba3b9caaf0953b46c1b01d53a6a49279a51c1bfe3c333932d423b7ea67b"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_candidate_audit",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request.json",
+        "sha256": "5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0"
+      },
+      "before": {
+        "exists": true,
+        "locator": "evidence/Stage-7.1/catalog-audit-request.json",
+        "sha256": "5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_audit_request_v1",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v2.json",
+        "sha256": "85606c6652890f6fd3bef4f8e0da2a99847702c8df7a931380508ccf67efc219"
+      },
+      "before": {
+        "exists": true,
+        "locator": "evidence/Stage-7.1/catalog-audit-request-v2.json",
+        "sha256": "85606c6652890f6fd3bef4f8e0da2a99847702c8df7a931380508ccf67efc219"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_audit_request_v2",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v3.json",
+        "sha256": "889fc2132b9d7d308c6f2d5a79f1a0d76cc194c81b3f5c3998869ad6a7110a61"
+      },
+      "before": {
+        "exists": true,
+        "locator": "evidence/Stage-7.1/catalog-audit-request-v3.json",
+        "sha256": "889fc2132b9d7d308c6f2d5a79f1a0d76cc194c81b3f5c3998869ad6a7110a61"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_audit_request_v3",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v4.json",
+        "sha256": "eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097"
+      },
+      "before": {
+        "exists": true,
+        "locator": "evidence/Stage-7.1/catalog-audit-request-v4.json",
+        "sha256": "eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_audit_request_v4",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v5.json",
+        "sha256": "980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d"
+      },
+      "before": {
+        "exists": true,
+        "locator": "evidence/Stage-7.1/catalog-audit-request-v5.json",
+        "sha256": "980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_audit_request_v5",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.js",
+        "sha256": "066bd2fee5b20e14e30791944c6b0340a1d050ae6f1610f3f166f309c6035e73"
+      },
+      "before": {
+        "exists": true,
+        "locator": "scripts/stage7_1/gee_catalog_audit.js",
+        "sha256": "066bd2fee5b20e14e30791944c6b0340a1d050ae6f1610f3f166f309c6035e73"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_auditor",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.py",
+        "sha256": "803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4"
+      },
+      "before": {
+        "exists": true,
+        "locator": "scripts/stage7_1/gee_catalog_audit.py",
+        "sha256": "803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_executor",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_catalog_executor.py",
+        "sha256": "73135f9f7b9c25ed234351dcc7815a64c7033478e962c6a9bc3c809b7f92108f"
+      },
+      "before": {
+        "exists": true,
+        "locator": "scripts/stage7_1/tests/test_gee_catalog_executor.py",
+        "sha256": "73135f9f7b9c25ed234351dcc7815a64c7033478e962c6a9bc3c809b7f92108f"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_catalog_executor_test",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-runtime.lock",
+        "sha256": "0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602"
+      },
+      "before": {
+        "exists": true,
+        "locator": "configs/stage7_1/earthengine-runtime.lock",
+        "sha256": "0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_earth_engine_runtime_lock",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py",
+        "sha256": "c7000b44d176281736249d14583800d65692ea6cdeadbb262af804a61a7f53cd"
+      },
+      "before": {
+        "exists": true,
+        "locator": "scripts/stage7_1/audit_export_manifest.py",
+        "sha256": "689232b931f44a51eb7e08cc52dc3772a7fd380e34bef6666aaa13ffd068df25"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "replace_with_frozen_after_hash",
+      "entryId": "stage_7_1_export_manifest_auditor",
+      "inverseOperation": "restore_before_hash_and_locator",
+      "kind": "move_and_rewrite",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_manifest.py",
+        "sha256": "c363d8699ed3f4b323c221ce180610425184488eb10c3d814ad0272613a776f2"
+      },
+      "before": {
+        "exists": true,
+        "locator": "scripts/stage7_1/tests/test_export_manifest.py",
+        "sha256": "da00d1deeb9723c5861db80655ec173c98b8a2662d58a624ed9ec5f593a5d116"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "replace_with_frozen_after_hash",
+      "entryId": "stage_7_1_export_manifest_test",
+      "inverseOperation": "restore_before_hash_and_locator",
+      "kind": "move_and_rewrite",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json",
+        "sha256": "596171933511530ff1ecc20f07e6fc4a0c3258f01c68cff57046749af991ca25"
+      },
+      "before": {
+        "exists": true,
+        "locator": "evidence/Stage-7.1/export-manifest-v1.json",
+        "sha256": "596171933511530ff1ecc20f07e6fc4a0c3258f01c68cff57046749af991ca25"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_export_manifest_v1",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/configs/observation-schema.yaml",
+        "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced"
+      },
+      "before": {
+        "exists": true,
+        "locator": "configs/stage7_1/observation-schema.yaml",
+        "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "entryId": "stage_7_1_observation_schema",
+      "inverseOperation": "move_immutable_to_before",
+      "kind": "move_immutable",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md",
+        "sha256": "8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521"
+      },
+      "before": {
+        "exists": true,
+        "locator": "docs/stage7_1/selection-protocol.md",
+        "sha256": "831ec434e601cb4821e17331ea53bbc7e041815b876c0f4b531eba3b3cf20c2a"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "replace_with_frozen_after_hash",
+      "entryId": "stage_7_1_selection_protocol",
+      "inverseOperation": "restore_before_hash_and_locator",
+      "kind": "move_and_rewrite",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "after": {
+        "exists": true,
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/configs/target-grid.yaml",
+        "sha256": "35b4d9756e9249fcd110a7a18970729745cc5c6cd3caa214831907f0c9cd7d82"
+      },
+      "before": {
+        "exists": true,
+        "locator": "configs/stage7_1/target-grid.yaml",
+        "sha256": "329129636c6c586fdff9e15b9a2981286c0f5b7f1918e16f16e407263f34e0b0"
+      },
+      "containment": {
+        "containerId": "stage7_1_observation_stack",
+        "rootRelativePath": "stage7_real_weak_closure/stage7_1_observation_stack",
+        "scope": "bound_container"
+      },
+      "contentEditPolicy": "replace_with_frozen_after_hash",
+      "entryId": "stage_7_1_target_grid_spec",
+      "inverseOperation": "restore_before_hash_and_locator",
+      "kind": "move_and_rewrite",
+      "owner": {
+        "id": "node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+        "kind": "node"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      }
+    },
+    {
+      "entryId": "project_gitignore_stage7_policy",
+      "kind": "rewrite_in_place",
+      "owner": {
+        "kind": "project",
+        "id": "project_e47b176e-4ca2-4462-9996-80f832b5c41c"
+      },
+      "policy": {
+        "gitPolicy": "tracked",
+        "retention": "durable",
+        "sensitivity": "normal"
+      },
+      "before": {
+        "locator": ".gitignore",
+        "exists": true,
+        "sha256": "64e7b0cbfa670b806afcc7bbe6d2b709b97924ee4a636bda419626b1801b900f"
+      },
+      "after": {
+        "locator": ".gitignore",
+        "exists": true,
+        "sha256": "b6bcbb617e3944891535746595e5fdb27bbb5b3d29890aa82970103545dee512"
+      },
+      "contentEditPolicy": "replace_with_frozen_after_hash",
+      "inverseOperation": "restore_before_hash_in_place",
+      "containment": {
+        "scope": "project_global",
+        "rootRelativePath": ".gitignore",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_observation_design",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/obsidian_drafts/Stage 7 | 真实弱闭环 + 多ROI留一验证 + 幻觉量化.md",
+        "exists": true,
+        "sha256": "120c944d323ea5ba26ab7e4478cdfd5c7754cf2040d3f8d7994d3758a88e8629"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Stage 7 | 真实弱闭环 + 多ROI留一验证 + 幻觉量化.md",
+        "exists": true,
+        "sha256": "120c944d323ea5ba26ab7e4478cdfd5c7754cf2040d3f8d7994d3758a88e8629"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_data_prep_task",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/obsidian_drafts/Task_Stage7_单日Landsat数据准备.md",
+        "exists": true,
+        "sha256": "8f1f53c76b19270bec0f0764ca59bf2475573a02b07f1b6254d7d9d20ca21daf"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Task_Stage7_单日Landsat数据准备.md",
+        "exists": true,
+        "sha256": "8f1f53c76b19270bec0f0764ca59bf2475573a02b07f1b6254d7d9d20ca21daf"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_data_requirement",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/reports/stage7_data_requirement.md",
+        "exists": true,
+        "sha256": "f6516c3b8ff6ca55ec062702bc5ed6816d6fd87d2002ea52f42ae288eb77340e"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_requirement.md",
+        "exists": true,
+        "sha256": "f6516c3b8ff6ca55ec062702bc5ed6816d6fd87d2002ea52f42ae288eb77340e"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_data_strategy",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/reports/stage7_data_strategy.md",
+        "exists": true,
+        "sha256": "c799f475263ec59844cdfcaf33db3b178ed071c611678495b99464ffceccf7fd"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_strategy.md",
+        "exists": true,
+        "sha256": "c799f475263ec59844cdfcaf33db3b178ed071c611678495b99464ffceccf7fd"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_mainline_plan",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/reports/stage7_mainline_plan.md",
+        "exists": true,
+        "sha256": "2c16529bc74ab436036cde4e11096b0120a4341c7c98c6f4633eda21fb702589"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_mainline_plan.md",
+        "exists": true,
+        "sha256": "2c16529bc74ab436036cde4e11096b0120a4341c7c98c6f4633eda21fb702589"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_gee_export_single_scene",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/scripts/gee_export_landsat_single_scene.js",
+        "exists": true,
+        "sha256": "fcd4e8f09d4bfb274ced24f854e0e0dafd5026909d0f8e7c1a20eb3a1e54f01d"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/scripts/gee_export_landsat_single_scene.js",
+        "exists": true,
+        "sha256": "fcd4e8f09d4bfb274ced24f854e0e0dafd5026909d0f8e7c1a20eb3a1e54f01d"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    },
+    {
+      "entryId": "historical_stage7_multiscene_audit",
+      "kind": "move_immutable",
+      "owner": {
+        "kind": "historical",
+        "id": "stage7_historical_unadmitted"
+      },
+      "policy": {
+        "gitPolicy": "local_only",
+        "retention": "durable",
+        "sensitivity": "local_only"
+      },
+      "before": {
+        "locator": "stage7_real_weak_closure/scripts/stage7_gee_multiscene_audit.js",
+        "exists": true,
+        "sha256": "0b8dbb2786636eeef3184ba5ccef7fedb545a1b038de4d0bf534a4268527a4c1"
+      },
+      "after": {
+        "locator": "stage7_real_weak_closure/historical_unadmitted/scripts/stage7_gee_multiscene_audit.js",
+        "exists": true,
+        "sha256": "0b8dbb2786636eeef3184ba5ccef7fedb545a1b038de4d0bf534a4268527a4c1"
+      },
+      "contentEditPolicy": "preserve_bytes",
+      "inverseOperation": "move_immutable_to_before",
+      "containment": {
+        "scope": "shared_registered",
+        "rootRelativePath": "stage7_real_weak_closure/historical_unadmitted",
+        "containerId": null
+      }
+    }
+  ],
+  "referenceClosure": {
+    "mutationIds": [
+      "reference_acquisition_catalog_alias_projection",
+      "reference_candidate_audit_alias_projection",
+      "reference_export_manifest_v1_alias_projection",
+      "reference_gitignore_stage7_policy",
+      "reference_node_contract_projection",
+      "reference_observation_schema_alias_projection",
+      "reference_relocation_manifest_v2",
+      "reference_resource_registry",
+      "reference_selection_protocol_alias_projection",
+      "reference_stage_7_1_export_manifest_auditor",
+      "reference_stage_7_1_export_manifest_test",
+      "reference_stage_7_1_selection_protocol",
+      "reference_stage_7_1_target_grid_spec",
+      "reference_workspace_contract_projection"
+    ],
+    "immutableHistoricalExceptions": [
+      {
+        "exceptionId": "immutable_history_historical_stage7_data_requirement",
+        "fileIdentity": "historical_stage7_data_requirement",
+        "locator": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_requirement.md",
+        "sha256": "f6516c3b8ff6ca55ec062702bc5ed6816d6fd87d2002ea52f42ae288eb77340e",
+        "retainedOldLocators": [
+          "stage7_real_weak_closure/scripts/gee_export_landsat_single_scene.js"
+        ],
+        "reason": "ignored_local_only只取消正式解析身份，不取消不可变正文中的历史引用审计；该旧相对Locator仅由relocation-manifest-v2解释，不改写正文，也不得解析为当前正式输入。"
+      },
+      {
+        "exceptionId": "immutable_history_historical_stage7_single_day_landsat_task",
+        "fileIdentity": "historical_stage7_data_prep_task",
+        "locator": "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Task_Stage7_单日Landsat数据准备.md",
+        "sha256": "8f1f53c76b19270bec0f0764ca59bf2475573a02b07f1b6254d7d9d20ca21daf",
+        "retainedOldLocators": [
+          "stage7_real_weak_closure/scripts/gee_export_landsat_single_scene.js"
+        ],
+        "reason": "ignored_local_only只取消正式解析身份，不取消不可变正文中的历史引用审计；该旧相对Locator仅由relocation-manifest-v2解释，不改写正文，也不得解析为当前正式输入。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_0_baseline_spec",
+        "fileIdentity": "stage_7_0_baseline_spec",
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md",
+        "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc",
+        "retainedOldLocators": [
+          "docs/stage7_0/data_gap_report.md",
+          "docs/stage7_0/leakage_audit.md"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_0_data_gap_report",
+        "fileIdentity": "stage_7_0_data_gap_report",
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md",
+        "sha256": "bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73",
+        "retainedOldLocators": [
+          "docs/stage7_0/leakage_audit.md"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_0_evaluation_protocol",
+        "fileIdentity": "stage_7_0_evaluation_protocol",
+        "locator": "stage7_real_weak_closure/stage7_0_baseline/docs/evaluation_protocol.md",
+        "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380",
+        "retainedOldLocators": [
+          "docs/stage7_0/baseline_spec.md",
+          "docs/stage7_0/data_gap_report.md",
+          "docs/stage7_0/leakage_audit.md"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_1_catalog_audit_request_v1",
+        "fileIdentity": "stage_7_1_catalog_audit_request_v1",
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request.json",
+        "sha256": "5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0",
+        "retainedOldLocators": [
+          "configs/stage7_1/observation-schema.yaml",
+          "configs/stage7_1/target-grid.yaml",
+          "data/raw/stage7_1/acquisition-catalog.json",
+          "docs/stage7_1/selection-protocol.md",
+          "reports/Stage-7.1/candidate-audit.md",
+          "scripts/stage7_1/gee_catalog_audit.js"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_1_catalog_audit_request_v2",
+        "fileIdentity": "stage_7_1_catalog_audit_request_v2",
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v2.json",
+        "sha256": "85606c6652890f6fd3bef4f8e0da2a99847702c8df7a931380508ccf67efc219",
+        "retainedOldLocators": [
+          "configs/stage7_1/earthengine-project.yaml",
+          "configs/stage7_1/earthengine-runtime.lock",
+          "configs/stage7_1/observation-schema.yaml",
+          "configs/stage7_1/target-grid.yaml",
+          "data/raw/stage7_1/acquisition-catalog.json",
+          "docs/stage7_1/selection-protocol.md",
+          "evidence/Stage-7.1/catalog-audit-request.json",
+          "reports/Stage-7.1/candidate-audit.md",
+          "scripts/stage7_1/gee_catalog_audit.js",
+          "scripts/stage7_1/gee_catalog_audit.py",
+          "scripts/stage7_1/tests/test_gee_catalog_executor.py"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_1_catalog_audit_request_v3",
+        "fileIdentity": "stage_7_1_catalog_audit_request_v3",
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v3.json",
+        "sha256": "889fc2132b9d7d308c6f2d5a79f1a0d76cc194c81b3f5c3998869ad6a7110a61",
+        "retainedOldLocators": [
+          "configs/stage7_1/earthengine-project.yaml",
+          "configs/stage7_1/earthengine-runtime.lock",
+          "configs/stage7_1/observation-schema.yaml",
+          "configs/stage7_1/target-grid.yaml",
+          "data/raw/stage7_1/acquisition-catalog.json",
+          "docs/stage7_1/selection-protocol.md",
+          "evidence/Stage-7.1/catalog-audit-request-v2.json",
+          "reports/Stage-7.1/candidate-audit.md",
+          "scripts/stage7_1/gee_catalog_audit.js",
+          "scripts/stage7_1/gee_catalog_audit.py",
+          "scripts/stage7_1/tests/test_gee_catalog_executor.py"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_1_catalog_audit_request_v4",
+        "fileIdentity": "stage_7_1_catalog_audit_request_v4",
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v4.json",
+        "sha256": "eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097",
+        "retainedOldLocators": [
+          "configs/stage7_1/earthengine-project.yaml",
+          "configs/stage7_1/earthengine-runtime.lock",
+          "configs/stage7_1/observation-schema.yaml",
+          "configs/stage7_1/target-grid.yaml",
+          "data/raw/stage7_1/acquisition-catalog.json",
+          "docs/stage7_1/selection-protocol.md",
+          "evidence/Stage-7.1/catalog-audit-request-v3.json",
+          "reports/Stage-7.1/candidate-audit.md",
+          "scripts/stage7_1/gee_catalog_audit.js",
+          "scripts/stage7_1/gee_catalog_audit.py",
+          "scripts/stage7_1/tests/test_gee_catalog_executor.py"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_1_catalog_audit_request_v5",
+        "fileIdentity": "stage_7_1_catalog_audit_request_v5",
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v5.json",
+        "sha256": "980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d",
+        "retainedOldLocators": [
+          "configs/stage7_1/earthengine-project.yaml",
+          "configs/stage7_1/earthengine-runtime.lock",
+          "configs/stage7_1/observation-schema.yaml",
+          "configs/stage7_1/target-grid.yaml",
+          "data/raw/stage7_1/acquisition-catalog.json",
+          "docs/stage7_1/selection-protocol.md",
+          "evidence/Stage-7.1/catalog-audit-request-v4.json",
+          "reports/Stage-7.1/candidate-audit.md",
+          "scripts/stage7_1/gee_catalog_audit.js",
+          "scripts/stage7_1/gee_catalog_audit.py",
+          "scripts/stage7_1/tests/test_gee_catalog_executor.py"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      },
+      {
+        "exceptionId": "immutable_history_stage_7_1_export_manifest_v1",
+        "fileIdentity": "stage_7_1_export_manifest_v1",
+        "locator": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json",
+        "sha256": "596171933511530ff1ecc20f07e6fc4a0c3258f01c68cff57046749af991ca25",
+        "retainedOldLocators": [
+          "configs/stage7_1/observation-schema.yaml",
+          "configs/stage7_1/target-grid.yaml",
+          "data/raw/stage7_1/acquisition-catalog.json",
+          "docs/stage7_1/selection-protocol.md",
+          "evidence/Stage-7.1/catalog-audit-request-v5.json",
+          "reports/Stage-7.1/candidate-audit.md",
+          "scripts/stage7_1/audit_export_manifest.py",
+          "scripts/stage7_1/tests/test_export_manifest.py"
+        ],
+        "reason": "不可变历史正文保留当时记录的旧相对 Locator；由 relocation-manifest-v2 解释，不改写正文。"
+      }
+    ]
+  },
+  "projectionMutations": [
+    {
+      "mutationId": "acquisition_catalog_alias_projection",
+      "kind": "project_resource_alias",
+      "objectIdentity": "project_resource_alias:stage_7_1_acquisition_catalog",
+      "expectedRevision": 1,
+      "beforeHash": "95232b1ecf736289cb769581aca6b1ce984589bec0c9cc270e71a1a32850a935",
+      "afterHash": "306acc34339f6e2b0f71ea33cb76df00013b7b8d8b6e9f2d1415628883a00673"
+    },
+    {
+      "mutationId": "candidate_audit_alias_projection",
+      "kind": "project_resource_alias",
+      "objectIdentity": "project_resource_alias:stage_7_1_candidate_audit",
+      "expectedRevision": 1,
+      "beforeHash": "8e88143196fd52a94936b7f1cd8d93b2d35cbc6d2b8d7e9b93f3858ab60b5ce1",
+      "afterHash": "6199e2172c38d6101fedf12a185889ed1524fea98a98e841e1f805ede276479b"
+    },
+    {
+      "mutationId": "export_manifest_v1_alias_projection",
+      "kind": "project_resource_alias",
+      "objectIdentity": "project_resource_alias:stage_7_1_export_manifest_v1",
+      "expectedRevision": null,
+      "beforeHash": null,
+      "afterHash": "b9178d39b0ba959c5d7a2b7f90c37f66ffd4b742a77043e244fd4ad72ea0ecea"
+    },
+    {
+      "mutationId": "node_contract_projection",
+      "kind": "node_contract",
+      "objectIdentity": "node_contract:node_3b0ada7f-1458-468f-bbdb-9d7599cb56de",
+      "expectedRevision": 3,
+      "beforeHash": "bf42a43164f05493ccaaf50d2191644ef61cac600d396de2bb2381c96c9b1af3",
+      "afterHash": "a69f7bad172b7defb11abdee6b1fb41afbab438a370882e74e8382b8fe4131e1"
+    },
+    {
+      "mutationId": "observation_schema_alias_projection",
+      "kind": "project_resource_alias",
+      "objectIdentity": "project_resource_alias:stage_7_1_observation_schema",
+      "expectedRevision": 1,
+      "beforeHash": "806ffb1d1f955517f16ac0c0d4e01547e0143cceb98cb6265a7b7b78c4fec2e3",
+      "afterHash": "c057bc1e1ceedde2daf8efd178a1806fbd23d54a07dc0c336a798605b7a851b3"
+    },
+    {
+      "mutationId": "selection_protocol_alias_projection",
+      "kind": "project_resource_alias",
+      "objectIdentity": "project_resource_alias:stage_7_1_selection_protocol",
+      "expectedRevision": 1,
+      "beforeHash": "7949522b5bdb465de682228a7229802a49985c10a00ec1840ceed45186e75f78",
+      "afterHash": "dc073cea836073f8f543643ef0cca2e7cd823e83e04857add9012192a0770408"
+    },
+    {
+      "mutationId": "workspace_contract_projection",
+      "kind": "workspace_contract",
+      "objectIdentity": "workspace_contract",
+      "expectedRevision": 3,
+      "beforeHash": "7d02450bec6a0c7ed09a619531e8737a9e9ad127b1398190be060a40dd885426",
+      "afterHash": "b3d135cdc6e2091b9bbd7addb8facfe2296abd67852f8e58f3eaee1c7b232faf"
+    }
+  ],
+  "proofBoundary": {
+    "localExecution": "not_claimed",
+    "pf2AtomicConfirmation": {
+      "status": "not_claimed",
+      "proves": [
+        "filesystem_after_state",
+        "git_index_after_state",
+        "complete_git_policy_receipt",
+        "pf2_projection_confirmation"
+      ],
+      "doesNotProve": [
+        "independent_git_commit",
+        "commit_contains_only_managed_paths",
+        "post_commit_head_tree_path_readback",
+        "full_cross_system_completion"
+      ]
+    },
+    "gitCommit": {
+      "status": "required_separate_future_evidence",
+      "requiredEvidence": [
+        "independent_git_commit_hash",
+        "commit_contains_only_managed_paths",
+        "post_commit_head_readback",
+        "post_commit_tree_readback",
+        "post_commit_managed_path_readback",
+        "unrelated_staged_entries_unchanged"
+      ]
+    },
+    "completion": {
+      "status": "not_claimed",
+      "requiresAll": [
+        "pf2_atomic_confirmation_receipt",
+        "independent_git_commit_hash",
+        "controlled_path_commit_proof",
+        "post_commit_head_tree_path_readback"
+      ]
+    },
+    "relocationManifestMayContainFutureReceiptOrCommit": false
+  },
+  "gitCommitBoundary": {
+    "trackedOperationCount": 25,
+    "deletedOldPaths": [
+      "configs/stage7_1/earthengine-project.yaml",
+      "configs/stage7_1/earthengine-runtime.lock",
+      "configs/stage7_1/observation-schema.yaml",
+      "configs/stage7_1/target-grid.yaml",
+      "data/raw/stage7_1/acquisition-catalog.json",
+      "docs/stage7_0/baseline_spec.md",
+      "docs/stage7_0/data_gap_report.md",
+      "docs/stage7_0/evaluation_protocol.md",
+      "docs/stage7_0/leakage_audit.md",
+      "docs/stage7_1/selection-protocol.md",
+      "evidence/Stage-7.1/catalog-audit-request-v2.json",
+      "evidence/Stage-7.1/catalog-audit-request-v3.json",
+      "evidence/Stage-7.1/catalog-audit-request-v4.json",
+      "evidence/Stage-7.1/catalog-audit-request-v5.json",
+      "evidence/Stage-7.1/catalog-audit-request.json",
+      "evidence/Stage-7.1/export-manifest-v1.json",
+      "reports/Stage-7.1/candidate-audit.md",
+      "scripts/stage7_1/audit_export_manifest.py",
+      "scripts/stage7_1/gee_catalog_audit.js",
+      "scripts/stage7_1/gee_catalog_audit.py",
+      "scripts/stage7_1/tests/test_export_manifest.py",
+      "scripts/stage7_1/tests/test_gee_catalog_executor.py"
+    ],
+    "addedNewPaths": [
+      "stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/evaluation_protocol.md",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/leakage_audit.md",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-project.yaml",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-runtime.lock",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/observation-schema.yaml",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/target-grid.yaml",
+      "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v2.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v3.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v4.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v5.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/reports/candidate-audit.md",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.js",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.py",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_manifest.py",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_catalog_executor.py"
+    ],
+    "rewrittenPaths": [
+      ".gitignore",
+      ".pf/resource-registry.yaml"
+    ],
+    "managedCommitPaths": [
+      ".gitignore",
+      ".pf/resource-registry.yaml",
+      "configs/stage7_1/earthengine-project.yaml",
+      "configs/stage7_1/earthengine-runtime.lock",
+      "configs/stage7_1/observation-schema.yaml",
+      "configs/stage7_1/target-grid.yaml",
+      "data/raw/stage7_1/acquisition-catalog.json",
+      "docs/stage7_0/baseline_spec.md",
+      "docs/stage7_0/data_gap_report.md",
+      "docs/stage7_0/evaluation_protocol.md",
+      "docs/stage7_0/leakage_audit.md",
+      "docs/stage7_1/selection-protocol.md",
+      "evidence/Stage-7.1/catalog-audit-request-v2.json",
+      "evidence/Stage-7.1/catalog-audit-request-v3.json",
+      "evidence/Stage-7.1/catalog-audit-request-v4.json",
+      "evidence/Stage-7.1/catalog-audit-request-v5.json",
+      "evidence/Stage-7.1/catalog-audit-request.json",
+      "evidence/Stage-7.1/export-manifest-v1.json",
+      "reports/Stage-7.1/candidate-audit.md",
+      "scripts/stage7_1/audit_export_manifest.py",
+      "scripts/stage7_1/gee_catalog_audit.js",
+      "scripts/stage7_1/gee_catalog_audit.py",
+      "scripts/stage7_1/tests/test_export_manifest.py",
+      "scripts/stage7_1/tests/test_gee_catalog_executor.py",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/evaluation_protocol.md",
+      "stage7_real_weak_closure/stage7_0_baseline/docs/leakage_audit.md",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-project.yaml",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-runtime.lock",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/observation-schema.yaml",
+      "stage7_real_weak_closure/stage7_1_observation_stack/configs/target-grid.yaml",
+      "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v2.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v3.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v4.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v5.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json",
+      "stage7_real_weak_closure/stage7_1_observation_stack/reports/candidate-audit.md",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.js",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.py",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_manifest.py",
+      "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_catalog_executor.py"
+    ],
+    "localOnlyExcludedPaths": [
+      "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Stage 7 | 真实弱闭环 + 多ROI留一验证 + 幻觉量化.md",
+      "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Task_Stage7_单日Landsat数据准备.md",
+      "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_requirement.md",
+      "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_strategy.md",
+      "stage7_real_weak_closure/historical_unadmitted/reports/stage7_mainline_plan.md",
+      "stage7_real_weak_closure/historical_unadmitted/scripts/gee_export_landsat_single_scene.js",
+      "stage7_real_weak_closure/historical_unadmitted/scripts/stage7_gee_multiscene_audit.js",
+      "stage7_real_weak_closure/obsidian_drafts/Stage 7 | 真实弱闭环 + 多ROI留一验证 + 幻觉量化.md",
+      "stage7_real_weak_closure/obsidian_drafts/Task_Stage7_单日Landsat数据准备.md",
+      "stage7_real_weak_closure/reports/stage7_data_requirement.md",
+      "stage7_real_weak_closure/reports/stage7_data_strategy.md",
+      "stage7_real_weak_closure/reports/stage7_mainline_plan.md",
+      "stage7_real_weak_closure/scripts/gee_export_landsat_single_scene.js",
+      "stage7_real_weak_closure/scripts/stage7_gee_multiscene_audit.js"
+    ],
+    "allowedExecution": [
+      "exact_pathspec_commit",
+      "isolated_index_commit"
+    ],
+    "forbiddenExecution": [
+      "git_add_-A",
+      "git_add_wildcard",
+      "git_commit_without_pathspec",
+      "commit_unrelated_index_entries"
+    ],
+    "requireUnrelatedStagedEntryEqualityBeforeAfterCommit": true,
+    "stopIfExactCommitCannotBeGuaranteed": true
+  }
+}
