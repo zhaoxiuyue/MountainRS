@@ -1,0 +1,309 @@
+{
+ "schema": "mountainrs-attic-purge-v1",
+ "date": "2026-08-04",
+ "authorization": "所有者口令：「可再生垃圾就删掉吧」",
+ "scope": "仅 attic 内的 .DS_Store 与 __pycache__ 字节码；仓库内不涉及",
+ "deleted_file_count": 36,
+ "deleted_bytes": 650739,
+ "removed_empty_dirs": [
+  "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03",
+  "scripts/stage7_1/tests/__pycache__",
+  ".cache/earthengine/venv-symlink-backup-20260723T1529Z/include",
+  "stage3_image_dem_alignment/scripts/__pycache__",
+  "stage1_geotiff_health/scripts/__pycache__",
+  "stage2_dem_terrain/scripts/__pycache__",
+  "stage5_gradient_friendly_model/scripts/__pycache__",
+  "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__",
+  "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu",
+  "scripts/stage7_1/tests",
+  "scripts/stage7_1/__pycache__",
+  "stage4_terrain_radiation_toy/scripts/__pycache__",
+  "stage3_image_dem_alignment/scripts",
+  "MRS Obsidian/Mountain RS Foundation Project",
+  "stage1_geotiff_health/scripts",
+  "stage1_geotiff_health/data",
+  "stage2_dem_terrain/scripts",
+  "stage5_gradient_friendly_model/scripts",
+  "stage6_5_real_landsat_observation_stress_test/scripts",
+  "stage6_5_real_landsat_observation_stress_test/data",
+  "stage6_5_real_landsat_observation_stress_test/outputs",
+  "scripts/stage7_1",
+  "stage4_terrain_radiation_toy/scripts",
+  "data/raw",
+  "stage3_image_dem_alignment",
+  "evidence",
+  "MRS Obsidian",
+  "stage2_dem_terrain",
+  "docs",
+  "stage6_differentiable_inversion_toy",
+  "stage5_gradient_friendly_model",
+  "configs",
+  "scripts",
+  "stage4_terrain_radiation_toy",
+  "data",
+  "stage7_real_weak_closure",
+  "reports"
+ ],
+ "kept_not_regenerable": [
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/reports/.stage6_5_2b_shadowrisk_local_check_report.md.swp",
+   "reason": "vim 交换文件，可能含未存盘编辑内容，不属可再生物，保留待所有者裁决"
+  }
+ ],
+ "attic_remaining_file_count": 3624,
+ "note": "删除逐条留痕（含删除前 SHA-256）；post-move-hashes.json 仍是搬迁当时的快照，不回改。",
+ "deleted": [
+  {
+   "path": ".DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "d989e2c4d5efb21f28719e2d472a23c4f7cee67704fd293baf2f638e82bfa84b",
+   "size": 14340
+  },
+  {
+   "path": "MRS Obsidian/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "3b6dc29f43f411ab595358948801c97a3a4b163b485114d6fa86bc63a578767e",
+   "size": 6148
+  },
+  {
+   "path": "MRS Obsidian/Mountain RS Foundation Project/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "975b70467b74aa9c9507c682911ab489a943d65a3ec31253ca7354bf9b5b8d1d",
+   "size": 8196
+  },
+  {
+   "path": "data/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "cf558b134c37391289f6045ef23fa45cc55508993607d9fea04d5150e399e5c2",
+   "size": 6148
+  },
+  {
+   "path": "docs/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "325667e82e4c0f40601c7a3e90aebb5eebbf8f266060c6bc2ef5530fc5406ed1",
+   "size": 6148
+  },
+  {
+   "path": "scripts/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "dba56c0ac479a097ddab94a742853582315acb69a28144560f95509c2e0ceeb8",
+   "size": 6148
+  },
+  {
+   "path": "scripts/stage7_1/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "909720c49eee020689021e809d0cedb323ee155ea2e20a99554edd0c7f28ad12",
+   "size": 6148
+  },
+  {
+   "path": "scripts/stage7_1/__pycache__/gee_catalog_audit.cpython-314.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "79e071f8bcb1a68689594f26d1fcfb681d7eee33263428f5d50fb77c9508854f",
+   "size": 40816
+  },
+  {
+   "path": "scripts/stage7_1/tests/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "a2a2bc676d4d1f6ec69ec4e1cc8bcce54361f937bb2d79782f63fdd6725413e2",
+   "size": 6148
+  },
+  {
+   "path": "scripts/stage7_1/tests/__pycache__/test_gee_catalog_executor.cpython-314.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "8fd67c42fc931ec555decfca60cfaa9eeae3ee661d24c13c092f56849c5bf7c2",
+   "size": 24099
+  },
+  {
+   "path": "stage1_geotiff_health/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "d7cb700572a6acdc61cb2346514629c63011b50fd0eb8bf1c87f83ff140c9a45",
+   "size": 8196
+  },
+  {
+   "path": "stage1_geotiff_health/data/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "bd5d5e5614c881504c45b12ec8bdcdfa0ba58781f20cd685988ef9e0507e0d92",
+   "size": 6148
+  },
+  {
+   "path": "stage1_geotiff_health/scripts/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "1655911ce67c671add9edabff14b7b89c8d2edb0a7f67b6bea065d2342d2906a",
+   "size": 6148
+  },
+  {
+   "path": "stage1_geotiff_health/scripts/__pycache__/geotiff_health_check.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "2743c5ccb17f10e0cd0703521a51c0152d3be9db3e111c2d8a563eab000c46e0",
+   "size": 13594
+  },
+  {
+   "path": "stage2_dem_terrain/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "c9cdc4d9f0e0e6462e019c122725bfc85bc101149e14dd0f2d3c45add0a2385f",
+   "size": 8196
+  },
+  {
+   "path": "stage2_dem_terrain/scripts/__pycache__/compute_terrain_factors.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "3116d03c72514854f78d8ad5efece4799b1e69824b26b47ca798dc9fc841dff0",
+   "size": 23811
+  },
+  {
+   "path": "stage2_dem_terrain/scripts/__pycache__/reproject_dem_to_utm.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "424c5fef664cd05c5e94bd1faa732ea8fe5a17d60b5782d4e64fc9b419952811",
+   "size": 17534
+  },
+  {
+   "path": "stage2_dem_terrain/scripts/__pycache__/test_terrain_factor_boundaries.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "2ea5cffd6207cbcb458be8facb6f8e4f2c3519ecb2bf223f9588cdfeefe3a6bd",
+   "size": 20923
+  },
+  {
+   "path": "stage3_image_dem_alignment/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "9705faa74914c997713adc427b86258ca1114a7aa7b1658138a5556f046e80b2",
+   "size": 8196
+  },
+  {
+   "path": "stage3_image_dem_alignment/scripts/__pycache__/align_landsat_to_dem_grid.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "30d9f57dd2ef5ca36b95a1fbf481e85f9491b0550a17b17ee0e9866438319ba3",
+   "size": 34190
+  },
+  {
+   "path": "stage3_image_dem_alignment/scripts/__pycache__/check_landsat_and_dem_spatial_match.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "9978bb45e692b5d155b5be5c85e3e4e04b6ba4bbc6bb1405846ab91945430b01",
+   "size": 32069
+  },
+  {
+   "path": "stage4_terrain_radiation_toy/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "4da7d682a9ff7462c0bba566071153b541ff64b02959a39a3fe229f8e70644f4",
+   "size": 6148
+  },
+  {
+   "path": "stage4_terrain_radiation_toy/scripts/__pycache__/terrain_radiation_toy_model.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "5e61a96f71cee303e388e0edce0191d7b3b33b3853fa24a12cc52187073e8c84",
+   "size": 34025
+  },
+  {
+   "path": "stage5_gradient_friendly_model/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "cbc421e2ffa554ec513de20da581a3571c88207e378e114c9fa0e5d5687793ae",
+   "size": 6148
+  },
+  {
+   "path": "stage5_gradient_friendly_model/scripts/__pycache__/gradient_friendly_forward_check.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "6b78d05beffa58dc2c4db32b6ebbf2134a0ea4d769851f4683f03443a0b451ac",
+   "size": 31892
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "c95bfce0a90fd3d4b263410b9c3457f64b3152b6cb74361bc1984d686111121e",
+   "size": 10244
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/data/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "01986f766d81bbef1d7856e7596cbde68462c5b681b9056ca94f9a39a8a4c2fb",
+   "size": 6148
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/outputs/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "12fc850612cc7b56b8832f9f15441f88a6f7a24db1c8535c2e2c3b699059c905",
+   "size": 6148
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "0ed66505cb6ac1f67ad35c244c5d5a03ac42c4ab2b7afe015eb5dfa47caf5637",
+   "size": 6148
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "c89e2278ccf19afecbc94077b6d02305d760870292a61af727008af827e085aa",
+   "size": 6148
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/scripts/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "c147fb3ec43305ffbc2028356d515e6e1fd9addb1766921d6a7c64b56496b3ec",
+   "size": 6148
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_2b_shadowrisk_local_check.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "3f6cc87c7c97b6bfb01be1710a50389be0a6670962fbc12019153a9a9756541b",
+   "size": 44927
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_executor.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "b6856f345d099644dca12d9c8f0cfd93cc9a4337fafdcf860d86a4fa6fdf907d",
+   "size": 108810
+  },
+  {
+   "path": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_experiment.cpython-312.pyc",
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "sha256": "8776334ebba6e6b9ed3fce346e91bdfdc1f1906607571714030ab47d323b2e10",
+   "size": 62165
+  },
+  {
+   "path": "stage6_differentiable_inversion_toy/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "26261aee434c924433148997f3728bbe77d5ba5a25dc8da42680d2290869b25b",
+   "size": 6148
+  },
+  {
+   "path": "stage7_real_weak_closure/.DS_Store",
+   "category": "system_junk",
+   "reason": "macOS Finder 产物，可再生",
+   "sha256": "23374142e24567ba5ba717df55cef8f10bd8b194299489577810dba2ae22fcdd",
+   "size": 6148
+  }
+ ]
+}

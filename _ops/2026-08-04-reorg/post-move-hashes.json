@@ -1,0 +1,3193 @@
+{
+ "schema": "mountainrs-post-move-hashes-v1",
+ "date": "2026-08-04",
+ "slimming_note": "瘦身说明：本清单中 venv 及其归档快照的逐文件条目已压为可验证的聚合哈希（见 rollups）。项目文件条目逐条全量保留，未做任何删减。守恒证明、迁移前既有漂移登记、逐条字节改动与 attic 清理留痕均未改动。瘦身在提交推送之前完成，目的是避免把第三方环境的文件级哈希永久带进版本库；聚合哈希本身可对归档整树重算复验。",
+ "repo": {
+  "root_label": "repo:/Users/zhaoxiuyue/MountainRS",
+  "count": 5790,
+  "rollups": [
+   {
+    "scope": ".cache/earthengine/venv/",
+    "reason": "本机 Python 运行时，第三方环境，本次搬迁中未移动。要验证它应由 stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-runtime.lock 重建，而不是比对逐文件哈希。",
+    "file_count": 5387,
+    "hashed_file_count": 5387,
+    "symlink_count": 0,
+    "symlinks": [],
+    "total_bytes": 256695607,
+    "aggregate_sha256": "0c820b49db99a522af85229dce77ef61711adaa448412b3a01cd41827e3f97f5",
+    "aggregate_definition": "sha256 over sorted lines of '<path>\\t<file sha256>\\n' (UTF-8), covering exactly the hashed_file_count regular files below. Symlinks carry no content hash and are listed individually instead of being aggregated; verify hashed_file_count, not file_count, against a recomputation.",
+    "replaces_per_file_entries": true
+   }
+  ],
+  "files_listed_individually": 403,
+  "files": [
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/candidate-universe.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "0087edd4dd86de45f601419d6a8cbe0947fd53e680f50fe067e7eb8e87abb13b",
+    "size": 1365
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-135987158ada5baa31ecaea794a12a773fb14a792f64f0e7146c1c3399287d14.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "3d2bd9bd43dbee25493322bc2ee7c85a5ee56471685f837b1344e47f2933d5cc",
+    "size": 977
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-18568b86f88141eb3d39580cc184fb3efecbccf35a23fe41ed81c4dcda43ed0f.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "8be1f6d8024d339a20e5d23c6b59fcd9dc7f20564ce47b7f526754bd3e2a1d83",
+    "size": 977
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-243a9e07b29c7a69c6f4e6ae472a2bc8dd355909eb4b8fae0db78068a4095b67.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "dbe6fd138ef6d73a816a515150aff3bf6f799494eac1f9977814de33fbc4f330",
+    "size": 954
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-454f18defe1669d48a552bae32623849c85c0e1f93febb74a8c3e78c74323610.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "4984aaa370acc79350b4c425010fd8c39db84433976829933c6a5d7168776b88",
+    "size": 981
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-455cebbb330f4a2653351d07cf6f8eb30ec548c3ce6be5b18f3c42dc7615571c.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "ae3ca0423f715f0aa7bee578e49b6f65e6f9b5498ed6d7d0ff83a9669d61c0d8",
+    "size": 971
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-4d5b8cad6425b1bf5cf7c38b18be90b1b4c0f6e390c09ff65c124d76ca6f4ab7.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "053ebfc8b8f8571542d4c3b8fb7f025df402550265ecfdfc9fcf0d7261e76334",
+    "size": 966
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-502e9f98b7118ecc1a8e7f18ece497f6a13ac200bfa3b529c2aae74d564596c0.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "8d520b210348062957c632c28402f822b43140bcdb2eff1b5244975fd97c65d8",
+    "size": 969
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-57c99f359093190af5e3fb1df9959974002ee43781caf4ac633afac5b6c245f0.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "5202862a628ff871073d0b9894e14c9c76033a32dca48abcdf272c7ddbbdcea1",
+    "size": 974
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-5ab5da1a4675e59c8732d897d4193d34ac8dbb2604c976b26f7d9c1cb49d125a.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "7506c10c9910e5b7043391eb975f0da5dd82002805ff851df4e4016fefccc9a7",
+    "size": 977
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-6fa207922f7e216988ab34916a3b6dd6edce37bbfa4c8b9d0f62469a840043ee.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "81ad8a9c91254e36ed4677fc272a3f06211802e2aaa1c533e47bb30416016947",
+    "size": 978
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-907af85bb9d9d44b2ef80286997ac23e01120898243a248a9a2e14fb0aa2fd49.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "e32aabfd8bd6d693c1cd5149a00d65a02c0738cc31ba50e0caedcbe18c7579ea",
+    "size": 971
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-a974401259c56d7cd672502bca302e9739a7da03400f5b0940eb9b7e103d3aca.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "6b4594b45e35ac1a703dea5b80d540673c7c1bbe435477a93325c6e52a7263b4",
+    "size": 979
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-c3e11689167faed041b72baded85c6ac44b8e374bebdb47ef50c8115c1cba83e.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "e22fdc07ce1bd499a7b815d60073b8abad009019dc7220c3836ed441df0f218b",
+    "size": 979
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-c9146897f03f3228eafcb57f2656dd75dfcaa2697f2e914c0ba04364ac5bb420.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "c624a1d5cbddefb5b292b804a195a0ce2330a9c9170448662a8fa5096a25f725",
+    "size": 957
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-ccb000d34b8d50f80abbcfb3287e885fc9b87eba27193fa633fbbb236204c4ed.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "953c0d42ede9f766ca4c02676a6fc7029036c55271d2ac0ca34cb7d90d57d6ec",
+    "size": 980
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-d27c5dfc2336fbb2ffcae03050a067468774ce3eb68ac7b1a38f935fac6aad7c.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "eea1fdc455a17bd738a2230dd326b04e9229d3c3dcac09d62205d75527bb423e",
+    "size": 973
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-d7428a1708035018093fd2cdb53f00e7771ead896cba225c64d86cb4a6bc0da5.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "ef5a26dc434e7cac4b64bf1b0a50c7332cfb7c8bcd2a9bbec7f1971fa6e538c6",
+    "size": 982
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-dc14030bf37d276b5e32282b4e866a7560ca2cebf06ab9ac2ff4d4109e3ef39f.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "ba576e3434c7ed83dc552708952066b1dff6dc7de3aec2948ffd454e575837fb",
+    "size": 954
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-df1717f7ad28a88f786b0449e4f37a941247403690d0662f760773613d9fb1f3.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "34fe91d3959c7db36f6f0bb63e22b2f6383df7618a300e56e7527d504d0f3cfe",
+    "size": 976
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-eb2dd45caf556b99be4df273483cc0e4be4a4cdea5ed5e17fb57e56fe185f6b5.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "3f71f7312012ebc5477d7993634e9c14b76cea73ca411e1e33b70daf22a0da26",
+    "size": 976
+   },
+   {
+    "path": ".cache/earthengine/catalog-audit-v5/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d/summary-ecb8e1ba1fff6084793a76fe125932309f25de653e36c949f8c8c2cca6e0f8f9.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "d1697e144ce88c1bc6adff408da51812861ac6162376490e1e3953caad5fdb9c",
+    "size": 974
+   },
+   {
+    "path": ".cache/earthengine/session/auth-attestation.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "08df59320e1ad7ecce2c219e6cbb1213154b83db736a83f054737958fd1ee005",
+    "size": 507
+   },
+   {
+    "path": ".claude/settings.local.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "03e37fa49cf82cb3eb9d8f9ccf48461dde23a5a2d620d5375d0f73faff3d3c11",
+    "size": 589
+   },
+   {
+    "path": ".gitignore",
+    "kind": "file",
+    "target": null,
+    "sha256": "b6bcbb617e3944891535746595e5fdb27bbb5b3d29890aa82970103545dee512",
+    "size": 1745
+   },
+   {
+    "path": ".pf/.gitignore",
+    "kind": "file",
+    "target": null,
+    "sha256": "1ca80635a9de3b355c9c13e31caf4277da04b1616d297c053ba4f5d14020f159",
+    "size": 32
+   },
+   {
+    "path": ".pf/resource-registry.yaml",
+    "kind": "file",
+    "target": null,
+    "sha256": "1f27d83e0eb0d75e864c86e037b0b2089f57158045c0f352cabf353ca37bfa6a",
+    "size": 8422
+   },
+   {
+    "path": ".pf/runtime/current-task-compile/33413c3ae8c255194de13bec2a9b61252c8d03bc0ba2e5ac43e758a36781ea34.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "6a1387259d9d2751110e7cb7b19c93c74152e3bf3f8eb9d6976a2f0504a273d1",
+    "size": 28770
+   },
+   {
+    "path": ".pf/runtime/current-task-compile/3c2c2ae9498f8be7ec046388dd817cd5544489bcc06c26a0afd7d34ed2d12ace.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "96bfc4865cde1c020d1db3ff77dff9f4adf70975ce21d5cd473464c36f10e2fb",
+    "size": 28735
+   },
+   {
+    "path": ".pf/runtime/current-task-compile/aee845aa421cbba0ee328c1428a1ac727d24c5a44f78e933f9e05374d7f7eece.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "483b19dc021c564a049a2588cc240aba2b773b3cb40f41723be535ce0ee37ec6",
+    "size": 29023
+   },
+   {
+    "path": ".pf/runtime/current-task-compile/d62181e73fb63e453bb41637d024da44fd75e07e91dd8aaa79cf3237a79b1425.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "c5504cbd2dbb4f4638d3c619bdbd7564e17ce0c9d6c5ad10e98973cb9d904dda",
+    "size": 28735
+   },
+   {
+    "path": ".pf/runtime/current-task.yaml",
+    "kind": "file",
+    "target": null,
+    "sha256": "036f332c384edf089449a62c3dca5579b67a673dd0e9edc36e38531539e928e0",
+    "size": 65471
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/066bd2fee5b20e14e30791944c6b0340a1d050ae6f1610f3f166f309c6035e73",
+    "kind": "file",
+    "target": null,
+    "sha256": "066bd2fee5b20e14e30791944c6b0340a1d050ae6f1610f3f166f309c6035e73",
+    "size": 8594
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380",
+    "kind": "file",
+    "target": null,
+    "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380",
+    "size": 5873
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602",
+    "kind": "file",
+    "target": null,
+    "sha256": "0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602",
+    "size": 746
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/0b8dbb2786636eeef3184ba5ccef7fedb545a1b038de4d0bf534a4268527a4c1",
+    "kind": "file",
+    "target": null,
+    "sha256": "0b8dbb2786636eeef3184ba5ccef7fedb545a1b038de4d0bf534a4268527a4c1",
+    "size": 3452
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/11cb0ba3b9caaf0953b46c1b01d53a6a49279a51c1bfe3c333932d423b7ea67b",
+    "kind": "file",
+    "target": null,
+    "sha256": "11cb0ba3b9caaf0953b46c1b01d53a6a49279a51c1bfe3c333932d423b7ea67b",
+    "size": 4870
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/120c944d323ea5ba26ab7e4478cdfd5c7754cf2040d3f8d7994d3758a88e8629",
+    "kind": "file",
+    "target": null,
+    "sha256": "120c944d323ea5ba26ab7e4478cdfd5c7754cf2040d3f8d7994d3758a88e8629",
+    "size": 3903
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18",
+    "kind": "file",
+    "target": null,
+    "sha256": "16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18",
+    "size": 777
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/2c16529bc74ab436036cde4e11096b0120a4341c7c98c6f4633eda21fb702589",
+    "kind": "file",
+    "target": null,
+    "sha256": "2c16529bc74ab436036cde4e11096b0120a4341c7c98c6f4633eda21fb702589",
+    "size": 4971
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/329129636c6c586fdff9e15b9a2981286c0f5b7f1918e16f16e407263f34e0b0",
+    "kind": "file",
+    "target": null,
+    "sha256": "329129636c6c586fdff9e15b9a2981286c0f5b7f1918e16f16e407263f34e0b0",
+    "size": 4135
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/35b4d9756e9249fcd110a7a18970729745cc5c6cd3caa214831907f0c9cd7d82",
+    "kind": "file",
+    "target": null,
+    "sha256": "35b4d9756e9249fcd110a7a18970729745cc5c6cd3caa214831907f0c9cd7d82",
+    "size": 4169
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc",
+    "kind": "file",
+    "target": null,
+    "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc",
+    "size": 5877
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/596171933511530ff1ecc20f07e6fc4a0c3258f01c68cff57046749af991ca25",
+    "kind": "file",
+    "target": null,
+    "sha256": "596171933511530ff1ecc20f07e6fc4a0c3258f01c68cff57046749af991ca25",
+    "size": 21882
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0",
+    "kind": "file",
+    "target": null,
+    "sha256": "5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0",
+    "size": 5020
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/64e7b0cbfa670b806afcc7bbe6d2b709b97924ee4a636bda419626b1801b900f",
+    "kind": "file",
+    "target": null,
+    "sha256": "64e7b0cbfa670b806afcc7bbe6d2b709b97924ee4a636bda419626b1801b900f",
+    "size": 1360
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/689232b931f44a51eb7e08cc52dc3772a7fd380e34bef6666aaa13ffd068df25",
+    "kind": "file",
+    "target": null,
+    "sha256": "689232b931f44a51eb7e08cc52dc3772a7fd380e34bef6666aaa13ffd068df25",
+    "size": 12319
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/73135f9f7b9c25ed234351dcc7815a64c7033478e962c6a9bc3c809b7f92108f",
+    "kind": "file",
+    "target": null,
+    "sha256": "73135f9f7b9c25ed234351dcc7815a64c7033478e962c6a9bc3c809b7f92108f",
+    "size": 18325
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda",
+    "kind": "file",
+    "target": null,
+    "sha256": "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda",
+    "size": 56985
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4",
+    "kind": "file",
+    "target": null,
+    "sha256": "803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4",
+    "size": 39529
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/831ec434e601cb4821e17331ea53bbc7e041815b876c0f4b531eba3b3cf20c2a",
+    "kind": "file",
+    "target": null,
+    "sha256": "831ec434e601cb4821e17331ea53bbc7e041815b876c0f4b531eba3b3cf20c2a",
+    "size": 11535
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/85606c6652890f6fd3bef4f8e0da2a99847702c8df7a931380508ccf67efc219",
+    "kind": "file",
+    "target": null,
+    "sha256": "85606c6652890f6fd3bef4f8e0da2a99847702c8df7a931380508ccf67efc219",
+    "size": 7876
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/889fc2132b9d7d308c6f2d5a79f1a0d76cc194c81b3f5c3998869ad6a7110a61",
+    "kind": "file",
+    "target": null,
+    "sha256": "889fc2132b9d7d308c6f2d5a79f1a0d76cc194c81b3f5c3998869ad6a7110a61",
+    "size": 8861
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521",
+    "kind": "file",
+    "target": null,
+    "sha256": "8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521",
+    "size": 11621
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/8f1f53c76b19270bec0f0764ca59bf2475573a02b07f1b6254d7d9d20ca21daf",
+    "kind": "file",
+    "target": null,
+    "sha256": "8f1f53c76b19270bec0f0764ca59bf2475573a02b07f1b6254d7d9d20ca21daf",
+    "size": 2739
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d",
+    "kind": "file",
+    "target": null,
+    "sha256": "980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d",
+    "size": 13534
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/b2e29fe2c7e0f8dcb1710fad0f0a092a5db3a8bedb3bcc72d53d39cfd13d7819",
+    "kind": "file",
+    "target": null,
+    "sha256": "b2e29fe2c7e0f8dcb1710fad0f0a092a5db3a8bedb3bcc72d53d39cfd13d7819",
+    "size": 57658
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/b6bcbb617e3944891535746595e5fdb27bbb5b3d29890aa82970103545dee512",
+    "kind": "file",
+    "target": null,
+    "sha256": "b6bcbb617e3944891535746595e5fdb27bbb5b3d29890aa82970103545dee512",
+    "size": 1745
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/b88bb09fd161c78c738a7b6964238d728fd81986386dcfe21b9c58cdd0ee0425",
+    "kind": "file",
+    "target": null,
+    "sha256": "b88bb09fd161c78c738a7b6964238d728fd81986386dcfe21b9c58cdd0ee0425",
+    "size": 7717
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73",
+    "kind": "file",
+    "target": null,
+    "sha256": "bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73",
+    "size": 10098
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/c363d8699ed3f4b323c221ce180610425184488eb10c3d814ad0272613a776f2",
+    "kind": "file",
+    "target": null,
+    "sha256": "c363d8699ed3f4b323c221ce180610425184488eb10c3d814ad0272613a776f2",
+    "size": 10897
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/c7000b44d176281736249d14583800d65692ea6cdeadbb262af804a61a7f53cd",
+    "kind": "file",
+    "target": null,
+    "sha256": "c7000b44d176281736249d14583800d65692ea6cdeadbb262af804a61a7f53cd",
+    "size": 12362
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/c799f475263ec59844cdfcaf33db3b178ed071c611678495b99464ffceccf7fd",
+    "kind": "file",
+    "target": null,
+    "sha256": "c799f475263ec59844cdfcaf33db3b178ed071c611678495b99464ffceccf7fd",
+    "size": 3174
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced",
+    "kind": "file",
+    "target": null,
+    "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced",
+    "size": 9565
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/da00d1deeb9723c5861db80655ec173c98b8a2662d58a624ed9ec5f593a5d116",
+    "kind": "file",
+    "target": null,
+    "sha256": "da00d1deeb9723c5861db80655ec173c98b8a2662d58a624ed9ec5f593a5d116",
+    "size": 10725
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/ee251d93a98c388deb4118559191be7fa6fc1bfd4bbcf33f4c645f6124567cf9",
+    "kind": "file",
+    "target": null,
+    "sha256": "ee251d93a98c388deb4118559191be7fa6fc1bfd4bbcf33f4c645f6124567cf9",
+    "size": 6518
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097",
+    "kind": "file",
+    "target": null,
+    "sha256": "eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097",
+    "size": 12755
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/f4dae4833e1b9a2e10e484644199ecb7dacd7e459ee0092cdbad3e4e72a88f42",
+    "kind": "file",
+    "target": null,
+    "sha256": "f4dae4833e1b9a2e10e484644199ecb7dacd7e459ee0092cdbad3e4e72a88f42",
+    "size": 6914
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/f6516c3b8ff6ca55ec062702bc5ed6816d6fd87d2002ea52f42ae288eb77340e",
+    "kind": "file",
+    "target": null,
+    "sha256": "f6516c3b8ff6ca55ec062702bc5ed6816d6fd87d2002ea52f42ae288eb77340e",
+    "size": 4612
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/blobs/fcd4e8f09d4bfb274ced24f854e0e0dafd5026909d0f8e7c1a20eb3a1e54f01d",
+    "kind": "file",
+    "target": null,
+    "sha256": "fcd4e8f09d4bfb274ced24f854e0e0dafd5026909d0f8e7c1a20eb3a1e54f01d",
+    "size": 6414
+   },
+   {
+    "path": ".pf/runtime/workspace-relocation-v2/77146564cd632d6bf035706263289b256dab2f7a8d117d0bf465bdaf5e67775e/journal.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "ee34c29d887563ef331ec9b642d78b63fdb5450451abb34107be687bc6d79016",
+    "size": 218726
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/.obsidian/app.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "size": 2
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/.obsidian/appearance.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "size": 2
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/.obsidian/core-plugins.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "763cf20a921fd9955735b278006820b90b207b2fc04d9e79ca648279c7c14276",
+    "size": 696
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/.obsidian/graph.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "89b1b8c279c3229a13509a0fad866ef90a7a70a6536f78d542e9c0960aec3d77",
+    "size": 493
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/.obsidian/workspace.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "7d9de9c7ccb99793dd8ed0f5108e78d1d8fa225b5f9857298654e89558ce7a26",
+    "size": 6490
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/00_Index/MOC | Mountain Remote Sensing Concept Map.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f8a1a736ab1924a564d4a7b036f5eeae27135c1759ccf7d38be5ceb7ffaa770c",
+    "size": 1381
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/00_Index/obsidian_linking_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2e3a6ae01255da1be75a3588bb9676052dd539ffbcb90e71350216602e42e8e2",
+    "size": 4842
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/01_Stage_Index/Stage 1｜GeoTIFF 栅格体检闭环.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "59394215faaf2085571708e787df79e8271a20dc9129a18eb83c10a9b6b70fda",
+    "size": 2079
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/01_Stage_Index/Stage 2｜DEM 地形状态闭环.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "53ed08fdded61c2bf1866284944f78725868ec2691dc7b266afea195f41ed809",
+    "size": 5173
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/01_Stage_Index/Stage 3｜DEM + 影像对齐闭环.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "eeb13a3feebbb40766ae54a56c6ef59b41339e076c372417a8feef7c25931002",
+    "size": 6204
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/01_Stage_Index/Stage 4｜非可微地形辐射 Toy Model.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "fe41bf27069c774c30eed3642986497d7bdb2bafd4a60fa19effb27a291ca010",
+    "size": 5592
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/01_Stage_Index/Stage 5｜Gradient-friendly 正向模型与梯度校验.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "939d6b785320140db9bb1fe62a64c93ed0d02cdf6c1b741395ebeec220e96c16",
+    "size": 5478
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/01_Stage_Index/Stage 6｜可微反演 Toy Model + 置信度字段.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "80385f62ce140ebbbc539543bf39d2a12f9561f27f478346e982bc3e95d6d261",
+    "size": 5186
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept_GeoTIFF.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "1d4768c62d0d26c83e0a27cf511da9d0a7c05df5c22fc26a2db621b3f964a402",
+    "size": 2048
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Albedo.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "3a0db8ef2bce83405eaaabe19d620855d3e6332557f5cd3e759cbd3bb9e4c90d",
+    "size": 1502
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Aspect.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "0e58fb13025737776ce931f857bcd3ec2fe8c160e9729c6128a6bd66bea297df",
+    "size": 1792
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Autograd.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b3979322d71375eb525a37ffefcc27709b91935fa8ddcc4ea1adbb5eb2f20160",
+    "size": 1673
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜B4 Red.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f39d9f05035eb6b3e0bde264fcaa8351bc713491e0b18e6c82a77a3551d12cde",
+    "size": 1361
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜B5 NIR.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "5700cb4ad77f1134470f741fc15f01969b08945a0b16027ddb4d6e4ab11f81d0",
+    "size": 1376
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Confidence Field.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b635fd68cabb0d963e624bf3ec8341c6a10ae23ce9a0bf04f28fb9b429d73514",
+    "size": 1519
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Curvature.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "e3f6c47f7992f75f6196b3359c46d34975704273a506d2a822307480087d9684",
+    "size": 1624
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜DEM.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "bf4f7477ed61904cab49effbabe685cb8dfcb587ef53cd09dae947b855a8020d",
+    "size": 1771
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Differentiable Inversion.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "eaebf8b4dd1251af4de2c24c0e71d3cf48810201fc5dd0c18dc441959716eada",
+    "size": 1494
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Effective Observation Count.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "86d35954e7e242e0453b62c3ec64a0de9115d8f74f511345e7a6e3387acbfe0a",
+    "size": 1536
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Finite Difference Gradient Check.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f70227fad877806a6a9432292d6ea82d3fdb197c9ae37ff45f22dc116b6382a7",
+    "size": 1658
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Forward Prediction Loss.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "12d1d783128475a746692450b274a5388e2f8795bc6bfb584c5db973f1307d54",
+    "size": 1791
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Forward Prediction Loss｜Stage 6.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "bdf17fc6d379464554dd2a173e4ba801eeed8148ec5419d3d2b5909d8e43adf3",
+    "size": 1737
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Gradient-friendly Model.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "c34e0c4de0add7c57f2340ce5bd3d7007ba598b4f78a61d9c0699db7a6e06876",
+    "size": 1813
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Hillshade.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "6d3c56d183b5a93baea8e808814713b2d0e7332dc82dc03b42cf9be14cee314d",
+    "size": 1773
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Ill-posed Inversion.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "19ad2158cac8b7e7de628445ca58a50306bbbe52630cf8150fe479da97ee9974",
+    "size": 1467
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Lambertian Toy Model.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "68c313fdaf030ef2415fe8e6d0561d9c24cbecf3c62560dcc81f3ecb4cc1b5c5",
+    "size": 1876
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Local Incidence Angle.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "e5d9b47b76607880f9ecc2f822318bd93f956ee28310adfe06772ebc26fcb4d7",
+    "size": 1493
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜NDVI.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "07e89752a76cb40cea8eb9f044d9919fa6eee5e3475b52c918a4bac61b0f244b",
+    "size": 1554
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Near-zero Gradient Danger.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "cfdbc0f5a8a27af8ee354d9e3d2fbca89dcf8892db19eaec8af9072305009ad9",
+    "size": 1728
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Observability Confidence.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "4c7385a0e65dbbd353a710e686fab5736d55d5b5af1253acf566701bc0030cb3",
+    "size": 1689
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Observed Brightness.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "ac968969d3cbee26d9d2b263db6be60dab64f114efbf6b823eb46e5aa1eb8e48",
+    "size": 1686
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Raster Alignment.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "6da8399982071e58d30550f35000a733953424963281f91d7043300e89663344",
+    "size": 1769
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Reliability Label.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "a75505345286836a1321f9b09498564e0d220a1aca349b0de14f6bd449bd7347",
+    "size": 1465
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Shadow Mask.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "293bd4aa59df34f535aa01d344885eef402b4c777a36abc7a697ac2e030ca70b",
+    "size": 1550
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Slope.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "0f67fed067aba0cf0a0d35135f35f76c3cb66445e43fc6e685cb8e2a3092b9c4",
+    "size": 1615
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Softplus Approximation.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "546b74975604eb74c0a50e35316bce2803c37a9e44664cbcb946b2e9e1f56351",
+    "size": 1699
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Terrain Illumination.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "a62354b33bebacc2899741dcf56e5db7d7c47bf3479cda0008c2fa2bf30c48fa",
+    "size": 1751
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Transform.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "a311322eb71bc2ddeb99762a64c50afbd1f3f2c58d289a823e154697bf9970c7",
+    "size": 1539
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜Uncertainty Proxy.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "8ae51a845cf2eaed2387eabeb880b74100dec968e877dbb66e5e68aa5b1fbbca",
+    "size": 1466
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/03_Concepts/Concept｜cos_i.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2723990138533349e51c9a6e3a95c7fcbadaf2b08e07e0d5af61a0dae39ba57e",
+    "size": 1757
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_DEM_地形因子实验_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "30f4e907c0caf8bceb2b3ab2af94b27709e45c28b92bf0f5fa231746cd5adfc1",
+    "size": 3322
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_DEM_重投影实验_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f1f849d158993aa01f1af8df58bc68d2457ae4949cd0fb8a0881b95bdc5b147e",
+    "size": 2816
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_GeoTIFF_体检实验_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "dc3f142d341108455be25a964bca10452a8d6d9501be299fc188785474368f4f",
+    "size": 1425
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_GradientFriendly正向模型_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "142919a29756b383eb812cb3fe7bb00099efc23749c19ea7a592a4f110f06582",
+    "size": 2465
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_Landsat_对齐到DEM网格_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "886b8381a67ee3ca51735415e03b4dab91c95ad71cdc4db4ff21191ba953f1c9",
+    "size": 3531
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_Landsat_影像体检与DEM空间检查_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "cc105f9654b2512512b70e63eeea080122d283573d436b07490bf62a3f4f14aa",
+    "size": 2911
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_可微反演ToyModel_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b125aae249bfddcd9ebd0cca644ddcdd55c4adef6ceb74753729641ff44bfad6",
+    "size": 3001
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/04_Results/Result_地形辐射ToyModel_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "066aac657085a2c4bf393aa7d711e185f46d95435429a8ac60e49483e208062a",
+    "size": 3016
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜DEM Reprojection.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "afd0efc117f05ce14249e0bc6f0b7376b4a0290d23e009cbc3760fb1a0248288",
+    "size": 1838
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜Differentiable Albedo Inversion Toy.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "8b8f8dd3761be7cd0d8fc3e8996b8d2a7763d4e5f3066130f54654618a0ba61e",
+    "size": 2237
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜GeoTIFF Health Check.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "26475ea51b966b1241d9dcb2aa367707417a73f178286e87c9ebc1642db18428",
+    "size": 865
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜Gradient-friendly Forward Check.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "6700ab9fbc7a6cf9db2ee99f0f45491e356242866d923b0b94c5707f6b5b9002",
+    "size": 2258
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜Landsat Spatial Check.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "fdbfabd8435fef8999ebf12dda6d487505a6985a7a77087108afaa3708929553",
+    "size": 2023
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜Landsat to DEM Grid Alignment.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "3beda2faaddf225ef6b1b0413d2a102e7de5872bc55073911c29874b79ca3a19",
+    "size": 2712
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜Terrain Factors.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "c05b32c5adb60e6d5a2ca7e3622212124803c3c5aec356c86f8f81b9eb2dd20e",
+    "size": 2447
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/05_Code_Templates/Code Template｜Terrain Radiation Toy Model.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "0d9358e8393e54a3cf41a8c450d17f97f7c8271a5f71b21495ecdf06dc80afab",
+    "size": 2658
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/07_Physics_Gates/Physics Gate｜DEM 地形因子计算.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "9795633b2cf55de3bfe338bdb726c2b78c2ff0f79f5479ce58f539b228f501ed",
+    "size": 2543
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/07_Physics_Gates/Physics Gate｜Gradient-friendly 正向模型.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "dcd9b62f3a45372b15429205113c4912f2cfac4c1c66ca925f90ca525731885c",
+    "size": 2134
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/07_Physics_Gates/Physics Gate｜可微反演 Toy Model.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "eae589073fb9dd2ec079d1057045be7ff392a64190f25fa3e122a9c18de24521",
+    "size": 2957
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/07_Physics_Gates/Physics Gate｜地形辐射 Toy Model.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "1764b90f1961e5b129f9accc8253b6ec349b91cd49474ba86dd86938332d2c23",
+    "size": 2735
+   },
+   {
+    "path": "docs/architecture.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "6514e6969139391c2d65885b257a76679d9178f8a9af024e09910f9ec5737345",
+    "size": 14122
+   },
+   {
+    "path": "docs/releases/README.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f7c6e5b0752aabf4032d8c4d7a3752b02a714f90d3a0f3580dbaa97d0a04791a",
+    "size": 424
+   },
+   {
+    "path": "docs/releases/render_architecture_v3.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "b3a38cb7a4fc11d457f77f73123c0e26e4a20a7f643c8ccb9dcb86c300260fde",
+    "size": 5400
+   },
+   {
+    "path": "docs/releases/山地遥感物理基座-架构文档-v3.pdf",
+    "kind": "file",
+    "target": null,
+    "sha256": "09ce2cc5fe2e9c73acf553337c35503e69c2daabb0506c26f24f16dee82dc54a",
+    "size": 276277
+   },
+   {
+    "path": "docs/releases/山地遥感物理基座-架构文档-v3.pdf.sha256",
+    "kind": "file",
+    "target": null,
+    "sha256": "c61e4e64561070456bcb7e38e278801e15f3e4394b54b49085e70af31bbe4f13",
+    "size": 111
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Stage 7 | 真实弱闭环 + 多ROI留一验证 + 幻觉量化.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "120c944d323ea5ba26ab7e4478cdfd5c7754cf2040d3f8d7994d3758a88e8629",
+    "size": 3903
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/obsidian_drafts/Task_Stage7_单日Landsat数据准备.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "8f1f53c76b19270bec0f0764ca59bf2475573a02b07f1b6254d7d9d20ca21daf",
+    "size": 2739
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_requirement.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f6516c3b8ff6ca55ec062702bc5ed6816d6fd87d2002ea52f42ae288eb77340e",
+    "size": 4612
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_data_strategy.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "c799f475263ec59844cdfcaf33db3b178ed071c611678495b99464ffceccf7fd",
+    "size": 3174
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/reports/stage7_mainline_plan.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2c16529bc74ab436036cde4e11096b0120a4341c7c98c6f4633eda21fb702589",
+    "size": 4971
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/scripts/gee_export_landsat_single_scene.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "fcd4e8f09d4bfb274ced24f854e0e0dafd5026909d0f8e7c1a20eb3a1e54f01d",
+    "size": 6414
+   },
+   {
+    "path": "stage7_real_weak_closure/historical_unadmitted/scripts/stage7_gee_multiscene_audit.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "0b8dbb2786636eeef3184ba5ccef7fedb545a1b038de4d0bf534a4268527a4c1",
+    "size": 3452
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc",
+    "size": 5877
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73",
+    "size": 10098
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_0_baseline/docs/evaluation_protocol.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380",
+    "size": 5873
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_0_baseline/docs/leakage_audit.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "ee251d93a98c388deb4118559191be7fa6fc1bfd4bbcf33f4c645f6124567cf9",
+    "size": 6518
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-project.yaml",
+    "kind": "file",
+    "target": null,
+    "sha256": "16276710a561468f6b120c30e5be03be0b1f79fdda56807167102f290b422c18",
+    "size": 777
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-runtime.lock",
+    "kind": "file",
+    "target": null,
+    "sha256": "0890548facc35d97c2fb66c9e2b050152c2f38fdb0e113017619d309e4a33602",
+    "size": 746
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/configs/observation-schema.yaml",
+    "kind": "file",
+    "target": null,
+    "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced",
+    "size": 9565
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/configs/target-grid.yaml",
+    "kind": "file",
+    "target": null,
+    "sha256": "35b4d9756e9249fcd110a7a18970729745cc5c6cd3caa214831907f0c9cd7d82",
+    "size": 4169
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda",
+    "size": 56985
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack/LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "95474954ae832f99c49bd80f8beb37169f09ffebf463ee8871c85f360861740f",
+    "size": 3136050
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/docs/mask-preserving-observation-storage-protocol-v2.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "061b1b09170c305ad58cc894844e58589896fb88d62f9d13b5b69b187fe24a61",
+    "size": 4917
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521",
+    "size": 11621
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v2.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "85606c6652890f6fd3bef4f8e0da2a99847702c8df7a931380508ccf67efc219",
+    "size": 7876
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v3.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "889fc2132b9d7d308c6f2d5a79f1a0d76cc194c81b3f5c3998869ad6a7110a61",
+    "size": 8861
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v4.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "eff62facae290b9e0bacddb74b1fe29be635e02d70590fd5ec12b13f53166097",
+    "size": 12755
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request-v5.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "980f11b36593ca5b7c8b0504cdec2584465ac77d09f43b273476dc4eb94fbd5d",
+    "size": 13534
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/catalog-audit-request.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "5f3e634659e33a7f1f6cc6ee3aee9683b7a68c76649e2aab557de28e693f82c0",
+    "size": 5020
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-attempts-v2.jsonl",
+    "kind": "file",
+    "target": null,
+    "sha256": "c47f6098c62ba6697f8fca77366b26b54e5998ba7b651b324d2e0c298f025002",
+    "size": 5422
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "596171933511530ff1ecc20f07e6fc4a0c3258f01c68cff57046749af991ca25",
+    "size": 21882
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v2.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "a4a68743cfa15f89557bdd6e4371c7bcd66f8961fb6e3565def4e6c0bb5718b7",
+    "size": 19452
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-retry-amendment-v2-order1-attempt2.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "b93206327d85de9fb418420810503865131adc5ba12d3bbf79af0dbe5dafa368",
+    "size": 4026
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "b2e29fe2c7e0f8dcb1710fad0f0a092a5db3a8bedb3bcc72d53d39cfd13d7819",
+    "size": 57658
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/source-mask-causal-audit-v1.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "450ba6d1f5e8d1aa31f2afbb3c2fcdab673a764c7a37716ff36903ac103328db",
+    "size": 22916
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/evidence/source-mask-preflight-v1.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "03c38fd503c7c32b9f31dd9df064596da8334d971c78e858ebb138806eece7eb",
+    "size": 10509
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/reports/c7_1_d3b_m1_sr_b4_source_mask_causal_audit.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "1ee0319c08b011996010e73301280bfc25af84abe919ce2c886c10501d5ba3a7",
+    "size": 2748
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/reports/candidate-audit.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "11cb0ba3b9caaf0953b46c1b01d53a6a49279a51c1bfe3c333932d423b7ea67b",
+    "size": 4870
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "81c3608a997492de13a776cf041a2b7e46e70386d38788b40b1735fc0b490e35",
+    "size": 12702
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "eae357a472c60fa5a69ae687924429e45ce2395bf2e2ccadb5ec79b68e75a793",
+    "size": 18198
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_retry_amendment_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "946a6f6abc304e14fb376b8bb5162d605c555af6f84396cea7c2e157d98e4647",
+    "size": 9737
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_mask_preserving_export_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "730d3c211bcc0d4a33846c19a65fbbca07bc3ec3ea5c4978d3c97b852e0b8158",
+    "size": 10176
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "066bd2fee5b20e14e30791944c6b0340a1d050ae6f1610f3f166f309c6035e73",
+    "size": 8594
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "803aacc1bf462b23c9ae50b5b49d8f103ea827f258488d9e59f9bf45c328c4f4",
+    "size": 39529
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_export_mask_preserving_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "1258b96541be7e7f91c07985c275a90227530b57a6f4f803a21499af80b46d2b",
+    "size": 15849
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_export_mask_preserving_v2_retry.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "1100656ddf406ae570f73fb9c66004020d90fbf8de04590e15869bef359cdf64",
+    "size": 8197
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_export_preflight.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "49399d2fd2fdfdbe625af551bc06e12347cbfbd6f786007dc1ab445c3991da84",
+    "size": 6915
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_source_mask_causal_audit.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "6f103542781344ebb2fecb68ea2d9bb5d2b5bd4e20facc56ea0ad7a91028e9d9",
+    "size": 18885
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_audit_mask_preserving_export_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "287923075c8d0ad506a95d29ca7ed2b981a6f95319e251f9fc2506f7d63d894e",
+    "size": 2572
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_manifest.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "611740d4a1418eaa8f360de68b2955bef1c134aab8601a5079fcf1d9a28d7a37",
+    "size": 11938
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_manifest_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "06ce84ca9da3ca3f2980e3fc15267609f6b680c45e0d835bb48f86a8314ec020",
+    "size": 4821
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_retry_amendment_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "be6b934e5299177d9f6263913d779331781660f65fe3f84b30be6c91b4500644",
+    "size": 3530
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_catalog_executor.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "73135f9f7b9c25ed234351dcc7815a64c7033478e962c6a9bc3c809b7f92108f",
+    "size": 18325
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_export_mask_preserving_v2.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "a9acaf26a8f0332ca9a8ed526f7f0ab06d868e6ec706e90e014e71df94595a9e",
+    "size": 5928
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_export_mask_preserving_v2_retry.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "64b0286c31d189a7e6fd8463a603e33a7c8710dee79ed0d69b33cf3f90d3521f",
+    "size": 3234
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_export_preflight.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "61ca03bc8a593ec33e4edb11a6db6d9759f14f1fe851eed45dcb29068e6ac695",
+    "size": 2342
+   },
+   {
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_gee_source_mask_causal_audit.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "475091efe73f869c3e61ebfe729eb55a9a23b2dc2545f4a194aa663395fb8956",
+    "size": 2621
+   },
+   {
+    "path": "stages/stage1_geotiff_health/data/srtm_dem.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "e4ee2266fa922e53d0d3da7b04da2332d800231f90b946fb49136672599e2416",
+    "size": 17531556
+   },
+   {
+    "path": "stages/stage1_geotiff_health/outputs/geotiff_band1_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "c6aff1f3a6aa5ef075d643a5b055cae5068be25941d72943069959525cbf1471",
+    "size": 391328
+   },
+   {
+    "path": "stages/stage1_geotiff_health/reports/geotiff_health_check_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2a72a2360988b5eaa821d02b30dacf610d5786c6c099ab1aa6dec9581fb35bb2",
+    "size": 1897
+   },
+   {
+    "path": "stages/stage1_geotiff_health/requirements.txt",
+    "kind": "file",
+    "target": null,
+    "sha256": "f6cba8ba0229dca867264bfc09f7a2daa8fe55df2052bf40550ccfa73f727b7c",
+    "size": 26
+   },
+   {
+    "path": "stages/stage1_geotiff_health/scripts/geotiff_health_check.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "b80a7902da494dd765442a8e01208388ed639d748d3068b11a2e2425ea1d078d",
+    "size": 12584
+   },
+   {
+    "path": "stages/stage2_dem_terrain/data/srtm_dem.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "e4ee2266fa922e53d0d3da7b04da2332d800231f90b946fb49136672599e2416",
+    "size": 17531556
+   },
+   {
+    "path": "stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9368e5bbbb6eaa8a4b53de0dfa7f31fbeb8d371ae74f96108b77d784ca1e521a",
+    "size": 18744323
+   },
+   {
+    "path": "stages/stage2_dem_terrain/obsidian_drafts/Physics_Gate_DEM_地形因子计算.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2d5aacb7e3cced537505566aa5cad9a0c0951e3caa2b4e348b6aa28686cc0490",
+    "size": 1934
+   },
+   {
+    "path": "stages/stage2_dem_terrain/obsidian_drafts/Result_DEM_地形因子实验_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "60716fea3dbde45fc2db9fdf2b35d346da2cd3bb874e280358dc461de41903de",
+    "size": 2704
+   },
+   {
+    "path": "stages/stage2_dem_terrain/obsidian_drafts/Result_DEM_重投影实验_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "5f35d1cfae2cfdbd40d17bfc6ffd20afe2c90c40251d87900b4c8ab0859dc421",
+    "size": 2207
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "90d24603915e62e48a17ec983eb01e7b937f4e8844c40ddb065c96321b1ce83f",
+    "size": 124801
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/aspect_degree.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "dad644f782427310f914ff3b086c6e770b26a00ed75608220e4e89f1d0a44f36",
+    "size": 40482689
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/curvature.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "8835d36e26c8e34eb120002ab1d4beb07c9063e68ff9b34b40f1c08c67873de7",
+    "size": 17738351
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/dem_utm48n_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "6376ec5afa3be0cd0399680505063e482f37066b178ac45d226c4ab8a8a40ce7",
+    "size": 439676
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/hillshade.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "ea91600e1b0ce8f81077d5fe7be39bbfbabbec73abdb56a7ea1338a0dee3aea4",
+    "size": 638819
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/slope_degree.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "3ff205a36634bf4f7dc80ffb6f2e117aedd2114e2fe9f34ed07bf2343574b014",
+    "size": 35887719
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/terrain_factor_boundary_test.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "e327024860067f1ef63e0235bf1db3195d32b9bedda805d2c725f3d46c02934b",
+    "size": 247319
+   },
+   {
+    "path": "stages/stage2_dem_terrain/outputs/terrain_factors_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "048600cd5283c593af27e3519dc3a6c39e6baa92b9f614e03b13285fca9d7279",
+    "size": 2285510
+   },
+   {
+    "path": "stages/stage2_dem_terrain/reports/obsidian_result_cards_organization_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "e5225586d2b6de156170a9e697863041ee884ad169ffbc8431a484ff19a0d792",
+    "size": 2261
+   },
+   {
+    "path": "stages/stage2_dem_terrain/reports/reproject_dem_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b6ad999b36ec020b436e06ee5cec6e28ed229878c6731772b930c4a4c8b90f6b",
+    "size": 1747
+   },
+   {
+    "path": "stages/stage2_dem_terrain/reports/stage2_obsidian_closure_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "29bbb87768521a193a3c03692727d36f43d9e5a9c00cdda789b3aaa7699a72d0",
+    "size": 3431
+   },
+   {
+    "path": "stages/stage2_dem_terrain/reports/terrain_factor_boundary_test_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "8aebcd8329cc34d9f094d681245355ab310da6eadecda8fecb3b94dbcb60b318",
+    "size": 3189
+   },
+   {
+    "path": "stages/stage2_dem_terrain/reports/terrain_factors_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "c6fd083abfe85f5c619959b06b6fe9ec1dbf31d2f358e7677f61b7a41e8701e2",
+    "size": 3201
+   },
+   {
+    "path": "stages/stage2_dem_terrain/scripts/compute_terrain_factors.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "c11391c1ab6d7df8e13265505984f380302066fabe6adb88a6f1606061f093c4",
+    "size": 16248
+   },
+   {
+    "path": "stages/stage2_dem_terrain/scripts/reproject_dem_to_utm.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "c2e0a113c98710d565670a689eb285ef6dd0336f5ca9ed370a8e2a157a4ba253",
+    "size": 12135
+   },
+   {
+    "path": "stages/stage2_dem_terrain/scripts/test_terrain_factor_boundaries.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "2739963d28fd922093a8fda337efe75826d1aa89cc3d15a20229bbb708fe2015",
+    "size": 14523
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9e2027986effd208c572543ae6d7b18e09595c4ce9df0a3df772f7e2786b1b51",
+    "size": 83419458
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "b85c81d5cc36904cb76de1136ee3fd51a8dd54b6aeee4a6bd5ad926e6533dbd4",
+    "size": 85696763
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/obsidian_drafts/Result_Landsat_对齐到DEM网格_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b7d4b6816ad9bb4cae5bd7ae7875ab3b6022a3e0d404ff89e143d416307474d6",
+    "size": 3245
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/obsidian_drafts/Result_Landsat_影像体检与DEM空间检查_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "6d68e2f448ad54c9cce36e6fd0f9328a49d50ca8ba2b81b0c66583b1690e009b",
+    "size": 3085
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/obsidian_drafts/Stage 3｜DEM + 影像对齐闭环.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "22d5bfccd2d3932228fbba9704ba90c826c3defe0665507124445b829473e2e5",
+    "size": 3798
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/obsidian_drafts/Task｜Stage 3 数据准备.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "cd54f0006c3578e97f4497d13cdd2c658aaf6e2f30fb0ac851733bf91b49a757",
+    "size": 3243
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/outputs/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "cc163d07cf1d3d264464b9dd4dc28a46aee09c69c54036e169dd3f269b174009",
+    "size": 124801
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/outputs/alignment_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "8330ffdcabca7d2b43584d7ea46010f9b38c91eedd79abbfb9a67160709e3a08",
+    "size": 2751465
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/outputs/landsat_b4_red_aligned_to_dem.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "a8ba2facbf1ebd14d70c48745da5741309668182cecd6285a5db44e1b4445b4d",
+    "size": 53013176
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/outputs/landsat_b5_nir_aligned_to_dem.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "c71c34db0345b541f2b53993ba7b310c2c17d58fb526167e64c60193dd80e6c9",
+    "size": 52194203
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/outputs/landsat_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "181c308414a182be2ea25354906f4360903d1d084a6ed4a4c35624a20f8b4f15",
+    "size": 1505257
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/outputs/ndvi_aligned_to_dem.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "3c746fe989670417faad535bd54e00a7e96102cd2bd49d9e7e66aac4f6314344",
+    "size": 44747082
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/reports/landsat_dem_spatial_check_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "a77389b6e79a1fbcf52b544d0d64611da478953dbb8bda22b18d56d043172825",
+    "size": 4919
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/reports/landsat_to_dem_alignment_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "41ac913660489ffe2654217de4619b4e227c5ad2ad85d86eb105a34573bebf5f",
+    "size": 5270
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/reports/stage3_data_requirement.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "51a83b935b9e9d768b14cf5db8196d49fe9e150d765716e6e53d4f946def61a5",
+    "size": 4834
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/reports/stage3_obsidian_closure_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "d7ab545641eccdef0ae36787d97a2185214c9f88b1b01f943d8ca7a73551d5c9",
+    "size": 3820
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/scripts/align_landsat_to_dem_grid.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "075514dbcd7b3966f2044d5c9f47f9312d1b9868fd9a6e8e7d03a9926da9121d",
+    "size": 22878
+   },
+   {
+    "path": "stages/stage3_image_dem_alignment/scripts/check_landsat_and_dem_spatial_match.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "27d9c12a696f63dce6b569c77943dc9092eb986943b1b664351d53375bf77836",
+    "size": 19971
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/obsidian_drafts/Physics_Gate_地形辐射ToyModel.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "eea1bdb4b0bc4578621be9be85bfdfc54028377a8dfea8c4d00ae11dab85a935",
+    "size": 1980
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/obsidian_drafts/Result_地形辐射ToyModel_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2d68cefc844ce166391dc8f56fed03410fd1a5fd4611175be3831216286c733b",
+    "size": 2871
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/outputs/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "1f06e9c291df1203c8446a7e7100c1ece3ee6dfd2eecfadb50467f6de97dd703",
+    "size": 124801
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/outputs/corrected_albedo_toy.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "3a1e268e4e5704eda1514700acb559f7f4f7f6c9f2c823249c7727375b599810",
+    "size": 3203446
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/outputs/cos_i.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "5c1e6ff6ac5987bcfbb6174ef24e810dbdee06defc6abb685eaff7804f64f845",
+    "size": 44150115
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/outputs/observed_brightness_toy.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "fc0c51996e52f05a947874d7bb8ee7aa24abfa47db97e1d38cacb8066d5962c9",
+    "size": 42812690
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/outputs/shadow_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9461d18d5abd749727cd7f1e6fbc2b145dc2cebcd5c532f5c31b2a3c5d7b440e",
+    "size": 487687
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/outputs/terrain_radiation_toy_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "226108fdfc270aa103f2590734779a4d3df09a3a3ff27bcd1e051abb64230f63",
+    "size": 3348964
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/reports/stage4_obsidian_closure_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "78c400408b2cbcf54e1bc31cf11b3b91b48aacb32a783c4c0e27e4c1a627d832",
+    "size": 3758
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/reports/terrain_radiation_toy_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "d454f0656552354ac6a60b26332b372958a8fb1f5a9effcee02c9772ab9ab949",
+    "size": 4327
+   },
+   {
+    "path": "stages/stage4_terrain_radiation_toy/scripts/terrain_radiation_toy_model.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "2ae0b41af4f6fd89b9fb53fe2d9e004a48a305d37a8652d8a148203eae90e017",
+    "size": 22632
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/obsidian_drafts/Physics_Gate_GradientFriendly正向模型.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "d47d3b4bf08efc4405e07f8a4f694737316037279401464c88deb326f6144a02",
+    "size": 3277
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/obsidian_drafts/Result_GradientFriendly正向模型_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b81908362866c2b341dff014b2c2942a9016afa04423a7ecfb01ced89ec9e7ef",
+    "size": 2365
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/outputs/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "5e07ad295d56e59f3a0262de618def2566fffb12a63148c2fcc354509e7baf19",
+    "size": 169492
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/outputs/gradient_friendly_response_curves.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "4ea515997e8d9eb07a51325afdab0f06127406055e4132b7f8b909fe20cc154f",
+    "size": 81122
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/outputs/synthetic_cases_gradient_check.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "b58ed8525ebc617c5591851e0ae70a4365e1a0c04ac67158b7b591c1decd6d6a",
+    "size": 94140
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/reports/gradient_friendly_forward_check_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "f4f3e0d33a7090772402e0071127cc756493ec59ec07f6f0803e0954e9b60f39",
+    "size": 6311
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/reports/stage5_obsidian_closure_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "d4951506cd86614cad4ff0de36630637edc0ecf37f407e4f4ba3012c6a38b2a1",
+    "size": 3888
+   },
+   {
+    "path": "stages/stage5_gradient_friendly_model/scripts/gradient_friendly_forward_check.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "25726945c1e76ae8288badbc6e661425e17a948fa1a62f317e729277d68e9ad3",
+    "size": 21485
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml",
+    "kind": "file",
+    "target": null,
+    "sha256": "dc6224964aca5ca910dc38952aebaae6a0429597137286ffc1d5add3057d5d59",
+    "size": 17297
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "678bef90b5d25379dd25f10bdf132ae335757866664c40b0ce5486279f7440c7",
+    "size": 2165413
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "c0f146ee69acb415260c5776056d95f4c46e4047b8a7a9744a101f9fa5c6d64f",
+    "size": 2148408
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "ec173ee786198944ecab330e229439def5999a83f637234c013b9b307fd5755a",
+    "size": 867
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "7a06caf2fa2049371db12e70391f3a069e30a078c355610d8bd9466a47d09d0b",
+    "size": 92625
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9d1d4a062719789aa40e25b6ed0d218f13cee7d0dcc12eaf044b0efdbb8b282c",
+    "size": 1850523
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "4f3f1aab22ad4750d91536810a3ae77f338d23b407011578d2dc0ad5cd9b2f3a",
+    "size": 1951296
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "5e97265fd03d50bda96fdd82058e8515109a03105e7f4a3b0c5102f8787960f8",
+    "size": 760
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "14b7db13209e2f7bceff1b8efdef472ab153684b6180820ef8d4535c1ab7be47",
+    "size": 14659
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_audit.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "c371a5db1c3d4b2fb5631459fc836b9ee4cc004a7c74ddb119847c1d80efddcb",
+    "size": 245122
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_candidates.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "0d64aa25cebd10d5d0b280e693e5d886c17436374aa253c8494ec354c9850be0",
+    "size": 4261744
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/coverage_summary.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "5da29672d336dc110d7f20e7d6ce1c2be5761236557036425c582de83db7a8eb",
+    "size": 6330
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "f007e207450424597177c6d4ae90ad8ed3801489df473d11e80adc63f9681851",
+    "size": 23272
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fit_parameters.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "645d3f707a0f46f5e39ee8f6a65d2b610b87c42b5837756358ab316c7cecf4dd",
+    "size": 31059
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fold_metrics.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "fadcec4528cf6bfb6784acde356a7fcdade88fa33c84cc2fc0f99e59ec3a0ed4",
+    "size": 22366
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_diagnostics.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "4abaa8452777581ca5a818b88946422daae0340774b7b2ac1e1a70688005c46d",
+    "size": 91724
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_verdicts.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "5fc3e88ddc04b151d0aed61fb5c45b8d2a80b5695df127763fb320a08a85cf6c",
+    "size": 5454
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/partition_metrics.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "1832dc56daef1eff635016d4a7dc2082dfaae19bb31e7809bc444dd593db21dc",
+    "size": 56272
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/residual_spatial_diagnostics.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "ea0117e1ed2f993df1eac380011280c6000a2c639d1d3a6ee293d0f531297da6",
+    "size": 10137
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/result_summary.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "02f0527b41150f88940d4172c723c83cad9b5e217af427fefba9d8c46ea2243f",
+    "size": 4702
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/risk_coverage.csv",
+    "kind": "file",
+    "target": null,
+    "sha256": "5688a5363aaed2fe60b21147dc4457cfafeea00ef544b43bcdca1f482a521847",
+    "size": 1202430
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/preflight_evidence.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "2dcb9a8c21fa039678152b40a7595b3397653980026c640d51e04f1aef32726d",
+    "size": 58288
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "4430bf356a0f8661a510326fca1d709bca43bbc5deb0cdad9a2536c2e3f97fe8",
+    "size": 21641
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "e4ccba6e84ea9e99b808a848e6769827f2d4b2030ad0f9a63c3e143ddc3e32af",
+    "size": 124801
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "83ed77e9db455a808f797e1d96b03471770429319ebeb402159d80d085d475b5",
+    "size": 1938602
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "eafbd3f109fd95bbbca1b4f7cb5fa9413c6aecfbbc484d4c7544bf35db11310e",
+    "size": 722851
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "47fab89bc6405326e135ca535011aa182260deca2afa50bf1fc820a2b2d49339",
+    "size": 1408149
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "43faaee822f6ca8c592902797179f0d31a6e5456e07092b00ef1334f9bbbf62d",
+    "size": 33727
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "afb0728e1cf627beb91ca4071177b554176e8c7080c61f94ebcb6b03328d9b1a",
+    "size": 2302620
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "aa0cf9190e9bafb641b9c8ee7a2073b54ded4d686ddbad07d9c26b338946f64e",
+    "size": 1919945
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4",
+    "size": 2041931
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "87d4e9671f54cba25837d38cc3808329c9e2d33960a346198ac522f6d18f282d",
+    "size": 1736865
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "6ed660c41dda30e051acd8f337043b155bb6778c059291d660133fd85a7cb7dc",
+    "size": 27723
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "13e67fdde352ee578c2908d679b4df8273f6124d23846faf8c1340368f7252a2",
+    "size": 4291
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "33e9309607af54024e7e4066b7bb7fce7ceae4591965b02a15be54bbb5e09d63",
+    "size": 32549
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9769f8097f2a70b65f2f4260c92e15bcd809fb971c055842318c5ea2c36b26d1",
+    "size": 7372
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "23b17a9d15c15ee0ec44b065e5b504ee872609ddd9d113d9113231583a07d08e",
+    "size": 25415
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "758b315c208bb3db6a6146a9ff24e3ffdb262ac4084f3b29d75539f1980ea04d",
+    "size": 4284
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_shadowrisk_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "af6d1d9924d7d3d464a00cd9163e625293523fc2232845f625d645a443b726ce",
+    "size": 2172080
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "5b5d19f2156c6d1a3ad86ad43276f57185b58ee925b6fd898a5d2f81c46264af",
+    "size": 2173449
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2_single_scene_local_check_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "feaef9af074d4124beea047c033ee9acc4ce178979b083b7f62a238847bd9935",
+    "size": 2533074
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2b_shadowrisk_local_check_preview.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "4fee1ce5a81585ea7d955ae846cd192327cb6f5cbcffeb6f8cf78c1b7cf4166c",
+    "size": 4075821
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "304114b202c13f9831358d400a1ea055137042d36097eb96063348a5ae5573c1",
+    "size": 169492
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B4_risk_coverage.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "cb8c677a0307bfb85778179bc2b7bedf197bc09f16f651774021088e4c300b66",
+    "size": 144533
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B5_risk_coverage.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "dde1ba74d52a4628d0ff54069c811f0798172da132ba6a828879db6b570a7fbc",
+    "size": 152259
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B4_risk_coverage.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "840db060db5a961e7d70f07f2391d100987c6ce9420849193a401d97e1e5d684",
+    "size": 126270
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B5_risk_coverage.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "48f6e5335588438adce8a2b2d325aef85e905c98e6ceb7dd729d084309f35f74",
+    "size": 132171
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "1e0c8822fbe9597892ec8d039ceff86e7bf289448a3f6c2c160e77ee7de70b1d",
+    "size": 242975
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9f3408e4f2f35415c43b63a736861884b76b49bacc38f64e9df0aad2c6716a0a",
+    "size": 242909
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "d58582ddfaa05b923751941dd41e1a5055025f9b983f9111a7f2b7354efec177",
+    "size": 242875
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "f5c07711dc2b45722f61460a6e8dba48d513a3101a30f5a76635503ba53aa7bd",
+    "size": 241661
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "a81d6e6b9b64b6a1575ad3c020ecf07e2b548c9541dd7025da4288fd2262dbeb",
+    "size": 241803
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "06fdbafde18a681b6aee162a748ed056943b1fc2ee0b2b5ca8b6546eff34fd33",
+    "size": 241651
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "60eb626723d28ccde7350d484c93367b64ced69b38d37c07cd06126536ee2a9a",
+    "size": 37361
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "5c54d2f0bc39e0bbcc322c0918d4d814a5accd34898b8c2c09470e5fbd463b27",
+    "size": 37385
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "5d26666b6afdef295410b48b00ca5d6a0fc1d5b9fb59bb4b6c24f04cf648d486",
+    "size": 37383
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "216792cf00fea7716f9a7ccb98916a95aae675e1a94a5ab6ef7e80f5301c57b0",
+    "size": 38675
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "4a72258138be1504ba356875907d6303c0270e9816e02a6e4ea01fed0ee3e262",
+    "size": 38633
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9ba7d2628ed60b5e63f79201aa77d7b1cf35fbb0c4acd14c0570a8f3dae2cd09",
+    "size": 38653
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "8ce7fc00bb2a5fc01c03d7f2bc76a54fa772cd0b498a0d9105683813db1ad0c7",
+    "size": 39649
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "26ae0e3fde054eb1f8e983ababe0fa016da7cc4287f4d97e90db9007ae12e224",
+    "size": 39635
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "164d35a12431a71066fbf403f7e7feaf0f5dd9827a2a2547fea0b1b2707126a9",
+    "size": 39627
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "97385ca0573fdf51743b57f3a489e5856be3291a4d91a8d5b0b8068f5df86c50",
+    "size": 39733
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "8df413c8b3099b752b3c5d7f148c902996d8eb8c911aedf9f0e3a4b606c92654",
+    "size": 39699
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "15de0d691a00e1550f00248b21c914ab9e7afbf383ef8790961bdff6ea8532f0",
+    "size": 39685
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "d1fb5bbd5675190ef9134cbd998743ec0bd09d7afcdae1a3610596382422b50e",
+    "size": 40187
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "e849690f07aca0129e0a12152b7252ee2b76e272bf52728c829c2d2fc614bf51",
+    "size": 40187
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "8575c4c796b160cd66ff3947118204267462096da66174bb9c40de3b1a530912",
+    "size": 40195
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "c9f9bcb4720cf49136ac33362887ca89be922e866f053c1082adacd79149ea60",
+    "size": 40129
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "2f38aa5a13f72a7d3ba29895e1f33df0c13d50a1d093d6e2caf869c4ecb78887",
+    "size": 40119
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "8469cc561e05b6e471ff83e8a4c0c52a86e18b130a606f821887c3d81b212752",
+    "size": 40119
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640",
+    "size": 230333
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640",
+    "size": 230333
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "2bfee41c4bdbcf7e48b0e935875640959e2d8afc8f1ba541ba0a68e9137c14df",
+    "size": 230395
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9f395daf728c9b3d1ccd129ce378f987a23c90e8a55abe418bfb77f61e97cbcc",
+    "size": 237151
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "1cffdf47d64bdaabf746f7e7eceba8a7fdbde15f91990ebfee9a04f524fd17dd",
+    "size": 236981
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "1ca669dea26e3ab93b964b349c5b549f3dcbac548898a349b5dec03c60ff0fe6",
+    "size": 237065
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "7ee9ea7ae084a120e154d7289039d0f84f1e27783bd7ddea322141758b3890dc",
+    "size": 97513
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "f65771d5a70066670be55397410373d254d96a175265261fe5bcfa692b91dd6d",
+    "size": 85047
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "bcf8721d37d21e4c98488ce163a2e8b3c1d133662de8c3bdcf843474183d9fed",
+    "size": 97667
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "9f06592e5a9d63d3380dbea0abc4a1101bb7097c9df2e97dcc3c293872a52076",
+    "size": 99029
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "2b5ca2ea52a059bd4e63d5b5f1a5f8c11a7228a1645ab7695cdc380e7ec4fac7",
+    "size": 87353
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "cbbf2048f7c4adb3aecb74ce3576cebe6e013ae7b19634a384b2ef2572e52cab",
+    "size": 99371
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "01a95a9739c4762c9aa529afe4ef0df1304518375533702fb354d24c69b33bf4",
+    "size": 63111
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "ece99ddbbcd3b32a22ee57def6fa3eebecf952d93d09795ae58ffe78d3d66e65",
+    "size": 59247
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "3f5492daf256f5b16059fa21cd15a311fa001e9f200fc468857d263a71ba3620",
+    "size": 63007
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "bfb14b02ef621e013d6c22ab9dbad388edbad901b86655ee0d8f29cb86bd4ba5",
+    "size": 62415
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "e0b341d81ff03f57342850a611d39e423432158a6aa9749f88d170c4bfbd7b1c",
+    "size": 58657
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "c0f9d7ffdd470ae035e13d438a346a7da2467f168d8feed1673d6be561ba6be1",
+    "size": 62267
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "a7647aaef6e9cdb048ae210e40259943e0b789e383d9937a33d54fba5420e3f2",
+    "size": 38163
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "6c707293357b58fd4ab1dae9311e3c7b0b0e47399994c726664d209165f3f690",
+    "size": 34543
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "0d64145337ad7da7fe34dc1a11ddec29b8dfcd9152c942b3632d5c4f2f3c133a",
+    "size": 38157
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "68791177786f0cb622ec5e21fa5b972638335837c04bce3da096f8d1cfed9ebc",
+    "size": 38377
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "e79ca3a674b54d69f33363b0f4168e75264c0eebf45a0be5fb9ee8eb70610264",
+    "size": 34971
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "bdaf652a8751877c6b68658d134fec3c7920ae4e8a9f943e69c7dcce0ed740f1",
+    "size": 38463
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "c5129017a901bc0a16cb59677488e00cd14885a37f66601dbfec3f07e15c55de",
+    "size": 48671
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "a165db241f50c2eee7a2787bc6c2968123d9c17c8520de06e1fad3637cd7087e",
+    "size": 44869
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "682f0bd8a622cbd5bc5d30f01b22d585d5d704ef34c4adde4204816924105902",
+    "size": 48707
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "7c5287da71a4ca7974e6d1b6f6194c807d84b8862284143da3d83fc13317b0bd",
+    "size": 49053
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "cde058036faeb77158001942917042f04e40d8edfc793e4a68a77eae66a0262a",
+    "size": 45533
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "4db28198cbbd1defa124bafba3d761a4a7ea988d06c14acefc7e01986ff45ccc",
+    "size": 49049
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "1ceb84a668ec772ba6272e5293eaeedc25a57bb0e9a10386265abe372591dbca",
+    "size": 105985
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "7b3e85b4a3848e750b9ba20cc36f2888f16669bdbc58f7a4050692b193881d5b",
+    "size": 100193
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "d537d0942496925e8101c2b6375d18f89318922309174859f0c254b5def3f325",
+    "size": 105923
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_bounded_scene_constant_diffuse.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "459d12b407fba9faa6cb696c938f3c6ce675df5304eb1f4f01105b89bbf2778a",
+    "size": 108621
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_hard_mask.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "2a012ccc70d34a2b14fe4d26daf8516cc2a020aa02001f30b6199264c3267ad3",
+    "size": 103757
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_soft_weight_k30.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "e1d92b82bfc7be8ab5332c96ebfac6f747b7a79d0bdb6b967ebcaf6b83e30377",
+    "size": 108921
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_clean_a_canonical_masks.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "af654caf9b9e6ca46d9434c2bfed4dd0970f32cafc34b7a471340075e1a67ac7",
+    "size": 35235
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif",
+    "kind": "file",
+    "target": null,
+    "sha256": "8531e9805d68fde0895f0bb567542e8aef234206a43cb49b835acec32dc7f885",
+    "size": 200477
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage3_landsat_source_audit.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "03e9659124243b360575e8957d59ffa837ac39ab3c86e715ef2e52ae5eeb6aa0",
+    "size": 10964
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1_clean_single_scene_export_plan.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "1254700c192c02e4a5ae92e3ab64e6f2cc95a5bac242ce53f3d911efd308d240",
+    "size": 5126
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1b_shadow_risk_candidate_audit_plan.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "cf976f84af48530413309f6bacad88f6c9f77bf7ca7368392ee2c0ce37dc089c",
+    "size": 4747
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1b_shadowrisk_simple_export_plan.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "a73f89c888571bbfe035b12ee0f78961157fe59ebfecccba2eadb65b3e72b176",
+    "size": 4700
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "dd8c8c14e3b5a207c1d83a7c1cbfab391eb63b62e18395ef401c075aa9b76aa3",
+    "size": 8674
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "b0a044295c045a60f8392a111262b0fa72bc11800cc920a005bc1a94ecc13b06",
+    "size": 10399
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "ebba6e667679b7b024347c4466d507e3a5ba1f959dfe14cab9344f6d5eb52f20",
+    "size": 3884
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "0662e61b78fb110e19eb40243848d5a07589cca56a9b774e8bd70621edb1c910",
+    "size": 7359
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "db53d3ecb23d0b6330567a73ed33a56d14b07f3133c321d42720fcf3f757abbb",
+    "size": 13528
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/01_cover.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "31324daeb3568a48359a574c055d84baa9b3837d1065638aadd8aa48a76c9bea",
+    "size": 405150
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/02_two_acquisitions.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "4661d84a8275cb6d204ced1f0143be68aa83ae486e9cd35bf8520bc67a65cd8c",
+    "size": 758121
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/03_mechanisms.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "1e0406a43151e6ee6d51ada5308ddb4b5babbe62f6cc8d262dcd97ba43f720d8",
+    "size": 110514
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/04_coverage_comparison.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "4bee52a60df10697d8bab3141c7b87bf3b9d2ce7731acf1bb7886ac045b8dffe",
+    "size": 120939
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/05_mechanism_warning.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "8e830715f860ccb40447069a09a95f13e5e0a77e014fb273d49583e28d31a3f9",
+    "size": 134199
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/06_conclusion.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "ba0c5cb639da86029e2dfc6c1a248f08fb8a97e2b7d760b27a5b9c78823af557",
+    "size": 111681
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/contact_sheet.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "97588d1d7e7bff1cf6e4adc423a6a7b47b81079adb4f717bee5a51f22f36376c",
+    "size": 853744
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/README.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "662ecef68a465f928d3ae0160458ca52f06437994c844a66bdc0de9a61b95139",
+    "size": 1690
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/04_all_results.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "ab6c738243e9e89326c2dcb34c2a2d3b8e1a5c2454391dccb056e5620112c3ce",
+    "size": 103544
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/05_common_coverage.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "085a0e101ef8c0b340e646c3121da09dc6ad61f1a3952b03ba8f47d84547aecd",
+    "size": 108396
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/06_mechanism_warning.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "f16649a63478421e2b6209aa4387fc1ccf93e502317ace119952f48a9489b37b",
+    "size": 134559
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/07_conclusion.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "4df6d668ed64432f047223948443f0367a1a282617fe774c4ab82b35408af675",
+    "size": 103039
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/figure_sources.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "8894ba4971e689704aea396bddbe219722f7e612b3cbafaf52b2ca54a4344121",
+    "size": 9470
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/render_post_03.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "3990fb712aff27c3bb4e35202e66a68920a5885b7793337fe1b9b7af6b88669a",
+    "size": 45420
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/gee_audit_shadow_risk_single_scene_l2sr.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "43e8c6105667f87a35007e1c94c187b5aaeb37be556f443a616844fc74f914fe",
+    "size": 10351
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/gee_export_clean_single_scene_l2sr.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "e0a666eaf70d1629b2d51649a41cd2a282c94853a171c5f7aa609b75d3b6a39d",
+    "size": 9844
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/gee_export_shadow_risk_single_scene_l2sr_simple.js",
+    "kind": "file",
+    "target": null,
+    "sha256": "30475ce40cc7a428385ae20de5815a3660e6a53a7de953d63017e8595ee94a68",
+    "size": 10929
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2_single_scene_local_check.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "42bd56773c2a4305d290e1c73f053709580f5c4d81d1e3b877df0dfbe2facc44",
+    "size": 27051
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2b_shadowrisk_local_check.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "468db8fd2fc18b075c51e601921352b8942ab67273c8a489ff6eb11ce9c19460",
+    "size": 33499
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "97df63668411f0dd8b2e75e7b86c6e1ca29dc3a0706a465d1436f3091c4b4288",
+    "size": 85997
+   },
+   {
+    "path": "stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "11b8999a2c5d4593baed10bab841e000236b984d3bd72149f2b95df0a4c5a0d4",
+    "size": 46482
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/obsidian_drafts/Physics_Gate_可微反演ToyModel.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "d6b0ea232852cd5159c419cc6cbe9039d45e65fca66318e13ea072ea0ccae292",
+    "size": 2496
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/obsidian_drafts/Result_可微反演ToyModel_01.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "439f837eb4b4db1964895f3f1089c0c7757801a51c4b098ad3f2cf3b4be05d17",
+    "size": 2584
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/outputs/.matplotlib/fontlist-v390.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "c4d96b1ba2ced87c84bfcbd115bcd09337985f8cf215fd7715b0d4d0bd0af2d0",
+    "size": 124801
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/outputs/inversion_loss_curves.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "7fdb6bed55245613a31684ded3413142b0320cd40efd13cf6ceab43bd04c5f4a",
+    "size": 143016
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/outputs/inversion_summary.png",
+    "kind": "file",
+    "target": null,
+    "sha256": "2a3ca67e15f2d8e6b5d2fa46764afc4733cde8248a5db92fb50438ede711adc2",
+    "size": 134754
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/reports/differentiable_albedo_inversion_toy_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "37adfd1bd9ddd5a9f5261b1f43c40bd855410a77b423328dab8b2bfb77f60b2b",
+    "size": 5912
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/reports/stage6_obsidian_closure_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "3ee2eb8d49a6725623f4bf77ea75ad7db7ef470262d0f041aca06041bba22e52",
+    "size": 3070
+   },
+   {
+    "path": "stages/stage6_differentiable_inversion_toy/scripts/differentiable_albedo_inversion_toy.py",
+    "kind": "file",
+    "target": null,
+    "sha256": "761c83b62824d9ab7c1a53546941bd885855e99096e6fccd943df5ad327f9312",
+    "size": 21616
+   }
+  ]
+ },
+ "attic": {
+  "root_label": "attic:~/ResearchArchive/2026/08/mountainrs-attic",
+  "count": 3660,
+  "rollups": [
+   {
+    "scope": "attic:.cache/earthengine/venv-symlink-backup-20260723T1529Z/",
+    "reason": "无引用的 venv 快照，已整体归档至仓库外 attic。它是第三方环境的字节级副本，需要时对归档整树重算聚合哈希即可验明，无需逐文件清单。",
+    "file_count": 3616,
+    "hashed_file_count": 3612,
+    "symlink_count": 4,
+    "symlinks": [
+     {
+      "path": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python",
+      "target": "python3.14"
+     },
+     {
+      "path": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python3",
+      "target": "python3.14"
+     },
+     {
+      "path": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python3.14",
+      "target": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3.14"
+     },
+     {
+      "path": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/𝜋thon",
+      "target": "python3.14"
+     }
+    ],
+    "total_bytes": 152812057,
+    "aggregate_sha256": "0183bf7b62fcaf381fcbe7c89adf90b725c0f0000c61aed53d5b904cc5ad8081",
+    "aggregate_definition": "sha256 over sorted lines of '<path>\\t<file sha256>\\n' (UTF-8), covering exactly the hashed_file_count regular files below. Symlinks carry no content hash and are listed individually instead of being aggregated; verify hashed_file_count, not file_count, against a recomputation.",
+    "replaces_per_file_entries": true
+   }
+  ],
+  "files_listed_individually": 44,
+  "files": [
+   {
+    "path": ".DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "d989e2c4d5efb21f28719e2d472a23c4f7cee67704fd293baf2f638e82bfa84b",
+    "size": 14340
+   },
+   {
+    "path": "MRS Obsidian/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "3b6dc29f43f411ab595358948801c97a3a4b163b485114d6fa86bc63a578767e",
+    "size": 6148
+   },
+   {
+    "path": "MRS Obsidian/Mountain RS Foundation Project/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "975b70467b74aa9c9507c682911ab489a943d65a3ec31253ca7354bf9b5b8d1d",
+    "size": 8196
+   },
+   {
+    "path": "PROJECT_STRUCTURE_REPORT.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "e804ed4e555b0ab39cf879644ab97a0d51bdb409d6804a5f0877f5dc2092d164",
+    "size": 4155
+   },
+   {
+    "path": "data/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "cf558b134c37391289f6045ef23fa45cc55508993607d9fea04d5150e399e5c2",
+    "size": 6148
+   },
+   {
+    "path": "docs/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "325667e82e4c0f40601c7a3e90aebb5eebbf8f266060c6bc2ef5530fc5406ed1",
+    "size": 6148
+   },
+   {
+    "path": "scripts/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "dba56c0ac479a097ddab94a742853582315acb69a28144560f95509c2e0ceeb8",
+    "size": 6148
+   },
+   {
+    "path": "scripts/stage7_1/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "909720c49eee020689021e809d0cedb323ee155ea2e20a99554edd0c7f28ad12",
+    "size": 6148
+   },
+   {
+    "path": "scripts/stage7_1/__pycache__/gee_catalog_audit.cpython-314.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "79e071f8bcb1a68689594f26d1fcfb681d7eee33263428f5d50fb77c9508854f",
+    "size": 40816
+   },
+   {
+    "path": "scripts/stage7_1/tests/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "a2a2bc676d4d1f6ec69ec4e1cc8bcce54361f937bb2d79782f63fdd6725413e2",
+    "size": 6148
+   },
+   {
+    "path": "scripts/stage7_1/tests/__pycache__/test_gee_catalog_executor.cpython-314.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "8fd67c42fc931ec555decfca60cfaa9eeae3ee661d24c13c092f56849c5bf7c2",
+    "size": 24099
+   },
+   {
+    "path": "stage1_geotiff_health/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "d7cb700572a6acdc61cb2346514629c63011b50fd0eb8bf1c87f83ff140c9a45",
+    "size": 8196
+   },
+   {
+    "path": "stage1_geotiff_health/data/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "bd5d5e5614c881504c45b12ec8bdcdfa0ba58781f20cd685988ef9e0507e0d92",
+    "size": 6148
+   },
+   {
+    "path": "stage1_geotiff_health/obsidian_drafts/.obsidian/app.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "size": 2
+   },
+   {
+    "path": "stage1_geotiff_health/obsidian_drafts/.obsidian/appearance.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "size": 2
+   },
+   {
+    "path": "stage1_geotiff_health/obsidian_drafts/.obsidian/core-plugins.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "763cf20a921fd9955735b278006820b90b207b2fc04d9e79ca648279c7c14276",
+    "size": 696
+   },
+   {
+    "path": "stage1_geotiff_health/obsidian_drafts/.obsidian/graph.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "89b1b8c279c3229a13509a0fad866ef90a7a70a6536f78d542e9c0960aec3d77",
+    "size": 493
+   },
+   {
+    "path": "stage1_geotiff_health/obsidian_drafts/.obsidian/workspace.json",
+    "kind": "file",
+    "target": null,
+    "sha256": "5144cae3f59688a7e5a87d49404e0ed181180b404a2a54d99de1c860706c85fd",
+    "size": 5709
+   },
+   {
+    "path": "stage1_geotiff_health/obsidian_drafts/geotiff_health_check_report.md",
+    "kind": "file",
+    "target": null,
+    "sha256": "2a72a2360988b5eaa821d02b30dacf610d5786c6c099ab1aa6dec9581fb35bb2",
+    "size": 1897
+   },
+   {
+    "path": "stage1_geotiff_health/scripts/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "1655911ce67c671add9edabff14b7b89c8d2edb0a7f67b6bea065d2342d2906a",
+    "size": 6148
+   },
+   {
+    "path": "stage1_geotiff_health/scripts/__pycache__/geotiff_health_check.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "2743c5ccb17f10e0cd0703521a51c0152d3be9db3e111c2d8a563eab000c46e0",
+    "size": 13594
+   },
+   {
+    "path": "stage2_dem_terrain/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "c9cdc4d9f0e0e6462e019c122725bfc85bc101149e14dd0f2d3c45add0a2385f",
+    "size": 8196
+   },
+   {
+    "path": "stage2_dem_terrain/scripts/__pycache__/compute_terrain_factors.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "3116d03c72514854f78d8ad5efece4799b1e69824b26b47ca798dc9fc841dff0",
+    "size": 23811
+   },
+   {
+    "path": "stage2_dem_terrain/scripts/__pycache__/reproject_dem_to_utm.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "424c5fef664cd05c5e94bd1faa732ea8fe5a17d60b5782d4e64fc9b419952811",
+    "size": 17534
+   },
+   {
+    "path": "stage2_dem_terrain/scripts/__pycache__/test_terrain_factor_boundaries.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "2ea5cffd6207cbcb458be8facb6f8e4f2c3519ecb2bf223f9588cdfeefe3a6bd",
+    "size": 20923
+   },
+   {
+    "path": "stage3_image_dem_alignment/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "9705faa74914c997713adc427b86258ca1114a7aa7b1658138a5556f046e80b2",
+    "size": 8196
+   },
+   {
+    "path": "stage3_image_dem_alignment/scripts/__pycache__/align_landsat_to_dem_grid.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "30d9f57dd2ef5ca36b95a1fbf481e85f9491b0550a17b17ee0e9866438319ba3",
+    "size": 34190
+   },
+   {
+    "path": "stage3_image_dem_alignment/scripts/__pycache__/check_landsat_and_dem_spatial_match.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "9978bb45e692b5d155b5be5c85e3e4e04b6ba4bbc6bb1405846ab91945430b01",
+    "size": 32069
+   },
+   {
+    "path": "stage4_terrain_radiation_toy/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "4da7d682a9ff7462c0bba566071153b541ff64b02959a39a3fe229f8e70644f4",
+    "size": 6148
+   },
+   {
+    "path": "stage4_terrain_radiation_toy/scripts/__pycache__/terrain_radiation_toy_model.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "5e61a96f71cee303e388e0edce0191d7b3b33b3853fa24a12cc52187073e8c84",
+    "size": 34025
+   },
+   {
+    "path": "stage5_gradient_friendly_model/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "cbc421e2ffa554ec513de20da581a3571c88207e378e114c9fa0e5d5687793ae",
+    "size": 6148
+   },
+   {
+    "path": "stage5_gradient_friendly_model/scripts/__pycache__/gradient_friendly_forward_check.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "6b78d05beffa58dc2c4db32b6ebbf2134a0ea4d769851f4683f03443a0b451ac",
+    "size": 31892
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "c95bfce0a90fd3d4b263410b9c3457f64b3152b6cb74361bc1984d686111121e",
+    "size": 10244
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/data/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "01986f766d81bbef1d7856e7596cbde68462c5b681b9056ca94f9a39a8a4c2fb",
+    "size": 6148
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/outputs/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "12fc850612cc7b56b8832f9f15441f88a6f7a24db1c8535c2e2c3b699059c905",
+    "size": 6148
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/reports/.stage6_5_2b_shadowrisk_local_check_report.md.swp",
+    "kind": "file",
+    "target": null,
+    "sha256": "53b192dbefb6a2efdbd55f300cf6df049e5347a792bd013d861f55b8389c1036",
+    "size": 16384
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "0ed66505cb6ac1f67ad35c244c5d5a03ac42c4ab2b7afe015eb5dfa47caf5637",
+    "size": 6148
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "c89e2278ccf19afecbc94077b6d02305d760870292a61af727008af827e085aa",
+    "size": 6148
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/scripts/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "c147fb3ec43305ffbc2028356d515e6e1fd9addb1766921d6a7c64b56496b3ec",
+    "size": 6148
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_2b_shadowrisk_local_check.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "3f6cc87c7c97b6bfb01be1710a50389be0a6670962fbc12019153a9a9756541b",
+    "size": 44927
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_executor.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "b6856f345d099644dca12d9c8f0cfd93cc9a4337fafdcf860d86a4fa6fdf907d",
+    "size": 108810
+   },
+   {
+    "path": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_experiment.cpython-312.pyc",
+    "kind": "file",
+    "target": null,
+    "sha256": "8776334ebba6e6b9ed3fce346e91bdfdc1f1906607571714030ab47d323b2e10",
+    "size": 62165
+   },
+   {
+    "path": "stage6_differentiable_inversion_toy/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "26261aee434c924433148997f3728bbe77d5ba5a25dc8da42680d2290869b25b",
+    "size": 6148
+   },
+   {
+    "path": "stage7_real_weak_closure/.DS_Store",
+    "kind": "file",
+    "target": null,
+    "sha256": "23374142e24567ba5ba717df55cef8f10bd8b194299489577810dba2ae22fcdd",
+    "size": 6148
+   }
+  ]
+ }
+}

@@ -1,98 +1,99 @@
-schema: pf2-local-resource-registry-v1
+schema: pf2-local-resource-registry-v2
 resources:
   canonical_repo:
     resolver: relative_path
     relative_path: "."
+    bounded_manifest: {"schema":"pf2-local-resource-bounded-manifest-v1","paths":[".gitignore",".pf/resource-registry.yaml","docs/architecture.md"],"symlink_policy":"reject"}
   architecture_source:
     resolver: relative_path
     relative_path: docs/architecture.md
   clean_a_b4:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif
   clean_a_b5:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif
   clean_a_qa_pixel:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif
   clean_a_metadata:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv
   clean_a_cos_i:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif
   clean_a_qa_valid_mask:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif
   clean_a_confidence:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif
   clean_a_shadow_mask:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif
   clean_a_near_zero_mask:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif
   shadow_risk_b_b4:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif
   shadow_risk_b_b5:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif
   shadow_risk_b_qa_pixel:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif
   shadow_risk_b_metadata:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv
   shadow_risk_b_cos_i:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif
   shadow_risk_b_qa_valid_mask:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif
   shadow_risk_b_confidence:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif
   shadow_risk_b_shadow_mask:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif
   shadow_risk_b_near_zero_mask:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif
   stage_6_5_2_a_report:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md
   stage_6_5_2_b_report:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md
   stage_6_5_3_b_config:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml
   stage_6_5_3_b_executor:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py
   stage_6_5_3_b_results:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b
   stage_6_5_3_b_report:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md
   stage_6_5_3_b_evidence:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b
   c5_d3_approved_contract:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md
   c5_d3_runner:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py
   c5_d3_experiment_report:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md
   c5_d3_evidence_manifest:
     resolver: relative_path
-    relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json
+    relative_path: stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json
   stage_7_0_baseline_spec:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md
@@ -142,8 +143,8 @@ resources:
     resolver: relative_path
     relative_path: .cache/earthengine/venv/bin/python
   earth_engine_auth_session:
-    resolver: relative_path
-    relative_path: .cache/earthengine/session/auth-attestation.json
+    resolver: credential_attestation
+    attestation: {"schema":"pf2-local-credential-attestation-projection-v1","attestation_id":"attestation_sha256_aa31b563298c6610d0ffc6d635f768bc8158e9bba3b928c6fb6a35247115df96","content_hash":"aa31b563298c6610d0ffc6d635f768bc8158e9bba3b928c6fb6a35247115df96","governance_identity":"governance:official_earthengine_client","status":"valid","valid_until":"2026-07-31T13:34:25.044566Z"}
   earth_engine_cloud_project:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_1_observation_stack/configs/earthengine-project.yaml

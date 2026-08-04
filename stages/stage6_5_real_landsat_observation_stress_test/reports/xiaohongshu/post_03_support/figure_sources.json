@@ -1,0 +1,252 @@
+{
+  "schema": "mountainrs-xiaohongshu-post-03-figure-sources-v1",
+  "run_id": "c5_d3_35789933202effad",
+  "protocol_version": "c5-d3-approved-experiment-v1",
+  "rendering": {
+    "renderer": "render_post_03.js",
+    "dimensions": "1080x1350",
+    "numeric_policy": "Values are read from frozen C5-D3 scalar evidence; no fitting, scoring, or result mutation occurs.",
+    "distinction": "Cards 01–02 use actual observation rasters plus canonical mask overlays. Card 03 is explicitly schematic. Cards 04–06 are descriptive communication graphics based on frozen scalar results.",
+    "visual_system": "Warm paper, bold black Chinese headlines, yellow marker strokes, orange-red annotations, pale cards and layered mountain silhouettes, continuing Xiaohongshu posts 01–02."
+  },
+  "figures": [
+    {
+      "file": "01_cover.png",
+      "claim": "The cover uses a real Shadow-risk B B4 observation with canonical mask overlay; it makes no numerical comparison.",
+      "sources": [
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+          "fields": [
+            "Landsat L2 SR B4 raster; actual observation background"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif",
+          "fields": [
+            "canonical bands: base_valid, shadow, near_zero, lit"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+          "fields": [
+            "scope: two scenes / 10 descriptive buffered spatial challenges"
+          ],
+          "values": {}
+        }
+      ]
+    },
+    {
+      "file": "02_two_acquisitions.png",
+      "claim": "Clean A and Shadow-risk B are two verified acquisitions, not independent statistical replications.",
+      "sources": [
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+          "fields": [
+            "Landsat L2 SR B4 raster; actual observation panel"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+          "fields": [
+            "Landsat L2 SR B4 raster; actual observation panel"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2_single_scene_local_check_preview.png",
+          "fields": [
+            "existing formal stage-6.5 Clean A image; displayed B4 reflectance panel"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2b_shadowrisk_local_check_preview.png",
+          "fields": [
+            "existing formal stage-6.5 Shadow-risk B image; displayed B4 reflectance panel"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_clean_a_canonical_masks.tif",
+          "fields": [
+            "canonical bands: base_valid, shadow, near_zero, lit"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif",
+          "fields": [
+            "canonical bands: base_valid, shadow, near_zero, lit"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+          "fields": [
+            "scope and spatial-fold interpretation"
+          ],
+          "values": {}
+        }
+      ]
+    },
+    {
+      "file": "03_mechanisms.png",
+      "claim": "A schematic comparison of the frozen hard mask, soft weight and bounded scene-constant diffuse mechanisms.",
+      "sources": [
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+          "fields": [
+            "method interpretation and limits; bounded diffuse is not real diffuse irradiance"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json",
+          "fields": [
+            "protocol_version"
+          ],
+          "values": {}
+        }
+      ]
+    },
+    {
+      "file": "04_coverage_comparison.png",
+      "claim": "Maximum-coverage and common-80%-coverage views of the same frozen results show why error must be bound to coverage.",
+      "sources": [
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/result_summary.json",
+          "fields": [
+            "method_summary[].median_fold_mae",
+            "method_summary[].median_maximum_coverage"
+          ],
+          "values": {
+            "B4": {
+              "hard": 0.0767866514904577,
+              "soft_k30": 0.06470929762885462,
+              "diffuse": 0.06467703854124379
+            },
+            "B5": {
+              "hard": 0.06752696864935426,
+              "soft_k30": 0.06541714921553188,
+              "diffuse": 0.06221783882199424
+            },
+            "maximum_coverage_median": {
+              "hard": 0.8722982351774737,
+              "soft_k30": 1,
+              "diffuse": 1
+            }
+          }
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/risk_coverage.csv",
+          "fields": [
+            "scene=shadow_risk_b",
+            "target_coverage=0.80",
+            "comparison_scope=common_reachable",
+            "median(mae) across five folds"
+          ],
+          "values": {
+            "B4": {
+              "hard": 0.07696105242946621,
+              "soft_k30": 0.07755436136599299,
+              "diffuse": 0.07751415191653618
+            },
+            "B5": {
+              "hard": 0.07031548619251295,
+              "soft_k30": 0.07141609450038065,
+              "diffuse": 0.06904078307215977
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "05_mechanism_warning.png",
+      "claim": "The local B5 improvement is real, but frozen diagnostics do not support a diffuse-mechanism claim.",
+      "sources": [
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/partition_metrics.csv",
+          "fields": [
+            "scene=shadow_risk_b",
+            "band=B5",
+            "partition=shadow|near_zero",
+            "median(mae) across five folds"
+          ],
+          "values": {
+            "shadow": {
+              "soft_weight_k30": 0.04999156845042999,
+              "bounded_scene_constant_diffuse": 0.02366586520302486
+            },
+            "near_zero": {
+              "soft_weight_k30": 0.038112555636787365,
+              "bounded_scene_constant_diffuse": 0.024585693849409042
+            }
+          }
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fit_parameters.csv",
+          "fields": [
+            "method=bounded_scene_constant_diffuse",
+            "boundary_hit=True count"
+          ],
+          "values": {
+            "boundary_hits": 17,
+            "total_diffuse_fits": 20
+          }
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_verdicts.csv",
+          "fields": [
+            "surface_heterogeneity_sensitive=True count"
+          ],
+          "values": {
+            "sensitive": 20,
+            "total": 40
+          }
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/residual_spatial_diagnostics.csv",
+          "fields": [
+            "status starts with inconclusive"
+          ],
+          "values": {
+            "inconclusive": 60,
+            "total": 60
+          }
+        }
+      ]
+    },
+    {
+      "file": "06_conclusion.png",
+      "claim": "A communication summary of the frozen C5-D3 warning boundary; it does not report a new model result.",
+      "sources": [
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+          "fields": [
+            "overall verdict, scope, interpretation limits"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/result_summary.json",
+          "fields": [
+            "overall_verdict",
+            "overall_reason"
+          ],
+          "values": {}
+        },
+        {
+          "source_file": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json",
+          "fields": [
+            "run_id",
+            "protocol_version"
+          ],
+          "values": {}
+        }
+      ]
+    }
+  ]
+}

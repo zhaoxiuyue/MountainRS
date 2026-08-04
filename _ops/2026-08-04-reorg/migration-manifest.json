@@ -1,0 +1,2494 @@
+{
+ "schema": "mountainrs-migration-manifest-v1",
+ "date": "2026-08-04",
+ "title": "MountainRS 一次性大整理：科研工作包收敛 stages/ + 仓库外 attic 归档",
+ "plan": "方案 B（A 的全部归档 + stage1–6.5 七容器并入 stages/）",
+ "executed_by": "Claude Code（小克），PF3 项目 proj_6cbeea3266ff 节点 nd_a5842cfa87de 执行手",
+ "authorization": {
+  "owner_ruling": "所有文件可移动；25 条 preserve_bytes 冻结证据字节不可变；registry / executor 这类为搬迁设计的操作层允许改，每处字节改动逐条入册。",
+  "attic_location_ruling": "隔离区选仓库外 ~/ResearchArchive/2026/08/mountainrs-attic —— tmp/ 语义是临时易被清掉；154MB 留仓库内违背收敛本意；ResearchArchive 已是本机既定归档惯例。归档不是丢失，内容全部进哈希清单。",
+  "venv_ruling": "venv 原地不动，永不搬迁，要动就删掉重建。"
+ },
+ "invariants_upheld": {
+  "no_byte_modified_except_listed": true,
+  "preserve_bytes_frozen_evidence": {
+   "count": 25,
+   "verified_after_move": 25,
+   "broken": 0,
+   "note": "relocation-manifest-v2 记录的 25 条 preserve_bytes，搬后逐条重算 SHA-256 全部一致。"
+  },
+  "stage7_container_untouched": {
+   "path": "stage7_real_weak_closure/",
+   "note": "冻结容器整体未移动。其内 export-manifest-v1/v2、export-attempts-v2.jsonl、retry-amendment、catalog-audit-request v1–v5、source-mask-*、protocol-v2、relocation-manifest-v2 里的 stage 根相对路径与 alias 相对路径全部继续有效；3 个 test 的 REPO_ROOT=parents[4] 锚点不变。唯一例外：该目录下的 .DS_Store（Finder 产物、非冻结对象）已归档。"
+  },
+  "adjudication_artifact_intact": {
+   "path": "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack/LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "sha256": "95474954ae832f99c49bd80f8beb37169f09ffebf463ee8871c85f360861740f",
+   "note": "正处于「实际 GeoTIFF 与冻结 target grid 不一致，等待合同一致修复路线裁决」的停止条件下，原地未动、字节未变。"
+  },
+  "gitignore_unmodified": {
+   "note": "**/data/、**/outputs/ 等 glob 在 stages/ 下继续命中；!/stage7_real_weak_closure/... 是根锚但 stage7 未动。故无需改，字节保持冻结值。"
+  },
+  "hash_verification": {
+   "files_moved": 3870,
+   "hash_mismatches": 0
+  }
+ },
+ "why_scripts_needed_no_edit": "stage1–6.5 全部容器的根锚点都是「从脚本往上数 N 层」而非绝对/仓库名硬编码：stage1/2/3/5/6 用 ROOT_DIR=__file__.parent.parent（自锚）；stage4 用 PROJECT_ROOT=ROOT_DIR.parent、stage3 用 ROOT_DIR.parent/'stage2_dem_terrain'（兄弟锚，stage2 与之同步平移故仍成立）；stage6.5 用 PROJECT_ROOT=SCRIPT_PATH.parents[2]，配置与证据里的路径串一律带容器前缀。整包下移一层后，计算出的 PROJECT_ROOT 由仓库根变为 stages/，所有容器前缀路径继续正确解析，且 relative_text() 产出的字符串与experiment_manifest.json 中已记录的 75 条 relative_path 逐字相同。render_post_03.js 的 ROOT=resolve(OUT,'../../../..') 同理自洽。",
+ "byte_edits": [
+  {
+   "file": ".pf/resource-registry.yaml",
+   "layer": "operational_indirection（为搬迁而设计的解析层）",
+   "reason": "registry alias 从仓库根解析；stage6.5 容器下移一层后 29 条 alias 需加 stages/ 前缀。这是 relocation v2 当初对本文件所做的同类操作。",
+   "sha256_before": "59c3a93a11c38bbab03996a7d154d082fd2d7116893f1693a1f96a98b2a1db29",
+   "sha256_after": "1f27d83e0eb0d75e864c86e037b0b2089f57158045c0f352cabf353ca37bfa6a",
+   "edit_count": 29,
+   "edits": [
+    {
+     "line": 12,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif"
+    },
+    {
+     "line": 15,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif"
+    },
+    {
+     "line": 18,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif"
+    },
+    {
+     "line": 21,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv"
+    },
+    {
+     "line": 24,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif"
+    },
+    {
+     "line": 27,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif"
+    },
+    {
+     "line": 30,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif"
+    },
+    {
+     "line": 33,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif"
+    },
+    {
+     "line": 36,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif"
+    },
+    {
+     "line": 39,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif"
+    },
+    {
+     "line": 42,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif"
+    },
+    {
+     "line": 45,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif"
+    },
+    {
+     "line": 48,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv"
+    },
+    {
+     "line": 51,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif"
+    },
+    {
+     "line": 54,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif"
+    },
+    {
+     "line": 57,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif"
+    },
+    {
+     "line": 60,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif"
+    },
+    {
+     "line": 63,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif"
+    },
+    {
+     "line": 66,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md"
+    },
+    {
+     "line": 69,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md"
+    },
+    {
+     "line": 72,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml"
+    },
+    {
+     "line": 75,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py"
+    },
+    {
+     "line": 78,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b"
+    },
+    {
+     "line": 81,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md"
+    },
+    {
+     "line": 84,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b"
+    },
+    {
+     "line": 87,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md"
+    },
+    {
+     "line": 90,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py"
+    },
+    {
+     "line": 93,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md"
+    },
+    {
+     "line": 96,
+     "before": "    relative_path: stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json",
+     "after": "    relative_path: stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json"
+    }
+   ]
+  }
+ ],
+ "pre_existing_drift_not_caused_by_this_migration": {
+  "note": "以下 3 条在本次搬迁开始之前就已偏离 relocation-manifest-v2 记录的 after 哈希，与 git status 的 3 个 ' M' 标记吻合，且与节点进展 ev_2933884a07b7（迁移后审计器显式保留 manifest-v1 不可变旧 Alias 证据）一致。定性为 relocation v2 之后的合法续写，非损坏、非本次搬家所致。登记于此以免日后考古误判。",
+  "entries": [
+   {
+    "entryId": "resource_registry",
+    "path": ".pf/resource-registry.yaml",
+    "frozen_after_hash": "b88bb09fd161c78c738a7b6964238d728fd81986386dcfe21b9c58cdd0ee0425",
+    "hash_at_migration_start": "59c3a93a11c38bbab03996a7d154d082fd2d7116893f1693a1f96a98b2a1db29",
+    "hash_after_this_migration": "1f27d83e0eb0d75e864c86e037b0b2089f57158045c0f352cabf353ca37bfa6a"
+   },
+   {
+    "entryId": "stage_7_1_export_manifest_auditor",
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py",
+    "frozen_after_hash": "c7000b44d176281736249d14583800d65692ea6cdeadbb262af804a61a7f53cd",
+    "hash_at_migration_start": "81c3608a997492de13a776cf041a2b7e46e70386d38788b40b1735fc0b490e35",
+    "hash_after_this_migration": "81c3608a997492de13a776cf041a2b7e46e70386d38788b40b1735fc0b490e35"
+   },
+   {
+    "entryId": "stage_7_1_export_manifest_test",
+    "path": "stage7_real_weak_closure/stage7_1_observation_stack/scripts/tests/test_export_manifest.py",
+    "frozen_after_hash": "c363d8699ed3f4b323c221ce180610425184488eb10c3d814ad0272613a776f2",
+    "hash_at_migration_start": "611740d4a1418eaa8f360de68b2955bef1c134aab8601a5079fcf1d9a28d7a37",
+    "hash_after_this_migration": "611740d4a1418eaa8f360de68b2955bef1c134aab8601a5079fcf1d9a28d7a37"
+   }
+  ]
+ },
+ "unresolved_aliases_pre_existing": {
+  "note": "以下 3 条 alias 在搬迁前就无对应文件——它们是 Stage 7.1 尚未产出的预留落点，不是被本次搬迁弄丢的。",
+  "entries": [
+   "stage_7_1_terrain_stack",
+   "stage_7_1_stack_manifest",
+   "stage_7_1_readiness_report"
+  ]
+ },
+ "known_stale_after_migration": [
+  {
+   "path": ".pf/runtime/current-task.yaml 及 .pf/runtime/current-task-compile/*.json",
+   "note": "PF2 时代的运行时依赖快照（gitignored）。按 PF2 语义 current-task 快照只读、不得改写重放，故未更新；其中指向 stage6.5 旧路径的条目现已过期。"
+  },
+  {
+   "path": "各 stage 的 reports/*.md、MRS Obsidian/**、stage6.5 的 evidence/*.json 中的叙述性路径",
+   "note": "属证据与叙述层，按授权不改字节。stage6.5 证据里的 relative_path 因PROJECT_ROOT 随容器平移而仍然正确，无需改写。"
+  }
+ ],
+ "moves": [
+  {
+   "category": "legacy_shell",
+   "reason": "PF2 relocation 后残留空目录，零引用",
+   "from": "configs",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/configs",
+   "to_is_outside_repo": true,
+   "member_count": 0,
+   "members": []
+  },
+  {
+   "category": "legacy_shell",
+   "reason": "PF2 relocation 后残留空目录，零引用",
+   "from": "evidence",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/evidence",
+   "to_is_outside_repo": true,
+   "member_count": 0,
+   "members": []
+  },
+  {
+   "category": "legacy_shell",
+   "reason": "PF2 relocation 后残留空目录，零引用",
+   "from": "reports",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/reports",
+   "to_is_outside_repo": true,
+   "member_count": 0,
+   "members": []
+  },
+  {
+   "category": "legacy_shell",
+   "reason": "仅含 .DS_Store 与空 raw/；manifest-v1 里的 data/raw/stage7_1/... 是字面字符串不落盘",
+   "from": "data",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/data",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "data/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/data/.DS_Store",
+     "sha256_before": "cf558b134c37391289f6045ef23fa45cc55508993607d9fea04d5150e399e5c2",
+     "sha256_after": "cf558b134c37391289f6045ef23fa45cc55508993607d9fea04d5150e399e5c2",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "legacy_shell",
+   "reason": "真身已迁至 stage7_1_observation_stack/scripts/，此处仅剩 .DS_Store 与 __pycache__",
+   "from": "scripts",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/scripts",
+   "to_is_outside_repo": true,
+   "member_count": 5,
+   "members": [
+    {
+     "from": "scripts/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/scripts/.DS_Store",
+     "sha256_before": "dba56c0ac479a097ddab94a742853582315acb69a28144560f95509c2e0ceeb8",
+     "sha256_after": "dba56c0ac479a097ddab94a742853582315acb69a28144560f95509c2e0ceeb8",
+     "identical": true
+    },
+    {
+     "from": "scripts/stage7_1/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/scripts/stage7_1/.DS_Store",
+     "sha256_before": "909720c49eee020689021e809d0cedb323ee155ea2e20a99554edd0c7f28ad12",
+     "sha256_after": "909720c49eee020689021e809d0cedb323ee155ea2e20a99554edd0c7f28ad12",
+     "identical": true
+    },
+    {
+     "from": "scripts/stage7_1/tests/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/scripts/stage7_1/tests/.DS_Store",
+     "sha256_before": "a2a2bc676d4d1f6ec69ec4e1cc8bcce54361f937bb2d79782f63fdd6725413e2",
+     "sha256_after": "a2a2bc676d4d1f6ec69ec4e1cc8bcce54361f937bb2d79782f63fdd6725413e2",
+     "identical": true
+    },
+    {
+     "from": "scripts/stage7_1/__pycache__/gee_catalog_audit.cpython-314.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/scripts/stage7_1/__pycache__/gee_catalog_audit.cpython-314.pyc",
+     "sha256_before": "79e071f8bcb1a68689594f26d1fcfb681d7eee33263428f5d50fb77c9508854f",
+     "sha256_after": "79e071f8bcb1a68689594f26d1fcfb681d7eee33263428f5d50fb77c9508854f",
+     "identical": true
+    },
+    {
+     "from": "scripts/stage7_1/tests/__pycache__/test_gee_catalog_executor.cpython-314.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/scripts/stage7_1/tests/__pycache__/test_gee_catalog_executor.cpython-314.pyc",
+     "sha256_before": "8fd67c42fc931ec555decfca60cfaa9eeae3ee661d24c13c092f56849c5bf7c2",
+     "sha256_after": "8fd67c42fc931ec555decfca60cfaa9eeae3ee661d24c13c092f56849c5bf7c2",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "stale_doc",
+   "reason": "2026-06-21 目录树，内容停在 stage2 时代，仅自引用",
+   "from": "PROJECT_STRUCTURE_REPORT.md",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/PROJECT_STRUCTURE_REPORT.md",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "PROJECT_STRUCTURE_REPORT.md",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/PROJECT_STRUCTURE_REPORT.md",
+     "sha256_before": "e804ed4e555b0ab39cf879644ab97a0d51bdb409d6804a5f0877f5dc2092d164",
+     "sha256_after": "e804ed4e555b0ab39cf879644ab97a0d51bdb409d6804a5f0877f5dc2092d164",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "unreferenced_backup",
+   "reason": "154MB symlink 修复备份，全仓 grep 零引用，venv 本体健在",
+   "from": ".cache/earthengine/venv-symlink-backup-20260723T1529Z",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.cache/earthengine/venv-symlink-backup-20260723T1529Z",
+   "to_is_outside_repo": true,
+   "member_count": 3616,
+   "members_rollup": {
+    "reason": "无引用的 venv 快照，已整体归档至仓库外 attic。它是第三方环境的字节级副本，需要时对归档整树重算聚合哈希即可验明，无需逐文件清单。",
+    "member_count": 3616,
+    "hashed_member_count": 3612,
+    "symlink_member_count": 4,
+    "symlink_members": [
+     {
+      "from": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/𝜋thon",
+      "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/𝜋thon"
+     },
+     {
+      "from": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python3",
+      "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python3"
+     },
+     {
+      "from": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python",
+      "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python"
+     },
+     {
+      "from": ".cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python3.14",
+      "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.cache/earthengine/venv-symlink-backup-20260723T1529Z/bin/python3.14"
+     }
+    ],
+    "all_hashes_identical_before_and_after": true,
+    "aggregate_sha256_before": "0183bf7b62fcaf381fcbe7c89adf90b725c0f0000c61aed53d5b904cc5ad8081",
+    "aggregate_sha256_after": "38e47d1a12cd3d708b76e5a57eb43c8ad7a6da21edb77acee40f94b3ac6f71fa",
+    "aggregate_definition": "sha256 over sorted lines of '<path>\\t<file sha256>\\n' (UTF-8), covering exactly the hashed_file_count regular files below. Symlinks carry no content hash and are listed individually instead of being aggregated; verify hashed_file_count, not file_count, against a recomputation.",
+    "replaces_per_file_entries": true
+   }
+  },
+  {
+   "category": "duplicate",
+   "reason": "与 reports/ 同 SHA-256 2a72a236…，无脚本读写",
+   "from": "stage1_geotiff_health/obsidian_drafts/geotiff_health_check_report.md",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/geotiff_health_check_report.md",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/obsidian_drafts/geotiff_health_check_report.md",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/geotiff_health_check_report.md",
+     "sha256_before": "2a72a2360988b5eaa821d02b30dacf610d5786c6c099ab1aa6dec9581fb35bb2",
+     "sha256_after": "2a72a2360988b5eaa821d02b30dacf610d5786c6c099ab1aa6dec9581fb35bb2",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "stray_config",
+   "reason": "误建的第二个 Obsidian vault 配置，正式库在 MRS Obsidian/",
+   "from": "stage1_geotiff_health/obsidian_drafts/.obsidian",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/.obsidian",
+   "to_is_outside_repo": true,
+   "member_count": 5,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/obsidian_drafts/.obsidian/workspace.json",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/.obsidian/workspace.json",
+     "sha256_before": "5144cae3f59688a7e5a87d49404e0ed181180b404a2a54d99de1c860706c85fd",
+     "sha256_after": "5144cae3f59688a7e5a87d49404e0ed181180b404a2a54d99de1c860706c85fd",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/obsidian_drafts/.obsidian/app.json",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/.obsidian/app.json",
+     "sha256_before": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+     "sha256_after": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/obsidian_drafts/.obsidian/core-plugins.json",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/.obsidian/core-plugins.json",
+     "sha256_before": "763cf20a921fd9955735b278006820b90b207b2fc04d9e79ca648279c7c14276",
+     "sha256_after": "763cf20a921fd9955735b278006820b90b207b2fc04d9e79ca648279c7c14276",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/obsidian_drafts/.obsidian/graph.json",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/.obsidian/graph.json",
+     "sha256_before": "89b1b8c279c3229a13509a0fad866ef90a7a70a6536f78d542e9c0960aec3d77",
+     "sha256_after": "89b1b8c279c3229a13509a0fad866ef90a7a70a6536f78d542e9c0960aec3d77",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/obsidian_drafts/.obsidian/appearance.json",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/obsidian_drafts/.obsidian/appearance.json",
+     "sha256_before": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+     "sha256_after": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "editor_temp",
+   "reason": "vim 交换文件，正本 .md 完好",
+   "from": "stage6_5_real_landsat_observation_stress_test/reports/.stage6_5_2b_shadowrisk_local_check_report.md.swp",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/reports/.stage6_5_2b_shadowrisk_local_check_report.md.swp",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/.stage6_5_2b_shadowrisk_local_check_report.md.swp",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/reports/.stage6_5_2b_shadowrisk_local_check_report.md.swp",
+     "sha256_before": "53b192dbefb6a2efdbd55f300cf6df049e5347a792bd013d861f55b8389c1036",
+     "sha256_after": "53b192dbefb6a2efdbd55f300cf6df049e5347a792bd013d861f55b8389c1036",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": ".DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": ".DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/.DS_Store",
+     "sha256_before": "d989e2c4d5efb21f28719e2d472a23c4f7cee67704fd293baf2f638e82bfa84b",
+     "sha256_after": "d989e2c4d5efb21f28719e2d472a23c4f7cee67704fd293baf2f638e82bfa84b",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "MRS Obsidian/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/MRS Obsidian/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "MRS Obsidian/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/MRS Obsidian/.DS_Store",
+     "sha256_before": "3b6dc29f43f411ab595358948801c97a3a4b163b485114d6fa86bc63a578767e",
+     "sha256_after": "3b6dc29f43f411ab595358948801c97a3a4b163b485114d6fa86bc63a578767e",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "MRS Obsidian/Mountain RS Foundation Project/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/MRS Obsidian/Mountain RS Foundation Project/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "MRS Obsidian/Mountain RS Foundation Project/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/MRS Obsidian/Mountain RS Foundation Project/.DS_Store",
+     "sha256_before": "975b70467b74aa9c9507c682911ab489a943d65a3ec31253ca7354bf9b5b8d1d",
+     "sha256_after": "975b70467b74aa9c9507c682911ab489a943d65a3ec31253ca7354bf9b5b8d1d",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "docs/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/docs/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "docs/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/docs/.DS_Store",
+     "sha256_before": "325667e82e4c0f40601c7a3e90aebb5eebbf8f266060c6bc2ef5530fc5406ed1",
+     "sha256_after": "325667e82e4c0f40601c7a3e90aebb5eebbf8f266060c6bc2ef5530fc5406ed1",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage1_geotiff_health/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/.DS_Store",
+     "sha256_before": "d7cb700572a6acdc61cb2346514629c63011b50fd0eb8bf1c87f83ff140c9a45",
+     "sha256_after": "d7cb700572a6acdc61cb2346514629c63011b50fd0eb8bf1c87f83ff140c9a45",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage1_geotiff_health/data/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/data/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/data/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/data/.DS_Store",
+     "sha256_before": "bd5d5e5614c881504c45b12ec8bdcdfa0ba58781f20cd685988ef9e0507e0d92",
+     "sha256_after": "bd5d5e5614c881504c45b12ec8bdcdfa0ba58781f20cd685988ef9e0507e0d92",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage1_geotiff_health/scripts/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/scripts/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/scripts/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/scripts/.DS_Store",
+     "sha256_before": "1655911ce67c671add9edabff14b7b89c8d2edb0a7f67b6bea065d2342d2906a",
+     "sha256_after": "1655911ce67c671add9edabff14b7b89c8d2edb0a7f67b6bea065d2342d2906a",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage2_dem_terrain/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage2_dem_terrain/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage2_dem_terrain/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage2_dem_terrain/.DS_Store",
+     "sha256_before": "c9cdc4d9f0e0e6462e019c122725bfc85bc101149e14dd0f2d3c45add0a2385f",
+     "sha256_after": "c9cdc4d9f0e0e6462e019c122725bfc85bc101149e14dd0f2d3c45add0a2385f",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage3_image_dem_alignment/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage3_image_dem_alignment/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage3_image_dem_alignment/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage3_image_dem_alignment/.DS_Store",
+     "sha256_before": "9705faa74914c997713adc427b86258ca1114a7aa7b1658138a5556f046e80b2",
+     "sha256_after": "9705faa74914c997713adc427b86258ca1114a7aa7b1658138a5556f046e80b2",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage4_terrain_radiation_toy/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage4_terrain_radiation_toy/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage4_terrain_radiation_toy/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage4_terrain_radiation_toy/.DS_Store",
+     "sha256_before": "4da7d682a9ff7462c0bba566071153b541ff64b02959a39a3fe229f8e70644f4",
+     "sha256_after": "4da7d682a9ff7462c0bba566071153b541ff64b02959a39a3fe229f8e70644f4",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage5_gradient_friendly_model/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage5_gradient_friendly_model/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage5_gradient_friendly_model/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage5_gradient_friendly_model/.DS_Store",
+     "sha256_before": "cbc421e2ffa554ec513de20da581a3571c88207e378e114c9fa0e5d5687793ae",
+     "sha256_after": "cbc421e2ffa554ec513de20da581a3571c88207e378e114c9fa0e5d5687793ae",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_5_real_landsat_observation_stress_test/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/.DS_Store",
+     "sha256_before": "c95bfce0a90fd3d4b263410b9c3457f64b3152b6cb74361bc1984d686111121e",
+     "sha256_after": "c95bfce0a90fd3d4b263410b9c3457f64b3152b6cb74361bc1984d686111121e",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_5_real_landsat_observation_stress_test/data/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/data/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/data/.DS_Store",
+     "sha256_before": "01986f766d81bbef1d7856e7596cbde68462c5b681b9056ca94f9a39a8a4c2fb",
+     "sha256_after": "01986f766d81bbef1d7856e7596cbde68462c5b681b9056ca94f9a39a8a4c2fb",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_5_real_landsat_observation_stress_test/outputs/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/outputs/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/outputs/.DS_Store",
+     "sha256_before": "12fc850612cc7b56b8832f9f15441f88a6f7a24db1c8535c2e2c3b699059c905",
+     "sha256_after": "12fc850612cc7b56b8832f9f15441f88a6f7a24db1c8535c2e2c3b699059c905",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/.DS_Store",
+     "sha256_before": "0ed66505cb6ac1f67ad35c244c5d5a03ac42c4ab2b7afe015eb5dfa47caf5637",
+     "sha256_after": "0ed66505cb6ac1f67ad35c244c5d5a03ac42c4ab2b7afe015eb5dfa47caf5637",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/.DS_Store",
+     "sha256_before": "c89e2278ccf19afecbc94077b6d02305d760870292a61af727008af827e085aa",
+     "sha256_after": "c89e2278ccf19afecbc94077b6d02305d760870292a61af727008af827e085aa",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_5_real_landsat_observation_stress_test/scripts/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/scripts/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/scripts/.DS_Store",
+     "sha256_before": "c147fb3ec43305ffbc2028356d515e6e1fd9addb1766921d6a7c64b56496b3ec",
+     "sha256_after": "c147fb3ec43305ffbc2028356d515e6e1fd9addb1766921d6a7c64b56496b3ec",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage6_differentiable_inversion_toy/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_differentiable_inversion_toy/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage6_differentiable_inversion_toy/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_differentiable_inversion_toy/.DS_Store",
+     "sha256_before": "26261aee434c924433148997f3728bbe77d5ba5a25dc8da42680d2290869b25b",
+     "sha256_after": "26261aee434c924433148997f3728bbe77d5ba5a25dc8da42680d2290869b25b",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "system_junk",
+   "reason": "macOS Finder 产物",
+   "from": "stage7_real_weak_closure/.DS_Store",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage7_real_weak_closure/.DS_Store",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage7_real_weak_closure/.DS_Store",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage7_real_weak_closure/.DS_Store",
+     "sha256_before": "23374142e24567ba5ba717df55cef8f10bd8b194299489577810dba2ae22fcdd",
+     "sha256_after": "23374142e24567ba5ba717df55cef8f10bd8b194299489577810dba2ae22fcdd",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "from": "stage1_geotiff_health/scripts/__pycache__",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/scripts/__pycache__",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/scripts/__pycache__/geotiff_health_check.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage1_geotiff_health/scripts/__pycache__/geotiff_health_check.cpython-312.pyc",
+     "sha256_before": "2743c5ccb17f10e0cd0703521a51c0152d3be9db3e111c2d8a563eab000c46e0",
+     "sha256_after": "2743c5ccb17f10e0cd0703521a51c0152d3be9db3e111c2d8a563eab000c46e0",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "from": "stage2_dem_terrain/scripts/__pycache__",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage2_dem_terrain/scripts/__pycache__",
+   "to_is_outside_repo": true,
+   "member_count": 3,
+   "members": [
+    {
+     "from": "stage2_dem_terrain/scripts/__pycache__/compute_terrain_factors.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage2_dem_terrain/scripts/__pycache__/compute_terrain_factors.cpython-312.pyc",
+     "sha256_before": "3116d03c72514854f78d8ad5efece4799b1e69824b26b47ca798dc9fc841dff0",
+     "sha256_after": "3116d03c72514854f78d8ad5efece4799b1e69824b26b47ca798dc9fc841dff0",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/scripts/__pycache__/test_terrain_factor_boundaries.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage2_dem_terrain/scripts/__pycache__/test_terrain_factor_boundaries.cpython-312.pyc",
+     "sha256_before": "2ea5cffd6207cbcb458be8facb6f8e4f2c3519ecb2bf223f9588cdfeefe3a6bd",
+     "sha256_after": "2ea5cffd6207cbcb458be8facb6f8e4f2c3519ecb2bf223f9588cdfeefe3a6bd",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/scripts/__pycache__/reproject_dem_to_utm.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage2_dem_terrain/scripts/__pycache__/reproject_dem_to_utm.cpython-312.pyc",
+     "sha256_before": "424c5fef664cd05c5e94bd1faa732ea8fe5a17d60b5782d4e64fc9b419952811",
+     "sha256_after": "424c5fef664cd05c5e94bd1faa732ea8fe5a17d60b5782d4e64fc9b419952811",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "from": "stage3_image_dem_alignment/scripts/__pycache__",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage3_image_dem_alignment/scripts/__pycache__",
+   "to_is_outside_repo": true,
+   "member_count": 2,
+   "members": [
+    {
+     "from": "stage3_image_dem_alignment/scripts/__pycache__/check_landsat_and_dem_spatial_match.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage3_image_dem_alignment/scripts/__pycache__/check_landsat_and_dem_spatial_match.cpython-312.pyc",
+     "sha256_before": "9978bb45e692b5d155b5be5c85e3e4e04b6ba4bbc6bb1405846ab91945430b01",
+     "sha256_after": "9978bb45e692b5d155b5be5c85e3e4e04b6ba4bbc6bb1405846ab91945430b01",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/scripts/__pycache__/align_landsat_to_dem_grid.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage3_image_dem_alignment/scripts/__pycache__/align_landsat_to_dem_grid.cpython-312.pyc",
+     "sha256_before": "30d9f57dd2ef5ca36b95a1fbf481e85f9491b0550a17b17ee0e9866438319ba3",
+     "sha256_after": "30d9f57dd2ef5ca36b95a1fbf481e85f9491b0550a17b17ee0e9866438319ba3",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "from": "stage4_terrain_radiation_toy/scripts/__pycache__",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage4_terrain_radiation_toy/scripts/__pycache__",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage4_terrain_radiation_toy/scripts/__pycache__/terrain_radiation_toy_model.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage4_terrain_radiation_toy/scripts/__pycache__/terrain_radiation_toy_model.cpython-312.pyc",
+     "sha256_before": "5e61a96f71cee303e388e0edce0191d7b3b33b3853fa24a12cc52187073e8c84",
+     "sha256_after": "5e61a96f71cee303e388e0edce0191d7b3b33b3853fa24a12cc52187073e8c84",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "from": "stage5_gradient_friendly_model/scripts/__pycache__",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage5_gradient_friendly_model/scripts/__pycache__",
+   "to_is_outside_repo": true,
+   "member_count": 1,
+   "members": [
+    {
+     "from": "stage5_gradient_friendly_model/scripts/__pycache__/gradient_friendly_forward_check.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage5_gradient_friendly_model/scripts/__pycache__/gradient_friendly_forward_check.cpython-312.pyc",
+     "sha256_before": "6b78d05beffa58dc2c4db32b6ebbf2134a0ea4d769851f4683f03443a0b451ac",
+     "sha256_after": "6b78d05beffa58dc2c4db32b6ebbf2134a0ea4d769851f4683f03443a0b451ac",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "build_cache",
+   "reason": "Python 字节码缓存，可再生",
+   "from": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__",
+   "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/scripts/__pycache__",
+   "to_is_outside_repo": true,
+   "member_count": 3,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_2b_shadowrisk_local_check.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_2b_shadowrisk_local_check.cpython-312.pyc",
+     "sha256_before": "3f6cc87c7c97b6bfb01be1710a50389be0a6670962fbc12019153a9a9756541b",
+     "sha256_after": "3f6cc87c7c97b6bfb01be1710a50389be0a6670962fbc12019153a9a9756541b",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_executor.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_executor.cpython-312.pyc",
+     "sha256_before": "b6856f345d099644dca12d9c8f0cfd93cc9a4337fafdcf860d86a4fa6fdf907d",
+     "sha256_after": "b6856f345d099644dca12d9c8f0cfd93cc9a4337fafdcf860d86a4fa6fdf907d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_experiment.cpython-312.pyc",
+     "to": "/Users/zhaoxiuyue/ResearchArchive/2026/08/mountainrs-attic/stage6_5_real_landsat_observation_stress_test/scripts/__pycache__/stage6_5_3_b_experiment.cpython-312.pyc",
+     "sha256_before": "8776334ebba6e6b9ed3fce346e91bdfdc1f1906607571714030ab47d323b2e10",
+     "sha256_after": "8776334ebba6e6b9ed3fce346e91bdfdc1f1906607571714030ab47d323b2e10",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage1_geotiff_health",
+   "to": "stages/stage1_geotiff_health",
+   "to_is_outside_repo": false,
+   "member_count": 5,
+   "members": [
+    {
+     "from": "stage1_geotiff_health/requirements.txt",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage1_geotiff_health/requirements.txt",
+     "sha256_before": "f6cba8ba0229dca867264bfc09f7a2daa8fe55df2052bf40550ccfa73f727b7c",
+     "sha256_after": "f6cba8ba0229dca867264bfc09f7a2daa8fe55df2052bf40550ccfa73f727b7c",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/scripts/geotiff_health_check.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage1_geotiff_health/scripts/geotiff_health_check.py",
+     "sha256_before": "b80a7902da494dd765442a8e01208388ed639d748d3068b11a2e2425ea1d078d",
+     "sha256_after": "b80a7902da494dd765442a8e01208388ed639d748d3068b11a2e2425ea1d078d",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/data/srtm_dem.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage1_geotiff_health/data/srtm_dem.tif",
+     "sha256_before": "e4ee2266fa922e53d0d3da7b04da2332d800231f90b946fb49136672599e2416",
+     "sha256_after": "e4ee2266fa922e53d0d3da7b04da2332d800231f90b946fb49136672599e2416",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/outputs/geotiff_band1_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage1_geotiff_health/outputs/geotiff_band1_preview.png",
+     "sha256_before": "c6aff1f3a6aa5ef075d643a5b055cae5068be25941d72943069959525cbf1471",
+     "sha256_after": "c6aff1f3a6aa5ef075d643a5b055cae5068be25941d72943069959525cbf1471",
+     "identical": true
+    },
+    {
+     "from": "stage1_geotiff_health/reports/geotiff_health_check_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage1_geotiff_health/reports/geotiff_health_check_report.md",
+     "sha256_before": "2a72a2360988b5eaa821d02b30dacf610d5786c6c099ab1aa6dec9581fb35bb2",
+     "sha256_after": "2a72a2360988b5eaa821d02b30dacf610d5786c6c099ab1aa6dec9581fb35bb2",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage2_dem_terrain",
+   "to": "stages/stage2_dem_terrain",
+   "to_is_outside_repo": false,
+   "member_count": 21,
+   "members": [
+    {
+     "from": "stage2_dem_terrain/obsidian_drafts/Result_DEM_重投影实验_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/obsidian_drafts/Result_DEM_重投影实验_01.md",
+     "sha256_before": "5f35d1cfae2cfdbd40d17bfc6ffd20afe2c90c40251d87900b4c8ab0859dc421",
+     "sha256_after": "5f35d1cfae2cfdbd40d17bfc6ffd20afe2c90c40251d87900b4c8ab0859dc421",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/obsidian_drafts/Physics_Gate_DEM_地形因子计算.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/obsidian_drafts/Physics_Gate_DEM_地形因子计算.md",
+     "sha256_before": "2d5aacb7e3cced537505566aa5cad9a0c0951e3caa2b4e348b6aa28686cc0490",
+     "sha256_after": "2d5aacb7e3cced537505566aa5cad9a0c0951e3caa2b4e348b6aa28686cc0490",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/obsidian_drafts/Result_DEM_地形因子实验_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/obsidian_drafts/Result_DEM_地形因子实验_01.md",
+     "sha256_before": "60716fea3dbde45fc2db9fdf2b35d346da2cd3bb874e280358dc461de41903de",
+     "sha256_after": "60716fea3dbde45fc2db9fdf2b35d346da2cd3bb874e280358dc461de41903de",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/scripts/reproject_dem_to_utm.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/scripts/reproject_dem_to_utm.py",
+     "sha256_before": "c2e0a113c98710d565670a689eb285ef6dd0336f5ca9ed370a8e2a157a4ba253",
+     "sha256_after": "c2e0a113c98710d565670a689eb285ef6dd0336f5ca9ed370a8e2a157a4ba253",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/scripts/test_terrain_factor_boundaries.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/scripts/test_terrain_factor_boundaries.py",
+     "sha256_before": "2739963d28fd922093a8fda337efe75826d1aa89cc3d15a20229bbb708fe2015",
+     "sha256_after": "2739963d28fd922093a8fda337efe75826d1aa89cc3d15a20229bbb708fe2015",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/scripts/compute_terrain_factors.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/scripts/compute_terrain_factors.py",
+     "sha256_before": "c11391c1ab6d7df8e13265505984f380302066fabe6adb88a6f1606061f093c4",
+     "sha256_after": "c11391c1ab6d7df8e13265505984f380302066fabe6adb88a6f1606061f093c4",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/data/srtm_dem.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/data/srtm_dem.tif",
+     "sha256_before": "e4ee2266fa922e53d0d3da7b04da2332d800231f90b946fb49136672599e2416",
+     "sha256_after": "e4ee2266fa922e53d0d3da7b04da2332d800231f90b946fb49136672599e2416",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/data/srtm_dem_utm48n.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif",
+     "sha256_before": "9368e5bbbb6eaa8a4b53de0dfa7f31fbeb8d371ae74f96108b77d784ca1e521a",
+     "sha256_after": "9368e5bbbb6eaa8a4b53de0dfa7f31fbeb8d371ae74f96108b77d784ca1e521a",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/terrain_factors_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/terrain_factors_preview.png",
+     "sha256_before": "048600cd5283c593af27e3519dc3a6c39e6baa92b9f614e03b13285fca9d7279",
+     "sha256_after": "048600cd5283c593af27e3519dc3a6c39e6baa92b9f614e03b13285fca9d7279",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/hillshade.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/hillshade.png",
+     "sha256_before": "ea91600e1b0ce8f81077d5fe7be39bbfbabbec73abdb56a7ea1338a0dee3aea4",
+     "sha256_after": "ea91600e1b0ce8f81077d5fe7be39bbfbabbec73abdb56a7ea1338a0dee3aea4",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/terrain_factor_boundary_test.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/terrain_factor_boundary_test.png",
+     "sha256_before": "e327024860067f1ef63e0235bf1db3195d32b9bedda805d2c725f3d46c02934b",
+     "sha256_after": "e327024860067f1ef63e0235bf1db3195d32b9bedda805d2c725f3d46c02934b",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/aspect_degree.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/aspect_degree.tif",
+     "sha256_before": "dad644f782427310f914ff3b086c6e770b26a00ed75608220e4e89f1d0a44f36",
+     "sha256_after": "dad644f782427310f914ff3b086c6e770b26a00ed75608220e4e89f1d0a44f36",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/dem_utm48n_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/dem_utm48n_preview.png",
+     "sha256_before": "6376ec5afa3be0cd0399680505063e482f37066b178ac45d226c4ab8a8a40ce7",
+     "sha256_after": "6376ec5afa3be0cd0399680505063e482f37066b178ac45d226c4ab8a8a40ce7",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/curvature.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/curvature.tif",
+     "sha256_before": "8835d36e26c8e34eb120002ab1d4beb07c9063e68ff9b34b40f1c08c67873de7",
+     "sha256_after": "8835d36e26c8e34eb120002ab1d4beb07c9063e68ff9b34b40f1c08c67873de7",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/slope_degree.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/slope_degree.tif",
+     "sha256_before": "3ff205a36634bf4f7dc80ffb6f2e117aedd2114e2fe9f34ed07bf2343574b014",
+     "sha256_after": "3ff205a36634bf4f7dc80ffb6f2e117aedd2114e2fe9f34ed07bf2343574b014",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/reports/reproject_dem_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/reports/reproject_dem_report.md",
+     "sha256_before": "b6ad999b36ec020b436e06ee5cec6e28ed229878c6731772b930c4a4c8b90f6b",
+     "sha256_after": "b6ad999b36ec020b436e06ee5cec6e28ed229878c6731772b930c4a4c8b90f6b",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/reports/terrain_factor_boundary_test_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/reports/terrain_factor_boundary_test_report.md",
+     "sha256_before": "8aebcd8329cc34d9f094d681245355ab310da6eadecda8fecb3b94dbcb60b318",
+     "sha256_after": "8aebcd8329cc34d9f094d681245355ab310da6eadecda8fecb3b94dbcb60b318",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/reports/stage2_obsidian_closure_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/reports/stage2_obsidian_closure_report.md",
+     "sha256_before": "29bbb87768521a193a3c03692727d36f43d9e5a9c00cdda789b3aaa7699a72d0",
+     "sha256_after": "29bbb87768521a193a3c03692727d36f43d9e5a9c00cdda789b3aaa7699a72d0",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/reports/obsidian_result_cards_organization_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/reports/obsidian_result_cards_organization_report.md",
+     "sha256_before": "e5225586d2b6de156170a9e697863041ee884ad169ffbc8431a484ff19a0d792",
+     "sha256_after": "e5225586d2b6de156170a9e697863041ee884ad169ffbc8431a484ff19a0d792",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/reports/terrain_factors_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/reports/terrain_factors_report.md",
+     "sha256_before": "c6fd083abfe85f5c619959b06b6fe9ec1dbf31d2f358e7677f61b7a41e8701e2",
+     "sha256_after": "c6fd083abfe85f5c619959b06b6fe9ec1dbf31d2f358e7677f61b7a41e8701e2",
+     "identical": true
+    },
+    {
+     "from": "stage2_dem_terrain/outputs/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage2_dem_terrain/outputs/.matplotlib/fontlist-v390.json",
+     "sha256_before": "90d24603915e62e48a17ec983eb01e7b937f4e8844c40ddb065c96321b1ce83f",
+     "sha256_after": "90d24603915e62e48a17ec983eb01e7b937f4e8844c40ddb065c96321b1ce83f",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage3_image_dem_alignment",
+   "to": "stages/stage3_image_dem_alignment",
+   "to_is_outside_repo": false,
+   "member_count": 18,
+   "members": [
+    {
+     "from": "stage3_image_dem_alignment/obsidian_drafts/Task｜Stage 3 数据准备.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/obsidian_drafts/Task｜Stage 3 数据准备.md",
+     "sha256_before": "cd54f0006c3578e97f4497d13cdd2c658aaf6e2f30fb0ac851733bf91b49a757",
+     "sha256_after": "cd54f0006c3578e97f4497d13cdd2c658aaf6e2f30fb0ac851733bf91b49a757",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/obsidian_drafts/Result_Landsat_影像体检与DEM空间检查_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/obsidian_drafts/Result_Landsat_影像体检与DEM空间检查_01.md",
+     "sha256_before": "6d68e2f448ad54c9cce36e6fd0f9328a49d50ca8ba2b81b0c66583b1690e009b",
+     "sha256_after": "6d68e2f448ad54c9cce36e6fd0f9328a49d50ca8ba2b81b0c66583b1690e009b",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/obsidian_drafts/Result_Landsat_对齐到DEM网格_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/obsidian_drafts/Result_Landsat_对齐到DEM网格_01.md",
+     "sha256_before": "b7d4b6816ad9bb4cae5bd7ae7875ab3b6022a3e0d404ff89e143d416307474d6",
+     "sha256_after": "b7d4b6816ad9bb4cae5bd7ae7875ab3b6022a3e0d404ff89e143d416307474d6",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/obsidian_drafts/Stage 3｜DEM + 影像对齐闭环.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/obsidian_drafts/Stage 3｜DEM + 影像对齐闭环.md",
+     "sha256_before": "22d5bfccd2d3932228fbba9704ba90c826c3defe0665507124445b829473e2e5",
+     "sha256_after": "22d5bfccd2d3932228fbba9704ba90c826c3defe0665507124445b829473e2e5",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/scripts/align_landsat_to_dem_grid.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/scripts/align_landsat_to_dem_grid.py",
+     "sha256_before": "075514dbcd7b3966f2044d5c9f47f9312d1b9868fd9a6e8e7d03a9926da9121d",
+     "sha256_after": "075514dbcd7b3966f2044d5c9f47f9312d1b9868fd9a6e8e7d03a9926da9121d",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/scripts/check_landsat_and_dem_spatial_match.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/scripts/check_landsat_and_dem_spatial_match.py",
+     "sha256_before": "27d9c12a696f63dce6b569c77943dc9092eb986943b1b664351d53375bf77836",
+     "sha256_after": "27d9c12a696f63dce6b569c77943dc9092eb986943b1b664351d53375bf77836",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif",
+     "sha256_before": "9e2027986effd208c572543ae6d7b18e09595c4ce9df0a3df772f7e2786b1b51",
+     "sha256_after": "9e2027986effd208c572543ae6d7b18e09595c4ce9df0a3df772f7e2786b1b51",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif",
+     "sha256_before": "b85c81d5cc36904cb76de1136ee3fd51a8dd54b6aeee4a6bd5ad926e6533dbd4",
+     "sha256_after": "b85c81d5cc36904cb76de1136ee3fd51a8dd54b6aeee4a6bd5ad926e6533dbd4",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/outputs/landsat_b4_red_aligned_to_dem.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/outputs/landsat_b4_red_aligned_to_dem.tif",
+     "sha256_before": "a8ba2facbf1ebd14d70c48745da5741309668182cecd6285a5db44e1b4445b4d",
+     "sha256_after": "a8ba2facbf1ebd14d70c48745da5741309668182cecd6285a5db44e1b4445b4d",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/outputs/landsat_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/outputs/landsat_preview.png",
+     "sha256_before": "181c308414a182be2ea25354906f4360903d1d084a6ed4a4c35624a20f8b4f15",
+     "sha256_after": "181c308414a182be2ea25354906f4360903d1d084a6ed4a4c35624a20f8b4f15",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/outputs/ndvi_aligned_to_dem.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/outputs/ndvi_aligned_to_dem.tif",
+     "sha256_before": "3c746fe989670417faad535bd54e00a7e96102cd2bd49d9e7e66aac4f6314344",
+     "sha256_after": "3c746fe989670417faad535bd54e00a7e96102cd2bd49d9e7e66aac4f6314344",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/outputs/landsat_b5_nir_aligned_to_dem.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/outputs/landsat_b5_nir_aligned_to_dem.tif",
+     "sha256_before": "c71c34db0345b541f2b53993ba7b310c2c17d58fb526167e64c60193dd80e6c9",
+     "sha256_after": "c71c34db0345b541f2b53993ba7b310c2c17d58fb526167e64c60193dd80e6c9",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/outputs/alignment_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/outputs/alignment_preview.png",
+     "sha256_before": "8330ffdcabca7d2b43584d7ea46010f9b38c91eedd79abbfb9a67160709e3a08",
+     "sha256_after": "8330ffdcabca7d2b43584d7ea46010f9b38c91eedd79abbfb9a67160709e3a08",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/reports/landsat_to_dem_alignment_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/reports/landsat_to_dem_alignment_report.md",
+     "sha256_before": "41ac913660489ffe2654217de4619b4e227c5ad2ad85d86eb105a34573bebf5f",
+     "sha256_after": "41ac913660489ffe2654217de4619b4e227c5ad2ad85d86eb105a34573bebf5f",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/reports/landsat_dem_spatial_check_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/reports/landsat_dem_spatial_check_report.md",
+     "sha256_before": "a77389b6e79a1fbcf52b544d0d64611da478953dbb8bda22b18d56d043172825",
+     "sha256_after": "a77389b6e79a1fbcf52b544d0d64611da478953dbb8bda22b18d56d043172825",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/reports/stage3_obsidian_closure_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/reports/stage3_obsidian_closure_report.md",
+     "sha256_before": "d7ab545641eccdef0ae36787d97a2185214c9f88b1b01f943d8ca7a73551d5c9",
+     "sha256_after": "d7ab545641eccdef0ae36787d97a2185214c9f88b1b01f943d8ca7a73551d5c9",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/reports/stage3_data_requirement.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/reports/stage3_data_requirement.md",
+     "sha256_before": "51a83b935b9e9d768b14cf5db8196d49fe9e150d765716e6e53d4f946def61a5",
+     "sha256_after": "51a83b935b9e9d768b14cf5db8196d49fe9e150d765716e6e53d4f946def61a5",
+     "identical": true
+    },
+    {
+     "from": "stage3_image_dem_alignment/outputs/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage3_image_dem_alignment/outputs/.matplotlib/fontlist-v390.json",
+     "sha256_before": "cc163d07cf1d3d264464b9dd4dc28a46aee09c69c54036e169dd3f269b174009",
+     "sha256_after": "cc163d07cf1d3d264464b9dd4dc28a46aee09c69c54036e169dd3f269b174009",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage4_terrain_radiation_toy",
+   "to": "stages/stage4_terrain_radiation_toy",
+   "to_is_outside_repo": false,
+   "member_count": 11,
+   "members": [
+    {
+     "from": "stage4_terrain_radiation_toy/obsidian_drafts/Physics_Gate_地形辐射ToyModel.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/obsidian_drafts/Physics_Gate_地形辐射ToyModel.md",
+     "sha256_before": "eea1bdb4b0bc4578621be9be85bfdfc54028377a8dfea8c4d00ae11dab85a935",
+     "sha256_after": "eea1bdb4b0bc4578621be9be85bfdfc54028377a8dfea8c4d00ae11dab85a935",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/obsidian_drafts/Result_地形辐射ToyModel_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/obsidian_drafts/Result_地形辐射ToyModel_01.md",
+     "sha256_before": "2d68cefc844ce166391dc8f56fed03410fd1a5fd4611175be3831216286c733b",
+     "sha256_after": "2d68cefc844ce166391dc8f56fed03410fd1a5fd4611175be3831216286c733b",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/scripts/terrain_radiation_toy_model.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/scripts/terrain_radiation_toy_model.py",
+     "sha256_before": "2ae0b41af4f6fd89b9fb53fe2d9e004a48a305d37a8652d8a148203eae90e017",
+     "sha256_after": "2ae0b41af4f6fd89b9fb53fe2d9e004a48a305d37a8652d8a148203eae90e017",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/outputs/cos_i.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/outputs/cos_i.tif",
+     "sha256_before": "5c1e6ff6ac5987bcfbb6174ef24e810dbdee06defc6abb685eaff7804f64f845",
+     "sha256_after": "5c1e6ff6ac5987bcfbb6174ef24e810dbdee06defc6abb685eaff7804f64f845",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/outputs/terrain_radiation_toy_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/outputs/terrain_radiation_toy_preview.png",
+     "sha256_before": "226108fdfc270aa103f2590734779a4d3df09a3a3ff27bcd1e051abb64230f63",
+     "sha256_after": "226108fdfc270aa103f2590734779a4d3df09a3a3ff27bcd1e051abb64230f63",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/outputs/corrected_albedo_toy.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/outputs/corrected_albedo_toy.tif",
+     "sha256_before": "3a1e268e4e5704eda1514700acb559f7f4f7f6c9f2c823249c7727375b599810",
+     "sha256_after": "3a1e268e4e5704eda1514700acb559f7f4f7f6c9f2c823249c7727375b599810",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/outputs/observed_brightness_toy.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/outputs/observed_brightness_toy.tif",
+     "sha256_before": "fc0c51996e52f05a947874d7bb8ee7aa24abfa47db97e1d38cacb8066d5962c9",
+     "sha256_after": "fc0c51996e52f05a947874d7bb8ee7aa24abfa47db97e1d38cacb8066d5962c9",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/outputs/shadow_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/outputs/shadow_mask.tif",
+     "sha256_before": "9461d18d5abd749727cd7f1e6fbc2b145dc2cebcd5c532f5c31b2a3c5d7b440e",
+     "sha256_after": "9461d18d5abd749727cd7f1e6fbc2b145dc2cebcd5c532f5c31b2a3c5d7b440e",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/reports/terrain_radiation_toy_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/reports/terrain_radiation_toy_report.md",
+     "sha256_before": "d454f0656552354ac6a60b26332b372958a8fb1f5a9effcee02c9772ab9ab949",
+     "sha256_after": "d454f0656552354ac6a60b26332b372958a8fb1f5a9effcee02c9772ab9ab949",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/reports/stage4_obsidian_closure_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/reports/stage4_obsidian_closure_report.md",
+     "sha256_before": "78c400408b2cbcf54e1bc31cf11b3b91b48aacb32a783c4c0e27e4c1a627d832",
+     "sha256_after": "78c400408b2cbcf54e1bc31cf11b3b91b48aacb32a783c4c0e27e4c1a627d832",
+     "identical": true
+    },
+    {
+     "from": "stage4_terrain_radiation_toy/outputs/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage4_terrain_radiation_toy/outputs/.matplotlib/fontlist-v390.json",
+     "sha256_before": "1f06e9c291df1203c8446a7e7100c1ece3ee6dfd2eecfadb50467f6de97dd703",
+     "sha256_after": "1f06e9c291df1203c8446a7e7100c1ece3ee6dfd2eecfadb50467f6de97dd703",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage5_gradient_friendly_model",
+   "to": "stages/stage5_gradient_friendly_model",
+   "to_is_outside_repo": false,
+   "member_count": 8,
+   "members": [
+    {
+     "from": "stage5_gradient_friendly_model/obsidian_drafts/Physics_Gate_GradientFriendly正向模型.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/obsidian_drafts/Physics_Gate_GradientFriendly正向模型.md",
+     "sha256_before": "d47d3b4bf08efc4405e07f8a4f694737316037279401464c88deb326f6144a02",
+     "sha256_after": "d47d3b4bf08efc4405e07f8a4f694737316037279401464c88deb326f6144a02",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/obsidian_drafts/Result_GradientFriendly正向模型_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/obsidian_drafts/Result_GradientFriendly正向模型_01.md",
+     "sha256_before": "b81908362866c2b341dff014b2c2942a9016afa04423a7ecfb01ced89ec9e7ef",
+     "sha256_after": "b81908362866c2b341dff014b2c2942a9016afa04423a7ecfb01ced89ec9e7ef",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/scripts/gradient_friendly_forward_check.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/scripts/gradient_friendly_forward_check.py",
+     "sha256_before": "25726945c1e76ae8288badbc6e661425e17a948fa1a62f317e729277d68e9ad3",
+     "sha256_after": "25726945c1e76ae8288badbc6e661425e17a948fa1a62f317e729277d68e9ad3",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/outputs/gradient_friendly_response_curves.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/outputs/gradient_friendly_response_curves.png",
+     "sha256_before": "4ea515997e8d9eb07a51325afdab0f06127406055e4132b7f8b909fe20cc154f",
+     "sha256_after": "4ea515997e8d9eb07a51325afdab0f06127406055e4132b7f8b909fe20cc154f",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/outputs/synthetic_cases_gradient_check.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/outputs/synthetic_cases_gradient_check.png",
+     "sha256_before": "b58ed8525ebc617c5591851e0ae70a4365e1a0c04ac67158b7b591c1decd6d6a",
+     "sha256_after": "b58ed8525ebc617c5591851e0ae70a4365e1a0c04ac67158b7b591c1decd6d6a",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/reports/gradient_friendly_forward_check_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/reports/gradient_friendly_forward_check_report.md",
+     "sha256_before": "f4f3e0d33a7090772402e0071127cc756493ec59ec07f6f0803e0954e9b60f39",
+     "sha256_after": "f4f3e0d33a7090772402e0071127cc756493ec59ec07f6f0803e0954e9b60f39",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/reports/stage5_obsidian_closure_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/reports/stage5_obsidian_closure_report.md",
+     "sha256_before": "d4951506cd86614cad4ff0de36630637edc0ecf37f407e4f4ba3012c6a38b2a1",
+     "sha256_after": "d4951506cd86614cad4ff0de36630637edc0ecf37f407e4f4ba3012c6a38b2a1",
+     "identical": true
+    },
+    {
+     "from": "stage5_gradient_friendly_model/outputs/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage5_gradient_friendly_model/outputs/.matplotlib/fontlist-v390.json",
+     "sha256_before": "5e07ad295d56e59f3a0262de618def2566fffb12a63148c2fcc354509e7baf19",
+     "sha256_after": "5e07ad295d56e59f3a0262de618def2566fffb12a63148c2fcc354509e7baf19",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage6_differentiable_inversion_toy",
+   "to": "stages/stage6_differentiable_inversion_toy",
+   "to_is_outside_repo": false,
+   "member_count": 8,
+   "members": [
+    {
+     "from": "stage6_differentiable_inversion_toy/obsidian_drafts/Physics_Gate_可微反演ToyModel.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/obsidian_drafts/Physics_Gate_可微反演ToyModel.md",
+     "sha256_before": "d6b0ea232852cd5159c419cc6cbe9039d45e65fca66318e13ea072ea0ccae292",
+     "sha256_after": "d6b0ea232852cd5159c419cc6cbe9039d45e65fca66318e13ea072ea0ccae292",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/obsidian_drafts/Result_可微反演ToyModel_01.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/obsidian_drafts/Result_可微反演ToyModel_01.md",
+     "sha256_before": "439f837eb4b4db1964895f3f1089c0c7757801a51c4b098ad3f2cf3b4be05d17",
+     "sha256_after": "439f837eb4b4db1964895f3f1089c0c7757801a51c4b098ad3f2cf3b4be05d17",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/scripts/differentiable_albedo_inversion_toy.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/scripts/differentiable_albedo_inversion_toy.py",
+     "sha256_before": "761c83b62824d9ab7c1a53546941bd885855e99096e6fccd943df5ad327f9312",
+     "sha256_after": "761c83b62824d9ab7c1a53546941bd885855e99096e6fccd943df5ad327f9312",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/outputs/inversion_summary.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/outputs/inversion_summary.png",
+     "sha256_before": "2a3ca67e15f2d8e6b5d2fa46764afc4733cde8248a5db92fb50438ede711adc2",
+     "sha256_after": "2a3ca67e15f2d8e6b5d2fa46764afc4733cde8248a5db92fb50438ede711adc2",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/outputs/inversion_loss_curves.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/outputs/inversion_loss_curves.png",
+     "sha256_before": "7fdb6bed55245613a31684ded3413142b0320cd40efd13cf6ceab43bd04c5f4a",
+     "sha256_after": "7fdb6bed55245613a31684ded3413142b0320cd40efd13cf6ceab43bd04c5f4a",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/reports/stage6_obsidian_closure_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/reports/stage6_obsidian_closure_report.md",
+     "sha256_before": "3ee2eb8d49a6725623f4bf77ea75ad7db7ef470262d0f041aca06041bba22e52",
+     "sha256_after": "3ee2eb8d49a6725623f4bf77ea75ad7db7ef470262d0f041aca06041bba22e52",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/reports/differentiable_albedo_inversion_toy_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/reports/differentiable_albedo_inversion_toy_report.md",
+     "sha256_before": "37adfd1bd9ddd5a9f5261b1f43c40bd855410a77b423328dab8b2bfb77f60b2b",
+     "sha256_after": "37adfd1bd9ddd5a9f5261b1f43c40bd855410a77b423328dab8b2bfb77f60b2b",
+     "identical": true
+    },
+    {
+     "from": "stage6_differentiable_inversion_toy/outputs/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_differentiable_inversion_toy/outputs/.matplotlib/fontlist-v390.json",
+     "sha256_before": "c4d96b1ba2ced87c84bfcbd115bcd09337985f8cf215fd7715b0d4d0bd0af2d0",
+     "sha256_after": "c4d96b1ba2ced87c84bfcbd115bcd09337985f8cf215fd7715b0d4d0bd0af2d0",
+     "identical": true
+    }
+   ]
+  },
+  {
+   "category": "container_consolidation",
+   "reason": "并入 stages/；容器内全部锚点为「脚本上数 N 层」+ 容器前缀路径，整包平移后自洽",
+   "from": "stage6_5_real_landsat_observation_stress_test",
+   "to": "stages/stage6_5_real_landsat_observation_stress_test",
+   "to_is_outside_repo": false,
+   "member_count": 139,
+   "members": [
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/configs/stage6_5_3_b.yaml",
+     "sha256_before": "dc6224964aca5ca910dc38952aebaae6a0429597137286ffc1d5add3057d5d59",
+     "sha256_after": "dc6224964aca5ca910dc38952aebaae6a0429597137286ffc1d5add3057d5d59",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/gee_audit_shadow_risk_single_scene_l2sr.js",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/gee_audit_shadow_risk_single_scene_l2sr.js",
+     "sha256_before": "43e8c6105667f87a35007e1c94c187b5aaeb37be556f443a616844fc74f914fe",
+     "sha256_after": "43e8c6105667f87a35007e1c94c187b5aaeb37be556f443a616844fc74f914fe",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/gee_export_shadow_risk_single_scene_l2sr_simple.js",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/gee_export_shadow_risk_single_scene_l2sr_simple.js",
+     "sha256_before": "30475ce40cc7a428385ae20de5815a3660e6a53a7de953d63017e8595ee94a68",
+     "sha256_after": "30475ce40cc7a428385ae20de5815a3660e6a53a7de953d63017e8595ee94a68",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_experiment.py",
+     "sha256_before": "11b8999a2c5d4593baed10bab841e000236b984d3bd72149f2b95df0a4c5a0d4",
+     "sha256_after": "11b8999a2c5d4593baed10bab841e000236b984d3bd72149f2b95df0a4c5a0d4",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/gee_export_clean_single_scene_l2sr.js",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/gee_export_clean_single_scene_l2sr.js",
+     "sha256_before": "e0a666eaf70d1629b2d51649a41cd2a282c94853a171c5f7aa609b75d3b6a39d",
+     "sha256_after": "e0a666eaf70d1629b2d51649a41cd2a282c94853a171c5f7aa609b75d3b6a39d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_3_b_executor.py",
+     "sha256_before": "97df63668411f0dd8b2e75e7b86c6e1ca29dc3a0706a465d1436f3091c4b4288",
+     "sha256_after": "97df63668411f0dd8b2e75e7b86c6e1ca29dc3a0706a465d1436f3091c4b4288",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2_single_scene_local_check.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2_single_scene_local_check.py",
+     "sha256_before": "42bd56773c2a4305d290e1c73f053709580f5c4d81d1e3b877df0dfbe2facc44",
+     "sha256_after": "42bd56773c2a4305d290e1c73f053709580f5c4d81d1e3b877df0dfbe2facc44",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2b_shadowrisk_local_check.py",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2b_shadowrisk_local_check.py",
+     "sha256_before": "468db8fd2fc18b075c51e601921352b8942ab67273c8a489ff6eb11ce9c19460",
+     "sha256_after": "468db8fd2fc18b075c51e601921352b8942ab67273c8a489ff6eb11ce9c19460",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b5_nir.tif",
+     "sha256_before": "c0f146ee69acb415260c5776056d95f4c46e4047b8a7a9744a101f9fa5c6d64f",
+     "sha256_after": "c0f146ee69acb415260c5776056d95f4c46e4047b8a7a9744a101f9fa5c6d64f",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif",
+     "sha256_before": "4f3f1aab22ad4750d91536810a3ae77f338d23b407011578d2dc0ad5cd9b2f3a",
+     "sha256_after": "4f3f1aab22ad4750d91536810a3ae77f338d23b407011578d2dc0ad5cd9b2f3a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_b4_red.tif",
+     "sha256_before": "678bef90b5d25379dd25f10bdf132ae335757866664c40b0ce5486279f7440c7",
+     "sha256_after": "678bef90b5d25379dd25f10bdf132ae335757866664c40b0ce5486279f7440c7",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif",
+     "sha256_before": "9d1d4a062719789aa40e25b6ed0d218f13cee7d0dcc12eaf044b0efdbb8b282c",
+     "sha256_after": "9d1d4a062719789aa40e25b6ed0d218f13cee7d0dcc12eaf044b0efdbb8b282c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif",
+     "sha256_before": "14b7db13209e2f7bceff1b8efdef472ab153684b6180820ef8d4535c1ab7be47",
+     "sha256_after": "14b7db13209e2f7bceff1b8efdef472ab153684b6180820ef8d4535c1ab7be47",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_qa_pixel.tif",
+     "sha256_before": "7a06caf2fa2049371db12e70391f3a069e30a078c355610d8bd9466a47d09d0b",
+     "sha256_after": "7a06caf2fa2049371db12e70391f3a069e30a078c355610d8bd9466a47d09d0b",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv",
+     "sha256_before": "5e97265fd03d50bda96fdd82058e8515109a03105e7f4a3b0c5102f8787960f8",
+     "sha256_after": "5e97265fd03d50bda96fdd82058e8515109a03105e7f4a3b0c5102f8787960f8",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_shadowrisk_single_scene_l8_l2sr_metadata.csv",
+     "sha256_before": "ec173ee786198944ecab330e229439def5999a83f637234c013b9b307fd5755a",
+     "sha256_after": "ec173ee786198944ecab330e229439def5999a83f637234c013b9b307fd5755a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif",
+     "sha256_before": "87d4e9671f54cba25837d38cc3808329c9e2d33960a346198ac522f6d18f282d",
+     "sha256_after": "87d4e9671f54cba25837d38cc3808329c9e2d33960a346198ac522f6d18f282d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif",
+     "sha256_before": "13e67fdde352ee578c2908d679b4df8273f6124d23846faf8c1340368f7252a2",
+     "sha256_after": "13e67fdde352ee578c2908d679b4df8273f6124d23846faf8c1340368f7252a2",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif",
+     "sha256_before": "9769f8097f2a70b65f2f4260c92e15bcd809fb971c055842318c5ea2c36b26d1",
+     "sha256_after": "9769f8097f2a70b65f2f4260c92e15bcd809fb971c055842318c5ea2c36b26d1",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif",
+     "sha256_before": "afb0728e1cf627beb91ca4071177b554176e8c7080c61f94ebcb6b03328d9b1a",
+     "sha256_after": "afb0728e1cf627beb91ca4071177b554176e8c7080c61f94ebcb6b03328d9b1a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_shadowrisk_grid.tif",
+     "sha256_before": "6ed660c41dda30e051acd8f337043b155bb6778c059291d660133fd85a7cb7dc",
+     "sha256_after": "6ed660c41dda30e051acd8f337043b155bb6778c059291d660133fd85a7cb7dc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_shadowrisk_grid.tif",
+     "sha256_before": "23b17a9d15c15ee0ec44b065e5b504ee872609ddd9d113d9113231583a07d08e",
+     "sha256_after": "23b17a9d15c15ee0ec44b065e5b504ee872609ddd9d113d9113231583a07d08e",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/slope_on_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_shadowrisk_grid.tif",
+     "sha256_before": "af6d1d9924d7d3d464a00cd9163e625293523fc2232845f625d645a443b726ce",
+     "sha256_after": "af6d1d9924d7d3d464a00cd9163e625293523fc2232845f625d645a443b726ce",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_shadowrisk_grid.tif",
+     "sha256_before": "83ed77e9db455a808f797e1d96b03471770429319ebeb402159d80d085d475b5",
+     "sha256_after": "83ed77e9db455a808f797e1d96b03471770429319ebeb402159d80d085d475b5",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif",
+     "sha256_before": "aa0cf9190e9bafb641b9c8ee7a2073b54ded4d686ddbad07d9c26b338946f64e",
+     "sha256_after": "aa0cf9190e9bafb641b9c8ee7a2073b54ded4d686ddbad07d9c26b338946f64e",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif",
+     "sha256_before": "5b5d19f2156c6d1a3ad86ad43276f57185b58ee925b6fd898a5d2f81c46264af",
+     "sha256_after": "5b5d19f2156c6d1a3ad86ad43276f57185b58ee925b6fd898a5d2f81c46264af",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+     "sha256_before": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4",
+     "sha256_after": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2_single_scene_local_check_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2_single_scene_local_check_preview.png",
+     "sha256_before": "feaef9af074d4124beea047c033ee9acc4ce178979b083b7f62a238847bd9935",
+     "sha256_after": "feaef9af074d4124beea047c033ee9acc4ce178979b083b7f62a238847bd9935",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif",
+     "sha256_before": "758b315c208bb3db6a6146a9ff24e3ffdb262ac4084f3b29d75539f1980ea04d",
+     "sha256_after": "758b315c208bb3db6a6146a9ff24e3ffdb262ac4084f3b29d75539f1980ea04d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2b_shadowrisk_local_check_preview.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2b_shadowrisk_local_check_preview.png",
+     "sha256_before": "4fee1ce5a81585ea7d955ae846cd192327cb6f5cbcffeb6f8cf78c1b7cf4166c",
+     "sha256_after": "4fee1ce5a81585ea7d955ae846cd192327cb6f5cbcffeb6f8cf78c1b7cf4166c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif",
+     "sha256_before": "43faaee822f6ca8c592902797179f0d31a6e5456e07092b00ef1334f9bbbf62d",
+     "sha256_after": "43faaee822f6ca8c592902797179f0d31a6e5456e07092b00ef1334f9bbbf62d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_shadowrisk_grid.tif",
+     "sha256_before": "47fab89bc6405326e135ca535011aa182260deca2afa50bf1fc820a2b2d49339",
+     "sha256_after": "47fab89bc6405326e135ca535011aa182260deca2afa50bf1fc820a2b2d49339",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_shadowrisk_grid.tif",
+     "sha256_before": "33e9309607af54024e7e4066b7bb7fce7ceae4591965b02a15be54bbb5e09d63",
+     "sha256_after": "33e9309607af54024e7e4066b7bb7fce7ceae4591965b02a15be54bbb5e09d63",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif",
+     "sha256_before": "eafbd3f109fd95bbbca1b4f7cb5fa9413c6aecfbbc484d4c7544bf35db11310e",
+     "sha256_after": "eafbd3f109fd95bbbca1b4f7cb5fa9413c6aecfbbc484d4c7544bf35db11310e",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2b_shadowrisk_local_check_report.md",
+     "sha256_before": "b0a044295c045a60f8392a111262b0fa72bc11800cc920a005bc1a94ecc13b06",
+     "sha256_after": "b0a044295c045a60f8392a111262b0fa72bc11800cc920a005bc1a94ecc13b06",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_experiment_report.md",
+     "sha256_before": "ebba6e667679b7b024347c4466d507e3a5ba1f959dfe14cab9344f6d5eb52f20",
+     "sha256_after": "ebba6e667679b7b024347c4466d507e3a5ba1f959dfe14cab9344f6d5eb52f20",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1_clean_single_scene_export_plan.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1_clean_single_scene_export_plan.md",
+     "sha256_before": "1254700c192c02e4a5ae92e3ab64e6f2cc95a5bac242ce53f3d911efd308d240",
+     "sha256_after": "1254700c192c02e4a5ae92e3ab64e6f2cc95a5bac242ce53f3d911efd308d240",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_report.md",
+     "sha256_before": "db53d3ecb23d0b6330567a73ed33a56d14b07f3133c321d42720fcf3f757abbb",
+     "sha256_after": "db53d3ecb23d0b6330567a73ed33a56d14b07f3133c321d42720fcf3f757abbb",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1b_shadow_risk_candidate_audit_plan.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1b_shadow_risk_candidate_audit_plan.md",
+     "sha256_before": "cf976f84af48530413309f6bacad88f6c9f77bf7ca7368392ee2c0ce37dc089c",
+     "sha256_after": "cf976f84af48530413309f6bacad88f6c9f77bf7ca7368392ee2c0ce37dc089c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1b_shadowrisk_simple_export_plan.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_1b_shadowrisk_simple_export_plan.md",
+     "sha256_before": "a73f89c888571bbfe035b12ee0f78961157fe59ebfecccba2eadb65b3e72b176",
+     "sha256_after": "a73f89c888571bbfe035b12ee0f78961157fe59ebfecccba2eadb65b3e72b176",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_2_single_scene_local_check_report.md",
+     "sha256_before": "dd8c8c14e3b5a207c1d83a7c1cbfab391eb63b62e18395ef401c075aa9b76aa3",
+     "sha256_after": "dd8c8c14e3b5a207c1d83a7c1cbfab391eb63b62e18395ef401c075aa9b76aa3",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage3_landsat_source_audit.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage3_landsat_source_audit.md",
+     "sha256_before": "03e9659124243b360575e8957d59ffa837ac39ab3c86e715ef2e52ae5eeb6aa0",
+     "sha256_after": "03e9659124243b360575e8957d59ffa837ac39ab3c86e715ef2e52ae5eeb6aa0",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/stage6_5_3_b_method_contract_proposal.md",
+     "sha256_before": "0662e61b78fb110e19eb40243848d5a07589cca56a9b774e8bd70621edb1c910",
+     "sha256_after": "0662e61b78fb110e19eb40243848d5a07589cca56a9b774e8bd70621edb1c910",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/preflight_evidence.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/preflight_evidence.json",
+     "sha256_before": "2dcb9a8c21fa039678152b40a7595b3397653980026c640d51e04f1aef32726d",
+     "sha256_after": "2dcb9a8c21fa039678152b40a7595b3397653980026c640d51e04f1aef32726d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/proposed_fold_manifest.json",
+     "sha256_before": "4430bf356a0f8661a510326fca1d709bca43bbc5deb0cdad9a2536c2e3f97fe8",
+     "sha256_after": "4430bf356a0f8661a510326fca1d709bca43bbc5deb0cdad9a2536c2e3f97fe8",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_audit.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_audit.json",
+     "sha256_before": "c371a5db1c3d4b2fb5631459fc836b9ee4cc004a7c74ddb119847c1d80efddcb",
+     "sha256_after": "c371a5db1c3d4b2fb5631459fc836b9ee4cc004a7c74ddb119847c1d80efddcb",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_candidates.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/buffered_leave_region_out_candidates.csv",
+     "sha256_before": "0d64aa25cebd10d5d0b280e693e5d886c17436374aa253c8494ec354c9850be0",
+     "sha256_after": "0d64aa25cebd10d5d0b280e693e5d886c17436374aa253c8494ec354c9850be0",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/partition_metrics.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/partition_metrics.csv",
+     "sha256_before": "1832dc56daef1eff635016d4a7dc2082dfaae19bb31e7809bc444dd593db21dc",
+     "sha256_after": "1832dc56daef1eff635016d4a7dc2082dfaae19bb31e7809bc444dd593db21dc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/experiment_manifest.json",
+     "sha256_before": "f007e207450424597177c6d4ae90ad8ed3801489df473d11e80adc63f9681851",
+     "sha256_after": "f007e207450424597177c6d4ae90ad8ed3801489df473d11e80adc63f9681851",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_diagnostics.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_diagnostics.csv",
+     "sha256_before": "4abaa8452777581ca5a818b88946422daae0340774b7b2ac1e1a70688005c46d",
+     "sha256_after": "4abaa8452777581ca5a818b88946422daae0340774b7b2ac1e1a70688005c46d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/risk_coverage.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/risk_coverage.csv",
+     "sha256_before": "5688a5363aaed2fe60b21147dc4457cfafeea00ef544b43bcdca1f482a521847",
+     "sha256_after": "5688a5363aaed2fe60b21147dc4457cfafeea00ef544b43bcdca1f482a521847",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fold_metrics.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fold_metrics.csv",
+     "sha256_before": "fadcec4528cf6bfb6784acde356a7fcdade88fa33c84cc2fc0f99e59ec3a0ed4",
+     "sha256_after": "fadcec4528cf6bfb6784acde356a7fcdade88fa33c84cc2fc0f99e59ec3a0ed4",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fit_parameters.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/fit_parameters.csv",
+     "sha256_before": "645d3f707a0f46f5e39ee8f6a65d2b610b87c42b5837756358ab316c7cecf4dd",
+     "sha256_after": "645d3f707a0f46f5e39ee8f6a65d2b610b87c42b5837756358ab316c7cecf4dd",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/residual_spatial_diagnostics.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/residual_spatial_diagnostics.csv",
+     "sha256_before": "ea0117e1ed2f993df1eac380011280c6000a2c639d1d3a6ee293d0f531297da6",
+     "sha256_after": "ea0117e1ed2f993df1eac380011280c6000a2c639d1d3a6ee293d0f531297da6",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/coverage_summary.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/coverage_summary.csv",
+     "sha256_before": "5da29672d336dc110d7f20e7d6ce1c2be5761236557036425c582de83db7a8eb",
+     "sha256_after": "5da29672d336dc110d7f20e7d6ce1c2be5761236557036425c582de83db7a8eb",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_verdicts.csv",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/heterogeneity_verdicts.csv",
+     "sha256_before": "5fc3e88ddc04b151d0aed61fb5c45b8d2a80b5695df127763fb320a08a85cf6c",
+     "sha256_after": "5fc3e88ddc04b151d0aed61fb5c45b8d2a80b5695df127763fb320a08a85cf6c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/result_summary.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/evidence/stage6_5_3_b/c5_d3_35789933202effad/result_summary.json",
+     "sha256_before": "02f0527b41150f88940d4172c723c83cad9b5e217af427fefba9d8c46ea2243f",
+     "sha256_after": "02f0527b41150f88940d4172c723c83cad9b5e217af427fefba9d8c46ea2243f",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_clean_a_canonical_masks.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_clean_a_canonical_masks.tif",
+     "sha256_before": "af654caf9b9e6ca46d9434c2bfed4dd0970f32cafc34b7a471340075e1a67ac7",
+     "sha256_after": "af654caf9b9e6ca46d9434c2bfed4dd0970f32cafc34b7a471340075e1a67ac7",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/preflight_shadow_risk_b_canonical_masks.tif",
+     "sha256_before": "8531e9805d68fde0895f0bb567542e8aef234206a43cb49b835acec32dc7f885",
+     "sha256_after": "8531e9805d68fde0895f0bb567542e8aef234206a43cb49b835acec32dc7f885",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/.matplotlib/fontlist-v390.json",
+     "sha256_before": "e4ccba6e84ea9e99b808a848e6769827f2d4b2030ad0f9a63c3e143ddc3e32af",
+     "sha256_after": "e4ccba6e84ea9e99b808a848e6769827f2d4b2030ad0f9a63c3e143ddc3e32af",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "60eb626723d28ccde7350d484c93367b64ced69b38d37c07cd06126536ee2a9a",
+     "sha256_after": "60eb626723d28ccde7350d484c93367b64ced69b38d37c07cd06126536ee2a9a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_soft_weight_k30.tif",
+     "sha256_before": "e1d92b82bfc7be8ab5332c96ebfac6f747b7a79d0bdb6b967ebcaf6b83e30377",
+     "sha256_after": "e1d92b82bfc7be8ab5332c96ebfac6f747b7a79d0bdb6b967ebcaf6b83e30377",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "8ce7fc00bb2a5fc01c03d7f2bc76a54fa772cd0b498a0d9105683813db1ad0c7",
+     "sha256_after": "8ce7fc00bb2a5fc01c03d7f2bc76a54fa772cd0b498a0d9105683813db1ad0c7",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "1e0c8822fbe9597892ec8d039ceff86e7bf289448a3f6c2c160e77ee7de70b1d",
+     "sha256_after": "1e0c8822fbe9597892ec8d039ceff86e7bf289448a3f6c2c160e77ee7de70b1d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_soft_weight_k30.tif",
+     "sha256_before": "d537d0942496925e8101c2b6375d18f89318922309174859f0c254b5def3f325",
+     "sha256_after": "d537d0942496925e8101c2b6375d18f89318922309174859f0c254b5def3f325",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_soft_weight_k30.tif",
+     "sha256_before": "c0f9d7ffdd470ae035e13d438a346a7da2467f168d8feed1673d6be561ba6be1",
+     "sha256_after": "c0f9d7ffdd470ae035e13d438a346a7da2467f168d8feed1673d6be561ba6be1",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640",
+     "sha256_after": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_soft_weight_k30.tif",
+     "sha256_before": "3f5492daf256f5b16059fa21cd15a311fa001e9f200fc468857d263a71ba3620",
+     "sha256_after": "3f5492daf256f5b16059fa21cd15a311fa001e9f200fc468857d263a71ba3620",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "d1fb5bbd5675190ef9134cbd998743ec0bd09d7afcdae1a3610596382422b50e",
+     "sha256_after": "d1fb5bbd5675190ef9134cbd998743ec0bd09d7afcdae1a3610596382422b50e",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_soft_weight_k30.tif",
+     "sha256_before": "cbbf2048f7c4adb3aecb74ce3576cebe6e013ae7b19634a384b2ef2572e52cab",
+     "sha256_after": "cbbf2048f7c4adb3aecb74ce3576cebe6e013ae7b19634a384b2ef2572e52cab",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_hard_mask.tif",
+     "sha256_before": "e849690f07aca0129e0a12152b7252ee2b76e272bf52728c829c2d2fc614bf51",
+     "sha256_after": "e849690f07aca0129e0a12152b7252ee2b76e272bf52728c829c2d2fc614bf51",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_hard_mask.tif",
+     "sha256_before": "e79ca3a674b54d69f33363b0f4168e75264c0eebf45a0be5fb9ee8eb70610264",
+     "sha256_after": "e79ca3a674b54d69f33363b0f4168e75264c0eebf45a0be5fb9ee8eb70610264",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_soft_weight_k30.tif",
+     "sha256_before": "bcf8721d37d21e4c98488ce163a2e8b3c1d133662de8c3bdcf843474183d9fed",
+     "sha256_after": "bcf8721d37d21e4c98488ce163a2e8b3c1d133662de8c3bdcf843474183d9fed",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_hard_mask.tif",
+     "sha256_before": "a165db241f50c2eee7a2787bc6c2968123d9c17c8520de06e1fad3637cd7087e",
+     "sha256_after": "a165db241f50c2eee7a2787bc6c2968123d9c17c8520de06e1fad3637cd7087e",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_hard_mask.tif",
+     "sha256_before": "8df413c8b3099b752b3c5d7f148c902996d8eb8c911aedf9f0e3a4b606c92654",
+     "sha256_after": "8df413c8b3099b752b3c5d7f148c902996d8eb8c911aedf9f0e3a4b606c92654",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "216792cf00fea7716f9a7ccb98916a95aae675e1a94a5ab6ef7e80f5301c57b0",
+     "sha256_after": "216792cf00fea7716f9a7ccb98916a95aae675e1a94a5ab6ef7e80f5301c57b0",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "97385ca0573fdf51743b57f3a489e5856be3291a4d91a8d5b0b8068f5df86c50",
+     "sha256_after": "97385ca0573fdf51743b57f3a489e5856be3291a4d91a8d5b0b8068f5df86c50",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "f5c07711dc2b45722f61460a6e8dba48d513a3101a30f5a76635503ba53aa7bd",
+     "sha256_after": "f5c07711dc2b45722f61460a6e8dba48d513a3101a30f5a76635503ba53aa7bd",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "9f395daf728c9b3d1ccd129ce378f987a23c90e8a55abe418bfb77f61e97cbcc",
+     "sha256_after": "9f395daf728c9b3d1ccd129ce378f987a23c90e8a55abe418bfb77f61e97cbcc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_hard_mask.tif",
+     "sha256_before": "f65771d5a70066670be55397410373d254d96a175265261fe5bcfa692b91dd6d",
+     "sha256_after": "f65771d5a70066670be55397410373d254d96a175265261fe5bcfa692b91dd6d",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_hard_mask.tif",
+     "sha256_before": "9f3408e4f2f35415c43b63a736861884b76b49bacc38f64e9df0aad2c6716a0a",
+     "sha256_after": "9f3408e4f2f35415c43b63a736861884b76b49bacc38f64e9df0aad2c6716a0a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "c9f9bcb4720cf49136ac33362887ca89be922e866f053c1082adacd79149ea60",
+     "sha256_after": "c9f9bcb4720cf49136ac33362887ca89be922e866f053c1082adacd79149ea60",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_soft_weight_k30.tif",
+     "sha256_before": "0d64145337ad7da7fe34dc1a11ddec29b8dfcd9152c942b3632d5c4f2f3c133a",
+     "sha256_after": "0d64145337ad7da7fe34dc1a11ddec29b8dfcd9152c942b3632d5c4f2f3c133a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_hard_mask.tif",
+     "sha256_before": "4a72258138be1504ba356875907d6303c0270e9816e02a6e4ea01fed0ee3e262",
+     "sha256_after": "4a72258138be1504ba356875907d6303c0270e9816e02a6e4ea01fed0ee3e262",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_hard_mask.tif",
+     "sha256_before": "7b3e85b4a3848e750b9ba20cc36f2888f16669bdbc58f7a4050692b193881d5b",
+     "sha256_after": "7b3e85b4a3848e750b9ba20cc36f2888f16669bdbc58f7a4050692b193881d5b",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_hard_mask.tif",
+     "sha256_before": "e0b341d81ff03f57342850a611d39e423432158a6aa9749f88d170c4bfbd7b1c",
+     "sha256_after": "e0b341d81ff03f57342850a611d39e423432158a6aa9749f88d170c4bfbd7b1c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_hard_mask.tif",
+     "sha256_before": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640",
+     "sha256_after": "a4412aaa6d1eccddabaa10c9a51a22fb0f6beeccb10ef4cfee7f47f888ad4640",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_soft_weight_k30.tif",
+     "sha256_before": "bdaf652a8751877c6b68658d134fec3c7920ae4e8a9f943e69c7dcce0ed740f1",
+     "sha256_after": "bdaf652a8751877c6b68658d134fec3c7920ae4e8a9f943e69c7dcce0ed740f1",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_soft_weight_k30.tif",
+     "sha256_before": "682f0bd8a622cbd5bc5d30f01b22d585d5d704ef34c4adde4204816924105902",
+     "sha256_after": "682f0bd8a622cbd5bc5d30f01b22d585d5d704ef34c4adde4204816924105902",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_soft_weight_k30.tif",
+     "sha256_before": "4db28198cbbd1defa124bafba3d761a4a7ea988d06c14acefc7e01986ff45ccc",
+     "sha256_after": "4db28198cbbd1defa124bafba3d761a4a7ea988d06c14acefc7e01986ff45ccc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_soft_weight_k30.tif",
+     "sha256_before": "1ca669dea26e3ab93b964b349c5b549f3dcbac548898a349b5dec03c60ff0fe6",
+     "sha256_after": "1ca669dea26e3ab93b964b349c5b549f3dcbac548898a349b5dec03c60ff0fe6",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "7ee9ea7ae084a120e154d7289039d0f84f1e27783bd7ddea322141758b3890dc",
+     "sha256_after": "7ee9ea7ae084a120e154d7289039d0f84f1e27783bd7ddea322141758b3890dc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "01a95a9739c4762c9aa529afe4ef0df1304518375533702fb354d24c69b33bf4",
+     "sha256_after": "01a95a9739c4762c9aa529afe4ef0df1304518375533702fb354d24c69b33bf4",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B5_hard_mask.tif",
+     "sha256_before": "1cffdf47d64bdaabf746f7e7eceba8a7fdbde15f91990ebfee9a04f524fd17dd",
+     "sha256_after": "1cffdf47d64bdaabf746f7e7eceba8a7fdbde15f91990ebfee9a04f524fd17dd",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B4_hard_mask.tif",
+     "sha256_before": "ece99ddbbcd3b32a22ee57def6fa3eebecf952d93d09795ae58ffe78d3d66e65",
+     "sha256_after": "ece99ddbbcd3b32a22ee57def6fa3eebecf952d93d09795ae58ffe78d3d66e65",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_hard_mask.tif",
+     "sha256_before": "2a012ccc70d34a2b14fe4d26daf8516cc2a020aa02001f30b6199264c3267ad3",
+     "sha256_after": "2a012ccc70d34a2b14fe4d26daf8516cc2a020aa02001f30b6199264c3267ad3",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_05_B4_soft_weight_k30.tif",
+     "sha256_before": "2bfee41c4bdbcf7e48b0e935875640959e2d8afc8f1ba541ba0a68e9137c14df",
+     "sha256_after": "2bfee41c4bdbcf7e48b0e935875640959e2d8afc8f1ba541ba0a68e9137c14df",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "a7647aaef6e9cdb048ae210e40259943e0b789e383d9937a33d54fba5420e3f2",
+     "sha256_after": "a7647aaef6e9cdb048ae210e40259943e0b789e383d9937a33d54fba5420e3f2",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_hard_mask.tif",
+     "sha256_before": "5c54d2f0bc39e0bbcc322c0918d4d814a5accd34898b8c2c09470e5fbd463b27",
+     "sha256_after": "5c54d2f0bc39e0bbcc322c0918d4d814a5accd34898b8c2c09470e5fbd463b27",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "1ceb84a668ec772ba6272e5293eaeedc25a57bb0e9a10386265abe372591dbca",
+     "sha256_after": "1ceb84a668ec772ba6272e5293eaeedc25a57bb0e9a10386265abe372591dbca",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B4_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "c5129017a901bc0a16cb59677488e00cd14885a37f66601dbfec3f07e15c55de",
+     "sha256_after": "c5129017a901bc0a16cb59677488e00cd14885a37f66601dbfec3f07e15c55de",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B5_soft_weight_k30.tif",
+     "sha256_before": "9ba7d2628ed60b5e63f79201aa77d7b1cf35fbb0c4acd14c0570a8f3dae2cd09",
+     "sha256_after": "9ba7d2628ed60b5e63f79201aa77d7b1cf35fbb0c4acd14c0570a8f3dae2cd09",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_02_B4_soft_weight_k30.tif",
+     "sha256_before": "5d26666b6afdef295410b48b00ca5d6a0fc1d5b9fb59bb4b6c24f04cf648d486",
+     "sha256_after": "5d26666b6afdef295410b48b00ca5d6a0fc1d5b9fb59bb4b6c24f04cf648d486",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_soft_weight_k30.tif",
+     "sha256_before": "06fdbafde18a681b6aee162a748ed056943b1fc2ee0b2b5ca8b6546eff34fd33",
+     "sha256_after": "06fdbafde18a681b6aee162a748ed056943b1fc2ee0b2b5ca8b6546eff34fd33",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B4_soft_weight_k30.tif",
+     "sha256_before": "d58582ddfaa05b923751941dd41e1a5055025f9b983f9111a7f2b7354efec177",
+     "sha256_after": "d58582ddfaa05b923751941dd41e1a5055025f9b983f9111a7f2b7354efec177",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_01_B5_hard_mask.tif",
+     "sha256_before": "a81d6e6b9b64b6a1575ad3c020ecf07e2b548c9541dd7025da4288fd2262dbeb",
+     "sha256_after": "a81d6e6b9b64b6a1575ad3c020ecf07e2b548c9541dd7025da4288fd2262dbeb",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_hard_mask.tif",
+     "sha256_before": "2b5ca2ea52a059bd4e63d5b5f1a5f8c11a7228a1645ab7695cdc380e7ec4fac7",
+     "sha256_after": "2b5ca2ea52a059bd4e63d5b5f1a5f8c11a7228a1645ab7695cdc380e7ec4fac7",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_hard_mask.tif",
+     "sha256_before": "26ae0e3fde054eb1f8e983ababe0fa016da7cc4287f4d97e90db9007ae12e224",
+     "sha256_after": "26ae0e3fde054eb1f8e983ababe0fa016da7cc4287f4d97e90db9007ae12e224",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_hard_mask.tif",
+     "sha256_before": "cde058036faeb77158001942917042f04e40d8edfc793e4a68a77eae66a0262a",
+     "sha256_after": "cde058036faeb77158001942917042f04e40d8edfc793e4a68a77eae66a0262a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B4_hard_mask.tif",
+     "sha256_before": "6c707293357b58fd4ab1dae9311e3c7b0b0e47399994c726664d209165f3f690",
+     "sha256_after": "6c707293357b58fd4ab1dae9311e3c7b0b0e47399994c726664d209165f3f690",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_01_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "9f06592e5a9d63d3380dbea0abc4a1101bb7097c9df2e97dcc3c293872a52076",
+     "sha256_after": "9f06592e5a9d63d3380dbea0abc4a1101bb7097c9df2e97dcc3c293872a52076",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_hard_mask.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_hard_mask.tif",
+     "sha256_before": "2f38aa5a13f72a7d3ba29895e1f33df0c13d50a1d093d6e2caf869c4ecb78887",
+     "sha256_after": "2f38aa5a13f72a7d3ba29895e1f33df0c13d50a1d093d6e2caf869c4ecb78887",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_02_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "bfb14b02ef621e013d6c22ab9dbad388edbad901b86655ee0d8f29cb86bd4ba5",
+     "sha256_after": "bfb14b02ef621e013d6c22ab9dbad388edbad901b86655ee0d8f29cb86bd4ba5",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_03_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "68791177786f0cb622ec5e21fa5b972638335837c04bce3da096f8d1cfed9ebc",
+     "sha256_after": "68791177786f0cb622ec5e21fa5b972638335837c04bce3da096f8d1cfed9ebc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_05_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "459d12b407fba9faa6cb696c938f3c6ce675df5304eb1f4f01105b89bbf2778a",
+     "sha256_after": "459d12b407fba9faa6cb696c938f3c6ce675df5304eb1f4f01105b89bbf2778a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_bounded_scene_constant_diffuse.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/shadow_risk_b_stage_6_5_3_b_shadow_risk_b_combined_risk_04_B5_bounded_scene_constant_diffuse.tif",
+     "sha256_before": "7c5287da71a4ca7974e6d1b6f6194c807d84b8862284143da3d83fc13317b0bd",
+     "sha256_after": "7c5287da71a4ca7974e6d1b6f6194c807d84b8862284143da3d83fc13317b0bd",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B4_soft_weight_k30.tif",
+     "sha256_before": "164d35a12431a71066fbf403f7e7feaf0f5dd9827a2a2547fea0b1b2707126a9",
+     "sha256_after": "164d35a12431a71066fbf403f7e7feaf0f5dd9827a2a2547fea0b1b2707126a9",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_03_B5_soft_weight_k30.tif",
+     "sha256_before": "15de0d691a00e1550f00248b21c914ab9e7afbf383ef8790961bdff6ea8532f0",
+     "sha256_after": "15de0d691a00e1550f00248b21c914ab9e7afbf383ef8790961bdff6ea8532f0",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B4_soft_weight_k30.tif",
+     "sha256_before": "8575c4c796b160cd66ff3947118204267462096da66174bb9c40de3b1a530912",
+     "sha256_after": "8575c4c796b160cd66ff3947118204267462096da66174bb9c40de3b1a530912",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_soft_weight_k30.tif",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/residuals/clean_a_stage_6_5_3_b_clean_a_lit_control_04_B5_soft_weight_k30.tif",
+     "sha256_before": "8469cc561e05b6e471ff83e8a4c0c52a86e18b130a606f821887c3d81b212752",
+     "sha256_after": "8469cc561e05b6e471ff83e8a4c0c52a86e18b130a606f821887c3d81b212752",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/.matplotlib/fontlist-v390.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/.matplotlib/fontlist-v390.json",
+     "sha256_before": "304114b202c13f9831358d400a1ea055137042d36097eb96063348a5ae5573c1",
+     "sha256_after": "304114b202c13f9831358d400a1ea055137042d36097eb96063348a5ae5573c1",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B5_risk_coverage.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B5_risk_coverage.png",
+     "sha256_before": "dde1ba74d52a4628d0ff54069c811f0798172da132ba6a828879db6b570a7fbc",
+     "sha256_after": "dde1ba74d52a4628d0ff54069c811f0798172da132ba6a828879db6b570a7fbc",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B4_risk_coverage.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/clean_a_B4_risk_coverage.png",
+     "sha256_before": "cb8c677a0307bfb85778179bc2b7bedf197bc09f16f651774021088e4c300b66",
+     "sha256_after": "cb8c677a0307bfb85778179bc2b7bedf197bc09f16f651774021088e4c300b66",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B4_risk_coverage.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B4_risk_coverage.png",
+     "sha256_before": "840db060db5a961e7d70f07f2391d100987c6ce9420849193a401d97e1e5d684",
+     "sha256_after": "840db060db5a961e7d70f07f2391d100987c6ce9420849193a401d97e1e5d684",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B5_risk_coverage.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_3_b/c5_d3_35789933202effad/figures/shadow_risk_b_B5_risk_coverage.png",
+     "sha256_before": "48f6e5335588438adce8a2b2d325aef85e905c98e6ceb7dd729d084309f35f74",
+     "sha256_after": "48f6e5335588438adce8a2b2d325aef85e905c98e6ceb7dd729d084309f35f74",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/04_coverage_comparison.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/04_coverage_comparison.png",
+     "sha256_before": "4bee52a60df10697d8bab3141c7b87bf3b9d2ce7731acf1bb7886ac045b8dffe",
+     "sha256_after": "4bee52a60df10697d8bab3141c7b87bf3b9d2ce7731acf1bb7886ac045b8dffe",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/06_conclusion.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/06_conclusion.png",
+     "sha256_before": "ba0c5cb639da86029e2dfc6c1a248f08fb8a97e2b7d760b27a5b9c78823af557",
+     "sha256_after": "ba0c5cb639da86029e2dfc6c1a248f08fb8a97e2b7d760b27a5b9c78823af557",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/03_mechanisms.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/03_mechanisms.png",
+     "sha256_before": "1e0406a43151e6ee6d51ada5308ddb4b5babbe62f6cc8d262dcd97ba43f720d8",
+     "sha256_after": "1e0406a43151e6ee6d51ada5308ddb4b5babbe62f6cc8d262dcd97ba43f720d8",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/01_cover.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/01_cover.png",
+     "sha256_before": "31324daeb3568a48359a574c055d84baa9b3837d1065638aadd8aa48a76c9bea",
+     "sha256_after": "31324daeb3568a48359a574c055d84baa9b3837d1065638aadd8aa48a76c9bea",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/contact_sheet.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/contact_sheet.png",
+     "sha256_before": "97588d1d7e7bff1cf6e4adc423a6a7b47b81079adb4f717bee5a51f22f36376c",
+     "sha256_after": "97588d1d7e7bff1cf6e4adc423a6a7b47b81079adb4f717bee5a51f22f36376c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/02_two_acquisitions.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/02_two_acquisitions.png",
+     "sha256_before": "4661d84a8275cb6d204ced1f0143be68aa83ae486e9cd35bf8520bc67a65cd8c",
+     "sha256_after": "4661d84a8275cb6d204ced1f0143be68aa83ae486e9cd35bf8520bc67a65cd8c",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/05_mechanism_warning.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03/05_mechanism_warning.png",
+     "sha256_before": "8e830715f860ccb40447069a09a95f13e5e0a77e014fb273d49583e28d31a3f9",
+     "sha256_after": "8e830715f860ccb40447069a09a95f13e5e0a77e014fb273d49583e28d31a3f9",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/render_post_03.js",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/render_post_03.js",
+     "sha256_before": "3990fb712aff27c3bb4e35202e66a68920a5885b7793337fe1b9b7af6b88669a",
+     "sha256_after": "3990fb712aff27c3bb4e35202e66a68920a5885b7793337fe1b9b7af6b88669a",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/README.md",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/README.md",
+     "sha256_before": "662ecef68a465f928d3ae0160458ca52f06437994c844a66bdc0de9a61b95139",
+     "sha256_after": "662ecef68a465f928d3ae0160458ca52f06437994c844a66bdc0de9a61b95139",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/figure_sources.json",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/figure_sources.json",
+     "sha256_before": "8894ba4971e689704aea396bddbe219722f7e612b3cbafaf52b2ca54a4344121",
+     "sha256_after": "8894ba4971e689704aea396bddbe219722f7e612b3cbafaf52b2ca54a4344121",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/05_common_coverage.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/05_common_coverage.png",
+     "sha256_before": "085a0e101ef8c0b340e646c3121da09dc6ad61f1a3952b03ba8f47d84547aecd",
+     "sha256_after": "085a0e101ef8c0b340e646c3121da09dc6ad61f1a3952b03ba8f47d84547aecd",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/06_mechanism_warning.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/06_mechanism_warning.png",
+     "sha256_before": "f16649a63478421e2b6209aa4387fc1ccf93e502317ace119952f48a9489b37b",
+     "sha256_after": "f16649a63478421e2b6209aa4387fc1ccf93e502317ace119952f48a9489b37b",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/07_conclusion.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/07_conclusion.png",
+     "sha256_before": "4df6d668ed64432f047223948443f0367a1a282617fe774c4ab82b35408af675",
+     "sha256_after": "4df6d668ed64432f047223948443f0367a1a282617fe774c4ab82b35408af675",
+     "identical": true
+    },
+    {
+     "from": "stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/04_all_results.png",
+     "to": "/Users/zhaoxiuyue/MountainRS/stages/stage6_5_real_landsat_observation_stress_test/reports/xiaohongshu/post_03_support/archive/04_all_results.png",
+     "sha256_before": "ab6c738243e9e89326c2dcb34c2a2d3b8e1a5c2454391dccb056e5620112c3ce",
+     "sha256_after": "ab6c738243e9e89326c2dcb34c2a2d3b8e1a5c2454391dccb056e5620112c3ce",
+     "identical": true
+    }
+   ]
+  }
+ ],
+ "hash_files": {
+  "pre": "_ops/2026-08-04-reorg/pre-move-hashes.json",
+  "post": "_ops/2026-08-04-reorg/post-move-hashes.json",
+  "post_covers": "仓库 + attic 两侧全量，归档件可逐一验明未丢失"
+ },
+ "conservation_proof": {
+  "method": "搬前全量 SHA-256 多重集 vs 搬后 (仓库 ∪ attic) 多重集，扣除本次新建的 _ops/ 产物",
+  "files_before": 9446,
+  "files_after": 9446,
+  "lost": 0,
+  "content_changed": [
+   {
+    "path": ".pf/resource-registry.yaml",
+    "cause": "本次授权的操作层字节改动（29 行 alias 前缀），已逐条入册 byte_edits"
+   },
+   {
+    "path": ".claude/settings.local.json",
+    "cause": "非搬迁所致：本次会话中所有者逐条批准工具权限，Claude Code harness 自动追加 allow 规则（247→589 字节）",
+    "sha256_before": "2dda1cf6d83935dbcb83eb33c19b731608095aaebb01f4dc33ac5c809daf0181",
+    "sha256_after": "03e37fa49cf82cb3eb9d8f9ccf48461dde23a5a2d620d5375d0f73faff3d3c11"
+   }
+  ],
+  "note": "除以上 2 个文件外，搬前搬后每一个文件的 SHA-256 逐一对应，无丢失、无篡改。"
+ },
+ "post_archive_purge": {
+  "ref": "_ops/2026-08-04-reorg/attic-purge.json",
+  "deleted_file_count": 36,
+  "deleted_bytes": 650739,
+  "note": "搬迁完成后，经所有者口令删除 attic 内可再生垃圾。此举使『归档不是丢失』原则出现一处受控例外：仅限可再生物，且每条删除都留有路径、类别与删除前 SHA-256。"
+ },
+ "slimming_note": "瘦身说明：本清单中 venv 及其归档快照的逐文件条目已压为可验证的聚合哈希（见 rollups）。项目文件条目逐条全量保留，未做任何删减。守恒证明、迁移前既有漂移登记、逐条字节改动与 attic 清理留痕均未改动。瘦身在提交推送之前完成，目的是避免把第三方环境的文件级哈希永久带进版本库；聚合哈希本身可对归档整树重算复验。"
+}
