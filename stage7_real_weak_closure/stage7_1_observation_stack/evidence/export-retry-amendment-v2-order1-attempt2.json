@@ -1,0 +1,86 @@
+{
+  "schema": "mountainrs-stage7.1-export-retry-amendment-v2-order1-attempt2",
+  "request_id": "mountainrs-stage7.1-export-retry-amendment-v2-order1-attempt2",
+  "status": "preregistered",
+  "created_at_utc": "2026-08-03T16:40:00Z",
+  "decision_id": "C7.1-D3B-M2",
+  "classification": "ordinary_recoverable_execution_budget_repair_no_scientific_semantic_change",
+  "base_manifest": {
+    "relative_path": "evidence/export-manifest-v2.json",
+    "request_id": "mountainrs-stage7.1-export-manifest-v2",
+    "sha256": "a4a68743cfa15f89557bdd6e4371c7bcd66f8961fb6e3565def4e6c0bb5718b7"
+  },
+  "prior_attempt": {
+    "order": 1,
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+    "short_product_id": "LC08_130038_20230101",
+    "attempt_number": 1,
+    "task_id": "WDI4LVYAKCREQUJPII2JAFV2",
+    "earth_engine_state": "FAILED",
+    "error_class": "earth_engine_export_max_pixels",
+    "error_message": "Export too large: specified 489552 pixels (max: 488800). Specify higher maxPixels value if you intend to export a large area.",
+    "journal_relative_path": "evidence/export-attempts-v2.jsonl",
+    "prior_drive_output_status": "not_used_as_canonical_and_not_assumed_absent",
+    "prior_drive_output_action": "new_retry_folder_and_prefix_prevent_collision_or_overwrite"
+  },
+  "retry_attempt": {
+    "order": 1,
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+    "attempt_number": 2,
+    "idempotency_identity": "mountainrs-stage7.1-export-retry-amendment-v2-order1-attempt2:LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101:attempt-2",
+    "task_description": "MountainRS_Stage7_1_V2_R2_LC08_130038_20230101",
+    "external_destination": {
+      "type": "google_drive_transfer_intermediate",
+      "folder_name": "MountainRS_Stage7_1_V2_R2_15d5522991f9",
+      "folder_name_must_be_unique": true,
+      "file_name_prefix": "LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID__R2",
+      "canonical_local_member": false
+    },
+    "local_target_relative_to_alias": "LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif"
+  },
+  "sole_execution_amendment": {
+    "parameter": "maxPixels",
+    "from": 488800,
+    "to": 489552,
+    "service_reported_required_pixel_budget": 489552,
+    "derivation": "Earth Engine terminal error from prior attempt; 489552 = 651 x 752",
+    "meaning": "export safety cap only; it does not set output CRS, affine transform, ROI, dimensions, source data, masks or eligibility"
+  },
+  "unchanged_semantic_anchors": {
+    "candidate_universe_sha256": "15d5522991f9ff7eddba2f6983603f19b906026cceb4954579a892e6bd1bfe60",
+    "target_grid_id": "shadow-risk-b-b4-grid-v1",
+    "crs": "EPSG:32648",
+    "transform": [30.0, 0.0, 292230.0, 0.0, -30.0, 3473790.0],
+    "shape": {"height": 752, "width": 650},
+    "bounds": [292230.0, 3451230.0, 311730.0, 3473790.0],
+    "bands": ["SR_B4", "SR_B5", "QA_PIXEL", "SR_B4_VALID", "SR_B5_VALID", "QA_PIXEL_VALID"],
+    "raw_dn_unscaled": true,
+    "source_mask_extracted_before_serialization_fill": true,
+    "serialization_fill_value": 0,
+    "explicit_valid_mask_authoritative": true,
+    "shared_nodata": null,
+    "source_native_missing_remains_in_candidate_universe": true,
+    "stack_eligible": "not_yet_evaluated",
+    "split": "not_yet_assigned"
+  },
+  "execution_gates": {
+    "reverify_static_base_and_amendment": true,
+    "refresh_or_verify_nonsecret_earth_engine_attestation": true,
+    "repeat_exact_order1_source_mask_count_preflight_against_m1": true,
+    "require_no_active_v2_tasks": true,
+    "maximum_active_exports": 1,
+    "no_next_acquisition_submission": true,
+    "unknown_external_outcome_action": "stop_no_retry",
+    "lossless_local_reconstruction_failure_action": "stop_for_Elara"
+  },
+  "operation_boundary": {
+    "assets_created": 0,
+    "imagery_downloaded": 0,
+    "base_manifest_rewritten": false,
+    "candidate_universe_changed": false,
+    "roi_changed": false,
+    "target_grid_changed": false,
+    "stack_eligibility_changed": false,
+    "split_changed": false
+  }
+}

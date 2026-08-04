@@ -1,0 +1,215 @@
+{
+ "amends": [
+  {
+   "amended_token": "dimensions",
+   "document": "docs/mask-preserving-observation-storage-protocol-v2.md",
+   "edited_in_place": false,
+   "section": "3",
+   "sha256": "061b1b09170c305ad58cc894844e58589896fb88d62f9d13b5b69b187fe24a61"
+  },
+  {
+   "amended_token": "dimensions",
+   "document": "docs/selection-protocol.md",
+   "edited_in_place": false,
+   "section": "9.3",
+   "sha256": "8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521"
+  }
+ ],
+ "auditor_obligations": [
+  "execution.scale_parameter == 'omitted'",
+  "execution.best_effort is False",
+  "execution.resampling == 'nearest_neighbor_default' and explicit_resample_call is False",
+  "execution.format_options_no_data == 'omitted'",
+  "execution.skip_empty_tiles is False",
+  "execution.region_parameter == 'omitted'",
+  "execution.dimensions_parameter equals the value computed from target_grid.shape",
+  "execution.max_pixels == target_grid.pixel_count",
+  "both protocol documents and this amendment are present with matching sha256, and this amendment binds back to the manifest under audit"
+ ],
+ "bound_manifest": {
+  "binding_direction": "amendment_binds_to_manifest",
+  "binding_direction_reason": "manifest-v3 is not rewritten to reference this amendment: the append-only journal records manifest_sha256 for all three submissions, so rewriting the manifest would sever the task-to-manifest lineage.",
+  "relative_path": "evidence/export-manifest-v3.json",
+  "request_id": "mountainrs-stage7.1-export-manifest-v3",
+  "sha256": "2ee2b57a040ff6477a5f3a57641869a24c9f1bcd3f7624b4f3d48fff1e4a9303"
+ },
+ "created_at_utc": "2026-08-04T07:20:00Z",
+ "does_not": [
+  "change the 21-acquisition candidate universe, canonical order, ROI or any target-grid value",
+  "make any acquisition stack_eligible or assign a split",
+  "introduce any numerical threshold or change QA/reflectance/support semantics",
+  "rewrite export-manifest-v1.json, export-manifest-v2.json or any preserve_bytes evidence",
+  "relax attempt or retry caps, or relax maximum_active_exports = 1"
+ ],
+ "normative_text": {
+  "relative_path": "docs/grid-declaration-amendment-v1.md",
+  "sha256": "1177cd02a6320812912958b37558f0d0e0599cf0fc2a943c14e7281e61f34000"
+ },
+ "owner_ruling": {
+  "adopted": true,
+  "date_utc": "2026-08-04",
+  "diagnosis_event_id": "ev_63829dc21a29",
+  "pf3_node_id": "nd_a5842cfa87de",
+  "proposal_relative_path": "reports/grid-declaration-amendment-proposal-v1.md",
+  "retroactive_scope": "R",
+  "violation_event_id": "ev_215a9d9c54cd"
+ },
+ "permitted_when_all_hold": {
+  "c1": "crs equals the frozen EPSG:32648 verbatim",
+  "c2": "crsTransform equals the frozen six-element affine element by element",
+  "c3": "dimensions is computed from the frozen target_grid.shape, not hard-coded",
+  "c4": "region is not passed in the same task",
+  "c5": "maxPixels equals the frozen pixel_count",
+  "c6": "local grid verification runs before the product is placed"
+ },
+ "request_id": "mountainrs-stage7.1-grid-declaration-amendment-v1",
+ "retroactive_admission": {
+  "all_products_admitted": true,
+  "meaning": "method compliance only; does not make any acquisition stack_eligible and assigns no split",
+  "mode": "R",
+  "verified_products": [
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+    "all_conditions_hold": true,
+    "conditions": {
+     "c1_crs_verbatim": true,
+     "c2_crs_transform_elementwise": true,
+     "c3_dimensions_computed_from_frozen_shape": true,
+     "c4_region_not_passed": true,
+     "c5_max_pixels_equals_frozen_pixel_count": true,
+     "c6_product_grid_equals_frozen_grid": true
+    },
+    "earth_engine_state": "COMPLETED",
+    "measured_grid": {
+     "band_count": 6,
+     "bounds": [
+      292230.0,
+      3451230.0,
+      311730.0,
+      3473790.0
+     ],
+     "crs": "EPSG:32648",
+     "height": 752,
+     "nodata": null,
+     "resolution": [
+      30.0,
+      30.0
+     ],
+     "transform": [
+      30.0,
+      0.0,
+      292230.0,
+      0.0,
+      -30.0,
+      3473790.0
+     ],
+     "width": 650
+    },
+    "order": 1,
+    "product_byte_size": 3132646,
+    "product_relative_to_alias": "LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "product_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4",
+    "short_product_id": "LC08_130038_20230101",
+    "task_id": "HTBLVMKOD7MLLEDHJXBOHAFC"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+    "all_conditions_hold": true,
+    "conditions": {
+     "c1_crs_verbatim": true,
+     "c2_crs_transform_elementwise": true,
+     "c3_dimensions_computed_from_frozen_shape": true,
+     "c4_region_not_passed": true,
+     "c5_max_pixels_equals_frozen_pixel_count": true,
+     "c6_product_grid_equals_frozen_grid": true
+    },
+    "earth_engine_state": "COMPLETED",
+    "measured_grid": {
+     "band_count": 6,
+     "bounds": [
+      292230.0,
+      3451230.0,
+      311730.0,
+      3473790.0
+     ],
+     "crs": "EPSG:32648",
+     "height": 752,
+     "nodata": null,
+     "resolution": [
+      30.0,
+      30.0
+     ],
+     "transform": [
+      30.0,
+      0.0,
+      292230.0,
+      0.0,
+      -30.0,
+      3473790.0
+     ],
+     "width": 650
+    },
+    "order": 2,
+    "product_byte_size": 3249190,
+    "product_relative_to_alias": "LC08_130038_20230117/LC08_130038_20230117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "product_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784",
+    "short_product_id": "LC08_130038_20230117",
+    "task_id": "7G7C37XHKPCNJUD6PUIHTWRZ"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230202",
+    "all_conditions_hold": true,
+    "conditions": {
+     "c1_crs_verbatim": true,
+     "c2_crs_transform_elementwise": true,
+     "c3_dimensions_computed_from_frozen_shape": true,
+     "c4_region_not_passed": true,
+     "c5_max_pixels_equals_frozen_pixel_count": true,
+     "c6_product_grid_equals_frozen_grid": true
+    },
+    "earth_engine_state": "COMPLETED",
+    "measured_grid": {
+     "band_count": 6,
+     "bounds": [
+      292230.0,
+      3451230.0,
+      311730.0,
+      3473790.0
+     ],
+     "crs": "EPSG:32648",
+     "height": 752,
+     "nodata": null,
+     "resolution": [
+      30.0,
+      30.0
+     ],
+     "transform": [
+      30.0,
+      0.0,
+      292230.0,
+      0.0,
+      -30.0,
+      3473790.0
+     ],
+     "width": 650
+    },
+    "order": 3,
+    "product_byte_size": 3053930,
+    "product_relative_to_alias": "LC08_130038_20230202/LC08_130038_20230202__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "product_sha256": "35a119884622359a9c2706fc917e0bc8d8e843ab979f3d5f0b60b365632bd955",
+    "short_product_id": "LC08_130038_20230202",
+    "task_id": "OT3EPS2CNRDFQ5GHGTT5F7LF"
+   }
+  ]
+ },
+ "schema": "mountainrs-stage7.1-grid-declaration-amendment-v1",
+ "status": "frozen",
+ "still_prohibited": [
+  "scale",
+  "bestEffort",
+  "non_nearest_resampling",
+  "shared_nodata",
+  "partial_or_sharded_output",
+  "region_passed_together_with_dimensions"
+ ]
+}

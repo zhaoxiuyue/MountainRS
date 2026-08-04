@@ -1,0 +1,664 @@
+{
+ "cos_i_boundary": {
+  "reason": "cos_i varies with per-acquisition solar geometry; the only frozen cos_i raster was computed for LC08_130038_20230101 and must not be applied to other acquisitions. base_valid_land needs terrain geometry only, so eligibility does not depend on cos_i. Per-acquisition supported/unsupported classification is out of this node's boundary.",
+  "used": false
+ },
+ "members": [
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "base_valid_land": {
+    "qa_clear_excluded": 290819,
+    "qa_clear_included": 107215
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3132646,
+   "member_relative_to_alias": "LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4",
+   "order": 1,
+   "qa_clear_count": 255793,
+   "reflectance_in_range_count": 440919,
+   "short_product_id": "LC08_130038_20230101",
+   "source_valid_count": 488288,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-01-01T03:39:35.299Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 155060
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "base_valid_land": {
+    "qa_clear_excluded": 427528,
+    "qa_clear_included": 32900
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3249190,
+   "member_relative_to_alias": "LC08_130038_20230117/LC08_130038_20230117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784",
+   "order": 2,
+   "qa_clear_count": 41866,
+   "reflectance_in_range_count": 434313,
+   "short_product_id": "LC08_130038_20230117",
+   "source_valid_count": 487461,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-01-17T03:39:26.932Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 7363
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230202",
+   "base_valid_land": {
+    "qa_clear_excluded": 363843,
+    "qa_clear_included": 0
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": false
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3053930,
+   "member_relative_to_alias": "LC08_130038_20230202/LC08_130038_20230202__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "35a119884622359a9c2706fc917e0bc8d8e843ab979f3d5f0b60b365632bd955",
+   "order": 3,
+   "qa_clear_count": 0,
+   "reflectance_in_range_count": 363843,
+   "short_product_id": "LC08_130038_20230202",
+   "source_valid_count": 488800,
+   "stack_eligible": "not_eligible",
+   "system_time_start_utc": "2023-02-02T03:39:33.220Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": false,
+   "water_count": 0
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "base_valid_land": {
+    "qa_clear_excluded": 461172,
+    "qa_clear_included": 218404
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3050514,
+   "member_relative_to_alias": "LC08_130038_20230218/LC08_130038_20230218__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b",
+   "order": 4,
+   "qa_clear_count": 241037,
+   "reflectance_in_range_count": 486019,
+   "short_product_id": "LC08_130038_20230218",
+   "source_valid_count": 488791,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-02-18T03:39:23.131Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 24974
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "base_valid_land": {
+    "qa_clear_excluded": 455411,
+    "qa_clear_included": 46908
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3348425,
+   "member_relative_to_alias": "LC08_130038_20230306/LC08_130038_20230306__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d",
+   "order": 5,
+   "qa_clear_count": 56447,
+   "reflectance_in_range_count": 462746,
+   "short_product_id": "LC08_130038_20230306",
+   "source_valid_count": 488778,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-03-06T03:39:11.179Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 8639
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "base_valid_land": {
+    "qa_clear_excluded": 455926,
+    "qa_clear_included": 226
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3282602,
+   "member_relative_to_alias": "LC08_130038_20230322/LC08_130038_20230322__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf",
+   "order": 6,
+   "qa_clear_count": 257,
+   "reflectance_in_range_count": 455929,
+   "short_product_id": "LC08_130038_20230322",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-03-22T03:39:02.015Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 3
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "base_valid_land": {
+    "qa_clear_excluded": 456941,
+    "qa_clear_included": 7447
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3185405,
+   "member_relative_to_alias": "LC08_130038_20230407/LC08_130038_20230407__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d",
+   "order": 7,
+   "qa_clear_count": 9319,
+   "reflectance_in_range_count": 458655,
+   "short_product_id": "LC08_130038_20230407",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-04-07T03:38:49.631Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 1968
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "base_valid_land": {
+    "qa_clear_excluded": 482648,
+    "qa_clear_included": 72751
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3304876,
+   "member_relative_to_alias": "LC08_130038_20230509/LC08_130038_20230509__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6",
+   "order": 8,
+   "qa_clear_count": 72970,
+   "reflectance_in_range_count": 482858,
+   "short_product_id": "LC08_130038_20230509",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-05-09T03:38:31.654Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 220
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "base_valid_land": {
+    "qa_clear_excluded": 485974,
+    "qa_clear_included": 156085
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3260233,
+   "member_relative_to_alias": "LC08_130038_20230525/LC08_130038_20230525__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e",
+   "order": 9,
+   "qa_clear_count": 156663,
+   "reflectance_in_range_count": 486660,
+   "short_product_id": "LC08_130038_20230525",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-05-25T03:38:28.577Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 711
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230610",
+   "base_valid_land": {
+    "qa_clear_excluded": 488800,
+    "qa_clear_included": 0
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": false
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 2803186,
+   "member_relative_to_alias": "LC08_130038_20230610/LC08_130038_20230610__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "bbdf402da7bad2828d1e7e32f806fbba6d5caae0e564c167f1c871796bd4397d",
+   "order": 10,
+   "qa_clear_count": 0,
+   "reflectance_in_range_count": 488800,
+   "short_product_id": "LC08_130038_20230610",
+   "source_valid_count": 488800,
+   "stack_eligible": "not_eligible",
+   "system_time_start_utc": "2023-06-10T03:38:35.514Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": false,
+   "water_count": 0
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "base_valid_land": {
+    "qa_clear_excluded": 483993,
+    "qa_clear_included": 316797
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3078555,
+   "member_relative_to_alias": "LC08_130038_20230626/LC08_130038_20230626__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005",
+   "order": 11,
+   "qa_clear_count": 320638,
+   "reflectance_in_range_count": 487984,
+   "short_product_id": "LC08_130038_20230626",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-06-26T03:38:42.148Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 4002
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230712",
+   "base_valid_land": {
+    "qa_clear_excluded": 484293,
+    "qa_clear_included": 0
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": false
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3008110,
+   "member_relative_to_alias": "LC08_130038_20230712/LC08_130038_20230712__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "acbf1bebb07669a27cbb2efd48b7418af60c4566dfda531c7320f1f2f5133f6e",
+   "order": 12,
+   "qa_clear_count": 0,
+   "reflectance_in_range_count": 484293,
+   "short_product_id": "LC08_130038_20230712",
+   "source_valid_count": 488800,
+   "stack_eligible": "not_eligible",
+   "system_time_start_utc": "2023-07-12T03:38:52.229Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": false,
+   "water_count": 0
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "base_valid_land": {
+    "qa_clear_excluded": 485745,
+    "qa_clear_included": 22353
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3150558,
+   "member_relative_to_alias": "LC08_130038_20230728/LC08_130038_20230728__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a",
+   "order": 13,
+   "qa_clear_count": 22439,
+   "reflectance_in_range_count": 485856,
+   "short_product_id": "LC08_130038_20230728",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-07-28T03:38:58.559Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 111
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "base_valid_land": {
+    "qa_clear_excluded": 478018,
+    "qa_clear_included": 278254
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3119468,
+   "member_relative_to_alias": "LC08_130038_20230813/LC08_130038_20230813__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8",
+   "order": 14,
+   "qa_clear_count": 287235,
+   "reflectance_in_range_count": 487345,
+   "short_product_id": "LC08_130038_20230813",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-08-13T03:39:03.416Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 9330
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "base_valid_land": {
+    "qa_clear_excluded": 475870,
+    "qa_clear_included": 290373
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3077428,
+   "member_relative_to_alias": "LC08_130038_20230914/LC08_130038_20230914__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2",
+   "order": 15,
+   "qa_clear_count": 300299,
+   "reflectance_in_range_count": 486311,
+   "short_product_id": "LC08_130038_20230914",
+   "source_valid_count": 488798,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-09-14T03:39:13.228Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 10517
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "base_valid_land": {
+    "qa_clear_excluded": 468956,
+    "qa_clear_included": 119296
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3235583,
+   "member_relative_to_alias": "LC08_130038_20230930/LC08_130038_20230930__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00",
+   "order": 16,
+   "qa_clear_count": 133998,
+   "reflectance_in_range_count": 484240,
+   "short_product_id": "LC08_130038_20230930",
+   "source_valid_count": 488777,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-09-30T03:39:17.727Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 15460
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "base_valid_land": {
+    "qa_clear_excluded": 463268,
+    "qa_clear_included": 190519
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3237434,
+   "member_relative_to_alias": "LC08_130038_20231016/LC08_130038_20231016__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae",
+   "order": 17,
+   "qa_clear_count": 203429,
+   "reflectance_in_range_count": 476964,
+   "short_product_id": "LC08_130038_20231016",
+   "source_valid_count": 488725,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-10-16T03:39:19.879Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 15065
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "base_valid_land": {
+    "qa_clear_excluded": 454349,
+    "qa_clear_included": 129242
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3196344,
+   "member_relative_to_alias": "LC08_130038_20231101/LC08_130038_20231101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af",
+   "order": 18,
+   "qa_clear_count": 145538,
+   "reflectance_in_range_count": 471652,
+   "short_product_id": "LC08_130038_20231101",
+   "source_valid_count": 487943,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-11-01T03:39:23.205Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 18690
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "base_valid_land": {
+    "qa_clear_excluded": 459284,
+    "qa_clear_included": 79524
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3061247,
+   "member_relative_to_alias": "LC08_130038_20231117/LC08_130038_20231117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d",
+   "order": 19,
+   "qa_clear_count": 94289,
+   "reflectance_in_range_count": 474728,
+   "short_product_id": "LC08_130038_20231117",
+   "source_valid_count": 488508,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-11-17T03:39:22.999Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 16091
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "base_valid_land": {
+    "qa_clear_excluded": 465121,
+    "qa_clear_included": 71
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3051688,
+   "member_relative_to_alias": "LC08_130038_20231203/LC08_130038_20231203__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9",
+   "order": 20,
+   "qa_clear_count": 100,
+   "reflectance_in_range_count": 465121,
+   "short_product_id": "LC08_130038_20231203",
+   "source_valid_count": 488800,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-12-03T03:39:20.047Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 0
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "base_valid_land": {
+    "qa_clear_excluded": 458073,
+    "qa_clear_included": 20527
+   },
+   "base_valid_land_gt_zero": {
+    "qa_clear_excluded": true,
+    "qa_clear_included": true
+   },
+   "grid_shape": {
+    "height": 752,
+    "width": 650
+   },
+   "member_byte_size": 3179759,
+   "member_relative_to_alias": "LC08_130038_20231219/LC08_130038_20231219__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+   "member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed",
+   "order": 21,
+   "qa_clear_count": 24207,
+   "reflectance_in_range_count": 461572,
+   "short_product_id": "LC08_130038_20231219",
+   "source_valid_count": 485951,
+   "stack_eligible": "eligible",
+   "system_time_start_utc": "2023-12-19T03:39:23.176Z",
+   "target_pixel_count": 488800,
+   "terrain_valid_count": 488800,
+   "verdict_invariant_across_readings": true,
+   "water_count": 3529
+  }
+ ],
+ "operation_boundary": {
+  "assets_created": 0,
+  "earth_engine_called": false,
+  "export_tasks_created": 0,
+  "frozen_evidence_rewritten": false,
+  "imagery_downloaded": 0,
+  "split_assigned": false
+ },
+ "per_pixel_counts": {
+  "observation_count": 21,
+  "pixels_with_full_support": 0,
+  "pixels_with_zero_support": 64480,
+  "valid_count_max": 12,
+  "valid_count_min": 0
+ },
+ "reading_ambiguity": {
+  "handling": "both readings computed; no side chosen",
+  "question": "whether QA-clear is part of base_valid",
+  "verdict_invariant_for_all_members": false
+ },
+ "rule_source": {
+  "amendment": "docs/grid-declaration-amendment-v1.md",
+  "eligibility_rule": "base_valid_land > 0",
+  "no_new_threshold_introduced": true,
+  "selection_protocol": "docs/selection-protocol.md sections 3 and 4"
+ },
+ "schema": "mountainrs-stage7.1-local-support-audit-v1",
+ "terrain_geometry": {
+  "aspect": {
+   "finite_count": 488800,
+   "nodata": -9999.0,
+   "relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_shadowrisk_grid.tif",
+   "sha256": "83ed77e9db455a808f797e1d96b03471770429319ebeb402159d80d085d475b5"
+  },
+  "dem": {
+   "finite_count": 488800,
+   "nodata": -9999.0,
+   "relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+   "sha256": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4"
+  },
+  "slope": {
+   "finite_count": 488800,
+   "nodata": -9999.0,
+   "relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_shadowrisk_grid.tif",
+   "sha256": "af6d1d9924d7d3d464a00cd9163e625293523fc2232845f625d645a443b726ce"
+  }
+ }
+}

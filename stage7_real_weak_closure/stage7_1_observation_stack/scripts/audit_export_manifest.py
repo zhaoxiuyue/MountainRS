@@ -28,6 +28,7 @@ CATALOG_SHA256 = (
     "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda"
 )
 EXPECTED_BANDS = ["SR_B4", "SR_B5", "QA_PIXEL"]
+HISTORICAL_MANIFEST_ROOT_RELATIVE_PATH = "data/raw/stage7_1/observation_stack"
 EXPECTED_GRID = {
     "grid_id": "shadow-risk-b-b4-grid-v1",
     "crs": "EPSG:32648",
@@ -155,7 +156,15 @@ def validate_manifest(
 
     path_policy = manifest.get("path_policy", {})
     require(path_policy.get("root_alias") == "stage_7_1_observation_stack", "output Alias drift")
-    require(path_policy.get("root_relative_path") == "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack", "registry-resolved root drift")
+    # export-manifest-v1 is an immutable pre-relocation record.  Its root path
+    # is historical registry-resolution evidence; the current alias location is
+    # supplied by the relocation-aware resource registry, not by rewriting this
+    # manifest.
+    require(
+        path_policy.get("root_relative_path")
+        == HISTORICAL_MANIFEST_ROOT_RELATIVE_PATH,
+        "historical registry-resolution evidence drift",
+    )
     require(path_policy.get("absolute_paths_allowed") is False, "absolute paths must be prohibited")
     require(path_policy.get("overwrite_existing_target") is False, "overwrite must be prohibited")
 

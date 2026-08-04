@@ -1,0 +1,244 @@
+{
+  "schema": "mountainrs-xiaohongshu-post-04-figure-sources-v4",
+  "rendering": {
+    "renderer": "render_post_04.js",
+    "dimensions": "1080x1350",
+    "numeric_policy": "Every displayed number is read from frozen Stage 7.1 evidence/config/data and checked before rendering.",
+    "raster_policy": "Cover and cost cards display actual local SR_B4 rasters with deterministic display-only contrast stretches; no scientific values are recomputed.",
+    "visual_system": "Post 03 warm-paper system, with image-first evidence and restrained explanatory text.",
+    "funnel_rule": "The geometry layer is allowed to remove members but removes zero; all 21-cell rows stay the same width until the preregistered stack_eligible row extinguishes the three actual not-eligible positions."
+  },
+  "figures": [
+    {
+      "file": "01_cover.png",
+      "claim": "21 份真实 SR_B4 观测构成全年矩阵，一景未挑；三份预注册不合格观测在其真实位置灰显并打叉。",
+      "sources": [
+        {
+          "source_file": "evidence/stack_manifest.json",
+          "fields": [
+            "counts.universe",
+            "counts.not_eligible",
+            "members[].member_relative_to_alias",
+            "members[].stack_eligible",
+            "members[].order"
+          ],
+          "values": {
+            "universe": 21,
+            "not_eligible": 3,
+            "actual_scene_files": [
+              "data/raw/observation_stack/LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230117/LC08_130038_20230117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230202/LC08_130038_20230202__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230218/LC08_130038_20230218__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230306/LC08_130038_20230306__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230322/LC08_130038_20230322__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230407/LC08_130038_20230407__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230509/LC08_130038_20230509__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230525/LC08_130038_20230525__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230610/LC08_130038_20230610__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230626/LC08_130038_20230626__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230712/LC08_130038_20230712__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230728/LC08_130038_20230728__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230813/LC08_130038_20230813__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230914/LC08_130038_20230914__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230930/LC08_130038_20230930__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20231016/LC08_130038_20231016__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20231101/LC08_130038_20231101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20231117/LC08_130038_20231117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20231203/LC08_130038_20231203__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20231219/LC08_130038_20231219__SR_B4_SR_B5_QA_PIXEL__VALID.tif"
+            ]
+          }
+        },
+        {
+          "source_file": "data/raw/acquisition-catalog.json",
+          "fields": [
+            "counts.cataloged",
+            "counts.exportable",
+            "candidates canonical order"
+          ],
+          "values": {
+            "cataloged": 21,
+            "exportable": 21
+          }
+        }
+      ]
+    },
+    {
+      "file": "02_rules.png",
+      "claim": "横向时间轴表达网格与查询协议先于看见数据；协议 §9 的完整导出集规则另于任何导出之前冻结。",
+      "sources": [
+        {
+          "source_file": "configs/target-grid.yaml",
+          "fields": [
+            "frozen_date",
+            "selection_rationale.allowed[2]"
+          ],
+          "values": {
+            "frozen_date": "2026-07-23"
+          }
+        },
+        {
+          "source_file": "docs/selection-protocol.md",
+          "fields": [
+            "Status pre-query freeze",
+            "section 2 pre-inspection grid choice",
+            "section 9 amendment status",
+            "section 9.1 complete export-set prohibition"
+          ],
+          "values": {
+            "protocol_status": "frozen before any Stage 7.1 GEE catalog query",
+            "export_set_frozen_date": "2026-07-24"
+          }
+        },
+        {
+          "source_file": "data/raw/acquisition-catalog.json",
+          "fields": [
+            "counts.cataloged",
+            "counts.exportable"
+          ],
+          "values": {
+            "cataloged": 21,
+            "exportable": 21
+          }
+        }
+      ]
+    },
+    {
+      "file": "03_funnel.png",
+      "claim": "完整 ROI 几何层有权淘汰成员，但实际淘汰 0 景；真正的淘汰发生在预注册 stack_eligible 标准，按真实成员位置熄灭 3 格。",
+      "sources": [
+        {
+          "source_file": "docs/selection-protocol.md",
+          "fields": [
+            "section 1 complete target-ROI footprint rules",
+            "section 9.1 complete export set"
+          ],
+          "values": {
+            "geometric_filter_is_catalog_admission": true
+          }
+        },
+        {
+          "source_file": "data/raw/acquisition-catalog.json",
+          "fields": [
+            "counts.cataloged",
+            "counts.exportable",
+            "counts.incomplete",
+            "candidates canonical order"
+          ],
+          "values": {
+            "roi_complete": 21,
+            "exportable": 21,
+            "incomplete": 0
+          }
+        },
+        {
+          "source_file": "evidence/export-attempts-v3.jsonl",
+          "fields": [
+            "21 submission_intent / READY / COMPLETED"
+          ],
+          "values": {
+            "completed": 21
+          }
+        },
+        {
+          "source_file": "evidence/stack_manifest.json",
+          "fields": [
+            "members[].target_grid_exact",
+            "members[].stack_eligible",
+            "split.counts"
+          ],
+          "values": {
+            "grid_exact": 21,
+            "eligible": 18,
+            "split": {
+              "test": 5,
+              "train": 10,
+              "validation": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "04_cost_and_question.png",
+      "claim": "三份预注册不合格景以真实 SR_B4 影像并排展示；各自 QA-clear 像元均为 0，读者可直接看到冬雪与雨季云遮蔽。",
+      "sources": [
+        {
+          "source_file": "evidence/local-support-audit-v1.json",
+          "fields": [
+            "members[].system_time_start_utc",
+            "members[].qa_clear_count",
+            "members[].stack_eligible",
+            "members[].member_relative_to_alias"
+          ],
+          "values": {
+            "not_eligible_members": [
+              {
+                "date": "2023-02-02",
+                "qaClear": 0,
+                "baseValidLand": 0,
+                "id": "LC08_130038_20230202",
+                "relative": "data/raw/observation_stack/LC08_130038_20230202/LC08_130038_20230202__SR_B4_SR_B5_QA_PIXEL__VALID.tif"
+              },
+              {
+                "date": "2023-06-10",
+                "qaClear": 0,
+                "baseValidLand": 0,
+                "id": "LC08_130038_20230610",
+                "relative": "data/raw/observation_stack/LC08_130038_20230610/LC08_130038_20230610__SR_B4_SR_B5_QA_PIXEL__VALID.tif"
+              },
+              {
+                "date": "2023-07-12",
+                "qaClear": 0,
+                "baseValidLand": 0,
+                "id": "LC08_130038_20230712",
+                "relative": "data/raw/observation_stack/LC08_130038_20230712/LC08_130038_20230712__SR_B4_SR_B5_QA_PIXEL__VALID.tif"
+              }
+            ]
+          }
+        },
+        {
+          "source_file": "data/raw/observation_stack/LC08_130038_20230202/LC08_130038_20230202__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+          "fields": [
+            "actual SR_B4 raster displayed with one fixed stretch"
+          ],
+          "values": {
+            "date": "2023-02-02",
+            "qa_clear_count": 0
+          }
+        },
+        {
+          "source_file": "data/raw/observation_stack/LC08_130038_20230610/LC08_130038_20230610__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+          "fields": [
+            "actual SR_B4 raster displayed with one fixed stretch"
+          ],
+          "values": {
+            "date": "2023-06-10",
+            "qa_clear_count": 0
+          }
+        },
+        {
+          "source_file": "data/raw/observation_stack/LC08_130038_20230712/LC08_130038_20230712__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+          "fields": [
+            "actual SR_B4 raster displayed with one fixed stretch"
+          ],
+          "values": {
+            "date": "2023-07-12",
+            "qa_clear_count": 0
+          }
+        },
+        {
+          "source_file": "docs/selection-protocol.md",
+          "fields": [
+            "section 3 stack_eligible requires base_valid_land > 0",
+            "section 4 QA/support semantics"
+          ],
+          "values": {
+            "preregistered_gate": "base_valid_land > 0"
+          }
+        }
+      ]
+    }
+  ]
+}

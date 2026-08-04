@@ -8,10 +8,12 @@ import unittest
 from pathlib import Path
 
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+REPO_ROOT = Path(__file__).resolve().parents[4]
 AUDITOR_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/scripts/audit_export_manifest.py"
 CATALOG_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/acquisition-catalog.json"
 PROTOCOL_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/docs/selection-protocol.md"
+MANIFEST_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/evidence/export-manifest-v1.json"
+RELOCATION_MANIFEST_PATH = REPO_ROOT / "stage7_real_weak_closure/stage7_1_observation_stack/evidence/relocation-manifest-v2.json"
 
 
 def load_auditor():
@@ -94,7 +96,7 @@ def valid_manifest() -> dict[str, object]:
         },
         "path_policy": {
             "root_alias": "stage_7_1_observation_stack",
-            "root_relative_path": "stage7_real_weak_closure/stage7_1_observation_stack/data/raw/observation_stack",
+            "root_relative_path": AUDITOR.HISTORICAL_MANIFEST_ROOT_RELATIVE_PATH,
             "absolute_paths_allowed": False,
             "overwrite_existing_target": False,
         },
@@ -144,6 +146,27 @@ class ExportManifestAuditTest(unittest.TestCase):
         self.assertEqual(result["unique_idempotency_seeds"], 21)
         self.assertEqual(result["tasks_created"], 0)
         self.assertEqual(result["assets_created"], 0)
+
+    def test_relocated_historical_manifest_remains_auditable(self) -> None:
+        manifest = AUDITOR.load_json(MANIFEST_PATH)
+        result = self.audit(manifest)
+        self.assertEqual(result["status"], "passed")
+        self.assertEqual(
+            manifest["path_policy"]["root_relative_path"],
+            AUDITOR.HISTORICAL_MANIFEST_ROOT_RELATIVE_PATH,
+        )
+
+        relocation = json.loads(RELOCATION_MANIFEST_PATH.read_text(encoding="utf-8"))
+        operation = next(
+            item
+            for item in relocation["operations"]
+            if item["entryId"] == "stage_7_1_export_manifest_v1"
+        )
+        self.assertEqual(operation["contentEditPolicy"], "preserve_bytes")
+        self.assertEqual(
+            operation["after"]["sha256"],
+            AUDITOR.sha256_file(MANIFEST_PATH),
+        )
 
     def test_missing_or_duplicate_acquisition_fails_closed(self) -> None:
         missing = valid_manifest()
