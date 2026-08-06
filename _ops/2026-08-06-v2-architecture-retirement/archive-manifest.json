@@ -1,0 +1,44 @@
+{
+ "action": "retire_superseded_architecture_pdf",
+ "authorization": "所有者口令：先对比内容，若无多余价值则删除；对比后确认有未继承内容，故按规则七归档而非删除，所有者确认「那你就按这个做」",
+ "content_rescued_before_archiving": {
+  "items": [
+   "可证伪的胜负标准三条（v2 §〇）",
+   "明确拒绝的范式清单中 v3 无对应的四条（v2 §一）",
+   "时序异常指征器 ΔRts 的具体判别机制（v2 §三 L0）",
+   "被否决的「边界空间平滑」提案档案与否决理由（v2 §三 L1）"
+  ],
+  "note": "v3 既未保留也未声明撤销的四处内容已提取为待裁决清单；裁决前不具架构效力",
+  "relative_path": "docs/architecture-v2-residuals.md"
+ },
+ "date": "2026-08-06",
+ "deleted": [],
+ "moved": [
+  {
+   "after": {
+    "locator": "ResearchArchive/2026/08/mountainrs-attic/山地遥感物理基座-架构文档v2.pdf",
+    "root": "home",
+    "sha256": "4377f9eef941ae6fe98a7f43f5f67feeebc8127f7e7d4e56ada0f3db6b350ce7",
+    "size": 266583
+   },
+   "before": {
+    "locator": "山地遥感物理基座-架构文档v2.pdf",
+    "root": "repository",
+    "sha256": "4377f9eef941ae6fe98a7f43f5f67feeebc8127f7e7d4e56ada0f3db6b350ce7",
+    "size": 266583
+   },
+   "content_edit_policy": "preserve_bytes",
+   "verified_identical_after_move": true
+  }
+ ],
+ "note": "退役物不删只归档（项目规则七）。字节未改，搬迁后逐条复算 SHA-256 一致。本记录搬完即封存，不再修改。",
+ "rationale": [
+  "该 PDF 内部 CreationDate 为 D:20260716071059（XeTeX/xdvipdfmx），早于 v3 PDF 的 2026-07-20 23:09（ReportLab）",
+  "正文自称「架构文档（v2）内部工作文档」，并使用被 v3 §2.4 废弃的措辞「局部重渲染」",
+  "不含 v3 的 G/X/Z/N 四状态、六类质量因子与三类来源类别，确认为上一代文档",
+  "canonical architecture 始终是 docs/architecture.md；PDF 只是派生阅读版，非第二真相源",
+  "文件位于仓库根目录，不属于项目规则五定义的任何产物落点槽"
+ ],
+ "schema": "mountainrs-attic-archive-v1",
+ "scope": "仓库根目录一个未跟踪的退役 PDF；仓库内其余文件不涉及"
+}
