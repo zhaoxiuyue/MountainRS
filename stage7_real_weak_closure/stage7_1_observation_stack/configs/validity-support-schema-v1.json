@@ -1,0 +1,302 @@
+{
+ "schema": "mountainrs-stage7.1r-validity-support-schema-v1",
+ "status": "frozen",
+ "frozen_date": "2026-08-06",
+ "scope_statement": "本 schema 固定 Stage 7.1-R 的 L0 有效性与支持语义。L0 的基本单位是「目标网格世界位置 × acquisition event × band」的观测证据。本 schema 只定义证据成员资格、逐波段源有效性、目标地表支持与操作特定资格四件事各自的粒度与推导式，不定义任何拟合、评分、置信度或损失语义。",
+ "supersession": {
+  "semantic_successor_of": "mountainrs-stage7.1-observation-record-v1",
+  "predecessor_relative_path": "configs/observation-schema.yaml",
+  "predecessor_sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced",
+  "supersession_scope": "validity_semantics_and_support_projection",
+  "predecessor_edited": false,
+  "note": "旧 schema 的 candidate_state_machine 把 stack_eligible 列为候选状态机的一个状态，隐含「不合格即退出观测栈」。本 schema 只在 validity 语义与支持投影这一限定范围内改读它为「历史操作资格映射」：成员资格由 evidence_membership 单独承担，操作资格不再能撤销成员资格。旧文件的身份规则、去重规则、记录字段、QA 定义与 split policy 继续原样有效，且不得回改。"
+ },
+ "frozen_inputs": [
+  {
+   "role": "acquisition_catalog",
+   "relative_path": "data/raw/acquisition-catalog.json",
+   "sha256": "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda",
+   "supplies": ["universe_enumeration", "solar_geometry", "qa_summary", "target_roi_footprint_coverage"]
+  },
+  {
+   "role": "export_manifest_v3",
+   "relative_path": "evidence/export-manifest-v3.json",
+   "sha256": "2ee2b57a040ff6477a5f3a57641869a24c9f1bcd3f7624b4f3d48fff1e4a9303",
+   "supplies": ["canonical_order", "member_locators", "band_order_authority", "target_grid"]
+  },
+  {
+   "role": "stack_manifest_v1",
+   "relative_path": "evidence/stack_manifest.json",
+   "sha256": "ae29e58937b6c4553e4896b9773d2a491221a9f6672e2393db3fa78a48154589",
+   "supplies": ["historical_operation_eligibility", "frozen_split", "eligibility_rule_reading"]
+  },
+  {
+   "role": "local_support_audit_v1",
+   "relative_path": "evidence/local-support-audit-v1.json",
+   "sha256": "682ecd0d0e0efb66d5c801f14f9697f032653b4e31840e2a1ae4f2592ce800c8",
+   "supplies": ["terrain_geometry_identity", "per_acquisition_support_counts"]
+  },
+  {
+   "role": "selection_protocol",
+   "relative_path": "docs/selection-protocol.md",
+   "sha256": "8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521",
+   "supplies": ["base_valid_definition", "water_rule", "eligibility_predicate", "split_arithmetic"]
+  },
+  {
+   "role": "mask_preserving_storage_protocol_v2",
+   "relative_path": "docs/mask-preserving-observation-storage-protocol-v2.md",
+   "sha256": "061b1b09170c305ad58cc894844e58589896fb88d62f9d13b5b69b187fe24a61",
+   "supplies": ["valid_band_semantics", "masked_transfer_value_semantics"]
+  },
+  {
+   "role": "target_grid_spec",
+   "relative_path": "configs/target-grid.yaml",
+   "sha256": "35b4d9756e9249fcd110a7a18970729745cc5c6cd3caa214831907f0c9cd7d82",
+   "supplies": ["grid_identity", "terrain_component_hashes", "footprint_minimum_ratio"]
+  },
+  {
+   "role": "evidence_reconciliation_audit_v1",
+   "relative_path": "evidence/evidence-reconciliation-audit-v1.json",
+   "sha256": "53d1208717917f42c17dd1ea84a8448c6a97016f04b0e210a1107beca0249454",
+   "supplies": ["frozen_evidence_reconciliation_proof"]
+  }
+ ],
+ "fields": {
+  "evidence_membership": {
+   "granularity": "acquisition",
+   "source": "acquisition_catalog + export_manifest_v3",
+   "derivation": "acquisition 属于冻结 evidence_universe 的 canonical order 且本地成员字节存在并通过身份对账 ⇒ included",
+   "value_domain": ["included"],
+   "missing_semantics": "本 universe version 内不存在 excluded 取值。若某 acquisition 无法建立成员资格，它根本不进入该 universe version，而不是以 excluded 记录。",
+   "revocability": "irrevocable_within_universe_version",
+   "must_not_depend_on": ["cloud", "qa", "source_mask", "residual", "fit", "split", "model_result"],
+   "provenance_class_mapping": "not_applicable_membership_is_not_a_state_conclusion"
+  },
+  "acquisition_status": {
+   "granularity": "acquisition",
+   "source": "export_attempts_journal_v3 终态事件经 task_id 回链",
+   "derivation": "submission_intent → task_status(READY) → task_status(COMPLETED, lifecycle_state=succeeded) 三事件闭合 ⇒ acquired",
+   "value_domain": ["acquired"],
+   "missing_semantics": "未闭合即不得记为 acquired；本 universe version 内 21 景全部闭合。",
+   "provenance_class_mapping": "not_applicable_acquisition_fact_is_not_a_state_conclusion"
+  },
+  "source_band_validity": {
+   "granularity": "acquisition x band x pixel",
+   "source": "成员 GeoTIFF 的显式 VALID 波段",
+   "band_valid_bands": {
+    "SR_B4": "SR_B4_VALID",
+    "SR_B5": "SR_B5_VALID",
+    "QA_PIXEL": "QA_PIXEL_VALID"
+   },
+   "derivation": "VALID 波段取值为 1 ⇒ 该波段该像元源有效；取值为 0 ⇒ source_native_missing",
+   "value_domain": [1, 0],
+   "missing_semantics": "source_native_missing 只表示证据已证明的逐波段源缺失，不推断产品内部原因（云掩膜、传感器缺行、L2 处理拒绝等一律不假设）。",
+   "must_not_be_conflated_with": ["qa_surface_support", "target_surface_support_status", "confidence"],
+   "provenance_class_mapping": {"0": "unsupported", "1": "input_to_support_evaluation"}
+  },
+  "qa_surface_support": {
+   "granularity": "acquisition x pixel",
+   "source": "QA_PIXEL 波段，QA 定义见 observation-schema.yaml qa_definition",
+   "derivation": "QA_PIXEL bits 0-5（fill / dilated_cloud / cirrus / cloud / cloud_shadow / snow）全为 0 ⇒ qa_clear",
+   "value_domain": ["qa_clear", "qa_rejected"],
+   "water_rule": "QA_PIXEL bit 7 为 water，单独计数，并从 base_valid_land 排除；water 不是 qa_rejected。",
+   "missing_semantics": "QA_PIXEL 自身若 source_band_validity=0，则该像元的 qa 支持不可判定，记为 source_native_missing 而非 qa_rejected。",
+   "provenance_class_mapping": {"qa_clear": "input_to_support_evaluation", "qa_rejected": "unsupported"}
+  },
+  "base_valid_land": {
+   "granularity": "acquisition x pixel",
+   "source": "selection-protocol §4 冻结定义",
+   "derivation": "base_valid = source_band_validity(SR_B4 ∧ SR_B5 ∧ QA_PIXEL) ∧ qa_clear ∧ reflectance_in_range ∧ terrain_geometry_valid；base_valid_land = base_valid ∧ ¬water",
+   "reflectance_rule": "reflectance = DN × 0.0000275 − 0.2，须 finite 且落在闭区间 [-0.05, 1.0]",
+   "terrain_rule": "dem / slope / aspect 三者均 finite 且非 nodata。cos_i 不参与——它随逐景太阳几何变化，见 geometry_support_status。",
+   "base_valid_reading": "QA-clear 属于 base_valid",
+   "reading_determined_by": "该读法不是本节点选定的：冻结文本可作两读，改用 Stage 7.0 对 LC08_130038_20230101 冻结的账目反解——base_valid_land = 102222 与 cos_i 分区 4063 / 4559 / 93600 四数同时精确复现，当且仅当 QA-clear 属于 base_valid。未引入任何新阈值。",
+   "value_domain": [1, 0],
+   "missing_semantics": "0 表示该像元在本 acquisition 上没有形成目标地表支持，必须附 deprivation_kind 原因；不得解释为地表状态为零。",
+   "provenance_class_mapping": {"1": "support_ready", "0": "unsupported"}
+  },
+  "target_surface_support_status": {
+   "granularity": "acquisition x frozen_roi",
+   "source": "base_valid_land 在冻结 ROI 上的聚合",
+   "derivation": "base_valid_land_count > 0 ⇒ supported_somewhere；base_valid_land_count = 0 ⇒ zero_base_valid_land",
+   "value_domain": ["supported_somewhere", "zero_base_valid_land"],
+   "missing_semantics": "zero_base_valid_land 只对当前冻结 ROI、当前目标地表支持谓词成立，不断言整景对其他 ROI 或其他任务无价值。",
+   "provenance_class_mapping": {"supported_somewhere": "support_ready", "zero_base_valid_land": "unsupported"}
+  },
+  "observation_opportunity": {
+   "granularity": "world_position",
+   "source": "acquisition_catalog.target_roi_footprint_coverage",
+   "derivation": "acquisition 在冻结 footprint 内发生即计入该世界位置的观测机会，不要求形成有效支持。21 景 coverage 均为 1.0（full cover），故本 universe version 内该量在冻结 ROI 上是常数场，取值恒为 21。",
+   "constant_field": true,
+   "constant_field_value": 21,
+   "constant_field_justification": "由 full-cover 事实导出，不是逐像元重算结果；不得伪装成有空间变化的独立层。若将来引入部分覆盖的 acquisition，本字段必须退回逐像元重算。",
+   "value_domain": "non_negative_integer",
+   "missing_semantics": "该量是支持率的分母。分母恒为 21 意味着本 ROI 上不存在 passive.no_acquisition 型缺失。",
+   "provenance_class_mapping": "not_applicable_denominator"
+  },
+  "solar_geometry": {
+   "granularity": "acquisition",
+   "source": "acquisition_catalog（源字段 SUN_AZIMUTH / SUN_ELEVATION）",
+   "derivation": "逐景搬运既有 catalog 已记录的原始角度，不重新计算、不插值、不取缺省值",
+   "value_domain": {"sun_azimuth_deg": "float", "sun_elevation_deg": "float"},
+   "missing_semantics": "任一景缺失即 fail-closed；不得以邻景插值或缺省值补齐。",
+   "purpose": "作为 Stage 7.2 冻结几何支持公式所需的输入原语",
+   "provenance_class_mapping": "not_applicable_input_primitive"
+  },
+  "geometry_support_status": {
+   "granularity": "acquisition",
+   "source": "本节点不计算",
+   "derivation": "not_computed",
+   "value_domain": ["not_computed"],
+   "inputs_ready": true,
+   "missing_semantics": "cos_i、Mgeom_support 与逐景 supported/unsupported 分类的精确公式由 Stage 7.2 在拟合前冻结。唯一已冻结的 cos_i 栅格只对 LC08_130038_20230101 的太阳几何有效，不得套用于其他 acquisition。",
+   "provenance_class_mapping": "not_applicable_not_computed"
+  },
+  "stage_7_2_direct_only_input_eligibility": {
+   "granularity": "acquisition",
+   "source": "stack_manifest_v1 的历史操作资格映射（本节点只复读，不重判）",
+   "derivation": "target_surface_support_status = supported_somewhere ⇒ eligible_candidate；zero_base_valid_land ⇒ operation_scoped_unsupported",
+   "value_domain": ["eligible_candidate", "operation_scoped_unsupported"],
+   "operation_scope": "stage_7_2_direct_only",
+   "missing_semantics": "operation_scoped_unsupported 只表示当前冻结 ROI、目标地表支持谓词与 direct-only 操作下无直接支持。它不撤销 evidence_membership，不断言整景无价值，也不构成负样本。",
+   "provenance_class_mapping": {"eligible_candidate": "support_ready", "operation_scoped_unsupported": "unsupported"}
+  }
+ },
+ "value_distinguishability": {
+  "requirement": "masked、nodata 与为传输序列化写入的零值必须始终可区分；VALID、QA、support 与 confidence 不得互相冒充。",
+  "masked": {
+   "carrier": "显式 VALID 波段取值 0",
+   "data_band_value_at_masked_pixel": 0,
+   "note": "被掩膜像元在数据波段上写入的 0 是传输零值，不是观测到的 0。只有 VALID 波段能把它与真实 DN=0 分开。"
+  },
+  "transfer_zero": {
+   "carrier": "数据波段取值 0 且同位置 VALID = 0",
+   "meaning": "序列化占位，无观测含义"
+  },
+  "observed_zero": {
+   "carrier": "数据波段取值 0 且同位置 VALID = 1",
+   "meaning": "真实观测到的零值，参与后续有效性判定"
+  },
+  "nodata": {
+   "carrier": "成员 GeoTIFF 无共享 nodata 值（nodata = null）",
+   "note": "本存储协议不使用 nodata 标记缺失，缺失一律由 VALID 波段承担；因此 nodata 与 masked 在本 universe version 内不会混淆。"
+  },
+  "prohibited_conflations": [
+   "以 VALID 冒充 QA 支持",
+   "以 QA-clear 冒充目标地表支持",
+   "以任何 support 计数冒充 confidence",
+   "以传输零值冒充观测零值"
+  ]
+ },
+ "provenance_classes": {
+  "authority": "docs/architecture.md v3 §3（唯一 canonical architecture）",
+  "classes": {
+   "observed_inferred": {
+    "definition": "有合格观测支持并经模型推断",
+    "producible_at_l0": false,
+    "reason": "L0 不做推断。本节点不产生任何状态结论，因此不得产出该类。"
+   },
+   "prior_only": {
+    "definition": "仅由先验或初始化提供，保留来源与高不确定性",
+    "producible_at_l0": false,
+    "reason": "本节点不产生先验，也不引入 L4 初始化。"
+   },
+   "unsupported": {
+    "definition": "没有足以形成状态结论的支持",
+    "producible_at_l0": true,
+    "must_carry": ["deprivation_kind", "reason_label"]
+   },
+   "support_ready": {
+    "definition": "支持已就绪、状态未推断——L0 专用中间态",
+    "producible_at_l0": true,
+    "is_architecture_class": false,
+    "note": "support_ready 不是架构 §3 的三类之一，也绝不等于 observed_inferred。它只声明「此处具备可用于当前推断的观测支持」，是否形成状态结论由 Stage 7.2 及以后判定。任何把 support_ready 直接读作 observed_inferred 的下游实现都是违约。"
+   }
+  },
+  "downstream_binding": {
+   "inherited_by": ["stage_7_4_residual_reliability", "stage_7_8_l3_encoding", "stage_7_11_calibration_ood"],
+   "parallel_label_systems": "prohibited",
+   "note": "下游若需要新增来源类别，必须显式修订本 schema 并声明与架构 §3 的映射，不得另立平行标签体系。"
+  }
+ },
+ "deprivation_taxonomy": {
+  "authority": "docs/architecture.md v3 §3 第三段与未决问题 I：无观测区与主动清零区必须分别量化，不得混成一个低置信度总体数字。",
+  "top_level": {
+   "passive": {
+    "definition": "观测不可获得——该位置在该 acquisition 上根本没有可用的源观测",
+    "kinds": ["no_acquisition", "source_band_missing"]
+   },
+   "active": {
+    "definition": "观测存在，但被质量、范围或几何判断主动拒绝使用",
+    "kinds": ["qa_rejected", "reflectance_out_of_range", "terrain_nodata"]
+   }
+  },
+  "kinds": {
+   "no_acquisition": {
+    "parent": "passive",
+    "predicate": "该世界位置不在本 acquisition 的冻结 footprint 内",
+    "expected_count_in_this_universe": 0,
+    "note": "21 景 coverage 均为 1.0，故本 universe version 内该类恒为空。"
+   },
+   "source_band_missing": {
+    "parent": "passive",
+    "predicate": "source_band_validity = 0（任一必需波段）"
+   },
+   "qa_rejected": {
+    "parent": "active",
+    "predicate": "QA_PIXEL bits 0-5 非全零"
+   },
+   "reflectance_out_of_range": {
+    "parent": "active",
+    "predicate": "缩放后 SR_B4 或 SR_B5 落在 [-0.05, 1.0] 之外或非 finite"
+   },
+   "terrain_nodata": {
+    "parent": "active",
+    "predicate": "dem / slope / aspect 任一为 nodata 或非 finite"
+   }
+  },
+  "exclusivity": {
+   "top_level_mutually_exclusive": true,
+   "top_level_precedence": "passive 优先于 active：源观测都不存在时，不得再声称是被主动拒绝的。",
+   "kinds_mutually_exclusive": false,
+   "kinds_additive": false,
+   "note": "同一像元可同时命中多个细分类（例如既 qa_rejected 又 reflectance_out_of_range）。因此细分类计数不可相加为互斥分解，累加会重复计数。ledger 必须同时给出各类计数与 passive/active 两个顶层互斥计数，后者才可相加。"
+  },
+  "reporting_rule": "passive 与 active 的覆盖计数必须分别报告，禁止合并为单一低支持总数。water 不属于 deprivation：它是被单独计数的地表类型，不是缺失也不是拒绝。"
+ },
+ "mask_identities": {
+  "requirement": "Msource、Mqa、Mgeom_support 与 Mloss_support 保持独立身份，不得互相替代或合成为单一权重后丢弃因子。",
+  "Msource": {
+   "delivered_by_this_node": true,
+   "definition": "source_band_validity(SR_B4) ∧ source_band_validity(SR_B5) ∧ source_band_validity(QA_PIXEL)",
+   "granularity": "acquisition x pixel"
+  },
+  "Mqa": {
+   "delivered_by_this_node": true,
+   "definition": "qa_surface_support = qa_clear",
+   "granularity": "acquisition x pixel"
+  },
+  "Mgeom_support": {
+   "delivered_by_this_node": false,
+   "status": "not_computed",
+   "inputs_ready": true,
+   "owner": "stage_7_2"
+  },
+  "Mloss_support": {
+   "delivered_by_this_node": false,
+   "status": "not_computed",
+   "owner": "stage_7_2"
+  }
+ },
+ "training_semantics": {
+  "status": "frozen",
+  "unsupported_as_target": "forbidden",
+  "unsupported_as_negative_sample": "forbidden",
+  "loss_participation": "excluded",
+  "loss_value": "not_computed",
+  "unsupported_encoded_as_zero_state": "forbidden",
+  "authority": "docs/architecture.md v3 §1.2（不得为输出完整图面把无支持区域涂成确定结果）与 §2.5（零支持与模型不充分不是可被损失函数静默修复的噪声）"
+ },
+ "confidence_projection_status": "not_computed",
+ "confidence_boundary": "本节点只生成 confidence inputs 与 support primitives。任何 calibrated confidence、reliability、risk–coverage 或 effective_weight 的编译规则均不在此定义。"
+}

@@ -1,0 +1,261 @@
+{
+ "boundary": {
+  "confidence_computed": false,
+  "cos_i_computed": false,
+  "earth_engine_called": false,
+  "frozen_evidence_rewritten": false,
+  "membership_changed": false,
+  "split_reassigned": false
+ },
+ "counts": {
+  "eligible_candidate": 18,
+  "operation_scoped_unsupported": 3,
+  "universe": 21
+ },
+ "created_at_utc": "2026-08-06T00:00:00Z",
+ "eligible_candidates": [
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "base_valid_land_count": 107215,
+   "order": 1,
+   "short_product_id": "LC08_130038_20230101",
+   "split": "train",
+   "system_time_start_utc": "2023-01-01T03:39:35.299Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "base_valid_land_count": 32900,
+   "order": 2,
+   "short_product_id": "LC08_130038_20230117",
+   "split": "train",
+   "system_time_start_utc": "2023-01-17T03:39:26.932Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "base_valid_land_count": 218404,
+   "order": 4,
+   "short_product_id": "LC08_130038_20230218",
+   "split": "train",
+   "system_time_start_utc": "2023-02-18T03:39:23.131Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "base_valid_land_count": 46908,
+   "order": 5,
+   "short_product_id": "LC08_130038_20230306",
+   "split": "train",
+   "system_time_start_utc": "2023-03-06T03:39:11.179Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "base_valid_land_count": 226,
+   "order": 6,
+   "short_product_id": "LC08_130038_20230322",
+   "split": "train",
+   "system_time_start_utc": "2023-03-22T03:39:02.015Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "base_valid_land_count": 7447,
+   "order": 7,
+   "short_product_id": "LC08_130038_20230407",
+   "split": "train",
+   "system_time_start_utc": "2023-04-07T03:38:49.631Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "base_valid_land_count": 72751,
+   "order": 8,
+   "short_product_id": "LC08_130038_20230509",
+   "split": "train",
+   "system_time_start_utc": "2023-05-09T03:38:31.654Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "base_valid_land_count": 156085,
+   "order": 9,
+   "short_product_id": "LC08_130038_20230525",
+   "split": "train",
+   "system_time_start_utc": "2023-05-25T03:38:28.577Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "base_valid_land_count": 316797,
+   "order": 11,
+   "short_product_id": "LC08_130038_20230626",
+   "split": "train",
+   "system_time_start_utc": "2023-06-26T03:38:42.148Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "base_valid_land_count": 22353,
+   "order": 13,
+   "short_product_id": "LC08_130038_20230728",
+   "split": "train",
+   "system_time_start_utc": "2023-07-28T03:38:58.559Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "base_valid_land_count": 278254,
+   "order": 14,
+   "short_product_id": "LC08_130038_20230813",
+   "split": "validation",
+   "system_time_start_utc": "2023-08-13T03:39:03.416Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "base_valid_land_count": 290373,
+   "order": 15,
+   "short_product_id": "LC08_130038_20230914",
+   "split": "validation",
+   "system_time_start_utc": "2023-09-14T03:39:13.228Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "base_valid_land_count": 119296,
+   "order": 16,
+   "short_product_id": "LC08_130038_20230930",
+   "split": "validation",
+   "system_time_start_utc": "2023-09-30T03:39:17.727Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "base_valid_land_count": 190519,
+   "order": 17,
+   "short_product_id": "LC08_130038_20231016",
+   "split": "test",
+   "system_time_start_utc": "2023-10-16T03:39:19.879Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "base_valid_land_count": 129242,
+   "order": 18,
+   "short_product_id": "LC08_130038_20231101",
+   "split": "test",
+   "system_time_start_utc": "2023-11-01T03:39:23.205Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "base_valid_land_count": 79524,
+   "order": 19,
+   "short_product_id": "LC08_130038_20231117",
+   "split": "test",
+   "system_time_start_utc": "2023-11-17T03:39:22.999Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "base_valid_land_count": 71,
+   "order": 20,
+   "short_product_id": "LC08_130038_20231203",
+   "split": "test",
+   "system_time_start_utc": "2023-12-03T03:39:20.047Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "base_valid_land_count": 20527,
+   "order": 21,
+   "short_product_id": "LC08_130038_20231219",
+   "split": "test",
+   "system_time_start_utc": "2023-12-19T03:39:23.176Z"
+  }
+ ],
+ "frozen_predicate": {
+  "predicate": "target_surface_support_status = supported_somewhere（即 base_valid_land_count > 0）",
+  "re_adjudicated_by_this_node": false,
+  "source": "docs/selection-protocol.md §3 与 configs/validity-support-schema-v1.json",
+  "thresholds_invented": false
+ },
+ "handoff_to_stage_7_2": {
+  "calibration_gate_population": 18,
+  "geometry_support_evaluation_scope": "all_21_acquisitions",
+  "geometry_support_inputs_ready": true,
+  "geometry_support_status": "not_computed",
+  "masks_delivered_here": [
+   "Msource",
+   "Mqa"
+  ],
+  "masks_owned_by_stage_7_2": [
+   "Mgeom_support",
+   "Mloss_support"
+  ],
+  "not_fitted": 3,
+  "note": "全部 21 景都进入逐景几何支持评估范围：能算则登记 cos_i / geometry support，不能算则产出有原因的 typed unsupported。18 景进入 direct-only calibration Gate，3 景不拟合。"
+ },
+ "operation_scope": "stage_7_2_direct_only",
+ "schema": "mountainrs-stage7.1r-stage-7.2-direct-only-input-view-v1",
+ "source_evidence_manifest": {
+  "manifest_id": "observation-evidence-manifest-v1",
+  "relative_path": "evidence/observation-evidence-manifest-v1.json",
+  "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea",
+  "universe_id": "mountainrs-stage7.1-landsat8-c2t1l2-p130r38-2023",
+  "universe_version": "v1"
+ },
+ "split": {
+  "counts": {
+   "test": 5,
+   "train": 10,
+   "validation": 3
+  },
+  "members_outside_split_remain_evidence_members": 3,
+  "reassigned_by_this_node": false,
+  "rule_source": "docs/selection-protocol.md §5（本节点只复读，不重算分配）",
+  "split_scope": "stage_7_2_direct_only_eligible_subset"
+ },
+ "state_boundary": {
+  "changes_evidence_membership": false,
+  "training_semantics": {
+   "authority": "docs/architecture.md v3 §1.2（不得为输出完整图面把无支持区域涂成确定结果）与 §2.5（零支持与模型不充分不是可被损失函数静默修复的噪声）",
+   "loss_participation": "excluded",
+   "loss_value": "not_computed",
+   "status": "frozen",
+   "unsupported_as_negative_sample": "forbidden",
+   "unsupported_as_target": "forbidden",
+   "unsupported_encoded_as_zero_state": "forbidden"
+  }
+ },
+ "unsupported_records": [
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230202",
+   "base_valid_land_count": 0,
+   "deprivation_detail": "qa_rejected",
+   "deprivation_kind": "active",
+   "evidence_membership": "included",
+   "order": 3,
+   "provenance_class": "unsupported",
+   "qa_clear_support_count": 0,
+   "reason": "zero_base_valid_land",
+   "scope_statement": "只表示当前冻结 ROI、目标地表支持谓词与 direct-only 操作下无直接支持；不断言整景对其他 ROI 或其他任务无价值，也不撤销证据成员资格。",
+   "short_product_id": "LC08_130038_20230202",
+   "system_time_start_utc": "2023-02-02T03:39:33.220Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230610",
+   "base_valid_land_count": 0,
+   "deprivation_detail": "qa_rejected",
+   "deprivation_kind": "active",
+   "evidence_membership": "included",
+   "order": 10,
+   "provenance_class": "unsupported",
+   "qa_clear_support_count": 0,
+   "reason": "zero_base_valid_land",
+   "scope_statement": "只表示当前冻结 ROI、目标地表支持谓词与 direct-only 操作下无直接支持；不断言整景对其他 ROI 或其他任务无价值，也不撤销证据成员资格。",
+   "short_product_id": "LC08_130038_20230610",
+   "system_time_start_utc": "2023-06-10T03:38:35.514Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230712",
+   "base_valid_land_count": 0,
+   "deprivation_detail": "qa_rejected",
+   "deprivation_kind": "active",
+   "evidence_membership": "included",
+   "order": 12,
+   "provenance_class": "unsupported",
+   "qa_clear_support_count": 0,
+   "reason": "zero_base_valid_land",
+   "scope_statement": "只表示当前冻结 ROI、目标地表支持谓词与 direct-only 操作下无直接支持；不断言整景对其他 ROI 或其他任务无价值，也不撤销证据成员资格。",
+   "short_product_id": "LC08_130038_20230712",
+   "system_time_start_utc": "2023-07-12T03:38:52.229Z"
+  }
+ ],
+ "view_id": "stage-7.2-direct-only-input-view-v1"
+}

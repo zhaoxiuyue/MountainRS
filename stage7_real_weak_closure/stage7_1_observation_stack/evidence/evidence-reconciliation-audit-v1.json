@@ -1,0 +1,199 @@
+{
+ "boundary": {
+  "earth_engine_called": false,
+  "eligibility_re_adjudicated": false,
+  "frozen_evidence_rewritten": false,
+  "membership_changed": false,
+  "read_only": true,
+  "split_reassigned": false
+ },
+ "checks": [
+  {
+   "check_id": "C1",
+   "description": "21 景 acquisition 身份集合在 catalog / export manifest / stack manifest / support audit 四处一致",
+   "member_count": {
+    "acquisition_catalog": 21,
+    "export_manifest_v3": 21,
+    "local_support_audit": 21,
+    "stack_manifest": 21
+   },
+   "passed": true,
+   "symmetric_differences": {}
+  },
+  {
+   "check_id": "C2",
+   "description": "canonical order 连续为 1..21，与时间升序一致，且 order↔身份映射在三处证据一致",
+   "order_contiguous": true,
+   "order_identity_mapping_agrees": true,
+   "order_matches_time_ascending": true,
+   "passed": true
+  },
+  {
+   "check_id": "C3",
+   "description": "21 景精确匹配冻结网格 shadow-risk-b-b4-grid-v1（CRS / transform / 形状零容差）",
+   "grid_id": "shadow-risk-b-b4-grid-v1",
+   "mismatched": [],
+   "passed": true,
+   "pixel_count": 488800
+  },
+  {
+   "check_id": "C4",
+   "description": "21 景磁盘 SHA-256 与 stack manifest / support audit / mask audit 三处记录逐一相同",
+   "drifted": [],
+   "passed": true
+  },
+  {
+   "bands": [
+    "QA_PIXEL",
+    "SR_B4",
+    "SR_B5"
+   ],
+   "check_id": "C5",
+   "description": "21 景逐波段 VALID 无损重建复现既有掩膜计数，且被掩膜像元一律携带传输零值",
+   "failures": [],
+   "passed": true
+  },
+  {
+   "check_id": "C6",
+   "description": "历史操作资格固定为 18 eligible / 3 not_eligible，且不合格三景恰为 base_valid_land = 0 的三景",
+   "eligible_count": 18,
+   "not_eligible": [
+    "LC08_130038_20230202",
+    "LC08_130038_20230610",
+    "LC08_130038_20230712"
+   ],
+   "passed": true,
+   "present_in_readiness_report": true,
+   "zero_base_valid_land": [
+    "LC08_130038_20230202",
+    "LC08_130038_20230610",
+    "LC08_130038_20230712"
+   ]
+  },
+  {
+   "check_id": "C7",
+   "contiguous_time_segments": true,
+   "description": "split 复算等于既有 10/3/5，按时间连续切段，且只分配给 eligible 子集",
+   "passed": true,
+   "recomputed": {
+    "test": 5,
+    "train": 10,
+    "validation": 3
+   },
+   "recorded": {
+    "test": 5,
+    "train": 10,
+    "validation": 3
+   },
+   "unassigned_are_not_eligible": true
+  },
+  {
+   "acquisitions_without_completion": [],
+   "all_completed_lifecycle_succeeded": true,
+   "check_id": "C8",
+   "completed_tasks": 21,
+   "description": "append-only journal 共 63 条事件；21 景各一条 submission_intent 与 READY，终态 COMPLETED 经 task_id 唯一回链到同一景且全部 succeeded",
+   "event_count": 63,
+   "passed": true,
+   "ready_tasks": 21,
+   "submission_intents": 21,
+   "unlinked_completed_tasks": []
+  },
+  {
+   "check_id": "C9",
+   "covered": 21,
+   "description": "21 景太阳几何（SUN_AZIMUTH / SUN_ELEVATION）在本地 catalog 中全覆盖，可作 Stage 7.2 几何支持输入",
+   "missing": [],
+   "passed": true,
+   "sun_elevation_deg_range": [
+    31.1368308,
+    68.8086296
+   ]
+  },
+  {
+   "below_threshold": {},
+   "check_id": "C10",
+   "constant_field_value": 21,
+   "description": "21 景 target_roi_footprint_coverage 均 ≥ 0.999999，故逐世界位置 observation_opportunity_count 为常数场 21",
+   "minimum_observed": 1,
+   "passed": true
+  },
+  {
+   "check_id": "C11",
+   "description": "relocation-manifest-v2 的 preserve_bytes 冻结条目字节完好",
+   "drifted": [],
+   "missing": [],
+   "passed": true,
+   "preserve_bytes_entries": 25
+  }
+ ],
+ "failed_checks": [],
+ "reconciled_evidence": {
+  "acquisition_catalog": {
+   "relative_path": "data/raw/acquisition-catalog.json",
+   "sha256": "742275e25644c36da35a6ccf20e18a3e18703707b30d2ab55169cfe1579c8dda"
+  },
+  "export_attempts_journal_v3": {
+   "relative_path": "evidence/export-attempts-v3.jsonl",
+   "sha256": "40e68010235c15c541a647ff50e355800a21dfd8d594be1ba3f0c495e59d78df"
+  },
+  "export_manifest_v3": {
+   "relative_path": "evidence/export-manifest-v3.json",
+   "sha256": "2ee2b57a040ff6477a5f3a57641869a24c9f1bcd3f7624b4f3d48fff1e4a9303"
+  },
+  "grid_declaration_amendment_v1": {
+   "relative_path": "evidence/grid-declaration-amendment-v1.json",
+   "sha256": "d21d34295075b6f930ea2830f53564f15313d19cf15432edac4efdeac6b5c365"
+  },
+  "local_mask_audits_v3": {
+   "count": 21,
+   "relative_path_pattern": "evidence/local-mask-audit-v3-order{1..21}.json",
+   "sha256": {
+    "1": "e16fedbef1fedfe4de41d803cf6a646ac704139f900f6c65ce69ca77acdb2f3d",
+    "10": "0d3462a0e8f1c0af71dd7d6118aab87fc7109ce8617c62edbd92c91db0a66029",
+    "11": "ae9b898c4277cbae4f991afa4be34386b783f13d0b4f20015cab44c7f514259f",
+    "12": "3f1f3ab403fc9f91cf981d775c465e75b23e424f0f5f7c54468cf50c586af8a9",
+    "13": "bcb2a0dd98033630e1437ce1b3737089ab2800c364ec699e444381710bd523df",
+    "14": "0bd9f1c945ea7dc26cfb5a2ff6b82825e37a40dc3d8324657335ed921bf14193",
+    "15": "b669b0040b2f54f813dc00c278b251555a4285efba835f53578820e0030e2f52",
+    "16": "431307079f4ad4a8266b503ff22b8fb23e9eac4c5a2190e7cf90364aaf82122d",
+    "17": "72e676ac2183e58d943726ed78afec7ccd2c93d8cbec1ce9240685ca37c48fa3",
+    "18": "40465d08abc12802cdb5bf3ae35710c7ecc249a26fdaea815b056832bbe7e877",
+    "19": "2c14ea3e79c47ea5221b866cd9a00d017ba7f02d79bd3b0bf5180d7ec2433499",
+    "2": "68e77b5f73cbb4aea1e5aad7cf4e37b4b42fba240bb10a926bfe05417baf7389",
+    "20": "b13f9f425d33fdb8b9b92fdb0c3d26642882bea163b450501db83d76d241d9c8",
+    "21": "ab8e0db97c512cc21fdc9bdce28f16276e971ad747b5ea61c053adf32572397c",
+    "3": "3eb5b1d6574aad4d6d8415ab3c44aeca4733e3814812a6599a79ec9d18abb5b2",
+    "4": "979085ac0eddbaa03a35e1e1d437fb9db0ce8187597346a85ed9ef83503dbda8",
+    "5": "e324bcb96a10fe3fd27a5e9c91e9d883ab15973a075acb4e4d41200082706bb2",
+    "6": "abca3c4846e005e88324403e44244ed56f6c98d924a4ba7781a37cded7d7807d",
+    "7": "c51870b3e58abede9bf3b56c0800f58d1e37d5a2a985993cee4d4d4e444de04b",
+    "8": "51f9c9cfdec0dedcb458e1900f3cc529e17477dbddab9200a14b89d9a82da300",
+    "9": "923a17b250c75f00bb67b897e0ccf33c0c0022a973069bffc6bdbbe5f57be8e4"
+   }
+  },
+  "local_support_audit_v1": {
+   "relative_path": "evidence/local-support-audit-v1.json",
+   "sha256": "682ecd0d0e0efb66d5c801f14f9697f032653b4e31840e2a1ae4f2592ce800c8"
+  },
+  "readiness_report": {
+   "relative_path": "reports/readiness_report.md",
+   "sha256": "c9d4f6fd3cd1cc2c30fcd5f56d3db4ea6bff55114be6844fdceadc59257f74fd"
+  },
+  "selection_protocol": {
+   "relative_path": "docs/selection-protocol.md",
+   "sha256": "8a2ac75bd3060cba8ec8a460547f9a83db6925570fe06a783bf19676bc7ae521"
+  },
+  "stack_manifest": {
+   "relative_path": "evidence/stack_manifest.json",
+   "sha256": "ae29e58937b6c4553e4896b9773d2a491221a9f6672e2393db3fa78a48154589"
+  },
+  "target_grid_spec": {
+   "relative_path": "configs/target-grid.yaml",
+   "sha256": "35b4d9756e9249fcd110a7a18970729745cc5c6cd3caa214831907f0c9cd7d82"
+  }
+ },
+ "schema": "mountainrs-stage7.1r-evidence-reconciliation-audit-v1",
+ "status": "passed_reconciliation",
+ "universe_size": 21
+}

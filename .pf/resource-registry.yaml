@@ -151,3 +151,24 @@ resources:
   stage_7_1_catalog_executor:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_1_observation_stack/scripts/gee_catalog_audit.py
+  stage_7_1_r_validity_support_schema:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/configs/validity-support-schema-v1.json
+  stage_7_1_r_reconciliation_audit:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/evidence/evidence-reconciliation-audit-v1.json
+  stage_7_1_r_support_ledger:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/evidence/observation-support-ledger-v1.json
+  stage_7_1_r_evidence_manifest:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json
+  stage_7_2_direct_only_input_view:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json
+  stage_7_1_r_support_rasters:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/outputs/support
+  stage_7_1_r_semantics_report:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_1_observation_stack/reports/observation-evidence-semantics-v1.md
