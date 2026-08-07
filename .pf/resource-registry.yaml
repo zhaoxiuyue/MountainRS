@@ -172,3 +172,9 @@ resources:
   stage_7_1_r_semantics_report:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_1_observation_stack/reports/observation-evidence-semantics-v1.md
+  stage_7_2_cos_i_registry:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/evidence/cos-i-registry-v1.json
+  stage_7_2_cos_i_rasters:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/outputs/cos_i

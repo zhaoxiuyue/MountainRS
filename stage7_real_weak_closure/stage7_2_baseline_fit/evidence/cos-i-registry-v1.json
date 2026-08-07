@@ -1,0 +1,774 @@
+{
+ "boundary": {
+  "alpha_estimated": false,
+  "calibration_lit_decided": false,
+  "earth_engine_called": false,
+  "frozen_evidence_rewritten": false,
+  "mconf_computed": false,
+  "membership_changed": false,
+  "scored": false,
+  "split_reassigned": false
+ },
+ "contract_clause": "Stage 7.2 ①",
+ "coverage": {
+  "eligible_candidate": 18,
+  "evidence_members_computed": 21,
+  "operation_scoped_unsupported": 3,
+  "statement": "全部 21 个 evidence member 均已算出 cos_i 并登记几何支持，满足 Stage 7.1-R 合同⑧。operation_scoped_unsupported 的 3 景只进入几何支持登记，不进入 calibration、不参与 alpha 估计、不进入任何评分。"
+ },
+ "created_at_utc": "2026-08-07T00:00:00Z",
+ "descriptive_partition_boundary": {
+  "source": "stage7_real_weak_closure/stage7_0_baseline/docs/data_gap_report.md",
+  "statement": "shadow / near-zero / lit 三分区沿用 Stage 7.0 data_gap_report 的既有描述口径，只用于描述 cos_i 分布，不构成本节点的 Mconf 或 calibration-lit 判定。Mconf 须待合同②的子协议获批，calibration-lit 须待合同③的 calibration contract 获批。"
+ },
+ "formula": "solar_zenith_deg = 90 - sun_elevation_deg; cos_i = cos(slope)*cos(solar_zenith) + sin(slope)*sin(solar_zenith)*cos(sun_azimuth - aspect); slope/aspect/angles in degrees, converted with numpy.deg2rad / math.radians; computed in float64, stored as float32 with nodata -9999.0",
+ "formula_modified_by_this_node": false,
+ "formula_source": "stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2b_shadowrisk_local_check.py :: compute_cos_i",
+ "formula_verification": {
+  "bitwise_identical": true,
+  "frozen_relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_shadowrisk_grid.tif",
+  "frozen_sha256": "afb0728e1cf627beb91ca4071177b554176e8c7080c61f94ebcb6b03328d9b1a",
+  "max_abs_difference_on_valid": 0.0,
+  "passed": true,
+  "valid_mask_agrees": true
+ },
+ "inputs": {
+  "direct_only_input_view": {
+   "relative_path": "../stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
+   "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da",
+   "supplies": [
+    "stage_7_2_direct_only_input_eligibility"
+   ]
+  },
+  "evidence_manifest": {
+   "manifest_id": "observation-evidence-manifest-v1",
+   "relative_path": "../stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+   "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea",
+   "supplies": [
+    "evidence_membership",
+    "solar_geometry"
+   ]
+  },
+  "terrain_geometry": {
+   "aspect": {
+    "nodata": -9999.0,
+    "relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_shadowrisk_grid.tif",
+    "sha256": "83ed77e9db455a808f797e1d96b03471770429319ebeb402159d80d085d475b5",
+    "valid_count": 488800
+   },
+   "combined_valid_count": 488800,
+   "dem": {
+    "nodata": -9999.0,
+    "relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+    "sha256": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4",
+    "valid_count": 488800
+   },
+   "identity_source": "../stage7_1_observation_stack/evidence/local-support-audit-v1.json",
+   "note": "同一冻结地形用于全部 21 景；逐分量按记录哈希验明身份，不符即停。",
+   "slope": {
+    "nodata": -9999.0,
+    "relative_path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_shadowrisk_grid.tif",
+    "sha256": "af6d1d9924d7d3d464a00cd9163e625293523fc2232845f625d645a443b726ce",
+    "valid_count": 488800
+   }
+  }
+ },
+ "member_count": 21,
+ "members": [
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "cos_i_statistics": {
+    "max": 0.9999991059303284,
+    "mean": 0.39960436824872203,
+    "min": -0.6918910145759583
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 359473,
+    "near_zero_0_lt_cos_i_le_0_1": 41886,
+    "shadow_cos_i_le_0": 87441
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 1,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230101.tif",
+    "sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230101",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 58.8631692,
+    "sun_azimuth_deg": 155.66673554,
+    "sun_elevation_deg": 31.1368308
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-01-01T03:39:35.299Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "cos_i_statistics": {
+    "max": 0.9999900460243225,
+    "mean": 0.41750069636454445,
+    "min": -0.6660034656524658
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 368323,
+    "near_zero_0_lt_cos_i_le_0_1": 42069,
+    "shadow_cos_i_le_0": 78408
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 2,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230117.tif",
+    "sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230117",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 57.43934159,
+    "sun_azimuth_deg": 152.95873702,
+    "sun_elevation_deg": 32.56065841
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-01-17T03:39:26.932Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230202",
+   "cos_i_statistics": {
+    "max": 0.9999980330467224,
+    "mean": 0.4554594350638333,
+    "min": -0.6153163909912109
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 389422,
+    "near_zero_0_lt_cos_i_le_0_1": 40586,
+    "shadow_cos_i_le_0": 58792
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 3,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230202.tif",
+    "sha256": "813203c8287fec1425e9c193d3b4a0c7683df2cd2505f0fd986d0cccae41b067",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230202",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 54.30694803,
+    "sun_azimuth_deg": 149.94755065,
+    "sun_elevation_deg": 35.69305197
+   },
+   "stage_7_2_direct_only_input_eligibility": "operation_scoped_unsupported",
+   "system_time_start_utc": "2023-02-02T03:39:33.220Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "cos_i_statistics": {
+    "max": 0.9999997615814209,
+    "mean": 0.5076977463234414,
+    "min": -0.5424275398254395
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 420094,
+    "near_zero_0_lt_cos_i_le_0_1": 33466,
+    "shadow_cos_i_le_0": 35240
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 4,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230218.tif",
+    "sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230218",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 49.77561155,
+    "sun_azimuth_deg": 146.81646885,
+    "sun_elevation_deg": 40.22438845
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-02-18T03:39:23.131Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "cos_i_statistics": {
+    "max": 0.9999963641166687,
+    "mean": 0.5664661017396484,
+    "min": -0.4600796401500702
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 450901,
+    "near_zero_0_lt_cos_i_le_0_1": 20909,
+    "shadow_cos_i_le_0": 16990
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 5,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230306.tif",
+    "sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230306",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 44.29527842,
+    "sun_azimuth_deg": 143.52399465,
+    "sun_elevation_deg": 45.70472158
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-03-06T03:39:11.179Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "cos_i_statistics": {
+    "max": 1.0,
+    "mean": 0.6238309330856033,
+    "min": -0.3656914532184601
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 471498,
+    "near_zero_0_lt_cos_i_le_0_1": 10116,
+    "shadow_cos_i_le_0": 7186
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 6,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230322.tif",
+    "sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230322",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 38.39993886,
+    "sun_azimuth_deg": 139.8285647,
+    "sun_elevation_deg": 51.60006114
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-03-22T03:39:02.015Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "cos_i_statistics": {
+    "max": 0.9999963641166687,
+    "mean": 0.6733497508795475,
+    "min": -0.26723283529281616
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 481346,
+    "near_zero_0_lt_cos_i_le_0_1": 5001,
+    "shadow_cos_i_le_0": 2453
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 7,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230407.tif",
+    "sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230407",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 32.66514831,
+    "sun_azimuth_deg": 135.28369375,
+    "sun_elevation_deg": 57.33485169
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-04-07T03:38:49.631Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "cos_i_statistics": {
+    "max": 0.9999986886978149,
+    "mean": 0.7359450130977818,
+    "min": -0.1382611095905304
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 487661,
+    "near_zero_0_lt_cos_i_le_0_1": 985,
+    "shadow_cos_i_le_0": 154
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 8,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230509.tif",
+    "sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230509",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 23.980621209999995,
+    "sun_azimuth_deg": 122.12760844,
+    "sun_elevation_deg": 66.01937879
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-05-09T03:38:31.654Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "cos_i_statistics": {
+    "max": 0.9999988675117493,
+    "mean": 0.7493594013267616,
+    "min": -0.1167883649468422
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 488246,
+    "near_zero_0_lt_cos_i_le_0_1": 499,
+    "shadow_cos_i_le_0": 55
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 9,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230525.tif",
+    "sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230525",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 21.832900289999998,
+    "sun_azimuth_deg": 114.6191949,
+    "sun_elevation_deg": 68.16709971
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-05-25T03:38:28.577Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230610",
+   "cos_i_statistics": {
+    "max": 0.9999983906745911,
+    "mean": 0.7536557007786523,
+    "min": -0.11228081583976746
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 488425,
+    "near_zero_0_lt_cos_i_le_0_1": 341,
+    "shadow_cos_i_le_0": 34
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 10,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230610.tif",
+    "sha256": "7c4897fe75beb5e0e2c810a6a881761b0a921cdb82287cd3f0cd61da49c09f72",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230610",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 21.191370399999997,
+    "sun_azimuth_deg": 108.98736325,
+    "sun_elevation_deg": 68.8086296
+   },
+   "stage_7_2_direct_only_input_eligibility": "operation_scoped_unsupported",
+   "system_time_start_utc": "2023-06-10T03:38:35.514Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "cos_i_statistics": {
+    "max": 0.9999997615814209,
+    "mean": 0.7513870510536954,
+    "min": -0.12334156781435013
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 488386,
+    "near_zero_0_lt_cos_i_le_0_1": 374,
+    "shadow_cos_i_le_0": 40
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 11,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230626.tif",
+    "sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230626",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 21.676329820000007,
+    "sun_azimuth_deg": 107.08121796,
+    "sun_elevation_deg": 68.32367018
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-06-26T03:38:42.148Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230712",
+   "cos_i_statistics": {
+    "max": 0.9999995231628418,
+    "mean": 0.7444128505861355,
+    "min": -0.1405358910560608
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 488126,
+    "near_zero_0_lt_cos_i_le_0_1": 601,
+    "shadow_cos_i_le_0": 73
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 12,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230712.tif",
+    "sha256": "8a378e4a1d6a7af1ac94f83d1c320ac1991886dc4db458dfe450d286654a4411",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230712",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 22.876840689999995,
+    "sun_azimuth_deg": 109.42326883,
+    "sun_elevation_deg": 67.12315931
+   },
+   "stage_7_2_direct_only_input_eligibility": "operation_scoped_unsupported",
+   "system_time_start_utc": "2023-07-12T03:38:52.229Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "cos_i_statistics": {
+    "max": 0.9999985694885254,
+    "mean": 0.7330358067378455,
+    "min": -0.1631314903497696
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 487605,
+    "near_zero_0_lt_cos_i_le_0_1": 1027,
+    "shadow_cos_i_le_0": 168
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 13,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230728.tif",
+    "sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230728",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 24.649319309999996,
+    "sun_azimuth_deg": 115.32732001,
+    "sun_elevation_deg": 65.35068069
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-07-28T03:38:58.559Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "cos_i_statistics": {
+    "max": 0.9999992251396179,
+    "mean": 0.7162833266970051,
+    "min": -0.18413937091827393
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 486397,
+    "near_zero_0_lt_cos_i_le_0_1": 1900,
+    "shadow_cos_i_le_0": 503
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 14,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230813.tif",
+    "sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230813",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 27.05779946,
+    "sun_azimuth_deg": 123.53706884,
+    "sun_elevation_deg": 62.94220054
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-08-13T03:39:03.416Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "cos_i_statistics": {
+    "max": 0.9999999403953552,
+    "mean": 0.6592345199383172,
+    "min": -0.29861727356910706
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 479123,
+    "near_zero_0_lt_cos_i_le_0_1": 6116,
+    "shadow_cos_i_le_0": 3561
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 15,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230914.tif",
+    "sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230914",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 34.28844532,
+    "sun_azimuth_deg": 141.13460631,
+    "sun_elevation_deg": 55.71155468
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-09-14T03:39:13.228Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "cos_i_statistics": {
+    "max": 0.9999995231628418,
+    "mean": 0.6168598900895197,
+    "min": -0.3938634395599365
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 469900,
+    "near_zero_0_lt_cos_i_le_0_1": 10966,
+    "shadow_cos_i_le_0": 7934
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 16,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20230930.tif",
+    "sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20230930",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 39.00568326,
+    "sun_azimuth_deg": 148.31017064,
+    "sun_elevation_deg": 50.99431674
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-09-30T03:39:17.727Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "cos_i_statistics": {
+    "max": 0.9999967813491821,
+    "mean": 0.5668813303653418,
+    "min": -0.48618587851524353
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 452101,
+    "near_zero_0_lt_cos_i_le_0_1": 20381,
+    "shadow_cos_i_le_0": 16318
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 17,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20231016.tif",
+    "sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20231016",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 44.08581729,
+    "sun_azimuth_deg": 153.66403266,
+    "sun_elevation_deg": 45.91418271
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-10-16T03:39:19.879Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "cos_i_statistics": {
+    "max": 0.999999463558197,
+    "mean": 0.5136295375741926,
+    "min": -0.5666578412055969
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 425109,
+    "near_zero_0_lt_cos_i_le_0_1": 31779,
+    "shadow_cos_i_le_0": 31912
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 18,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20231101.tif",
+    "sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20231101",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 49.08155732,
+    "sun_azimuth_deg": 157.09460889,
+    "sun_elevation_deg": 40.91844268
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-11-01T03:39:23.205Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "cos_i_statistics": {
+    "max": 0.9999857544898987,
+    "mean": 0.4634796779713707,
+    "min": -0.6305235624313354
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 396244,
+    "near_zero_0_lt_cos_i_le_0_1": 39181,
+    "shadow_cos_i_le_0": 53375
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 19,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20231117.tif",
+    "sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20231117",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 53.49746553,
+    "sun_azimuth_deg": 158.69476051,
+    "sun_elevation_deg": 36.50253447
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-11-17T03:39:22.999Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "cos_i_statistics": {
+    "max": 0.9999848008155823,
+    "mean": 0.4239011642765961,
+    "min": -0.6739268898963928
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 373487,
+    "near_zero_0_lt_cos_i_le_0_1": 41537,
+    "shadow_cos_i_le_0": 73776
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 20,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20231203.tif",
+    "sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20231203",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 56.83463077,
+    "sun_azimuth_deg": 158.69200302,
+    "sun_elevation_deg": 33.16536923
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-12-03T03:39:20.047Z"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "cos_i_statistics": {
+    "max": 0.9999834299087524,
+    "mean": 0.4015362790226218,
+    "min": -0.6941360831260681
+   },
+   "descriptive_partition_not_a_support_decision": {
+    "lit_cos_i_gt_0_1": 360881,
+    "near_zero_0_lt_cos_i_le_0_1": 41709,
+    "shadow_cos_i_le_0": 86210
+   },
+   "evidence_membership": "included",
+   "geometry_support_status": "cos_i_computed",
+   "order": 21,
+   "output": {
+    "dtype": "float32",
+    "nodata": -9999.0,
+    "relative_path": "outputs/cos_i/cos_i_LC08_130038_20231219.tif",
+    "sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "valid_count": 488800
+   },
+   "short_product_id": "LC08_130038_20231219",
+   "solar_geometry": {
+    "azimuth_source_field": "SUN_AZIMUTH",
+    "elevation_source_field": "SUN_ELEVATION",
+    "solar_zenith_deg": 58.68402716,
+    "sun_azimuth_deg": 157.38602717,
+    "sun_elevation_deg": 31.31597284
+   },
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate",
+   "system_time_start_utc": "2023-12-19T03:39:23.176Z"
+  }
+ ],
+ "schema": "mountainrs-stage7.2-cos-i-registry-v1",
+ "thresholds_invented": false
+}
