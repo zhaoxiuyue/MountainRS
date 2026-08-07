@@ -1,0 +1,425 @@
+{
+ "boundary": {
+  "block_or_fold_instantiated": false,
+  "confidence_computed": false,
+  "earth_engine_called": false,
+  "frozen_evidence_rewritten": false,
+  "membership_changed": false,
+  "residual_computed": false,
+  "scored": false,
+  "split_reassigned": false
+ },
+ "contract_clause": "Stage 7.2 ⑦",
+ "created_at_utc": "2026-08-07T00:00:00Z",
+ "frozen_inputs": {
+  "calibration_contract": {
+   "relative_path": "docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "cos_i_registry": {
+   "relative_path": "evidence/cos-i-registry-v1.json",
+   "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+  },
+  "mconf_subprotocol": {
+   "relative_path": "docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "validity_support_schema_v2": {
+   "relative_path": "configs/validity-support-schema-v2.json",
+   "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+  }
+ },
+ "per_acquisition": [
+  {
+   "base_valid_land": 107215,
+   "calibration_lit": 98000,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "near_zero": 4834,
+    "parent": "active",
+    "self_shadow": 4381,
+    "total": 9215
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 237671,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 512,
+    "total": 381585,
+    "water_excluded_from_land": 143402
+   },
+   "order": 1,
+   "short_product_id": "LC08_130038_20230101",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 32900,
+   "calibration_lit": 28069,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "near_zero": 1354,
+    "parent": "active",
+    "self_shadow": 3477,
+    "total": 4831
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 448461,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 1339,
+    "total": 455900,
+    "water_excluded_from_land": 6100
+   },
+   "order": 2,
+   "short_product_id": "LC08_130038_20230117",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 218404,
+   "calibration_lit": 191562,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "near_zero": 14546,
+    "parent": "active",
+    "self_shadow": 12296,
+    "total": 26842
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 247880,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 9,
+    "total": 270396,
+    "water_excluded_from_land": 22507
+   },
+   "order": 4,
+   "short_product_id": "LC08_130038_20230218",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 46908,
+   "calibration_lit": 42305,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "near_zero": 2912,
+    "parent": "active",
+    "self_shadow": 1691,
+    "total": 4603
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 434763,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 22,
+    "total": 441892,
+    "water_excluded_from_land": 7107
+   },
+   "order": 5,
+   "short_product_id": "LC08_130038_20230306",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 226,
+   "calibration_lit": 222,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "near_zero": 3,
+    "parent": "active",
+    "self_shadow": 1,
+    "total": 4
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 488571,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 488574,
+    "water_excluded_from_land": 3
+   },
+   "order": 6,
+   "short_product_id": "LC08_130038_20230322",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 7447,
+   "calibration_lit": 7445,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "near_zero": 0,
+    "parent": "active",
+    "self_shadow": 2,
+    "total": 2
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 479740,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 481353,
+    "water_excluded_from_land": 1613
+   },
+   "order": 7,
+   "short_product_id": "LC08_130038_20230407",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 72751,
+   "calibration_lit": 72649,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "near_zero": 94,
+    "parent": "active",
+    "self_shadow": 8,
+    "total": 102
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 415852,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 416049,
+    "water_excluded_from_land": 197
+   },
+   "order": 8,
+   "short_product_id": "LC08_130038_20230509",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 156085,
+   "calibration_lit": 156048,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "near_zero": 32,
+    "parent": "active",
+    "self_shadow": 5,
+    "total": 37
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 332163,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 332715,
+    "water_excluded_from_land": 552
+   },
+   "order": 9,
+   "short_product_id": "LC08_130038_20230525",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 316797,
+   "calibration_lit": 316583,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "near_zero": 184,
+    "parent": "active",
+    "self_shadow": 30,
+    "total": 214
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 168162,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 172003,
+    "water_excluded_from_land": 3841
+   },
+   "order": 11,
+   "short_product_id": "LC08_130038_20230626",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 22353,
+   "calibration_lit": 22301,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "near_zero": 48,
+    "parent": "active",
+    "self_shadow": 4,
+    "total": 52
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 466361,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 466447,
+    "water_excluded_from_land": 86
+   },
+   "order": 13,
+   "short_product_id": "LC08_130038_20230728",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 278254,
+   "calibration_lit": 277314,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "near_zero": 739,
+    "parent": "active",
+    "self_shadow": 201,
+    "total": 940
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 201565,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 210546,
+    "water_excluded_from_land": 8981
+   },
+   "order": 14,
+   "short_product_id": "LC08_130038_20230813",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 290373,
+   "calibration_lit": 286700,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "near_zero": 2470,
+    "parent": "active",
+    "self_shadow": 1203,
+    "total": 3673
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 188558,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 2,
+    "total": 198427,
+    "water_excluded_from_land": 9867
+   },
+   "order": 15,
+   "short_product_id": "LC08_130038_20230914",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 119296,
+   "calibration_lit": 117297,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "near_zero": 1434,
+    "parent": "active",
+    "self_shadow": 565,
+    "total": 1999
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 354902,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 23,
+    "total": 369504,
+    "water_excluded_from_land": 14579
+   },
+   "order": 16,
+   "short_product_id": "LC08_130038_20230930",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 190519,
+   "calibration_lit": 182709,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "near_zero": 5224,
+    "parent": "active",
+    "self_shadow": 2586,
+    "total": 7810
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 286172,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 75,
+    "total": 298281,
+    "water_excluded_from_land": 12034
+   },
+   "order": 17,
+   "short_product_id": "LC08_130038_20231016",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 129242,
+   "calibration_lit": 118357,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "near_zero": 6863,
+    "parent": "active",
+    "self_shadow": 4022,
+    "total": 10885
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 343264,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 857,
+    "total": 359558,
+    "water_excluded_from_land": 15437
+   },
+   "order": 18,
+   "short_product_id": "LC08_130038_20231101",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 79524,
+   "calibration_lit": 74177,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "near_zero": 3206,
+    "parent": "active",
+    "self_shadow": 2141,
+    "total": 5347
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 394539,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 292,
+    "total": 409276,
+    "water_excluded_from_land": 14445
+   },
+   "order": 19,
+   "short_product_id": "LC08_130038_20231117",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 71,
+   "calibration_lit": 71,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "near_zero": 0,
+    "parent": "active",
+    "self_shadow": 0,
+    "total": 0
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 488729,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 0,
+    "total": 488729,
+    "water_excluded_from_land": 0
+   },
+   "order": 20,
+   "short_product_id": "LC08_130038_20231203",
+   "target_pixel_count": 488800
+  },
+  {
+   "base_valid_land": 20527,
+   "calibration_lit": 16078,
+   "mconf_mechanism_zero": {
+    "mask_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "near_zero": 1537,
+    "parent": "active",
+    "self_shadow": 2912,
+    "total": 4449
+   },
+   "observation_or_upstream_validity_exclusion": {
+    "active_upstream": 461950,
+    "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata) ∪ water",
+    "passive": 2849,
+    "total": 468273,
+    "water_excluded_from_land": 3474
+   },
+   "order": 21,
+   "short_product_id": "LC08_130038_20231219",
+   "target_pixel_count": 488800
+  }
+ ],
+ "schema": "mountainrs-stage7.2-support-loss-ledger-v1",
+ "taxonomy_authority": {
+  "note": "mconf_mechanism_zero 经 v2 delta amendment 登记为 active 桶下新细分类，未另立体系。",
+  "parallel_label_system_created": false,
+  "v1": "../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+  "v2_delta_amendment": "configs/validity-support-schema-v2.json"
+ },
+ "totals": {
+  "base_valid_land": 2088892,
+  "calibration_lit": 2007887,
+  "mconf_mechanism_zero": 81005,
+  "observation_or_upstream_validity_exclusion": 6709508
+ }
+}

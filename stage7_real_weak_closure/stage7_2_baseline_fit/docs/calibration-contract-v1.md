@@ -1,9 +1,16 @@
-# Calibration Contract v1｜草案（待所有者批准）
+# Calibration Contract v1
 
-- **状态：** `draft_pending_owner_approval` —— 未获批准前不得读取逐单元 calibration-lit 支持量或执行 alpha 估计
+- **状态：** `frozen`
 - **合同依据：** Stage 7.2 合同 ③
-- **前置：** Mconf 子协议 v1 必须先获批准（本合同引用它）
+- **前置：** Mconf 子协议 v1（已 frozen）
 - **建立日期：** 2026-08-07
+- **批准：** 所有者于 2026-08-07 批准，裁决如下：
+  1. **最小支持阈值采用方案 B** —— `Σμ² > 0` 且 calibration-lit 像元数 ≥ 271。
+     已知后果：order 20（71，test）与 order 6（226，train）落入
+     `unsupported_calibration`，train 10→9、test 5→4，三者仍非空。
+  2. 拟合键不加 `stratum`（Stage 7.0 四份冻结文档中不存在地表分层定义）。
+  3. 支持损失记账走 `validity-support-schema` 的修订流程，不另立平行标签体系。
+- **冻结后效力：** 阈值 271 一经冻结不得因拟合表现、有效 fold 数或 residual 调整。
 
 ## 1. 唯一 target ROI
 
@@ -55,7 +62,10 @@ alpha 是过原点单参数最小二乘：`alpha = Σ(μρ)/Σ(μ²)`，其方�
 顺带一个对 Stage 7.3 有用的数字：ROI 是 650 × 752 像元，即 2.40 × 2.77 个独立尺度，
 **整个 ROI 的空间独立样本上限约为 4 到 6 个**。无论有多少像元都不会更多。
 
-### 4.2 候选方案（请你选一个）
+### 4.2 候选方案与裁决
+
+> **已裁决：采用方案 B。** 生效阈值为 `Σμ² > 0` 且 calibration-lit 像元数 ≥ 271。
+> 下表保留两个候选及其依据，作为该裁决的推理留痕。
 
 | | 方案 A | 方案 B（推荐） |
 |---|---|---|

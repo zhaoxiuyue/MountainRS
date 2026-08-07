@@ -1,0 +1,62 @@
+{
+ "schema": "mountainrs-stage7.2-validity-support-schema-v2",
+ "status": "frozen",
+ "frozen_date": "2026-08-07",
+ "revision_kind": "delta_amendment",
+ "authority": "Stage 7.2 合同⑦，以及 v1 downstream_binding 的规定：下游若需新增来源类别，必须显式修订本 schema 并声明与架构 §3 的映射，不得另立平行标签体系。",
+ "amends": {
+  "schema_id": "mountainrs-stage7.1r-validity-support-schema-v1",
+  "relative_path": "../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+  "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9",
+  "predecessor_edited": false,
+  "statement": "v1 的全部条目继续有效。本文件只增补下列条目，不替换、不删除、不改写 v1 的任何定义；v1 文件字节未动。读取方必须同时加载 v1 与本文件，本文件单独不构成完整 schema。"
+ },
+ "added_deprivation_kinds": {
+  "mconf_mechanism_zero": {
+   "parent": "active",
+   "predicate": "base_valid_land ∧ (Mconf == 0)：观测有效且通过 QA 与源有效性，但几何许可量拒绝其参与标定",
+   "granularity": "acquisition x pixel",
+   "factor": "geometry_visibility",
+   "factor_authority": "docs/mconf-subprotocol-v1.md（frozen，所有者 2026-08-07 批准）",
+   "sub_labels": {
+    "mconf_zero_near_zero": "0 < cos_i <= 0.1",
+    "mconf_zero_self_shadow": "cos_i <= 0"
+   },
+   "sub_labels_mutually_exclusive": true,
+   "provenance_class": "unsupported",
+   "rationale": "这是架构 v3 §3「主动清零区」的第二个来源：观测存在且质量合格，是几何机制主动拒绝它参与标定。成因与 qa_rejected（云雪导致观测不可用）完全不同，必须分开计数——把两者合并会掩盖「补观测能否缓解」这个关键差别：qa_rejected 换个日期可能就没了，mconf_mechanism_zero 在同一地形同一太阳角下永远存在。",
+   "coverage_caveat": "本类只覆盖自阴影。投射阴影与地平线遮挡未纳入 Mconf v1，故本类计数是主动清零的下界，真实的几何拒绝只会更多。缺口归 Stage 7.5 / 7.6，见 docs/mconf-subprotocol-v1.md §3。"
+  }
+ },
+ "label_mappings": {
+  "observation_or_upstream_validity_exclusion": {
+   "defined_in": "Stage 7.2 合同⑦",
+   "is_new_category": false,
+   "maps_to_v1": "passive ∪ active(qa_rejected, reflectance_out_of_range, terrain_nodata)",
+   "statement": "该标签是 v1 顶层二分在「上游有效性」一侧的合并视图，不是新类别。报告时仍须按 v1 规定分别给出 passive 与 active 计数，不得只报合并值——合并会重新制造 v1 所禁止的单一低支持数字。"
+  }
+ },
+ "exclusivity_after_amendment": {
+  "top_level_mutually_exclusive": true,
+  "top_level_buckets": ["passive", "active"],
+  "top_level_additive": true,
+  "active_kinds": ["qa_rejected", "reflectance_out_of_range", "terrain_nodata", "mconf_mechanism_zero"],
+  "kinds_mutually_exclusive": false,
+  "kinds_additive": false,
+  "note": "mconf_mechanism_zero 的谓词要求 base_valid_land 为真，而 qa_rejected / reflectance_out_of_range / terrain_nodata 的谓词都蕴含 base_valid_land 为假，因此 mconf_mechanism_zero 与其余三类在同一像元上互斥。但既有三类之间仍可重叠，故 active 细分类整体依然不可相加为互斥分解。"
+ },
+ "unchanged_from_v1": [
+  "evidence_membership 不可撤销（本 universe version 内）",
+  "provenance_classes 四类及 L0 不得产出 observed_inferred",
+  "passive / active 顶层二分与 passive 优先规则",
+  "training_semantics 全部冻结值",
+  "value_distinguishability（masked / 传输零值 / 观测零值 / nodata）",
+  "mask_identities 中 Msource 与 Mqa 的定义",
+  "water 不属于 deprivation"
+ ],
+ "downstream_binding": {
+  "inherited_by": ["stage_7_3_spatial_blocking", "stage_7_4_residual_reliability", "stage_7_8_l3_encoding", "stage_7_11_calibration_ood"],
+  "parallel_label_systems": "prohibited",
+  "note": "后续节点若再需新增类别，同样以 delta amendment 形式续立 v3，并绑定前序版本 sha256。"
+ }
+}

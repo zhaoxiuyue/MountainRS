@@ -1,0 +1,307 @@
+{
+ "boundary": {
+  "block_or_fold_instantiated": false,
+  "confidence_computed": false,
+  "earth_engine_called": false,
+  "frozen_evidence_rewritten": false,
+  "membership_changed": false,
+  "residual_computed": false,
+  "scored": false,
+  "split_reassigned": false
+ },
+ "contract_clause": "Stage 7.2 ②",
+ "created_at_utc": "2026-08-07T00:00:00Z",
+ "factor_identity": {
+  "architecture_authority": "docs/architecture.md v3 §3",
+  "architecture_factor": "geometry_visibility",
+  "coverage": "self_shadow_only",
+  "coverage_caveat": "几何支持为乐观上界；未覆盖项归 Stage 7.5 / 7.6，见 docs/mconf-subprotocol-v1.md §3。",
+  "is_composite_confidence": false,
+  "may_merge_with": [],
+  "name": "Mconf",
+  "not_covered": [
+   "cast_shadow",
+   "horizon_occlusion",
+   "disocclusion_boundary",
+   "geometric_instability_boundary",
+   "view_angle_occlusion"
+  ],
+  "threshold": 0.1,
+  "threshold_source": "Stage 7.0 baseline_spec.md: supported := cos_i > 0.1",
+  "thresholds_invented": false
+ },
+ "frozen_inputs": {
+  "calibration_contract": {
+   "relative_path": "docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "cos_i_registry": {
+   "relative_path": "evidence/cos-i-registry-v1.json",
+   "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+  },
+  "mconf_subprotocol": {
+   "relative_path": "docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "validity_support_schema_v2": {
+   "relative_path": "configs/validity-support-schema-v2.json",
+   "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+  }
+ },
+ "member_count": 21,
+ "members": [
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "evidence_membership": "included",
+   "mconf_one_count": 359473,
+   "mconf_zero_near_zero": 41886,
+   "mconf_zero_self_shadow": 87441,
+   "order": 1,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230101.tif",
+   "sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+   "short_product_id": "LC08_130038_20230101",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "evidence_membership": "included",
+   "mconf_one_count": 368323,
+   "mconf_zero_near_zero": 42069,
+   "mconf_zero_self_shadow": 78408,
+   "order": 2,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230117.tif",
+   "sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+   "short_product_id": "LC08_130038_20230117",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230202",
+   "evidence_membership": "included",
+   "mconf_one_count": 389422,
+   "mconf_zero_near_zero": 40586,
+   "mconf_zero_self_shadow": 58792,
+   "order": 3,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230202.tif",
+   "sha256": "9d0d63b7e7c57194723f0215f11ff057682707c73f788709488f81771f302433",
+   "short_product_id": "LC08_130038_20230202",
+   "stage_7_2_direct_only_input_eligibility": "operation_scoped_unsupported"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "evidence_membership": "included",
+   "mconf_one_count": 420094,
+   "mconf_zero_near_zero": 33466,
+   "mconf_zero_self_shadow": 35240,
+   "order": 4,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230218.tif",
+   "sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+   "short_product_id": "LC08_130038_20230218",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "evidence_membership": "included",
+   "mconf_one_count": 450901,
+   "mconf_zero_near_zero": 20909,
+   "mconf_zero_self_shadow": 16990,
+   "order": 5,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230306.tif",
+   "sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+   "short_product_id": "LC08_130038_20230306",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "evidence_membership": "included",
+   "mconf_one_count": 471498,
+   "mconf_zero_near_zero": 10116,
+   "mconf_zero_self_shadow": 7186,
+   "order": 6,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230322.tif",
+   "sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+   "short_product_id": "LC08_130038_20230322",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "evidence_membership": "included",
+   "mconf_one_count": 481346,
+   "mconf_zero_near_zero": 5001,
+   "mconf_zero_self_shadow": 2453,
+   "order": 7,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230407.tif",
+   "sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+   "short_product_id": "LC08_130038_20230407",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "evidence_membership": "included",
+   "mconf_one_count": 487661,
+   "mconf_zero_near_zero": 985,
+   "mconf_zero_self_shadow": 154,
+   "order": 8,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230509.tif",
+   "sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+   "short_product_id": "LC08_130038_20230509",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "evidence_membership": "included",
+   "mconf_one_count": 488246,
+   "mconf_zero_near_zero": 499,
+   "mconf_zero_self_shadow": 55,
+   "order": 9,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230525.tif",
+   "sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+   "short_product_id": "LC08_130038_20230525",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230610",
+   "evidence_membership": "included",
+   "mconf_one_count": 488425,
+   "mconf_zero_near_zero": 341,
+   "mconf_zero_self_shadow": 34,
+   "order": 10,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230610.tif",
+   "sha256": "78f4735a335da85ceaf05e629c6e3889614e8318631a2d179165f5ada46d5a56",
+   "short_product_id": "LC08_130038_20230610",
+   "stage_7_2_direct_only_input_eligibility": "operation_scoped_unsupported"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "evidence_membership": "included",
+   "mconf_one_count": 488386,
+   "mconf_zero_near_zero": 374,
+   "mconf_zero_self_shadow": 40,
+   "order": 11,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230626.tif",
+   "sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+   "short_product_id": "LC08_130038_20230626",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230712",
+   "evidence_membership": "included",
+   "mconf_one_count": 488126,
+   "mconf_zero_near_zero": 601,
+   "mconf_zero_self_shadow": 73,
+   "order": 12,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230712.tif",
+   "sha256": "cda19ce1f0b71b551705b119a88e40e435c662c7daa9149399928bd9e3453fe1",
+   "short_product_id": "LC08_130038_20230712",
+   "stage_7_2_direct_only_input_eligibility": "operation_scoped_unsupported"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "evidence_membership": "included",
+   "mconf_one_count": 487605,
+   "mconf_zero_near_zero": 1027,
+   "mconf_zero_self_shadow": 168,
+   "order": 13,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230728.tif",
+   "sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+   "short_product_id": "LC08_130038_20230728",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "evidence_membership": "included",
+   "mconf_one_count": 486397,
+   "mconf_zero_near_zero": 1900,
+   "mconf_zero_self_shadow": 503,
+   "order": 14,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230813.tif",
+   "sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+   "short_product_id": "LC08_130038_20230813",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "evidence_membership": "included",
+   "mconf_one_count": 479123,
+   "mconf_zero_near_zero": 6116,
+   "mconf_zero_self_shadow": 3561,
+   "order": 15,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230914.tif",
+   "sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+   "short_product_id": "LC08_130038_20230914",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "evidence_membership": "included",
+   "mconf_one_count": 469900,
+   "mconf_zero_near_zero": 10966,
+   "mconf_zero_self_shadow": 7934,
+   "order": 16,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20230930.tif",
+   "sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+   "short_product_id": "LC08_130038_20230930",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "evidence_membership": "included",
+   "mconf_one_count": 452101,
+   "mconf_zero_near_zero": 20381,
+   "mconf_zero_self_shadow": 16318,
+   "order": 17,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20231016.tif",
+   "sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+   "short_product_id": "LC08_130038_20231016",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "evidence_membership": "included",
+   "mconf_one_count": 425109,
+   "mconf_zero_near_zero": 31779,
+   "mconf_zero_self_shadow": 31912,
+   "order": 18,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20231101.tif",
+   "sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+   "short_product_id": "LC08_130038_20231101",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "evidence_membership": "included",
+   "mconf_one_count": 396244,
+   "mconf_zero_near_zero": 39181,
+   "mconf_zero_self_shadow": 53375,
+   "order": 19,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20231117.tif",
+   "sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+   "short_product_id": "LC08_130038_20231117",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "evidence_membership": "included",
+   "mconf_one_count": 373487,
+   "mconf_zero_near_zero": 41537,
+   "mconf_zero_self_shadow": 73776,
+   "order": 20,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20231203.tif",
+   "sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+   "short_product_id": "LC08_130038_20231203",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  },
+  {
+   "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "evidence_membership": "included",
+   "mconf_one_count": 360881,
+   "mconf_zero_near_zero": 41709,
+   "mconf_zero_self_shadow": 86210,
+   "order": 21,
+   "relative_path": "outputs/mconf/mconf_LC08_130038_20231219.tif",
+   "sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+   "short_product_id": "LC08_130038_20231219",
+   "stage_7_2_direct_only_input_eligibility": "eligible_candidate"
+  }
+ ],
+ "schema": "mountainrs-stage7.2-mconf-registry-v1"
+}

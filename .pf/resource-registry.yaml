@@ -178,3 +178,27 @@ resources:
   stage_7_2_cos_i_rasters:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/outputs/cos_i
+  stage_7_2_mconf_subprotocol:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md
+  stage_7_2_calibration_contract:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/docs/calibration-contract-v1.md
+  stage_7_2_validity_support_schema_v2:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/configs/validity-support-schema-v2.json
+  stage_7_2_mconf_registry:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/evidence/mconf-registry-v1.json
+  stage_7_2_alpha_reference:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json
+  stage_7_2_support_loss_ledger:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json
+  stage_7_2_fold_safe_alpha_rule:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json
+  stage_7_2_baseline_fit_report:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/reports/baseline-fit-report-v1.md

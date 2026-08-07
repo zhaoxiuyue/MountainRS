@@ -1,0 +1,86 @@
+{
+ "schema": "mountainrs-stage7.2-fold-safe-alpha-rule-v1",
+ "status": "frozen",
+ "frozen_date": "2026-08-07",
+ "contract_clause": "Stage 7.2 ⑤",
+ "purpose": "供 Stage 7.3 实例化的 fold-safe alpha 重估规则。本节点只冻结规则，不实例化 block 拓扑、buffer 宽度或 fold 成员。",
+ "authority": {
+  "calibration_contract": {
+   "relative_path": "docs/calibration-contract-v1.md",
+   "section": "§8",
+   "status": "frozen",
+   "approved_by_owner_on": "2026-08-07"
+  },
+  "baseline_spec": "stage7_real_weak_closure/stage7_0_baseline/docs/baseline_spec.md"
+ },
+ "rules": {
+  "R1_reference_alpha_is_non_evaluative": {
+   "statement": "alpha_reference_full_support 标记 evaluation_role=non_evaluative，禁止用于任何 held-out block 的正式成绩。",
+   "applies_to": "evidence/alpha-reference-full-support-v1.json 中全部 fitted 单元"
+  },
+  "R2_refit_outside_block_and_buffer": {
+   "statement": "对任一 held-out block k，正式评测使用的 alpha_{acquisition,band,-k} 只能由该景位于 block k 及其冻结 buffer 之外的 calibration-lit 像元重估。",
+   "estimator": "clip(sum(mu*rho) / sum(mu^2), 0, 1)",
+   "estimator_identical_to_full_support": true,
+   "threshold_identical_to_full_support": true,
+   "calibration_lit_definition": "base_valid_land AND (Mconf == 1)"
+  },
+  "R3_insufficient_support_is_typed_not_repaired": {
+   "statement": "重估后 calibration-lit 像元数 < 271 或 sum(mu^2) <= 0 时，该 fold 记 unsupported_calibration。",
+   "reason_codes": ["calibration_support_below_minimum", "nonpositive_mu_squared_denominator"],
+   "forbidden_fallbacks": [
+    "回退到 alpha_reference_full_support",
+    "默认 alpha",
+    "插补",
+    "截距",
+    "漫射项替代",
+    "holdout 派生修补"
+   ]
+  },
+  "R4_holdout_may_not_inform_any_choice": {
+   "statement": "validation / test 的观测不得参与阈值、掩膜、公式、分层、模型选择或停止条件的制定。",
+   "also_forbidden": "以「评分像元未直接参与拟合」替代证据单位独立"
+  },
+  "R5_topology_frozen_before_seeing_results": {
+   "statement": "block 拓扑、buffer 宽度与 fold 成员必须由 Stage 7.3 在查看任何 residual、alpha 数值或分数之前冻结并验收；冻结后不得因结果调整。",
+   "owner": "stage_7_3"
+  }
+ },
+ "frozen_parameters": {
+  "minimum_calibration_lit_pixels": 271,
+  "minimum_denominator": "sum(mu^2) > 0",
+  "threshold_source": "docs/calibration-contract-v1.md §4 方案 B，所有者 2026-08-07 批准",
+  "threshold_may_be_relaxed_by_stage_7_3": false,
+  "buffer_width_m": 8130,
+  "buffer_width_pixels": 271,
+  "buffer_source": "Stage 7.0 baseline_spec.md alpha regime A: minimum calibration-to-complete-holdout-core distance 8.13 km"
+ },
+ "known_risk_transferred_to_stage_7_3": {
+  "roi_independent_scale_capacity": {
+   "roi_pixels": [650, 752],
+   "roi_extent_km": [19.5, 22.56],
+   "independent_scales": [2.4, 2.77],
+   "spatial_independent_sample_upper_bound": "约 4–6 个，与像元数无关",
+   "statement": "8.13 km buffer 在本单 ROI 内能容纳的互相隔离 block 数极为有限。Stage 7.3 合同①要求先做几何可行性审计，容纳不下时停机由所有者裁决，不得自行缩小 buffer。"
+  },
+  "per_scene_headroom": {
+   "statement": "fold-safe 重估会进一步削减每景可用的 calibration-lit。全支持阶段已有 2 景落入 unsupported_calibration；排除 block 后，calibration_lit 在万量级以下的景存在跌破 271 的风险。",
+   "lowest_fitted_calibration_lit": 7445,
+   "lowest_fitted_short_product_id": "LC08_130038_20230407",
+   "already_unsupported_at_full_support": ["LC08_130038_20230322", "LC08_130038_20231203"]
+  },
+  "forbidden_response": [
+   "为提高有效 fold 数而缩小 buffer",
+   "合并 block",
+   "降低最小支持阈值",
+   "替换成员或重排 split"
+  ]
+ },
+ "boundary": {
+  "block_topology_instantiated": false,
+  "buffer_width_instantiated_as_geometry": false,
+  "fold_membership_defined": false,
+  "fold_specific_alpha_computed": false,
+  "scored": false
+ }
+}
