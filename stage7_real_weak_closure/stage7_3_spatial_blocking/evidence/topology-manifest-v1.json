@@ -1,0 +1,259 @@
+{
+ "authority": {
+  "core_topology_subprotocol": {
+   "relative_path": "docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "geometric_feasibility_audit": {
+   "admitted_fold_count": 5,
+   "relative_path": "evidence/geometric-feasibility-audit-v1.json",
+   "sha256": "d35f228fd1e67ed09a546a972b457a01c9da21b34c5a70e70c8f20e652474310"
+  },
+  "selection_algorithm": "全取，按 core_id 字典序升序编号（子协议 §4）"
+ },
+ "contract_clause": "Stage 7.3 ⑤（前半：拓扑层，冻结于查看任何 residual / alpha / 分数之前）",
+ "created_at_utc": "2026-08-08T00:00:00Z",
+ "folds": [
+  {
+   "buffer_pixel_count": 215843,
+   "core_id": "shadow_risk_b_combined_risk_01",
+   "core_pixel_count": 43264,
+   "core_projected_bounds": [
+    295110.0,
+    3467550.0,
+    301350.0,
+    3473790.0
+   ],
+   "fold_index": 1,
+   "geometric_calibration_domain": {
+    "pixel_count": 229693,
+    "relative_path": "outputs/topology/geometric_calibration_domain_01.tif",
+    "sha256": "d120978a7f2689867da35a2edc0ccc506cabb61a225ba6e8b95bf62749509b98",
+    "share_of_roi": 0.469912
+   },
+   "geometric_calibration_domain_id": "geometric_calibration_domain_01",
+   "isolation_admitted": true,
+   "min_distance_core_to_own_domain_m": 8130.083025406321,
+   "nearest_other_core_distance_m": 0.0,
+   "partition_exhaustive_and_exclusive": true
+  },
+  {
+   "buffer_pixel_count": 127056,
+   "core_id": "shadow_risk_b_combined_risk_02",
+   "core_pixel_count": 16384,
+   "core_projected_bounds": [
+    307890.0,
+    3451230.0,
+    311730.0,
+    3455070.0
+   ],
+   "fold_index": 2,
+   "geometric_calibration_domain": {
+    "pixel_count": 345360,
+    "relative_path": "outputs/topology/geometric_calibration_domain_02.tif",
+    "sha256": "92786737df4ec8d43a89499bf68306cda34b80c9342b18ceffc0f95a32ea0b4d",
+    "share_of_roi": 0.706547
+   },
+   "geometric_calibration_domain_id": "geometric_calibration_domain_02",
+   "isolation_admitted": true,
+   "min_distance_core_to_own_domain_m": 8130.083025406321,
+   "nearest_other_core_distance_m": 5288.515859860874,
+   "partition_exhaustive_and_exclusive": true
+  },
+  {
+   "buffer_pixel_count": 118384,
+   "core_id": "shadow_risk_b_combined_risk_03",
+   "core_pixel_count": 12544,
+   "core_projected_bounds": [
+    308370.0,
+    3470430.0,
+    311730.0,
+    3473790.0
+   ],
+   "fold_index": 3,
+   "geometric_calibration_domain": {
+    "pixel_count": 357872,
+    "relative_path": "outputs/topology/geometric_calibration_domain_03.tif",
+    "sha256": "7349c54be5bc82954a94491ca1b48768ee1247e387a06dd5ad78580d69dbce72",
+    "share_of_roi": 0.732144
+   },
+   "geometric_calibration_domain_id": "geometric_calibration_domain_03",
+   "isolation_admitted": true,
+   "min_distance_core_to_own_domain_m": 8130.083025406321,
+   "nearest_other_core_distance_m": 780.0,
+   "partition_exhaustive_and_exclusive": true
+  },
+  {
+   "buffer_pixel_count": 338942,
+   "core_id": "shadow_risk_b_combined_risk_04",
+   "core_pixel_count": 25600,
+   "core_projected_bounds": [
+    302790.0,
+    3460350.0,
+    307590.0,
+    3465150.0
+   ],
+   "fold_index": 4,
+   "geometric_calibration_domain": {
+    "pixel_count": 124258,
+    "relative_path": "outputs/topology/geometric_calibration_domain_04.tif",
+    "sha256": "f518959614b0fd815b5ff0a18fc92bec641b2a4d1274e532e84bf0aa6b172d80",
+    "share_of_roi": 0.25421
+   },
+   "geometric_calibration_domain_id": "geometric_calibration_domain_04",
+   "isolation_admitted": true,
+   "min_distance_core_to_own_domain_m": 8130.083025406321,
+   "nearest_other_core_distance_m": 960.0,
+   "partition_exhaustive_and_exclusive": true
+  },
+  {
+   "buffer_pixel_count": 264379,
+   "core_id": "shadow_risk_b_combined_risk_05",
+   "core_pixel_count": 43264,
+   "core_projected_bounds": [
+    301350.0,
+    3466110.0,
+    307590.0,
+    3472350.0
+   ],
+   "fold_index": 5,
+   "geometric_calibration_domain": {
+    "pixel_count": 181157,
+    "relative_path": "outputs/topology/geometric_calibration_domain_05.tif",
+    "sha256": "f2115c6dcfda611276184f68c06815b93ce7b92d5e5d7a963e54acec6dd618e9",
+    "share_of_roi": 0.370616
+   },
+   "geometric_calibration_domain_id": "geometric_calibration_domain_05",
+   "isolation_admitted": true,
+   "min_distance_core_to_own_domain_m": 8130.083025406321,
+   "nearest_other_core_distance_m": 0.0,
+   "partition_exhaustive_and_exclusive": true
+  }
+ ],
+ "independence_caveat": "几何标定域两两重叠显著（见 geometric-feasibility-audit-v1.json 的 pairwise），与 Stage 7.0 leakage_audit 的 pairwise shared calibration 10/10 一致。这些 fold 不构成独立样本；fold 数不得用作 effective n，不得据以计算 p 值或置信区间。",
+ "isolation_distance_m": 8130.0,
+ "layering_boundary": {
+  "note": "本 manifest 的全部数值仅由 ROI/grid 坐标与 core 投影边界的解析几何得到。actual_calibration_lit 只能在本 manifest 冻结之后，由 geometric_calibration_domain_k 与逐景上游有效性及 Stage 7.2 geometry_visibility 代理求交生成，其计数不得反向影响 topology。",
+  "opened_any_raster_for_reading": false,
+  "read_alpha_or_residual": false,
+  "read_per_acquisition_data": false,
+  "required_by": "合同⑤：不得在 topology 选择或冻结时读取逐景 calibration_lit、QA/validity 或 alpha"
+ },
+ "pairwise_cores": [
+  {
+   "core_to_core_distance_m": 14089.783532758764,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_01",
+    "shadow_risk_b_combined_risk_02"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 7020.0,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_01",
+    "shadow_risk_b_combined_risk_03"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 2798.8569095257444,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_01",
+    "shadow_risk_b_combined_risk_04"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 0.0,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_01",
+    "shadow_risk_b_combined_risk_05"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 15360.0,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_02",
+    "shadow_risk_b_combined_risk_03"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 5288.515859860874,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_02",
+    "shadow_risk_b_combined_risk_04"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 11044.075334766601,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_02",
+    "shadow_risk_b_combined_risk_05"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 5337.30268956146,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_03",
+    "shadow_risk_b_combined_risk_04"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 780.0,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_03",
+    "shadow_risk_b_combined_risk_05"
+   ]
+  },
+  {
+   "core_to_core_distance_m": 960.0,
+   "cores_overlap": false,
+   "pair": [
+    "shadow_risk_b_combined_risk_04",
+    "shadow_risk_b_combined_risk_05"
+   ]
+  }
+ ],
+ "region_definitions": {
+  "buffer": "0 < 距离 < 8130 m（隔离带，既不标定也不评分）",
+  "core": "到本 core 距离 = 0（holdout 区，评分发生在这里）",
+  "geometric_calibration_domain": "距离 >= 8130 m（合同②的隔离准入）",
+  "note": "三者对每个 fold 互斥且穷尽整个 ROI，已逐 fold 断言。"
+ },
+ "sampling_bias_caveat": "5 个 core 由 C5-D3 按 combined_risk_stress 准则选定，刻意位于阴影与质量风险高处，非随机采样、非均匀覆盖。fold 级结果只代表本 ROI 内已知最难区域的表现。",
+ "schema": "mountainrs-stage7.3-topology-manifest-v1",
+ "shared_topology": {
+  "applies_to_all_18_acquisitions": true,
+  "applies_to_both_bands": true,
+  "statement": "topology 对全部 18 景与 B4/B5 共用，不得逐 acquisition、逐 band 或按支持量重新选择（合同③）。"
+ },
+ "status": "frozen",
+ "target_grid": {
+  "bounds": [
+   292230.0,
+   3451230.0,
+   311730.0,
+   3473790.0
+  ],
+  "crs": "EPSG:32648",
+  "grid_id": "shadow-risk-b-b4-grid-v1",
+  "height": 752,
+  "resolution": 30.0,
+  "transform": [
+   30.0,
+   0.0,
+   292230.0,
+   0.0,
+   -30.0,
+   3473790.0
+  ],
+  "width": 650
+ }
+}

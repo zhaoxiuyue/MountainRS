@@ -202,3 +202,24 @@ resources:
   stage_7_2_baseline_fit_report:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_2_baseline_fit/reports/baseline-fit-report-v1.md
+  stage_7_3_core_topology_subprotocol:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md
+  stage_7_3_preflight_manifest:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/evidence/preflight-manifest-v1.json
+  stage_7_3_geometric_feasibility_audit:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/evidence/geometric-feasibility-audit-v1.json
+  stage_7_3_topology_manifest:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/evidence/topology-manifest-v1.json
+  stage_7_3_fold_alpha_leakage_ledger:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json
+  stage_7_3_residual_summary:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json
+  stage_7_3_report:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md
