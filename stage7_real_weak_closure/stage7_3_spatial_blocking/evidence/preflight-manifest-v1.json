@@ -1,0 +1,150 @@
+{
+ "approved_subprotocol": {
+  "approved_by_owner_on": "2026-08-08",
+  "closes_clause_3": [
+   "core 形状",
+   "尺寸",
+   "网格锚点",
+   "候选枚举顺序（全取后不适用）",
+   "边缘处理（全取后不适用）",
+   "并列 tie-break（全取后不适用）",
+   "selection algorithm"
+  ],
+  "closes_clause_8": [
+   "fold ≡ non-overlapping ROI 的层级映射"
+  ],
+  "relative_path": "docs/core-topology-subprotocol-v1.md",
+  "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8",
+  "status": "frozen"
+ },
+ "contract_clause": "Stage 7.3 ①（Activation pre-flight，必须在 planned 状态完成）",
+ "created_at_utc": "2026-08-08T00:00:00Z",
+ "geometric_feasibility": {
+  "admitted_fold_count": 5,
+  "cores_pairwise_disjoint": true,
+  "max_pairwise_domain_jaccard": 0.625294,
+  "note": "5 个 fold 满足 8,130 m 隔离准入，超过 minimum_viable_fold_count=2 且达到「≥3 为首选」。但几何标定域两两重叠 0.207–0.625，与 7.0 的 pairwise shared calibration 10/10 一致——这些 fold 不构成独立样本。",
+  "relative_path": "evidence/geometric-feasibility-audit-v1.json",
+  "tier": "preferred_at_least_three"
+ },
+ "node_state_at_preflight": "planned",
+ "post_activation_obligations": [
+  "合同④：激活后按 §4 唯一算法重跑几何可行性审计作为正式产物（本 pre-flight 的预证不替代它）。",
+  "合同⑤：topology manifest 冻结时只记录几何层，不得读取逐景 calibration_lit 或 alpha。",
+  "合同⑦：actual_calibration_lit 生成后必须逐对报告 fold 是否共享实际标定支持。",
+  "core-topology 子协议 §6：采样偏倚声明必须随每次报告一并出现，不得省略或压缩为脚注。"
+ ],
+ "read_scope_compliance": {
+  "compliant": true,
+  "not_read": [
+   "逐景 radiance",
+   "QA/validity 支持量",
+   "alpha",
+   "residual",
+   "分数",
+   "train/validation/test 表现"
+  ],
+  "opened_any_raster": false,
+  "read": [
+   "冻结 ROI 与 target grid 坐标",
+   "Stage 7.0 四份冻结协议文档",
+   "Stage 7.2 节点合同与关闭前科学语义修正",
+   "core 投影边界"
+  ],
+  "required_by": "合同①：pre-flight 只能读取冻结 ROI、target grid、坐标、Stage 7.0/7.2 合同与协议元数据"
+ },
+ "schema": "mountainrs-stage7.3-activation-preflight-manifest-v1",
+ "stage_7_2_closing_correction_reread": {
+  "acknowledged": true,
+  "binding_consequences_for_stage_7_3": [
+   "calibration_lit >= 271 只是预注册的操作性最低像元支持量，不证明空间独立、不产生 effective n、置信区间或显著性；空间隔离只能由本节点在 EPSG:32648 中按真实 8,130 m 距离构造并审计的拓扑证明。",
+   "ROI 的「约 4–6」仅为尺度比给出的粗略几何容量提示，不是已观测的独立样本数；本 pre-flight 的几何审计给出的 5 个准入 fold 同样只是几何容量结论，不是独立样本数。",
+   "mconf_mechanism_zero = 81,005 (0.92%) 仅为当前 self-shadow/near-zero 代理下的已识别几何拒绝下界，不代表完整地形遮挡影响。",
+   "observation_or_upstream_validity_exclusion = 6,709,508 (76.26%) 只能按其正式桶名陈述，不得整体改称云雪造成。",
+   "「几何不是瓶颈」「限制标定的是云雪不是地形」等宽泛表述已由该修正取代，本节点报告不得复用。"
+  ],
+  "required_by": "Stage 7.3 合同 ①（pre-flight 必须复读 Stage 7.2 关闭前科学语义修正）"
+ },
+ "upstream_documents": [
+  {
+   "missing_for_clause_3": "core 形状/尺寸/锚点/枚举顺序/边缘处理/tie-break/selection algorithm 均未定义；原文声明 a formal Stage 7 ROI protocol must be used before execution",
+   "relative_path": "../stage7_0_baseline/docs/baseline_spec.md",
+   "resolved": {
+    "alpha_estimator": "alpha = clip(sum(mu*rho_obs)/sum(mu^2), 0, 1)",
+    "buffer_rule": "minimum calibration-to-complete-holdout-core distance 8.13 km",
+    "forward_model": "rho_hat = alpha * mu；mu = max(cos_i, 0)；0 <= alpha <= 1；无截距、无漫射项",
+    "support_proxy": "supported := cos_i > 0.1；unsupported_by_direct_only := cos_i <= 0.1"
+   },
+   "role": "stage_7_0_baseline_spec",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  {
+   "gap_closed_by_subprotocol": "7.0 的最小评估单元写作 acquisition × non-overlapping ROI × band，而合同⑧写作 acquisition × band × fold。二者的对应关系由 core-topology 子协议 §5 显式声明为同一单元（fold ≡ non-overlapping ROI），故 pixel→acquisition×band×fold 的聚合规则唯一可解析。",
+   "relative_path": "../stage7_0_baseline/docs/evaluation_protocol.md",
+   "resolved_for_clause_8": {
+    "aggregation_rules": [
+     "先在每个评估单元内计算指标",
+     "描述性汇总单元指标，不以像元池化替代单元级结果",
+     "acquisition 级汇总时各 acquisition 等权",
+     "当前样本量下只用中位数、范围与单元级表格",
+     "禁止像元级 p 值、置信区间、effective sample size 与显著性声称",
+     "同景折、共标定折与相邻 ROI 不得称为独立重复"
+    ],
+    "coverage_denominator": "all base_valid_land pixels；unsupported_by_direct_only 留在分母内且不得计为低误差成功",
+    "metrics": [
+     "signed bias",
+     "MAE",
+     "P90 absolute residual"
+    ],
+    "minimum_evaluation_unit": "acquisition × non-overlapping ROI × band",
+    "residual_definition": "residual = rho_hat - rho_obs（唯一命名与定义）",
+    "residual_semantics": "specified-baseline model–observation residual，不是真值反演误差",
+    "scored_mask_semantics": "Only supported pixels contribute to supported-residual metrics",
+    "unit_level_required_fields": [
+     "supported_pixel_count",
+     "base_valid_land_count",
+     "support_coverage",
+     "unsupported_by_direct_only_count",
+     "QA and geometry validity status",
+     "alpha source"
+    ]
+   },
+   "role": "stage_7_0_evaluation_protocol",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  {
+   "relative_path": "../stage7_0_baseline/docs/data_gap_report.md",
+   "resolved": {
+    "core_projected_bounds_frozen": true,
+    "core_status": "regression-reference cores, not already-approved Stage 7 ROIs",
+    "minimum_gap_2": "Define a formal Stage 7 ROI protocol",
+    "shadow_risk_b_raster_bounds": [
+     292230.0,
+     3451230.0,
+     311730.0,
+     3473790.0
+    ]
+   },
+   "role": "stage_7_0_data_gap_report",
+   "sha256": "bdb057cad1cee9a758e231ef0d705e0a5823d82d8c31736794c43022332bfd73"
+  },
+  {
+   "relative_path": "../stage7_0_baseline/docs/leakage_audit.md",
+   "resolved": {
+    "buffer_semantics": "8,130 m 是 fold-internal train-to-own-holdout 保证，不是所有 core 两两相距 8,130 m 的声明",
+    "cores_pairwise_non_overlapping": true,
+    "pairwise_shared_calibration": "10 / 10（同景内每一对都共享标定）",
+    "remaining_blocker": "Freeze a Stage 7 ROI protocol before execution"
+   },
+   "role": "stage_7_0_leakage_audit",
+   "sha256": "ee251d93a98c388deb4118559191be7fa6fc1bfd4bbcf33f4c645f6124567cf9"
+  }
+ ],
+ "verdict": {
+  "activation_admitted": true,
+  "blocking_history": "首轮 pre-flight 判定为不可激活：Stage 7.0 四份冻结文档一致地把 ROI/core protocol 列为执行前 blocker 而非已冻结定义，合同③要求的七项在上游全部缺失。所有者于 2026-08-08 批准 core-topology 子协议 v1 后，缺口由该子协议补齐，本轮判定为可激活。",
+  "core_topology_definition_uniquely_executable": true,
+  "scoring_protocol_uniquely_executable": true,
+  "statement": "core/topology 与 scoring protocol 经本 pre-flight 证明唯一可执行；两项均已闭合，7.3 可从 planned 转 active。"
+ }
+}
