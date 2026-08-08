@@ -1,10 +1,28 @@
 # 架构冻结阅读版
 
-`山地遥感物理基座-架构文档-v3.pdf` 是 `../architecture.md` 的派生出版物，不是另一份正文。
+本目录的 PDF 是 `../architecture.md` 的派生出版物，**不是另一份正文**。任何语义修改
+必须先改 canonical Markdown，再重新生成并校验 PDF（见架构文档 §9 出版纪律）。
+
+| 文件 | 对应正文版本 | 状态 |
+|---|---|---|
+| `山地遥感物理基座-架构文档-v3.1.pdf` | v3.1（2026-08-08） | **当前** |
+| `山地遥感物理基座-架构文档-v3.pdf` | v3（2026-07-20） | 历史版本，保留不动 |
+
+版本号不写死在渲染脚本里：脚本从正文头部的「**版本：** vX.Y」一行解析，输出文件名、
+页眉与 PDF 标题随之而动。升版时只改正文，不必改脚本。
 
 在 macOS 上使用随 Codex 提供的 Python 重新生成：
 
 ```sh
 /Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 docs/releases/render_architecture_v3.py
-shasum -a 256 docs/releases/山地遥感物理基座-架构文档-v3.pdf
+shasum -a 256 -c docs/releases/山地遥感物理基座-架构文档-v3.1.pdf.sha256
 ```
+
+## 已知渲染约束
+
+- **项目符号用 U+00B7（·），不用 U+2022（•）。** `Songti.ttc` 没有 bullet 的字形，
+  v3 的 PDF 里 31 个项目符号全部渲染成了缺字符。v3.1 起改用中点，缺字符归零。
+- **正文避免使用 en dash（–, U+2013）**，同样缺字形。破折号（——, U+2014）与中文
+  引号正常。改动正文后建议提取 PDF 文本核对一次缺字符数应为 0。
+- 渲染脚本支持 `#`/`##`/`###` 标题、`- ` 无序列表、`1. ` 有序列表、`> ` 引用与普通段落；
+  **不支持表格与代码块**，正文若引入需先扩展脚本。

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Render the canonical v3 Markdown as the derived, reviewable A4 PDF."""
+"""Render the canonical Markdown as the derived, reviewable A4 PDF.
+
+版本号不写死在本脚本里：它从正文头部的「**版本：** vX.Y」一行解析，输出文件名、
+页眉与 PDF 标题都随之而动。正文是唯一真相源，脚本不得成为第二处版本声明。
+"""
 
 from __future__ import annotations
 
@@ -18,7 +22,17 @@ from reportlab.platypus import KeepTogether, PageBreak, Paragraph, SimpleDocTemp
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "docs" / "architecture.md"
-OUTPUT = ROOT / "docs" / "releases" / "山地遥感物理基座-架构文档-v3.pdf"
+
+
+def read_version(source: Path) -> str:
+    match = re.search(r"^- \*\*版本：\*\*\s*(v[\d.]+)\s*$", source.read_text(encoding="utf-8"), re.M)
+    if not match:
+        raise SystemExit(f"cannot parse version from {source}; expected a line like '- **版本：** v3.1'")
+    return match.group(1)
+
+
+VERSION = read_version(SOURCE)
+OUTPUT = ROOT / "docs" / "releases" / f"山地遥感物理基座-架构文档-{VERSION}.pdf"
 BODY_FONT = "/System/Library/Fonts/Supplemental/Songti.ttc"
 HEADING_FONT = "/System/Library/Fonts/STHeiti Medium.ttc"
 
@@ -36,7 +50,7 @@ def draw_header_footer(canvas, doc):
     canvas.line(doc.leftMargin, A4[1] - 15 * mm, A4[0] - doc.rightMargin, A4[1] - 15 * mm)
     canvas.setFont("MRS-Heiti", 8.7)
     canvas.setFillColor(colors.HexColor("#505050"))
-    canvas.drawString(doc.leftMargin, A4[1] - 11 * mm, "山地遥感物理基座 · 架构文档（v3）")
+    canvas.drawString(doc.leftMargin, A4[1] - 11 * mm, f"山地遥感物理基座 · 架构文档（{VERSION}）")
     canvas.line(doc.leftMargin, 14 * mm, A4[0] - doc.rightMargin, 14 * mm)
     canvas.setFont("MRS-Songti", 8.2)
     canvas.drawCentredString(A4[0] / 2, 9 * mm, f"第 {doc.page} 页")
@@ -108,7 +122,14 @@ def main() -> None:
             continue
         if line.startswith("- "):
             flush_paragraph()
-            story.append(Paragraph("• " + clean_inline(line[2:]), styles["MRS-Bullet"]))
+            # 用 U+00B7 而非 U+2022：Songti.ttc 没有 bullet 的字形，v3 的 PDF 里
+            # 每个项目符号都渲染成了缺字符。中点在同一字体内有字形，可正常显示。
+            story.append(Paragraph("· " + clean_inline(line[2:]), styles["MRS-Bullet"]))
+            continue
+        if re.match(r"^\d+\. ", line):
+            # 有序列表保留原编号：§0.1 的三条判据是有序的，合并成一段会毁掉可读性
+            flush_paragraph()
+            story.append(Paragraph(clean_inline(line), styles["MRS-Bullet"]))
             continue
         if line.endswith("  "):
             line = line[:-2]
@@ -118,7 +139,7 @@ def main() -> None:
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(
         str(OUTPUT), pagesize=A4, leftMargin=19 * mm, rightMargin=19 * mm,
-        topMargin=20 * mm, bottomMargin=15 * mm, title="山地遥感物理基座·架构文档 v3",
+        topMargin=20 * mm, bottomMargin=15 * mm, title=f"山地遥感物理基座·架构文档 {VERSION}",
         author="MountainRS", subject="Derived publication of docs/architecture.md",
     )
     doc.build(story, onFirstPage=draw_header_footer, onLaterPages=draw_header_footer)
