@@ -1,0 +1,356 @@
+{
+ "schema": "mountainrs-stage7.4-activation-preflight-manifest-v7",
+ "status": "activation_preflight_ready",
+ "node_state_at_preflight": "planned",
+ "recorded_on": "2026-08-09",
+ "recorded_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "verified_against": "task environment current_date",
+  "asserts": "本 manifest 在该时区的该自然日建立。",
+  "does_not_assert": [
+   "日内时分秒",
+   "与同日其他文件或事件的先后顺序",
+   "先于仓库历史中任何一次结果暴露"
+  ]
+ },
+ "supersession": {
+  "predecessor": {
+   "schema": "mountainrs-stage7.4-activation-preflight-manifest-v6",
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v6.json",
+   "sha256": "e493f5c98a0f56e2b12b24345537d255b0dc7cc30d28094ad99e270c36f4c717"
+  },
+  "supersedes": "mountainrs-stage7.4-activation-preflight-manifest-v6",
+  "predecessor_edited": false,
+  "supersession_scope": [
+   "登记 Elara 对 M2 guarded-5pct-v3 的精确 PF3 批准回执与 route revision 66",
+   "将 v6 的 blocked_pending_method_pack_decision 更新为 activation_preflight_ready",
+   "证明高层 A、M2 v3、decision-request-v3 与冻结上游共同使 risk-proxy protocol/config 的实质字段唯一可编译",
+   "按 Stage 7.4 节点合同保留 lifecycle 边界：frozen protocol/config 只能在激活后第一动作创建，本 preflight 不提前创建或标 frozen",
+   "冻结激活后第一动作的目标文件身份、字段编译映射、结果读取闸门与 fail-closed 停止条件，但不生成目标内容或未来 hash"
+  ],
+  "inherited_without_change": [
+   "v6 的 v1->v2->v3 material-drift ledger 与权威读取规则",
+   "v6 的 coverage、fixed-grid、scope-local verdict、protocol-error 与 aggregation 机器约束",
+   "v1-v6 predecessor chain 中全部未被本 supersession scope 替换的事实"
+  ],
+  "authoritative_reading": "v1-v6 保留为不可改写历史证据；method definition 以 decision-request-v3 为准，preflight/lifecycle readiness 以 v7 为准。v7 不是 frozen risk-proxy protocol/config，也不是实验执行回执。"
+ },
+ "path_base_declaration": {
+  "bases": {
+   "repository_root": "仓库根，即 git 工作树根目录",
+   "work_package_root": "stage7_real_weak_closure/",
+   "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "rule": "每个本地文件引用必须同时给出 path_base、relative_path 与 sha256；不得跨基准猜测。未来文件不得伪造 sha256。"
+ },
+ "authoritative_inputs": {
+  "preflight_v6": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v6.json",
+   "sha256": "e493f5c98a0f56e2b12b24345537d255b0dc7cc30d28094ad99e270c36f4c717"
+  },
+  "method_pack_decision_request_v3": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+   "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+  },
+  "pf3_node_contract_evidence": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v1.json",
+   "sha256": "d159477d264e286f2aeba1ffe0478c044fe7823965c936e25226abad96bc963d",
+   "used_scope_only": "Stage 7.4 lifecycle clauses 1 and 6 plus their stable contract revision receipt; v1 scientific/result-exposure content is not an input to method compilation."
+  }
+ },
+ "pf3_node_contract": {
+  "contract_revision_receipt": "rc_925cc8885871",
+  "clause_1": "activation preflight must be completed while node state is planned",
+  "clause_6": "frozen risk-proxy protocol/config must be created as the first action after activation and before any residual read",
+  "binding_lifecycle_sequence": [
+   "planned: create and validate this activation preflight only",
+   "external control-plane action: activate the Stage 7.4 node",
+   "active first action: create and freeze exactly the two declared risk-proxy artifacts in one append-only change set",
+   "only after first-action completion: permit Stage 7.3 residual/alpha/score result access or any Stage 7.4 experiment"
+  ],
+  "timing_conflict_found": false,
+  "interpretation": "activation_preflight_ready is a planned-state readiness result, not active state and not a claim that protocol/config already exist. The contract therefore forbids pre-activation creation while allowing v7 to admit activation."
+ },
+ "owner_decisions": {
+  "high_level_option": {
+   "selected": "A_geometry_margin_diagnostic",
+   "decision_text": "APPROVE A — geometry-risk diagnostic",
+   "pf3_receipt": "rc_6806b9d6224f",
+   "route_revision": 64,
+   "source": {
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-decision-request-v2.md",
+    "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+   }
+  },
+  "method_pack": {
+   "selected": "M2_guarded_5pct_v3",
+   "decision_text": "APPROVE M2 — guarded-5pct-v3",
+   "pf3_receipt": "rc_e47f614a7190",
+   "route_revision": 66,
+   "source": {
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+    "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+   },
+   "exact_match_to_accepted_reply_closed_set": true
+  }
+ },
+ "compilation_closure": {
+  "selected_high_level_option": "A_geometry_margin_diagnostic",
+  "selected_method_pack": "M2_guarded_5pct_v3",
+  "unresolved_substantive_decisions": [],
+  "uniquely_compilable": true,
+  "result_values_required_for_compilation": false,
+  "proof": [
+   "High-level option A uniquely fixes risk_proxy=1-cos_i, ascending acceptance, fold-safe gating and the descriptive geometry-risk interpretation.",
+   "The v3 M2 selection uniquely fixes four curve scopes, two 271 guards, 5-percent rational grid, raw-score degeneracy, separate 1e-12 score/outcome tolerances, admissible exact staircase AURC, scope-local verdicts and reporting/aggregation rules.",
+   "Decision-request-v3 supplies complete protocol-error, tie, coverage, fixed-grid piecewise, partition, precedence and stop semantics without consulting result values.",
+   "Every prospective protocol/config field below has exactly one source pointer or literal selected by the two stable PF3 receipts; no executor preference remains."
+  ],
+  "remaining_actions_are_lifecycle_not_decisions": [
+   "activate the node in the external PF3 control plane",
+   "perform the declared active-state first-action artifact freeze",
+   "compute actual hashes only after those artifacts exist"
+  ]
+ },
+ "reference_bindings": {
+  "architecture_v3_1": {
+   "path_base": "repository_root",
+   "relative_path": "docs/architecture.md",
+   "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+  },
+  "stage_7_0_baseline_spec": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  "stage_7_0_evaluation_protocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  "stage_7_1r_validity_support_schema_v1": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+   "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+  },
+  "stage_7_2_mconf_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "stage_7_2_calibration_contract": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "stage_7_2_fold_safe_alpha_rule": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+   "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+  },
+  "stage_7_3_core_topology_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "stage_7_3_topology_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+   "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+  },
+  "stage_7_3_fit_and_score_source": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/fit_fold_alpha_and_score_v1.py",
+   "sha256": "43ae603fcc2f624df2d966e3384d4532f2f61b9ee88f43387854266aadde7e17"
+  },
+  "stage_7_3_tests": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/tests/test_spatial_blocking_v1.py",
+   "sha256": "71316d7ac701c5d2b27292aab55031da33e5b22c79370e4f0d65a0199b24b69b"
+  },
+  "stage_7_4_stratification_subprotocol": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/stratification-subprotocol-v1.md",
+   "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+  }
+ },
+ "post_activation_first_action": {
+  "phase": "active_state_first_action_before_any_result_read",
+  "pre_activation_creation_forbidden": true,
+  "one_append_only_change_set_required": true,
+  "target_artifacts": [
+   {
+    "artifact_id": "stage7.4-risk-proxy-protocol-v1",
+    "kind": "frozen_protocol_markdown",
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-protocol-v1.md",
+    "expected_pre_action_state": "absent",
+    "current_state": "not_created",
+    "frozen_now": false,
+    "future_sha256_intentionally_absent": true
+   },
+   {
+    "artifact_id": "stage7.4-risk-proxy-config-v1",
+    "kind": "frozen_machine_config_json",
+    "schema_identity": "mountainrs-stage7.4-risk-proxy-config-v1",
+    "path_base": "node_container_root",
+    "relative_path": "configs/risk-proxy-config-v1.json",
+    "expected_pre_action_state": "absent",
+    "current_state": "not_created",
+    "frozen_now": false,
+    "future_sha256_intentionally_absent": true
+   }
+  ],
+  "protocol_section_compilation_map": [
+   {
+    "target_section": "authority_and_provenance",
+    "source": "this manifest owner_decisions plus authoritative_inputs and reference_bindings"
+   },
+   {
+    "target_section": "lifecycle_and_result_blind_ordering",
+    "source": "this manifest pf3_node_contract and result_access_gate"
+   },
+   {
+    "target_section": "unit_gate_proxy_protocol_error_and_abstention",
+    "source": "decision-request-v3 section 1"
+   },
+   {
+    "target_section": "curve_scopes_raw_score_range_and_exact_ties",
+    "source": "decision-request-v3 section 1.1"
+   },
+   {
+    "target_section": "coverage_counts_zero_denominators_aliases_and_integer_identities",
+    "source": "decision-request-v3 section 1.2"
+   },
+   {
+    "target_section": "partition_reporting_scope_roles_and_aggregation",
+    "source": "decision-request-v3 section 1.3"
+   },
+   {
+    "target_section": "fixed_grid_piecewise_and_canonical_records",
+    "source": "decision-request-v3 section 1.4"
+   },
+   {
+    "target_section": "M2_guards_tolerances_verdict_sequence_and_AURC",
+    "source": "decision-request-v3 section 2 M2 column"
+   },
+   {
+    "target_section": "scope_local_precedence_curve_shape_and_pf3_verdict",
+    "source": "decision-request-v3 section 3"
+   },
+   {
+    "target_section": "fail_closed_stop_conditions",
+    "source": "this manifest post_activation_first_action.stop_conditions"
+   }
+  ],
+  "config_field_compilation_map": {
+   "schema": "literal mountainrs-stage7.4-risk-proxy-config-v1",
+   "authority.high_level_option": "owner_decisions.high_level_option selected value and receipt",
+   "authority.method_pack": "owner_decisions.method_pack selected value and receipt",
+   "lifecycle.freeze_phase": "literal active_state_first_action_before_any_result_read",
+   "risk_proxy.expression": "decision-request-v3 section 1 literal 1-cos_i",
+   "risk_proxy.order": "decision-request-v3 section 1 literal ascending_low_first",
+   "protocol_error_domain": "decision-request-v3 section 1 base_valid_land-only cos_i and supported-residual rules",
+   "curve_scopes.names_and_roles": "decision-request-v3 section 1.1 four-scope closed set; unit_all primary and three strata secondary",
+   "score_range.population_and_stage": "decision-request-v3 section 1.1 all finite scored supported per-pixel raw proxy values before point filtering/grid",
+   "score_range.formula": "decision-request-v3 section 1.1 s_min=min, s_max=max, score_range=s_max-s_min",
+   "coverage.counts_and_formulas": "decision-request-v3 section 1.2 T/D/S/A and canonical selective_prediction_coverage",
+   "coverage.zero_denominators_and_integer_identities": "decision-request-v3 section 1.2",
+   "partition": "decision-request-v3 section 1.3 unconditional scoring partition plus conditional terminal max identity",
+   "tie_policy": "decision-request-v3 sections 1 and 1.1 bit-exact identity and atomic acceptance",
+   "support_guards.N_scored_min": "M2 literal integer 271 per scope",
+   "support_guards.accepted_n_min": "M2 literal integer 271 per admissible exact point",
+   "resolution_guards.unique_proxy_values_min": "M2 literal integer 3 per scope",
+   "resolution_guards.admissible_exact_points_min": "M2 literal integer 3 per scope",
+   "resolution_guards.canonical_reachable_grid_points_min": "M2 literal integer 3 per scope",
+   "fixed_grid.target_rationals": "M2 exact numerators 1..20 over denominator 20",
+   "fixed_grid.mapping_and_status": "decision-request-v3 section 1.4 complete J/c1/cJ piecewise, canonical, duplicate and null rules",
+   "tolerances.tau_score": "M2 literal 1e-12 + 1e-12*max(abs(s_min),abs(s_max))",
+   "tolerances.tau_outcome": "M2 literal 1e-12 + 1e-12*max(abs(R_a),abs(R_b))",
+   "risk_metric": "decision-request-v3 M2 accepted-set MAE",
+   "aurc": "M2 admissible exact left-hold staircase on [c1,cJ], area=sum R_j*(c_{j+1}-c_j), normalized by positive span; no endpoint extrapolation and reporting grid excluded",
+   "verdict_sequence": "M2 coverage-ordered canonical reachable 5-percent points",
+   "precedence_shape_and_verdict": "decision-request-v3 section 3 exact short-circuit and mapping",
+   "reporting_tables": "decision-request-v3 section 1.3 stratum_table and risk_curve_table",
+   "aggregation": "decision-request-v3 section 1.3 per-unit continuous summaries and band x curve_scope x PF3 verdict counts with reasons",
+   "reference_hashes": "this manifest authoritative_inputs and reference_bindings exact triples"
+  },
+  "stop_conditions": [
+   "PF3 Stage 7.4 node is not verifiably active immediately before the first-action change set",
+   "PF3 node identity, contract revision receipt rc_925cc8885871, M2 receipt rc_e47f614a7190 or route revision 66 does not read back exactly",
+   "any authoritative input or reference binding path/hash fails readback",
+   "unresolved_substantive_decisions is not exactly an empty array",
+   "either declared target path already exists; never overwrite, edit or silently version-bump",
+   "the two targets cannot be prepared, validated and published as one append-only first-action change set",
+   "any Stage 7.3 report/output or residual/alpha/score result value was opened or searched before both targets were frozen",
+   "any target field lacks a unique source pointer, requires a default, or conflicts with decision-request-v3",
+   "the generated JSON fails parsing, closed-set checks, integer/rational encoding checks or cross-artifact consistency checks",
+   "actual post-creation hashes cannot be computed from completed bytes"
+  ],
+  "on_stop": "Fail closed before result access or experiment execution. Do not create a partial substitute, overwrite a predecessor, invent a future hash or claim preregistration. Record any later incident only in a new append-only artifact."
+ },
+ "result_access_gate": {
+  "state_at_v7": "closed",
+  "opens_only_after": [
+   "PF3 node activation has completed and read back as active",
+   "both exact first-action target artifacts exist and are marked frozen",
+   "their actual completed-byte SHA-256 values have been computed and cross-recorded",
+   "all first-action validation and stop-condition checks pass"
+  ],
+  "stage_7_3_fitter_execution_permitted": false,
+  "stage_7_4_experiment_execution_permitted_now": false
+ },
+ "result_blind_audit": {
+  "audit_scope": "只验证 M2 v3 批准后的唯一编译与生命周期 readiness，并登记未来第一动作；不评价既有结果。",
+  "not_opened_or_searched": [
+   "Stage 7.3 reports",
+   "Stage 7.3 outputs",
+   "Stage 7.3 residual/alpha/score result values",
+   "PF3 Stage 7.3 scientific result body"
+  ],
+  "stage_7_3_fitter_executed": false,
+  "stage_7_4_experiment_executed": false,
+  "forbidden_result_values_used_for_compilation": false,
+  "risk_proxy_protocol_created": false,
+  "risk_proxy_machine_config_created": false,
+  "scope_caveat": "这是本次审计窗口的读取与执行声明，不声称抹除仓库历史或其他执行者的既有暴露。"
+ },
+ "artifact_boundary": {
+  "new_artifact_ids": [
+   "this_preflight_manifest_v7"
+  ],
+  "risk_proxy_protocol_created": false,
+  "risk_proxy_machine_config_created": false,
+  "risk_proxy_protocol_frozen": false,
+  "risk_proxy_machine_config_frozen": false,
+  "activation_state_change_executed": false,
+  "experiment_executed": false,
+  "future_artifact_hashes_recorded": false,
+  "self_hash_note": "本 manifest 不自嵌 SHA-256；其外部 hash 由完成后的机械校验回执报告。未来 protocol/config 尚不存在，故不得有预言式 hash。",
+  "predecessor_files_modified": false
+ },
+ "open_gaps": [],
+ "verdict": {
+  "high_level_option_A_approved": true,
+  "method_pack_M2_v3_approved": true,
+  "method_pack_owner_decision_required": false,
+  "method_definitions_uniquely_compilable": true,
+  "unresolved_substantive_decisions_empty": true,
+  "activation_preflight_ready": true,
+  "activation_status": "activation_preflight_ready",
+  "node_active_now": false,
+  "pre_activation_protocol_or_config_creation_authorized": false,
+  "post_activation_first_action_protocol_and_config_creation_required": true,
+  "result_read_authorized_now": false,
+  "experiment_execution_authorized_now": false,
+  "next_action": "在 PF3 外部控制面完成 Stage 7.4 激活并读回 active；随后且仅随后，以激活后第一动作按 post_activation_first_action 创建并冻结两个精确目标文件。",
+  "statement": "M2 guarded-5pct-v3 的稳定回执关闭了最后一个实质方法选择，因此 v7 可在 planned 状态给出 activation_preflight_ready。节点合同同时禁止在激活前制造 frozen protocol/config；v7 只冻结其未来身份、字段来源和停止条件，未创建内容、未预测 hash、未读取结果、未执行实验。"
+ }
+}

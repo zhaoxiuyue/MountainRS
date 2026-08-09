@@ -1,0 +1,687 @@
+{
+ "schema": "mountainrs-stage7.4-activation-preflight-manifest-v8",
+ "status": "activation_preflight_ready",
+ "node_state_at_preflight": "planned",
+ "recorded_on": "2026-08-09",
+ "recorded_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "verified_against": "task environment current_date",
+  "asserts": "本 manifest 在该时区的该自然日建立。",
+  "does_not_assert": [
+   "日内时分秒",
+   "与同日其他文件或事件的先后顺序",
+   "先于仓库历史中任何一次结果暴露"
+  ]
+ },
+ "supersession": {
+  "predecessor": {
+   "schema": "mountainrs-stage7.4-activation-preflight-manifest-v7",
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v7.json",
+   "sha256": "e0190a564d7da6e0303708b1a05044ced550f77eed6593b37dd47c2fd52e9afa"
+  },
+  "supersedes": "mountainrs-stage7.4-activation-preflight-manifest-v7",
+  "predecessor_edited": false,
+  "v7_disposition": "blocked_by_independent_audit_and_retained_as_immutable_history",
+  "v7_block_reasons": [
+   "v7 incorrectly required live current route revision to remain 66 after activation, although close/activate writes necessarily advance it",
+   "v7 did not carry the full Clause 1 upstream union and opaque Stage 7.3 result-asset bindings",
+   "v7 lifecycle identity and field compilation map were not complete enough to prove no-default first-action compilation"
+  ],
+  "supersession_scope": [
+   "copy all 18 Clause 1 upstream path-base/path/hash triples from Stage 7.4 preflight v1 and append three separately SHA-256-only Stage 7.3 bindings",
+   "separate historical M2 receipt event 65->66 and route-revision-66 readiness snapshot from the live post-activation revision gate",
+   "bind exact PF3 project, route, node adjacency, planned/active states and project-rule identity",
+   "freeze the ordered lifecycle ready-write -> close Stage 7.3 -> activate Stage 7.4 -> first-active-action protocol/config freeze",
+   "complete the unique field compilation map for gate/reasons/fallback, mask/support, residual/risk, tie/missing, coverage, strata/scopes, grid/AURC, verdict, aggregation and outputs",
+   "retain open_gaps=[] only after every local JSON/hash/path/target-absence and live readback check succeeds"
+  ],
+  "authoritative_reading": "v1-v7 remain immutable evidence. v7 must not be used as a ready gate. Lifecycle and readiness are authoritative only in v8; method semantics remain authoritative in decision-request-v3 plus its explicitly bound high-level-A and upstream sources."
+ },
+ "path_base_declaration": {
+  "bases": {
+   "repository_root": "仓库根，即 git 工作树根目录",
+   "work_package_root": "stage7_real_weak_closure/",
+   "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "rule": "每个本地文件引用必须给出 path_base、relative_path、sha256；不得跨基准猜测，也不得为尚未创建的文件制造 hash。"
+ },
+ "pf3_snapshot_binding": {
+  "read_only_readback_performed": true,
+  "project": {
+   "project_id": "proj_6cbeea3266ff",
+   "project_revision": 1,
+   "status": "growing"
+  },
+  "route": {
+   "route_id": "rt_f634f0ab72fb",
+   "snapshot_revision": 66,
+   "snapshot_role": "readiness_and_M2_decision_snapshot_only_not_a_future_live_revision_gate"
+  },
+  "current_and_successor": {
+   "stage_7_3": {
+    "node_id": "nd_38d128c40d90",
+    "state_at_snapshot": "active"
+   },
+   "stage_7_4": {
+    "node_id": "nd_095e71a9eccf",
+    "state_at_snapshot": "planned"
+   },
+   "adjacent_in_route": true,
+   "stage_7_4_is_unique_planned_direct_successor": true,
+   "intervening_node_count": 0
+  },
+  "project_rule": {
+   "project_rule_id": "pr_d4a37fa568df",
+   "revision": 1,
+   "title": "关闭前的唯一后继激活预检",
+   "binding_effect": [
+    "write a result-blind read-only activation preflight for the unique planned direct successor before requesting or executing current-node closure",
+    "the outcome must be exactly activation_preflight_ready or activation_preflight_blocked",
+    "a ready preflight does not itself close Stage 7.3, activate Stage 7.4, or authorize the Stage 7.4 experiment"
+   ]
+  },
+  "stage_7_4_contract": {
+   "contract_revision_receipt": "rc_925cc8885871",
+   "contract_readback_node_id": "nd_095e71a9eccf",
+   "contract_readback_route_revision": 66,
+   "clause_1": "activation preflight in planned state must uniquely bind Stage 7.0, 7.1-R, 7.2 and 7.3 protocols, schemas, ledgers, results and hashes and record existing train/validation/test residual exposure",
+   "clause_6": "risk-proxy input, transform, direction, aggregation, tie/missing, coverage grid, integration, minimum support, minimum unique/point resolution, flat tolerance and degeneracy must be frozen before residual reading; the freeze must be the first action after activation"
+  }
+ },
+ "owner_decision_events": {
+  "high_level_A": {
+   "decision_text": "APPROVE A — geometry-risk diagnostic",
+   "pf3_receipt": "rc_6806b9d6224f",
+   "route_revision_after_event": 64,
+   "source": {
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-decision-request-v2.md",
+    "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+   }
+  },
+  "method_pack_M2_v3": {
+   "decision_text": "APPROVE M2 — guarded-5pct-v3",
+   "pf3_receipt": "rc_e47f614a7190",
+   "route_revision_before_event": 65,
+   "route_revision_after_event": 66,
+   "source": {
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+    "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+   },
+   "future_validity_check": "the historical receipt must still read as the 65->66 M2 decision event and must not have been undone, superseded or contradicted; live current route revision is not required to equal 66"
+  }
+ },
+ "authoritative_local_inputs": {
+  "preflight_v6": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v6.json",
+   "sha256": "e493f5c98a0f56e2b12b24345537d255b0dc7cc30d28094ad99e270c36f4c717"
+  },
+  "decision_request_v3": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+   "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+  },
+  "high_level_decision_request_v2": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v2.md",
+   "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+  },
+  "stage_7_4_contract_metadata_v1": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v1.json",
+   "sha256": "d159477d264e286f2aeba1ffe0478c044fe7823965c936e25226abad96bc963d",
+   "used_scope": "Clause 1/6 metadata, upstream triples and exposure-state metadata only"
+  }
+ },
+ "clause_1_upstream_union": {
+  "copied_from_stage_7_4_preflight_v1_count": 18,
+  "opaque_shasum_addition_count": 3,
+  "union_member_count": 21,
+  "duplicate_path_count": 0,
+  "members": {
+   "architecture_v3_1": {
+    "path_base": "repository_root",
+    "relative_path": "docs/architecture.md",
+    "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_0_baseline_spec": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+    "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_0_evaluation_protocol": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+    "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_1r_observation_evidence_manifest": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+    "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_1r_support_ledger": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
+    "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_1r_validity_support_schema_v1": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+    "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_calibration_contract": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+    "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_cos_i_registry": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+    "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_direct_only_input_view": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
+    "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_fold_safe_alpha_rule": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+    "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_mconf_registry": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+    "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_mconf_subprotocol": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+    "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_support_loss_ledger": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
+    "sha256": "47620f22776234065bcc0420e604cb2cff805f7011c2d2c73a3852bf3701d136",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_2_validity_support_schema_v2": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
+    "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_3_core_topology_subprotocol": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+    "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_3_fold_alpha_leakage_ledger": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+    "sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "binding_origin": "stage_7_4_preflight_v1_metadata",
+    "opaque_result_asset": true
+   },
+   "stage_7_3_residual_summary": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+    "sha256": "216821ac25b4004fe90b3f4b4f5bf26ef924cd3740c2a1c0488d5851fbf3d992",
+    "binding_origin": "stage_7_4_preflight_v1_metadata",
+    "opaque_result_asset": true
+   },
+   "stage_7_3_topology_manifest": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+    "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5",
+    "binding_origin": "stage_7_4_preflight_v1_metadata"
+   },
+   "stage_7_3_spatial_blocking_report": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md",
+    "sha256": "244846f9589006edbbe093dc9c052f918af96e8c43ec08727a0586f0a1f169f3",
+    "binding_origin": "shasum_only_in_v8_window",
+    "opaque_result_asset": true
+   },
+   "stage_7_3_geometric_feasibility_audit": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/evidence/geometric-feasibility-audit-v1.json",
+    "sha256": "d35f228fd1e67ed09a546a972b457a01c9da21b34c5a70e70c8f20e652474310",
+    "binding_origin": "shasum_only_in_v8_window"
+   },
+   "stage_7_3_activation_preflight_v1": {
+    "path_base": "work_package_root",
+    "relative_path": "stage7_3_spatial_blocking/evidence/preflight-manifest-v1.json",
+    "sha256": "f13a8f9a0e58f418989a7fecdf8072a6eff9d2709e9c608bb68b4c3ca8e056e9",
+    "binding_origin": "shasum_only_in_v8_window"
+   }
+  },
+  "opaque_handling": {
+   "stage_7_3_result_asset_contents_opened_or_searched": false,
+   "stage_7_3_result_values_read": false,
+   "hashing_semantics": "For the three appended members, shasum read bytes only to emit SHA-256; no content or scientific value was rendered. The two v1-carried result hashes were copied as metadata and subsequently may only be checked by hash-only readback before freeze.",
+   "scientific_use": "identity_and_exposure_accounting_only"
+  }
+ },
+ "residual_exposure_metadata_from_v1": {
+  "metadata_source": "authoritative_local_inputs.stage_7_4_contract_metadata_v1",
+  "by_split_unit_state_counts": {
+   "train": {
+    "scored_units": 82,
+    "not_scored_units": 18
+   },
+   "validation": {
+    "scored_units": 30,
+    "not_scored_units": 0
+   },
+   "test": {
+    "scored_units": 34,
+    "not_scored_units": 16
+   }
+  },
+  "counts_are_exposure_metadata_not_residual_values": true,
+  "test_residual_fully_exposed": true,
+  "test_must_not_be_called_independent_confirmation": true,
+  "stage_7_3_did_not_use_test_to_select_threshold_model_or_stop": true,
+  "stage_7_4_claim_limit": "No conclusion may rely on test independence; all folds remain non-independent single-ROI descriptive diagnostics.",
+  "opaque_only": true
+ },
+ "compilation_closure": {
+  "selected_high_level_option": "A_geometry_margin_diagnostic",
+  "selected_method_pack": "M2_guarded_5pct_v3",
+  "unresolved_substantive_decisions": [],
+  "uniquely_compilable": true,
+  "result_values_required_for_compilation": false,
+  "no_executor_default_or_fallback_required": true,
+  "proof_boundary": "The map below fixes scientific and machine semantics. Formatting may be mechanical only and may not introduce another mask, score, threshold, grid, integration rule, verdict, aggregation, fallback or output category."
+ },
+ "complete_field_compilation_map": {
+  "authority_and_lifecycle": {
+   "project_route_nodes_rule": "pf3_snapshot_binding",
+   "high_level_option": "owner_decision_events.high_level_A",
+   "method_pack": "owner_decision_events.method_pack_M2_v3",
+   "method_definition": "authoritative_local_inputs.decision_request_v3",
+   "upstream_union": "clause_1_upstream_union",
+   "freeze_phase": "active Stage 7.4 first action after activation receipt and before any result read"
+  },
+  "unit_gate": {
+   "source": "high_level_decision_request_v2 section 结论与共同 unit gate",
+   "unit_key": "acquisition x band x fold",
+   "pass_predicate": "fold_safe_alpha_state == fitted AND scored_pixel_count > 0",
+   "pass_state": "scored",
+   "fail_state": "not_scored",
+   "top_level_fail_reason_closed_set": [
+    "unsupported_calibration",
+    "no_supported_pixel_in_core"
+   ],
+   "unsupported_calibration_detail_reason_closed_set": [
+    "calibration_support_below_minimum",
+    "nonpositive_mu_squared_denominator"
+   ],
+   "forbidden_fallback_closed_set": [
+    "reference_alpha",
+    "default_alpha",
+    "imputation",
+    "intercept",
+    "diffuse_substitution",
+    "holdout_derived_repair"
+   ],
+   "failed_unit_behavior": "no residual, MAE or curve point; retain identity, opportunity count, full-core coverage ledger, reasons and a no-fallback receipt; never remove from unit totals or denominator accounting"
+  },
+  "scoreable_support_and_abstention": {
+   "scoreable_mask": "core AND base_valid_land AND Mconf == 1",
+   "Mconf_predicate": "Mconf == 1 iff cos_i is valid and cos_i > 0.1; otherwise Mconf == 0 within its registered domain",
+   "Mconf_semantics": "geometry_visibility single factor covering self-shadow permission only; never total confidence",
+   "proxy_expression": "risk_proxy = 1 - cos_i",
+   "acceptance_direction": "ascending risk_proxy, low first",
+   "unsupported_predicate": "core AND base_valid_land AND finite cos_i <= 0.1",
+   "unsupported_label": "unsupported_by_direct_only",
+   "unsupported_behavior": "permanent abstention at every operating point; remains in base-valid denominator and ledgers; never contributes residual, MAE or accepted count",
+   "uncovered_geometry": "cast shadow, horizon/view occlusion and disocclusion/geometric-instability remain not_evaluated"
+  },
+  "residual_and_risk": {
+   "residual_source": "Stage 7.0 evaluation_protocol plus baseline_spec",
+   "residual_formula": "residual = rho_hat - rho_obs",
+   "rho_hat_formula": "rho_hat = fold_specific_alpha * max(cos_i,0)",
+   "units": "dimensionless scaled surface-reflectance units, not raw DN",
+   "risk_source": "high-level option A in risk-proxy-decision-request-v2 together with Stage 7.0 MAE definition; M2 does not originate the risk metric",
+   "risk_formula": "accepted_set_MAE = mean(abs(residual_i)) over accepted scored pixels only",
+   "oracle_sorting_forbidden": true
+  },
+  "tie_missing_and_protocol_error": {
+   "score_range_population": "each curve scope's all finite scored supported per-pixel raw risk_proxy values before point filtering/grid",
+   "score_range_formula": "s_min=min(raw score), s_max=max(raw score), score_range=s_max-s_min",
+   "pre_range_rounding_quantization_binning_or_tie_collapse_forbidden": true,
+   "tie_identity": "storage-dtype-decoded bit pattern equality only",
+   "tie_acceptance": "atomic whole-group acceptance with no epsilon tie, rounding or secondary sort",
+   "cos_i_protocol_error_domain": "core AND base_valid_land",
+   "cos_i_protocol_error_predicate": "missing OR nonfinite OR outside [-1,1]",
+   "residual_protocol_error_predicate": "supported residual nonfinite",
+   "non_base_valid_or_outside_core_is_not_this_protocol_error": true,
+   "missing_imputation_forbidden": true,
+   "protocol_error_effect": "fail closed with null curve_shape and null scientific verdict"
+  },
+  "coverage": {
+   "counts": {
+    "T": "core_total_pixel_count for all opportunity pixels in the frozen unit core",
+    "D": "base_valid_land_count in the complete core",
+    "S": "scored_pixel_count per curve scope",
+    "A_j": "accepted_pixel_count per curve scope and point"
+   },
+   "integer_order": "0 <= A_j <= S <= D <= T",
+   "evidence_support_coverage": "D/T",
+   "scoring_coverage": "S/D",
+   "selective_prediction_coverage": "A_j/D",
+   "acceptance_given_scored": "A_j/S",
+   "canonical_selective_field": "selective_prediction_coverage",
+   "short_alias_policy": "selective_coverage is permitted only with alias_of and exact value/null identity",
+   "zero_denominators": "T=0 protocol_error; D=0 typed not_scored and insufficient support with undefined D-based ratios null; S=0 insufficient support with acceptance_given_scored null",
+   "integer_product_identities_required_before_float_output": true,
+   "cross_band_addition_or_cross_unit_pixel_pooling_forbidden": true
+  },
+  "strata_and_scopes": {
+   "strata_closed_set": {
+    "self_shadow": "cos_i <= 0",
+    "near_zero": "0 < cos_i <= 0.1",
+    "mu_band_low": "0.1 < cos_i <= 0.4",
+    "mu_band_mid": "0.4 < cos_i <= 0.7",
+    "mu_band_high": "0.7 < cos_i <= 1.0"
+   },
+   "strata_partition_assertion": "mutually exclusive and exhaustive over finite cos_i in [-1,1] per acquisition; failure is protocol_error",
+   "unsupported_ledger_strata": [
+    "self_shadow",
+    "near_zero"
+   ],
+   "curve_scope_closed_set": [
+    "unit_all_scored",
+    "mu_band_low",
+    "mu_band_mid",
+    "mu_band_high"
+   ],
+   "scope_roles": {
+    "unit_all_scored": "primary",
+    "mu_band_low": "secondary",
+    "mu_band_mid": "secondary",
+    "mu_band_high": "secondary"
+   },
+   "scope_gate": "independent per curve scope",
+   "scoring_partition": "sum_h(S_h)=S_unit_all and, when D>0, sum_h(stratum_scoring_coverage_h)=unit_all_scored.scoring_coverage",
+   "conditional_terminal_identity": "only a stratum with terminal admissible A=S_h reports max_selective_prediction_coverage_h=S_h/D; otherwise null"
+  },
+  "M2_operating_grid_and_guards": {
+   "N_scored_min_per_scope": 271,
+   "accepted_n_min_per_admissible_exact_point": 271,
+   "unique_proxy_values_min_per_scope": 3,
+   "admissible_exact_points_min_per_scope": 3,
+   "canonical_reachable_grid_points_min_per_scope": 3,
+   "guard_semantics": "governance support guards only, never statistical thresholds or independent sample counts",
+   "target_q": "exact rationals k/20 for integer k in 1..20",
+   "comparison": "integer cross multiplication 20*A_j <= k*D only",
+   "piecewise": [
+    "J=0: every q unreachable with below_min_accepted_support",
+    "J>0 and q<c1: unreachable with below_min_accepted_support",
+    "J>0 and q>cJ: unreachable with above_max_reachable_coverage",
+    "c1<=q<=cJ: j*=max{j:cj<=q}; q=cJ maps to J before canonical deduplication"
+   ],
+   "record_fields": [
+    "target_q",
+    "status",
+    "exact_point_index",
+    "selective_prediction_coverage",
+    "reason",
+    "canonical_target_q"
+   ],
+   "status_closed_set": [
+    "reachable",
+    "unreachable",
+    "duplicate"
+   ],
+   "canonical_rule": "for q mapping to one j*, the smallest q is the sole reachable canonical record; later q are duplicate_exact_point and retain exact index/coverage/canonical q",
+   "unreachable_reason_closed_set": [
+    "below_min_accepted_support",
+    "above_max_reachable_coverage"
+   ],
+   "unreachable_null_fields": [
+    "exact_point_index",
+    "selective_prediction_coverage",
+    "canonical_target_q"
+   ],
+   "interpolation_tie_split_overrun_and_forward_fill_forbidden": true
+  },
+  "M2_tolerances_AURC_and_verdict": {
+   "tau_score": "1e-12 + 1e-12*max(abs(s_min),abs(s_max))",
+   "tau_outcome": "1e-12 + 1e-12*max(abs(R_a),abs(R_b))",
+   "score_degenerate_predicate": "score_range <= tau_score before point filtering/grid",
+   "AURC_point_sequence": "all coverage-ordered admissible exact points with accepted_n>=271; fixed grid does not enter integration",
+   "AURC_area": "sum_{j=1}^{J-1} R_j*(c_{j+1}-c_j)",
+   "AURC_span": "c_J-c_1",
+   "AURC_normalized": "area/span only when pack J minimum is met and span>0",
+   "AURC_domain": "[c_1,c_J] only; report span; no extrapolation from zero, to one or into abstention",
+   "verdict_point_sequence": "coverage-ordered canonical reachable 5-percent records",
+   "delta_predicates": "delta>tau_outcome positive; abs(delta)<=tau_outcome zero; delta<-tau_outcome negative",
+   "curve_shape_closed_set": [
+    "flat",
+    "order_consistent",
+    "order_inverted",
+    "mixed"
+   ],
+   "risk_proxy_verdict_closed_set": [
+    "not_evaluable_insufficient_scored_support",
+    "not_evaluable_score_degenerate",
+    "descriptive_ordering_signal",
+    "directionally_adverse",
+    "descriptive_non_discriminative"
+   ],
+   "mapping": "order_consistent->descriptive_ordering_signal; order_inverted->directionally_adverse; flat or mixed->descriptive_non_discriminative",
+   "mixed_claim_limit": "no consistent direction only; never statistically no signal",
+   "synthetic_unit_or_node_verdict_forbidden": true,
+   "not_evaluable_reason_must_be_retained": true
+  },
+  "aggregation": {
+   "continuous_first_level": "each acquisition x band x fold x curve_scope independently",
+   "within_acquisition_band_scope": "fold median and range only",
+   "across_acquisition": "equal acquisition weight, median and range only",
+   "categorical_key": "band x curve_scope x PF3 risk_proxy_verdict",
+   "categorical_behavior": "count all five verdicts separately and preserve not-evaluable reasons",
+   "forbidden": "pixel pooling as unit replacement, pass/fail collapse, ranking, effective n, p-values, confidence intervals or statistical-significance claims"
+  },
+  "logical_outputs_closed_set": {
+   "unit_status_ledger": {
+    "row_key": "acquisition x split x band x fold",
+    "required_content": "gate state, top/detail reasons, T/D/S by scope, fallback-forbidden receipt and upstream identities"
+   },
+   "stratum_table": {
+    "row_key": "acquisition x band x fold x one of five strata",
+    "required_content": "T/D, evidence support, stratum footprint/base-valid/scored counts, canonical coverage, status and supported residual metrics; unsupported rows carry no forced scientific verdict"
+   },
+   "risk_curve_table": {
+    "row_key": "acquisition x band x fold x one of four curve scopes x point record",
+    "required_content": "scope role/gate, raw score range, exact/admissible/grid identities, canonical coverage, accepted MAE, AURC fields, curve shape, scope-local verdict and reason"
+   },
+   "aggregation_table": {
+    "row_key": "band x curve_scope",
+    "required_content": "equal-weight descriptive median/range fields plus five separate PF3 verdict counts and not-evaluable reason counts"
+   },
+   "reconciliation_manifest": {
+    "required_content": "member/hash, mask, unit terminal state, three named coverage denominators, fold ledger, verdict and every completed output hash; any mismatch is protocol error rather than scientific result"
+   },
+   "scientific_report": {
+    "required_content": "single-ROI non-independent descriptive boundary, exposure limitation, primary/secondary scope distinction, abstention ledger and explicit not-evaluated claims"
+   }
+  }
+ },
+ "lifecycle_sequence": {
+  "closed_set": [
+   "ready_write",
+   "close_stage_7_3",
+   "activate_stage_7_4",
+   "freeze_protocol_and_config"
+  ],
+  "steps": [
+   {
+    "order": 1,
+    "action": "ready_write",
+    "precondition": "v8 local completed-byte hash exists; live project/route/node/rule facts still match the revision-66 snapshot",
+    "effect": "write/register activation_preflight_ready evidence while Stage 7.3 remains active and Stage 7.4 planned",
+    "performed_in_this_window": false
+   },
+   {
+    "order": 2,
+    "action": "close_stage_7_3",
+    "node_id": "nd_38d128c40d90",
+    "precondition": "ready-write receipt read back; use its afterRevision as expectedRouteRevision",
+    "effect": "Stage 7.3 active -> done and capture close receipt.afterRevision",
+    "performed_in_this_window": false
+   },
+   {
+    "order": 3,
+    "action": "activate_stage_7_4",
+    "node_id": "nd_095e71a9eccf",
+    "precondition": "Stage 7.3 close receipt read back and Stage 7.4 remains the same planned adjacent successor; use close receipt.afterRevision",
+    "effect": "Stage 7.4 planned -> active and capture activation receipt.afterRevision",
+    "expected_after_revision_if_no_intervening_write": 69,
+    "expected_value_is_not_a_gate": true,
+    "performed_in_this_window": false
+   },
+   {
+    "order": 4,
+    "action": "freeze_protocol_and_config",
+    "precondition": "live Stage 7.4 state is active and live current route revision equals the actual activation receipt.afterRevision",
+    "effect": "as the first active-state action, create/freeze exactly the two declared targets before any result read",
+    "performed_in_this_window": false
+   }
+  ],
+  "revision_rule": "Revision 66 is only the immutable M2 event/snapshot anchor. After ready-write/close/activate, never require current revision 66. The first-action gate is live_current_revision == activation_receipt.afterRevision, whatever that verified value is.",
+  "no_state_transition_is_authorized_or_performed_by_v8": true
+ },
+ "post_activation_first_action": {
+  "target_artifacts": [
+   {
+    "artifact_id": "stage7.4-risk-proxy-protocol-v1",
+    "kind": "frozen_protocol_markdown",
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-protocol-v1.md",
+    "required_pre_action_state": "absent",
+    "state_at_v8": "not_created",
+    "frozen_at_v8": false,
+    "future_sha256_intentionally_absent": true
+   },
+   {
+    "artifact_id": "stage7.4-risk-proxy-config-v1",
+    "kind": "frozen_machine_config_json",
+    "schema_identity": "mountainrs-stage7.4-risk-proxy-config-v1",
+    "path_base": "node_container_root",
+    "relative_path": "configs/risk-proxy-config-v1.json",
+    "required_pre_action_state": "absent",
+    "state_at_v8": "not_created",
+    "frozen_at_v8": false,
+    "future_sha256_intentionally_absent": true
+   }
+  ],
+  "one_append_only_change_set_required": true,
+  "protocol_and_config_must_compile_only_from": [
+   "complete_field_compilation_map",
+   "owner_decision_events",
+   "authoritative_local_inputs",
+   "clause_1_upstream_union",
+   "pf3_snapshot_binding.stage_7_4_contract",
+   "the actual activation receipt for live lifecycle fields"
+  ],
+  "result_access_before_completion_forbidden": true,
+  "future_hash_policy": "compute actual SHA-256 only after completed bytes exist; v8 predicts none"
+ },
+ "first_action_stop_conditions": [
+  "ready-write, Stage 7.3 close and Stage 7.4 activation receipts do not form a read-back contiguous revision chain",
+  "historical M2 receipt rc_e47f614a7190 no longer reads as the effective 65->66 decision event",
+  "project, route, node IDs, adjacency, unique-successor fact, contract receipt or project-rule id/revision drift",
+  "Stage 7.4 is not live active immediately before artifact creation",
+  "live current route revision does not equal the actual activation receipt.afterRevision",
+  "any local binding path/hash in authoritative_local_inputs or the 21-member Clause 1 union mismatches",
+  "unresolved_substantive_decisions is not exactly an empty array",
+  "either target already exists or both cannot be published as one append-only first-action change set",
+  "any Stage 7.3 report/output or residual/alpha/score result value is opened or searched before both targets freeze",
+  "any compile-map field requires a default, fallback, new threshold, alternate output category or executor choice",
+  "protocol/config disagree, config is invalid JSON, a closed set is violated, or integer/rational checks fail",
+  "completed-byte hashes cannot be computed and reconciled"
+ ],
+ "on_stop": "Fail closed before result access or experiment execution. Do not create a substitute, partial frozen claim, overwrite, silent v2 target or future hash. Record the incident only in a new append-only artifact.",
+ "validation_receipt": {
+  "json_parse": "pass",
+  "local_binding_path_and_hash_check": "pass",
+  "clause_1_union_count_and_uniqueness_check": "pass",
+  "future_target_absence_check": "pass",
+  "predecessor_hash_unchanged_check": "pass",
+  "live_pf3_project_route_node_rule_readback": "pass",
+  "forbidden_stage_7_3_result_content_read": false,
+  "fitter_executed": false,
+  "protocol_or_config_created": false,
+  "experiment_executed": false,
+  "open_gap_gate_passed": true
+ },
+ "result_blind_audit": {
+  "not_opened_or_searched": [
+   "Stage 7.3 reports content",
+   "Stage 7.3 outputs content",
+   "Stage 7.3 residual/alpha/score result values",
+   "PF3 Stage 7.3 scientific result body"
+  ],
+  "opaque_only_stage_7_3_bindings": [
+   "stage_7_3_fold_alpha_leakage_ledger",
+   "stage_7_3_residual_summary",
+   "stage_7_3_spatial_blocking_report"
+  ],
+  "stage_7_3_fitter_executed": false,
+  "stage_7_4_experiment_executed": false,
+  "result_values_required_or_used_for_compilation": false,
+  "scope_caveat": "This window used PF3 intent/state/receipt/rule metadata and opaque path/hash/exposure metadata only; it does not erase earlier exposure by other actors."
+ },
+ "artifact_boundary": {
+  "new_artifact_ids": [
+   "this_preflight_manifest_v8"
+  ],
+  "risk_proxy_protocol_created": false,
+  "risk_proxy_machine_config_created": false,
+  "risk_proxy_protocol_frozen": false,
+  "risk_proxy_machine_config_frozen": false,
+  "pf3_write_or_state_transition_executed": false,
+  "experiment_executed": false,
+  "future_hashes_recorded": false,
+  "predecessor_files_modified": false,
+  "self_hash_note": "v8 does not self-embed SHA-256; report its completed-byte hash externally. Future protocol/config do not exist and have no hash."
+ },
+ "open_gaps": [],
+ "verdict": {
+  "high_level_option_A_approved": true,
+  "method_pack_M2_v3_approved": true,
+  "method_definitions_uniquely_compilable": true,
+  "unresolved_substantive_decisions_empty": true,
+  "clause_1_complete_union_bound": true,
+  "lifecycle_revision_chain_unambiguous": true,
+  "activation_preflight_ready": true,
+  "activation_status": "activation_preflight_ready",
+  "node_active_now": false,
+  "protocol_or_config_creation_authorized_before_activation": false,
+  "protocol_and_config_required_as_first_action_after_activation": true,
+  "result_read_authorized_now": false,
+  "experiment_execution_authorized_now": false,
+  "next_action": "After v8 completed-byte hash is available, perform the external PF3 sequence ready-write -> close nd_38d128c40d90 -> activate nd_095e71a9eccf with receipt readback at every step; then freeze the two exact artifacts as the first active-state action using live_current_revision == activation_receipt.afterRevision.",
+  "statement": "The full Clause 1 union, exposure boundary, M2 v3 decision and complete no-default compile map now close every substantive pre-activation gap. Revision 66 remains a historical decision/snapshot anchor only. v8 is ready evidence, not activation, protocol/config freeze, result access or experiment execution."
+ }
+}
