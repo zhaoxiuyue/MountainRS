@@ -1,0 +1,148 @@
+{
+ "architecture_binding": {
+  "note": "条款 explicitExclusions 引用的 v3.1 §7H 在当前 canonical architecture 中存在且有效：该节包含 v3.1 补回的时序残差判别候选方向，禁令指向明确。",
+  "relative_path": "../docs/architecture.md",
+  "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d",
+  "version": "v3.1"
+ },
+ "contract_clause": "Stage 7.4 条款 1（Activation preflight，必须在 planned 状态完成）",
+ "created_at_utc": "2026-08-09T00:00:00Z",
+ "node_state_at_preflight": "planned",
+ "open_gaps": [
+  {
+   "clause": "条款 2",
+   "finding": "四个分层中 near_zero（0 < cos_i <= 0.1）与 self_shadow（cos_i <= 0）在 Stage 7.0 data_gap_report 与 Stage 7.2 mconf-registry 中已有明确谓词；但 safe 与 transition 在全部上游冻结件中仅出现一次——stage7_2_baseline_fit/docs/calibration-contract-v1.md:110 的一句禁令「也不得在 safe / transition / near-zero / shadow 等评价分区内分别重拟合」——属于提及而非定义。上游不存在任何把 safe 或 transition 与 cos_i 阈值绑定的谓词。",
+   "id": "G1",
+   "precedent": "与 Stage 7.3 首轮 pre-flight 判定的 core 定义缺失同构：当时 Stage 7.0 四份文档一致地把 ROI/core protocol 列为执行前 blocker，处理方式是所有者批准 core-topology 子协议后修订 planned 合同再激活。",
+   "risk": "若在 active 后自行确定 safe/transition 的阈值，该阈值将无法证明独立于已暴露的 residual，触碰条款 8 关于 post-result exploratory 的边界。",
+   "severity": "blocking_by_precedent",
+   "suggested_resolution": "在 planned 状态补一份 stratification 子协议，唯一给出 safe/transition 的谓词、阈值与推导依据；推导依据必须独立于 residual（例如由 cos_i 的几何含义或 Stage 7.0 已冻结的分区口径导出），并按 Stage 7.2 阈值 271 的先例——先推导、后披露后果——记录其对分层样本量的影响。"
+  },
+  {
+   "clause": "条款 6",
+   "finding": "条款 6 要求在读取 residual 前冻结风险代理的全部配置。但 Stage 7.3 的 descriptive-residual-summary-v1.json 与 spatial-blocking-report-v1.md 均已包含逐 fold 的 residual 数值，任何续接窗口一旦读取这两份文件即完成暴露。",
+   "id": "G2",
+   "risk": "读取顺序若不加约束，风险代理配置的冻结将无法证明结果盲。",
+   "severity": "ordering_hazard",
+   "suggested_resolution": "在 active 后的第一动作即冻结风险代理配置，并在冻结件中显式声明「冻结时点早于本节点任何一次 residual 读取」；或在 planned 状态即完成该冻结。同时应记录：本 pre-flight 未读取任何 residual 数值，只统计了 scored/not_scored 的单元计数。"
+  }
+ ],
+ "read_scope_compliance": {
+  "not_read": [
+   "任何 residual 数值",
+   "任何 alpha 数值",
+   "risk proxy 分数"
+  ],
+  "note": "本 pre-flight 只统计了 Stage 7.3 各 split 下 scored / not_scored 的单元计数以登记暴露状态，未读取任何 residual 数值本身，故未消耗条款 6 的结果盲预算。",
+  "read": [
+   "上游协议与 schema 文本",
+   "账本与结果文件的结构与计数",
+   "架构 v3.1",
+   "PF3 节点合同"
+  ]
+ },
+ "residual_exposure_state": {
+  "binding_consequence": "test 集的 residual 已在 Stage 7.3 完成评分并写入报告（34 个 scored 单元）。按 Stage 7.4 条款 8，已暴露的 test 不得再被称为独立确认集。Stage 7.4 的任何结论都不得以 test 的独立性为前提。",
+  "by_split": {
+   "test": {
+    "not_scored_units": 16,
+    "scored_units": 34
+   },
+   "train": {
+    "not_scored_units": 18,
+    "scored_units": 82
+   },
+   "validation": {
+    "not_scored_units": 0,
+    "scored_units": 30
+   }
+  },
+  "exposed_by": "Stage 7.3（nd_38d128c40d90），descriptive-residual-summary-v1 与 spatial-blocking-report-v1",
+  "required_by": "条款 1：登记 train/validation/test residual 的既有暴露状态",
+  "test_residual_fully_exposed": true,
+  "what_was_not_exposed": "Stage 7.3 未使用 test 选择阈值、模型或停止条件；阈值 271 由 Stage 7.2 冻结，公式与指标由 Stage 7.0 冻结。暴露的是 residual 数值本身，不是选择权。"
+ },
+ "schema": "mountainrs-stage7.4-activation-preflight-manifest-v1",
+ "upstream_binding": {
+  "architecture_v3_1": {
+   "relative_path": "../docs/architecture.md",
+   "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+  },
+  "stage_7_0_baseline_spec": {
+   "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  "stage_7_0_evaluation_protocol": {
+   "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  "stage_7_1r_observation_evidence_manifest": {
+   "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+   "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
+  },
+  "stage_7_1r_support_ledger": {
+   "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
+   "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d"
+  },
+  "stage_7_1r_validity_support_schema_v1": {
+   "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+   "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+  },
+  "stage_7_2_calibration_contract": {
+   "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "stage_7_2_cos_i_registry": {
+   "relative_path": "stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+   "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+  },
+  "stage_7_2_direct_only_input_view": {
+   "relative_path": "stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
+   "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da"
+  },
+  "stage_7_2_fold_safe_alpha_rule": {
+   "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+   "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+  },
+  "stage_7_2_mconf_registry": {
+   "relative_path": "stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+   "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae"
+  },
+  "stage_7_2_mconf_subprotocol": {
+   "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "stage_7_2_support_loss_ledger": {
+   "relative_path": "stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
+   "sha256": "47620f22776234065bcc0420e604cb2cff805f7011c2d2c73a3852bf3701d136"
+  },
+  "stage_7_2_validity_support_schema_v2": {
+   "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
+   "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+  },
+  "stage_7_3_core_topology_subprotocol": {
+   "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "stage_7_3_fold_alpha_leakage_ledger": {
+   "relative_path": "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+   "sha256": "830bb4bd3677563d4b5c9ade88741e240d75a66d42964cedddc134d0b1c8db11"
+  },
+  "stage_7_3_residual_summary": {
+   "relative_path": "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+   "sha256": "d3571659fed2402b15b929f70b4e2ee243d13cb5999bf76e39b1ba9a54f40060"
+  },
+  "stage_7_3_topology_manifest": {
+   "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+   "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+  }
+ },
+ "verdict": {
+  "activation_admitted_by_contract_clause_1": true,
+  "activation_recommended_without_further_action": false,
+  "residual_exposure_registered": true,
+  "statement": "条款 1 的两项要求（唯一绑定上游 hash、登记 residual 暴露状态）均已满足，按合同字面可激活。但条款 2 要冻结的四个分层中 safe 与 transition 在上游从未定义，与 Stage 7.3 首轮 pre-flight 判定的 core 定义缺失同构。建议先补 stratification 子协议再激活，理由见 open_gaps。",
+  "stratum_predicates_uniquely_available_upstream": false,
+  "upstream_binding_unique": true
+ }
+}
