@@ -1,0 +1,293 @@
+{
+ "schema": "mountainrs-stage7.4-activation-preflight-manifest-v2",
+ "status": "decision_required",
+ "node_state_at_preflight": "planned",
+ "recorded_on": "2026-08-09",
+ "recorded_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "verified_against": "task environment current_date",
+  "asserts": "本 manifest 在该时区的该自然日建立。",
+  "does_not_assert": [
+   "日内时分秒",
+   "与同日其他文件或事件的先后顺序",
+   "先于仓库历史中任何一次结果暴露"
+  ]
+ },
+ "supersession": {
+  "predecessor": {
+   "schema": "mountainrs-stage7.4-activation-preflight-manifest-v1",
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v1.json",
+   "sha256": "d159477d264e286f2aeba1ffe0478c044fe7823965c936e25226abad96bc963d"
+  },
+  "supersedes": "mountainrs-stage7.4-activation-preflight-manifest-v1",
+  "predecessor_edited": false,
+  "supersession_scope": [
+   "修复 v1 architecture_binding 中唯一缺失的 path_base，并把路径改为 repository_root 下的 docs/architecture.md",
+   "新增 planned-state、结果盲的 risk-proxy 唯一可编译性审计",
+   "以 decision_required 取代 v1 的 activation_recommended_without_further_action 总体建议"
+  ],
+  "inherited_without_change": [
+   "v1 对 Stage 7.4 条款 1 的既有暴露登记",
+   "stratification-subprotocol-v1 对 G1 的关闭",
+   "v1 中未被本 supersession_scope 明示替换的上游字节身份与事实记录"
+  ],
+  "authoritative_reading": "v1 保留为不可改写的历史证据；凡属 supersession_scope 的字段以 v2 为准，其余字段由 v1 按其冻结 sha256 继承。"
+ },
+ "path_base_declaration": {
+  "bases": {
+   "repository_root": "仓库根，即 git 工作树根目录",
+   "work_package_root": "stage7_real_weak_closure/",
+   "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "rule": "每个被本 manifest 用作证据或行动入口的文件引用都同时给出 path_base、relative_path 与 sha256；不得跨基准猜测。"
+ },
+ "architecture_binding": {
+  "path_base": "repository_root",
+  "relative_path": "docs/architecture.md",
+  "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d",
+  "version": "v3.1",
+  "correction_from_v1": "v1 写作 ../docs/architecture.md 且没有 path_base，无法由通用执行器唯一解析；v2 明确绑定 repository_root。"
+ },
+ "reference_bindings": {
+  "risk_proxy_decision_request": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v1.md",
+   "sha256": "05e6bf3699bc8e0a7482ae56a66da17626d0721d1fd955add70f0470a7d335b0"
+  },
+  "stage_7_4_stratification_subprotocol": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/stratification-subprotocol-v1.md",
+   "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+  },
+  "stage_7_0_baseline_spec": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  "stage_7_0_evaluation_protocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  "stage_7_1_observation_schema": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/configs/observation-schema.yaml",
+   "sha256": "d8aad9ab4c0d2f2a502424f533ebfc753514fa54ec5e755935cc2424cbf5dced"
+  },
+  "stage_7_1r_validity_support_schema_v1": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+   "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+  },
+  "stage_7_1r_observation_evidence_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+   "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
+  },
+  "stage_7_1r_observation_support_ledger": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
+   "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d"
+  },
+  "stage_7_2_mconf_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "stage_7_2_calibration_contract": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "stage_7_2_validity_support_schema_v2": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
+   "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+  },
+  "stage_7_2_fold_safe_alpha_rule": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+   "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+  },
+  "stage_7_2_fit_source": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/scripts/fit_baseline_v1.py",
+   "sha256": "91579c54b581ee1fb698e793b0cefab4b6652744fc691d2723e79febf3ae1887"
+  },
+  "stage_7_2_fit_tests": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/scripts/tests/test_baseline_fit_v1.py",
+   "sha256": "fd20559a56dbce30b7f9c3f91c24e981adcae90a354be1ba2656382b8ff6dae2"
+  },
+  "stage_7_3_core_topology_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "stage_7_3_topology_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+   "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+  },
+  "stage_7_3_fit_and_score_source": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/fit_fold_alpha_and_score_v1.py",
+   "sha256": "43ae603fcc2f624df2d966e3384d4532f2f61b9ee88f43387854266aadde7e17"
+  },
+  "stage_7_3_tests": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/tests/test_spatial_blocking_v1.py",
+   "sha256": "71316d7ac701c5d2b27292aab55031da33e5b22c79370e4f0d65a0199b24b69b"
+  }
+ },
+ "result_blind_audit": {
+  "audit_scope": "只判断 risk proxy 能否从冻结上游唯一编译；不评估任何候选对既有结果的表现。",
+  "read_bindings": [
+   "architecture_binding",
+   "stage_7_0_baseline_spec",
+   "stage_7_0_evaluation_protocol",
+   "stage_7_1_observation_schema",
+   "stage_7_1r_validity_support_schema_v1",
+   "stage_7_1r_observation_evidence_manifest",
+   "stage_7_1r_observation_support_ledger",
+   "stage_7_2_mconf_subprotocol",
+   "stage_7_2_calibration_contract",
+   "stage_7_2_validity_support_schema_v2",
+   "stage_7_2_fold_safe_alpha_rule",
+   "stage_7_2_fit_source",
+   "stage_7_2_fit_tests",
+   "stage_7_3_core_topology_subprotocol",
+   "stage_7_3_topology_manifest",
+   "stage_7_3_fit_and_score_source",
+   "stage_7_3_tests",
+   "stage_7_4_stratification_subprotocol",
+   "supersession.predecessor"
+  ],
+  "not_opened": [
+   "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+   "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+   "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md",
+   "任何其他包含 residual、alpha 或 score 结果数值的输出",
+   "PF3 Stage 7.3 resume/read_node"
+  ],
+  "stage_7_3_fitter_executed": false,
+  "forbidden_result_values_used_for_decision": false,
+  "scope_caveat": "这是本次审计窗口的读取与执行声明，不声称抹除仓库历史或其他执行者的既有暴露。"
+ },
+ "unique_compilation_audit": {
+  "question": "risk-proxy 协议是否可由冻结上游无自由选择地唯一编译？",
+  "frozen_upstream_uniquely_supplies": [
+   "residual = rho_hat - rho_obs",
+   "signed bias、MAE、P90 absolute residual 三项描述性单元指标",
+   "Stage 7.0 像元 support coverage 分母与 unsupported 不得冒充低误差成功的规则",
+   "Msource、Mqa、base_valid_land、二值 Mconf=geometry_visibility 等因子身份",
+   "acquisition × band × fold 最小报告单元、fold-safe calibration 与 topology"
+  ],
+  "not_uniquely_supplied": [
+   "risk proxy 的语义目标与粒度",
+   "从可用质量因子到标量代理的选择、方向、变换或权重",
+   "alpha-leverage 采用原始信息量、像元 leverage 还是空间有效样本校正版本",
+   "排序与 tie 处理",
+   "risk-coverage 的接纳单位、coverage 分母与 unsupported 处理",
+   "跨单元汇总以及缺失／不可评分单元的处理"
+  ],
+  "result_blind_candidate_space_review": [
+   {
+    "candidate": "geometry_margin",
+    "disposition": "decision_request_option_A",
+    "reason": "cos_i 是冻结、连续且结果无关的原语；仍需所有者批准把 1-cos_i 解释为仅限 self-shadow 的 geometry-risk order。"
+   },
+   {
+    "candidate": "binary_support_only",
+    "disposition": "decision_request_option_B",
+    "reason": "它就是 Stage 7.0 已冻结的 supported/unsupported 谓词；1-support_coverage 只能作为同一 support-only 家族的单元账本摘要，不能伪装成另一条逐像元排序。"
+   },
+   {
+    "candidate": "alpha_leverage",
+    "disposition": "decision_request_option_C_deferred_candidate",
+    "reason": "1/sum(mu^2)、像元 leverage 与空间有效样本校正版本不是同一代理；冻结上游未选其一，且 calibration contract 明示原始 sum(mu^2) 因高度空间自相关而高估信息量。它首先衡量标定参数稳定性，不自动等于输出风险。"
+   },
+   {
+    "candidate": "scalar_quality_factor_composite",
+    "disposition": "not_admitted_without_upstream_amendment",
+    "reason": "Stage 7.2 禁止把 Mconf 与其他质量因子合成为总 confidence；权重与归一化也未冻结。"
+   }
+  ],
+  "decisive_evidence": [
+   {
+    "binding": "architecture_binding",
+    "lines": "16,199",
+    "finding": "reliability 与 risk-coverage 精确定义属于独立节点合同，不由架构猜测或补齐。"
+   },
+   {
+    "binding": "stage_7_0_baseline_spec",
+    "lines": "24-31",
+    "finding": "只冻结二值 supported/unsupported，并明确没有连续 reliability 或 risk-coverage ranking/curve。"
+   },
+   {
+    "binding": "stage_7_0_evaluation_protocol",
+    "lines": "35-57",
+    "finding": "冻结 residual、单元指标与支持 coverage 分母，同时明确未定义 risk-coverage curve。"
+   },
+   {
+    "binding": "stage_7_1r_validity_support_schema_v1",
+    "lines": "2-5",
+    "finding": "只定义有效性与支持语义，不定义 confidence 或评分。"
+   },
+   {
+    "binding": "stage_7_2_mconf_subprotocol",
+    "lines": "27-49,114-118",
+    "finding": "Mconf 是二值 geometry_visibility 单因子，禁止合成为总 confidence，且不定义 reliability/risk-coverage。"
+   },
+   {
+    "binding": "stage_7_2_calibration_contract",
+    "lines": "47-63",
+    "finding": "sum(mu^2) 是标定信息量原语，但高度空间自相关会使其系统性高估有效信息；上游未冻结任何 risk-proxy 变换或校正。"
+   },
+   {
+    "binding": "stage_7_3_core_topology_subprotocol",
+    "lines": "70-87",
+    "finding": "唯一化的是评估单元与既有指标映射，不是 risk order。"
+   },
+   {
+    "binding": "stage_7_4_stratification_subprotocol",
+    "lines": "102-105",
+    "finding": "既有 7.4 子协议显式不定义 risk proxy、coverage 分母或阈值。"
+   }
+  ],
+  "verdict": "not_uniquely_compilable"
+ },
+ "open_gaps": [
+  {
+   "id": "G3",
+   "clause": "Stage 7.4 条款 6",
+   "status": "decision_required",
+   "severity": "blocking_before_risk_proxy_freeze_or_result_read",
+   "finding": "冻结上游允许多个语义不同且均可实现的代理，未提供唯一选择；任取其一都会把实施者偏好伪装成 preregistered 必然结论。",
+   "resolution_entry": {
+    "binding": "risk_proxy_decision_request",
+    "mutually_exclusive_options": [
+     "A_geometry_margin_diagnostic",
+     "B_binary_support_only_diagnostic",
+     "C_defer_for_new_factor_or_leverage_protocol"
+    ],
+    "recommended": "A_geometry_margin_diagnostic",
+    "recommendation_is_not_authorization": true
+   }
+  }
+ ],
+ "verdict": {
+  "stage_7_4_clause_1_preflight_facts_inherited": true,
+  "stratification_gap_G1_remains_resolved": true,
+  "architecture_reference_uniquely_resolvable": true,
+  "risk_proxy_protocol_uniquely_compilable_from_frozen_upstream": false,
+  "risk_proxy_owner_decision_required": true,
+  "activation_recommended_without_further_action": false,
+  "risk_proxy_protocol_or_config_creation_authorized": false,
+  "residual_alpha_or_score_result_read_authorized": false,
+  "next_action": "所有者从 decision request 的 A/B/C 中明确批准且只批准一个；随后另立 frozen risk-proxy 协议／配置，不得回写本 manifest。",
+  "statement": "v1 的条款 1 与分层关闭事实继续有效，但其总体 activation recommendation 被本 v2 supersede。risk proxy 不能由冻结上游唯一编译，Stage 7.4 当前裁决为 decision_required；在所有者选择前不得实施代理、读取结果或声称激活后可无额外动作继续。"
+ }
+}

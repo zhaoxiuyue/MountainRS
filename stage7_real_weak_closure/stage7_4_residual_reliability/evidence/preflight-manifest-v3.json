@@ -1,0 +1,254 @@
+{
+ "schema": "mountainrs-stage7.4-activation-preflight-manifest-v3",
+ "status": "decision_required",
+ "node_state_at_preflight": "planned",
+ "recorded_on": "2026-08-09",
+ "recorded_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "verified_against": "task environment current_date",
+  "asserts": "本 manifest 在该时区的该自然日建立。",
+  "does_not_assert": [
+   "日内时分秒",
+   "与同日其他文件或事件的先后顺序",
+   "先于仓库历史中任何一次结果暴露"
+  ]
+ },
+ "supersession": {
+  "predecessor": {
+   "schema": "mountainrs-stage7.4-activation-preflight-manifest-v2",
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v2.json",
+   "sha256": "48ee6ca5defd7f31e1bc7d6ce6c6c5b5ab11cb02656f5d151c6043a28e5c9796"
+  },
+  "supersedes": "mountainrs-stage7.4-activation-preflight-manifest-v2",
+  "predecessor_edited": false,
+  "supersession_scope": [
+   "关闭 option B 是否会在 threshold=1 接纳 unsupported 的歧义：unsupported 永久 abstain，绝不贡献 MAE",
+   "把 A/B 共用的 fold-safe unit gate、typed not_scored 与完整机会/账本/汇总保留规则写为不可绕过的不变量",
+   "将权威 decision request 从 v1 更新为 v2"
+  ],
+  "inherited_without_change": [
+   "preflight v2 的 risk proxy 非唯一结论与 decision_required 状态",
+   "preflight v2 对 architecture path_base 的修复",
+   "preflight v2 的结果盲边界、完整引用绑定与未被本 scope 明示替换的事实"
+  ],
+  "authoritative_reading": "preflight v2 与 decision request v1 保留为不可改写的历史证据；本 supersession_scope 内以 preflight v3 和 decision request v2 为准。"
+ },
+ "decision_request_supersession": {
+  "predecessor": {
+   "document_id": "stage7.4-risk-proxy-decision-request-v1",
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v1.md",
+   "sha256": "05e6bf3699bc8e0a7482ae56a66da17626d0721d1fd955add70f0470a7d335b0"
+  },
+  "successor": {
+   "document_id": "stage7.4-risk-proxy-decision-request-v2",
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v2.md",
+   "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+  },
+  "supersedes": "stage7.4-risk-proxy-decision-request-v1",
+  "predecessor_edited": false,
+  "successor_status": "decision_required"
+ },
+ "path_base_declaration": {
+  "bases": {
+   "repository_root": "仓库根，即 git 工作树根目录",
+   "work_package_root": "stage7_real_weak_closure/",
+   "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "rule": "每个文件引用必须同时给出 path_base、relative_path 与 sha256；不得跨基准猜测。"
+ },
+ "reference_bindings": {
+  "architecture_v3_1": {
+   "path_base": "repository_root",
+   "relative_path": "docs/architecture.md",
+   "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+  },
+  "stage_7_0_baseline_spec": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  "stage_7_0_evaluation_protocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  "stage_7_1r_validity_support_schema_v1": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+   "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+  },
+  "stage_7_2_calibration_contract": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "stage_7_2_fold_safe_alpha_rule": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+   "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+  },
+  "stage_7_3_core_topology_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "stage_7_3_topology_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+   "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+  },
+  "stage_7_3_fit_and_score_source": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/fit_fold_alpha_and_score_v1.py",
+   "sha256": "43ae603fcc2f624df2d966e3384d4532f2f61b9ee88f43387854266aadde7e17"
+  },
+  "stage_7_3_tests": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/tests/test_spatial_blocking_v1.py",
+   "sha256": "71316d7ac701c5d2b27292aab55031da33e5b22c79370e4f0d65a0199b24b69b"
+  },
+  "stage_7_4_stratification_subprotocol": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/stratification-subprotocol-v1.md",
+   "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+  }
+ },
+ "ambiguity_resolutions": {
+  "B_permanent_abstention": {
+   "applies_after_unit_gate_pass": true,
+   "only_accepted_tie_group": "supported",
+   "unsupported_state": "permanent_abstention",
+   "unsupported_acceptance_at_any_threshold": false,
+   "threshold_1_acceptance_defined": false,
+   "unsupported_contributes_residual": false,
+   "unsupported_contributes_mae": false,
+   "unique_evaluable_point": {
+    "coverage": "support_coverage = supported_pixel_count / base_valid_land_count",
+    "risk": "MAE over supported pixels only"
+   },
+   "accounting_invariant": "unsupported_by_direct_only stays in the full base_valid_land coverage denominator and coverage ledger; it is never counted as low-error success and never silently dropped."
+  },
+  "A_and_B_fold_safe_unit_gate": {
+   "granularity": "acquisition x band x fold",
+   "predicate": "fold_safe_alpha_state == fitted AND scored_pixel_count > 0",
+   "pass_action": "only then may option A or B compute a proxy or evaluable point",
+   "fail_action": "type the entire unit as not_scored",
+   "not_scored_reason_closed_set": [
+    "unsupported_calibration",
+    "no_supported_pixel_in_core"
+   ],
+   "unsupported_calibration_detail_reason_closed_set": [
+    "calibration_support_below_minimum",
+    "nonpositive_mu_squared_denominator"
+   ],
+   "forbidden_fallbacks": [
+    "reference_alpha",
+    "default_alpha",
+    "imputation",
+    "intercept",
+    "diffuse_term_substitution",
+    "holdout_derived_repair"
+   ],
+   "not_scored_unit_must_retain": [
+    "acquisition_id and split",
+    "band and fold/core identity",
+    "typed reason",
+    "fallback receipt proving no reference/default/imputation when unsupported_calibration",
+    "holdout_core_accounting",
+    "base_valid_land coverage denominator",
+    "membership in the frozen opportunity universe",
+    "membership in units_total and not_scored_unit_count",
+    "presence in summary reason breakdown"
+   ],
+   "not_scored_unit_must_not_produce": [
+    "residual metric",
+    "MAE",
+    "risk-proxy value",
+    "risk-coverage curve point"
+   ],
+   "silent_disappearance_from_opportunity_ledger_or_summary": false
+  }
+ },
+ "authority_checks": [
+  {
+   "binding": "stage_7_0_baseline_spec",
+   "lines": "24-31",
+   "finding": "unsupported remains in the complete base_valid_land coverage denominator and cannot be a low-error success; baseline reliability is only binary supported/unsupported."
+  },
+  {
+   "binding": "stage_7_0_evaluation_protocol",
+   "lines": "35-57",
+   "finding": "only supported pixels contribute residual metrics while coverage denominator remains all base_valid_land pixels."
+  },
+  {
+   "binding": "stage_7_2_fold_safe_alpha_rule",
+   "lines": "17-38",
+   "finding": "reference alpha is non-evaluative; insufficient fold-safe support is typed unsupported_calibration and may not be repaired by fallback/default/imputation."
+  },
+  {
+   "binding": "stage_7_3_fit_and_score_source",
+   "lines": "218-267",
+   "finding": "unit accounting is retained; residual is produced only when fold-safe state is fitted and scored pixels are positive, otherwise the unit is explicitly not_scored."
+  },
+  {
+   "binding": "stage_7_3_tests",
+   "finding": "frozen tests require unsupported units to remain not_scored, forbid reference/default repairs, and preserve the four holdout-core accounting columns."
+  }
+ ],
+ "result_blind_audit": {
+  "audit_scope": "只关闭 decision request v1 的两个实现歧义；不选择 A/B/C，不评估任何候选对既有结果的表现。",
+  "read_bindings": [
+   "supersession.predecessor",
+   "decision_request_supersession.predecessor",
+   "decision_request_supersession.successor",
+   "architecture_v3_1",
+   "stage_7_0_baseline_spec",
+   "stage_7_0_evaluation_protocol",
+   "stage_7_1r_validity_support_schema_v1",
+   "stage_7_2_calibration_contract",
+   "stage_7_2_fold_safe_alpha_rule",
+   "stage_7_3_core_topology_subprotocol",
+   "stage_7_3_topology_manifest",
+   "stage_7_3_fit_and_score_source",
+   "stage_7_3_tests",
+   "stage_7_4_stratification_subprotocol"
+  ],
+  "not_opened": [
+   "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+   "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+   "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md",
+   "任何其他包含 residual、alpha 或 score 结果数值的输出",
+   "PF3 Stage 7.3 resume/read_node"
+  ],
+  "stage_7_3_fitter_executed": false,
+  "forbidden_result_values_used": false,
+  "scope_caveat": "这是本次审计窗口的读取与执行声明，不声称抹除仓库历史或其他执行者的既有暴露。"
+ },
+ "decision_status": {
+  "status": "decision_required",
+  "authoritative_request": "decision_request_supersession.successor",
+  "mutually_exclusive_options": [
+   "A_geometry_margin_diagnostic",
+   "B_binary_support_only_diagnostic",
+   "C_defer_for_new_factor_or_leverage_protocol"
+  ],
+  "selected_option": null,
+  "recommended": "A_geometry_margin_diagnostic",
+  "recommendation_is_not_authorization": true
+ },
+ "verdict": {
+  "risk_proxy_protocol_uniquely_compilable_from_frozen_upstream": false,
+  "risk_proxy_owner_decision_required": true,
+  "option_B_unsupported_semantics_unambiguous": true,
+  "A_and_B_fold_safe_gate_unambiguous": true,
+  "activation_recommended_without_further_action": false,
+  "risk_proxy_protocol_or_config_creation_authorized": false,
+  "residual_alpha_or_score_result_read_authorized": false,
+  "next_action": "所有者从 decision request v2 的 A/B/C 中明确批准且只批准一个；随后另立 frozen risk-proxy 协议/配置，不得回写任何 preflight 或 decision request predecessor。",
+  "statement": "v3 保持非唯一与 decision_required 裁决，并关闭两处实现歧义：B 的 unsupported 永久 abstain；A/B 在代理计算前必须通过同一 fold-safe unit gate，失败 unit typed not_scored、禁止修补且必须完整留在机会分母、账本与汇总。"
+ }
+}
