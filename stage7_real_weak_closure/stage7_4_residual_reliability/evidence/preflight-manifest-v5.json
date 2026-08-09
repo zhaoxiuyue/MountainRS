@@ -1,0 +1,272 @@
+{
+ "schema": "mountainrs-stage7.4-activation-preflight-manifest-v5",
+ "status": "blocked_pending_method_pack_decision",
+ "node_state_at_preflight": "planned",
+ "recorded_on": "2026-08-09",
+ "recorded_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "verified_against": "task environment current_date",
+  "asserts": "本 manifest 在该时区的该自然日建立。",
+  "does_not_assert": [
+   "日内时分秒",
+   "与同日其他文件或事件的先后顺序",
+   "先于仓库历史中任何一次结果暴露"
+  ]
+ },
+ "supersession": {
+  "predecessor": {
+   "schema": "mountainrs-stage7.4-activation-preflight-manifest-v4",
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v4.json",
+   "sha256": "8d293778183b84f935bab7db73e384ef50d680df4e4388ad7bce0bac9a01da1f"
+  },
+  "supersedes": "mountainrs-stage7.4-activation-preflight-manifest-v4",
+  "predecessor_edited": false,
+  "supersession_scope": [
+   "以 method-pack decision request v2 修复 coverage 术语与整数恒等式",
+   "分离 curve_shape 与 PF3 五态 risk_proxy_verdict，并冻结短路优先级",
+   "分离 proxy score-flat tolerance 与 outcome/curve-flat tolerance",
+   "补齐 fixed-grid、M2 双层 271 guard、报告粒度与聚合边界"
+  ],
+  "inherited_without_change": [
+   "高层 option A 的 PF3 批准回执与有限授权边界",
+   "v4 的结果盲审计结论：method pack 无法由冻结上游唯一编译",
+   "v1-v4 predecessor chain 中全部未被本 supersession scope 替换的事实"
+  ],
+  "authoritative_reading": "v1-v4 保留为不可改写的历史证据；method-pack 候选定义与 activation 阻塞字段以 v5 及其绑定的 decision request v2 为准。"
+ },
+ "path_base_declaration": {
+  "bases": {
+   "repository_root": "仓库根，即 git 工作树根目录",
+   "work_package_root": "stage7_real_weak_closure/",
+   "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "rule": "每个文件引用必须同时给出 path_base、relative_path 与 sha256；不得跨基准猜测。"
+ },
+ "owner_decision": {
+  "selected_option": "A_geometry_margin_diagnostic",
+  "decision_text": "APPROVE A — geometry-risk diagnostic",
+  "pf3_receipt": "rc_6806b9d6224f",
+  "route_revision": 64,
+  "scope": "只批准 risk_proxy=1-cos_i 的高层 geometry-risk diagnostic；不把未写入回执的 method-pack 参数推定为已批准。",
+  "source": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v2.md",
+   "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+  }
+ },
+ "method_pack_decision_request": {
+  "status": "decision_required",
+  "path_base": "node_container_root",
+  "relative_path": "docs/risk-proxy-method-pack-decision-request-v2.md",
+  "sha256": "659ece5ae1b9966f2ae7176ab94efa744373d5b3aaad7ee82c426cae07a8e11a",
+  "supersedes": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-method-pack-decision-request-v1.md",
+   "sha256": "7891bed6a165300fabab6f39750eded4b67b2fbf1e4be03e70a2b14921b08efb",
+   "predecessor_edited": false
+  },
+  "mutually_exclusive_options": [
+   "M1_exact_minimal_v2",
+   "M2_guarded_5pct_v2",
+   "M3_sensor_decile_v2"
+  ],
+  "recommended": "M2_guarded_5pct_v2",
+  "recommendation_is_not_authorization": true,
+  "accepted_reply_closed_set": [
+   "APPROVE M1 — exact-minimal-v2",
+   "APPROVE M2 — guarded-5pct-v2",
+   "APPROVE M3 — sensor-decile-v2"
+  ]
+ },
+ "reference_bindings": {
+  "architecture_v3_1": {
+   "path_base": "repository_root",
+   "relative_path": "docs/architecture.md",
+   "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+  },
+  "stage_7_0_baseline_spec": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  "stage_7_0_evaluation_protocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  "stage_7_1r_validity_support_schema_v1": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+   "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+  },
+  "stage_7_2_mconf_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "stage_7_2_calibration_contract": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "stage_7_2_fold_safe_alpha_rule": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+   "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+  },
+  "stage_7_3_core_topology_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "stage_7_3_topology_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+   "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+  },
+  "stage_7_3_fit_and_score_source": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/fit_fold_alpha_and_score_v1.py",
+   "sha256": "43ae603fcc2f624df2d966e3384d4532f2f61b9ee88f43387854266aadde7e17"
+  },
+  "stage_7_3_tests": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/scripts/tests/test_spatial_blocking_v1.py",
+   "sha256": "71316d7ac701c5d2b27292aab55031da33e5b22c79370e4f0d65a0199b24b69b"
+  },
+  "stage_7_4_stratification_subprotocol": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/stratification-subprotocol-v1.md",
+   "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+  }
+ },
+ "unique_compilation_audit": {
+  "question": "在高层 option A 已批准后，完整 method pack 是否能由冻结上游无自由选择地唯一编译？",
+  "verdict": "not_uniquely_compilable",
+  "witness": "M1/M2/M3 均遵守高层 A 与冻结上游且不读取结果，却选择不同 grid、support guard、tolerance、curve scope 与 AURC 约定，因此会产生不同 evaluable 集合、operating points 与 verdict。",
+  "owner_selection_required": true
+ },
+ "method_pack_review_constraints": {
+  "coverage_semantics": {
+   "core_total_pixel_count": "冻结 core footprint 内该 unit 的全部机会像元；为零即 protocol_error。",
+   "evidence_support_coverage": "base_valid_land_count/core_total_pixel_count",
+   "scoring_coverage": "scored_pixel_count/base_valid_land_count",
+   "selective_coverage": "accepted_pixel_count/base_valid_land_count",
+   "zero_base_valid_land": "typed not_scored；以 not_evaluable_insufficient_scored_support 结案；未定义比例为 null 并带零分母 reason。",
+   "integer_count_order": "0 <= accepted_pixel_count <= scored_pixel_count <= base_valid_land_count <= core_total_pixel_count",
+   "product_identities_verified_before_float_output": true,
+   "cross_band_addition_forbidden": true
+  },
+  "fixed_grid": {
+   "status_closed_set": [
+    "reachable",
+    "unreachable",
+    "duplicate"
+   ],
+   "reachable_reason": null,
+   "duplicate_reason": "duplicate_exact_point",
+   "duplicate_keeps_canonical_and_exact_index": true,
+   "smallest_target_q_is_canonical_reachable": true,
+   "unreachable_reason_closed_set": [
+    "below_min_accepted_support",
+    "above_max_reachable_coverage"
+   ],
+   "unreachable_exact_point_index_and_realized_coverage": null,
+   "q_comparison": "exact rational comparison by integer cross multiplication only"
+  },
+  "shape_and_verdict": {
+   "curve_shape_closed_set": [
+    "flat",
+    "order_consistent",
+    "order_inverted",
+    "mixed"
+   ],
+   "risk_proxy_verdict_closed_set": [
+    "not_evaluable_insufficient_scored_support",
+    "not_evaluable_score_degenerate",
+    "descriptive_ordering_signal",
+    "directionally_adverse",
+    "descriptive_non_discriminative"
+   ],
+   "delta_predicates": "delta>tau_outcome is positive; abs(delta)<=tau_outcome is zero; delta<-tau_outcome is negative",
+   "protocol_error_has_scientific_verdict": false,
+   "mixed_claim_limit": "无一致方向；不得声称 statistically no signal",
+   "precedence_and_mapping_source": "method_pack_decision_request section 3"
+  },
+  "tolerance_separation": "每包独立冻结 tau_score 与 tau_outcome；M3 的一个 SR DN 只适用于 outcome delta，绝不适用于 dimensionless cos_i proxy score。",
+  "M1_verdict_input": "all admissible exact points",
+  "M2_guard_if_approved": "scope-level N_scored>=271 AND every verdict/AURC admissible exact point accepted_n>=271; q maps admissible points only; 271 is governance, not statistical independence.",
+  "AURC_if_approved": {
+   "M1_M2": "j=1..J; area=sum_{j=1}^{J-1} R_j*(c_{j+1}-c_j); span=c_J-c_1; normalized=area/span; require pack J minimum and span>0.",
+   "M3": "same span and gate, but area=sum_{j=1}^{J-1} 0.5*(R_j+R_{j+1})*(c_{j+1}-c_j) on canonical reachable decile points.",
+   "domain": "[c_start,c_max] only; report span; never extrapolate from zero or to one.",
+   "coverage_comparisons": "integer/rational only; no floating-point threshold comparison"
+  },
+  "reporting": {
+   "stratum_table_key": "acquisition x band x fold x five-stratum closed set",
+   "unsupported_ledger": "self_shadow and near_zero are by-design unsupported ledger rows and do not force a scientific verdict.",
+   "risk_curve_scope_closed_set": [
+    "unit_all_scored",
+    "mu_band_low",
+    "mu_band_mid",
+    "mu_band_high"
+   ],
+   "risk_curve_denominator": "full-core base_valid_land_count for every scope",
+   "scope_gate": "independent per scope under selected pack",
+   "partition_identity": "sum of the three supported-stratum max_selective_coverage values equals unit_all_scored scoring_coverage"
+  },
+  "aggregation_boundary": "per unit and band first; within acquisition x band report fold median/range; across acquisitions equal-weight median/range; count the five scientific verdict values separately and never collapse to pass/fail."
+ },
+ "open_gaps": [
+  {
+   "id": "G5",
+   "status": "decision_required",
+   "severity": "blocking_before_protocol_config_freeze_or_activation_ready",
+   "finding": "高层 A 回执没有覆盖经 v2 澄清后的 M1/M2/M3 method-pack 实质参数；执行者无权代选。",
+   "resolution_entry": "method_pack_decision_request",
+   "required_owner_action": "以 accepted_reply_closed_set 中的精确文本明确批准且只批准一个 method pack，并取得新的稳定回执。"
+  }
+ ],
+ "result_blind_audit": {
+  "audit_scope": "只修复并审计 method-pack 决策请求与 activation preflight；不评价任何 pack 对既有结果的表现。",
+  "read_bindings": [
+   "supersession.predecessor",
+   "owner_decision.source",
+   "method_pack_decision_request.supersedes",
+   "reference_bindings"
+  ],
+  "not_opened_or_searched": [
+   "Stage 7.3 reports",
+   "Stage 7.3 outputs",
+   "Stage 7.3 residual/alpha/score result values",
+   "PF3 Stage 7.3 scientific result body"
+  ],
+  "stage_7_3_fitter_executed": false,
+  "forbidden_result_values_used": false,
+  "scope_caveat": "这是本次审计窗口的读取与执行声明，不声称抹除仓库历史或其他执行者的既有暴露。"
+ },
+ "artifact_boundary": {
+  "risk_proxy_protocol_created": false,
+  "risk_proxy_machine_config_created": false,
+  "activation_ready_manifest_created": false,
+  "new_artifact_ids": [
+   "method_pack_decision_request_v2",
+   "this_preflight_manifest_v5"
+  ],
+  "self_hash_note": "本 manifest 不自嵌 SHA-256；其外部 hash 由完成后的机械校验回执报告。其引用的其他文件均带完整 path_base/relative_path/sha256。",
+  "predecessor_files_modified": false
+ },
+ "verdict": {
+  "high_level_option_A_approved": true,
+  "method_pack_uniquely_compilable_from_frozen_upstream": false,
+  "method_pack_owner_decision_required": true,
+  "activation_ready": false,
+  "activation_status": "blocked_pending_method_pack_decision",
+  "risk_proxy_protocol_or_config_creation_authorized": false,
+  "residual_alpha_or_score_result_read_authorized": false,
+  "next_action": "Elara 从 M1/M2/M3 v2 中明确批准且只批准一个并取得稳定回执；随后 append-only 新建 frozen protocol/config 与 superseding ready preflight，不得回写 v1-v5。",
+  "statement": "高层 A 已批准，但 v2 中三个完整 method pack 仍是互斥治理选择。v5 保持 blocked；二级回执前不得冻结协议、配置或 activation ready。"
+ }
+}
