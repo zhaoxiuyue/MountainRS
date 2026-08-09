@@ -1,0 +1,4736 @@
+{
+ "config": "configs/risk-proxy-config-v2.json",
+ "freeze_after_route_revision": 76,
+ "freeze_receipt_id": "rc_5f4a33c8bf25",
+ "method_pack": "M2_guarded_5pct_v3",
+ "protocol": "docs/risk-proxy-protocol-v2.md",
+ "rows": [
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B4",
+   "base_valid_land_count": 14423,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6978,
+    "mu_band_low": 3648,
+    "mu_band_mid": 1539,
+    "unit_all_scored": 12165
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B5",
+   "base_valid_land_count": 14423,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6978,
+    "mu_band_low": 3648,
+    "mu_band_mid": 1539,
+    "unit_all_scored": 12165
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B4",
+   "base_valid_land_count": 9095,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6491,
+    "mu_band_low": 888,
+    "mu_band_mid": 915,
+    "unit_all_scored": 8294
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B5",
+   "base_valid_land_count": 9095,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6491,
+    "mu_band_low": 888,
+    "mu_band_mid": 915,
+    "unit_all_scored": 8294
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B4",
+   "base_valid_land_count": 3884,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1102,
+    "mu_band_low": 957,
+    "mu_band_mid": 1137,
+    "unit_all_scored": 3196
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B5",
+   "base_valid_land_count": 3884,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1102,
+    "mu_band_low": 957,
+    "mu_band_mid": 1137,
+    "unit_all_scored": 3196
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B4",
+   "base_valid_land_count": 5043,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1067,
+    "mu_band_low": 1798,
+    "mu_band_mid": 1534,
+    "unit_all_scored": 4399
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B5",
+   "base_valid_land_count": 5043,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1067,
+    "mu_band_low": 1798,
+    "mu_band_mid": 1534,
+    "unit_all_scored": 4399
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B4",
+   "base_valid_land_count": 16622,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 8591,
+    "mu_band_low": 3476,
+    "mu_band_mid": 3560,
+    "unit_all_scored": 15627
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+   "band": "SR_B5",
+   "base_valid_land_count": 16622,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 8591,
+    "mu_band_low": 3476,
+    "mu_band_mid": 3560,
+    "unit_all_scored": 15627
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "5759830d17c801f789460190e2f35a9fbd4b4469622321087b97fa083b28efa9",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "77aec915205370c140acd28cc3bd1cd05cc978a0fbfe62208d69d347979f42db",
+    "observation_member_sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B4",
+   "base_valid_land_count": 972,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 153,
+    "mu_band_low": 236,
+    "mu_band_mid": 56,
+    "unit_all_scored": 445
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B5",
+   "base_valid_land_count": 972,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 153,
+    "mu_band_low": 236,
+    "mu_band_mid": 56,
+    "unit_all_scored": 445
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B4",
+   "base_valid_land_count": 2204,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1770,
+    "mu_band_low": 77,
+    "mu_band_mid": 47,
+    "unit_all_scored": 1894
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B5",
+   "base_valid_land_count": 2204,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1770,
+    "mu_band_low": 77,
+    "mu_band_mid": 47,
+    "unit_all_scored": 1894
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B4",
+   "base_valid_land_count": 1293,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2,
+    "mu_band_low": 303,
+    "mu_band_mid": 161,
+    "unit_all_scored": 466
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B5",
+   "base_valid_land_count": 1293,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2,
+    "mu_band_low": 303,
+    "mu_band_mid": 161,
+    "unit_all_scored": 466
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B4",
+   "base_valid_land_count": 1336,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 574,
+    "mu_band_low": 154,
+    "mu_band_mid": 545,
+    "unit_all_scored": 1273
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B5",
+   "base_valid_land_count": 1336,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 574,
+    "mu_band_low": 154,
+    "mu_band_mid": 545,
+    "unit_all_scored": 1273
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B4",
+   "base_valid_land_count": 4598,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1959,
+    "mu_band_low": 892,
+    "mu_band_mid": 587,
+    "unit_all_scored": 3438
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+   "band": "SR_B5",
+   "base_valid_land_count": 4598,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1959,
+    "mu_band_low": 892,
+    "mu_band_mid": 587,
+    "unit_all_scored": 3438
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "75778a238cc1c9d0f217eab826752e98fa65621d7dc4fb5069ca0fd4619739c8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1deb3d1fb9f5b08699e4d7e6aac43b910b47d1d71bdf7d52dc0dfd6d205b0d45",
+    "observation_member_sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B4",
+   "base_valid_land_count": 37927,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 13494,
+    "mu_band_low": 12800,
+    "mu_band_mid": 4440,
+    "unit_all_scored": 30734
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B5",
+   "base_valid_land_count": 37927,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 13494,
+    "mu_band_low": 12800,
+    "mu_band_mid": 4440,
+    "unit_all_scored": 30734
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B4",
+   "base_valid_land_count": 15461,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7803,
+    "mu_band_low": 4283,
+    "mu_band_mid": 1851,
+    "unit_all_scored": 13937
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B5",
+   "base_valid_land_count": 15461,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7803,
+    "mu_band_low": 4283,
+    "mu_band_mid": 1851,
+    "unit_all_scored": 13937
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B4",
+   "base_valid_land_count": 10178,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2479,
+    "mu_band_low": 3333,
+    "mu_band_mid": 2092,
+    "unit_all_scored": 7904
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B5",
+   "base_valid_land_count": 10178,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2479,
+    "mu_band_low": 3333,
+    "mu_band_mid": 2092,
+    "unit_all_scored": 7904
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B4",
+   "base_valid_land_count": 7728,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2043,
+    "mu_band_low": 2389,
+    "mu_band_mid": 2449,
+    "unit_all_scored": 6881
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B5",
+   "base_valid_land_count": 7728,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2043,
+    "mu_band_low": 2389,
+    "mu_band_mid": 2449,
+    "unit_all_scored": 6881
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B4",
+   "base_valid_land_count": 35680,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 13982,
+    "mu_band_low": 9105,
+    "mu_band_mid": 6665,
+    "unit_all_scored": 29752
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+   "band": "SR_B5",
+   "base_valid_land_count": 35680,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 13982,
+    "mu_band_low": 9105,
+    "mu_band_mid": 6665,
+    "unit_all_scored": 29752
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "d8e7526112ceb29bb80a2fc36d5b8d666b12e580e7864ad235711a63d91273a5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "3e648736947370bc6d6930e066b6762b0eea3f040b4d91c27268e5ffdf5fd6d9",
+    "observation_member_sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B4",
+   "base_valid_land_count": 4865,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1550,
+    "mu_band_low": 1655,
+    "mu_band_mid": 959,
+    "unit_all_scored": 4164
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B5",
+   "base_valid_land_count": 4865,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1550,
+    "mu_band_low": 1655,
+    "mu_band_mid": 959,
+    "unit_all_scored": 4164
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B4",
+   "base_valid_land_count": 2,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 2,
+    "mu_band_mid": 0,
+    "unit_all_scored": 2
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B5",
+   "base_valid_land_count": 2,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 2,
+    "mu_band_mid": 0,
+    "unit_all_scored": 2
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B4",
+   "base_valid_land_count": 3136,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1201,
+    "mu_band_low": 1064,
+    "mu_band_mid": 458,
+    "unit_all_scored": 2723
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B5",
+   "base_valid_land_count": 3136,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1201,
+    "mu_band_low": 1064,
+    "mu_band_mid": 458,
+    "unit_all_scored": 2723
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B4",
+   "base_valid_land_count": 4707,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 931,
+    "mu_band_low": 1929,
+    "mu_band_mid": 1476,
+    "unit_all_scored": 4336
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B5",
+   "base_valid_land_count": 4707,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 931,
+    "mu_band_low": 1929,
+    "mu_band_mid": 1476,
+    "unit_all_scored": 4336
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B4",
+   "base_valid_land_count": 11645,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2860,
+    "mu_band_low": 4611,
+    "mu_band_mid": 2613,
+    "unit_all_scored": 10084
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+   "band": "SR_B5",
+   "base_valid_land_count": 11645,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2860,
+    "mu_band_low": 4611,
+    "mu_band_mid": 2613,
+    "unit_all_scored": 10084
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "e1d4a42f2fa733d4a472a9b00d184357f7b8196edd23c30d681ea484a8c67de8",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d954a5d7bd2ffbeea945ebf98605a33a597c89fac968ff83d30c2cb45fce7d0f",
+    "observation_member_sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B4",
+   "base_valid_land_count": 18,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 13 < 271"
+   },
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 10,
+    "mu_band_low": 6,
+    "mu_band_mid": 2,
+    "unit_all_scored": 18
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B5",
+   "base_valid_land_count": 18,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 13 < 271"
+   },
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 10,
+    "mu_band_low": 6,
+    "mu_band_mid": 2,
+    "unit_all_scored": 18
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 16384,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 209 < 271"
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 16384,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 209 < 271"
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 79 < 271"
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 79 < 271"
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B4",
+   "base_valid_land_count": 102,
+   "core_total_pixel_count": 25600,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 6 < 271"
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 12,
+    "mu_band_low": 53,
+    "mu_band_mid": 33,
+    "unit_all_scored": 98
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B5",
+   "base_valid_land_count": 102,
+   "core_total_pixel_count": 25600,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 6 < 271"
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 12,
+    "mu_band_low": 53,
+    "mu_band_mid": 33,
+    "unit_all_scored": 98
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B4",
+   "base_valid_land_count": 93,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 13 < 271"
+   },
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 73,
+    "mu_band_low": 0,
+    "mu_band_mid": 20,
+    "unit_all_scored": 93
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+   "band": "SR_B5",
+   "base_valid_land_count": 93,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 13 < 271"
+   },
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 73,
+    "mu_band_low": 0,
+    "mu_band_mid": 20,
+    "unit_all_scored": 93
+   },
+   "split": "train",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "0fc91296e91e8bcc27620775077dab4951a1fd2bbae200d0afdaaf6b6cb9a2ac",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "e4a64b4fc3e836d6b0c3d228d23de95c388e7298cddaf85a76d96fe6497c10bc",
+    "observation_member_sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B4",
+   "base_valid_land_count": 5,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4,
+    "mu_band_low": 0,
+    "mu_band_mid": 1,
+    "unit_all_scored": 5
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B5",
+   "base_valid_land_count": 5,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4,
+    "mu_band_low": 0,
+    "mu_band_mid": 1,
+    "unit_all_scored": 5
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B4",
+   "base_valid_land_count": 7,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 7,
+    "unit_all_scored": 7
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B5",
+   "base_valid_land_count": 7,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 7,
+    "unit_all_scored": 7
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B4",
+   "base_valid_land_count": 752,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 494,
+    "mu_band_low": 7,
+    "mu_band_mid": 251,
+    "unit_all_scored": 752
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B5",
+   "base_valid_land_count": 752,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 494,
+    "mu_band_low": 7,
+    "mu_band_mid": 251,
+    "unit_all_scored": 752
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B4",
+   "base_valid_land_count": 83,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 80,
+    "mu_band_low": 0,
+    "mu_band_mid": 3,
+    "unit_all_scored": 83
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+   "band": "SR_B5",
+   "base_valid_land_count": 83,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 80,
+    "mu_band_low": 0,
+    "mu_band_mid": 3,
+    "unit_all_scored": 83
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "fc586826ef41ad05495ab9ceeb82bd909b02e93fd0f58f58e9f82105047469c5",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "897bb95b62228d7095d7f129b151b5171d51c8a5ae24a6b45e70323324d8bbdd",
+    "observation_member_sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B4",
+   "base_valid_land_count": 6255,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4619,
+    "mu_band_low": 219,
+    "mu_band_mid": 1412,
+    "unit_all_scored": 6250
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B5",
+   "base_valid_land_count": 6255,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4619,
+    "mu_band_low": 219,
+    "mu_band_mid": 1412,
+    "unit_all_scored": 6250
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B4",
+   "base_valid_land_count": 966,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 884,
+    "mu_band_low": 4,
+    "mu_band_mid": 78,
+    "unit_all_scored": 966
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B5",
+   "base_valid_land_count": 966,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 884,
+    "mu_band_low": 4,
+    "mu_band_mid": 78,
+    "unit_all_scored": 966
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B4",
+   "base_valid_land_count": 6535,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3164,
+    "mu_band_low": 435,
+    "mu_band_mid": 2916,
+    "unit_all_scored": 6515
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B5",
+   "base_valid_land_count": 6535,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3164,
+    "mu_band_low": 435,
+    "mu_band_mid": 2916,
+    "unit_all_scored": 6515
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B4",
+   "base_valid_land_count": 7301,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 5052,
+    "mu_band_low": 432,
+    "mu_band_mid": 1786,
+    "unit_all_scored": 7270
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+   "band": "SR_B5",
+   "base_valid_land_count": 7301,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 5052,
+    "mu_band_low": 432,
+    "mu_band_mid": 1786,
+    "unit_all_scored": 7270
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "c3a50198597093ce5cbb8eb729705a200494ddd98d364a928be5d9fc01435e65",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "7f880f25f11509d7f47151fa43dd4930c05830da14cb5adc7b434d28a19dc3b1",
+    "observation_member_sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B4",
+   "base_valid_land_count": 12541,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6988,
+    "mu_band_low": 245,
+    "mu_band_mid": 5308,
+    "unit_all_scored": 12541
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B5",
+   "base_valid_land_count": 12541,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6988,
+    "mu_band_low": 245,
+    "mu_band_mid": 5308,
+    "unit_all_scored": 12541
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B4",
+   "base_valid_land_count": 1488,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 967,
+    "mu_band_low": 52,
+    "mu_band_mid": 469,
+    "unit_all_scored": 1488
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B5",
+   "base_valid_land_count": 1488,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 967,
+    "mu_band_low": 52,
+    "mu_band_mid": 469,
+    "unit_all_scored": 1488
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B4",
+   "base_valid_land_count": 1457,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 429,
+    "mu_band_low": 91,
+    "mu_band_mid": 934,
+    "unit_all_scored": 1454
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B5",
+   "base_valid_land_count": 1457,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 429,
+    "mu_band_low": 91,
+    "mu_band_mid": 934,
+    "unit_all_scored": 1454
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B4",
+   "base_valid_land_count": 15802,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6862,
+    "mu_band_low": 545,
+    "mu_band_mid": 8386,
+    "unit_all_scored": 15793
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B5",
+   "base_valid_land_count": 15802,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6862,
+    "mu_band_low": 545,
+    "mu_band_mid": 8386,
+    "unit_all_scored": 15793
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B4",
+   "base_valid_land_count": 11006,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7191,
+    "mu_band_low": 271,
+    "mu_band_mid": 3544,
+    "unit_all_scored": 11006
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+   "band": "SR_B5",
+   "base_valid_land_count": 11006,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7191,
+    "mu_band_low": 271,
+    "mu_band_mid": 3544,
+    "unit_all_scored": 11006
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "49bdcb6b461d3ee0f84a0d694f6f33018ee654c2c30a5475aebf57ff3f43ec20",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "790a4f88e09d96c3e879365a375368ed7e1ef39cb2d4a5beb6ffbaeb7418be57",
+    "observation_member_sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B4",
+   "base_valid_land_count": 38361,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 22901,
+    "mu_band_low": 1224,
+    "mu_band_mid": 14231,
+    "unit_all_scored": 38356
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B5",
+   "base_valid_land_count": 38361,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 22901,
+    "mu_band_low": 1224,
+    "mu_band_mid": 14231,
+    "unit_all_scored": 38356
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B4",
+   "base_valid_land_count": 15571,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 11474,
+    "mu_band_low": 101,
+    "mu_band_mid": 3996,
+    "unit_all_scored": 15571
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B5",
+   "base_valid_land_count": 15571,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 11474,
+    "mu_band_low": 101,
+    "mu_band_mid": 3996,
+    "unit_all_scored": 15571
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B4",
+   "base_valid_land_count": 9501,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4445,
+    "mu_band_low": 889,
+    "mu_band_mid": 4129,
+    "unit_all_scored": 9463
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B5",
+   "base_valid_land_count": 9501,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4445,
+    "mu_band_low": 889,
+    "mu_band_mid": 4129,
+    "unit_all_scored": 9463
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B4",
+   "base_valid_land_count": 23114,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 9397,
+    "mu_band_low": 1289,
+    "mu_band_mid": 12413,
+    "unit_all_scored": 23099
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B5",
+   "base_valid_land_count": 23114,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 9397,
+    "mu_band_low": 1289,
+    "mu_band_mid": 12413,
+    "unit_all_scored": 23099
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B4",
+   "base_valid_land_count": 34130,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 21037,
+    "mu_band_low": 1216,
+    "mu_band_mid": 11839,
+    "unit_all_scored": 34092
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+   "band": "SR_B5",
+   "base_valid_land_count": 34130,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 21037,
+    "mu_band_low": 1216,
+    "mu_band_mid": 11839,
+    "unit_all_scored": 34092
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "514caa3a25fb578a782b605b7ae613731a21586d6c1034f6aba746b9bea7ff1c",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "f6c1a79ae76f045586f87a07252831253afcadcaf101982b46c9ef5b930bccd5",
+    "observation_member_sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B4",
+   "base_valid_land_count": 7158,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2430,
+    "mu_band_low": 660,
+    "mu_band_mid": 4067,
+    "unit_all_scored": 7157
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B5",
+   "base_valid_land_count": 7158,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2430,
+    "mu_band_low": 660,
+    "mu_band_mid": 4067,
+    "unit_all_scored": 7157
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B4",
+   "base_valid_land_count": 718,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 533,
+    "mu_band_low": 0,
+    "mu_band_mid": 185,
+    "unit_all_scored": 718
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B5",
+   "base_valid_land_count": 718,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 533,
+    "mu_band_low": 0,
+    "mu_band_mid": 185,
+    "unit_all_scored": 718
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "train",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B4",
+   "base_valid_land_count": 7146,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2789,
+    "mu_band_low": 670,
+    "mu_band_mid": 3648,
+    "unit_all_scored": 7107
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+   "band": "SR_B5",
+   "base_valid_land_count": 7146,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 2789,
+    "mu_band_low": 670,
+    "mu_band_mid": 3648,
+    "unit_all_scored": 7107
+   },
+   "split": "train",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8a6737faf0b45dfa41ddd9c6251f8488335c216cf3e1ca6a407a9f2a174fd45d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "dd5d4405271297c0040a684bb6b657a41653c3d90a3d5f1a85edb5815b46dd8a",
+    "observation_member_sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B4",
+   "base_valid_land_count": 31443,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 16797,
+    "mu_band_low": 3343,
+    "mu_band_mid": 11263,
+    "unit_all_scored": 31403
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B5",
+   "base_valid_land_count": 31443,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 16797,
+    "mu_band_low": 3343,
+    "mu_band_mid": 11263,
+    "unit_all_scored": 31403
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B4",
+   "base_valid_land_count": 16159,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 9782,
+    "mu_band_low": 413,
+    "mu_band_mid": 5959,
+    "unit_all_scored": 16154
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B5",
+   "base_valid_land_count": 16159,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 9782,
+    "mu_band_low": 413,
+    "mu_band_mid": 5959,
+    "unit_all_scored": 16154
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B4",
+   "base_valid_land_count": 10313,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4072,
+    "mu_band_low": 1884,
+    "mu_band_mid": 4181,
+    "unit_all_scored": 10137
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B5",
+   "base_valid_land_count": 10313,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4072,
+    "mu_band_low": 1884,
+    "mu_band_mid": 4181,
+    "unit_all_scored": 10137
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B4",
+   "base_valid_land_count": 18731,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 5634,
+    "mu_band_low": 1799,
+    "mu_band_mid": 11242,
+    "unit_all_scored": 18675
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B5",
+   "base_valid_land_count": 18731,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 5634,
+    "mu_band_low": 1799,
+    "mu_band_mid": 11242,
+    "unit_all_scored": 18675
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B4",
+   "base_valid_land_count": 30993,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 17848,
+    "mu_band_low": 2551,
+    "mu_band_mid": 10407,
+    "unit_all_scored": 30806
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+   "band": "SR_B5",
+   "base_valid_land_count": 30993,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 17848,
+    "mu_band_low": 2551,
+    "mu_band_mid": 10407,
+    "unit_all_scored": 30806
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "8bd17b1cd2ad6115375da184cc66f95db6a363ec4cd9c707e9150742e6cbf2f2",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "481c8cc3fb02bca4d993f6d86b65f8441e39bd9a7ed4f99dd24f2cf8774b055c",
+    "observation_member_sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B4",
+   "base_valid_land_count": 42277,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 16455,
+    "mu_band_low": 11089,
+    "mu_band_mid": 14237,
+    "unit_all_scored": 41781
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B5",
+   "base_valid_land_count": 42277,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 16455,
+    "mu_band_low": 11089,
+    "mu_band_mid": 14237,
+    "unit_all_scored": 41781
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B4",
+   "base_valid_land_count": 12856,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 8223,
+    "mu_band_low": 1483,
+    "mu_band_mid": 3047,
+    "unit_all_scored": 12753
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B5",
+   "base_valid_land_count": 12856,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 8223,
+    "mu_band_low": 1483,
+    "mu_band_mid": 3047,
+    "unit_all_scored": 12753
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B4",
+   "base_valid_land_count": 12536,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3505,
+    "mu_band_low": 3948,
+    "mu_band_mid": 4585,
+    "unit_all_scored": 12038
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B5",
+   "base_valid_land_count": 12536,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3505,
+    "mu_band_low": 3948,
+    "mu_band_mid": 4585,
+    "unit_all_scored": 12038
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B4",
+   "base_valid_land_count": 22274,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4387,
+    "mu_band_low": 5431,
+    "mu_band_mid": 12155,
+    "unit_all_scored": 21973
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B5",
+   "base_valid_land_count": 22274,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4387,
+    "mu_band_low": 5431,
+    "mu_band_mid": 12155,
+    "unit_all_scored": 21973
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B4",
+   "base_valid_land_count": 40179,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 18415,
+    "mu_band_low": 9651,
+    "mu_band_mid": 11501,
+    "unit_all_scored": 39567
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+   "band": "SR_B5",
+   "base_valid_land_count": 40179,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 18415,
+    "mu_band_low": 9651,
+    "mu_band_mid": 11501,
+    "unit_all_scored": 39567
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "37a332948f216e4307089d3288a7d965cf193054f69b2ff8537b661c6d12a41f",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6b5f3288bfbd16380d4a25cf2864f06e114f2731e553dc1af86b173e41441292",
+    "observation_member_sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B4",
+   "base_valid_land_count": 4441,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 749,
+    "mu_band_low": 1771,
+    "mu_band_mid": 1806,
+    "unit_all_scored": 4326
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B5",
+   "base_valid_land_count": 4441,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 749,
+    "mu_band_low": 1771,
+    "mu_band_mid": 1806,
+    "unit_all_scored": 4326
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B4",
+   "base_valid_land_count": 3782,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1986,
+    "mu_band_low": 684,
+    "mu_band_mid": 987,
+    "unit_all_scored": 3657
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B5",
+   "base_valid_land_count": 3782,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1986,
+    "mu_band_low": 684,
+    "mu_band_mid": 987,
+    "unit_all_scored": 3657
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B4",
+   "base_valid_land_count": 482,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 20,
+    "mu_band_low": 279,
+    "mu_band_mid": 175,
+    "unit_all_scored": 474
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B5",
+   "base_valid_land_count": 482,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 20,
+    "mu_band_low": 279,
+    "mu_band_mid": 175,
+    "unit_all_scored": 474
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B4",
+   "base_valid_land_count": 5617,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1487,
+    "mu_band_low": 1106,
+    "mu_band_mid": 2929,
+    "unit_all_scored": 5522
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B5",
+   "base_valid_land_count": 5617,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1487,
+    "mu_band_low": 1106,
+    "mu_band_mid": 2929,
+    "unit_all_scored": 5522
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B4",
+   "base_valid_land_count": 1722,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 128,
+    "mu_band_low": 1177,
+    "mu_band_mid": 367,
+    "unit_all_scored": 1672
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+   "band": "SR_B5",
+   "base_valid_land_count": 1722,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 128,
+    "mu_band_low": 1177,
+    "mu_band_mid": 367,
+    "unit_all_scored": 1672
+   },
+   "split": "validation",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "61dac04b5316614a72a702ca4888460306ca49045871cb0677857bca5afcd853",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "6e0c2afb9cc45afb2c8b129f9ed7066258d99c7512e79a909fca48cc72c9d784",
+    "observation_member_sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B4",
+   "base_valid_land_count": 31201,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 11021,
+    "mu_band_low": 11682,
+    "mu_band_mid": 6154,
+    "unit_all_scored": 28857
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B5",
+   "base_valid_land_count": 31201,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 11021,
+    "mu_band_low": 11682,
+    "mu_band_mid": 6154,
+    "unit_all_scored": 28857
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B4",
+   "base_valid_land_count": 10933,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6337,
+    "mu_band_low": 3116,
+    "mu_band_mid": 1316,
+    "unit_all_scored": 10769
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B5",
+   "base_valid_land_count": 10933,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 6337,
+    "mu_band_low": 3116,
+    "mu_band_mid": 1316,
+    "unit_all_scored": 10769
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B4",
+   "base_valid_land_count": 484,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 309,
+    "mu_band_low": 23,
+    "mu_band_mid": 146,
+    "unit_all_scored": 478
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B5",
+   "base_valid_land_count": 484,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 309,
+    "mu_band_low": 23,
+    "mu_band_mid": 146,
+    "unit_all_scored": 478
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B4",
+   "base_valid_land_count": 14149,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3052,
+    "mu_band_low": 5256,
+    "mu_band_mid": 5106,
+    "unit_all_scored": 13414
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B5",
+   "base_valid_land_count": 14149,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3052,
+    "mu_band_low": 5256,
+    "mu_band_mid": 5106,
+    "unit_all_scored": 13414
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B4",
+   "base_valid_land_count": 15368,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4848,
+    "mu_band_low": 4593,
+    "mu_band_mid": 4511,
+    "unit_all_scored": 13952
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+   "band": "SR_B5",
+   "base_valid_land_count": 15368,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 4848,
+    "mu_band_low": 4593,
+    "mu_band_mid": 4511,
+    "unit_all_scored": 13952
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "456dbb298e24a24360c5b3943ce5e6337efea90f5b0b343334d09feea6262dca",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "c8e15e767e3d2ead8ac20cf8480c7a857bf17775fe209493cd807fb4526d5f8a",
+    "observation_member_sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B4",
+   "base_valid_land_count": 30349,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 11574,
+    "mu_band_low": 10456,
+    "mu_band_mid": 4560,
+    "unit_all_scored": 26590
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B5",
+   "base_valid_land_count": 30349,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 11574,
+    "mu_band_low": 10456,
+    "mu_band_mid": 4560,
+    "unit_all_scored": 26590
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B4",
+   "base_valid_land_count": 6686,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3361,
+    "mu_band_low": 2180,
+    "mu_band_mid": 544,
+    "unit_all_scored": 6085
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B5",
+   "base_valid_land_count": 6686,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 3361,
+    "mu_band_low": 2180,
+    "mu_band_mid": 544,
+    "unit_all_scored": 6085
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B4",
+   "base_valid_land_count": 3161,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1239,
+    "mu_band_low": 799,
+    "mu_band_mid": 783,
+    "unit_all_scored": 2821
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B5",
+   "base_valid_land_count": 3161,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1239,
+    "mu_band_low": 799,
+    "mu_band_mid": 783,
+    "unit_all_scored": 2821
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B4",
+   "base_valid_land_count": 32,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 17,
+    "mu_band_low": 8,
+    "mu_band_mid": 2,
+    "unit_all_scored": 27
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B5",
+   "base_valid_land_count": 32,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 17,
+    "mu_band_low": 8,
+    "mu_band_mid": 2,
+    "unit_all_scored": 27
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B4",
+   "base_valid_land_count": 23788,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 9577,
+    "mu_band_low": 6086,
+    "mu_band_mid": 5623,
+    "unit_all_scored": 21286
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+   "band": "SR_B5",
+   "base_valid_land_count": 23788,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 9577,
+    "mu_band_low": 6086,
+    "mu_band_mid": 5623,
+    "unit_all_scored": 21286
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "93587faec97ef23ffef7e5e148255902ef13b9c682e7e5dcccea86e35aa3060d",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "a745f86bc47bb7e95bca7351d26dc9e86b4a492f1f645612be5f8d0032a841d5",
+    "observation_member_sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B4",
+   "base_valid_land_count": 18448,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7868,
+    "mu_band_low": 5533,
+    "mu_band_mid": 1785,
+    "unit_all_scored": 15186
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B5",
+   "base_valid_land_count": 18448,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7868,
+    "mu_band_low": 5533,
+    "mu_band_mid": 1785,
+    "unit_all_scored": 15186
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B4",
+   "base_valid_land_count": 5368,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 5225,
+    "mu_band_low": 6,
+    "mu_band_mid": 135,
+    "unit_all_scored": 5366
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B5",
+   "base_valid_land_count": 5368,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 5225,
+    "mu_band_low": 6,
+    "mu_band_mid": 135,
+    "unit_all_scored": 5366
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B4",
+   "base_valid_land_count": 2457,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1195,
+    "mu_band_low": 286,
+    "mu_band_mid": 808,
+    "unit_all_scored": 2289
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B5",
+   "base_valid_land_count": 2457,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1195,
+    "mu_band_low": 286,
+    "mu_band_mid": 808,
+    "unit_all_scored": 2289
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B4",
+   "base_valid_land_count": 126,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 13,
+    "mu_band_low": 80,
+    "mu_band_mid": 24,
+    "unit_all_scored": 117
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B5",
+   "base_valid_land_count": 126,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 13,
+    "mu_band_low": 80,
+    "mu_band_mid": 24,
+    "unit_all_scored": 117
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B4",
+   "base_valid_land_count": 1903,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 648,
+    "mu_band_low": 477,
+    "mu_band_mid": 690,
+    "unit_all_scored": 1815
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+   "band": "SR_B5",
+   "base_valid_land_count": 1903,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 648,
+    "mu_band_low": 477,
+    "mu_band_mid": 690,
+    "unit_all_scored": 1815
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "16ad61db05cea916ae08bca8ba4fec6b0714869a33b833d6141bae14e4f22b04",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "0f0c0d48acbd410de1a206cdcb526e91a72cd2a62386161bc739efa39f5394c4",
+    "observation_member_sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 71 < 271"
+   },
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 71 < 271"
+   },
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B4",
+   "base_valid_land_count": 35,
+   "core_total_pixel_count": 16384,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 0 < 271"
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 35,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 35
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B5",
+   "base_valid_land_count": 35,
+   "core_total_pixel_count": 16384,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 0 < 271"
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 35,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 35
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 71 < 271"
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 12544,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 71 < 271"
+   },
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 25600,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 0 < 271"
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 25600,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 0 < 271"
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 71 < 271"
+   },
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 71 < 271"
+   },
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "f3cd3c5822ac3d398e5993c88eeeca5387a6eec1f4f83bbc41c95a16aee29f83",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "d80b736c12dcc103a144f458309dbf8fb72bba977b6afc2ee450d29bae7b647f",
+    "observation_member_sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B4",
+   "base_valid_land_count": 5049,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 7 < 271"
+   },
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1775,
+    "mu_band_low": 1050,
+    "mu_band_mid": 309,
+    "unit_all_scored": 3134
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B5",
+   "base_valid_land_count": 5049,
+   "core_total_pixel_count": 43264,
+   "detail_reason": "calibration_support_below_minimum",
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "calibration_support_below_minimum",
+    "reference_alpha_fallback": false,
+    "triggering_predicate": "actual_calibration_lit 7 < 271"
+   },
+   "fold": 1,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 1775,
+    "mu_band_low": 1050,
+    "mu_band_mid": 309,
+    "unit_all_scored": 3134
+   },
+   "split": "test",
+   "top_level_reason": "unsupported_calibration",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "unsupported_calibration",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 16384,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 2,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B4",
+   "base_valid_land_count": 7,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 7
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B5",
+   "base_valid_land_count": 7,
+   "core_total_pixel_count": 12544,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 3,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 7,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 7
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B4",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B5",
+   "base_valid_land_count": 0,
+   "core_total_pixel_count": 25600,
+   "detail_reason": null,
+   "fallback_receipt": {
+    "default_alpha_written": false,
+    "fallback_used": false,
+    "imputed": false,
+    "reason_code": "no_supported_pixel_in_core",
+    "reference_alpha_fallback": false
+   },
+   "fold": 4,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 0,
+    "mu_band_low": 0,
+    "mu_band_mid": 0,
+    "unit_all_scored": 0
+   },
+   "split": "test",
+   "top_level_reason": "no_supported_pixel_in_core",
+   "unit_gate_state": "not_scored",
+   "unit_terminal_category": "not_scored_no_supported_pixel",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B4",
+   "base_valid_land_count": 647,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 484,
+    "mu_band_low": 31,
+    "mu_band_mid": 128,
+    "unit_all_scored": 643
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  },
+  {
+   "acquisition": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+   "band": "SR_B5",
+   "base_valid_land_count": 647,
+   "core_total_pixel_count": 43264,
+   "detail_reason": null,
+   "fallback_receipt": null,
+   "fold": 5,
+   "scope_scored_pixel_counts": {
+    "mu_band_high": 484,
+    "mu_band_low": 31,
+    "mu_band_mid": 128,
+    "unit_all_scored": 643
+   },
+   "split": "test",
+   "top_level_reason": null,
+   "unit_gate_state": "scored",
+   "unit_terminal_category": "scored",
+   "upstream_identity": {
+    "cos_i_sha256": "b45a563a108965d54696b4b68bad92fefc3f7ec04c752ab2afcc4517433f66cc",
+    "fold_alpha_ledger_sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+    "mconf_sha256": "1ce664807fb46ad5de1da7c95d295b1d4b3ddeb5c7e5e40001fb256cdf107710",
+    "observation_member_sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  }
+ ],
+ "schema": "mountainrs-stage7.4-risk-proxy-unit-status-ledger-v1"
+}

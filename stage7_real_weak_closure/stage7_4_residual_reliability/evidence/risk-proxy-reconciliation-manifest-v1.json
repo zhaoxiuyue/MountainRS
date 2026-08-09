@@ -1,0 +1,28 @@
+{
+ "completed_output_hash_scope": "all five non-self members; manifest self hash is reported by the executor and PF3 asset receipt",
+ "completed_output_hashes": {
+  "aggregation_table": "2439b02ed93f74eb5e851c4d53c161f7c049adb0c8618e429457ac6499dd58fd",
+  "risk_curve_table": "6d65f6dd9c8919b53a83545e98b30c2492119ed30f5764490641f32dd022cea2",
+  "scientific_report": "6aef9cffc0d7ff5ea6fb5d56867e192f78bed8b8fd281cfd5081a2428f92fc6b",
+  "stratum_table": "87164338337dc111930699e2fe76386fe8c0386e7b4aab898f0e5011bbf2adca",
+  "unit_status_ledger": "7af67215e73b49750cbf5726bcc1783fd42240da0601e009cea4559da84b4eb8"
+ },
+ "config": "configs/risk-proxy-config-v2.json",
+ "counts": {
+  "aggregation_rows": 8,
+  "curve_rows": 10120,
+  "stratum_rows": 900,
+  "unit_rows": 180
+ },
+ "coverage_denominator_reconciliation": "pass",
+ "fold_ledger_reconciliation": "pass",
+ "freeze_after_route_revision": 76,
+ "freeze_receipt_id": "rc_5f4a33c8bf25",
+ "mask_reconciliation": "pass",
+ "member_hash_reconciliation": "pass",
+ "method_pack": "M2_guarded_5pct_v3",
+ "protocol": "docs/risk-proxy-protocol-v2.md",
+ "schema": "mountainrs-stage7.4-risk-proxy-reconciliation-manifest-v1",
+ "unit_terminal_state_reconciliation": "pass",
+ "verdict_reconciliation": "pass"
+}
