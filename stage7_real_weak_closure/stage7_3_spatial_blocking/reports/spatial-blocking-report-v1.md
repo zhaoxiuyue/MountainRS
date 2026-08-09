@@ -47,7 +47,9 @@ scoring protocol 的缺口是层级映射：子协议 §5 声明 `fold ≡ Stage
 | 4 | 25,600 | 338,942 | 124,258 | 488,800 | 8130.1 m |
 | 5 | 43,264 | 264,379 | 181,157 | 488,800 | 8130.1 m |
 
-5 个 fold 全部满足 8,130 m 隔离准入，达合同④「≥3 为首选」。cores 两两不重叠；其中两对 core 距离为 0（边界接触），与 Stage 7.0 leakage_audit 记录的 `minimum core-to-core gap 0 m (touching boundaries)` 一致。
+5 个 fold 全部满足 8,130 m 隔离准入，达合同④「≥3 为首选」。cores 两两不重叠；十对中**恰有一对**（`combined_risk_01` 与 `combined_risk_05`）距离为 0，即边界接触——因此 **fold 1 与 fold 5 两个 fold** 的「最近他 core 距离」均记为 0。与 Stage 7.0 leakage_audit 记录的 `minimum core-to-core gap 0 m (touching boundaries)` 一致。
+
+（本句的早期版本误将「两个 fold 的最近距离为 0」表述为「两对 core 距离为 0」；一对相邻 core 必然使两个 fold 的最近距离同时为 0，二者不是同一计数。已按 `topology-manifest-v1.json` 的 `pairwise_cores` 更正。）
 
 几何可行性审计在 active 状态复算，**与 planned 状态的预证 sha256 完全相同**。
 

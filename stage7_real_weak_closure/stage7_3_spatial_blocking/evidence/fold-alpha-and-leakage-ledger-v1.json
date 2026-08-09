@@ -146,6 +146,126 @@
   }
  ],
  "independence_statement": "逐对结果显示 fold 之间共享 actual calibration，与 Stage 7.0 leakage_audit 的 pairwise shared calibration 10/10 一致。这些 fold 不是统计独立重复；fold 数不得用作 effective n，不得据以计算 p 值或置信区间。",
+ "input_member_verification": {
+  "authority": {
+   "field": "members[].member_sha256",
+   "relative_path": "../stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+   "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
+  },
+  "members": [
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230101",
+    "member_relative_to_alias": "LC08_130038_20230101/LC08_130038_20230101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 1,
+    "sha256": "69530d52d0baed29c899b91a25f7c25a3765313da1372b7d8ea5e87f8cb415a4"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230117",
+    "member_relative_to_alias": "LC08_130038_20230117/LC08_130038_20230117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 2,
+    "sha256": "dfafc16c28721f0062fe1e359d4fd0cfe095a8e2bbefb28c014b2032b6c36784"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230218",
+    "member_relative_to_alias": "LC08_130038_20230218/LC08_130038_20230218__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 4,
+    "sha256": "f88523f3c4004ab2024537488d9addbfa37348404be1ea53320765cf593d583b"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230306",
+    "member_relative_to_alias": "LC08_130038_20230306/LC08_130038_20230306__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 5,
+    "sha256": "5306842e8b9756f3e44163a5c9bcf796c7f4ca4d471f2f8de7c1dc27ab3c0e2d"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230322",
+    "member_relative_to_alias": "LC08_130038_20230322/LC08_130038_20230322__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 6,
+    "sha256": "880ab1fd810d7e04cf7045828cc8d624421f58091e33cd8d80a0793fd3260bcf"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230407",
+    "member_relative_to_alias": "LC08_130038_20230407/LC08_130038_20230407__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 7,
+    "sha256": "4e89de1497978c37adb2275672b49bcb9a4deb3cb44fc92be16fa71e7cc7f50d"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230509",
+    "member_relative_to_alias": "LC08_130038_20230509/LC08_130038_20230509__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 8,
+    "sha256": "8f1f39b4dc963b75f6f75ab9f98c16a838f20ce689fc4c9b1af90420a30507d6"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230525",
+    "member_relative_to_alias": "LC08_130038_20230525/LC08_130038_20230525__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 9,
+    "sha256": "2d5a0f0634ab63b1305c89e70871f162322e2729f70d0912a3bfa141f7519d5e"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230626",
+    "member_relative_to_alias": "LC08_130038_20230626/LC08_130038_20230626__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 11,
+    "sha256": "43127b3ef6912f03747a30979a307d68581a59de0216f454f13e14ff09ff5005"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230728",
+    "member_relative_to_alias": "LC08_130038_20230728/LC08_130038_20230728__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 13,
+    "sha256": "bf41572e3922dac23859c468a6952ae8fd12a9d8fb2f0322135748cebfa9eb4a"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230813",
+    "member_relative_to_alias": "LC08_130038_20230813/LC08_130038_20230813__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 14,
+    "sha256": "5066910e9a466f6d9dd9f0a8664e3ab970b527b832719ba5fd304a0efd75dfb8"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230914",
+    "member_relative_to_alias": "LC08_130038_20230914/LC08_130038_20230914__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 15,
+    "sha256": "77771f63c9574ad47bb814e33f863491656e316cfda52bdc6da471424877d7c2"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20230930",
+    "member_relative_to_alias": "LC08_130038_20230930/LC08_130038_20230930__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 16,
+    "sha256": "d5edf2199b96b9b6c61f2c161ac186654ab392a07715729195ed2b0dcfd65e00"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231016",
+    "member_relative_to_alias": "LC08_130038_20231016/LC08_130038_20231016__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 17,
+    "sha256": "fa85dc46e6d748b13b9e23659938fc396697a800c16d488a07db7c03205c4eae"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231101",
+    "member_relative_to_alias": "LC08_130038_20231101/LC08_130038_20231101__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 18,
+    "sha256": "b9bce4cea61d7bf630fcc83418e39803554f7eb087dc13febc366bfd057130af"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231117",
+    "member_relative_to_alias": "LC08_130038_20231117/LC08_130038_20231117__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 19,
+    "sha256": "79b8a30f87efb96f32028e9eb9d0412ccace4b6b10ed63a616dba3a90fefc11d"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231203",
+    "member_relative_to_alias": "LC08_130038_20231203/LC08_130038_20231203__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 20,
+    "sha256": "e1d45b8de4e91d3464f48785ea8afa5cb91977c3237ad291d80f1eff66d11ae9"
+   },
+   {
+    "acquisition_id": "LANDSAT/LC08/C02/T1_L2/LC08_130038_20231219",
+    "member_relative_to_alias": "LC08_130038_20231219/LC08_130038_20231219__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+    "order": 21,
+    "sha256": "b666ef8bc8791ebdd58a71e8017bc094f4bb58f6b41c9f1bfae375a830927eed"
+   }
+  ],
+  "policy": "fail_closed_before_read",
+  "required_because": "执行器直接读取 observation stack 的成员字节；若不先验明身份，本节点的生成链就无法自证其输入未漂移。",
+  "verified_member_count": 18
+ },
  "leakage_checks": [
   {
    "actual_calibration_intersects_core_or_buffer": false,

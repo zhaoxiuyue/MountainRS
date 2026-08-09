@@ -1,0 +1,184 @@
+{
+  "schema": "mountainrs-xiaohongshu-post-06-figure-sources-v1",
+  "rendering": {
+    "renderer": "render_post_06.js",
+    "dimensions": "1080x1350",
+    "numeric_policy": "Every displayed value is read from frozen Stage 7.2 evidence or derived after exact validation; no model, refit, Earth Engine call, evidence mutation, or PF3 mutation occurs.",
+    "denominator_policy": "Post 06 uses the 18 eligible calibration acquisitions times the frozen 488,800-pixel target grid, not Post 05's 21-acquisition observation-opportunity denominator.",
+    "schematic_policy": "Card 03 is explicitly labeled SCHEMATIC and explains an unquantified coverage gap; it is not a computed cast-shadow result.",
+    "wording_guard": "Geometry rejection is small in count but systematic; cast shadow remains uncomputed and unquantified; Mconf support is an optimistic upper bound.",
+    "visual_system": "Post 03-05 warm-paper system with ink headlines, yellow narrative marker, orange annotations, pale panels, and mountain footer; the cover intentionally omits mountain imagery per brief."
+  },
+  "derived_values": {
+    "acquisition_count": 18,
+    "target_pixel_count": 488800,
+    "calibration_opportunity_denominator": 8798400,
+    "observation_or_upstream_validity_exclusion_percent": 76.26,
+    "mconf_mechanism_zero_percent": 0.92,
+    "self_shadow_plus_near_zero": 81005
+  },
+  "figures": [
+    {
+      "file": "01_cover.png",
+      "claim": "地形机制拒绝占 18 景标定机会的 0.92%，但其系统性缺口是本篇重点。",
+      "sources": [
+        {
+          "source_file": "evidence/support-loss-ledger-v1.json",
+          "fields": [
+            "totals.mconf_mechanism_zero",
+            "per_acquisition[].target_pixel_count"
+          ],
+          "values": {
+            "geometry_count": 81005,
+            "denominator": 8798400,
+            "geometry_percent": 0.92
+          }
+        },
+        {
+          "source_file": "reports/xiaohongshu/post_06_support/BRIEF.md",
+          "fields": [
+            "01 cover sequel signal and hook"
+          ],
+          "values": {
+            "sequel_signal": "上一篇：删掉3景，成功率100%。我没删"
+          }
+        }
+      ]
+    },
+    {
+      "file": "02_who_blocks_calibration.png",
+      "claim": "18×488,800=8798400 个像元级标定机会中，上游观测质量排除 6709508（76.26%），几何判据排除 81005（0.92%）。",
+      "sources": [
+        {
+          "source_file": "evidence/support-loss-ledger-v1.json",
+          "fields": [
+            "per_acquisition[].target_pixel_count",
+            "totals.observation_or_upstream_validity_exclusion",
+            "totals.mconf_mechanism_zero",
+            "totals.calibration_lit"
+          ],
+          "values": {
+            "acquisition_count": 18,
+            "target_pixel_count": 488800,
+            "denominator": 8798400,
+            "observation_or_upstream_validity_exclusion": 6709508,
+            "observation_or_upstream_validity_exclusion_percent": 76.26,
+            "mconf_mechanism_zero": 81005,
+            "mconf_mechanism_zero_percent": 0.92
+          }
+        }
+      ]
+    },
+    {
+      "file": "03_half_the_shadow.png",
+      "claim": "Mconf v1 只覆盖局部 cos_i 自阴影与近零拒绝（35525+45480=81005）；投射阴影未计算且规模未知。",
+      "sources": [
+        {
+          "source_file": "evidence/support-loss-ledger-v1.json",
+          "fields": [
+            "per_acquisition[].mconf_mechanism_zero.self_shadow",
+            "per_acquisition[].mconf_mechanism_zero.near_zero",
+            "totals.mconf_mechanism_zero"
+          ],
+          "values": {
+            "self_shadow": 35525,
+            "near_zero": 45480,
+            "total": 81005
+          }
+        },
+        {
+          "source_file": "evidence/mconf-registry-v1.json",
+          "fields": [
+            "factor_identity.coverage",
+            "factor_identity.not_covered",
+            "factor_identity.coverage_caveat",
+            "factor_identity.threshold"
+          ],
+          "values": {
+            "architecture_authority": "docs/architecture.md v3 §3",
+            "architecture_factor": "geometry_visibility",
+            "coverage": "self_shadow_only",
+            "coverage_caveat": "几何支持为乐观上界；未覆盖项归 Stage 7.5 / 7.6，见 docs/mconf-subprotocol-v1.md §3。",
+            "is_composite_confidence": false,
+            "may_merge_with": [],
+            "name": "Mconf",
+            "not_covered": [
+              "cast_shadow",
+              "horizon_occlusion",
+              "disocclusion_boundary",
+              "geometric_instability_boundary",
+              "view_angle_occlusion"
+            ],
+            "threshold": 0.1,
+            "threshold_source": "Stage 7.0 baseline_spec.md: supported := cos_i > 0.1",
+            "thresholds_invented": false
+          }
+        },
+        {
+          "source_file": "evidence/cos-i-registry-v1.json",
+          "fields": [
+            "members[order=1,21].solar_geometry.sun_elevation_deg",
+            "members[order=1,21].descriptive_partition_not_a_support_decision.lit_cos_i_gt_0_1",
+            "members[order=1,21].output.valid_count"
+          ],
+          "values": {
+            "order_1": {
+              "order": 1,
+              "date": "2023-01-01",
+              "sunElevation": 31.1368308,
+              "sunElevation2": 31.14,
+              "litCount": 359473,
+              "litPct": 73.5
+            },
+            "order_21": {
+              "order": 21,
+              "date": "2023-12-19",
+              "sunElevation": 31.31597284,
+              "sunElevation2": 31.32,
+              "litCount": 360881,
+              "litPct": 73.8
+            }
+          }
+        }
+      ]
+    },
+    {
+      "file": "04_frozen_contract.png",
+      "claim": "冻结子协议§3逐字声明 cos_i>0.1 只覆盖自阴影，五类几何遮挡未覆盖，并禁止把几何可见性或遮挡表述为已覆盖；因此几何支持是乐观上界。",
+      "sources": [
+        {
+          "source_file": "docs/mconf-subprotocol-v1.md",
+          "fields": [
+            "§3 lines 71-89"
+          ],
+          "values": {
+            "quote_1": "cos_i > 0.1 只覆盖自阴影（self-shadowing，由局部入射角决定：坡面背向太阳）。",
+            "quote_2": "以下全部未覆盖，本子协议不量化、不近似、不以任何方式声称已处理：",
+            "quote_3": "本子协议因此在几何上是乐观的，任何基于它的支持计数都应理解为上界。",
+            "quote_4": "因此，结论中不得出现「几何可见性已覆盖」「遮挡已处理」一类表述。",
+            "quote_5": "本因子只能被称为「自阴影许可量」。"
+          }
+        },
+        {
+          "source_file": "evidence/mconf-registry-v1.json",
+          "fields": [
+            "factor_identity.coverage",
+            "factor_identity.not_covered",
+            "factor_identity.coverage_caveat"
+          ],
+          "values": {
+            "coverage": "self_shadow_only",
+            "not_covered": [
+              "cast_shadow",
+              "horizon_occlusion",
+              "disocclusion_boundary",
+              "geometric_instability_boundary",
+              "view_angle_occlusion"
+            ],
+            "caveat": "几何支持为乐观上界；未覆盖项归 Stage 7.5 / 7.6，见 docs/mconf-subprotocol-v1.md §3。"
+          }
+        }
+      ]
+    }
+  ]
+}

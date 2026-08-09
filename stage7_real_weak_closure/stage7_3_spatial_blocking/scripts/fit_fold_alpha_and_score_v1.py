@@ -101,6 +101,7 @@ def main() -> int:
     input_view = load_json(STAGE_7_1 / "evidence/stage-7.2-direct-only-input-view-v1.json")
     support_audit = load_json(STAGE_7_1 / "evidence/local-support-audit-v1.json")
     export_manifest = load_json(STAGE_7_1 / "evidence/export-manifest-v3.json")
+    evidence_manifest = load_json(STAGE_7_1 / "evidence/observation-evidence-manifest-v1.json")
     cos_i_registry = load_json(STAGE_7_2 / "evidence/cos-i-registry-v1.json")
     mconf_registry = load_json(STAGE_7_2 / "evidence/mconf-registry-v1.json")
 
@@ -110,6 +111,9 @@ def main() -> int:
     locator = {e["acquisition_id"]: e["target_relative_to_alias"] for e in export_manifest["acquisitions"]}
     cos_i_by_id = {m["acquisition_id"]: m for m in cos_i_registry["members"]}
     mconf_by_id = {m["acquisition_id"]: m for m in mconf_registry["members"]}
+    # 成员字节身份取自 Stage 7.1-R 冻结的证据清单：读取前必须验明，否则生成链不自证
+    member_sha256 = {m["acquisition_id"]: m["member_sha256"] for m in evidence_manifest["members"]}
+    verified_members: list[dict[str, Any]] = []
 
     # 载入已冻结的几何标定域与 core 几何（core 由投影边界解析重建，不依赖任何影像）
     folds = []
@@ -139,7 +143,20 @@ def main() -> int:
             continue  # 3 景 operation_scoped_unsupported 不进入标定与评分
         order = entry["order"]
 
-        with rasterio.open(stack_root / locator[acquisition_id]) as dataset:
+        tif = stack_root / locator[acquisition_id]
+        observed_member_sha = sha256_file(tif)
+        if observed_member_sha != member_sha256[acquisition_id]:
+            raise SystemExit(
+                f"stop: observation stack member hash drifted for order {order}\n"
+                f"  recorded {member_sha256[acquisition_id]}\n  on disk  {observed_member_sha}"
+            )
+        verified_members.append({
+            "order": order,
+            "acquisition_id": acquisition_id,
+            "member_relative_to_alias": locator[acquisition_id],
+            "sha256": observed_member_sha,
+        })
+        with rasterio.open(tif) as dataset:
             data = {name: dataset.read(index + 1) for index, name in enumerate(stack_bands)}
         cos_i_record = cos_i_by_id[acquisition_id]
         cos_i_path = STAGE_7_2 / cos_i_record["output"]["relative_path"]
@@ -305,6 +322,20 @@ def main() -> int:
             "relative_path": "evidence/topology-manifest-v1.json",
             "sha256": sha256_file(topology_path),
             "status": topology["status"],
+        },
+        "input_member_verification": {
+            "required_because": (
+                "执行器直接读取 observation stack 的成员字节；若不先验明身份，"
+                "本节点的生成链就无法自证其输入未漂移。"
+            ),
+            "authority": {
+                "relative_path": "../stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+                "field": "members[].member_sha256",
+                "sha256": sha256_file(STAGE_7_1 / "evidence/observation-evidence-manifest-v1.json"),
+            },
+            "policy": "fail_closed_before_read",
+            "verified_member_count": len(verified_members),
+            "members": verified_members,
         },
         "boundary": boundary,
     }

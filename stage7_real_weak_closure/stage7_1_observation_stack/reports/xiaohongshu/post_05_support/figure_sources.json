@@ -1,0 +1,212 @@
+{
+  "schema": "mountainrs-xiaohongshu-post-05-figure-sources-v1",
+  "rendering": {
+    "renderer": "render_post_05.js",
+    "dimensions": "1080x1350",
+    "numeric_policy": "Every displayed result is read from frozen Stage 7.1 evidence or derived after exact validation; no model, refit, Earth Engine call, evidence mutation, or PF3 mutation occurs.",
+    "raster_policy": "The cover enlarges the same canonical order-3, order-10, and order-12 local SR_B4 rasters shown in Post 04, using the same deterministic display stretch; annotation changes from gray cross to yellow frame.",
+    "semantics_guard": "The three unsupported records remain evidence members and observation opportunities but are forbidden as targets, forbidden as negative samples, and excluded from loss participation.",
+    "visual_system": "Post 03/04 warm-paper system with image-first evidence, yellow narrative marker, orange annotations, green support encoding, and restrained text."
+  },
+  "derived_values": {
+    "success_rate_with_deleted_records_percent": 100,
+    "success_rate_with_evidence_ledger_percent": 85.7,
+    "active_div_passive_rounded": 1322,
+    "active_share_of_top_level_deprivation_percent": 99.92
+  },
+  "figures": [
+    {
+      "file": "01_cover.png",
+      "claim": "第 3、10、12 景真实 SR_B4 观测以三联画放大，并由黄框表示保留为证据成员而非用于训练。",
+      "sources": [
+        {
+          "source_file": "evidence/observation-evidence-manifest-v1.json",
+          "fields": [
+            "counts",
+            "members[].order",
+            "members[].member_relative_to_alias",
+            "members[].evidence_membership",
+            "members[].target_surface_support_status"
+          ],
+          "values": {
+            "included": 21,
+            "unsupported_positions": [
+              3,
+              10,
+              12
+            ],
+            "actual_scene_files": [
+              "data/raw/observation_stack/LC08_130038_20230202/LC08_130038_20230202__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230610/LC08_130038_20230610__SR_B4_SR_B5_QA_PIXEL__VALID.tif",
+              "data/raw/observation_stack/LC08_130038_20230712/LC08_130038_20230712__SR_B4_SR_B5_QA_PIXEL__VALID.tif"
+            ]
+          }
+        },
+        {
+          "source_file": "reports/xiaohongshu/post_05_support/BRIEF.md",
+          "fields": [
+            "01 cover continuation and wording guard"
+          ],
+          "values": {
+            "sequel_signal": "上一篇：21景，一景没挑"
+          }
+        }
+      ]
+    },
+    {
+      "file": "02_same_18_different_dataset.png",
+      "claim": "删除三次失败记录与保留三次失败记录都只有 18 景具备当前拟合资格，但前者呈现 18/18=100%，后者保留 21 个证据成员并呈现 18/21=85.7%。",
+      "sources": [
+        {
+          "source_file": "evidence/observation-evidence-manifest-v1.json",
+          "fields": [
+            "counts",
+            "members[].evidence_membership",
+            "members[].target_surface_support_status"
+          ],
+          "values": {
+            "universe": 21,
+            "effective_members": 18,
+            "unsupported_members": 3,
+            "deleted_record_success_rate": 100,
+            "evidence_ledger_success_rate": 85.7
+          }
+        },
+        {
+          "source_file": "evidence/observation-evidence-manifest-v1.json",
+          "fields": [
+            "training_semantics.unsupported_as_target",
+            "training_semantics.unsupported_as_negative_sample",
+            "training_semantics.loss_participation"
+          ],
+          "values": {
+            "authority": "docs/architecture.md v3 §1.2（不得为输出完整图面把无支持区域涂成确定结果）与 §2.5（零支持与模型不充分不是可被损失函数静默修复的噪声）",
+            "loss_participation": "excluded",
+            "loss_value": "not_computed",
+            "status": "frozen",
+            "unsupported_as_negative_sample": "forbidden",
+            "unsupported_as_target": "forbidden",
+            "unsupported_encoded_as_zero_state": "forbidden"
+          }
+        },
+        {
+          "source_file": "reports/xiaohongshu/post_05_support/BRIEF.md",
+          "fields": [
+            "Post 04 closing promise"
+          ],
+          "values": {
+            "quote": "不能入栈，不等于可以从证据记录中消失。"
+          }
+        }
+      ]
+    },
+    {
+      "file": "03_two_kinds_of_unseen.png",
+      "claim": "顶层互斥缺失事件中 passive=5980、active=7905703，线性比例约 1322 倍；不使用断轴或对数。",
+      "sources": [
+        {
+          "source_file": "evidence/observation-support-ledger-v1.json",
+          "fields": [
+            "deprivation_totals.additive",
+            "deprivation_totals.top_level_mutually_exclusive.passive",
+            "deprivation_totals.top_level_mutually_exclusive.active",
+            "per_acquisition[].deprivation.top_level_mutually_exclusive_counts"
+          ],
+          "values": {
+            "passive": 5980,
+            "active": 7905703,
+            "passive_plus_active": 7911683,
+            "active_div_passive_rounded": 1322
+          }
+        }
+      ]
+    },
+    {
+      "file": "04_falsifiable_attribution.png",
+      "claim": "qa_rejected 归因受源码硬校验约束：必要证据 QA-clear 必须为 0，否则审计失败并停止发布；保留失败原因标注证据边界，但不让无支持记录参与当前拟合。",
+      "sources": [
+        {
+          "source_file": "scripts/build_observation_evidence_v1.py",
+          "fields": [
+            "lines 468-472"
+          ],
+          "values": {
+            "exact_lines": [
+              "        if dominant == \"qa_rejected\" and member[\"qa_clear_support_count\"] != 0:",
+              "            raise SystemExit(",
+              "                f\"stop: {member['short_product_id']} 归因为 qa_rejected 但 \"",
+              "                f\"qa_clear_support_count = {member['qa_clear_support_count']} ≠ 0\"",
+              "            )"
+            ]
+          }
+        },
+        {
+          "source_file": "evidence/stage-7.2-direct-only-input-view-v1.json",
+          "fields": [
+            "unsupported_records[].qa_clear_support_count",
+            "unsupported_records[].deprivation_kind",
+            "unsupported_records[].deprivation_detail"
+          ],
+          "values": {
+            "records": [
+              {
+                "order": 3,
+                "date": "2023-02-02",
+                "qa_clear_support_count": 0,
+                "deprivation_kind": "active",
+                "deprivation_detail": "qa_rejected"
+              },
+              {
+                "order": 10,
+                "date": "2023-06-10",
+                "qa_clear_support_count": 0,
+                "deprivation_kind": "active",
+                "deprivation_detail": "qa_rejected"
+              },
+              {
+                "order": 12,
+                "date": "2023-07-12",
+                "qa_clear_support_count": 0,
+                "deprivation_kind": "active",
+                "deprivation_detail": "qa_rejected"
+              }
+            ]
+          }
+        },
+        {
+          "source_file": "evidence/observation-support-ledger-v1.json",
+          "fields": [
+            "deprivation_totals.top_level_mutually_exclusive"
+          ],
+          "values": {
+            "active_share_of_top_level_deprivation_percent": 99.92
+          }
+        },
+        {
+          "source_file": "evidence/observation-evidence-manifest-v1.json",
+          "fields": [
+            "training_semantics"
+          ],
+          "values": {
+            "authority": "docs/architecture.md v3 §1.2（不得为输出完整图面把无支持区域涂成确定结果）与 §2.5（零支持与模型不充分不是可被损失函数静默修复的噪声）",
+            "loss_participation": "excluded",
+            "loss_value": "not_computed",
+            "status": "frozen",
+            "unsupported_as_negative_sample": "forbidden",
+            "unsupported_as_target": "forbidden",
+            "unsupported_encoded_as_zero_state": "forbidden"
+          }
+        },
+        {
+          "source_file": "reports/xiaohongshu/post_05_support/BRIEF.md",
+          "fields": [
+            "04 half-answer and mandatory rigor note"
+          ],
+          "values": {
+            "answers_only_half": true
+          }
+        }
+      ]
+    }
+  ]
+}

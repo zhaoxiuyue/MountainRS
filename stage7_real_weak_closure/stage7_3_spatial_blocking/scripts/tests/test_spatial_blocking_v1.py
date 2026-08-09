@@ -240,6 +240,31 @@ class DescriptiveScoringTest(unittest.TestCase):
         self.assertIn("combined_risk_stress", boundary["sampling_bias"])
         self.assertIn("不构成独立样本", boundary["independence"])
 
+    def test_input_members_verified_fail_closed_before_read(self):
+        """执行器直接读 observation stack 的字节，读之前必须先验明身份，否则生成链不自证。"""
+        for payload in (self.ledger, self.summary):
+            with self.subTest(artifact=payload["schema"]):
+                verification = payload["input_member_verification"]
+                self.assertEqual(verification["policy"], "fail_closed_before_read")
+                self.assertEqual(verification["verified_member_count"], EXPECTED_ACQUISITIONS)
+                self.assertEqual(len(verification["members"]), EXPECTED_ACQUISITIONS)
+                self.assertEqual(
+                    verification["authority"]["field"], "members[].member_sha256"
+                )
+                for member in verification["members"]:
+                    self.assertRegex(member["sha256"], r"^[0-9a-f]{64}$")
+
+    def test_report_core_gap_count_matches_manifest(self):
+        """报告里「距离为 0 的 core 对数」必须与 topology manifest 一致（曾出现事实漂移）。"""
+        topology = read(TOPOLOGY)
+        zero_pairs = [p for p in topology["pairwise_cores"] if p["core_to_core_distance_m"] == 0.0]
+        zero_folds = [f for f in topology["folds"] if f["nearest_other_core_distance_m"] == 0.0]
+        self.assertEqual(len(zero_pairs), 1)
+        self.assertEqual(len(zero_folds), 2)
+        report = (STAGE_ROOT / "reports/spatial-blocking-report-v1.md").read_text(encoding="utf-8")
+        self.assertIn("恰有一对", report)
+        self.assertNotIn("其中两对 core 距离为 0", report)
+
     def test_upstream_freeze_untouched(self):
         for payload in (self.ledger, self.summary):
             boundary = payload["boundary"]

@@ -20,6 +20,7 @@
   "approved_by_owner_on": "2026-08-09",
   "closes_gap": "G1",
   "decision": "不补 safe/transition 具名物理分区。三项证据：①上游仅在 calibration-contract-v1.md:110 提及一次且属提及非定义；②lit 内部 μ 分布连续单峰无断点（order 1 的 p05→p50→p95 = 0.144→0.608→0.930）；③同一绝对阈值跨景含义不同（μ∈(0.1,0.3] 占 lit：order 1 为 20.9%、order 10 仅 1.4%，差异主要来自太阳高度角）。强补会得到看似 preregistered 实则任意的阈值，而该标签会为弱依据背书。",
+  "path_base": "node_container_root",
   "relative_path": "docs/stratification-subprotocol-v1.md",
   "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804",
   "status": "frozen"
@@ -57,6 +58,15 @@
    "suggested_resolution": "在 active 后的第一动作即冻结风险代理配置，并在冻结件中显式声明「冻结时点早于本节点任何一次 residual 读取」；或在 planned 状态即完成该冻结。同时应记录：本 pre-flight 未读取任何 residual 数值，只统计了 scored/not_scored 的单元计数。"
   }
  ],
+ "path_base_declaration": {
+  "bases": {
+   "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/",
+   "repository_root": "仓库根，即 git 工作树根目录",
+   "work_package_root": "stage7_real_weak_closure/"
+  },
+  "required_because": "同一 manifest 内混用三种基准会使通用执行器无法按单一规则复核全部引用（Stage 7.3 只读审计指出）。",
+  "rule": "每条引用必带 path_base 字段；解析时以该字段指定的基准拼接 relative_path，不得跨基准猜测。"
+ },
  "read_scope_compliance": {
   "not_read": [
    "任何 residual 数值",
@@ -95,74 +105,92 @@
  "schema": "mountainrs-stage7.4-activation-preflight-manifest-v1",
  "upstream_binding": {
   "architecture_v3_1": {
-   "relative_path": "../docs/architecture.md",
+   "path_base": "repository_root",
+   "relative_path": "docs/architecture.md",
    "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
   },
   "stage_7_0_baseline_spec": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
    "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
   },
   "stage_7_0_evaluation_protocol": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
    "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
   },
   "stage_7_1r_observation_evidence_manifest": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
    "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
   },
   "stage_7_1r_support_ledger": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
    "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d"
   },
   "stage_7_1r_validity_support_schema_v1": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
    "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
   },
   "stage_7_2_calibration_contract": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
    "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
   },
   "stage_7_2_cos_i_registry": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
    "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
   },
   "stage_7_2_direct_only_input_view": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
    "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da"
   },
   "stage_7_2_fold_safe_alpha_rule": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
    "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
   },
   "stage_7_2_mconf_registry": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
    "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae"
   },
   "stage_7_2_mconf_subprotocol": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
    "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
   },
   "stage_7_2_support_loss_ledger": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
    "sha256": "47620f22776234065bcc0420e604cb2cff805f7011c2d2c73a3852bf3701d136"
   },
   "stage_7_2_validity_support_schema_v2": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
    "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
   },
   "stage_7_3_core_topology_subprotocol": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
    "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
   },
   "stage_7_3_fold_alpha_leakage_ledger": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
-   "sha256": "830bb4bd3677563d4b5c9ade88741e240d75a66d42964cedddc134d0b1c8db11"
+   "sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef"
   },
   "stage_7_3_residual_summary": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
-   "sha256": "d3571659fed2402b15b929f70b4e2ee243d13cb5999bf76e39b1ba9a54f40060"
+   "sha256": "216821ac25b4004fe90b3f4b4f5bf26ef924cd3740c2a1c0488d5851fbf3d992"
   },
   "stage_7_3_topology_manifest": {
+   "path_base": "work_package_root",
    "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
    "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
   }
