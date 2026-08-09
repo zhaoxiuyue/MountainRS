@@ -1,0 +1,192 @@
+{
+  "schema": "mountainrs-stage7.4-result-blind-declaration-v1",
+  "status": "frozen",
+  "version": 1,
+  "recorded_on": "2026-08-09",
+  "recorded_on_semantics": {
+    "type": "calendar_date_only",
+    "timezone": "Asia/Shanghai",
+    "intra_day_time_claimed": false
+  },
+  "identity": {
+    "project_id": "proj_6cbeea3266ff",
+    "route_id": "rt_f634f0ab72fb",
+    "stage_7_3_node_id": "nd_38d128c40d90",
+    "stage_7_4_node_id": "nd_095e71a9eccf",
+    "method_pack": "M2_guarded_5pct_v3",
+    "recovery_cycle": "R1_controlled_recovery"
+  },
+  "governance": {
+    "owner_decision_receipt": "rc_a7fb4eb449b6",
+    "owner_decision_route_revision": {
+      "before": 69,
+      "after": 70
+    },
+    "project_rule_id": "pr_d4a37fa568df",
+    "project_rule_revision": 2,
+    "project_rule_receipt": "rc_b40e7b5ee356",
+    "result_blind_timing": "protocol/config completed bytes freeze after cross-audit pass and PF3 readback, but before any protected result read"
+  },
+  "original_activation_and_first_action_anchor": {
+    "activation_receipt": "rc_b9bb7bb94549",
+    "activation_route_revision": {
+      "before": 68,
+      "after": 69
+    },
+    "observed_first_local_patch": {
+      "protocol_v1": {
+        "path_base": "node_container_root",
+        "relative_path": "docs/risk-proxy-protocol-v1.md",
+        "sha256": "8db947b702e6e8d9c2e4e40e7366003e81489fdcb6ff0420a35d1bf6d49c7996"
+      },
+      "config_v1": {
+        "path_base": "node_container_root",
+        "relative_path": "configs/risk-proxy-config-v1.json",
+        "sha256": "d2bd3aaae288a67fc5ee214217cb10f1b888993f05b6a1d6868969976567b719"
+      },
+      "same_apply_patch_observed": true,
+      "semantic_effect_under_rule_revision_2": "freezes only the result-blind declaration and upstream path/hash snapshot; does not validate or freeze v1 protocol/config content"
+    }
+  },
+  "declaration": {
+    "stage_7_3_reports_opened_or_searched": false,
+    "stage_7_3_outputs_opened_or_searched": false,
+    "stage_7_3_residual_alpha_or_score_values_read": false,
+    "stage_7_3_result_assets_used_only_as_opaque_path_hash_bindings": true,
+    "stage_7_3_fitter_executed": false,
+    "stage_7_4_experiment_executed": false,
+    "result_dependent_protocol_choice_made": false
+  },
+  "path_bases": {
+    "repository_root": "repository git worktree root",
+    "work_package_root": "stage7_real_weak_closure/",
+    "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "upstream_bindings": {
+    "architecture_v3_1": {
+      "path_base": "repository_root",
+      "relative_path": "docs/architecture.md",
+      "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+    },
+    "stage_7_0_baseline_spec": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+      "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+    },
+    "stage_7_0_evaluation_protocol": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+      "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+    },
+    "stage_7_1r_observation_evidence_manifest": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+      "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
+    },
+    "stage_7_1r_support_ledger": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
+      "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d"
+    },
+    "stage_7_1r_validity_support_schema_v1": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+      "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+    },
+    "stage_7_2_calibration_contract": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+      "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+    },
+    "stage_7_2_cos_i_registry": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+      "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+    },
+    "stage_7_2_direct_only_input_view": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
+      "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da"
+    },
+    "stage_7_2_fold_safe_alpha_rule": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+      "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+    },
+    "stage_7_2_mconf_registry": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+      "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae"
+    },
+    "stage_7_2_mconf_subprotocol": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+      "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+    },
+    "stage_7_2_support_loss_ledger": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
+      "sha256": "47620f22776234065bcc0420e604cb2cff805f7011c2d2c73a3852bf3701d136"
+    },
+    "stage_7_2_validity_support_schema_v2": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
+      "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+    },
+    "stage_7_3_core_topology_subprotocol": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+      "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+    },
+    "stage_7_3_fold_alpha_leakage_ledger": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+      "sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+      "read_policy": "opaque_hash_only_until_freeze_complete"
+    },
+    "stage_7_3_residual_summary": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+      "sha256": "216821ac25b4004fe90b3f4b4f5bf26ef924cd3740c2a1c0488d5851fbf3d992",
+      "read_policy": "opaque_hash_only_until_freeze_complete"
+    },
+    "stage_7_3_topology_manifest": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+      "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+    },
+    "stage_7_3_spatial_blocking_report": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md",
+      "sha256": "244846f9589006edbbe093dc9c052f918af96e8c43ec08727a0586f0a1f169f3",
+      "read_policy": "opaque_hash_only_until_freeze_complete"
+    },
+    "stage_7_3_geometric_feasibility_audit": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/evidence/geometric-feasibility-audit-v1.json",
+      "sha256": "d35f228fd1e67ed09a546a972b457a01c9da21b34c5a70e70c8f20e652474310"
+    },
+    "stage_7_3_activation_preflight_v1": {
+      "path_base": "work_package_root",
+      "relative_path": "stage7_3_spatial_blocking/evidence/preflight-manifest-v1.json",
+      "sha256": "f13a8f9a0e58f418989a7fecdf8072a6eff9d2709e9c608bb68b4c3ca8e056e9"
+    },
+    "stage_7_4_stratification_subprotocol": {
+      "path_base": "node_container_root",
+      "relative_path": "docs/stratification-subprotocol-v1.md",
+      "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+    }
+  },
+  "verification": {
+    "upstream_binding_count": 22,
+    "upstream_paths_unique": true,
+    "path_and_sha256_check": "pending_completed_byte_recheck_before_PF3_writeback",
+    "protected_result_content_rendered": false
+  },
+  "boundary": {
+    "freezes_protocol_or_config_content": false,
+    "authorizes_result_access": false,
+    "authorizes_experiment_execution": false,
+    "next_action": "compile the only preflight-v9 and final protocol-v2/config-v2 candidates result-blind; run one cross-audit; freeze and PF3-read-back before any protected result read"
+  }
+}
