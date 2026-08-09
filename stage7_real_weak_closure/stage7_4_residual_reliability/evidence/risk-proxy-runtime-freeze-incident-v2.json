@@ -1,0 +1,171 @@
+{
+  "schema": "mountainrs-stage7.4-risk-proxy-runtime-freeze-incident-v2",
+  "status": "blocked_before_result_access",
+  "version": 2,
+  "supersedes": {
+    "artifact_id": "mountainrs-stage7.4-risk-proxy-runtime-freeze-incident-v1",
+    "path_base": "node_container_root",
+    "relative_path": "evidence/risk-proxy-runtime-freeze-incident-v1.json",
+    "sha256": "450a64a5355ff05a3a72e7dac227cf7b4dbb963837ac6ffa33c61ca911930a84",
+    "predecessor_byte_policy": "preserve_unchanged"
+  },
+  "corrections_from_v1": [
+    "declare an explicit path base for every local binding",
+    "bound what the observed one-apply-patch trace can and cannot prove",
+    "separate the mechanical T=0 code conflict from the owner-governed numeric-equal bit-distinct branch",
+    "require owner direction for semantic supersession as well as PF3 rollback or reactivation"
+  ],
+  "recorded_on": "2026-08-09",
+  "recorded_on_semantics": {
+    "type": "calendar_date_only",
+    "timezone": "Asia/Shanghai",
+    "intra_day_time_claimed": false
+  },
+  "path_bases": {
+    "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "identity": {
+    "project_id": "proj_6cbeea3266ff",
+    "route_id": "rt_f634f0ab72fb",
+    "stage_7_3_node_id": "nd_38d128c40d90",
+    "stage_7_4_node_id": "nd_095e71a9eccf",
+    "method_pack": "M2_guarded_5pct_v3"
+  },
+  "live_pf3_readback_at_detection": {
+    "route_revision": 69,
+    "stage_7_3_state": "done",
+    "stage_7_4_state": "active",
+    "activation_receipt": "rc_b9bb7bb94549",
+    "activation_receipt_before_revision": 68,
+    "activation_receipt_after_revision": 69,
+    "activation_receipt_undone_by": null
+  },
+  "subject_bundle": {
+    "preflight_v8": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/preflight-manifest-v8.json",
+      "sha256": "872146918cd83017d7a31a110c2ab921930f93c6b2a7c0e5c520c97447da966a"
+    },
+    "method_decision_v3": {
+      "path_base": "node_container_root",
+      "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+      "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+    },
+    "protocol_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "docs/risk-proxy-protocol-v1.md",
+      "sha256": "8db947b702e6e8d9c2e4e40e7366003e81489fdcb6ff0420a35d1bf6d49c7996",
+      "byte_policy": "frozen_do_not_modify"
+    },
+    "config_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "configs/risk-proxy-config-v1.json",
+      "sha256": "d2bd3aaae288a67fc5ee214217cb10f1b888993f05b6a1d6868969976567b719",
+      "byte_policy": "frozen_do_not_modify"
+    },
+    "freeze_audit_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/risk-proxy-runtime-freeze-audit-v1.json",
+      "sha256": "a159b9ab4369d1467fd72c0b4dde8c94e393619f39083ca955dac0c901e58c9d",
+      "validation_claim": "invalidated_by_this_incident"
+    }
+  },
+  "blocking_findings": [
+    {
+      "id": "T_ZERO_CODE_NOT_UNIQUELY_COMPILED",
+      "authority_terminal_code": "protocol_error_zero_core_total",
+      "protocol_reason_closed_set_member": "zero_core_total_pixel_count",
+      "protocol_coverage_terminal_code": "protocol_error_zero_core_total",
+      "config_reason_closed_set_member": "zero_core_total_pixel_count",
+      "config_T_zero_action": "protocol_error_zero_core_total_pixel_count",
+      "effect": "three byte-distinct encodings exist and config_T_zero_action is outside the config reason closed set",
+      "governance_class": "mechanical conflict against an explicit decision-v3 terminal code"
+    },
+    {
+      "id": "NUMERIC_EQUAL_BIT_DISTINCT_BRANCH_NOT_UNIQUELY_GOVERNED",
+      "protocol_and_reason_set_value": "numeric_equal_bit_distinct_proxy_order_undefined",
+      "config_action": "protocol_error_numeric_equal_bit_distinct_proxy_order_undefined",
+      "proven_code_conflict": "config_action is outside the protocol/config reason closed set",
+      "semantic_ambiguity": [
+        "the fail-closed branch may be read as a deterministic consequence of bit-exact ties, no secondary sort and no default",
+        "the fail-closed branch may instead be a new data-dependent execution stop predicate because decision v3 and preflight v8 do not state it verbatim"
+      ],
+      "governance_effect": "retain, remove or rename this branch only after owner or contract-authoritative clarification"
+    },
+    {
+      "id": "FREEZE_AUDIT_V1_FALSE_PASS",
+      "invalidated_claims": [
+        "validation.closed_set_checks.protocol_error_reasons=pass",
+        "validation.cross_artifact_checks.tie_missing_and_protocol_error=pass",
+        "validation.cross_artifact_checks.defaults_placeholders_or_future_substantive_choices=none",
+        "runtime_freeze_status=frozen_and_validated",
+        "verdict.runtime_freeze_valid=true",
+        "open_gaps=[]"
+      ]
+    }
+  ],
+  "single_change_set_evidence_boundary": {
+    "orchestrating_session_observed_tool_trace": "one apply_patch added protocol-v1 and config-v1 together",
+    "filesystem_corroboration": "both targets have matching birth/mtime/ctime second and adjacent inode numbers; no third target was created in that directory at that second",
+    "self_contained_action_receipt_inside_bundle": false,
+    "what_this_supports": "the two local targets were added in one observed patch change set",
+    "what_this_does_not_prove_alone": [
+      "that the patch was the first non-read-only action after activation",
+      "PF3 lifecycle chronology",
+      "absence of prior result access",
+      "protocol/config semantic validity"
+    ],
+    "effect_on_incident": "the content and cross-artifact validation are invalid; the limited same-patch fact is neither erased nor sufficient to restore Clause 6"
+  },
+  "independent_audit_consensus": {
+    "root_mechanical_check": "blocked",
+    "result_blind_method_audit": "blocked",
+    "result_blind_runtime_audit": "blocked",
+    "result_blind_quality_audit": "blocked",
+    "upstream_binding_path_and_hash_checks": "pass_all_22",
+    "M2_grid_AURC_coverage_and_output_mechanics_excluding_the_listed_blockers": "pass",
+    "six_logical_outputs": "pass",
+    "receipt_chain_and_live_state": "pass_at_route_revision_69"
+  },
+  "preflight_v8_stop_condition_triggered": "protocol/config disagree, a closed set is violated, and a branch requires an unrecorded substantive executor choice",
+  "governance_effect": {
+    "protocol_v1_or_config_v1_may_be_overwritten": false,
+    "freeze_audit_v1_may_be_used_as_acceptance_evidence": false,
+    "risk_proxy_runtime_freeze_complete": false,
+    "Stage_7_3_result_value_access_authorized": false,
+    "Stage_7_4_experiment_execution_authorized": false,
+    "silent_v2_authorized": false,
+    "M2_owner_choice_invalidated": false
+  },
+  "recovery_gate": {
+    "owner_direction_required": true,
+    "owner_direction_scope": [
+      "numeric-equal bit-distinct collision behavior",
+      "append-only protocol/config supersession",
+      "PF3 rollback or controlled reactivation lifecycle",
+      "the new first-active-action anchor"
+    ],
+    "required_before_any_result_access": "a newly approved, result-blind, append-only recovery cycle must restore a unique machine mapping and the Clause 6 first-active-action invariant",
+    "must_include": [
+      "new result-blind preflight defining lifecycle recovery",
+      "explicit supersession without modifying any v1 bytes",
+      "T=0 mapping that exactly honors method decision v3",
+      "owner-resolved numeric-equal bit-distinct behavior",
+      "independent cross-artifact audit",
+      "PF3 evidence writeback and readback"
+    ]
+  },
+  "result_blind_compliance": {
+    "stage_7_3_reports_opened_or_searched": false,
+    "stage_7_3_outputs_opened_or_searched": false,
+    "stage_7_3_residual_alpha_or_score_values_read": false,
+    "stage_7_3_fitter_executed": false,
+    "stage_7_4_experiment_executed": false
+  },
+  "open_gaps": [
+    "runtime freeze is not valid",
+    "numeric-equal bit-distinct collision behavior lacks owner or contract-authoritative resolution",
+    "Clause 6 first-active-action invariant has not been restored",
+    "PF3 still states protocol/config are pending and must remain unchanged until an owner-approved recovery cycle"
+  ]
+}

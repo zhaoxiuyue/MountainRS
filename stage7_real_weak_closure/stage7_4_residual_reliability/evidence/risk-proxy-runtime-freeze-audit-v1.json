@@ -1,0 +1,183 @@
+{
+ "schema": "mountainrs-stage7.4-risk-proxy-runtime-freeze-audit-v1",
+ "status": "pass",
+ "runtime_freeze_status": "frozen_and_validated",
+ "recorded_on": "2026-08-09",
+ "recorded_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "intra_day_timestamp_claimed": false,
+  "ordering_evidence": "PF3 receipt revision chain, live state readback, target-absence precheck, one-change-set creation and post-creation completed-byte hashes"
+ },
+ "authority": {
+  "preflight_v8": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v8.json",
+   "sha256": "872146918cd83017d7a31a110c2ab921930f93c6b2a7c0e5c520c97447da966a"
+  },
+  "method_decision_v3": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+   "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+  },
+  "high_level_decision_v2": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v2.md",
+   "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+  }
+ },
+ "pf3_ordering": {
+  "project_id": "proj_6cbeea3266ff",
+  "project_revision": 1,
+  "route_id": "rt_f634f0ab72fb",
+  "live_route_revision_before_and_after_local_freeze": 69,
+  "stage_7_3": {
+   "node_id": "nd_38d128c40d90",
+   "state": "done"
+  },
+  "stage_7_4": {
+   "node_id": "nd_095e71a9eccf",
+   "state": "active"
+  },
+  "receipt_chain": [
+   {
+    "role": "M2_decision",
+    "receipt_id": "rc_e47f614a7190",
+    "before_revision": 65,
+    "after_revision": 66,
+    "undone_by": null
+   },
+   {
+    "role": "activation_preflight_ready_write",
+    "receipt_id": "rc_8f3395bf3f10",
+    "before_revision": 66,
+    "after_revision": 67,
+    "undone_by": null
+   },
+   {
+    "role": "stage_7_3_close",
+    "receipt_id": "rc_9fc3d051cf7c",
+    "before_revision": 67,
+    "after_revision": 68,
+    "undone_by": null
+   },
+   {
+    "role": "stage_7_4_activation",
+    "receipt_id": "rc_b9bb7bb94549",
+    "before_revision": 68,
+    "after_revision": 69,
+    "undone_by": null
+   }
+  ],
+  "receipt_chain_contiguous": true,
+  "live_current_revision_equals_activation_after_revision": true,
+  "project_rule_id": "pr_d4a37fa568df",
+  "project_rule_revision": 1,
+  "contract_revision_receipt": "rc_925cc8885871"
+ },
+ "first_action_creation": {
+  "pre_creation_target_absence_verified": true,
+  "creation_mechanism": "one_apply_patch_change_set",
+  "files_created_in_first_action_count": 2,
+  "files_created_in_first_action": [
+   {
+    "artifact_id": "stage7.4-risk-proxy-protocol-v1",
+    "path_base": "node_container_root",
+    "relative_path": "docs/risk-proxy-protocol-v1.md",
+    "sha256": "8db947b702e6e8d9c2e4e40e7366003e81489fdcb6ff0420a35d1bf6d49c7996",
+    "status": "frozen"
+   },
+   {
+    "artifact_id": "stage7.4-risk-proxy-config-v1",
+    "path_base": "node_container_root",
+    "relative_path": "configs/risk-proxy-config-v1.json",
+    "sha256": "d2bd3aaae288a67fc5ee214217cb10f1b888993f05b6a1d6868969976567b719",
+    "status": "frozen",
+    "schema": "mountainrs-stage7.4-risk-proxy-config-v1"
+   }
+  ],
+  "other_file_created_in_first_action": false,
+  "predecessor_or_existing_file_modified": false,
+  "protocol_and_config_created_after_activation": true,
+  "protocol_and_config_created_before_any_stage_7_3_result_value_read": true,
+  "protocol_and_config_frozen_together": true
+ },
+ "validation": {
+  "config_json_parse": "pass",
+  "config_status_and_identity": "pass",
+  "preflight_v8_hash": "pass",
+  "decision_v3_hash": "pass",
+  "high_level_decision_v2_hash": "pass",
+  "upstream_binding_count": 22,
+  "upstream_binding_semantics": "preflight-v8 Clause 1 union of 21 plus frozen Stage 7.4 stratification subprotocol",
+  "upstream_paths_unique": true,
+  "upstream_path_and_sha256_check": "pass_all_22",
+  "opaque_result_asset_hash_checks": "pass_without_rendering_content",
+  "live_pf3_project_route_node_and_receipt_readback": "pass",
+  "closed_set_checks": {
+   "unit_gate_states_and_reasons": "pass",
+   "forbidden_fallbacks": "pass",
+   "protocol_error_reasons": "pass",
+   "five_strata": "pass",
+   "four_curve_scopes_and_roles": "pass",
+   "fixed_grid_status_and_reasons": "pass",
+   "four_curve_shapes": "pass",
+   "five_pf3_verdicts": "pass",
+   "six_logical_outputs": "pass"
+  },
+  "numeric_and_rational_checks": {
+   "M2_N_scored_min": 271,
+   "M2_accepted_n_min": 271,
+   "minimum_unique_admissible_and_canonical_points": 3,
+   "fixed_grid_exact_targets": "k/20 for k=1..20",
+   "fixed_grid_integer_comparison": "20*A_j<=k*D",
+   "tau_score_formula": "pass",
+   "tau_outcome_formula": "pass",
+   "AURC_formula_span_and_domain": "pass",
+   "coverage_integer_order_and_product_identities": "pass"
+  },
+  "cross_artifact_checks": {
+   "authority_and_receipts": "pass",
+   "unit_gate_and_reason_closed_sets": "pass",
+   "scoreable_mask_residual_risk_and_proxy": "pass",
+   "tie_missing_and_protocol_error": "pass",
+   "coverage_strata_scopes_grid_AURC_and_verdict": "pass",
+   "aggregation_and_output_paths": "pass",
+   "defaults_placeholders_or_future_substantive_choices": "none"
+  },
+  "completed_byte_hashes_computed": true
+ },
+ "result_blind_compliance": {
+  "stage_7_3_reports_opened_or_searched": false,
+  "stage_7_3_outputs_opened_or_searched": false,
+  "stage_7_3_residual_alpha_or_score_values_read": false,
+  "stage_7_3_result_assets_used_only_as_opaque_path_hash_bindings": true,
+  "stage_7_3_fitter_executed": false,
+  "stage_7_4_experiment_executed": false,
+  "PF3_write_or_state_transition_executed_during_local_freeze": false,
+  "git_commit_created": false
+ },
+ "runtime_boundary_after_audit": {
+  "risk_proxy_protocol_frozen": true,
+  "risk_proxy_machine_config_frozen": true,
+  "runtime_freeze_pending_closed": true,
+  "result_access_performed": false,
+  "experiment_execution_performed": false,
+  "this_audit_is_not_experiment_authorization": true,
+  "future_execution_must_reverify": [
+   "both frozen artifact hashes",
+   "all input path/hash bindings",
+   "PF3 project/route/node identity and active state",
+   "closed-set and reconciliation stop conditions"
+  ]
+ },
+ "open_gaps": [],
+ "verdict": {
+  "runtime_freeze_valid": true,
+  "first_action_ordering_satisfied": true,
+  "result_blind_freeze_satisfied": true,
+  "protocol_config_cross_artifact_validation_passed": true,
+  "statement": "Stage 7.4 activation receipt 68->69 was read back before the two absent targets were created together as the first write action. Their completed bytes are frozen and hash-bound, all machine and cross-artifact checks pass, and no Stage 7.3 result value or experiment was accessed or run."
+ },
+ "self_hash_note": "This audit does not self-embed SHA-256; report its completed-byte hash externally."
+}

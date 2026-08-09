@@ -1,0 +1,119 @@
+{
+  "schema": "mountainrs-stage7.4-risk-proxy-runtime-freeze-incident-v1",
+  "status": "blocked_before_result_access",
+  "version": 1,
+  "recorded_on": "2026-08-09",
+  "recorded_on_semantics": {
+    "type": "calendar_date_only",
+    "timezone": "Asia/Shanghai",
+    "intra_day_time_claimed": false
+  },
+  "identity": {
+    "project_id": "proj_6cbeea3266ff",
+    "route_id": "rt_f634f0ab72fb",
+    "stage_7_3_node_id": "nd_38d128c40d90",
+    "stage_7_4_node_id": "nd_095e71a9eccf",
+    "method_pack": "M2_guarded_5pct_v3"
+  },
+  "live_pf3_readback_at_detection": {
+    "route_revision": 69,
+    "stage_7_3_state": "done",
+    "stage_7_4_state": "active",
+    "activation_receipt": "rc_b9bb7bb94549"
+  },
+  "subject_bundle": {
+    "preflight_v8": {
+      "relative_path": "evidence/preflight-manifest-v8.json",
+      "sha256": "872146918cd83017d7a31a110c2ab921930f93c6b2a7c0e5c520c97447da966a"
+    },
+    "method_decision_v3": {
+      "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+      "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+    },
+    "protocol_v1": {
+      "relative_path": "docs/risk-proxy-protocol-v1.md",
+      "sha256": "8db947b702e6e8d9c2e4e40e7366003e81489fdcb6ff0420a35d1bf6d49c7996",
+      "byte_policy": "frozen_do_not_modify"
+    },
+    "config_v1": {
+      "relative_path": "configs/risk-proxy-config-v1.json",
+      "sha256": "d2bd3aaae288a67fc5ee214217cb10f1b888993f05b6a1d6868969976567b719",
+      "byte_policy": "frozen_do_not_modify"
+    },
+    "freeze_audit_v1": {
+      "relative_path": "evidence/risk-proxy-runtime-freeze-audit-v1.json",
+      "sha256": "a159b9ab4369d1467fd72c0b4dde8c94e393619f39083ca955dac0c901e58c9d",
+      "validation_claim": "invalidated_by_this_incident"
+    }
+  },
+  "blocking_findings": [
+    {
+      "id": "T_ZERO_CODE_NOT_UNIQUELY_COMPILED",
+      "authority": "method decision v3 freezes protocol_error_zero_core_total",
+      "protocol_reason_closed_set": "zero_core_total_pixel_count",
+      "protocol_coverage_terminal_code": "protocol_error_zero_core_total",
+      "config_reason_closed_set": "zero_core_total_pixel_count",
+      "config_T_zero_action": "protocol_error_zero_core_total_pixel_count",
+      "effect": "three byte-distinct encodings exist and config_T_zero_action is outside the config reason closed set"
+    },
+    {
+      "id": "NUMERIC_EQUAL_BIT_DISTINCT_ACTION_OUTSIDE_REASON_CLOSED_SET",
+      "canonical_reason_in_protocol_and_config_set": "numeric_equal_bit_distinct_proxy_order_undefined",
+      "config_action": "protocol_error_numeric_equal_bit_distinct_proxy_order_undefined",
+      "effect": "the configured action is a second byte-distinct code not present in the reason closed set"
+    },
+    {
+      "id": "FREEZE_AUDIT_V1_FALSE_PASS",
+      "invalidated_claims": [
+        "validation.closed_set_checks.protocol_error_reasons=pass",
+        "validation.cross_artifact_checks.tie_missing_and_protocol_error=pass",
+        "validation.cross_artifact_checks.defaults_placeholders_or_future_substantive_choices=none",
+        "runtime_freeze_status=frozen_and_validated",
+        "verdict.runtime_freeze_valid=true",
+        "open_gaps=[]"
+      ]
+    }
+  ],
+  "independent_audit_consensus": {
+    "root_mechanical_check": "blocked",
+    "result_blind_method_audit": "blocked",
+    "result_blind_runtime_audit": "blocked",
+    "other_M2_semantics": "pass",
+    "upstream_binding_path_and_hash_checks": "pass_all_22",
+    "six_logical_outputs": "pass",
+    "receipt_chain_and_live_state": "pass_at_route_revision_69"
+  },
+  "preflight_v8_stop_condition_triggered": "protocol/config disagree or a closed set is violated",
+  "governance_effect": {
+    "protocol_v1_or_config_v1_may_be_overwritten": false,
+    "freeze_audit_v1_may_be_used_as_acceptance_evidence": false,
+    "risk_proxy_runtime_freeze_complete": false,
+    "Stage_7_3_result_value_access_authorized": false,
+    "Stage_7_4_experiment_execution_authorized": false,
+    "silent_v2_authorized": false,
+    "M2_owner_choice_invalidated": false
+  },
+  "recovery_gate": {
+    "required_before_any_result_access": "an explicitly governed append-only recovery cycle must restore a unique machine code mapping and the Clause 6 first-active-action invariant",
+    "must_include": [
+      "new result-blind preflight defining lifecycle recovery",
+      "explicit supersession without modifying any v1 bytes",
+      "canonical status/reason/terminal-code mapping compiled from method decision v3",
+      "independent cross-artifact audit",
+      "PF3 evidence writeback and readback"
+    ],
+    "owner_direction_required_before_state_rollback_or_reactivation": true
+  },
+  "result_blind_compliance": {
+    "stage_7_3_reports_opened_or_searched": false,
+    "stage_7_3_outputs_opened_or_searched": false,
+    "stage_7_3_residual_alpha_or_score_values_read": false,
+    "stage_7_3_fitter_executed": false,
+    "stage_7_4_experiment_executed": false
+  },
+  "open_gaps": [
+    "runtime freeze is not valid",
+    "Clause 6 first-active-action invariant has not been restored",
+    "PF3 still states protocol/config are pending until this incident is written back"
+  ]
+}
