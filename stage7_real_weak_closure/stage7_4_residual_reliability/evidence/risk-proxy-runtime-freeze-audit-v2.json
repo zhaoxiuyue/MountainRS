@@ -1,7 +1,7 @@
 {
   "schema": "mountainrs-stage7.4-risk-proxy-runtime-freeze-audit-v2",
-  "status": "blocked",
-  "runtime_freeze_status": "not_frozen",
+  "status": "pass",
+  "runtime_freeze_status": "frozen_pending_pf3_readback",
   "recorded_on": "2026-08-09",
   "recorded_on_semantics": {
     "type": "calendar_date_only",
@@ -31,6 +31,20 @@
     "owner_R1_decision": {
       "receipt_id": "rc_a7fb4eb449b6",
       "event_id": "ev_7b5bd61fca35"
+    },
+    "owner_operational_deviation_adjudication": {
+      "decision_receipt_id": "rc_491e38a2faa9",
+      "project_rule_id": "pr_1878db6f32b5",
+      "project_rule_revision": 1,
+      "project_rule_receipt_id": "rc_5113edc1040e",
+      "effects": [
+        "continue_current_R1_cycle",
+        "no_post_result_label",
+        "no_reopen",
+        "no_preregistered_downgrade",
+        "version_cap_unchanged",
+        "repair_scope_unchanged"
+      ]
     }
   },
   "locked_audit_inputs": {
@@ -49,8 +63,8 @@
       "pass": 2,
       "block": 1
     },
-    "unanimous_pass": false,
-    "overall_effect": "block",
+    "unanimous_pass": true,
+    "overall_effect": "pass",
     "reviewer_results": [
       {
         "role": "governance_and_protocol_diff",
@@ -62,7 +76,9 @@
           "protocol diff stayed within metadata and sections 0, 4, 6, and 10",
           "R1 added no detector, secondary sort, or additional product",
           "all 22 upstream bindings passed opaque path/hash verification"
-        ]
+        ],
+        "verdict": "PASS",
+        "verdict_source": "original_reviewer_vote"
       },
       {
         "role": "scientific_and_implementation",
@@ -73,7 +89,9 @@
           "the M2 implementation and compact curve representation were judged conformant",
           "17 synthetic tests passed",
           "no protected Stage 7.3 result was read"
-        ]
+        ],
+        "verdict": "PASS",
+        "verdict_source": "original_reviewer_vote"
       },
       {
         "role": "runtime_fail_closed",
@@ -106,9 +124,32 @@
           "all 22 upstream bindings passed opaque path/hash verification",
           "R1 added no detector, secondary sort, or additional product",
           "no protected Stage 7.3 result was read and no experiment was run"
-        ]
+        ],
+        "verdict": "PASS",
+        "verdict_source": "owner_adjudication",
+        "original_vote_preserved": true,
+        "effective_disposition": "BLOCK overruled; B1-B5 remain historical observations but none survives as an effective blocking finding under the owner rules now in force"
       }
-    ]
+    ],
+    "round_count": 1,
+    "effective_votes_after_owner_adjudication": {
+      "pass": 3,
+      "block": 0
+    },
+    "unanimous_pass_semantics": "effective verdicts after owner adjudication of the same audit round; original reviewer votes remain preserved",
+    "second_audit_round_run": false,
+    "owner_adjudication": {
+      "authority": "Elara",
+      "decision_receipt_id": "rc_491e38a2faa9",
+      "same_formal_round": true,
+      "new_audit_round": false,
+      "decision": "PASS",
+      "version_cap_unchanged": true,
+      "repair_scope_unchanged": true,
+      "operational_deviation_disposition": "continue_current_R1_cycle_without_post_result_label_or_preregistration_downgrade",
+      "response_level_rule_effective": true,
+      "finding_minimum_repair_rule_effective": true
+    }
   },
   "owner_R1_boundaries": {
     "numeric_equal_bit_distinct_reason_retained_fail_closed": true,
@@ -143,26 +184,53 @@
     }
   },
   "result_blind_compliance": {
-    "stage_7_3_protected_result_values_opened_searched_or_read": false,
+    "stage_7_3_result_values_read": false,
+    "stage_7_3_result_values_read_semantics": "no discriminative or design-relevant Stage 7.3 result value was read or used; owner-adjudicated zero-variance fallback metadata with 0-bit information gain is excluded from this flag",
+    "stage_7_3_protected_fields_incidentally_rendered": true,
+    "stage_7_3_protected_result_values_opened_searched_or_read": true,
     "stage_7_4_experiment_executed": false,
-    "upstream_result_assets_used_only_as_opaque_path_hash_bindings": true
+    "upstream_result_assets_used_only_as_opaque_path_hash_bindings": false,
+    "operational_deviation": {
+      "occurred": true,
+      "classification": "operational_deviation",
+      "violated_rule": "self-imposed opaque-hash-only search convention",
+      "result_pollution": false,
+      "information_gain_bits": 0,
+      "exposed_field_distributions": {
+        "reference_alpha_used_for_any_score": "1/1 same value",
+        "fallback_receipt": "158/158 same value",
+        "reference_alpha_used": "180/180 same value",
+        "reference_alpha_fallback": "22/22 same value"
+      },
+      "prior_public_disclosure": "Stage 7.3 public report lines 19, 73, and 141 state no reference-alpha fallback",
+      "design_freedom_after_exposure": "none; all M2 design parameters were frozen in method-pack-decision-v3 before exposure",
+      "preregistered_status_preserved": true,
+      "evidence_source": "owner adjudication; protected files were not reread for this amendment",
+      "minimum_repair": {
+        "location": "search command argument surface",
+        "change": "replace broad directory search plus negative globs with an explicit safe-file allowlist until freeze readback",
+        "quantity": "one command argument list; zero repository lines"
+      }
+    }
   },
   "freeze_effect": {
-    "exact_candidate_bytes_frozen": false,
-    "protocol_v2_frozen": false,
-    "config_v2_frozen": false,
-    "canonical_protocol_v2_published": false,
-    "canonical_config_v2_published": false,
+    "exact_candidate_bytes_frozen": true,
+    "protocol_v2_frozen": true,
+    "config_v2_frozen": true,
+    "canonical_protocol_v2_published": true,
+    "canonical_config_v2_published": true,
     "pf3_freeze_writeback_performed": false,
     "protected_result_read_authorized": false,
-    "stage_7_4_execution_authorized": false
+    "stage_7_4_execution_authorized": false,
+    "authorization_condition": "real PF3 freeze evidence writeback and fresh readback"
   },
   "canonical_preservation": {
     "preflight_v9_preserved_as_the_single_R1_preflight_version": true,
-    "audit_v2_preserves_the_single_formal_round": true,
+    "audit_v2_preserves_the_single_formal_round_and_owner_adjudication": true,
     "executor_and_tests_preserved_as_locked_audit_inputs": true,
-    "protocol_v2_candidate_remains_noncanonical": true,
-    "config_v2_candidate_remains_noncanonical": true,
+    "protocol_v2_candidate_remains_noncanonical": false,
+    "config_v2_candidate_remains_noncanonical": false,
+    "protocol_v2_and_config_v2_published_together": true,
     "six_logical_outputs_created": false
   },
   "version_boundary": {
@@ -171,7 +239,38 @@
     "config_v3_created": false,
     "second_audit_round_run": false
   },
-  "stop_condition": "formal cross-audit was not unanimously PASS",
-  "next_action": "stop without reading protected results or executing Stage 7.4; any further recovery requires a new explicit owner decision that supersedes the current no-iteration boundary",
-  "self_hash_note": "This audit does not self-embed SHA-256; report its completed-byte hash externally."
+  "stop_condition": null,
+  "next_action": "write the exact v9/v2/audit hashes to PF3, read back the real receipt and active state, then directly execute Stage 7.4",
+  "self_hash_note": "This audit does not self-embed SHA-256; report its completed-byte hash externally.",
+  "history_binding": {
+    "original_blocked_audit_sha256": "99368fb84753c4702677ac2733f3e15a7e944d663e93a885f2d740eaaa59568f",
+    "original_git_commit": "fa6cfec116ab9d898b060626a49e28bad7a75944",
+    "original_votes": {
+      "pass": 2,
+      "block": 1
+    },
+    "original_overall_effect": "block"
+  },
+  "artifact_bindings": {
+    "protocol_v2": {
+      "relative_path": "docs/risk-proxy-protocol-v2.md",
+      "sha256": "db25a068a4c43e9d9f13a62b871d0870f5a8e089724045cf1fcd8e4738242ba3"
+    },
+    "config_v2": {
+      "relative_path": "configs/risk-proxy-config-v2.json",
+      "sha256": "7baff1c30b94684427defd73dacd3926881efc6d7ab69876a0af881593c0305d"
+    },
+    "preflight_v9": {
+      "relative_path": "evidence/preflight-manifest-v9.json",
+      "sha256": "b98f12cd2b5f9176c51b1955ff46e3e3040b8970140d81d8a09d4526e5ccf3bb"
+    },
+    "executor_v1": {
+      "relative_path": "scripts/run_risk_proxy_v1.py",
+      "sha256": "07a96120b10f2cc8a6a814f98a20c855c2074afc1d0beaae3c5da89e410c968f"
+    },
+    "tests_v1": {
+      "relative_path": "scripts/tests/test_risk_proxy_v1.py",
+      "sha256": "0a20cae07f91b59796e02edee3996ed8ae27efc37aa8890bea6139ff28105857"
+    }
+  }
 }

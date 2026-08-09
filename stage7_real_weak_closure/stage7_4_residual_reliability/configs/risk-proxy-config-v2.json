@@ -1,0 +1,766 @@
+{
+ "schema": "mountainrs-stage7.4-risk-proxy-config-v2",
+ "status": "frozen",
+ "version": 2,
+ "frozen_on": "2026-08-09",
+ "frozen_on_semantics": {
+  "type": "calendar_date_only",
+  "timezone": "Asia/Shanghai",
+  "intra_day_time_claimed": false
+ },
+ "identity": {
+  "project_id": "proj_6cbeea3266ff",
+  "route_id": "rt_f634f0ab72fb",
+  "stage_7_3_node_id": "nd_38d128c40d90",
+  "stage_7_4_node_id": "nd_095e71a9eccf",
+  "high_level_option": "A_geometry_margin_diagnostic",
+  "method_pack": "M2_guarded_5pct_v3",
+  "protocol_artifact_id": "stage7.4-risk-proxy-protocol-v2",
+  "config_artifact_id": "stage7.4-risk-proxy-config-v2"
+ },
+ "lifecycle_freeze": {
+  "phase": "after_unanimous_single_cross_audit_before_protected_result_read",
+  "candidate_creation_is_freeze": false,
+  "first_action_freezes": "result_blind_declaration_and_upstream_path_hash_snapshot_only",
+  "result_blind_declaration": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/result-blind-declaration-v1.json",
+   "sha256": "b39dd6d585bd3142e9c4734efef002df33ddb99da40d765f063837cc4c9c783b",
+   "receipt_id": "rc_4561f3d19c6c",
+   "before_revision": 70,
+   "after_revision": 71,
+   "undone": false
+  },
+  "owner_R1_decision": {
+   "receipt_id": "rc_a7fb4eb449b6",
+   "before_revision": 69,
+   "after_revision": 70,
+   "undone": false
+  },
+  "stage_7_4_activation": {
+   "receipt_id": "rc_b9bb7bb94549",
+   "before_revision": 68,
+   "after_revision": 69,
+   "undone": false
+  },
+  "project_rule": {
+   "project_rule_id": "pr_d4a37fa568df",
+   "revision": 2,
+   "receipt_id": "rc_b40e7b5ee356"
+  },
+  "result_values_read_before_freeze": false,
+  "experiment_executed_before_freeze": false,
+  "cross_audit_gate": "unanimous_pass_exactly_one_round",
+  "completed_content_freeze_effect": "exact protocol-v2 and config-v2 bytes freeze only after the single cross-audit round unanimously passes",
+  "PF3_freeze_writeback_and_readback_required_before_result_access": true,
+  "on_audit_failure": "stop_without_v10_protocol_v3_or_config_v3"
+ },
+ "authority": {
+  "preflight_v9": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/preflight-manifest-v9.json",
+    "sha256": "b98f12cd2b5f9176c51b1955ff46e3e3040b8970140d81d8a09d4526e5ccf3bb"
+  },
+  "result_blind_declaration_v1": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/result-blind-declaration-v1.json",
+   "sha256": "b39dd6d585bd3142e9c4734efef002df33ddb99da40d765f063837cc4c9c783b"
+  },
+  "method_decision_v3": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+   "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+  },
+  "high_level_decision_v2": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-decision-request-v2.md",
+   "sha256": "1d792bb402fc45faa5c5452dbe60245f39d99122afb3a507a366082e6775c9ab"
+  },
+  "incident_v2": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/risk-proxy-runtime-freeze-incident-v2.json",
+   "sha256": "c1b331a859c82b009d6fa7e3df25a5ac32ab52fb237afa01c54831934531438c"
+  },
+  "runtime_freeze_audit": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/risk-proxy-runtime-freeze-audit-v2.json",
+   "sha256_binding": "provided by PF3 freeze evidence writeback/readback and required by executor"
+  },
+  "protocol": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/risk-proxy-protocol-v2.md"
+  }
+ },
+ "path_bases": {
+  "repository_root": "repository git worktree root",
+  "work_package_root": "stage7_real_weak_closure/",
+  "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+ },
+ "upstream_bindings": {
+  "architecture_v3_1": {
+   "path_base": "repository_root",
+   "relative_path": "docs/architecture.md",
+   "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+  },
+  "stage_7_0_baseline_spec": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+   "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+  },
+  "stage_7_0_evaluation_protocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+   "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+  },
+  "stage_7_1r_observation_evidence_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+   "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
+  },
+  "stage_7_1r_support_ledger": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
+   "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d"
+  },
+  "stage_7_1r_validity_support_schema_v1": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+   "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+  },
+  "stage_7_2_calibration_contract": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+   "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+  },
+  "stage_7_2_cos_i_registry": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+   "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+  },
+  "stage_7_2_direct_only_input_view": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
+   "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da"
+  },
+  "stage_7_2_fold_safe_alpha_rule": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+   "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+  },
+  "stage_7_2_mconf_registry": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+   "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae"
+  },
+  "stage_7_2_mconf_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+   "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+  },
+  "stage_7_2_support_loss_ledger": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
+   "sha256": "47620f22776234065bcc0420e604cb2cff805f7011c2d2c73a3852bf3701d136"
+  },
+  "stage_7_2_validity_support_schema_v2": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
+   "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+  },
+  "stage_7_3_core_topology_subprotocol": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+   "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+  },
+  "stage_7_3_fold_alpha_leakage_ledger": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+   "sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+   "read_policy": "opaque_hash_only_until_freeze_complete"
+  },
+  "stage_7_3_residual_summary": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+   "sha256": "216821ac25b4004fe90b3f4b4f5bf26ef924cd3740c2a1c0488d5851fbf3d992",
+   "read_policy": "opaque_hash_only_until_freeze_complete"
+  },
+  "stage_7_3_topology_manifest": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+   "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+  },
+  "stage_7_3_spatial_blocking_report": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md",
+   "sha256": "244846f9589006edbbe093dc9c052f918af96e8c43ec08727a0586f0a1f169f3",
+   "read_policy": "opaque_hash_only_until_freeze_complete"
+  },
+  "stage_7_3_geometric_feasibility_audit": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/geometric-feasibility-audit-v1.json",
+   "sha256": "d35f228fd1e67ed09a546a972b457a01c9da21b34c5a70e70c8f20e652474310"
+  },
+  "stage_7_3_activation_preflight_v1": {
+   "path_base": "work_package_root",
+   "relative_path": "stage7_3_spatial_blocking/evidence/preflight-manifest-v1.json",
+   "sha256": "f13a8f9a0e58f418989a7fecdf8072a6eff9d2709e9c608bb68b4c3ca8e056e9"
+  },
+  "stage_7_4_stratification_subprotocol": {
+   "path_base": "node_container_root",
+   "relative_path": "docs/stratification-subprotocol-v1.md",
+   "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+  }
+ },
+ "exposure_boundary": {
+  "train": {
+   "scored_units": 82,
+   "not_scored_units": 18
+  },
+  "validation": {
+   "scored_units": 30,
+   "not_scored_units": 0
+  },
+  "test": {
+   "scored_units": 34,
+   "not_scored_units": 16,
+   "residual_fully_exposed": true,
+   "independent_confirmation_claim_forbidden": true
+  },
+  "counts_are_metadata_not_residual_values": true,
+  "single_roi_non_independent_folds": true
+ },
+ "unit_gate": {
+  "unit_key": [
+   "acquisition",
+   "band",
+   "fold"
+  ],
+  "pass_predicate": "fold_safe_alpha_state == fitted AND scored_pixel_count > 0",
+  "state_closed_set": [
+   "scored",
+   "not_scored"
+  ],
+  "top_level_fail_reason_closed_set": [
+   "unsupported_calibration",
+   "no_supported_pixel_in_core"
+  ],
+  "unsupported_calibration_detail_reason_closed_set": [
+   "calibration_support_below_minimum",
+   "nonpositive_mu_squared_denominator"
+  ],
+  "unit_terminal_category_closed_set": [
+   "scored",
+   "unsupported_calibration",
+   "not_scored_no_supported_pixel"
+  ],
+  "forbidden_fallback_closed_set": [
+   "reference_alpha",
+   "default_alpha",
+   "imputation",
+   "intercept",
+   "diffuse_substitution",
+   "holdout_derived_repair"
+  ],
+  "failed_unit_produces_residual_mae_or_curve": false,
+  "failed_unit_retained_in_opportunity_ledger_and_counts": true,
+  "fallback_receipt_required": true
+ },
+ "scoreable_support": {
+  "mask": "core AND base_valid_land AND Mconf == 1",
+  "Mconf": {
+   "factor": "geometry_visibility",
+   "value_domain": [
+    0,
+    1
+   ],
+   "one_predicate": "cos_i is valid AND cos_i > 0.1",
+   "total_confidence": false,
+   "covers": "self_shadow_permission_only"
+  },
+  "unsupported_by_direct_only": {
+   "predicate": "core AND base_valid_land AND finite cos_i <= 0.1",
+   "behavior": "permanent_abstention",
+   "retained_in_base_valid_denominator": true,
+   "contributes_to_accepted_count_residual_or_mae": false
+  },
+  "not_evaluated_geometry": [
+   "cast_shadow",
+   "horizon_occlusion",
+   "view_occlusion",
+   "disocclusion",
+   "geometry_instability"
+  ]
+ },
+ "residual_and_risk": {
+  "mu_formula": "max(cos_i,0)",
+  "rho_hat_formula": "fold_specific_alpha*mu",
+  "residual_formula": "rho_hat-rho_obs",
+  "units": "dimensionless_scaled_surface_reflectance",
+  "risk_metric": "accepted_set_MAE",
+  "risk_formula": "mean(abs(residual_i)) over accepted scored pixels only",
+  "risk_definition_authority": [
+   "high_level_decision_v2",
+   "stage_7_0_evaluation_protocol"
+  ],
+  "risk_definition_authority_is_M2": false,
+  "refit_model": false,
+  "oracle_sorting": false
+ },
+ "risk_proxy": {
+  "expression": "1-cos_i",
+  "order": "ascending_low_first",
+  "raw_score_range": {
+   "population": "all finite scored supported per-pixel raw risk_proxy values in each curve scope",
+   "stage": "before point filtering and fixed-grid mapping",
+   "s_min": "min(raw_risk_proxy)",
+   "s_max": "max(raw_risk_proxy)",
+   "score_range": "s_max-s_min",
+   "rounding_quantization_binning_or_tie_collapse_before_range": false,
+   "zero_scored_values": "s_min/s_max/score_range are null and insufficient-support precedence applies"
+  }
+ },
+ "tie_policy": {
+  "identity": "storage_dtype_decoded_bit_pattern_equality_only",
+  "atomic_group_acceptance": true,
+  "epsilon_tie": false,
+  "rounding": false,
+  "secondary_sort": false,
+  "numeric_equal_bit_distinct_action": "numeric_equal_bit_distinct_proxy_order_undefined"
+ },
+ "protocol_error": {
+  "reason_closed_set": [
+   "identity_or_hash_mismatch",
+   "zero_core_total_pixel_count",
+   "count_order_violation",
+   "base_valid_land_cos_i_missing",
+   "base_valid_land_cos_i_nonfinite",
+   "base_valid_land_cos_i_outside_minus1_plus1",
+   "mconf_cos_i_inconsistency",
+   "supported_residual_nonfinite",
+   "numeric_equal_bit_distinct_proxy_order_undefined",
+   "strata_partition_failure",
+   "coverage_identity_failure",
+   "fixed_grid_invariant_failure",
+   "output_reconciliation_failure"
+  ],
+  "cos_i_check_domain": "core AND base_valid_land",
+  "outside_core_or_non_base_valid_is_cos_i_protocol_error": false,
+  "missing_imputation": false,
+  "effect": "stop_entire_execution_with_null_curve_shape_and_null_scientific_verdict"
+ },
+ "strata": {
+  "closed_set": [
+   "self_shadow",
+   "near_zero",
+   "mu_band_low",
+   "mu_band_mid",
+   "mu_band_high"
+  ],
+  "predicates": {
+   "self_shadow": "cos_i <= 0",
+   "near_zero": "0 < cos_i AND cos_i <= 0.1",
+   "mu_band_low": "0.1 < cos_i AND cos_i <= 0.4",
+   "mu_band_mid": "0.4 < cos_i AND cos_i <= 0.7",
+   "mu_band_high": "0.7 < cos_i AND cos_i <= 1.0"
+  },
+  "scored": [
+   "mu_band_low",
+   "mu_band_mid",
+   "mu_band_high"
+  ],
+  "by_design_unsupported": [
+   "self_shadow",
+   "near_zero"
+  ],
+  "per_acquisition_mutually_exclusive_and_exhaustive_on_finite_minus1_plus1": true,
+  "physical_risk_partition_claim": false
+ },
+ "curve_scopes": {
+  "closed_set": [
+   "unit_all_scored",
+   "mu_band_low",
+   "mu_band_mid",
+   "mu_band_high"
+  ],
+  "roles": {
+   "unit_all_scored": "primary",
+   "mu_band_low": "secondary",
+   "mu_band_mid": "secondary",
+   "mu_band_high": "secondary"
+  },
+  "independent_gate_per_scope": true,
+  "synthetic_unit_or_node_verdict": false
+ },
+ "coverage": {
+  "counts": {
+   "T": "core_total_pixel_count",
+   "D": "base_valid_land_count",
+   "S": "scored_pixel_count_per_scope",
+   "A_j": "accepted_pixel_count_per_scope_point"
+  },
+  "integer_order": "0<=A_j<=S<=D<=T",
+  "formulas": {
+   "evidence_support_coverage": "D/T",
+   "scoring_coverage": "S/D",
+   "selective_prediction_coverage": "A_j/D",
+   "acceptance_given_scored": "A_j/S"
+  },
+  "canonical_selective_field": "selective_prediction_coverage",
+  "allowed_alias": {
+   "name": "selective_coverage",
+   "alias_of": "selective_prediction_coverage",
+   "exact_value_and_null_identity_required": true
+  },
+  "zero_denominators": {
+   "T_zero": "zero_core_total_pixel_count",
+   "D_zero": "typed_not_scored; evidence_support_coverage=0; D-based ratios null; zero_base_valid_land_denominator",
+   "S_zero": "scoring_coverage=0; selective_prediction_coverage=0; acceptance_given_scored=null; zero_scored_denominator"
+  },
+  "integer_product_identities": [
+   "(D/T)*(S/D)=S/T",
+   "(D/T)*(A_j/D)=A_j/T",
+   "A_j/D=(S/D)*(A_j/S) when S>0"
+  ],
+  "verify_by_integer_cross_multiplication_before_float_output": true,
+  "cross_band_addition": false,
+  "cross_unit_pixel_pooling": false,
+  "partition": {
+   "integer": "sum_h(S_h)=S_unit_all",
+   "coverage_when_D_positive": "sum_h(S_h/D)=S_unit_all/D",
+   "terminal_max": "max_selective_prediction_coverage_h=S_h/D only when terminal admissible A=S_h; otherwise null"
+  }
+ },
+ "M2_guards": {
+  "N_scored_min_per_scope": 271,
+  "accepted_n_min_per_admissible_exact_point": 271,
+  "unique_proxy_values_min_per_scope": 3,
+  "admissible_exact_points_min_per_scope": 3,
+  "canonical_reachable_grid_points_min_per_scope": 3,
+  "statistical_threshold_or_independent_n": false
+ },
+ "fixed_grid": {
+  "target_denominator": 20,
+  "target_numerators": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20
+  ],
+  "comparison": "20*A_j<=k*D",
+  "piecewise": {
+   "J_zero": "all_unreachable_below_min_accepted_support",
+   "q_below_c1": "unreachable_below_min_accepted_support",
+   "q_above_cJ": "unreachable_above_max_reachable_coverage",
+   "q_inside_closed_interval": "j_star=max{j:c_j<=q}",
+   "q_equal_cJ": "maps_to_J_before_canonical_deduplication"
+  },
+  "record_fields": [
+   "target_q",
+   "status",
+   "exact_point_index",
+   "selective_prediction_coverage",
+   "reason",
+   "canonical_target_q"
+  ],
+  "status_closed_set": [
+   "reachable",
+   "unreachable",
+   "duplicate"
+  ],
+  "reachable_reason": null,
+  "duplicate_reason": "duplicate_exact_point",
+  "canonical_rule": "smallest q per exact_point_index is sole reachable; later q duplicate",
+  "unreachable_reason_closed_set": [
+   "below_min_accepted_support",
+   "above_max_reachable_coverage"
+  ],
+  "unreachable_null_fields": [
+   "exact_point_index",
+   "selective_prediction_coverage",
+   "canonical_target_q"
+  ],
+  "tie_split_interpolation_overrun_or_forward_fill": false
+ },
+ "tolerances": {
+  "tau_score": {
+   "absolute": 1e-12,
+   "relative": 1e-12,
+   "scale": "max(abs(s_min),abs(s_max))",
+   "formula": "1e-12+1e-12*max(abs(s_min),abs(s_max))"
+  },
+  "tau_outcome": {
+   "absolute": 1e-12,
+   "relative": 1e-12,
+   "scale": "max(abs(R_a),abs(R_b))",
+   "formula": "1e-12+1e-12*max(abs(R_a),abs(R_b))"
+  },
+  "score_degenerate_predicate": "score_range<=tau_score"
+ },
+ "AURC": {
+  "point_sequence": "all_coverage_ordered_admissible_exact_points",
+  "accepted_n_min": 271,
+  "fixed_grid_participates": false,
+  "curve": "left_hold_empirical_staircase",
+  "area_formula": "sum_{j=1}^{J-1} R_j*(c_{j+1}-c_j)",
+  "span_formula": "c_J-c_1",
+  "normalized_formula": "area/span",
+  "J_min_for_math": 2,
+  "pack_admissible_points_min": 3,
+  "span_positive_required": true,
+  "domain": "[c_1,c_J]",
+  "extrapolate_from_zero_to_one_or_abstention": false,
+  "report_span": true
+ },
+ "verdict": {
+  "precedence": [
+   "protocol_error",
+   "insufficient_scored_support",
+   "score_degenerate",
+   "curve_shape",
+   "risk_proxy_verdict_mapping"
+  ],
+  "verdict_point_sequence": "coverage_ordered_canonical_reachable_5pct_points",
+  "delta_predicates": {
+   "positive": "delta>tau_outcome",
+   "zero": "abs(delta)<=tau_outcome",
+   "negative": "delta<-tau_outcome"
+  },
+  "curve_shape_closed_set": [
+   "flat",
+   "order_consistent",
+   "order_inverted",
+   "mixed"
+  ],
+  "risk_proxy_verdict_closed_set": [
+   "not_evaluable_insufficient_scored_support",
+   "not_evaluable_score_degenerate",
+   "descriptive_ordering_signal",
+   "directionally_adverse",
+   "descriptive_non_discriminative"
+  ],
+  "mapping": {
+   "order_consistent": "descriptive_ordering_signal",
+   "order_inverted": "directionally_adverse",
+   "flat": "descriptive_non_discriminative",
+   "mixed": "descriptive_non_discriminative"
+  },
+  "mixed_claim": "no_consistent_direction_only",
+  "not_evaluable_reason_closed_set": {
+   "not_evaluable_insufficient_scored_support": [
+    "unit_gate_not_scored",
+    "zero_base_valid_land_denominator",
+    "zero_scored_denominator",
+    "N_scored_below_271"
+   ],
+   "not_evaluable_score_degenerate": [
+    "score_range_at_or_below_tau_score",
+    "unique_proxy_values_below_3",
+    "admissible_exact_points_below_3",
+    "canonical_reachable_grid_points_below_3",
+    "AURC_nonpositive_span"
+   ]
+  },
+  "retain_curve_shape_and_not_evaluable_reason": true,
+  "synthetic_unit_or_node_verdict": false
+ },
+ "aggregation": {
+  "continuous_base_key": [
+   "acquisition",
+   "band",
+   "fold",
+   "curve_scope"
+  ],
+  "within_acquisition_band_scope": [
+   "fold_median",
+   "fold_range"
+  ],
+  "across_acquisitions": {
+   "weight": "equal_per_acquisition",
+   "statistics": [
+    "median",
+    "range"
+   ]
+  },
+  "categorical_key": [
+   "band",
+   "curve_scope",
+   "risk_proxy_verdict"
+  ],
+  "retain_not_evaluable_reason_counts": true,
+  "pass_fail_collapse": false,
+  "pixel_pooling_as_unit_replacement": false,
+  "ranking": false,
+  "effective_n_p_value_confidence_interval_or_significance": false
+ },
+ "outputs": {
+  "unit_status_ledger": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/risk-proxy-unit-status-ledger-v1.json",
+   "schema": "mountainrs-stage7.4-risk-proxy-unit-status-ledger-v1",
+   "row_key": [
+    "acquisition",
+    "split",
+    "band",
+    "fold"
+   ],
+   "required_fields": [
+    "unit_gate_state",
+    "unit_terminal_category",
+    "top_level_reason",
+    "detail_reason",
+    "core_total_pixel_count",
+    "base_valid_land_count",
+    "scope_scored_pixel_counts",
+    "fallback_receipt",
+    "upstream_identity"
+   ]
+  },
+  "stratum_table": {
+   "path_base": "node_container_root",
+   "relative_path": "outputs/risk-proxy-stratum-table-v1.json",
+   "schema": "mountainrs-stage7.4-risk-proxy-stratum-table-v1",
+   "row_key": [
+    "acquisition",
+    "band",
+    "fold",
+    "stratum"
+   ],
+   "required_fields": [
+    "core_total_pixel_count",
+    "base_valid_land_count",
+    "evidence_support_coverage",
+    "stratum_footprint_count",
+    "stratum_base_valid_count",
+    "stratum_scored_count",
+    "scoring_coverage",
+    "selective_prediction_coverage",
+    "status",
+    "supported_residual_metrics"
+   ]
+  },
+  "risk_curve_table": {
+   "path_base": "node_container_root",
+   "relative_path": "outputs/risk-proxy-risk-curve-table-v1.json",
+   "schema": "mountainrs-stage7.4-risk-proxy-risk-curve-table-v1",
+   "row_key": [
+    "acquisition",
+    "band",
+    "fold",
+    "curve_scope",
+    "point_record_index"
+   ],
+   "required_fields": [
+    "scope_role",
+    "scope_gate",
+    "s_min",
+    "s_max",
+    "score_range",
+    "exact_point_index",
+    "admissible",
+    "target_q",
+    "grid_status",
+    "accepted_pixel_count",
+    "selective_prediction_coverage",
+    "accepted_set_MAE",
+    "AURC_area",
+    "AURC_span",
+    "AURC_normalized",
+    "curve_shape",
+    "risk_proxy_verdict",
+    "not_evaluable_reason"
+   ]
+  },
+  "aggregation_table": {
+   "path_base": "node_container_root",
+   "relative_path": "outputs/risk-proxy-aggregation-table-v1.json",
+   "schema": "mountainrs-stage7.4-risk-proxy-aggregation-table-v1",
+   "row_key": [
+    "band",
+    "curve_scope"
+   ],
+   "required_fields": [
+    "continuous_median_range",
+    "risk_proxy_verdict_counts",
+    "not_evaluable_reason_counts",
+    "acquisition_equal_weight_statement"
+   ]
+  },
+  "reconciliation_manifest": {
+   "path_base": "node_container_root",
+   "relative_path": "evidence/risk-proxy-reconciliation-manifest-v1.json",
+   "schema": "mountainrs-stage7.4-risk-proxy-reconciliation-manifest-v1",
+   "required_fields": [
+    "member_hash_reconciliation",
+    "mask_reconciliation",
+    "unit_terminal_state_reconciliation",
+    "coverage_denominator_reconciliation",
+    "fold_ledger_reconciliation",
+    "verdict_reconciliation",
+    "completed_output_hashes"
+   ]
+  },
+  "scientific_report": {
+   "path_base": "node_container_root",
+   "relative_path": "reports/residual-reliability-report-v1.md",
+   "required_sections": [
+    "single_roi_non_independent_boundary",
+    "residual_exposure_boundary",
+    "primary_and_secondary_curves",
+    "permanent_abstention_ledger",
+    "five_state_verdict_counts",
+    "not_evaluated_claims",
+    "output_hash_reconciliation"
+   ]
+  },
+  "additional_output_category_allowed": false,
+  "overwrite_existing_output": false
+ },
+ "runtime_stop_conditions": [
+  "PF3 receipt chain, project, route, node, rule, contract, active state or live revision mismatch",
+  "authority or upstream path/hash mismatch",
+  "unit gate or reason outside closed sets",
+  "fallback or missing imputation attempted",
+  "protocol_error reason occurs",
+  "integer/rational or partition identity fails",
+  "protocol and config disagree",
+  "output exists, output schema drifts or reconciliation fails"
+ ],
+ "scientific_claim_boundaries": {
+  "calibrated_confidence": false,
+  "probability": false,
+  "statistical_significance": false,
+  "cross_domain_generalization": false,
+  "independent_confirmation": false,
+  "model_adequacy_only": true,
+  "architecture_verdict": "not_evaluated"
+ },
+ "runtime_freeze_boundary": {
+  "candidate_creation_is_freeze": false,
+  "completed_protocol_config_bytes_freeze_condition": "unanimous PASS from the single formal cross-audit round",
+  "canonical_pair_publication": "append-only after the freeze condition passes",
+  "protocol_status_after_publication": "frozen",
+  "config_status_after_publication": "frozen",
+  "PF3_hash_writeback_and_readback_required_before_result_access": true,
+  "result_access_authorized_by_candidate_creation": false,
+  "experiment_execution_authorized_by_candidate_creation": false,
+  "defaults_or_placeholders": false,
+  "future_substantive_choice": false,
+  "version_escalation_on_failure": "forbidden_no_v10_protocol_v3_or_config_v3"
+ }
+}
