@@ -1,0 +1,177 @@
+{
+  "schema": "mountainrs-stage7.4-risk-proxy-runtime-freeze-audit-v2",
+  "status": "blocked",
+  "runtime_freeze_status": "not_frozen",
+  "recorded_on": "2026-08-09",
+  "recorded_on_semantics": {
+    "type": "calendar_date_only",
+    "timezone": "Asia/Shanghai",
+    "intra_day_timestamp_claimed": false,
+    "ordering_evidence": "result-blind declaration receipt, locked candidate hashes, and exactly one formal cross-audit round"
+  },
+  "authority": {
+    "owner": "Elara",
+    "recovery_option": "R1",
+    "preflight_v9": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/preflight-manifest-v9.json",
+      "sha256": "b98f12cd2b5f9176c51b1955ff46e3e3040b8970140d81d8a09d4526e5ccf3bb"
+    },
+    "result_blind_declaration": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/result-blind-declaration-v1.json",
+      "sha256": "b39dd6d585bd3142e9c4734efef002df33ddb99da40d765f063837cc4c9c783b",
+      "pf3_receipt_id": "rc_4561f3d19c6c"
+    },
+    "project_rule": {
+      "project_rule_id": "pr_d4a37fa568df",
+      "revision": 2,
+      "receipt_id": "rc_b40e7b5ee356"
+    },
+    "owner_R1_decision": {
+      "receipt_id": "rc_a7fb4eb449b6",
+      "event_id": "ev_7b5bd61fca35"
+    }
+  },
+  "locked_audit_inputs": {
+    "preflight_v9_candidate_sha256": "b98f12cd2b5f9176c51b1955ff46e3e3040b8970140d81d8a09d4526e5ccf3bb",
+    "protocol_v2_candidate_sha256": "db25a068a4c43e9d9f13a62b871d0870f5a8e089724045cf1fcd8e4738242ba3",
+    "config_v2_candidate_sha256": "7baff1c30b94684427defd73dacd3926881efc6d7ab69876a0af881593c0305d",
+    "executor_sha256": "07a96120b10f2cc8a6a814f98a20c855c2074afc1d0beaae3c5da89e410c968f",
+    "synthetic_tests_sha256": "0a20cae07f91b59796e02edee3996ed8ae27efc37aa8890bea6139ff28105857",
+    "inputs_locked_before_audit": true,
+    "inputs_modified_during_or_after_audit": false
+  },
+  "formal_cross_audit": {
+    "round": 1,
+    "reviewer_count": 3,
+    "votes": {
+      "pass": 2,
+      "block": 1
+    },
+    "unanimous_pass": false,
+    "overall_effect": "block",
+    "reviewer_results": [
+      {
+        "role": "governance_and_protocol_diff",
+        "vote": "PASS",
+        "conclusions": [
+          "all five locked SHA-256 values matched",
+          "config normalized structural diff contained exactly the two owner-authorized method-body value repairs",
+          "config-v1 and config-v2 outputs objects were deeply equal",
+          "protocol diff stayed within metadata and sections 0, 4, 6, and 10",
+          "R1 added no detector, secondary sort, or additional product",
+          "all 22 upstream bindings passed opaque path/hash verification"
+        ]
+      },
+      {
+        "role": "scientific_and_implementation",
+        "vote": "PASS",
+        "conclusions": [
+          "all five locked SHA-256 values matched",
+          "all 22 upstream bindings passed opaque path/hash verification",
+          "the M2 implementation and compact curve representation were judged conformant",
+          "17 synthetic tests passed",
+          "no protected Stage 7.3 result was read"
+        ]
+      },
+      {
+        "role": "runtime_fail_closed",
+        "vote": "BLOCK",
+        "blocking_findings": [
+          {
+            "id": "B1",
+            "finding": "the executor accepts operator-supplied --confirm-freeze-readback, a syntactic rc_ receipt id, and a revision greater than 71, without machine-authenticating current PF3 receipt undo state, project, route, node active state, and frozen hash bindings before protected-result parsing"
+          },
+          {
+            "id": "B2",
+            "finding": "the executor checks Mconf consistency over the full raster and checks cos_i missing, nonfinite, and range conditions over base_valid_land without intersecting core, wider than the protocol domain core AND base_valid_land"
+          },
+          {
+            "id": "B3",
+            "finding": "the output materializes only compact exact-point summaries and fixed-grid records, not every admissible exact identity used internally for AURC, so the blocking reviewer judged independent reconciliation incomplete"
+          },
+          {
+            "id": "B4",
+            "finding": "a failed-unit fallback receipt does not explicitly serialize all six forbidden fallback categories as false"
+          },
+          {
+            "id": "B5",
+            "finding": "six-target publication uses per-file hard links with exception rollback but is not crash-atomic across the complete output set; interruption can leave partial targets that the no-overwrite gate then refuses"
+          }
+        ],
+        "verified_despite_block": [
+          "all five locked SHA-256 values matched",
+          "17 synthetic tests passed",
+          "all 22 upstream bindings passed opaque path/hash verification",
+          "R1 added no detector, secondary sort, or additional product",
+          "no protected Stage 7.3 result was read and no experiment was run"
+        ]
+      }
+    ]
+  },
+  "owner_R1_boundaries": {
+    "numeric_equal_bit_distinct_reason_retained_fail_closed": true,
+    "numeric_equal_bit_distinct_reachability": "unreachable for finite risk_proxy=1-cos_i under the owner ruling",
+    "new_detection_mechanism_added": false,
+    "secondary_sort_added": false,
+    "additional_artifact_or_output_added_for_branch": false,
+    "config_repair_scope": [
+      {
+        "json_pointer": "/tie_policy/numeric_equal_bit_distinct_action",
+        "from": "protocol_error_numeric_equal_bit_distinct_proxy_order_undefined",
+        "to": "numeric_equal_bit_distinct_proxy_order_undefined"
+      },
+      {
+        "json_pointer": "/coverage/zero_denominators/T_zero",
+        "from": "protocol_error_zero_core_total_pixel_count",
+        "to": "zero_core_total_pixel_count"
+      }
+    ],
+    "protocol_config_freeze_point": "after unanimous cross-audit PASS and before protected-result read",
+    "result_blind_declaration_preceded_protected_result_read": true
+  },
+  "validation_evidence": {
+    "upstream_binding_count": 22,
+    "upstream_path_and_sha256_check": "pass_all_22_opaque",
+    "config_normalized_structural_diff": "exactly_two_owner_authorized_method_body_leaf_changes",
+    "config_outputs_deep_equality": "pass",
+    "synthetic_tests": {
+      "status": "pass",
+      "tests_run": 17,
+      "protected_result_data_accessed": false
+    }
+  },
+  "result_blind_compliance": {
+    "stage_7_3_protected_result_values_opened_searched_or_read": false,
+    "stage_7_4_experiment_executed": false,
+    "upstream_result_assets_used_only_as_opaque_path_hash_bindings": true
+  },
+  "freeze_effect": {
+    "exact_candidate_bytes_frozen": false,
+    "protocol_v2_frozen": false,
+    "config_v2_frozen": false,
+    "canonical_protocol_v2_published": false,
+    "canonical_config_v2_published": false,
+    "pf3_freeze_writeback_performed": false,
+    "protected_result_read_authorized": false,
+    "stage_7_4_execution_authorized": false
+  },
+  "canonical_preservation": {
+    "preflight_v9_preserved_as_the_single_R1_preflight_version": true,
+    "audit_v2_preserves_the_single_formal_round": true,
+    "executor_and_tests_preserved_as_locked_audit_inputs": true,
+    "protocol_v2_candidate_remains_noncanonical": true,
+    "config_v2_candidate_remains_noncanonical": true,
+    "six_logical_outputs_created": false
+  },
+  "version_boundary": {
+    "preflight_v10_created": false,
+    "protocol_v3_created": false,
+    "config_v3_created": false,
+    "second_audit_round_run": false
+  },
+  "stop_condition": "formal cross-audit was not unanimously PASS",
+  "next_action": "stop without reading protected results or executing Stage 7.4; any further recovery requires a new explicit owner decision that supersedes the current no-iteration boundary",
+  "self_hash_note": "This audit does not self-embed SHA-256; report its completed-byte hash externally."
+}

@@ -1,0 +1,627 @@
+{
+  "schema": "mountainrs-stage7.4-activation-preflight-manifest-v9",
+  "status": "recovery_preflight_ready",
+  "version": 9,
+  "preflight_role": "active_node_result_blind_recovery",
+  "prepared_on": "2026-08-09",
+  "prepared_on_semantics": {
+    "type": "calendar_date_only",
+    "timezone": "Asia/Shanghai",
+    "intra_day_time_claimed": false
+  },
+  "path_bases": {
+    "repository_root": "repository git worktree root",
+    "work_package_root": "stage7_real_weak_closure/",
+    "node_container_root": "stage7_real_weak_closure/stage7_4_residual_reliability/"
+  },
+  "supersedes_and_history": {
+    "preflight_v8": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/preflight-manifest-v8.json",
+      "sha256": "872146918cd83017d7a31a110c2ab921930f93c6b2a7c0e5c520c97447da966a",
+      "effect": "historical activation preflight remains valid except its protocol/config first-action timing is superseded by project rule rev2"
+    },
+    "protocol_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "docs/risk-proxy-protocol-v1.md",
+      "sha256": "8db947b702e6e8d9c2e4e40e7366003e81489fdcb6ff0420a35d1bf6d49c7996",
+      "status": "immutable_invalid_candidate_history"
+    },
+    "config_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "configs/risk-proxy-config-v1.json",
+      "sha256": "d2bd3aaae288a67fc5ee214217cb10f1b888993f05b6a1d6868969976567b719",
+      "status": "immutable_invalid_candidate_history"
+    },
+    "freeze_audit_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/risk-proxy-runtime-freeze-audit-v1.json",
+      "sha256": "a159b9ab4369d1467fd72c0b4dde8c94e393619f39083ca955dac0c901e58c9d",
+      "status": "invalidated"
+    },
+    "incident_v1": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/risk-proxy-runtime-freeze-incident-v1.json",
+      "sha256": "450a64a5355ff05a3a72e7dac227cf7b4dbb963837ac6ffa33c61ca911930a84",
+      "status": "superseded_by_incident_v2"
+    },
+    "incident_v2": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/risk-proxy-runtime-freeze-incident-v2.json",
+      "sha256": "c1b331a859c82b009d6fa7e3df25a5ac32ab52fb237afa01c54831934531438c",
+      "status": "authoritative_incident"
+    },
+    "method_decision_v3": {
+      "path_base": "node_container_root",
+      "relative_path": "docs/risk-proxy-method-pack-decision-request-v3.md",
+      "sha256": "41e29c75212c8e622a93143399bf119271fed34620202c7d2eff934f7325a861"
+    }
+  },
+  "pf3_snapshot_binding": {
+    "project_id": "proj_6cbeea3266ff",
+    "route_id": "rt_f634f0ab72fb",
+    "live_route_revision": 71,
+    "stage_7_3": {
+      "node_id": "nd_38d128c40d90",
+      "state": "done"
+    },
+    "stage_7_4": {
+      "node_id": "nd_095e71a9eccf",
+      "state": "active"
+    },
+    "activation_receipt": {
+      "receipt_id": "rc_b9bb7bb94549",
+      "before_revision": 68,
+      "after_revision": 69,
+      "undone_by": null
+    },
+    "owner_R1_decision": {
+      "receipt_id": "rc_a7fb4eb449b6",
+      "event_id": "ev_7b5bd61fca35",
+      "before_revision": 69,
+      "after_revision": 70,
+      "undone_by": null
+    },
+    "project_rule": {
+      "project_rule_id": "pr_d4a37fa568df",
+      "revision": 2,
+      "receipt_id": "rc_b40e7b5ee356"
+    },
+    "result_blind_declaration_receipt": {
+      "receipt_id": "rc_4561f3d19c6c",
+      "before_revision": 70,
+      "after_revision": 71,
+      "undone_by": null
+    },
+    "rollback_or_reactivation_performed": false
+  },
+  "historical_first_action_effect_after_owner_rule": {
+    "observed_v1_pair_created_in_one_apply_patch": true,
+    "v1_protocol_config_content_freeze_valid": false,
+    "v1_cross_audit_valid": false,
+    "only_surviving_effect": "result-blind declaration and upstream path/hash snapshot before any protected result read"
+  },
+  "result_blind_declaration": {
+    "declaration_asset": {
+      "path_base": "node_container_root",
+      "relative_path": "evidence/result-blind-declaration-v1.json",
+      "sha256": "b39dd6d585bd3142e9c4734efef002df33ddb99da40d765f063837cc4c9c783b",
+      "pf3_asset_id": "as_88cfcc437671"
+    },
+    "created_at_route_revision": 70,
+    "pf3_readback_route_revision": 71,
+    "stage_7_3_result_values_read": false,
+    "stage_7_4_experiment_executed": false,
+    "upstream_hashes_frozen": true,
+    "protocol_content_frozen": false,
+    "config_content_frozen": false,
+    "candidate_creation_is_freeze": false,
+    "upstream_binding_count": 22,
+    "upstream_bindings": [
+      {
+        "binding_id": "architecture_v3_1",
+        "path_base": "repository_root",
+        "relative_path": "docs/architecture.md",
+        "sha256": "f5380fbc7b6130100b4f5b17bb331149d25e26a0387f3bd0418f278d632fc27d"
+      },
+      {
+        "binding_id": "stage_7_0_baseline_spec",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_0_baseline/docs/baseline_spec.md",
+        "sha256": "582fe11892cfa814c495381ca2f207bd44b527f12274c5ba5224afe65b8e22fc"
+      },
+      {
+        "binding_id": "stage_7_0_evaluation_protocol",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_0_baseline/docs/evaluation_protocol.md",
+        "sha256": "072cfb84f587f0f3692202291d8e8681b196030e76a2cd0a878872ec88ac4380"
+      },
+      {
+        "binding_id": "stage_7_1r_observation_evidence_manifest",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+        "sha256": "7ea5cf3da6aceed55c1a2525fb958d44863cea5e243192c2ae56383f547197ea"
+      },
+      {
+        "binding_id": "stage_7_1r_support_ledger",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_1_observation_stack/evidence/observation-support-ledger-v1.json",
+        "sha256": "103278e1158746f80a7c0dd325a354046677a8c39b34c5eef37cf6300d50977d"
+      },
+      {
+        "binding_id": "stage_7_1r_validity_support_schema_v1",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+        "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+      },
+      {
+        "binding_id": "stage_7_2_calibration_contract",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+        "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025"
+      },
+      {
+        "binding_id": "stage_7_2_cos_i_registry",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+      },
+      {
+        "binding_id": "stage_7_2_direct_only_input_view",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_1_observation_stack/evidence/stage-7.2-direct-only-input-view-v1.json",
+        "sha256": "3c9adfd98d5f6dbd9767bc42ac3590d5b1bf3905f92f0a5e891dba8daf2251da"
+      },
+      {
+        "binding_id": "stage_7_2_fold_safe_alpha_rule",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/evidence/fold-safe-alpha-rule-v1.json",
+        "sha256": "fbcdf8f0ea0bb494befbd2859750a6dba9641bdd8b937c41ee222c9e317486bb"
+      },
+      {
+        "binding_id": "stage_7_2_mconf_registry",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+        "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae"
+      },
+      {
+        "binding_id": "stage_7_2_mconf_subprotocol",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/docs/mconf-subprotocol-v1.md",
+        "sha256": "d93e7ff1a2e13c669fd1f5ca973bd468866876177eb69a4ebe49c779a0083dc6"
+      },
+      {
+        "binding_id": "stage_7_2_support_loss_ledger",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
+        "sha256": "47620f22776234065bcc0420e604cb2cff805f7011c2d2c73a3852bf3701d136"
+      },
+      {
+        "binding_id": "stage_7_2_validity_support_schema_v2",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_2_baseline_fit/configs/validity-support-schema-v2.json",
+        "sha256": "38e3350eb1cb11a15e44941eeabf57d6b88f06f022a42e21c484b8acfd541b6b"
+      },
+      {
+        "binding_id": "stage_7_3_core_topology_subprotocol",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/docs/core-topology-subprotocol-v1.md",
+        "sha256": "a8541f4bcb73cf7c97137196133ed9cc56cf3c11155e363ad9daaa2e6f0acfe8"
+      },
+      {
+        "binding_id": "stage_7_3_fold_alpha_leakage_ledger",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/evidence/fold-alpha-and-leakage-ledger-v1.json",
+        "sha256": "0c68a13ae80c78224d6b35405b14b4de76d4d918e9b6506b7894bb2421d037ef",
+        "read_policy": "opaque_hash_only_until_freeze_complete"
+      },
+      {
+        "binding_id": "stage_7_3_residual_summary",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/evidence/descriptive-residual-summary-v1.json",
+        "sha256": "216821ac25b4004fe90b3f4b4f5bf26ef924cd3740c2a1c0488d5851fbf3d992",
+        "read_policy": "opaque_hash_only_until_freeze_complete"
+      },
+      {
+        "binding_id": "stage_7_3_topology_manifest",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+        "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5"
+      },
+      {
+        "binding_id": "stage_7_3_spatial_blocking_report",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md",
+        "sha256": "244846f9589006edbbe093dc9c052f918af96e8c43ec08727a0586f0a1f169f3",
+        "read_policy": "opaque_hash_only_until_freeze_complete"
+      },
+      {
+        "binding_id": "stage_7_3_geometric_feasibility_audit",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/evidence/geometric-feasibility-audit-v1.json",
+        "sha256": "d35f228fd1e67ed09a546a972b457a01c9da21b34c5a70e70c8f20e652474310"
+      },
+      {
+        "binding_id": "stage_7_3_activation_preflight_v1",
+        "path_base": "work_package_root",
+        "relative_path": "stage7_3_spatial_blocking/evidence/preflight-manifest-v1.json",
+        "sha256": "f13a8f9a0e58f418989a7fecdf8072a6eff9d2709e9c608bb68b4c3ca8e056e9"
+      },
+      {
+        "binding_id": "stage_7_4_stratification_subprotocol",
+        "path_base": "node_container_root",
+        "relative_path": "docs/stratification-subprotocol-v1.md",
+        "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804"
+      }
+    ],
+    "path_and_sha256_check": "pass_all_22_hash_only",
+    "protected_result_content_rendered": false
+  },
+  "owner_recovery_direction": {
+    "owner": "Elara",
+    "option": "R1",
+    "numeric_equal_bit_distinct": {
+      "reachability": "unreachable for finite risk_proxy=1-cos_i; the only numeric-equal/bit-distinct IEEE-754 pair is signed zero and equal subtraction produces +0.0",
+      "closed_set_reason_retained": "numeric_equal_bit_distinct_proxy_order_undefined",
+      "abstract_effect_if_reached": "status=protocol_error and fail closed",
+      "new_detection_mechanism": false,
+      "secondary_sort": false,
+      "additional_artifact_or_output": false
+    },
+    "exact_config_method_body_repairs": [
+      {
+        "json_pointer": "/tie_policy/numeric_equal_bit_distinct_action",
+        "before": "protocol_error_numeric_equal_bit_distinct_proxy_order_undefined",
+        "after": "numeric_equal_bit_distinct_proxy_order_undefined"
+      },
+      {
+        "json_pointer": "/coverage/zero_denominators/T_zero",
+        "before": "protocol_error_zero_core_total_pixel_count",
+        "after": "zero_core_total_pixel_count"
+      }
+    ],
+    "canonical_error_serialization": {
+      "status": "protocol_error",
+      "reason": "bare member of the existing 13-member reason_closed_set",
+      "prefix_concatenation": false
+    },
+    "legacy_composite_token_resolution": {
+      "token": "protocol_error_zero_core_total",
+      "machine_status": "protocol_error",
+      "machine_reason": "zero_core_total_pixel_count"
+    },
+    "version_cap": {
+      "preflight_version": 9,
+      "protocol_version": 2,
+      "config_version": 2,
+      "cross_audit_rounds": 1,
+      "on_failure": "stop_without_v10_or_v3"
+    },
+    "no_other_method_threshold_grid_scope_verdict_aggregation_or_output_change": true
+  },
+  "complete_field_compilation_map": {
+    "authority_and_lifecycle": {
+      "project_route_nodes_rule": "PF3 live route 71 + pr_d4a37fa568df rev2",
+      "high_level_option": "owner_decision_events.high_level_A",
+      "method_pack": "owner_decision_events.method_pack_M2_v3",
+      "method_definition": "authoritative_local_inputs.decision_request_v3",
+      "upstream_union": "clause_1_upstream_union",
+      "freeze_phase": "candidate compile and one cross-audit while result-blind; exact protocol/config bytes become frozen only after all cross-auditors PASS and before PF3 freeze writeback/readback"
+    },
+    "unit_gate": {
+      "source": "high_level_decision_request_v2 section 结论与共同 unit gate",
+      "unit_key": "acquisition x band x fold",
+      "pass_predicate": "fold_safe_alpha_state == fitted AND scored_pixel_count > 0",
+      "pass_state": "scored",
+      "fail_state": "not_scored",
+      "top_level_fail_reason_closed_set": [
+        "unsupported_calibration",
+        "no_supported_pixel_in_core"
+      ],
+      "unsupported_calibration_detail_reason_closed_set": [
+        "calibration_support_below_minimum",
+        "nonpositive_mu_squared_denominator"
+      ],
+      "forbidden_fallback_closed_set": [
+        "reference_alpha",
+        "default_alpha",
+        "imputation",
+        "intercept",
+        "diffuse_substitution",
+        "holdout_derived_repair"
+      ],
+      "failed_unit_behavior": "no residual, MAE or curve point; retain identity, opportunity count, full-core coverage ledger, reasons and a no-fallback receipt; never remove from unit totals or denominator accounting"
+    },
+    "scoreable_support_and_abstention": {
+      "scoreable_mask": "core AND base_valid_land AND Mconf == 1",
+      "Mconf_predicate": "Mconf == 1 iff cos_i is valid and cos_i > 0.1; otherwise Mconf == 0 within its registered domain",
+      "Mconf_semantics": "geometry_visibility single factor covering self-shadow permission only; never total confidence",
+      "proxy_expression": "risk_proxy = 1 - cos_i",
+      "acceptance_direction": "ascending risk_proxy, low first",
+      "unsupported_predicate": "core AND base_valid_land AND finite cos_i <= 0.1",
+      "unsupported_label": "unsupported_by_direct_only",
+      "unsupported_behavior": "permanent abstention at every operating point; remains in base-valid denominator and ledgers; never contributes residual, MAE or accepted count",
+      "uncovered_geometry": "cast shadow, horizon/view occlusion and disocclusion/geometric-instability remain not_evaluated"
+    },
+    "residual_and_risk": {
+      "residual_source": "Stage 7.0 evaluation_protocol plus baseline_spec",
+      "residual_formula": "residual = rho_hat - rho_obs",
+      "rho_hat_formula": "rho_hat = fold_specific_alpha * max(cos_i,0)",
+      "units": "dimensionless scaled surface-reflectance units, not raw DN",
+      "risk_source": "high-level option A in risk-proxy-decision-request-v2 together with Stage 7.0 MAE definition; M2 does not originate the risk metric",
+      "risk_formula": "accepted_set_MAE = mean(abs(residual_i)) over accepted scored pixels only",
+      "oracle_sorting_forbidden": true
+    },
+    "tie_missing_and_protocol_error": {
+      "score_range_population": "each curve scope's all finite scored supported per-pixel raw risk_proxy values before point filtering/grid",
+      "score_range_formula": "s_min=min(raw score), s_max=max(raw score), score_range=s_max-s_min",
+      "pre_range_rounding_quantization_binning_or_tie_collapse_forbidden": true,
+      "tie_identity": "storage-dtype-decoded bit pattern equality only",
+      "tie_acceptance": "atomic whole-group acceptance with no epsilon tie, rounding or secondary sort",
+      "cos_i_protocol_error_domain": "core AND base_valid_land",
+      "cos_i_protocol_error_predicate": "missing OR nonfinite OR outside [-1,1]",
+      "residual_protocol_error_predicate": "supported residual nonfinite",
+      "non_base_valid_or_outside_core_is_not_this_protocol_error": true,
+      "missing_imputation_forbidden": true,
+      "protocol_error_effect": "fail closed with null curve_shape and null scientific verdict",
+      "machine_serialization": {
+        "status": "protocol_error",
+        "reason": "exactly one bare member of protocol_error.reason_closed_set",
+        "prefixed_reason_token_forbidden": true
+      },
+      "numeric_equal_bit_distinct_R1": {
+        "closed_set_reason": "numeric_equal_bit_distinct_proxy_order_undefined",
+        "reachability": "unreachable for finite risk_proxy=1-cos_i under owner ruling",
+        "new_detector": false,
+        "secondary_sort": false,
+        "additional_artifact_or_output": false
+      }
+    },
+    "coverage": {
+      "counts": {
+        "T": "core_total_pixel_count for all opportunity pixels in the frozen unit core",
+        "D": "base_valid_land_count in the complete core",
+        "S": "scored_pixel_count per curve scope",
+        "A_j": "accepted_pixel_count per curve scope and point"
+      },
+      "integer_order": "0 <= A_j <= S <= D <= T",
+      "evidence_support_coverage": "D/T",
+      "scoring_coverage": "S/D",
+      "selective_prediction_coverage": "A_j/D",
+      "acceptance_given_scored": "A_j/S",
+      "canonical_selective_field": "selective_prediction_coverage",
+      "short_alias_policy": "selective_coverage is permitted only with alias_of and exact value/null identity",
+      "zero_denominators": "T=0 protocol_error; D=0 typed not_scored and insufficient support with undefined D-based ratios null; S=0 insufficient support with acceptance_given_scored null",
+      "integer_product_identities_required_before_float_output": true,
+      "cross_band_addition_or_cross_unit_pixel_pooling_forbidden": true,
+      "T_zero_machine_serialization": {
+        "status": "protocol_error",
+        "reason": "zero_core_total_pixel_count",
+        "curve_shape": null,
+        "risk_proxy_verdict": null
+      }
+    },
+    "strata_and_scopes": {
+      "strata_closed_set": {
+        "self_shadow": "cos_i <= 0",
+        "near_zero": "0 < cos_i <= 0.1",
+        "mu_band_low": "0.1 < cos_i <= 0.4",
+        "mu_band_mid": "0.4 < cos_i <= 0.7",
+        "mu_band_high": "0.7 < cos_i <= 1.0"
+      },
+      "strata_partition_assertion": "mutually exclusive and exhaustive over finite cos_i in [-1,1] per acquisition; failure is protocol_error",
+      "unsupported_ledger_strata": [
+        "self_shadow",
+        "near_zero"
+      ],
+      "curve_scope_closed_set": [
+        "unit_all_scored",
+        "mu_band_low",
+        "mu_band_mid",
+        "mu_band_high"
+      ],
+      "scope_roles": {
+        "unit_all_scored": "primary",
+        "mu_band_low": "secondary",
+        "mu_band_mid": "secondary",
+        "mu_band_high": "secondary"
+      },
+      "scope_gate": "independent per curve scope",
+      "scoring_partition": "sum_h(S_h)=S_unit_all and, when D>0, sum_h(stratum_scoring_coverage_h)=unit_all_scored.scoring_coverage",
+      "conditional_terminal_identity": "only a stratum with terminal admissible A=S_h reports max_selective_prediction_coverage_h=S_h/D; otherwise null"
+    },
+    "M2_operating_grid_and_guards": {
+      "N_scored_min_per_scope": 271,
+      "accepted_n_min_per_admissible_exact_point": 271,
+      "unique_proxy_values_min_per_scope": 3,
+      "admissible_exact_points_min_per_scope": 3,
+      "canonical_reachable_grid_points_min_per_scope": 3,
+      "guard_semantics": "governance support guards only, never statistical thresholds or independent sample counts",
+      "target_q": "exact rationals k/20 for integer k in 1..20",
+      "comparison": "integer cross multiplication 20*A_j <= k*D only",
+      "piecewise": [
+        "J=0: every q unreachable with below_min_accepted_support",
+        "J>0 and q<c1: unreachable with below_min_accepted_support",
+        "J>0 and q>cJ: unreachable with above_max_reachable_coverage",
+        "c1<=q<=cJ: j*=max{j:cj<=q}; q=cJ maps to J before canonical deduplication"
+      ],
+      "record_fields": [
+        "target_q",
+        "status",
+        "exact_point_index",
+        "selective_prediction_coverage",
+        "reason",
+        "canonical_target_q"
+      ],
+      "status_closed_set": [
+        "reachable",
+        "unreachable",
+        "duplicate"
+      ],
+      "canonical_rule": "for q mapping to one j*, the smallest q is the sole reachable canonical record; later q are duplicate_exact_point and retain exact index/coverage/canonical q",
+      "unreachable_reason_closed_set": [
+        "below_min_accepted_support",
+        "above_max_reachable_coverage"
+      ],
+      "unreachable_null_fields": [
+        "exact_point_index",
+        "selective_prediction_coverage",
+        "canonical_target_q"
+      ],
+      "interpolation_tie_split_overrun_and_forward_fill_forbidden": true
+    },
+    "M2_tolerances_AURC_and_verdict": {
+      "tau_score": "1e-12 + 1e-12*max(abs(s_min),abs(s_max))",
+      "tau_outcome": "1e-12 + 1e-12*max(abs(R_a),abs(R_b))",
+      "score_degenerate_predicate": "score_range <= tau_score before point filtering/grid",
+      "AURC_point_sequence": "all coverage-ordered admissible exact points with accepted_n>=271; fixed grid does not enter integration",
+      "AURC_area": "sum_{j=1}^{J-1} R_j*(c_{j+1}-c_j)",
+      "AURC_span": "c_J-c_1",
+      "AURC_normalized": "area/span only when pack J minimum is met and span>0",
+      "AURC_domain": "[c_1,c_J] only; report span; no extrapolation from zero, to one or into abstention",
+      "verdict_point_sequence": "coverage-ordered canonical reachable 5-percent records",
+      "delta_predicates": "delta>tau_outcome positive; abs(delta)<=tau_outcome zero; delta<-tau_outcome negative",
+      "curve_shape_closed_set": [
+        "flat",
+        "order_consistent",
+        "order_inverted",
+        "mixed"
+      ],
+      "risk_proxy_verdict_closed_set": [
+        "not_evaluable_insufficient_scored_support",
+        "not_evaluable_score_degenerate",
+        "descriptive_ordering_signal",
+        "directionally_adverse",
+        "descriptive_non_discriminative"
+      ],
+      "mapping": "order_consistent->descriptive_ordering_signal; order_inverted->directionally_adverse; flat or mixed->descriptive_non_discriminative",
+      "mixed_claim_limit": "no consistent direction only; never statistically no signal",
+      "synthetic_unit_or_node_verdict_forbidden": true,
+      "not_evaluable_reason_must_be_retained": true
+    },
+    "aggregation": {
+      "continuous_first_level": "each acquisition x band x fold x curve_scope independently",
+      "within_acquisition_band_scope": "fold median and range only",
+      "across_acquisition": "equal acquisition weight, median and range only",
+      "categorical_key": "band x curve_scope x PF3 risk_proxy_verdict",
+      "categorical_behavior": "count all five verdicts separately and preserve not-evaluable reasons",
+      "forbidden": "pixel pooling as unit replacement, pass/fail collapse, ranking, effective n, p-values, confidence intervals or statistical-significance claims"
+    },
+    "logical_outputs_closed_set": {
+      "unit_status_ledger": {
+        "row_key": "acquisition x split x band x fold",
+        "required_content": "gate state, top/detail reasons, T/D/S by scope, fallback-forbidden receipt and upstream identities"
+      },
+      "stratum_table": {
+        "row_key": "acquisition x band x fold x one of five strata",
+        "required_content": "T/D, evidence support, stratum footprint/base-valid/scored counts, canonical coverage, status and supported residual metrics; unsupported rows carry no forced scientific verdict"
+      },
+      "risk_curve_table": {
+        "row_key": "acquisition x band x fold x one of four curve scopes x point record",
+        "required_content": "scope role/gate, raw score range, exact/admissible/grid identities, canonical coverage, accepted MAE, AURC fields, curve shape, scope-local verdict and reason"
+      },
+      "aggregation_table": {
+        "row_key": "band x curve_scope",
+        "required_content": "equal-weight descriptive median/range fields plus five separate PF3 verdict counts and not-evaluable reason counts"
+      },
+      "reconciliation_manifest": {
+        "required_content": "member/hash, mask, unit terminal state, three named coverage denominators, fold ledger, verdict and every completed output hash; any mismatch is protocol error rather than scientific result"
+      },
+      "scientific_report": {
+        "required_content": "single-ROI non-independent descriptive boundary, exposure limitation, primary/secondary scope distinction, abstention ledger and explicit not-evaluated claims"
+      }
+    }
+  },
+  "implementation_candidate": {
+    "executor": {
+      "path_base": "node_container_root",
+      "relative_path": "scripts/run_risk_proxy_v1.py",
+      "sha256": "07a96120b10f2cc8a6a814f98a20c855c2074afc1d0beaae3c5da89e410c968f"
+    },
+    "synthetic_tests": {
+      "path_base": "node_container_root",
+      "relative_path": "scripts/tests/test_risk_proxy_v1.py",
+      "sha256": "0a20cae07f91b59796e02edee3996ed8ae27efc37aa8890bea6139ff28105857"
+    },
+    "test_command": "PYTHONDONTWRITEBYTECODE=1 .cache/earthengine/venv/bin/python -m unittest stage7_real_weak_closure/stage7_4_residual_reliability/scripts/tests/test_risk_proxy_v1.py",
+    "synthetic_test_result": {
+      "status": "pass",
+      "tests_run": 17,
+      "result_data_accessed": false
+    },
+    "risk_curve_materialization": "per scope, emit one scope_summary with exact/admissible counts plus all 20 fixed-grid records; use every admissible exact point internally for AURC without serializing the full exact sequence",
+    "runtime_control": "canonical v9/v2/audit paths and hashes, audited executor/test hashes, one-round unanimous audit status, and an operator-confirmed real PF3 freeze receipt/revision are all required before compute_outputs can parse protected Stage 7.3 results",
+    "result_data_accessed_by_tests": false
+  },
+  "post_audit_targets": [
+    {
+      "artifact_id": "stage7.4-risk-proxy-protocol-v2",
+      "path_base": "node_container_root",
+      "relative_path": "docs/risk-proxy-protocol-v2.md",
+      "state_at_preflight": "absent",
+      "candidate_sha256_intentionally_absent": true
+    },
+    {
+      "artifact_id": "stage7.4-risk-proxy-config-v2",
+      "path_base": "node_container_root",
+      "relative_path": "configs/risk-proxy-config-v2.json",
+      "state_at_preflight": "absent",
+      "candidate_sha256_intentionally_absent": true
+    },
+    {
+      "artifact_id": "stage7.4-risk-proxy-runtime-freeze-audit-v2",
+      "path_base": "node_container_root",
+      "relative_path": "evidence/risk-proxy-runtime-freeze-audit-v2.json",
+      "state_at_preflight": "absent",
+      "future_sha256_intentionally_absent": true
+    }
+  ],
+  "logical_outputs": {
+    "version_policy": "all six logical outputs remain v1",
+    "targets": [
+      "evidence/risk-proxy-unit-status-ledger-v1.json",
+      "outputs/risk-proxy-stratum-table-v1.json",
+      "outputs/risk-proxy-risk-curve-table-v1.json",
+      "outputs/risk-proxy-aggregation-table-v1.json",
+      "evidence/risk-proxy-reconciliation-manifest-v1.json",
+      "reports/residual-reliability-report-v1.md"
+    ],
+    "all_absent_at_preflight": true,
+    "overwrite_forbidden": true
+  },
+  "lifecycle": [
+    "project rule rev2 and R1 owner decision read back",
+    "result-blind declaration and all 22 upstream path/hash bindings frozen and PF3-read-back",
+    "compile this sole v9 and final v2 pair result-blind",
+    "run exactly one formal cross-audit round over v9, v2 pair, executor and tests",
+    "only unanimous PASS freezes completed protocol-v2/config-v2 bytes",
+    "PF3 register v9/v2/audit hashes in one evidence write and read back",
+    "only then read protected results and directly execute active Stage 7.4"
+  ],
+  "single_cross_audit_contract": {
+    "required_checks": [
+      "JSON parse and target absence before canonical publication",
+      "all historical hashes and all 22 upstream path/hash bindings",
+      "config normalized structural diff with exactly two method-body value changes",
+      "outputs object exact deep equality with config-v1",
+      "protocol allowed diff limited to metadata and status/reason serialization in sections 0,4,6,10",
+      "R1 adds no detector, secondary sort or product",
+      "executor and synthetic tests match the frozen method and access no protected result",
+      "no protected result read and no experiment execution"
+    ],
+    "pass_effect": "completed v2 pair bytes become frozen and may be canonically published; audit evidence records their hashes",
+    "block_effect": "fail closed without protected result read, experiment, v10, protocol-v3 or config-v3"
+  },
+  "stop_conditions": [
+    "PF3 project/route/node/rule/receipt drift",
+    "result-blind declaration or any of 22 path/hash bindings mismatches",
+    "any protected Stage 7.3 result value is opened, searched or read before freeze readback",
+    "any candidate requires a third method-body change, new detector, secondary sort, output or substantive choice",
+    "formal cross-audit is not unanimously PASS",
+    "canonical target or any logical output already exists",
+    "PF3 freeze evidence writeback/readback is incomplete"
+  ],
+  "unresolved_substantive_decisions": [],
+  "no_result_access_or_experiment_authorized_by_v9": true,
+  "next_action": "compile the final protocol-v2/config-v2 candidates against this completed v9; then run the single formal cross-audit round"
+}
