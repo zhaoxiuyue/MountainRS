@@ -1,4 +1,29 @@
 {
+ "approved_subprotocol": {
+  "adopted": {
+   "basis": "对 μ 定义域 (0.1, 1.0] 的均匀三等分；下界 0.1 来自 Stage 7.0 冻结的 supported 谓词，上界 1.0 为 cos_i 理论上界；段数 3 是结构性选择而非物理推导，已声明。",
+   "mu_band_high": "0.7 < cos_i <= 1.0",
+   "mu_band_low": "0.1 < cos_i <= 0.4",
+   "mu_band_mid": "0.4 < cos_i <= 0.7",
+   "near_zero": "0 < cos_i <= 0.1（同上）",
+   "non_scored_but_in_coverage_ledger": [
+    "self_shadow",
+    "near_zero"
+   ],
+   "scored_strata": [
+    "mu_band_low",
+    "mu_band_mid",
+    "mu_band_high"
+   ],
+   "self_shadow": "cos_i <= 0（沿用 Stage 7.0/7.2 冻结谓词）"
+  },
+  "approved_by_owner_on": "2026-08-09",
+  "closes_gap": "G1",
+  "decision": "不补 safe/transition 具名物理分区。三项证据：①上游仅在 calibration-contract-v1.md:110 提及一次且属提及非定义；②lit 内部 μ 分布连续单峰无断点（order 1 的 p05→p50→p95 = 0.144→0.608→0.930）；③同一绝对阈值跨景含义不同（μ∈(0.1,0.3] 占 lit：order 1 为 20.9%、order 10 仅 1.4%，差异主要来自太阳高度角）。强补会得到看似 preregistered 实则任意的阈值，而该标签会为弱依据背书。",
+  "relative_path": "docs/stratification-subprotocol-v1.md",
+  "sha256": "8e92119888285e851aac75fae60c3386e7d7a7f5f5be22939d36f509ba470804",
+  "status": "frozen"
+ },
  "architecture_binding": {
   "note": "条款 explicitExclusions 引用的 v3.1 §7H 在当前 canonical architecture 中存在且有效：该节包含 v3.1 补回的时序残差判别候选方向，禁令指向明确。",
   "relative_path": "../docs/architecture.md",
@@ -6,6 +31,7 @@
   "version": "v3.1"
  },
  "contract_clause": "Stage 7.4 条款 1（Activation preflight，必须在 planned 状态完成）",
+ "contract_revision_receipt": "rc_925cc8885871",
  "created_at_utc": "2026-08-09T00:00:00Z",
  "node_state_at_preflight": "planned",
  "open_gaps": [
@@ -14,16 +40,20 @@
    "finding": "四个分层中 near_zero（0 < cos_i <= 0.1）与 self_shadow（cos_i <= 0）在 Stage 7.0 data_gap_report 与 Stage 7.2 mconf-registry 中已有明确谓词；但 safe 与 transition 在全部上游冻结件中仅出现一次——stage7_2_baseline_fit/docs/calibration-contract-v1.md:110 的一句禁令「也不得在 safe / transition / near-zero / shadow 等评价分区内分别重拟合」——属于提及而非定义。上游不存在任何把 safe 或 transition 与 cos_i 阈值绑定的谓词。",
    "id": "G1",
    "precedent": "与 Stage 7.3 首轮 pre-flight 判定的 core 定义缺失同构：当时 Stage 7.0 四份文档一致地把 ROI/core protocol 列为执行前 blocker，处理方式是所有者批准 core-topology 子协议后修订 planned 合同再激活。",
+   "resolution": "所有者 2026-08-09 批准 stratification-subprotocol-v1；合同条款 2 已据此修订（rc_925cc8885871，passCriteria 1450→2449，其余字段未动）。",
    "risk": "若在 active 后自行确定 safe/transition 的阈值，该阈值将无法证明独立于已暴露的 residual，触碰条款 8 关于 post-result exploratory 的边界。",
    "severity": "blocking_by_precedent",
+   "status": "resolved",
    "suggested_resolution": "在 planned 状态补一份 stratification 子协议，唯一给出 safe/transition 的谓词、阈值与推导依据；推导依据必须独立于 residual（例如由 cos_i 的几何含义或 Stage 7.0 已冻结的分区口径导出），并按 Stage 7.2 阈值 271 的先例——先推导、后披露后果——记录其对分层样本量的影响。"
   },
   {
    "clause": "条款 6",
    "finding": "条款 6 要求在读取 residual 前冻结风险代理的全部配置。但 Stage 7.3 的 descriptive-residual-summary-v1.json 与 spatial-blocking-report-v1.md 均已包含逐 fold 的 residual 数值，任何续接窗口一旦读取这两份文件即完成暴露。",
    "id": "G2",
+   "resolution": "合同条款 6 已加入：本条冻结必须为激活后第一动作，且冻结件须显式声明其时点早于本节点任何一次 residual 读取。",
    "risk": "读取顺序若不加约束，风险代理配置的冻结将无法证明结果盲。",
    "severity": "ordering_hazard",
+   "status": "mitigated_in_contract",
    "suggested_resolution": "在 active 后的第一动作即冻结风险代理配置，并在冻结件中显式声明「冻结时点早于本节点任何一次 residual 读取」；或在 planned 状态即完成该冻结。同时应记录：本 pre-flight 未读取任何 residual 数值，只统计了 scored/not_scored 的单元计数。"
   }
  ],
@@ -139,9 +169,10 @@
  },
  "verdict": {
   "activation_admitted_by_contract_clause_1": true,
-  "activation_recommended_without_further_action": false,
+  "activation_recommended_without_further_action": true,
   "residual_exposure_registered": true,
-  "statement": "条款 1 的两项要求（唯一绑定上游 hash、登记 residual 暴露状态）均已满足，按合同字面可激活。但条款 2 要冻结的四个分层中 safe 与 transition 在上游从未定义，与 Stage 7.3 首轮 pre-flight 判定的 core 定义缺失同构。建议先补 stratification 子协议再激活，理由见 open_gaps。",
+  "statement": "条款 1 的两项要求均已满足。条款 2 的分层缺口已由 planned 状态冻结的 stratification-subprotocol-v1 闭合：safe/transition 未补具名物理分区，改为对模型自变量 μ 定义域的均匀三等分并中性命名，依据独立于 residual，故标为 preregistered。条款 6 的读取顺序风险已写入合同（冻结须为激活后第一动作并声明时点）。7.4 可激活。",
+  "stratum_predicates_closed_by_subprotocol": true,
   "stratum_predicates_uniquely_available_upstream": false,
   "upstream_binding_unique": true
  }
