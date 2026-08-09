@@ -5,7 +5,8 @@
 
 | 文件 | 对应正文版本 | 状态 |
 |---|---|---|
-| `山地遥感物理基座-架构文档-v3.1.pdf` | v3.1（2026-08-08） | **当前** |
+| `山地遥感物理基座-架构文档-v3.2.pdf` | v3.2（2026-08-09） | **当前** |
+| `山地遥感物理基座-架构文档-v3.1.pdf` | v3.1（2026-08-08） | 历史版本，保留不动 |
 | `山地遥感物理基座-架构文档-v3.pdf` | v3（2026-07-20） | 历史版本，保留不动 |
 
 版本号不写死在渲染脚本里：脚本从正文头部的「**版本：** vX.Y」一行解析，输出文件名、
@@ -15,8 +16,12 @@
 
 ```sh
 /Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 docs/releases/render_architecture_v3.py
-shasum -a 256 -c docs/releases/山地遥感物理基座-架构文档-v3.1.pdf.sha256
+shasum -a 256 -c docs/releases/山地遥感物理基座-架构文档-v3.2.pdf.sha256
 ```
+
+`reportlab` **只存在于这条 runtime 里**（截至 v3.2 为 4.4.9），conda 的 base 与 et 环境都没有，
+全盘也再无第二份。换 Python 或换 reportlab 版本会改变 PDF 字节而正文未变，历次版本无法逐字节对照——
+因此升版一律用上面这条命令，不要另装。该 runtime 若被清理，先按此版本号补装再渲染。
 
 ## 已知渲染约束
 
