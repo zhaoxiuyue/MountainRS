@@ -14,7 +14,6 @@
     "activation_receipt": "rc_c31ba99249c6",
     "route_revision_at_activation": 90
   },
-
   "two_kinds_of_blindness": {
     "note": "本节点的结果盲有两层，必须分开声明，不得合并成一句『本节点结果盲』。",
     "relative_to_existing_results": {
@@ -29,7 +28,6 @@
       "contract_basis": "Stage 7.6 passCriteria 2、4、6"
     }
   },
-
   "state_at_declaration": {
     "operator_candidates_defined": false,
     "operator_identity_registry_created": false,
@@ -45,23 +43,117 @@
     ],
     "container_contents_note": "以上四份均为激活前产物（裁决请求与三版预检），不含任何本节点的实验输入或结果。configs/、outputs/、reports/、scripts/ 目前为空。"
   },
-
   "upstream_bindings": [
-    {"relative_path": "../../../docs/architecture.md", "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087", "version": "v3.3", "supplies": ["§2.1 五类身份定义", "§1.3 多解陷阱", "§1.4 拒绝律", "§2.2 证据成员≠操作资格", "§3 质量因子分组与推断后不得反向降权"]},
-    {"relative_path": "../stage7_5_identity_gauge/evidence/identity-registry-v1.json", "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b", "supplies": ["类别词表", "已登记对象身份", "三对象的准入终态"]},
-    {"relative_path": "../stage7_5_identity_gauge/evidence/gauge-equivalence-matrix-v1.json", "sha256": "d5b51a7a008116fc7a30fc2f8913dc9e8913b9462b1eaf5ddbbb73b0d090adf5", "supplies": ["alpha 的 gauge 状态", "大气尺度项的等价关系与三条解封条件"]},
-    {"relative_path": "../stage7_5_identity_gauge/evidence/disposition-ledger-v1.json", "sha256": "94a6c6471f2039716a2b7691ed3d71372afe691aaf6be365597b82f15679115e", "supplies": ["准入名单 9 项", "阻挡名单 3 项", "§7-F 未关闭项"]},
-    {"relative_path": "../stage7_5_identity_gauge/configs/identity-registry-schema-v1.json", "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b", "supplies": ["登记字段规格与闭集", "11 条不变量"]},
-    {"relative_path": "../stage7_5_identity_gauge/scripts/audit_identity_registry_v1.py", "sha256": "96f4d5e7c3d2e08b264c7340985d9a114736249ecb0ad7881597b28089fbda70", "supplies": ["registry auditor，本节点复用"]},
-    {"relative_path": "../stage7_5_identity_gauge/scripts/identifiability_toolbox_v1.py", "sha256": "dccb74bf4fa80905ff55df346eba17a6b9dde86bd534b335b932e7ba61a3cd26", "supplies": ["gauge/Jacobian/扰动/等价替代审计", "数值方法局限的 caveat 机制"]},
-    {"relative_path": "../stage7_3_spatial_blocking/evidence/topology-manifest-v1.json", "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5", "supplies": ["5 个 fold 的 core/buffer/标定域拓扑", "8130 m 隔离准入", "新参数 fold-safe 估计与邻接项泄漏封堵的判定依据"]},
-    {"relative_path": "../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json", "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de", "supplies": ["cos_i 公式与角度约定", "mu 的定义链"]},
-    {"relative_path": "../stage7_2_baseline_fit/evidence/mconf-registry-v1.json", "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae", "supplies": ["geometry_visibility 因子及其只覆盖自阴影的边界声明"]},
-    {"relative_path": "../stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json", "sha256": "a2a64493d6dbbd2a32c0c1fc158243f15d42e53ff4de4d9b49d0e2dc8fb121d4", "supplies": ["正向模型形式 rho_hat = alpha*mu", "estimator.fitting_key = acquisition x band", "intercept_or_diffuse_added = false"]},
-    {"relative_path": "../stage7_2_baseline_fit/docs/calibration-contract-v1.md", "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025", "supplies": ["最小支持阈值 Σμ²>0 且 calibration-lit ≥ 271"]},
-    {"relative_path": "../stage7_1_observation_stack/configs/validity-support-schema-v1.json", "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9", "supplies": ["support 与 provenance taxonomy", "reason-code 体系"]}
+    {
+      "relative_path": "../../../docs/architecture.md",
+      "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+      "version": "v3.3",
+      "supplies": [
+        "§2.1 五类身份定义",
+        "§1.3 多解陷阱",
+        "§1.4 拒绝律",
+        "§2.2 证据成员≠操作资格",
+        "§3 质量因子分组与推断后不得反向降权"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_5_identity_gauge/evidence/identity-registry-v1.json",
+      "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b",
+      "supplies": [
+        "类别词表",
+        "已登记对象身份",
+        "三对象的准入终态"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_5_identity_gauge/evidence/gauge-equivalence-matrix-v1.json",
+      "sha256": "d5b51a7a008116fc7a30fc2f8913dc9e8913b9462b1eaf5ddbbb73b0d090adf5",
+      "supplies": [
+        "alpha 的 gauge 状态",
+        "大气尺度项的等价关系与三条解封条件"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_5_identity_gauge/evidence/disposition-ledger-v1.json",
+      "sha256": "94a6c6471f2039716a2b7691ed3d71372afe691aaf6be365597b82f15679115e",
+      "supplies": [
+        "准入名单 9 项",
+        "阻挡名单 3 项",
+        "§7-F 未关闭项"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_5_identity_gauge/configs/identity-registry-schema-v1.json",
+      "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b",
+      "supplies": [
+        "登记字段规格与闭集",
+        "11 条不变量"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_5_identity_gauge/scripts/audit_identity_registry_v1.py",
+      "sha256": "96f4d5e7c3d2e08b264c7340985d9a114736249ecb0ad7881597b28089fbda70",
+      "supplies": [
+        "registry auditor，本节点复用"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_5_identity_gauge/scripts/identifiability_toolbox_v1.py",
+      "sha256": "dccb74bf4fa80905ff55df346eba17a6b9dde86bd534b335b932e7ba61a3cd26",
+      "supplies": [
+        "gauge/Jacobian/扰动/等价替代审计",
+        "数值方法局限的 caveat 机制"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_3_spatial_blocking/evidence/topology-manifest-v1.json",
+      "sha256": "95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5",
+      "supplies": [
+        "5 个 fold 的 core/buffer/标定域拓扑",
+        "8130 m 隔离准入",
+        "新参数 fold-safe 估计与邻接项泄漏封堵的判定依据"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+      "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de",
+      "supplies": [
+        "cos_i 公式与角度约定",
+        "mu 的定义链"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+      "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae",
+      "supplies": [
+        "geometry_visibility 因子及其只覆盖自阴影的边界声明"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json",
+      "sha256": "a2a64493d6dbbd2a32c0c1fc158243f15d42e53ff4de4d9b49d0e2dc8fb121d4",
+      "supplies": [
+        "正向模型形式 rho_hat = alpha*mu",
+        "estimator.fitting_key = acquisition x band",
+        "intercept_or_diffuse_added = false"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_2_baseline_fit/docs/calibration-contract-v1.md",
+      "sha256": "c535c7a5d8c72ad8e2928c80271f552ecea885ea6bef7385e5ceb58ecabd7025",
+      "supplies": [
+        "最小支持阈值 Σμ²>0 且 calibration-lit ≥ 271"
+      ]
+    },
+    {
+      "relative_path": "../../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+      "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9",
+      "supplies": [
+        "support 与 provenance taxonomy",
+        "reason-code 体系"
+      ]
+    }
   ],
-
   "next_actions_before_any_result_read": [
     "1. 建立 operator-identity-registry，登记候选算子引入的待估参数与条件量；算子本身登记 identity_class=not_applicable。复用 Stage 7.5 的 schema 与 auditor，引用而不修改 identity-registry-v1。",
     "2. 冻结候选集合与比较关系，含每项候选的地形调制因子声明；不含地形调制的常数项标注 empirical_offset。",
@@ -70,6 +162,10 @@
     "5. 交叉审计通过后，以完成字节冻结 protocol/config 并完成 PF3 写回读回。",
     "6. 以上六步全部完成之前，不读取本节点的任何结果值。"
   ],
-
-  "fail_closed_note": "若交叉审计未通过，继续 fail closed：不读本节点结果、不运行消融。任何修复不得静默改阈值、规则、排序、输出或结果暴露边界。"
+  "fail_closed_note": "若交叉审计未通过，继续 fail closed：不读本节点结果、不运行消融。任何修复不得静默改阈值、规则、排序、输出或结果暴露边界。",
+  "path_resolution": {
+    "base": "本文件所在目录（evidence/）",
+    "note": "relative_path 一律相对本文件所在目录解析。容器根为 ..，stage 根为 ../..，仓库根为 ../../..。",
+    "correction": "v1 首次写入时 12 项上游路径少写一层（写成 ../stage7_x，应为 ../../stage7_x），在本文件的自验证中被发现并当场更正。绑定的 sha256 值本身自始正确，错的只是路径。"
+  }
 }
