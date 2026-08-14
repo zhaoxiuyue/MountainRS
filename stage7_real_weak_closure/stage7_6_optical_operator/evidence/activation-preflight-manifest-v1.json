@@ -1,0 +1,81 @@
+{
+  "schema": "mountainrs-stage7.6-activation-preflight-v1",
+  "outcome": "activation_preflight_blocked",
+  "primary_reason_code": "decision_required",
+  "decision_request": {
+    "path_base": "node_container_root",
+    "relative_path": "docs/operator-scope-decision-request-v1.md"
+  },
+  "path_bases": {
+    "node_container_root": "stage7_real_weak_closure/stage7_6_optical_operator/",
+    "stage_root": "stage7_real_weak_closure/",
+    "repo_root": ""
+  },
+  "performed_by": "Stage 7.5 执行手",
+  "performed_on": "2026-08-14",
+  "read_only_declaration": {
+    "node_or_route_objects_modified": false,
+    "successor_experiment_run": false,
+    "candidate_model_run": false,
+    "new_evidence_manufactured": false,
+    "note": "本次预检只读上游冻结件与 Stage 7.6 合同文本，并写出本裁决与请求两份文件；未修改任何节点或路线对象。"
+  },
+
+  "upstream_bindings": [
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/identity-registry-v1.json", "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b", "supplies": ["类别词表", "已登记对象身份", "三对象的 7.6 准入终态"]},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/gauge-equivalence-matrix-v1.json", "sha256": "d5b51a7a008116fc7a30fc2f8913dc9e8913b9462b1eaf5ddbbb73b0d090adf5", "supplies": ["gauge 状态", "等价关系与解封条件"]},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/disposition-ledger-v1.json", "sha256": "94a6c6471f2039716a2b7691ed3d71372afe691aaf6be365597b82f15679115e", "supplies": ["准入名单", "阻挡名单", "§7-F 未关闭项"]},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/configs/identity-registry-schema-v1.json", "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b", "supplies": ["登记字段规格", "闭集", "11 条不变量"]},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/scripts/audit_identity_registry_v1.py", "sha256": "96f4d5e7c3d2e08b264c7340985d9a114736249ecb0ad7881597b28089fbda70", "supplies": ["auditor 可执行形式"]},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/scripts/identifiability_toolbox_v1.py", "sha256": "dccb74bf4fa80905ff55df346eba17a6b9dde86bd534b335b932e7ba61a3cd26", "supplies": ["gauge/Jacobian/扰动/等价替代审计"]},
+    {"path_base": "repo_root", "relative_path": "docs/architecture.md", "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087", "supplies": ["v3.3 §2.1 类别定义", "§1.3 多解陷阱", "§1.4 拒绝律", "§3 质量因子与正交性"]}
+  ],
+
+  "checks_passed": [
+    "C1 类别词表来源唯一：7.6 passCriteria 1 明确取自 7.5 冻结 registry 且不得重定义任一类别，与 7.5 passCriteria 1 的分工声明一致，无冲突。",
+    "C2 evidence_scope 传递已写入：7.6 passCriteria 4 要求引用 7.5 判定时一并引用其 evidence_scope，且以 local 身份为前提的 qualified 结论范围同样受限。7.5 现有判定全部为 global（analytic_proof 或 structural_argument），传递路径成立。",
+    "C3 E 类保护已就位：7.6 explicitExclusions 含『不把 E 类外生输入当作可拟合量』，与 7.5 registry 中五个 E 对象的 forbidden_paths 一致。",
+    "C4 拒绝律引用正确：7.6 explicitExclusions 写『不联合更新 G 与 X(t)』，与架构 §1.4 原文一致（v3.2 时期的『G 与 Z』笔误已修正）。",
+    "C5 结果盲纪律已写入：7.6 passCriteria 2 要求候选集合与比较关系在结果前冻结，passCriteria 3 要求 validation/test 不得用于选择物理项。",
+    "C6 上游全部就位且 hash 可复验：七项 upstream_bindings 均存在且当前值与本清单一致。",
+    "C7 单纯降损不足以 qualified 已明写（passCriteria 4），与架构 §1.3 一致。"
+  ],
+
+  "blocking_findings": [
+    {
+      "id": "B1_ATMOSPHERIC_TERM_SCOPE_AMBIGUOUS",
+      "summary": "7.6 objective 把『大气透过率』与『路径辐射』并列为同一类候选项，但二者在可辨识性上的地位完全不同，且其中一个已被 7.5 挡在门外。",
+      "detail": "7.5 判定 atmospheric_scale_term（乘性透过率）为 non_identifiable_equivalent，与 alpha 构成乘性等价对，已列入 disposition-ledger 的 blocked_from_stage_7_6。而路径辐射在正向模型中是加性项（rho_TOA = T·rho_surf + L_path），与乘性尺度参数并不共线，只要 mu 有足够变化即可分离——它未被 7.5 判定过，也未在 registry 中登记。按当前 objective 措辞，执行手会把一个被明确阻挡的对象与一个未经判定的对象当作同类处理。",
+      "minimal_fix": "修订 objective 与 passCriteria，将乘性透过率与加性路径辐射分列，并说明前者须先满足 7.5 给出的三条解封条件之一（独立锚点／固定 gauge／互斥比较），后者作为新候选走正常登记与资格化流程。合同层改动，约 2–3 处措辞。",
+      "requires_owner": true
+    },
+    {
+      "id": "B2_NEW_OBJECT_REGISTRATION_PATH_UNDEFINED",
+      "summary": "7.6 要引入新对象（漫射项、邻接项、路径辐射项及其条件量），但没有定义这些对象的身份登记落点。",
+      "detail": "7.5 的 identity-registry-v1 已冻结（sha256 9725178f…），不能在 7.6 执行期被追加。7.5 passCriteria 1 只声明『7.6 候选算子的具体公式与依赖由 7.6 activation preflight 登记，但必须使用 7.5 冻结的类别词表并通过 7.5 的 auditor 校验』，未指明登记物写在哪里、与 7.5 registry 是何种关系。若不定义，执行手可能改写 7.5 冻结件，或另建一套与 7.5 schema 不兼容的登记。",
+      "minimal_fix": "在 7.6 合同中增加一句：本节点建立独立的 operator-identity-registry，复用 7.5 的 schema 与 auditor，引用而不修改 7.5 的 identity-registry-v1。合同层改动，约 1 处。",
+      "requires_owner": true
+    },
+    {
+      "id": "B3_SKY_VIEW_FACTOR_NOT_REGISTERED",
+      "summary": "天空可视因子未在 7.5 registry 中登记，而它决定天空漫射项是物理建模还是经验补偿。",
+      "detail": "带天空可视因子的漫射项，其地形调制由 DEM 确定性地给出，属 G 的确定性变换、行为如 E，不新增推断自由度，只增加一个散射强度参数；不带该因子的漫射项则退化为一个与地形无关的常数截距，是经验补偿而非机制。两者在拟合优度上可能相近，科学含义完全不同——这正是架构 §1.3 与 7.6 passCriteria 4『单纯降损不足以 qualified』所针对的情形。当前 7.5 registry 中不存在任何 sky/diffuse/adjacency 相关对象，7.6 合同也未要求区分这两种形式。",
+      "minimal_fix": "在 7.6 合同的候选登记要求中增加：漫射与邻接候选必须声明其地形调制因子（如天空可视因子、邻接张角）及该因子的身份类别；不含地形调制的常数项须显式标注为经验补偿，不得表述为物理机制。合同层改动，约 1 处。",
+      "requires_owner": true
+    }
+  ],
+
+  "not_blocking_observations": [
+    "7.5 的 disposition-ledger 已把两个粗糙度对象登记为 deferred_missing_anchor 并列入 blocked_from_stage_7_6，7.6 合同的 boundaries 亦声明『BRDF 全参数化不因名称出现而自动视为解决』，两者一致，无需修订。",
+    "7.5 工具箱的原理性局限（数值方法无法区分结构不可辨识与数据变化不足）已写入其报告与 fixture 断言。7.6 在调用该工具箱做候选审计时会继承该局限；建议在 7.6 报告中复述，但不构成激活阻断。"
+  ],
+
+  "recovery_condition": "所有者对 B1/B2/B3 作出裁决，并在 planned 状态完成对应的合同修订后，重做一次本预检；三项均属合同措辞层面的最小修订，不涉及新增实验、新增数据或新增上游产物。",
+
+  "explicit_non_authorization": {
+    "closes_stage_7_5": false,
+    "activates_stage_7_6": false,
+    "authorizes_stage_7_6_experiment": false,
+    "modifies_stage_7_5_frozen_artifacts": false
+  }
+}
