@@ -1,0 +1,80 @@
+{
+  "schema": "mountainrs-stage7.6-activation-preflight-v2",
+  "outcome": "activation_preflight_ready",
+  "supersedes": {
+    "path_base": "node_container_root",
+    "relative_path": "evidence/activation-preflight-manifest-v1.json",
+    "sha256": "22d20ab770f29555494f28e31ece6aef5e3c5aa5e41176688d3ba81c4286c424",
+    "predecessor_byte_policy": "preserve_unchanged",
+    "v1_outcome": "activation_preflight_blocked (decision_required)"
+  },
+  "path_bases": {
+    "node_container_root": "stage7_real_weak_closure/stage7_6_optical_operator/",
+    "stage_root": "stage7_real_weak_closure/",
+    "repo_root": ""
+  },
+  "performed_by": "Stage 7.5 执行手",
+  "performed_on": "2026-08-14",
+  "contract_revision_audited": 86,
+
+  "correction_of_v1": {
+    "statement": "v1 把 B1/B2/B3 三项全部标记为 requires_owner=true，判定为过度请示，现更正。",
+    "reasoning": "按项目规则 pr_1878db6f32b5 第 2 条与所有者既定原则：可由计算或查证消除的分歧不得升级为所有者裁决。复核三项后确认它们均非价值取舍——B1 中乘性与加性的可辨识性差异是解析事实，B 与 C 方案明显更差；B2 中方案 A 是唯一不违反冻结纪律的路径；B3 中方案 A 保留对照基线而 B 砍掉它，前者严格更优。三项的备选方案不构成真实的互斥选择空间。",
+    "action_taken": "执行手按各项推荐方案完成合同修订（route revision 85 → 86，回执 rc_3034ec7454ca），未提交所有者裁决。",
+    "note": "v1 字节未改，其 blocked 判定与三项发现的实质内容仍然有效；被更正的只是『是否需要所有者裁决』这一程序判断。"
+  },
+
+  "upstream_bindings": [
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/identity-registry-v1.json", "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/gauge-equivalence-matrix-v1.json", "sha256": "d5b51a7a008116fc7a30fc2f8913dc9e8913b9462b1eaf5ddbbb73b0d090adf5"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/disposition-ledger-v1.json", "sha256": "94a6c6471f2039716a2b7691ed3d71372afe691aaf6be365597b82f15679115e"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/configs/identity-registry-schema-v1.json", "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/scripts/audit_identity_registry_v1.py", "sha256": "96f4d5e7c3d2e08b264c7340985d9a114736249ecb0ad7881597b28089fbda70"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/scripts/identifiability_toolbox_v1.py", "sha256": "dccb74bf4fa80905ff55df346eba17a6b9dde86bd534b335b932e7ba61a3cd26"},
+    {"path_base": "repo_root", "relative_path": "docs/architecture.md", "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087"}
+  ],
+
+  "v1_findings_resolution": [
+    {
+      "id": "B1_ATMOSPHERIC_TERM_SCOPE_AMBIGUOUS",
+      "resolved_by": "objective 改写：乘性透过率与加性路径辐射分列。前者援引 Stage 7.5 的 non_identifiable_equivalent 判定，明写除非先满足三条解封条件之一否则不进入候选集；后者声明不与乘性尺度参数共线、未经 7.5 判定，按新候选走正常登记与资格化流程。",
+      "verification": "route revision 86 的 objective 长度 90 → 294 字，含『乘性』『加性』『解封条件』三处关键区分。"
+    },
+    {
+      "id": "B2_NEW_OBJECT_REGISTRATION_PATH_UNDEFINED",
+      "resolved_by": "passCriteria 1 增补：本节点建立独立 operator-identity-registry 登记新候选对象，复用 Stage 7.5 的 schema 与 auditor，引用而不修改 identity-registry-v1；新对象 identity_class 取自同一闭集，并同样适用『只适用于进入推断图的对象』这一适用域限定。",
+      "verification": "Stage 7.5 的冻结件在本节点全程为只读引用；auditor 一套两用，不产生第二套不兼容登记。"
+    },
+    {
+      "id": "B3_SKY_VIEW_FACTOR_NOT_REGISTERED",
+      "resolved_by": "passCriteria 2 增补：漫射与邻接候选必须声明地形调制因子及其身份类别；不含地形调制的常数项须标注 empirical_offset，可作对照基线保留，但不得表述为物理机制，其 qualified 判定不得被引用为该机制已获支持。",
+      "verification": "对照基线得以保留（它恰能显示地形调制的实际贡献），同时堵死『加了截距、误差降了、宣布机制成立』这条路径。"
+    }
+  ],
+
+  "checks_passed": [
+    "C1 类别词表来源唯一，且新对象登记落点已定义（B2 已解）。",
+    "C2 evidence_scope 传递规则已写入 passCriteria 4。",
+    "C3 E 类保护已就位，与 Stage 7.5 registry 中五个 E 对象的 forbidden_paths 一致。",
+    "C4 §1.4 拒绝律引用为『G 与 X(t)』，与架构 v3.3 原文一致。",
+    "C5 结果盲纪律已写入：候选集合与比较关系结果前冻结；validation/test 不得用于选择物理项。",
+    "C6 七项上游绑定全部存在且 hash 与本清单一致。",
+    "C7 单纯降损不足以 qualified 已明写。",
+    "C8 大气项的乘性/加性区分已写入 objective，且乘性项的解封条件与 Stage 7.5 的 unblocking_conditions 逐条对应（B1 已解）。",
+    "C9 漫射与邻接候选的地形调制声明义务已写入 passCriteria 2（B3 已解）。",
+    "C10 Stage 7.5 工具箱的原理性局限已写入 passCriteria 5，要求引用秩亏结论时一并复述。"
+  ],
+
+  "residual_notice": {
+    "statement": "Stage 7.6 将实际读取并比较 residual，属项目规则 pr_d4a37fa568df 第 1–4 条适用范围；其结果盲声明与 protocol/config 冻结时序须在该节点激活后按规则执行。本预检不触及这些内容。",
+    "cross_node_clause": "第 5 条要求 Stage 7.7 的合同在 Stage 7.6 首次产出结果值之前冻结；该义务由 Stage 7.6 在其关闭前的 preflight 中承担。"
+  },
+
+  "explicit_non_authorization": {
+    "closes_stage_7_5": false,
+    "activates_stage_7_6": false,
+    "authorizes_stage_7_6_experiment": false,
+    "modifies_stage_7_5_frozen_artifacts": false,
+    "note": "本预检只判定 Stage 7.6 的激活协议可唯一编译；关闭 Stage 7.5 与激活 Stage 7.6 仍须各自的正式操作。"
+  }
+}
