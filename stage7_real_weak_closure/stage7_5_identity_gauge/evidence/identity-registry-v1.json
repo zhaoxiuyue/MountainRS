@@ -1,0 +1,732 @@
+{
+  "schema": "mountainrs-stage7.5-identity-registry-v1",
+  "conforms_to": {
+    "relative_path": "../configs/identity-registry-schema-v1.json",
+    "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b"
+  },
+  "identity_class_authority": {
+    "relative_path": "../../../docs/architecture.md",
+    "version": "v3.3",
+    "section": "§2.1",
+    "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087"
+  },
+  "recorded_on": "2026-08-14",
+  "node": "Stage 7.5",
+  "scope_statement": "本 registry 只登记对象的身份与自由度归属。质量因子、诊断量、算子、residual、provenance 与治理元数据登记为 not_applicable——这是正确终态，不是缺失。类别归属本身属未决问题的对象进入 deferred_identities 段，不在主表强行裁决。",
+  "current_forward_model": {
+    "expression": "rho_hat = alpha * mu",
+    "free_parameter_count": 1,
+    "free_parameters": [
+      "alpha"
+    ],
+    "known_condition_quantities": [
+      "mu"
+    ],
+    "source_binding": {
+      "relative_path": "../../stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json",
+      "sha256": "a2a64493d6dbbd2a32c0c1fc158243f15d42e53ff4de4d9b49d0e2dc8fb121d4",
+      "quoted_fields": [
+        "estimator.forward_model",
+        "estimator.fitting_key",
+        "estimator.intercept_or_diffuse_added"
+      ]
+    },
+    "triviality_notice": "自由参数仅一个，故对已存在对象的可辨识性审计结论必然平凡：Jacobian 为 N×1、无联合扰动、无等价替代可查。此平凡性必须在报告中显式声明，不得表述为『审计通过』。"
+  },
+  "entries": [
+    {
+      "object_id": "alpha",
+      "name": "场景标定尺度系数",
+      "identity_class": "N_t",
+      "unit": "dimensionless",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "acquisition_x_band",
+      "granularity_note": "每个 acquisition 的每个波段各持一个独立 alpha。自由度计数按此粒度展开：18 景 × 2 波段 = 36 个实例，不得按景聚合为 18。依据 estimator.fitting_key = 'acquisition x band'。",
+      "observation_status": "latent",
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": "clip(·, 0, 1)",
+      "gauge": {
+        "fixed": true,
+        "rule": "当前模型把全部乘性尺度因素——大气透过率、太阳辐照度常数、场景平均反照率——合并为单一参数，等价于将其余各因素隐式固定为 1。",
+        "rationale": "模型形式 rho_hat = alpha * mu 中不存在独立的透过率或辐照度项，因此 alpha 的数值是该合成量的估计，不是任一单项物理量的测量。"
+      },
+      "allowed_paths": [
+        "L2_forward_synthesis_multiplicative_scale"
+      ],
+      "forbidden_paths": [
+        "被报告为地表反照率的独立估计",
+        "被报告为大气透过率的独立估计",
+        "跨 acquisition 或跨 band 共用同一实例"
+      ],
+      "disposition": "identity_qualified_with_fixed_gauge",
+      "evidence_scope": "global",
+      "global_justification_kind": "analytic_proof",
+      "evidence_scope_justification": "结论来自解析论证而非数值实验：模型对 alpha 线性，Jacobian 各元素为 mu 且不随参数点变化，故局部结论在整个参数域成立。这是 evidence_scope=global 的合法来源（解析/结构证明），不是多起点数值实验的升级。",
+      "equivalence_watch": {
+        "object_id": "atmospheric_scale_term",
+        "condition": "该项一旦被实例化，与 alpha 构成乘性等价对",
+        "note": "当前该项不存在，故 alpha 在现模型中可辨识；等价关系是对 Stage 7.6 的前置约束，不是对当前状态的判定。"
+      },
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json",
+        "sha256": "a2a64493d6dbbd2a32c0c1fc158243f15d42e53ff4de4d9b49d0e2dc8fb121d4"
+      }
+    },
+    {
+      "object_id": "terrain_elevation",
+      "name": "地形高程",
+      "identity_class": "G",
+      "unit": "m",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "static_within_universe_version",
+      "granularity": "per_pixel",
+      "observation_status": "observed",
+      "availability": "train_and_inference",
+      "anchor": "DEM 产品自身的高程基准",
+      "prior": null,
+      "normalization": null,
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "derive_slope_aspect",
+        "derive_cos_i",
+        "topology_construction"
+      ],
+      "forbidden_paths": [
+        "作为梯度吸收器参与常态训练"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "G 在本节点及全部上游节点中锁定，不参与估计，故不存在与其他参数的等价替代问题。该结论由模型结构直接给出。",
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+      }
+    },
+    {
+      "object_id": "slope",
+      "name": "坡度",
+      "identity_class": "G",
+      "unit": "degree",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "static_within_universe_version",
+      "granularity": "per_pixel",
+      "observation_status": "derived",
+      "derived_from": [
+        "terrain_elevation"
+      ],
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": "degrees, converted with deg2rad at use site",
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "derive_cos_i"
+      ],
+      "forbidden_paths": [
+        "独立于 terrain_elevation 被更新"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "G 的确定性变换，不引入独立自由度。",
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+      }
+    },
+    {
+      "object_id": "aspect",
+      "name": "坡向",
+      "identity_class": "G",
+      "unit": "degree",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "static_within_universe_version",
+      "granularity": "per_pixel",
+      "observation_status": "derived",
+      "derived_from": [
+        "terrain_elevation"
+      ],
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": "degrees; azimuth convention must match sun_azimuth",
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "derive_cos_i"
+      ],
+      "forbidden_paths": [
+        "独立于 terrain_elevation 被更新",
+        "与 sun_azimuth 使用不一致的方位约定"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "G 的确定性变换，不引入独立自由度。",
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+      }
+    },
+    {
+      "object_id": "sun_elevation",
+      "name": "太阳高度角",
+      "identity_class": "E",
+      "unit": "degree",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_acquisition",
+      "observation_status": "observed",
+      "availability": "train_and_inference",
+      "anchor": "采集元数据",
+      "prior": null,
+      "normalization": "solar_zenith_deg = 90 - sun_elevation_deg",
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "derive_cos_i"
+      ],
+      "forbidden_paths": [
+        "作为可拟合量",
+        "作为梯度落点",
+        "吸收残差"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "E 类不占推断自由度，不进入自由度占用审计的被估计侧，故不存在可辨识性问题。",
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+      }
+    },
+    {
+      "object_id": "sun_azimuth",
+      "name": "太阳方位角",
+      "identity_class": "E",
+      "unit": "degree",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_acquisition",
+      "observation_status": "observed",
+      "availability": "train_and_inference",
+      "anchor": "采集元数据",
+      "prior": null,
+      "normalization": "degrees; convention must match aspect",
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "derive_cos_i"
+      ],
+      "forbidden_paths": [
+        "作为可拟合量",
+        "作为梯度落点",
+        "吸收残差"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "同 sun_elevation。",
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de"
+      }
+    },
+    {
+      "object_id": "cos_i",
+      "name": "地形入射余弦",
+      "identity_class": "E",
+      "unit": "dimensionless",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition",
+      "observation_status": "derived",
+      "derived_from": [
+        "slope",
+        "aspect",
+        "sun_elevation",
+        "sun_azimuth"
+      ],
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": "float64 计算，float32 存储，nodata = -9999.0",
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "derive_mu",
+        "geometry_visibility_proxy"
+      ],
+      "forbidden_paths": [
+        "作为可拟合量",
+        "作为梯度落点",
+        "吸收残差"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "两个已知量（G 的确定性变换与 E）的确定性函数，本身完全已知，不占推断自由度。",
+      "classification_precondition": {
+        "statement": "归入 E 的前提是 G 在常态训练中锁定。cos_i 由 G 的派生量（slope、aspect）与 E（太阳几何）共同决定；若未来 G 参与更新（如局部几何重建），cos_i 将继承 G 的不确定性，届时必须重新分类，不得沿用本条登记。",
+        "trigger_for_reclassification": "terrain_elevation 的 gauge.fixed 由 false 变为可估计，或 G 进入任何梯度路径。"
+      },
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/cos-i-registry-v1.json",
+        "sha256": "ffa4f32d798e9f956a0f879ff4f570f2d91d87b011e88240cdb6aa68a2f3e5de",
+        "quoted_field": "formula"
+      }
+    },
+    {
+      "object_id": "mu",
+      "name": "非负入射余弦",
+      "identity_class": "E",
+      "unit": "dimensionless",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition",
+      "observation_status": "derived",
+      "derived_from": [
+        "cos_i"
+      ],
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": "mu = max(cos_i, 0)",
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "L2_forward_synthesis_direct_term"
+      ],
+      "forbidden_paths": [
+        "作为可拟合量",
+        "作为梯度落点",
+        "吸收残差"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "cos_i 的确定性变换。继承 cos_i 的 classification_precondition。",
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json",
+        "sha256": "a2a64493d6dbbd2a32c0c1fc158243f15d42e53ff4de4d9b49d0e2dc8fb121d4",
+        "quoted_field": "estimator.mu"
+      }
+    },
+    {
+      "object_id": "acquisition_datetime",
+      "name": "成像时刻",
+      "identity_class": "E",
+      "unit": "UTC timestamp",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_acquisition",
+      "observation_status": "observed",
+      "availability": "train_and_inference",
+      "anchor": "采集元数据",
+      "prior": null,
+      "normalization": null,
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "acquisition_identity",
+        "temporal_ordering"
+      ],
+      "forbidden_paths": [
+        "作为可拟合量",
+        "作为梯度落点"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "E 类不占推断自由度。",
+      "source_binding": {
+        "relative_path": "../../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+        "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+      }
+    },
+    {
+      "object_id": "atmospheric_scale_term",
+      "name": "显式大气尺度项",
+      "identity_class": "N_t",
+      "instantiation_status": "not_yet_instantiated",
+      "unit": "dimensionless",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "acquisition_x_band",
+      "observation_status": "latent",
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": null,
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": "尚未实例化；一旦引入且未固定 gauge，即与 alpha 构成乘性等价对。"
+      },
+      "allowed_paths": [],
+      "forbidden_paths": [
+        "在无独立锚点、无固定 gauge、且未与 alpha 互斥比较的情况下与 alpha 同时自由激活"
+      ],
+      "disposition": "non_identifiable_equivalent",
+      "equivalence_partner": "alpha",
+      "equivalence_form": "multiplicative",
+      "equivalence_proof": "若模型写作 rho_hat = T * alpha' * mu，则观测只能约束乘积 T·alpha'，(T, alpha') 与 (kT, alpha'/k) 对任意 k>0 产生逐点相同的预测。该结论为解析结果，不依赖任何数据。",
+      "unblocking_conditions": [
+        "获得独立锚点（如外部 AOD 产品）将 T 钉住——此时它成为被估计量，equivalence 解除；",
+        "显式固定 gauge 并声明 alpha 的数值为 gauge-relative——此时判定改为 identity_qualified_with_fixed_gauge；",
+        "与 alpha 互斥比较——胜出方只取得 gauge-fixed 的参数化身份，不得记为该物理机制已获独立证据（拟合优度差异不是机制证据，架构 §1.3）。"
+      ],
+      "constraint_target": "Stage 7.6",
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§2.1 N(t) 定义；§1.3 阻力最小路径与多解陷阱"
+      }
+    },
+    {
+      "object_id": "rho_obs",
+      "name": "观测地表反射率",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "观测数据是模型要解释的对象，不是模型的状态量、待估参数、结构约束或条件量。它位于 L0，不进入身份体系。",
+      "unit": "dimensionless",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition_per_band",
+      "observation_status": "observed",
+      "availability": "train_and_inference",
+      "allowed_paths": [
+        "residual_computation",
+        "alpha_estimation"
+      ],
+      "forbidden_paths": [
+        "被改写",
+        "被派生状态失效而删除"
+      ],
+      "source_binding": {
+        "relative_path": "../../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+        "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+      }
+    },
+    {
+      "object_id": "residual",
+      "name": "残差",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "诊断量，由预测与观测之差得到，不是模型的自由度。",
+      "unit": "dimensionless",
+      "shape": "raster",
+      "spatial_support": "scored_support_domain",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition_per_band",
+      "observation_status": "derived",
+      "availability": "neither",
+      "allowed_paths": [
+        "descriptive_diagnostics"
+      ],
+      "forbidden_paths": [
+        "用于反推对象身份",
+        "用于事后重分类 G/X/Z/N/E"
+      ],
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/alpha-reference-full-support-v1.json",
+        "sha256": "a2a64493d6dbbd2a32c0c1fc158243f15d42e53ff4de4d9b49d0e2dc8fb121d4"
+      }
+    },
+    {
+      "object_id": "base_valid_land",
+      "name": "基础有效陆地掩膜",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "架构 v3.3 §3 质量因子（support_mask 的实例），不属身份体系。",
+      "quality_phase": "pre_inference",
+      "architecture_factor": "support_mask",
+      "unit": "boolean",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition",
+      "observation_status": "derived",
+      "availability": "train_and_inference",
+      "allowed_paths": [
+        "support_gating",
+        "coverage_denominator"
+      ],
+      "forbidden_paths": [
+        "被写入 identity_class"
+      ],
+      "source_binding": {
+        "relative_path": "../../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+        "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+      }
+    },
+    {
+      "object_id": "mconf",
+      "name": "几何可见性因子",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "架构 v3.3 §3 质量因子（geometry_visibility），不属身份体系。",
+      "quality_phase": "pre_inference",
+      "architecture_factor": "geometry_visibility",
+      "coverage_caveat": "仅覆盖自阴影；地形投射阴影、地平线遮挡、去遮挡边界、几何不稳定边界与观测视角遮挡均未覆盖。任何基于它的支持计数都应理解为上界。",
+      "unit": "boolean",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition",
+      "observation_status": "derived",
+      "availability": "train_and_inference",
+      "allowed_paths": [
+        "support_gating"
+      ],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "被表述为已覆盖几何可见性或已处理遮挡"
+      ],
+      "source_binding": {
+        "relative_path": "../../stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+        "sha256": "3b04ebd94341248f61eead3be48d5291166364699518a99d6c77ca029225dbae"
+      }
+    },
+    {
+      "object_id": "sensor_quality_from_qa",
+      "name": "传感器质量标记",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "架构 v3.3 §3 质量因子（sensor_quality），不属身份体系。",
+      "quality_phase": "pre_inference",
+      "architecture_factor": "sensor_quality",
+      "unit": "bitfield",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition",
+      "observation_status": "observed",
+      "availability": "train_and_inference",
+      "allowed_paths": [
+        "support_gating"
+      ],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "被当作光谱波段使用"
+      ],
+      "source_binding": {
+        "relative_path": "../../stage7_1_observation_stack/configs/validity-support-schema-v1.json",
+        "sha256": "d79f60a884cb81b15c0ebcd2d2959108ea050f3c4a1a2b60c4893539a92133a9"
+      }
+    },
+    {
+      "object_id": "reconstruction_quality",
+      "name": "几何重建质量",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "架构 v3.3 §3 质量因子，不属身份体系。",
+      "quality_phase": "pre_inference",
+      "architecture_factor": "reconstruction_quality",
+      "instantiation_status": "not_instantiated_in_this_project_stage",
+      "instantiation_note": "本项目当前无无人机重建输入，该因子尚无实例；登记其身份是为了防止后续节点把它误归入 G。",
+      "unit": null,
+      "shape": null,
+      "spatial_support": null,
+      "temporal_support": null,
+      "granularity": null,
+      "observation_status": "derived",
+      "availability": "neither",
+      "allowed_paths": [],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "被归入 G"
+      ],
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§3"
+      }
+    },
+    {
+      "object_id": "model_adequacy",
+      "name": "模型充分性诊断",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "架构 v3.3 §3 质量因子，且属推断后诊断，不属身份体系。",
+      "quality_phase": "post_inference",
+      "architecture_factor": "model_adequacy",
+      "unit": null,
+      "shape": null,
+      "spatial_support": "scored_support_domain",
+      "temporal_support": "per_acquisition",
+      "granularity": "acquisition_x_band_x_fold",
+      "observation_status": "derived",
+      "availability": "neither",
+      "allowed_paths": [
+        "descriptive_diagnostics"
+      ],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "反过来静默降低产生它的同一次观测的残差权重"
+      ],
+      "post_inference_constraint": "架构 v3.3 §3：推断后诊断不得回改同一次观测的残差权重；若需异方差似然或鲁棒损失，必须由独立节点合同定义并验证。",
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§3"
+      }
+    },
+    {
+      "object_id": "output_uncertainty",
+      "name": "输出不确定性",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "架构 v3.3 §3 质量因子，且属推断后诊断，不属身份体系。",
+      "quality_phase": "post_inference",
+      "architecture_factor": "output_uncertainty",
+      "instantiation_status": "not_instantiated_in_this_project_stage",
+      "unit": null,
+      "shape": null,
+      "spatial_support": null,
+      "temporal_support": null,
+      "granularity": null,
+      "observation_status": "derived",
+      "availability": "neither",
+      "allowed_paths": [],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "反过来静默降低产生它的同一次观测的残差权重",
+        "被表述为校准概率或 confidence"
+      ],
+      "post_inference_constraint": "同 model_adequacy。",
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§3"
+      }
+    },
+    {
+      "object_id": "risk_proxy_one_minus_cos_i",
+      "name": "几何风险代理",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "诊断量，由 Stage 7.4 定义用于选择性预测排序，不是模型的自由度。",
+      "unit": "dimensionless",
+      "shape": "raster",
+      "spatial_support": "scored_support_domain",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_pixel_per_acquisition",
+      "observation_status": "derived",
+      "availability": "neither",
+      "allowed_paths": [
+        "selective_prediction_ordering"
+      ],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "被表述为失败概率或 confidence"
+      ],
+      "upstream_verdict_note": "Stage 7.4 已判定其在本 ROI 上不构成可靠的正向风险排序代理。该判定属描述性结论，不改变本条的身份登记。",
+      "source_binding": {
+        "relative_path": "../../stage7_4_residual_reliability/configs/risk-proxy-config-v2.json",
+        "sha256": "7baff1c30b94684427defd73dacd3926881efc6d7ab69876a0af881593c0305d"
+      }
+    },
+    {
+      "object_id": "evidence_membership",
+      "name": "证据成员身份",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "治理元数据，记录 acquisition 是否属于观测证据宇宙，不是模型对象。",
+      "unit": "enum",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "per_acquisition",
+      "observation_status": "observed",
+      "availability": "neither",
+      "allowed_paths": [
+        "evidence_universe_bookkeeping"
+      ],
+      "forbidden_paths": [
+        "被写入 identity_class",
+        "被操作资格反向删除或改写（架构 v3.3 §2.2）"
+      ],
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§2.2"
+      }
+    }
+  ],
+  "deferred_identities": [
+    {
+      "object_id": "optical_effective_roughness",
+      "name": "光学有效粗糙度",
+      "why_deferred": "架构 v3.3 §7-F 明列其独立定义、刷新节奏与可辨识性尚未关闭。其类别归属（目标状态 X(t) 抑或干扰变量 N(t)）取决于尚不存在的独立证据；在主表中作出裁决等同于替 §7-F 关闭一个它没有关闭的问题。",
+      "distinctness_assertions": [
+        "与 sar_scale_roughness 不是同一个对象，二者不得共用同一身份、同一符号或同一参数实例。",
+        "不得由 DSM-DEM 直接宣称为已锁定（架构 §2.1 末段）。"
+      ],
+      "disposition": "deferred_missing_anchor",
+      "unblocking_condition": "取得能独立约束光学有效粗糙度的观测或实验证据，且其在正向模型中的进入形式被独立节点合同冻结。",
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§7-F；§2.1 末段"
+      }
+    },
+    {
+      "object_id": "sar_scale_roughness",
+      "name": "SAR 尺度粗糙度",
+      "why_deferred": "同上；且本项目尚无 SAR 观测，成员定义不在本节点冻结。",
+      "distinctness_assertions": [
+        "与 optical_effective_roughness 不是同一个对象。",
+        "本节点不冻结其成员定义、单位、形状或适用域——后续 SAR 节点须独立登记，不得复用光学侧的任何身份字段。"
+      ],
+      "disposition": "deferred_missing_anchor",
+      "unblocking_condition": "SAR L0 证据进入项目，且其散射机制与粗糙度尺度的关系由独立节点合同定义。",
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§7-F；§7-B"
+      }
+    }
+  ],
+  "section_7f_closure_statement": {
+    "closed_in_this_node": "§7-F 中属于身份层的部分：光学有效粗糙度与 SAR 尺度粗糙度已分别登记独立身份，二者不是同一对象这一断言已冻结，堵死后续节点复用同一身份的路径。",
+    "not_closed_in_this_node": [
+      "两类粗糙度各自的定义与类别归属",
+      "冠层/地物高度约束的可辨识性",
+      "X(t) 状态的刷新节奏",
+      "跨模态可辨识性"
+    ],
+    "explicit_note": "本节点不关闭 §7-F。上述未关闭项须在 disposition ledger 中显式登记，不得因本节点完成而被视作已解决。"
+  }
+}

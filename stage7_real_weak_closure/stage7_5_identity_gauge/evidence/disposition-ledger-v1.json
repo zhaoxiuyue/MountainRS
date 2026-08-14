@@ -1,0 +1,72 @@
+{
+  "schema": "mountainrs-stage7.5-disposition-ledger-v1",
+  "derived_from": {
+    "relative_path": "identity-registry-v1.json",
+    "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b"
+  },
+  "counts": {
+    "identity_qualified_with_fixed_gauge": 1,
+    "identity_qualified": 8,
+    "non_identifiable_equivalent": 1,
+    "not_applicable(no_disposition)": 10,
+    "deferred_missing_anchor(deferred_section)": 2
+  },
+  "by_disposition": {
+    "identity_qualified_with_fixed_gauge": [
+      "alpha"
+    ],
+    "identity_qualified": [
+      "terrain_elevation",
+      "slope",
+      "aspect",
+      "sun_elevation",
+      "sun_azimuth",
+      "cos_i",
+      "mu",
+      "acquisition_datetime"
+    ],
+    "non_identifiable_equivalent": [
+      "atmospheric_scale_term"
+    ],
+    "not_applicable(no_disposition)": [
+      "rho_obs",
+      "residual",
+      "base_valid_land",
+      "mconf",
+      "sensor_quality_from_qa",
+      "reconstruction_quality",
+      "model_adequacy",
+      "output_uncertainty",
+      "risk_proxy_one_minus_cos_i",
+      "evidence_membership"
+    ],
+    "deferred_missing_anchor(deferred_section)": [
+      "optical_effective_roughness",
+      "sar_scale_roughness"
+    ]
+  },
+  "admitted_to_stage_7_6": [
+    "terrain_elevation",
+    "slope",
+    "aspect",
+    "sun_elevation",
+    "sun_azimuth",
+    "cos_i",
+    "mu",
+    "acquisition_datetime",
+    "alpha"
+  ],
+  "blocked_from_stage_7_6": [
+    "atmospheric_scale_term",
+    "optical_effective_roughness",
+    "sar_scale_roughness"
+  ],
+  "unresolved_conflicts": 0,
+  "section_7f_open_items": [
+    "两类粗糙度各自的定义与类别归属",
+    "冠层/地物高度约束的可辨识性",
+    "X(t) 状态的刷新节奏",
+    "跨模态可辨识性"
+  ],
+  "open_items_notice": "上列 §7-F 项目在本节点未关闭，不得因本节点完成而视作已解决。"
+}

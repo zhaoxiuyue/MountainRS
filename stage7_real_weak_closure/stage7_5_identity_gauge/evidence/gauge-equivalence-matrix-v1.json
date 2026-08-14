@@ -1,0 +1,159 @@
+{
+  "schema": "mountainrs-stage7.5-gauge-equivalence-matrix-v1",
+  "derived_from": {
+    "relative_path": "identity-registry-v1.json",
+    "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b"
+  },
+  "rows": [
+    {
+      "object_id": "alpha",
+      "identity_class": "N_t",
+      "granularity": "acquisition_x_band",
+      "gauge_fixed": true,
+      "gauge_rule": "当前模型把全部乘性尺度因素——大气透过率、太阳辐照度常数、场景平均反照率——合并为单一参数，等价于将其余各因素隐式固定为 1。",
+      "anchor": null,
+      "disposition": "identity_qualified_with_fixed_gauge",
+      "evidence_scope": "global",
+      "global_justification_kind": "analytic_proof",
+      "value_is_gauge_relative": true
+    },
+    {
+      "object_id": "terrain_elevation",
+      "identity_class": "G",
+      "granularity": "per_pixel",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": "DEM 产品自身的高程基准",
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "slope",
+      "identity_class": "G",
+      "granularity": "per_pixel",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": null,
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "aspect",
+      "identity_class": "G",
+      "granularity": "per_pixel",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": null,
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "sun_elevation",
+      "identity_class": "E",
+      "granularity": "per_acquisition",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": "采集元数据",
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "sun_azimuth",
+      "identity_class": "E",
+      "granularity": "per_acquisition",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": "采集元数据",
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "cos_i",
+      "identity_class": "E",
+      "granularity": "per_pixel_per_acquisition",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": null,
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "mu",
+      "identity_class": "E",
+      "granularity": "per_pixel_per_acquisition",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": null,
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "acquisition_datetime",
+      "identity_class": "E",
+      "granularity": "per_acquisition",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": "采集元数据",
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "value_is_gauge_relative": false
+    },
+    {
+      "object_id": "atmospheric_scale_term",
+      "identity_class": "N_t",
+      "granularity": "acquisition_x_band",
+      "gauge_fixed": false,
+      "gauge_rule": null,
+      "anchor": null,
+      "disposition": "non_identifiable_equivalent",
+      "evidence_scope": null,
+      "global_justification_kind": null,
+      "value_is_gauge_relative": false
+    }
+  ],
+  "equivalence_relations": [
+    {
+      "pair": [
+        "alpha",
+        "atmospheric_scale_term"
+      ],
+      "form": "conditional",
+      "condition": "该项一旦被实例化，与 alpha 构成乘性等价对",
+      "note": "当前该项不存在，故 alpha 在现模型中可辨识；等价关系是对 Stage 7.6 的前置约束，不是对当前状态的判定。",
+      "instantiation_status": "watch_only"
+    },
+    {
+      "pair": [
+        "alpha",
+        "atmospheric_scale_term"
+      ],
+      "form": "multiplicative",
+      "proof": "若模型写作 rho_hat = T * alpha' * mu，则观测只能约束乘积 T·alpha'，(T, alpha') 与 (kT, alpha'/k) 对任意 k>0 产生逐点相同的预测。该结论为解析结果，不依赖任何数据。",
+      "unblocking_conditions": [
+        "获得独立锚点（如外部 AOD 产品）将 T 钉住——此时它成为被估计量，equivalence 解除；",
+        "显式固定 gauge 并声明 alpha 的数值为 gauge-relative——此时判定改为 identity_qualified_with_fixed_gauge；",
+        "与 alpha 互斥比较——胜出方只取得 gauge-fixed 的参数化身份，不得记为该物理机制已获独立证据（拟合优度差异不是机制证据，架构 §1.3）。"
+      ],
+      "instantiation_status": "not_yet_instantiated"
+    }
+  ],
+  "gauge_fixed_objects": [
+    "alpha"
+  ],
+  "reading_rule": "gauge_fixed=true 的对象，其数值是 gauge-relative 的合成量，不得作为该物理量的独立测量结果报告。"
+}

@@ -1,0 +1,169 @@
+{
+  "schema": "mountainrs-stage7.5-identity-registry-schema-v1",
+  "purpose": "定义 identity registry 的字段规格与闭集。本 schema 只管『对象是什么身份、占不占推断自由度』，不管质量与诊断本体——后者属架构 v3.3 §3，与本体系正交。",
+  "authority": {
+    "identity_class_definitions": {
+      "source": "架构 v3.3 §2.1",
+      "relative_path": "../../../docs/architecture.md",
+      "binding": "逐字对齐，本节点不得重定义任一类别；本 schema 的 description 字段为压缩转述，冲突时以架构正文为准。"
+    },
+    "orthogonality_declaration": {
+      "source": "架构 v3.3 §3 末段",
+      "statement": "质量因子不属于 G/X(t)/Z(t)/N(t)/E；该类别体系只适用于进入推断图的状态量、待估参数、独立结构约束与外生条件量。"
+    }
+  },
+
+  "identity_class_closed_set": {
+    "G": {
+      "label": "稳定几何底座",
+      "description": "世界坐标、地形与长期稳定结构的规范表示及其几何不确定性。常态训练中锁定，不作为任意梯度吸收器。",
+      "occupies_inference_dof": true,
+      "receives_gradient": "locked_by_default"
+    },
+    "X_t": {
+      "label": "目标时变地表状态",
+      "description": "经实验合同定义的时变地表状态（如含水量、植被覆盖度），可随时间被有效观测约束更新。",
+      "occupies_inference_dof": true,
+      "receives_gradient": true
+    },
+    "Z_t": {
+      "label": "独立观测的结构约束",
+      "description": "由独立观测得到的结构约束（如冠层高度）。来源、刷新节奏与不确定性分开记录，不得被折进某个状态项。",
+      "occupies_inference_dof": true,
+      "receives_gradient": "constrained"
+    },
+    "N_t": {
+      "label": "干扰或标定变量",
+      "description": "大气、辐射定标、反照率/BRDF、传感器偏差等。不得被错误归因给 G 或 X(t)。",
+      "occupies_inference_dof": true,
+      "receives_gradient": true
+    },
+    "E": {
+      "label": "外生输入",
+      "description": "采集时即已确定、精确已知、不参与推断的条件量（太阳-传感器几何、成像时刻、轨道与斜距几何）。逐次观测从采集元数据直接读取，不建模其时间演化。",
+      "occupies_inference_dof": false,
+      "receives_gradient": false,
+      "absorbs_residual": false,
+      "boundary_vs_N_t": "分界是是否需要估计：太阳角已知故属 E；大气透过率需估计故属 N(t)。"
+    },
+    "not_applicable": {
+      "label": "不适用本身份体系",
+      "description": "质量因子、诊断量、算子、residual、provenance 与治理元数据。它们不属于 G/X/Z/N/E 中任何一类，登记为 not_applicable 是正确终态，不是缺失，也不构成停机理由。",
+      "occupies_inference_dof": false,
+      "note": "禁止将 support_mask、sensor_quality 等质量本体名称写入 identity_class。"
+    }
+  },
+
+  "disposition_closed_set": {
+    "applies_to": "identity_class != not_applicable 的对象",
+    "values": {
+      "identity_qualified": "身份与自由度归属明确，无等价替代，可进入 Stage 7.6。",
+      "identity_qualified_with_fixed_gauge": "存在规范自由度，已按声明的 gauge 固定后可用；参数数值为 gauge-relative，不得作为独立物理测量结果报告。可进入 Stage 7.6。",
+      "non_identifiable_equivalent": "与另一对象只以固定组合影响预测，二者不可分。禁止同时自由激活。不得进入 Stage 7.6。",
+      "excluded_class_or_path_violation": "违反类别定义或禁止路径（如把 E 类对象当作可拟合量）。不得进入 Stage 7.6。",
+      "deferred_missing_anchor": "身份已登记但缺少独立锚点或必要证据，本节点不作判定。不得进入 Stage 7.6。"
+    },
+    "entry_gate_to_stage_7_6": ["identity_qualified", "identity_qualified_with_fixed_gauge"]
+  },
+
+  "evidence_scope_closed_set": {
+    "required_for": ["identity_qualified", "identity_qualified_with_fixed_gauge"],
+    "values": {
+      "local": "结论由某参数点邻域的数值证据支持（Jacobian、奇异值、局部灵敏度）。不得在报告、registry 或任何下游节点中表述为已获全局可辨识性。",
+      "profile": "结论由多起点或 profile 类扫描支持。仍非全局证明。",
+      "global": "结论来自解析或结构证明，或来自明确覆盖目标域的全局资格证据。"
+    },
+    "promotion_rule": "局部 Jacobian、奇异值分析、多起点优化与 profile 均不得单独升级为 global，无论重复多少次。",
+    "global_justification_kind": {
+      "required_when": "evidence_scope == global",
+      "rationale": "以结构化枚举取代对散文的关键词匹配。关键词判据同时产生误报（把『不是多起点实验』读成『是多起点实验』）与漏报（写上『解析』二字却未给出证明即可通过），不能作为可判定的准入条件。",
+      "values": {
+        "analytic_proof": "由模型的解析性质直接得出，例如对参数线性因而 Jacobian 不随参数点变化。",
+        "structural_argument": "由对象在模型结构中的地位直接得出，例如该对象不占推断自由度、或为已知量的确定性变换。",
+        "domain_covering_evidence": "由明确覆盖目标域的全局资格证据得出，须给出覆盖范围的界定。"
+      },
+      "excluded": "数值实验（多起点、重复采样、profile 扫描、随机初值一致性）不构成任何一种合法 kind。散文 justification 字段仍须填写，供人读，但不参与判定。"
+    }
+  },
+
+  "quality_phase_closed_set": {
+    "applies_to": "identity_class == not_applicable 且该对象属架构 v3.3 §3 六类质量因子之一",
+    "values": {
+      "pre_inference": "推断前证据质量（support_mask、geometry_visibility、reconstruction_quality、sensor_quality），可决定某次观测是否进入当前损失。",
+      "post_inference": "推断后诊断（model_adequacy、output_uncertainty），是推断产生的结果。"
+    },
+    "constraint": "本字段仅作标注，不构成第二套身份体系；post_inference 因子不得反过来静默降低产生它们的同一次观测的残差权重（架构 v3.3 §3）。"
+  },
+
+  "deferred_identities_section": {
+    "purpose": "安放『未来可能进入推断图、但其类别归属本身尚属未决问题』的对象。它们不进主表，因为主表要求 identity_class 取自闭集，而对这些对象作出类别裁决就等于替 §7-F 关闭一个它没关闭的问题。",
+    "admission_rule": "仅限架构 v3.3 §7-F 明列为未决的对象；不得用作『暂时想不清楚』的收容所。新增条目须给出 §7-F 的具体引用。",
+    "required_fields": [
+      "object_id",
+      "name",
+      "why_deferred",
+      "distinctness_assertions",
+      "disposition",
+      "unblocking_condition"
+    ],
+    "disposition_constraint": "本段对象的 disposition 只能是 deferred_missing_anchor。",
+    "distinctness_assertions": "即使类别未定，对象之间的『不是同一个东西』仍可断言并冻结——这是本段的主要产出，用于堵死后续节点复用同一身份的路径。"
+  },
+
+  "entry_fields": {
+    "required_for_all": [
+      "object_id",
+      "name",
+      "identity_class",
+      "unit",
+      "shape",
+      "spatial_support",
+      "temporal_support",
+      "granularity",
+      "observation_status",
+      "availability",
+      "allowed_paths",
+      "forbidden_paths",
+      "source_binding"
+    ],
+    "required_when_identity_class_not_applicable": ["not_applicable_reason"],
+    "required_when_quality_factor": ["quality_phase"],
+    "required_when_in_inference_graph": [
+      "anchor",
+      "prior",
+      "normalization",
+      "gauge",
+      "disposition"
+    ],
+    "required_when_disposition_qualified": ["evidence_scope"],
+    "field_specs": {
+      "object_id": "稳定标识，snake_case，一经冻结不得改名；更名等同新建并使下游 stale。",
+      "granularity": "该对象的实例粒度，例如 global / per_acquisition / acquisition_x_band / per_pixel。自由度计数按此粒度展开，不得按更粗层级聚合。",
+      "observation_status": "闭集 observed | derived | latent。",
+      "availability": "闭集 train_and_inference | train_only | inference_only | neither。",
+      "anchor": "把该对象钉住的独立证据；无则 null。null 且存在等价替代时不得判为 identity_qualified。",
+      "gauge": "对象 {fixed: bool, rule: str|null, rationale: str|null}。fixed=true 时其数值为 gauge-relative。",
+      "allowed_paths / forbidden_paths": "该对象允许与禁止参与的计算路径，用于 auditor 校验。",
+      "source_binding": "对象定义的来源冻结件 {relative_path, sha256}；用前须复验。"
+    }
+  },
+
+  "auditor_invariants": [
+    "I1 identity_class 必须取自闭集；不得出现质量因子名称。",
+    "I2 identity_class == E 的对象，occupies_inference_dof 与 receives_gradient 必须为 false，且不得出现在任何自由度占用审计的被估计侧。",
+    "I3 identity_class == not_applicable 的对象不得携带 disposition 或 evidence_scope 字段。",
+    "I4 disposition ∈ {identity_qualified, identity_qualified_with_fixed_gauge} 的对象必须携带 evidence_scope。",
+    "I5 evidence_scope == global 的对象必须在 justification 中给出解析或结构证明的引用；仅有数值实验的一律拒收。",
+    "I6 任何两个对象若被判 non_identifiable_equivalent，必须成对登记且互相引用 equivalence_partner。",
+    "I7 gauge.fixed == true 的对象，其 disposition 必须为 identity_qualified_with_fixed_gauge，不得为 identity_qualified。",
+    "I8 每个 in-inference-graph 对象的 source_binding.sha256 必须与磁盘实际值一致。"
+  ],
+
+  "explicit_non_goals": [
+    "不定义观测支持谱（架构 v3.3 §3 已定其最小接口，属证据层，不进入本 registry）。",
+    "不定义置信度或不确定性的计算方式。",
+    "不定义任何算子的具体公式——那属 Stage 7.6 activation preflight。",
+    "不对 residual 做分类。",
+    "不为未来模态提前冻结状态成员。"
+  ]
+}
