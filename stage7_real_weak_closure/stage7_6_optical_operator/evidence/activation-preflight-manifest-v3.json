@@ -1,0 +1,105 @@
+{
+  "schema": "mountainrs-stage7.6-activation-preflight-v3",
+  "outcome": "activation_preflight_ready",
+  "final_for_this_cycle": true,
+  "final_for_this_cycle_note": "本版已吸收关闭前审计的全部意见。Stage 7.6 的合同不再等待下一轮审计；后续若有新发现，按其对设计自由度的实际影响处理，不再以预检版本迭代的形式承载。",
+  "supersedes": {
+    "path_base": "node_container_root",
+    "relative_path": "evidence/activation-preflight-manifest-v2.json",
+    "sha256": "1aeb10632ccf0a150e89f534ae6e7bee22c559cb7d3c9b98a3ac2643e3092060",
+    "predecessor_byte_policy": "preserve_unchanged",
+    "chain": "v1 blocked(decision_required) → v2 ready → v3 ready(吸收关闭前审计六项)"
+  },
+  "path_bases": {
+    "node_container_root": "stage7_real_weak_closure/stage7_6_optical_operator/",
+    "stage_root": "stage7_real_weak_closure/",
+    "repo_root": ""
+  },
+  "performed_by": "Stage 7.5 执行手",
+  "performed_on": "2026-08-14",
+  "contract_revision_audited": 88,
+
+  "audit_findings_adopted": [
+    {
+      "id": "A1_OPERATOR_VS_INFERENCE_OBJECT",
+      "verdict": "adopted_as_clarification",
+      "was_already_covered": true,
+      "resolution": "passCriteria 1 增补：算子本身（作为函数/计算路径）登记 identity_class=not_applicable；只有该算子引入的待估参数与条件量才进入 G/X(t)/Z(t)/N(t)/E。原措辞由 Stage 7.5 registry 的适用域段隐含覆盖，现改为显式——执行手完全可能把『漫射算子』当对象塞进 N(t)，而该进 N(t) 的是漫射项的强度参数，不是那个函数。"
+    },
+    {
+      "id": "A2_FOLD_SAFE_NEW_PARAMETERS",
+      "verdict": "adopted_real_gap",
+      "was_already_covered": false,
+      "resolution": "passCriteria 3 重写：本节点引入的每个新参数与 alpha 一样，必须逐 acquisition×band×fold 仅由该 fold 的训练支持区估计；held-out core 及其隔离带不得参与任何参数拟合，也不得在支持不足时回退全域参数——支持不足即判 unsupported 并保留在机会分母。",
+      "severity_note": "原合同只说『使用相同 fold』，未约束新参数的估计范围。若不补，Stage 7.3 用整个节点建立的 8130 m 空间隔离在新参数上全部失效。"
+    },
+    {
+      "id": "A3_ADJACENCY_LEAKAGE",
+      "verdict": "adopted_real_gap",
+      "was_already_covered": false,
+      "resolution": "passCriteria 3 增补：邻接项候选不得读取 held-out core 或其隔离带内的任何目标观测或邻域观测来构造预测量；若邻接项的严格形式依赖尚未由 Stage 7.7 激活的 latent 地表状态，终态必须为 deferred_missing_required_input，不得用观测值代入充当该状态。逐 fold 泄漏审计零违规方可进入消融。",
+      "severity_note": "这是一条绕过空间阻断的新通道，且长在物理项里而非拟合代码里。邻接项需要周围坡面的亮度，而亮度只能来自观测或模型预测；取观测即跨越 core 边界。执行手预检 v1/v2 均未识别此路径，由关闭前审计发现。"
+    },
+    {
+      "id": "A4_EXPOSURE_STATUS_AND_SPLIT",
+      "verdict": "adopted_real_gap",
+      "was_already_covered": false,
+      "resolution": "新增 passCriteria 6：Stage 7.3/7.4 的 residual 已产出并公开，故本节点相对既有结果为 post-result exploratory，不得声称 preregistered；节点内部的候选集合、比较关系与判定规则仍须在首次读取本节点结果前冻结。train 决定资格；validation/test 只做描述性迁移检查，不得改变候选、阈值或终态；独立确认留给 Stage 7.10。"
+    },
+    {
+      "id": "A5_MECHANICAL_QUALIFIED_VERDICT",
+      "verdict": "adopted_real_gap",
+      "was_already_covered": false,
+      "resolution": "passCriteria 4 增补：qualified 的判定必须机械唯一——报告单位、等景/等波段权重、主指标与方向、coverage 容差、稳定性与边界 Gate、复杂度惩罚与 tie 规则，全部在首次读取本节点结果前冻结。禁止像元池化产生伪样本量；禁止通过收缩 support、clip 或 unmask 使失败消失。",
+      "scope_guard": "上述判定规则由执行手直接冻结，不拆成多方案裁决请求——除非其中出现真实的价值取舍。Stage 7.4 的方法包三选一不作为先例。"
+    },
+    {
+      "id": "A6_EVIDENCE_SUPPORT_AND_QUALITY_LAYERING",
+      "verdict": "adopted_real_gap",
+      "was_already_covered": false,
+      "resolution": "新增 passCriteria 7：21 景 evidence_membership 不变（架构 v3.3 §2.2），本节点只产生 operation-specific 的 support/qualification 投影；被排除的景或像元继续留在机会分母并携带 reason code，不得静默消失。推断前质量因子可按冻结规则决定支持域；推断后的 residual、model_adequacy 与 output_uncertainty 不得反过来降低产生它们的同一次观测的权重（§3）。",
+      "origin_note": "Stage 7.6 合同成文于架构 v3.3 之前，这两条 v3.3 新增条款此前未落到本节点。"
+    },
+    {
+      "id": "A7_STAGE_7_7_CANDIDATE_UNIVERSE",
+      "verdict": "adopted_registered_as_constraint",
+      "resolution": "经复核确认：Stage 7.7 的 passCriteria 1 只规定『候选状态只能依赖 7.6 的 qualified 算子』，属依赖约束而非候选清单；passCriteria 3 的五类终态完备而候选集合为空。已写入指向 Stage 7.7 的节点约束 nc_e3a7a30f1aaa，要求在 Stage 7.6 首次产出结果值之前冻结候选 universe，并载明四条处置义务。时序上该义务归 Stage 7.6 承担，不在本次预检解决。"
+    }
+  ],
+
+  "upstream_bindings": [
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/identity-registry-v1.json", "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/gauge-equivalence-matrix-v1.json", "sha256": "d5b51a7a008116fc7a30fc2f8913dc9e8913b9462b1eaf5ddbbb73b0d090adf5"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/evidence/disposition-ledger-v1.json", "sha256": "94a6c6471f2039716a2b7691ed3d71372afe691aaf6be365597b82f15679115e"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/configs/identity-registry-schema-v1.json", "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/scripts/audit_identity_registry_v1.py", "sha256": "96f4d5e7c3d2e08b264c7340985d9a114736249ecb0ad7881597b28089fbda70"},
+    {"path_base": "stage_root", "relative_path": "stage7_5_identity_gauge/scripts/identifiability_toolbox_v1.py", "sha256": "dccb74bf4fa80905ff55df346eba17a6b9dde86bd534b335b932e7ba61a3cd26"},
+    {"path_base": "stage_root", "relative_path": "stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md", "sha256": "244846f9589006edbbe093dc9c052f918af96e8c43ec08727a0586f0a1f169f3", "supplies": ["fold 拓扑与 8130 m 隔离准入的既有口径", "A2/A3 的对照依据"]},
+    {"path_base": "repo_root", "relative_path": "docs/architecture.md", "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087"}
+  ],
+
+  "checks_passed": [
+    "C1 类别词表来源唯一，新对象登记落点已定义，算子与推断对象已分开登记。",
+    "C2 evidence_scope 传递规则已写入。",
+    "C3 E 类保护就位。",
+    "C4 §1.4 拒绝律引用为『G 与 X(t)』。",
+    "C5 结果盲纪律：候选与比较关系结果前冻结；validation/test 不得选择物理项。",
+    "C6 上游绑定全部存在且 hash 一致。",
+    "C7 单纯降损不足以 qualified 已明写。",
+    "C8 大气项乘性/加性已分列，解封条件与 Stage 7.5 逐条对应。",
+    "C9 漫射与邻接的地形调制声明义务已写入。",
+    "C10 Stage 7.5 工具箱的原理性局限须随秩亏结论一并复述。",
+    "C11 新参数的 fold-safe 估计范围已约束，禁止全域回退。",
+    "C12 邻接项泄漏路径已封堵，含 latent 依赖时的强制终态。",
+    "C13 本节点的 post-result exploratory 地位已声明。",
+    "C14 qualified 判定的机械唯一性要件已冻结。",
+    "C15 evidence_membership 不变与推断后不得反向降权已落到本节点。"
+  ],
+
+  "explicit_non_authorization": {
+    "closes_stage_7_5": false,
+    "activates_stage_7_6": false,
+    "authorizes_stage_7_6_experiment": false,
+    "modifies_stage_7_5_frozen_artifacts": false
+  }
+}
