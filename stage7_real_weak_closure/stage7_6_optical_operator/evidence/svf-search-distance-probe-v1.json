@@ -1,0 +1,112 @@
+{
+  "schema": "mountainrs-stage7.6-svf-search-distance-probe-v1",
+  "status": "preparatory_geometric_probe",
+  "status_note": "本文件不是 svf-geometry-gate 的正式执行结果。它是一次预备性抽样测算，目的只有一个：判断现有 DEM 的覆盖范围能否支撑 Gate 所需的搜索距离。正式 Gate 须在最终 DEM 上全图执行。",
+  "recorded_on": "2026-08-15",
+
+  "result_blindness": {
+    "residual_read": false,
+    "alpha_read": false,
+    "score_read": false,
+    "statement": "全程只读取 DEM 高程，未读取任何 residual、alpha、score 或本节点的实验输出。本探查不构成对 svf-geometry-gate 中『精度选择不看 C1 表现』这一约束的违反。"
+  },
+
+  "method": {
+    "input_dem": {
+      "relative_path": "../../../stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif",
+      "crs": "EPSG:32648",
+      "resolution_m": 27.6,
+      "bounds": [289500, 3407878, 405017, 3487129]
+    },
+    "dem_identity_check": {
+      "compared_against": "stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+      "compared_against_sha256": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4",
+      "overlap_pixels": 488800,
+      "max_abs_difference_m": 0.0,
+      "pearson_r": 1.0,
+      "conclusion": "两份 DEM 在 ROI 内逐像元一致，同源。用 UTM48N 版本计算 v_sky 不会与 Stage 7.2 的 cos_i、Stage 7.3 的拓扑产生几何不一致。"
+    },
+    "sampling": {
+      "n_points": 400,
+      "rng_seed": 20260815,
+      "constraint": "仅抽取四周有 2700 m 余量的 ROI 内点，保证各 D 档位可比",
+      "azimuth_count": 72,
+      "step_m": 27.6
+    },
+    "svf_formula": "v_sky = mean_over_azimuth( cos²(max_horizon_angle) )，各向同性天空假设"
+  },
+
+  "terrain_context": {
+    "roi_elevation_min_m": 2491,
+    "roi_elevation_max_m": 5796,
+    "roi_relief_m": 3305,
+    "implication": "高差 3305 m 意味着远山的遮挡贡献衰减很慢：距 10 km 处、高差 3305 m 的山体仰角仍达 18.29°。这直接决定了搜索距离的需求量级。",
+    "angle_by_distance": {
+      "2700_m": 50.75,
+      "5000_m": 33.46,
+      "10000_m": 18.29,
+      "unit": "degree",
+      "note": "按 ROI 最大高差计算的上界，非典型值；实际每点周围的落差小于此。"
+    }
+  },
+
+  "convergence_probe": {
+    "criteria_applied": {
+      "max_abs_delta_v_sky": 0.01,
+      "p99_abs_delta_v_sky": 0.005,
+      "spearman_rho": 0.999,
+      "source": "svf-geometry-gate-v1.convergence_criteria"
+    },
+    "series": [
+      {"D_m": 500,  "v_sky_mean": 0.8623, "max_abs_delta": null,   "p99_abs_delta": null,   "spearman_rho": null,     "verdict": "baseline"},
+      {"D_m": 1000, "v_sky_mean": 0.8499, "max_abs_delta": 0.0673, "p99_abs_delta": 0.0591, "spearman_rho": 0.945359, "verdict": "not_converged"},
+      {"D_m": 1500, "v_sky_mean": 0.8437, "max_abs_delta": 0.0524, "p99_abs_delta": 0.0269, "spearman_rho": 0.987163, "verdict": "not_converged"},
+      {"D_m": 2000, "v_sky_mean": 0.8402, "max_abs_delta": 0.0255, "p99_abs_delta": 0.0157, "spearman_rho": 0.996391, "verdict": "not_converged"},
+      {"D_m": 2700, "v_sky_mean": 0.8373, "max_abs_delta": 0.0191, "p99_abs_delta": 0.0141, "spearman_rho": 0.997131, "verdict": "not_converged"}
+    ],
+    "v_sky_distribution_at_2700m": {"min": 0.528, "median": 0.841, "max": 0.981},
+    "distribution_note": "v_sky 在本 ROI 内的实际变化幅度极大（0.53–0.98），说明它不是可以用常数近似掉的量——这支持 C1 作为有物理意义的候选，而非凑数项。"
+  },
+
+  "conclusions": [
+    {
+      "id": "P1",
+      "finding": "在 DEM 允许的最远搜索距离 2700 m 处，三项收敛指标全部未达阈值。",
+      "evidence": "max|Δ| 0.0191 > 0.01；P99|Δ| 0.0141 > 0.005；Spearman ρ 0.997131 < 0.999。"
+    },
+    {
+      "id": "P2",
+      "finding": "按 500→2700 m 的衰减速度外推，收敛所需的搜索距离下界估计为 5–10 km。",
+      "confidence": "order_of_magnitude_estimate",
+      "note": "该外推与地形高差给出的仰角估算一致（10 km 处仍有 18.29°），两条独立线索指向同一量级。"
+    },
+    {
+      "id": "P3",
+      "finding": "现有 DEM 的四边最小外扩余量为 2730 m（瓶颈在西侧），不足以支撑任何一个 Gate 候选 D（5/10/20 km）。",
+      "consequence": "若以现有 DEM 执行 Gate，结果必为 svf_geometry_not_converged，C1 终态 deferred_missing_required_input；且因 C2a 同样依赖 v_sky，本节点将只剩 C1′ 这一个经验截距候选，失去科学价值。"
+    }
+  ],
+
+  "data_requirement": {
+    "roi_lonlat": {"lon_min": 102.8152, "lon_max": 103.0243, "lat_min": 31.1767, "lat_max": 31.3834},
+    "existing_raw_srtm": {
+      "relative_path": "../../../stages/stage2_dem_terrain/data/srtm_dem.tif",
+      "crs": "EPSG:4326",
+      "bounds": [102.80, 30.80, 104.00, 31.50],
+      "resolution_arcsec": 1.0
+    },
+    "gap_by_buffer": [
+      {"buffer_km": 10, "required_lonlat": [102.7079, 31.0847, 103.1310, 31.4752], "missing": "西侧 102.7079–102.80（约 8.8 km 宽），南北在现有覆盖内", "tiles_needed": ["N31E102 东部"]},
+      {"buffer_km": 15, "required_lonlat": [102.6542, 31.0387, 103.1843, 31.5210], "missing": "西侧 102.6542–102.80；北侧 31.50–31.5210 略超", "tiles_needed": ["N31E102 东部"]},
+      {"buffer_km": 20, "required_lonlat": [102.6004, 30.9927, 103.2375, 31.5669], "missing": "西侧与北侧", "tiles_needed": ["N31E102", "N31E103 北部延伸"]}
+    ],
+    "recommended_buffer_km": 15,
+    "recommended_buffer_rationale": "P2 估计的收敛下界为 5–10 km；取 15 km 留出裕量，使 Gate 的 D 候选（5/10/15 km）都能被实际测试，避免出现『收敛值恰好落在数据边界上』而无法验证的情形。"
+  },
+
+  "does_not_authorize": [
+    "本探查不选定任何 Gate 参数——selected 字段仍为 null。",
+    "不构成 svf-geometry-gate 的执行，正式 Gate 须在最终 DEM 上全图运行。",
+    "不改变任何候选的终态。"
+  ]
+}
