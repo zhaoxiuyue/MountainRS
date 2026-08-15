@@ -1,0 +1,204 @@
+{
+  "schema": "mountainrs-stage7.6-operator-identity-registry-v1",
+  "purpose": "登记本节点候选算子引入的待估参数与条件量。算子本身（作为函数/计算路径）不进入身份体系；进入的只有它引入的参数与条件量。",
+  "conforms_to": {
+    "relative_path": "../../stage7_5_identity_gauge/configs/identity-registry-schema-v1.json",
+    "sha256": "edb262d277957681f58c9cef6e829802a24218ac4f8314b753d8b7bcbd6a119b",
+    "note": "复用 Stage 7.5 的字段规格、闭集与 11 条不变量；本 registry 引用而不修改 identity-registry-v1。"
+  },
+  "upstream_identity_registry": {
+    "relative_path": "../../stage7_5_identity_gauge/evidence/identity-registry-v1.json",
+    "sha256": "9725178f28229f3e7d4bc6af20d08868fdb34f8c9375f69c4dd00d07ba44af1b",
+    "relation": "read_only_reference",
+    "note": "本节点不向该文件追加任何条目。alpha、mu、cos_i、G 系列等既有对象的身份以该文件为准。"
+  },
+  "recorded_on": "2026-08-15",
+
+  "operators_not_in_identity_system": [
+    {
+      "operator_id": "sky_diffuse_operator",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "算子是函数/计算路径，不是模型的状态、参数、结构约束或条件量。进入身份体系的是它引入的 beta_v 与 v_sky。",
+      "introduces": ["beta_v", "v_sky"]
+    },
+    {
+      "operator_id": "constant_offset_operator",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "同上。",
+      "introduces": ["beta_0"]
+    },
+    {
+      "operator_id": "atmospheric_path_radiance_operator",
+      "identity_class": "not_applicable",
+      "not_applicable_reason": "同上。",
+      "introduces": ["l_path"]
+    }
+  ],
+
+  "entries": [
+    {
+      "object_id": "v_sky",
+      "name": "天空可视因子",
+      "identity_class": "G",
+      "unit": "dimensionless",
+      "shape": "raster",
+      "spatial_support": "roi_grid",
+      "temporal_support": "static_within_universe_version",
+      "granularity": "per_pixel",
+      "observation_status": "derived",
+      "derived_from": ["terrain_elevation"],
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": "取值 [0,1]，表示该点可见天空立体角占半球的比例",
+      "gauge": {"fixed": false, "rule": null, "rationale": null},
+      "allowed_paths": ["sky_diffuse_term_modulation"],
+      "forbidden_paths": [
+        "作为可拟合量",
+        "作为梯度落点",
+        "吸收残差",
+        "其算法参数（方位采样、搜索距离 D、曲率开关、边界处理）依据 held-out residual 调节"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "global",
+      "global_justification_kind": "structural_argument",
+      "evidence_scope_justification": "由 G 经确定性几何计算得到，不含任何待估量，不占推断自由度；其可辨识性问题不存在。归类与 slope、aspect 同型（纯 G 派生），区别于 cos_i——后者复合了太阳几何故归 E。",
+      "classification_precondition": {
+        "statement": "归入 G 的前提是 terrain_elevation 在常态训练中锁定。若 G 参与更新，v_sky 继承其不确定性，须重新分类。",
+        "inherits_from": "Stage 7.5 registry 中 cos_i 条目的同类前提"
+      },
+      "leakage_note": "v_sky 使用全域 DEM 计算不构成 fold 泄漏——DEM 属已冻结的 G，空间 fold 隔离的是目标观测与拟合信息，不是已知地形。但其算法参数必须在读取任何 residual 之前冻结：泄漏通道不在『读了全域地形』，而在『用留出结果挑了几何算法』。",
+      "source_binding": {
+        "relative_path": "../configs/svf-geometry-gate-v1.json",
+        "sha256": "PENDING_GATE_SHA",
+        "note": "算法定义、参数与收敛 Gate 由该文件唯一给出；本条目的 hash 在 Gate 冻结后回填。"
+      }
+    },
+    {
+      "object_id": "beta_v",
+      "name": "天空漫射项的地形调制系数",
+      "identity_class": "N_t",
+      "unit": "dimensionless",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "acquisition_x_band_x_fold",
+      "granularity_note": "与 alpha 同样受 fold-safe 约束：每个 acquisition×band×fold 各持一个独立实例，仅由该 fold 的训练支持区估计。自由度计数按此粒度展开。",
+      "observation_status": "latent",
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": null,
+      "gauge": {"fixed": false, "rule": null, "rationale": null},
+      "allowed_paths": ["L2_forward_synthesis_additive_diffuse_term"],
+      "forbidden_paths": [
+        "由 held-out core 或其隔离带内的观测估计",
+        "在支持不足时回退到全域参数",
+        "被报告为天空散射辐照度的绝对测量"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "local",
+      "evidence_scope_justification": "在 C_full 框架下与 beta_0 的可分性取决于 v_sky 在该 fold 训练支持区内是否有足够变化——这是数据性质而非模型结构性质，故只能给 local。若 v_sky 在某 fold 内近似常数，该 fold 的 beta_v 与 beta_0 实际不可辨识（Stage 7.5 fixture F6 的情形），须按 Gate 判为 unsupported 而非硬解。",
+      "source_binding": {
+        "relative_path": "../configs/optical-operator-config-v1.json",
+        "sha256": "PENDING_CONFIG_SHA"
+      }
+    },
+    {
+      "object_id": "beta_0",
+      "name": "无地形调制的加性常数项",
+      "identity_class": "N_t",
+      "physical_status": "empirical_offset",
+      "physical_status_note": "本项不含任何地形调制，与地形无关。按 Stage 7.6 passCriteria 2，它可作为对照基线保留，但不得表述为物理机制；其 qualified 判定不得被引用为漫射机制或路径辐射机制已获支持。",
+      "unit": "dimensionless",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "acquisition_x_band_x_fold",
+      "observation_status": "latent",
+      "availability": "train_and_inference",
+      "anchor": null,
+      "prior": null,
+      "normalization": null,
+      "gauge": {"fixed": false, "rule": null, "rationale": null},
+      "allowed_paths": ["L2_forward_synthesis_additive_constant_term"],
+      "forbidden_paths": [
+        "由 held-out core 或其隔离带内的观测估计",
+        "在支持不足时回退到全域参数",
+        "被表述为天空散射、路径辐射或任何具名物理机制"
+      ],
+      "disposition": "identity_qualified",
+      "evidence_scope": "local",
+      "evidence_scope_justification": "与 beta_v 同理，其可分性取决于 v_sky 在该 fold 内的变化幅度，属数据性质。",
+      "source_binding": {
+        "relative_path": "../configs/optical-operator-config-v1.json",
+        "sha256": "PENDING_CONFIG_SHA"
+      }
+    },
+    {
+      "object_id": "l_path",
+      "name": "加性大气路径辐射项",
+      "identity_class": "N_t",
+      "instantiation_status": "registered_not_run",
+      "unit": "dimensionless",
+      "shape": "scalar",
+      "spatial_support": "per_acquisition_footprint",
+      "temporal_support": "per_acquisition",
+      "granularity": "acquisition_x_band_x_fold",
+      "observation_status": "latent",
+      "availability": "neither",
+      "anchor": null,
+      "prior": null,
+      "normalization": null,
+      "gauge": {"fixed": false, "rule": null, "rationale": null},
+      "allowed_paths": [],
+      "forbidden_paths": [
+        "与 beta_0 同时自由激活",
+        "被表述为已测得的大气路径辐射"
+      ],
+      "disposition": "non_identifiable_equivalent",
+      "equivalence_partner": "beta_0",
+      "equivalence_form": "additive_identical",
+      "equivalence_proof": "路径辐射对给定 acquisition×band 是一个加性常数；beta_0 亦为逐 acquisition×band×fold 的加性常数。二者在本数据配置下对预测的贡献逐点相同，观测无法区分。理论上路径辐射的波段依赖光谱形状可用于分离，但本项目仅有 B4、B5 两个波段，且 alpha 与 beta 本身已逐波段自由，自由度不足以约束该形状。",
+      "why_registered_without_running": "显式登记并显式判定『与截距不可区分』，比默默不提更诚实：以后若有人问『试过路径辐射吗』，有据可查，且判定依据是解析的、不依赖任何实验。本项不单独运行——运行它只会重现 beta_0 的结果。",
+      "unblocking_conditions": [
+        "取得独立的大气产品（如 AOD）锚定路径辐射，使其成为被约束量；",
+        "扩展到三个以上波段，且波段间的路径辐射光谱形状被独立冻结，使形状约束能分离二者。"
+      ],
+      "source_binding": {
+        "relative_path": "../configs/optical-operator-config-v1.json",
+        "sha256": "PENDING_CONFIG_SHA"
+      }
+    }
+  ],
+
+  "deferred_identities": [
+    {
+      "object_id": "terrain_adjacency_reflectance",
+      "name": "地形邻接反射项（严格形式）",
+      "why_deferred": "严格的邻接项需要周围坡面的实际亮度，即地表反照率场——那是 Stage 7.7 尚未激活的 latent 状态。用观测值代入充当该状态会读取 held-out core 或其隔离带内的邻域观测，构成绕过空间阻断的泄漏通道（Stage 7.6 passCriteria 3 已禁止）。",
+      "distinctness_assertions": [
+        "与 sky_diffuse_operator 不是同一个对象：前者的能量来自周围地表反射，后者来自天空散射，二者的地形调制因子不同（邻接张角 vs 天空可视因子）。",
+        "其几何近似形式（以 1−v_sky 作为张角代理、假设周围亮度均匀）不等于严格形式；该近似已作为候选 C2a 纳入本节点比较，但 C2a 的通过不构成严格邻接项已获支持。"
+      ],
+      "disposition": "deferred_missing_required_input",
+      "unblocking_condition": "Stage 7.7 激活可用于表征周围坡面亮度的地表状态，且其在邻接项中的进入形式由独立节点合同冻结。",
+      "source_binding": {
+        "relative_path": "../../../docs/architecture.md",
+        "sha256": "cb514ea9843784a0b607eb9bf75994e582eaa5661cf63c3932b056a9eaf6e087",
+        "quoted_section": "§2.4 L2 正向观测合成；§7-A 遮挡边界的信息缺口"
+      }
+    }
+  ],
+
+  "degrees_of_freedom_ledger": {
+    "existing": {"alpha": "acquisition×band（Stage 7.5 登记，36 实例）"},
+    "introduced_here": {
+      "beta_0": "acquisition×band×fold",
+      "beta_v": "acquisition×band×fold"
+    },
+    "condition_quantities_added": ["v_sky"],
+    "registered_but_not_run": ["l_path"],
+    "note": "本节点引入的自由参数上限为 2 个（C_full 框架）。C1、C1′、C2a 均为 C_full 的一维约束子模型，各自只有 1 个自由参数，不额外增加自由度。"
+  }
+}

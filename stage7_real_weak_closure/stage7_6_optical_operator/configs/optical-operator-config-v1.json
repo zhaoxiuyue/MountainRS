@@ -1,0 +1,250 @@
+{
+  "schema": "mountainrs-stage7.6-optical-operator-config-v1",
+  "purpose": "冻结本节点的候选集合、比较关系、fold-safe 拟合拓扑、泄漏封堵与全部判定规则。本文件在读取本节点任何结果值之前冻结。",
+  "recorded_on": "2026-08-15",
+  "exposure_status": {
+    "relative_to_existing_results": "post_result_exploratory",
+    "statement": "Stage 7.3/7.4 的 residual 已产出并公开，设计本节点时已知悉。本节点不得声称 preregistered，其结论不得表述为对既有结果的独立确认。",
+    "relative_to_this_node_results": "frozen_before_any_read",
+    "independent_confirmation_deferred_to": "Stage 7.10"
+  },
+  "unified_candidate_framework": {
+    "full_model": "rho_hat = alpha·mu + beta_0 + beta_v·v_sky",
+    "free_parameters": [
+      "beta_0",
+      "beta_v"
+    ],
+    "note": "C1、C1′、C2a 均为该二参数模型的一维约束子模型，各自只有 1 个自由参数，互不等价。三者对应同一个二维空间中的不同一维方向，因此比较它们等价于比较三种关于『加性项如何依赖地形』的假设。",
+    "identifiability_precondition": "beta_0 与 beta_v 的可分性要求 v_sky 在该 fold 的训练支持区内有足够变化。若 v_sky 近似常数，二者实际不可辨识（Stage 7.5 fixture F6 情形），须按 support_gate 判 unsupported，不得硬解。"
+  },
+  "candidates": [
+    {
+      "id": "C0",
+      "name": "direct-only 基线",
+      "form": "rho_hat = alpha·mu",
+      "new_parameters": [],
+      "role": "baseline",
+      "run": true
+    },
+    {
+      "id": "C1",
+      "name": "带地形调制的天空漫射项",
+      "form": "rho_hat = alpha·mu + beta_v·v_sky",
+      "constraint_on_full": "beta_0 = 0",
+      "new_parameters": [
+        "beta_v"
+      ],
+      "terrain_modulation_factor": "v_sky",
+      "terrain_modulation_identity_class": "G",
+      "physical_status": "mechanism_candidate",
+      "role": "primary_candidate",
+      "run": true
+    },
+    {
+      "id": "C1p",
+      "name": "无地形调制的常数项（对照）",
+      "form": "rho_hat = alpha·mu + beta_0",
+      "constraint_on_full": "beta_v = 0",
+      "new_parameters": [
+        "beta_0"
+      ],
+      "terrain_modulation_factor": null,
+      "physical_status": "empirical_offset",
+      "physical_status_note": "不含地形调制，不得表述为物理机制；其 qualified 判定不得被引用为漫射机制或路径辐射机制已获支持。",
+      "role": "control_baseline",
+      "role_note": "本候选是本节点唯一能回答『地形调制值多少』的对照——C1 相对它的增量才是 v_sky 携带的信息量。",
+      "run": true
+    },
+    {
+      "id": "C2a",
+      "name": "几何近似邻接项",
+      "form": "rho_hat = alpha·mu + beta_terr·(1 − v_sky)",
+      "expanded_form": "rho_hat = alpha·mu + beta_terr − beta_terr·v_sky",
+      "constraint_on_full": "beta_0 = −beta_v（其共同值即 beta_terr）",
+      "new_parameters": [],
+      "new_parameters_note": "在 C_full 框架下不引入独立参数；beta_terr 是 beta_0 与 beta_v 在该约束下的共同值。",
+      "physical_status": "mechanism_candidate_under_assumption",
+      "physical_assumption": "周围坡面亮度均匀，故邻接辐照正比于被地形占据的立体角 (1 − v_sky)。",
+      "role": "constrained_alternative",
+      "role_note": "该约束有物理依据，不是冗余重参数化。它与 C1、C1′ 张成同一二维空间的不同一维方向，需独立比较。",
+      "run": true
+    },
+    {
+      "id": "C3",
+      "name": "加性大气路径辐射",
+      "form": "rho_hat = alpha·mu + l_path",
+      "new_parameters": [
+        "l_path"
+      ],
+      "role": "registered_not_run",
+      "run": false,
+      "terminal_state": "non_identifiable",
+      "equivalence_partner": "beta_0",
+      "verdict_basis": "analytic",
+      "why_not_run": "路径辐射对给定 acquisition×band 是加性常数，与 C1′ 的 beta_0 逐点同形，观测无法区分。运行它只会重现 C1′ 的结果。判定依据是解析的，不依赖任何实验；显式登记并显式判定，比默默不提更诚实。",
+      "identity_side_verdict": "non_identifiable_equivalent",
+      "two_closed_sets_note": "本节点有两套互不相同的闭集：候选终态闭集（qualified/redundant_equivalent/non_identifiable/unsupported_by_evidence/deferred_missing_required_input，由合同 passCriteria 4 给出）与 Stage 7.5 的身份判定闭集（identity_qualified/identity_qualified_with_fixed_gauge/non_identifiable_equivalent/excluded_class_or_path_violation/deferred_missing_anchor）。C3 作为候选判 non_identifiable；其引入的对象 l_path 作为身份判 non_identifiable_equivalent。二者语义对应但取值不同，不得互相代入。"
+    }
+  ],
+  "ablation_order": {
+    "frozen_sequence": [
+      "C0",
+      "C1p",
+      "C1",
+      "C2a"
+    ],
+    "rule": "顺序在读取任何结果前冻结，不得因中间结果调整；未登记候选不得临时加入。",
+    "rationale": "先跑对照（C1p）再跑主候选（C1），使『地形调制的增量』在执行顺序上也不依赖对 C1 结果的预期。"
+  },
+  "fold_safe_topology": {
+    "source": "Stage 7.3 topology-manifest-v1（sha256 95e37490a084e172862205355e36fa53333452d8b8f065e246a621f60e69a3f5）",
+    "fold_count": 5,
+    "isolation_m": 8130,
+    "rules": [
+      "本节点引入的每个新参数（beta_0、beta_v）与 alpha 一样，逐 acquisition×band×fold 估计，仅使用该 fold 的训练支持区。",
+      "held-out core 及其隔离带不得参与任何参数的拟合。",
+      "支持不足时不得回退到全域参数、不得回退到其它 fold 的参数、不得使用 Stage 7.2 的全支持 reference alpha。支持不足即判 unsupported 并保留在机会分母中。",
+      "每个 fold 的泄漏审计必须以真实空间距离验证，不得靠索引编号推断。"
+    ]
+  },
+  "leakage_closure": {
+    "adjacency_rule": "任何候选不得读取 held-out core 或其隔离带内的目标观测或邻域观测来构造预测量。",
+    "c2a_compliance": {
+      "status": "compliant",
+      "reason": "C2a 的 (1 − v_sky) 完全由 DEM 计算，不读取任何观测值。v_sky 使用全域 DEM 不构成 fold 泄漏——DEM 属已冻结的 G，空间 fold 隔离的是目标观测与拟合信息，不是已知地形。"
+    },
+    "parameter_selection_rule": "v_sky 的算法参数（方位采样、搜索距离、曲率、边界处理）由 svf-geometry-gate-v1 在读取任何 residual 之前冻结，不得依据 held-out residual 调节。泄漏通道不在『读了全域地形』，而在『用留出结果挑了几何算法』。",
+    "strict_adjacency_deferred": "严格邻接项需要周围坡面的实际亮度（latent 地表状态，Stage 7.7 尚未激活），其终态为 deferred_missing_required_input，不得用观测值代入充当该状态。",
+    "audit_requirement": "逐 fold 泄漏审计零违规方可进入消融。"
+  },
+  "support_gate": {
+    "inherited_from_stage_7_2": {
+      "condition": "Σμ² > 0 且 calibration-lit ≥ 271",
+      "note": "沿用，不放宽。"
+    },
+    "additional_for_two_parameter_models": {
+      "condition": "该 fold 训练支持区内 v_sky 的四分位距 IQR ≥ 0.05",
+      "rationale": "beta_0 与 beta_v 的可分性取决于 v_sky 是否有足够变化。v_sky 近似常数时两列共线，属 Stage 7.5 fixture F6 的『实际不可辨识』情形——此时应判 unsupported 而非硬解出一个由数值噪声决定的参数。",
+      "threshold_is_engineering_choice": true,
+      "applies_to": [
+        "C1",
+        "C1p",
+        "C2a"
+      ],
+      "on_fail": {
+        "terminal_state": "unsupported_by_evidence",
+        "reason_code": "insufficient_v_sky_variation"
+      }
+    },
+    "unsupported_bookkeeping": "unsupported 单元不产生 residual 或指标，但保留 acquisition/band/fold 身份、coverage 账本与 reason code，仍计入机会分母，不得静默消失。"
+  },
+  "verdict_rules": {
+    "reporting_unit": "acquisition × band × fold",
+    "weighting": {
+      "scheme": "equal_per_acquisition_band",
+      "note": "每个 acquisition×band 单元权重相同，不按像元数加权——防止大 support 的景主导结论。",
+      "prohibited": "像元池化（pooled-pixel）产生的伪样本量一律禁止；不得以像元数作为统计效力依据。"
+    },
+    "primary_metric": {
+      "name": "MAE_of_accepted_pixels",
+      "direction": "lower_is_better"
+    },
+    "secondary_reported": [
+      "signed_bias",
+      "P90_absolute_residual",
+      "coverage",
+      "parameter_boundary_hits"
+    ],
+    "coverage_comparability": {
+      "rule": "任何两个候选的比较必须在相同 coverage 下进行",
+      "tolerance": 0.001,
+      "on_violation": "不得比较；差异超容差时该单元不进入该对候选的比较集，并登记 reason code coverage_mismatch"
+    },
+    "qualified_criteria": {
+      "all_must_hold": [
+        "相对 C0 的 MAE 中位相对改善 ≥ 0.05",
+        "5 个 fold 中至少 4 个方向一致（改善为正）",
+        "参数未大量命中边界：边界命中单元占比 ≤ 0.10",
+        "梯度/数值稳定性检查通过（条件数与 Stage 7.5 工具箱的 support_gate 一致）",
+        "该候选的支持域通过 support_gate"
+      ],
+      "improvement_threshold_rationale": "5% 是本项目的保守工程取值，不是普适常数。它需明显大于数值噪声，同时不至于严苛到只有巨大效应才通过。阈值在读取任何结果前冻结，此后不得调整。",
+      "explicitly_insufficient": "单纯降低训练损失不足以 qualified（架构 §1.3、合同 passCriteria 4）。"
+    },
+    "tie_rule": {
+      "condition": "两个候选的主指标差异 < coverage_comparability.tolerance 对应的量级，或改善差 < 0.01",
+      "resolution": "选自由参数更少者；参数数相同则选不含 empirical_offset 者；仍相同则并列，均不判 qualified，登记 tie_unresolved"
+    },
+    "prohibited_manipulations": [
+      "收缩 support 使失败单元消失",
+      "clip 预测值或残差以改善指标",
+      "unmask 原本被排除的像元以扩大改善",
+      "事后调整 coverage 网格、权重或阈值",
+      "以 validation/test 结果改变候选、阈值或终态"
+    ],
+    "split_discipline": {
+      "train": "决定资格。全部 qualified 判定仅依据 train。",
+      "validation_test": "只做描述性迁移检查，按冻结规则报告，不得改变候选、阈值或终态。",
+      "independent_confirmation": "留给 Stage 7.10。"
+    }
+  },
+  "terminal_states": {
+    "closed_set": [
+      "qualified",
+      "redundant_equivalent",
+      "non_identifiable",
+      "unsupported_by_evidence",
+      "deferred_missing_required_input"
+    ],
+    "entry_to_frozen_l2_stack": [
+      "qualified"
+    ],
+    "evidence_scope_propagation": "引用 Stage 7.5 判定时必须一并引用其 evidence_scope；以 evidence_scope=local 的身份为前提的 qualified，其结论范围同样受限于 local。",
+    "toolbox_limitation_restatement": "引用 Stage 7.5 工具箱的任何秩亏结论时，必须同时复述其原理性局限：数值方法无法区分结构不可辨识与数据在关键维度变化不足，二者处置相反。",
+    "identity_side_closed_set": [
+      "identity_qualified",
+      "identity_qualified_with_fixed_gauge",
+      "non_identifiable_equivalent",
+      "excluded_class_or_path_violation",
+      "deferred_missing_anchor"
+    ],
+    "cross_set_mapping": {
+      "non_identifiable": "non_identifiable_equivalent",
+      "deferred_missing_required_input": "deferred_missing_anchor",
+      "note": "候选终态 → 身份判定的语义对应。两套闭集的取值不得混用；本映射只用于交叉审计核对一致性。"
+    }
+  },
+  "evidence_and_quality_layering": {
+    "membership_invariant": "21 景 evidence_membership 不变（架构 v3.3 §2.2）。本节点只产生 operation-specific 的 support/qualification 投影。",
+    "excluded_units_bookkeeping": "被排除的景或像元继续留在机会分母并携带 reason code，不得静默消失。",
+    "pre_inference_factors_may_gate": [
+      "support_mask",
+      "geometry_visibility",
+      "reconstruction_quality",
+      "sensor_quality"
+    ],
+    "post_inference_may_not_reweight": {
+      "factors": [
+        "residual",
+        "model_adequacy",
+        "output_uncertainty"
+      ],
+      "rule": "不得反过来降低产生它们的同一次观测的权重（架构 v3.3 §3）。本节点不采用异方差似然或鲁棒损失。"
+    }
+  },
+  "upstream_bindings": {
+    "svf_geometry_gate": {
+      "relative_path": "svf-geometry-gate-v1.json",
+      "sha256": "PENDING_SELF_FREEZE"
+    },
+    "operator_identity_registry": {
+      "relative_path": "../evidence/operator-identity-registry-v1.json",
+      "sha256": "PENDING_SELF_FREEZE"
+    },
+    "result_blind_declaration": {
+      "relative_path": "../evidence/result-blind-declaration-v1.json",
+      "sha256": "PENDING_SELF_FREEZE"
+    },
+    "note": "三份自产冻结件的 hash 在交叉审计通过、同一变更集内一并冻结时回填。上游外部件的绑定见 result-blind-declaration-v1 的 upstream_bindings（13 项，已复验）。"
+  }
+}
