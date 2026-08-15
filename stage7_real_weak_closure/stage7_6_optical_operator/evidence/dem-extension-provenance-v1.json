@@ -1,0 +1,111 @@
+{
+  "schema": "mountainrs-stage7.6-dem-extension-provenance-v1",
+  "purpose": "登记为计算 v_sky 而获取的外扩 DEM 的来源、合成方式、验证结果与复现参数。该 DEM 是 Stage 7.6 的输入，不是本节点的结论。",
+  "recorded_on": "2026-08-15",
+  "why_needed": {
+    "statement": "v_sky 的地平线搜索需要 DEM 覆盖 ROI 之外至少 D 的范围。原冻结 DEM 正好只覆盖 ROI（外扩 0 m），srtm_dem_utm48n 四边最小余量 2730 m，均不足以支撑任何 Gate 候选 D。",
+    "probe_evidence": {"relative_path": "svf-search-distance-probe-v1.json", "sha256": "011b0a1ba1b47f5f8c3d1019eb1cfb055fc107db458995b8dba7bbbd329334d2"},
+    "buffer_chosen_km": 20,
+    "buffer_rationale": "探查外推的收敛需求为 5–10 km。15 km 可行但不宽裕；一次做到 20 km，使 Gate 的全部 D 候选都能被实际测试，避免收敛值落在数据边界上而无法验证，也避免再来一轮数据获取。"
+  },
+
+  "source": {
+    "provider": "Google Earth Engine",
+    "asset_id": "USGS/SRTMGL1_003",
+    "band": "elevation",
+    "ee_project": "gee-et-playground",
+    "ee_api_version": "1.7.36",
+    "access_path": ".cache/earthengine/venv（项目既有环境，凭据位于 ~/.config/earthengine/credentials）"
+  },
+
+  "source_identity_verification": {
+    "claim": "GEE 的 USGS/SRTMGL1_003 与项目原始 stages/stage2_dem_terrain/data/srtm_dem.tif 是同一份数据。",
+    "method": "按项目原始文件的 EPSG:4326 网格（1 弧秒，origin 102.799861/31.500139，4320×2520）从 GEE 拉取同范围数据，逐像元比对。",
+    "result": {"pixels_compared": 10886400, "identical_fraction": 1.0, "max_abs_difference_m": 0.0},
+    "significance": "确认外扩数据与项目既有地形同源，不是引入了另一个数据集。"
+  },
+
+  "acquisition_parameters": {
+    "crs": "EPSG:32648",
+    "crs_transform": [30, 0, 272220, 0, -30, 3493800],
+    "dimensions": {"width": 1984, "height": 2086},
+    "dtype_requested": "int16",
+    "format": "GEO_TIFF",
+    "grid_alignment": {
+      "roi_origin_x": 292230, "roi_origin_y": 3473790,
+      "offset_pixels": 667,
+      "offset_m": 20010,
+      "note": "20000 m 不是 30 m 的整数倍，故取 667 像元 = 20010 m。新栅格 origin 与 ROI 网格严格对齐（272220 与 3493800 均可被 30 整除，且与 ROI origin 相差整数个像元）。"
+    }
+  },
+
+  "reproducibility_verification": {
+    "claim_type": "verified_not_assumed",
+    "architecture_clause": "v3.3 §2.2：可复现获取是一项需要验证的主张，不是可以假设的属性。",
+    "method": "用完全相同的 acquisition_parameters 重新获取一次，比对 sha256。",
+    "first_fetch_sha256": "54df30a7504abbd9fee5fa2a80c74c730e8219f042c87028e4e23e31f7a421d7",
+    "refetch_sha256": "54df30a7504abbd9fee5fa2a80c74c730e8219f042c87028e4e23e31f7a421d7",
+    "byte_identical": true,
+    "expiry_condition": "若 GEE 弃用该资产、或其重投影实现变更导致重取字节不一致，本主张失效，该数据须转入必须归档副本的情形。"
+  },
+
+  "composition": {
+    "method": "raw_fetch_with_roi_replaced_by_frozen_dem",
+    "steps": [
+      "1. 按 acquisition_parameters 获取 1984×2086 的 30 m UTM48N 栅格。",
+      "2. 将其中对应 ROI 的窗口（row 500–1252, col 500–1150，即 752×650）整体替换为冻结 DEM dem_on_shadowrisk_grid.tif 的像元值。",
+      "3. 其余区域保留步骤 1 的值。"
+    ],
+    "why_not_reproject_chain": "冻结 DEM 的原链为『4326 → calculate_default_transform → 27.64 m → bilinear → 30 m』两次重采样。尝试复现该链后，新 27.64 m 栅格与现有 srtm_dem_utm48n 仅 7.36% 像元相同（网格相位已验证对齐，差异出自 GDAL warp 实现细节）。复现链条不是目标本身——目标是『ROI 内的地形与 cos_i 同源』。直接替换使这一点成为逐位可证的事实，而非依赖对当年重投影参数的推断。",
+    "roi_window": {"row_start": 500, "row_end": 1252, "col_start": 500, "col_end": 1150}
+  },
+
+  "verification_results": {
+    "roi_interior_vs_frozen_dem": {
+      "pixels": 488800,
+      "identical_fraction": 1.0,
+      "max_abs_difference_m": 0.0,
+      "significance": "ROI 内即冻结 DEM 本身，故 v_sky 与 Stage 7.2 的 cos_i、Stage 7.3 的拓扑描述同一地形。"
+    },
+    "seam_difference": {
+      "description": "替换前，新获取值与冻结值在 ROI 范围内的差异，即 ROI 边界处两侧数据的落差量级。",
+      "pixels": 488800,
+      "mean_m": 0.049,
+      "std_m": 7.792,
+      "max_abs_m": 103.6,
+      "interpretation": "均值接近零表明无系统性阶跃，差异为重投影链不同造成的重采样噪声。7.8 m 的高程落差在数公里外对应约 0.09° 的地平线角误差，低于 svf-geometry-gate 收敛阈值一个量级。",
+      "registered_as_uncovered": true,
+      "must_be_restated_in_report": true
+    },
+    "coverage": {
+      "size": [1984, 2086],
+      "total_pixels": 4138624,
+      "nodata_pixels": 0,
+      "elevation_range_m": [1660, 6024],
+      "min_margin_around_roi_m": 20010,
+      "max_supported_D_km": 20
+    }
+  },
+
+  "artifact": {
+    "relative_path": "../../../stages/stage2_dem_terrain/data/dem_roi_plus_20km_utm48n.tif",
+    "sha256": "5be4676f6cd47b7cfca47f688308af9ec9a2171557a371758d9a7514e625b04a",
+    "size_bytes": 7331000,
+    "size_note": "近似值，以 sha256 为准",
+    "git_tracked": false,
+    "git_tracked_reason": "仓库 .gitignore 排除 *.tif 与 **/data/；现有三份 DEM 同样未入 git。版本控制中保存的是本证据文件（含 sha256 与完整复现参数），数据本体依赖上述已验证的可复现获取。",
+    "placement_rationale": "落于 stages/stage2_dem_terrain/data/——该容器本就是地形数据的归属地，现有 SRTM 亦在此。Stage 7.6 的容器只存放本节点自己的产物，不囤积原始输入。"
+  },
+
+  "identity_class_note": {
+    "object": "terrain_elevation 的外扩版本",
+    "identity_class": "G",
+    "statement": "本数据仍属已冻结的 G。使用全域（含 held-out core 外部）地形计算 v_sky 不构成 fold 泄漏——空间 fold 隔离的是目标观测与拟合信息，不是已知地形。泄漏通道在于几何算法参数是否依据 held-out residual 调节，该风险由 svf-geometry-gate 在读取任何 residual 前冻结全部参数来封堵。"
+  },
+
+  "does_not_authorize": [
+    "本文件不选定任何 Gate 参数。",
+    "不构成 svf-geometry-gate 的执行。",
+    "不改变任何候选的终态。"
+  ]
+}
