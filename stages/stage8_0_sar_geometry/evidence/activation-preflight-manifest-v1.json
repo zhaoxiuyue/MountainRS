@@ -1,0 +1,125 @@
+{
+  "schema": "mountainrs-stage8.0-activation-preflight-manifest-v1",
+  "governing_rule": "pr_d4a37fa568df：关闭前激活预检与结果盲冻结时序",
+  "performed_by": "执行手（克克）",
+  "performed_on": "2026-08-16",
+  "target_node": {"id": "nd_05bf6769e3b1", "title": "Stage 8.0｜SAR L0 证据与斜距几何算子", "state": "planned"},
+
+  "container_placement": {
+    "path": "stages/stage8_0_sar_geometry/",
+    "basis": "项目规则 pr_2d5d0c9acc35 第二条：科研工作包区为 stages/<stage>/，每个 stage 是自足容器。",
+    "why_not_stage7_real_weak_closure": "该目录是历史证据区（规则第一条），冻结不迁。Stage 7.x 的容器留在其中，是因为它们被区内的冻结合同与审计器按路径引用。Stage 8 是新阶段，无此约束，故按第二条落于工作包区。",
+    "cross_container_reference_note": "本节点将引用历史证据区内的冻结件（Stage 7.6 的 v_sky 参数、Stage 7.7 的传播机制、Stage 7.8 的 domain manifest）。该引用跨出工作包区，须在执行时以 .pf/resource-registry.yaml 的间接层处理，或在容器 README 中显式登记为例外并说明理由——不得在代码中写死绝对路径或仓库名。"
+  },
+
+  "predecessor_context": {
+    "immediately_preceding_closed_node": {"id": "nd_89bdfb553afb", "title": "Stage 7.8", "state": "done"},
+    "skipped_nodes": [
+      {
+        "id": "nd_59cb52139f59", "title": "Stage 7.9", "state": "planned",
+        "why_skipped": "activation preflight 已判 blocked，主原因码 evidence_missing（activated_count = 0 且 qualified 算子为 0）。证据位于 stage7_real_weak_closure/stage7_9_l3_closed_loop/evidence/activation-preflight-manifest-v1.json。其状态保持 planned 不变，阻断由 nc_8fe5b4709440 固定，未被本次跳过所解除。"
+      },
+      {
+        "id": "nd_321120bdf97e", "title": "Stage 7.10", "state": "planned",
+        "why_skipped": "未审。其 Track B 已由 Stage 7.8 passCriteria 7 要求保持 deferred；是否另有依赖 7.9 产出的部分，本预检未核查，留待其自身的 activation preflight。"
+      },
+      {
+        "id": "nd_8372dbe888c3", "title": "Stage 7.11", "state": "planned",
+        "why_skipped": "未审。其对象是输出不确定性校准，直觉上依赖模型输出，但本预检未核查，不作判断。"
+      }
+    ],
+    "owner_decision": "所有者 Elara 于 2026-08-16 在四个选项中裁定转向 Stage 8.0。",
+    "why_this_is_not_a_bypass": "Stage 8.0 的 objective 与 passCriteria 均不依赖 L1 激活状态或 qualified 光学算子；其 passCriteria 1 反而直接要求登记 Stage 7.8 刚冻结的 domain 是否具有 SAR 证据。它本就在主线上，且用得上刚完成的产出。"
+  },
+
+  "read_only_attestation": {
+    "statement": "本预检只读。未修改任何节点或路线对象，未获取任何 SAR 像素数据，未运行 Stage 8.0 的任何实验，未激活 Stage 8.0。",
+    "actions_taken": [
+      "读取 Stage 8.0 合同",
+      "核查 Sentinel-1 对六个 domain（含基准）的覆盖与场景数",
+      "核查 S1_GRD 的处理链元数据与波段构成",
+      "核查 S1_GRD_FLOAT 的可达性",
+      "写入本裁决"
+    ]
+  },
+
+  "outcome": "activation_preflight_ready",
+  "outcome_qualification": "ready 以下述三项激活时必须处置的事项被显式承接为条件。其中 B1 是本预检的核心发现，它不阻断核心工作，但会实质影响 passCriteria 4 的验证可信度。",
+
+  "resource_survey": {
+    "sar_coverage_per_domain": {
+      "requirement": "passCriteria 1：逐一登记拟进入 8.3 的冻结 domain 是否具有同时间语义的 SAR 证据，缺失 domain 不得被静默删去。",
+      "collection": "COPERNICUS/S1_GRD",
+      "window": ["2015-01-01", "2024-12-31"],
+      "result": [
+        {"domain": "D0_minshan", "scenes": 759, "role": "train（基准）"},
+        {"domain": "C1_tianshan_central", "scenes": 733, "role": "evaluation"},
+        {"domain": "C7_taibaishan_qinling", "scenes": 620, "role": "evaluation"},
+        {"domain": "C2_qilian_central", "scenes": 632, "role": "evaluation"},
+        {"domain": "C5_gaoligong", "scenes": 499, "role": "evaluation"},
+        {"domain": "C8_altai_central", "scenes": 895, "role": "calibration"}
+      ],
+      "missing_domains": [],
+      "verdict": "零缺失。六个 domain 全部具有 SAR 证据，场景数 499–895，均为 IW 模式，升降轨齐备，极化含 VV 与 VV+VH。passCriteria 1 的该项在资源层面已满足。"
+    },
+    "orbit_and_geometry_metadata": {
+      "available": [
+        "orbitNumber_start / orbitNumber_stop",
+        "relativeOrbitNumber_start / relativeOrbitNumber_stop",
+        "orbitProperties_pass（ASCENDING / DESCENDING）",
+        "orbitProperties_ascendingNodeTime",
+        "instrumentMode（IW）",
+        "transmitterReceiverPolarisation",
+        "resolution_meters（10）"
+      ],
+      "angle_band": "S1_GRD 与 S1_GRD_FLOAT 均含 angle 波段。",
+      "angle_caveat": "该 angle 是正射校正后的椭球入射角，不是局部入射角。后者须由 DEM 与轨道几何自行计算，正是本节点 passCriteria 3 的工作内容之一，不可直接取用该波段代替。"
+    },
+    "dem": {
+      "status": "已有",
+      "source": "Stage 7.6 的外扩 DEM 与 Stage 7.8 五域 DEM 缓存，获取参数均已登记且可复现。"
+    }
+  },
+
+  "must_be_handled_at_activation": [
+    {
+      "id": "B1",
+      "item": "GEE 的 S1_GRD 已用 SRTM 正射校正，与本项目共享同一 DEM——这构成对 passCriteria 4 验证的循环性",
+      "evidence": "S1_GRD 影像元数据含 S1TBX_SAR_Processing_vers = 7.0.2 与 SNAP_Graph_Processing_Framework_GPF_vers = 7.0.3，表明经 SNAP/S1TBX 流水线处理；该流水线的标准步骤包含 Range-Doppler terrain correction，所用 DEM 为 SRTM 30。产品已在地图坐标系而非斜距几何。",
+      "why_it_matters": "本节点 passCriteria 3 要求实现世界坐标到 SAR 栅格的映射并编码 layover、foreshortening、radar shadow；passCriteria 4 要求用真实 SAR/DEM 对齐做可复算测试并报告边界误差。若用已被 SRTM 正射校正的 GRD 去验证我们自己用同一 SRTM 建立的几何映射，两者共享 DEM 与相近的几何模型，一致性会系统性偏高，边界误差会被低估。这与 Stage 7.8 的 I3/I4 判据是同一类问题：用一个未经本项目验证的地形假设去验证另一个。",
+      "what_is_not_blocked": "核心几何工作不受影响。世界坐标到斜距的映射与三类失效域的识别，其输入是轨道状态矢量、成像时刻与 DEM，均为纯几何量，不需要 SAR 像素。GRD 像素只在对齐验证环节被用到。",
+      "required_handling": [
+        "执行时必须显式声明该循环性，不得把与 GRD 的对齐一致性报告为独立验证。",
+        "边界误差的报告须标注其为「共享 DEM 条件下的下界估计」，不是绝对精度。",
+        "若需独立验证，须获取未经地形校正的 SLC 产品。GEE 不提供；可得途径为 ASF DAAC 或 Copernicus Data Space Ecosystem，二者均免费但需注册。该获取属 external_dependency，不在本预检的授权范围内，须另行裁决。"
+      ],
+      "decision_required": false,
+      "note": "本项不判 blocked，因为核心工作可执行且限制可如实登记；但它必须在激活时即被承接，不能等到写验证报告时才发现。"
+    },
+    {
+      "id": "B2",
+      "item": "SAR 失效机制的命名与语义不得复用光学的 shadow/mask",
+      "basis": "本节点 boundaries 原文：「SAR 失效机制不得复用光学 shadow/mask 名称或语义」。",
+      "why_this_is_a_real_risk": "radar shadow 与光学自阴影在成因、几何条件与影响范围上都不同——前者由视线方向的地形遮挡决定并与入射角强相关，后者由太阳方向决定。layover 与 foreshortening 在光学中无对应概念。沿用光学名称会使两套失效域在下游被误当作同一事物合并。",
+      "required_handling": "在 observation schema 中为三类 SAR 失效建立独立命名与独立 reason code，并在 Stage 7.7 建立的几何失效传播机制中登记为新的消费者。该机制的 consumer_registry 目前只含光学链路的四个消费者（slope / aspect / cos_i / v_sky），遇到未登记的 SAR 消费者会按 UnregisteredConsumer 停机——这是预期行为，不是故障。"
+    },
+    {
+      "id": "B3",
+      "item": "「G 默认锁定」这一前提须逐条复核",
+      "basis": "本节点 boundaries：「G 默认锁定」。",
+      "required_handling": "SAR 几何算子以 DEM 为输入但不得反过来调整它。若执行中出现「调整 DEM 可改善对齐」的情形，须停机登记而非调整——那属于联合更新 G 与观测算子，被架构 §1.4 拒绝律禁止。",
+      "cross_reference": "Stage 7.5 已将 cos_i 归 E 类，其归类以「G 保持锁定」为条件。本节点若动摇该前提，须触发 cos_i 的重分类，而不是默默继续。"
+    }
+  ],
+
+  "blocking_items": [],
+  "blocking_reason_code": null,
+
+  "does_not_authorize": [
+    "本预检不激活 Stage 8.0。",
+    "不获取任何 SAR 数据。",
+    "不解除 nc_8fe5b4709440（Stage 7.9 的阻断）。",
+    "不改变 Stage 7.9 / 7.10 / 7.11 的 planned 状态。",
+    "不授权获取 SLC——该获取属 external_dependency，须另行裁决。"
+  ]
+}
