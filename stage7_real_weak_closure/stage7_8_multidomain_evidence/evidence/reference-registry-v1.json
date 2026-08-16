@@ -1,0 +1,248 @@
+{
+  "schema": "mountainrs-stage7.8-reference-registry-v1",
+  "protocol": "configs/reference-registry-protocol-v1.json",
+  "recorded_on": "2026-08-16",
+  "entries": [
+    {
+      "source_id": "COPERNICUS/S2_SR_HARMONIZED",
+      "provider": "ESA / Copernicus，经 Google Earth Engine 提供",
+      "version": "PROCESSING_BASELINE 02.14（抽样确认），Harmonized 集合",
+      "class": "reference_observation",
+      "class_basis": "独立传感器（Sentinel-2 MSI）与独立处理链（Sen2Cor），非地面原位测量，故不得称真值。",
+      "independence_verdict": {
+        "I1_no_shared_observation": {
+          "passed": true,
+          "basis": "Sentinel-2 MSI 与 Landsat OLI 是物理上独立的两套观测。"
+        },
+        "I2_no_shared_sensor_lineage": {
+          "passed": true,
+          "basis": "S2_SR_HARMONIZED 的处理链不含任何 Landsat 输入。注意 HLS 因融合 Landsat 已被协议排除，本条目不是 HLS。"
+        },
+        "I3_terrain_processing_disclosure": {
+          "grade": "preferred",
+          "metadata_evidence": "抽样影像的 76 个属性中不含任何 terrain / DEM / slope / topographic correction 相关字段。",
+          "documentary_basis": "ESA 业务化 L2A 产品的 Sen2Cor 配置默认不启用地形校正（DEM_Terrain_Correction 关闭）。",
+          "evidence_strength": "该判定的直接依据是公开处理文档与元数据中相关字段的缺失，而非产品元数据的肯定性声明。缺失不等于否定——若后续发现相反证据，本条目须重新分级，其已产出的一致性结论一并受影响。",
+          "why_preferred_matters": "未做地形校正意味着该参考不携带独立的地形假设，其与本项目预测的差异可完整归因，不含参考侧的地形处理误差。"
+        },
+        "I4_no_shared_ancillary_dependency": {
+          "shared_inputs_identified": [
+            "无共享 DEM（S2 L2A 未做地形校正，故不引入 DEM）",
+            "大气校正各自独立：Sen2Cor vs LaSRC，气溶胶来源不同"
+          ],
+          "verifiable_scope": "地表反射率量级的跨传感器一致性；地形调制在两套独立观测中的表现是否相符。",
+          "unverifiable_scope": "不可用于验证绝对辐射定标——两者的定标链虽独立但均未经本项目校验；亦不可用于验证 DEM 几何本身，因参考不含地形处理故对该问题无信息。"
+        }
+      },
+      "temporal_matching": {
+        "tiers_applied": {
+          "tight_days": 3,
+          "loose_days": 7
+        },
+        "per_domain": [
+          {
+            "s2_distinct_days": 475,
+            "s2_first_day": "2015-12-24",
+            "s2_last_day": "2024-12-26",
+            "landsat_dates_considered": 225,
+            "tight_matched": 173,
+            "loose_matched": 5,
+            "unmatched": 47,
+            "tight_examples": [
+              {
+                "landsat_date": "2016-05-23",
+                "min_gap_days": 1
+              },
+              {
+                "landsat_date": "2016-09-19",
+                "min_gap_days": 0
+              },
+              {
+                "landsat_date": "2016-10-30",
+                "min_gap_days": 1
+              },
+              {
+                "landsat_date": "2017-09-06",
+                "min_gap_days": 2
+              },
+              {
+                "landsat_date": "2017-10-17",
+                "min_gap_days": 3
+              }
+            ],
+            "candidate_id": "C1_tianshan_central",
+            "landsat_dates_before_s2_era": 45
+          },
+          {
+            "s2_distinct_days": 913,
+            "s2_first_day": "2015-12-01",
+            "s2_last_day": "2024-12-28",
+            "landsat_dates_considered": 192,
+            "tight_matched": 156,
+            "loose_matched": 6,
+            "unmatched": 30,
+            "tight_examples": [
+              {
+                "landsat_date": "2015-11-29",
+                "min_gap_days": 2
+              },
+              {
+                "landsat_date": "2015-12-31",
+                "min_gap_days": 0
+              },
+              {
+                "landsat_date": "2016-02-26",
+                "min_gap_days": 3
+              },
+              {
+                "landsat_date": "2016-12-10",
+                "min_gap_days": 2
+              },
+              {
+                "landsat_date": "2017-04-17",
+                "min_gap_days": 3
+              }
+            ],
+            "candidate_id": "C7_taibaishan_qinling",
+            "landsat_dates_before_s2_era": 34
+          },
+          {
+            "s2_distinct_days": 491,
+            "s2_first_day": "2015-11-13",
+            "s2_last_day": "2024-12-30",
+            "landsat_dates_considered": 140,
+            "tight_matched": 115,
+            "loose_matched": 7,
+            "unmatched": 18,
+            "tight_examples": [
+              {
+                "landsat_date": "2015-12-25",
+                "min_gap_days": 2
+              },
+              {
+                "landsat_date": "2016-10-08",
+                "min_gap_days": 0
+              },
+              {
+                "landsat_date": "2017-03-17",
+                "min_gap_days": 0
+              },
+              {
+                "landsat_date": "2017-10-11",
+                "min_gap_days": 2
+              },
+              {
+                "landsat_date": "2017-10-27",
+                "min_gap_days": 1
+              }
+            ],
+            "candidate_id": "C2_qilian_central",
+            "landsat_dates_before_s2_era": 27
+          },
+          {
+            "s2_distinct_days": 453,
+            "s2_first_day": "2016-01-19",
+            "s2_last_day": "2024-12-27",
+            "landsat_dates_considered": 106,
+            "tight_matched": 88,
+            "loose_matched": 4,
+            "unmatched": 14,
+            "tight_examples": [
+              {
+                "landsat_date": "2016-11-27",
+                "min_gap_days": 3
+              },
+              {
+                "landsat_date": "2016-12-13",
+                "min_gap_days": 1
+              },
+              {
+                "landsat_date": "2017-01-14",
+                "min_gap_days": 1
+              },
+              {
+                "landsat_date": "2017-02-15",
+                "min_gap_days": 3
+              },
+              {
+                "landsat_date": "2017-11-14",
+                "min_gap_days": 0
+              }
+            ],
+            "candidate_id": "C5_gaoligong",
+            "landsat_dates_before_s2_era": 18
+          },
+          {
+            "s2_distinct_days": 921,
+            "s2_first_day": "2015-10-02",
+            "s2_last_day": "2024-12-28",
+            "landsat_dates_considered": 93,
+            "tight_matched": 71,
+            "loose_matched": 6,
+            "unmatched": 16,
+            "tight_examples": [
+              {
+                "landsat_date": "2016-08-20",
+                "min_gap_days": 3
+              },
+              {
+                "landsat_date": "2016-09-05",
+                "min_gap_days": 1
+              },
+              {
+                "landsat_date": "2017-07-13",
+                "min_gap_days": 0
+              },
+              {
+                "landsat_date": "2017-07-29",
+                "min_gap_days": 3
+              },
+              {
+                "landsat_date": "2017-08-07",
+                "min_gap_days": 3
+              }
+            ],
+            "candidate_id": "C8_altai_central",
+            "landsat_dates_before_s2_era": 11
+          }
+        ]
+      },
+      "leakage_verdict": {
+        "L1_split_leakage": {
+          "passed": true,
+          "basis": "domain 选择与 split 均未使用任何 Sentinel-2 数据。本检索发生在 domain 选择冻结之后。"
+        },
+        "L2_self_reference": {
+          "passed": true,
+          "basis": "Sentinel-2 与 Landsat 无共享观测，不存在自引用。"
+        },
+        "L3_tuning_leakage": {
+          "passed": true,
+          "basis": "本节点不运行模型，无参数可调。该禁令随本 Registry 传递至下游节点。"
+        },
+        "L4_circular_provenance": {
+          "passed": true,
+          "basis": "逐项核验 S2 L2A 的 provenance 链，不含本项目产出的任何 artifact。本项目从未向任何公开产品贡献输入。"
+        }
+      },
+      "band_correspondence_note": "S2 的 B4（红，665 nm）与 B8A（近红，865 nm）对应 Landsat 的 SR_B4（655 nm）与 SR_B5（865 nm）。中心波长与带宽不同，跨传感器比较须携带光谱差异这一限定，不得当作同一量直接相减。"
+    },
+    {
+      "source_id": "ground_based_radiation_and_reflectance_measurements",
+      "class": "unavailable",
+      "retrieval_record": {
+        "searched": [
+          "本项目仓库与既有数据目录：无任何地面观测数据（预检 B1 已清点确认）",
+          "Google Earth Engine 公开资产目录：不含中国区域的地面辐射或地表反射率原位观测"
+        ],
+        "known_but_not_obtained": [
+          "BSRN（Baseline Surface Radiation Network）在中国有少量站点，数据需注册获取，且站址与本节点五个选定 domain 的空间重合未经核实",
+          "ChinaFLUX / CERN 台站数据不公开可得"
+        ],
+        "why_unavailable_rather_than_unsearched": "上述来源已被识别并评估，判定依据是获取途径与空间重合两方面，不是未检索。协议要求区分二者。",
+        "recovery_condition": "若取得任一落于选定 domain 内、且时间覆盖与 Landsat acquisition 有交集的地面测量，本条目可升级为 ground_truth，届时 Stage 7.8 的重新资格化 Gate 判据 G2（独立锚点）需重新评估。"
+      },
+      "consequence": "本节点无 ground_truth 类参考。任何结论均不得使用真值、ground truth 或等价措辞。"
+    }
+  ]
+}

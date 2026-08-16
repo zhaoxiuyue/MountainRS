@@ -38,6 +38,11 @@
       "relative_path": "../configs/reference-registry-protocol-v1.json",
       "sha256": "19bdfd45a89829d105808379a614e4aee27836dfc238c5caf25327f206b4d29e",
       "role": "四类定义、独立性判据 I1–I4、时间匹配容差、泄漏审计 L1–L4、provenance 要求"
+    },
+    "reference_registry_v1": {
+      "relative_path": "reference-registry-v1.json",
+      "sha256": "e85eb8007bd5718475f894b00346bda29b0d90c0a75666eaa71ec4e1f34b20a2",
+      "role": "参考源分类、独立性 I1–I4、泄漏 L1–L4、逐域时间匹配统计"
     }
   },
   "amendment_note": "A7 属结果后修订，其 hash 一并登记但暴露地位与 A1–A6 不同。本清单登记字节身份，不代表其中每一项都是结果前冻结。",
