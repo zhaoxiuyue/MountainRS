@@ -1,0 +1,92 @@
+{
+  "schema": "mountainrs-stage7.7-candidate-state-universe-v1",
+  "purpose": "冻结 Stage 7.7 允许参加激活 Gate 的 L1 候选状态清单。本文件履行节点约束 nc_e3a7a30f1aaa 所要求的冻结义务。",
+  "recorded_on": "2026-08-16",
+  "constraint_discharged": "nc_e3a7a30f1aaa",
+
+  "universe": [],
+  "universe_size": 0,
+
+  "exposure_status": {
+    "status": "post_result_exploratory",
+    "must_not_claim": "preregistered",
+    "why": "nc_e3a7a30f1aaa 要求本冻结的时点早于 Stage 7.6 首次结果值产出。实际时点晚于该产出，偏差已登记于 ../../stage7_6_optical_operator/evidence/cross-node-timing-deviation-v1.json。按 pr_d4a37fa568df 第 5 条，该时点之后的冻结一律标记 post-result exploratory。",
+    "important_qualification": "该标记是关于**时点**的，不是关于**内容**的。空集这一内容由结果前即冻结的依赖约束唯一推出（见下 derivation），执行手在其中没有挑选空间。标记 post-result exploratory 并不意味着本清单的内容可疑，只意味着它的地位不能被声称为预注册。二者必须同时陈述，缺一都会误导——只说前者会让读者以为清单可能被结果污染，只说后者会掩盖真实发生的时序偏差。",
+    "owner_decision": "所有者 Elara 于 2026-08-16 裁决按空集如实执行并关闭 Stage 7.7。"
+  },
+
+  "derivation": {
+    "type": "uniquely_entailed_by_preregistered_dependency",
+    "premises": [
+      {
+        "id": "P1",
+        "source": "Stage 7.7 合同 passCriteria 1（在 Stage 7.6 首次结果值产出前冻结，保持 preregistered）",
+        "verbatim": "候选状态只能依赖 Stage 7.6 的 qualified 算子，并预先声明语义、单位、支持域、锚点、允许路径、先验、与 N 的区分及预期扰动响应。"
+      },
+      {
+        "id": "P2",
+        "source": "Stage 7.6 判定结果（outputs/verdict-table-v1.json，sha256 58d97215932c8dd7…）",
+        "statement": "qualified 候选集合为空。C1、C1′、C2a 判 unsupported_by_evidence；C3 判 non_identifiable；严格邻接项判 deferred_missing_required_input；C0 为基线，不参与本节点资格化。"
+      }
+    ],
+    "conclusion": "由 P1，任一候选状态必须依赖某个 qualified 算子；由 P2，qualified 算子集合为空；故不存在满足 P1 的候选状态，universe = ∅。",
+    "no_discretion": "该推导不含阈值、权重或裁量项。任何执行手在 P1 与 P2 之下都会得到同一结果。"
+  },
+
+  "states_considered_and_why_excluded": {
+    "note": "空集不等于「没想过」。架构 v3.3 §2.1 对 X(t) 给出的举例逐一登记如下，说明它们为何不在 universe 中。此举使空集成为可核查的结论而非省略。",
+    "entries": [
+      {
+        "state": "surface_moisture_content",
+        "architecture_reference": "v3.3 §2.1 X(t) 举例",
+        "excluded_by": "P1",
+        "reason": "将含水量连到 Landsat 光学观测上，需要一个把含水量映射到反射率的 qualified 算子。Stage 7.6 未产出任何 qualified 算子——direct-only 的 rho_hat = alpha·mu 中，含水量的影响只能被 alpha 吸收，而 alpha 已判 identity_qualified_with_fixed_gauge，是把透过率、辐照度与平均反照率折在一起的合成量。在其中再塞一个状态，等于在一个已经 gauge-fixed 的量上加不可辨识的自由度。"
+      },
+      {
+        "state": "vegetation_fractional_cover",
+        "architecture_reference": "v3.3 §2.1 X(t) 举例",
+        "excluded_by": "P1",
+        "reason": "同上。植被覆盖度需经 BRDF 或混合像元算子进入观测，二者均未在 Stage 7.6 登记为候选，更未 qualified。"
+      },
+      {
+        "state": "optical_effective_roughness",
+        "architecture_reference": "Stage 7.5 identity registry，deferred 段",
+        "excluded_by": "P1 且另有独立阻断",
+        "reason": "Stage 7.5 判 deferred_missing_anchor 并置入 deferred 段——其类别归属本身属架构 §7-F 未决内容。即便存在 qualified 算子，该对象在获得独立锚点之前也不具备进入激活 Gate 的资格。"
+      },
+      {
+        "state": "terrain_adjacency_surface_state",
+        "architecture_reference": "Stage 7.6 operator-identity-registry deferred 段",
+        "excluded_by": "P1",
+        "reason": "严格邻接项所需的周围坡面地表状态。Stage 7.6 已判该算子 deferred_missing_required_input，正是因为它依赖本节点的 latent 状态；反过来该状态又需要一个 qualified 的邻接算子才能被约束。二者互为前提，在当前证据下无法从任一端解开——这是循环依赖而非疏漏，须如实登记。"
+      }
+    ],
+    "not_an_open_invitation": "本清单是排除说明，不是备选池。任何未来增补都须按 nc_e3a7a30f1aaa 第 4 条标记，并须先有 qualified 算子。"
+  },
+
+  "consequences_for_pass_criteria": {
+    "passCriteria_2": {
+      "status": "vacuously_satisfied",
+      "statement": "激活条件（可辨识性、增量必要性、稳定性阈值、禁止读取侧信息）无对象可施加。",
+      "must_not_be_reported_as": "不得表述为「全部候选通过了激活条件」。"
+    },
+    "passCriteria_3": {
+      "status": "vacuously_satisfied",
+      "statement": "「每个状态只能获得五类终态之一」在空集上为空真。activated_count = 0，其余四类计数亦为 0。",
+      "note": "「光学有效粗糙度与 SAR 尺度粗糙度保持不同身份」这一要求不受影响——该要求由 Stage 7.5 的身份登记承担，与本节点是否激活状态无关，且已满足。"
+    },
+    "where_real_verification_lives": "本节点的全部实质验收落在 passCriteria 4–6 的几何失效传播 fixture 上，该部分不依赖任何 qualified 算子。"
+  },
+
+  "prohibitions_restated": [
+    "不得为凑候选而临时发明状态（nc_e3a7a30f1aaa 第 3 条、架构 §1.4、本节点 explicitExclusions）。",
+    "不得以「反正 direct-only 也能跑」为由把 alpha 重新解释为一个 L1 状态——alpha 已判为 scene-local nuisance，其身份在 Stage 7.5 冻结。",
+    "不得为使本节点看起来有产出而放宽 passCriteria 1 的依赖绑定。若确认该绑定过严，属修改合同，须走正式修订并标记暴露地位。"
+  ],
+
+  "downstream_effect": {
+    "stage_7_9": "activated_count = 0 使 Stage 7.9 的 objective（『只使用 Stage 7.7 已激活状态与 Stage 7.6 已资格化算子……状态经 L2 重建观测』）无对象可执行。停止条件已固定为节点约束 nc_8fe5b4709440。",
+    "stage_7_8": "重新资格化路径已固定为节点约束 nc_b6d6ef3e44f2：Stage 7.8 关闭前须判定新增 domain/reference 是否补足了当前缺失的变化范围、锚点或状态约束，判据须在读取新域结果值之前冻结。",
+    "not_a_dead_end": "空集是一个诚实的中间状态，不是路线终点。Stage 7.6 的负结果很可能包含数据限制成分——fold 内 v_sky 的 IQR 中位仅 0.062，26% 的 train 单元因变化不足被判 unsupported。"
+  }
+}
