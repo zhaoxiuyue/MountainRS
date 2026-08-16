@@ -1,0 +1,107 @@
+{
+  "schema": "mountainrs-stage7.8-activation-preflight-manifest-v1",
+  "governing_rule": "pr_d4a37fa568df：关闭前激活预检与结果盲冻结时序",
+  "performed_by": "执行手（克克）",
+  "performed_on": "2026-08-16",
+  "target_node": {"id": "nd_89bdfb553afb", "title": "Stage 7.8｜多域 L0 证据与独立参考的结果盲冻结", "state": "planned"},
+  "predecessor_node": {"id": "nd_716cb550b7a2", "title": "Stage 7.7｜L1 状态激活 Gate 与几何失效传播首验", "state": "done"},
+
+  "read_only_attestation": {
+    "statement": "本预检只读。未修改任何节点或路线对象，未获取任何新域数据，未运行 Stage 7.8 的任何实验，未制造新证据（本裁决文件除外），未激活 Stage 7.8。",
+    "actions_taken": [
+      "读取 Stage 7.8 合同与 Stage 7.9 合同",
+      "读取指向 Stage 7.8 与 Stage 7.9 的节点约束",
+      "在仓库内清点现存的 domain 基础与独立参考基础",
+      "核对 Stage 7.8 passCriteria 7 与节点约束 nc_8fe5b4709440 的交叉",
+      "写入本裁决"
+    ]
+  },
+
+  "outcome": "activation_preflight_ready",
+  "outcome_qualification": "ready 的判定以下述四项激活时必须处置的事项被显式承接为条件。四项均可在本合同内完成，不构成上游缺口，故不判 blocked。",
+
+  "existing_basis_survey": {
+    "purpose": "清点本节点可继承的基础，判断哪些是产出、哪些是必须新建。",
+    "findings": [
+      {
+        "item": "其他 domain 的 L0 证据",
+        "exists": false,
+        "evidence": "仓库内全部 stage 容器均围绕单一 ROI（岷山，102.8152–103.0243°E / 31.1767–31.3834°N，高程 2491–5796 m，高差 3305 m）。stages/ 下七个容器的 data 目录无任何其他区域数据。",
+        "disposition": "全部 3–5 个 domain 的 L0 证据须新获取。这是本节点迄今为止工作量最大的部分——Stage 7.5/7.6/7.7 均以既有数据为主，本节点不是。"
+      },
+      {
+        "item": "独立地面测量（ground truth）",
+        "exists": false,
+        "evidence": "仓库内 ground_truth / in_situ / station / validation_site 的检索命中全部为无关上下文（hash 清单、catalog request 措辞），无任何地面观测数据或其获取渠道。",
+        "disposition": "属本节点的实质风险，见 B1。"
+      },
+      {
+        "item": "L0 schema 与质量因子体系",
+        "exists": true,
+        "evidence": "Stage 7.1-R 冻结的 validity-support-schema-v1、observation-schema.yaml、target-grid.yaml、local-support-audit 体系。",
+        "disposition": "可直接复用。passCriteria 2 要求所有 domain 复用同一 L0 schema，该 schema 已存在且经 151 项回归验证，本节点不需重建，也不得为单域临场改定义。"
+      },
+      {
+        "item": "数据获取通道",
+        "exists": true,
+        "evidence": ".cache/earthengine/venv 存在，Stage 7.6 期间已成功用 GEE 获取 SRTM 并验证其可复现性（同参数重取字节一致）。",
+        "disposition": "通道可用。Landsat 与 SRTM 均可经同一通道获取，且 Stage 7.1 的导出链路（declared-grid v3）可复用。"
+      }
+    ]
+  },
+
+  "must_be_handled_at_activation": [
+    {
+      "id": "B1",
+      "item": "独立参考的可得性是本节点终态的主要不确定源",
+      "analysis": "passCriteria 6 规定 qualified_multidomain_evidence_frozen 须同时满足『3–5 个合格 domain』与『协议允许的独立参考』。passCriteria 3 规定只有独立地面测量可称真值，其余须分类为 reference observation、proxy 或 unavailable。项目当前无任何地面测量，且中国高山区的地表反射率/辐射地面观测数据获取困难。",
+      "reading": "『协议允许的独立参考』中的『协议』指本节点将要冻结的协议，故本节点有权允许 reference observation 作为独立参考——只要不把它称作真值，且其独立性、时间匹配容差与泄漏审计一并冻结。该读法不构成对 passCriteria 3 的放宽：分类义务与命名禁令仍然完整适用。",
+      "required_handling": "在冻结前明确声明本节点允许哪些参考类别充当『独立参考』及其理由；若最终连独立的 reference observation 也不可得，须如实判 deferred_insufficient_domains_or_references，不得以 proxy 冒充。",
+      "risk_note": "deferred 是合法终态（passCriteria 7），不是失败。执行手须避免为了拿到 qualified 而放宽参考类别——这是本节点最直接的自欺路径。",
+      "decision_required": false
+    },
+    {
+      "id": "B2",
+      "item": "节点约束 nc_b6d6ef3e44f2 的时限须精确化，且该时限早于本节点关闭",
+      "constraint": "nc_b6d6ef3e44f2 要求本节点关闭前执行重新资格化 Gate，且『本 Gate 的判据须在本节点读取任何新域结果值之前冻结』。",
+      "the_precision_problem": "本节点 boundaries 明确『不训练、运行或比较候选模型』，故不产生 residual/score 类结果值。但重新资格化 Gate 要判断新增 domain 是否提供了『当前缺失的变化范围、锚点或状态约束』——判断变化范围需要看新域的几何统计（例如 v_sky 的分布跨度、IQR）。这些统计不是 residual，却正是 Gate 所看的东西。",
+      "required_handling": "冻结时须把『结果值』在本节点语境下明确界定为包含新域的几何与支持统计量，使 Gate 判据必须在看到任何新域的 v_sky 分布、IQR、支持率之前冻结。否则判据会按『看起来够不够』倒推，nc_b6d6ef3e44f2 第 5 条的用意（避免『是否值得 reopen』变成可按期望结果调节的问题）即落空。",
+      "why_flagged_prominently": "该时限早于本节点关闭，而 PF3 的 N2 只在关闭时强制处置约束——Stage 7.6 正是在这个模式上失手（nc_e3a7a30f1aaa 的时限早于关闭，被拦住时已无法挽回）。本条在预检阶段即标出，是对该失误模式的直接防范。",
+      "decision_required": false
+    },
+    {
+      "id": "B3",
+      "item": "passCriteria 7 与 nc_8fe5b4709440 的交叉极易被误读",
+      "the_crossing": "passCriteria 7 原文：『deferred 不阻断 Stage 7.9 单 ROI 主线，但 Stage 7.10 Track B 必须保持 deferred』。节点约束 nc_8fe5b4709440：Stage 7.9 在 activated_count = 0 时 activation preflight 必须判 blocked。",
+      "correct_reading": "两者不冲突，是两个彼此独立的阻断源。passCriteria 7 只声明『本节点的 deferred 不构成对 7.9 的阻断』；它并未、也无权声明 7.9 没有其他阻断源。Stage 7.7 的 activated_count = 0 是另一个独立阻断源，且当前生效。",
+      "misreading_to_prevent": "读到『deferred 不阻断 Stage 7.9』就推断 7.9 可以开工。本节点的任何产出、报告或关闭结论都不得产生该暗示。",
+      "required_handling": "在本节点的终态记录中显式复述这一交叉，写明本节点无论判 qualified 还是 deferred，均不解除 nc_8fe5b4709440。",
+      "decision_required": false
+    },
+    {
+      "id": "B4",
+      "item": "本节点的数据获取规模显著大于此前各节点",
+      "analysis": "Stage 7.5/7.6/7.7 均以既有数据为主，新增获取仅有一次 DEM 外扩。本节点须为 3–5 个新 domain 建立完整 L0 证据栈，涉及多区域的 Landsat 场景检索、导出、下载与体检，并对每个 domain 复用 Stage 7.1-R 的全套支持审计。",
+      "required_handling": "激活后的首个动作序列须先冻结 domain 候选全集与准入规则（结果盲），再开始获取——不得边取边定标准。获取本身应分域进行并逐域留痕，使某一域失败不污染其余域的证据身份。",
+      "resource_note": "该规模值得所有者在开工前知晓。本条不构成 decision_required——domain 的选择与准入判据属本节点合同明确规定的产出（passCriteria 1），不是缺失的上游定义。",
+      "decision_required": false
+    }
+  ],
+
+  "blocking_items": [],
+  "blocking_reason_code": null,
+
+  "domain_candidate_space_note": {
+    "status": "not_frozen_by_this_preflight",
+    "statement": "本预检不选定任何 domain，也不预设候选全集——那是本节点激活后的结果盲冻结动作（passCriteria 1）。",
+    "feasibility_only": "仅记录可行性：当前 ROI 属横断山北段高山区（高差 3305 m）。合同要求的『真实地貌、气候、地质或植被断裂』在中国境内存在多个可经 GEE 获取 Landsat 与 SRTM 的候选方向。数据通道可用不等于候选已选定。",
+    "explicit_exclusion_restated": "不得以相邻 ROI 冒充新 domain（本节点 explicitExclusions）。"
+  },
+
+  "does_not_authorize": [
+    "本预检不激活 Stage 7.8。",
+    "不选定任何 domain，不冻结候选全集或准入规则。",
+    "不获取任何数据。",
+    "不解除 nc_8fe5b4709440，也不预先判定重新资格化 Gate 的结论。"
+  ]
+}
