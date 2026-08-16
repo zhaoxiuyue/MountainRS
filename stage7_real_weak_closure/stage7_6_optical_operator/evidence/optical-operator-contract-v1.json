@@ -1,0 +1,144 @@
+{
+  "schema": "mountainrs-stage7.6-optical-operator-contract-v1",
+  "purpose": "登记 Stage 7.6 结束时冻结的 L2 光学算子形式、其每一个参数的来源、依赖图与版本身份。本文件是下游节点引用光学算子时的唯一权威。",
+  "recorded_on": "2026-08-16",
+  "exposure_status": "post_result_exploratory",
+  "exposure_note": "Stage 7.3/7.4 的 residual 在本节点激活前已产出并公开，故本节点相对既有结果不声称 preregistered。节点内部的候选集、比较关系与判定规则均在首次读取本节点结果之前冻结并完成 PF3 写回读回（回执 rc_8603d0824173）。",
+
+  "frozen_operator": {
+    "form": "rho_hat = alpha · mu",
+    "mu_definition": "mu = max(cos_i, 0)",
+    "additive_terms": [],
+    "additive_terms_note": "本节点资格化了三个加性项候选，全部未通过。算子形式相对 Stage 7.2/7.3 未发生变化。",
+    "unchanged_from": "Stage 7.2 direct-only 基线",
+    "what_this_node_changed": "算子形式未变；改变的是这三个加性项从『尚未检验』变为『已检验且未获支持』，并附带可复核的失败方式。"
+  },
+
+  "parameter_provenance": [
+    {
+      "parameter": "alpha",
+      "in_frozen_operator": true,
+      "estimation_granularity": "acquisition × band（36 实例，非 18）",
+      "fold_safe_scope": "逐 acquisition × band × fold，仅由该 fold 的 actual calibration（calibration_lit ∩ 几何标定域）估计",
+      "identity_class": "identity_qualified_with_fixed_gauge",
+      "identity_source": "Stage 7.5 identity-registry-v1",
+      "gauge_caveat": "模型无独立的透过率、辐照度与平均反照率项，三者被折进 alpha。alpha 的数值是合成量估计，不是任一物理量的测量。引用其数值时必须携带此限定。",
+      "value_this_node": {"median_over_train_units": 0.2446, "range": [0.0399, 0.4941]},
+      "value_note": "该数值取自本节点 C0 基线的 train 单元，与 Stage 7.3 同口径，仅作参数边界与吸收分析的参照，不构成对 Stage 7.2/7.3 结果的重新发布。"
+    },
+    {
+      "parameter": "v_sky",
+      "in_frozen_operator": false,
+      "role": "候选 C1 与 C2a 的地形调制因子；本节点计算并冻结，但因候选未获资格而未进入算子",
+      "identity_class": "G",
+      "identity_basis": "由已冻结的 G（地形高程）经确定性几何变换导出，不含待估参数，不占推断自由度",
+      "computation": {
+        "formula": "v_sky = (1/N) · Σ_φ cos²(h(φ))",
+        "assumption": "各向同性天空",
+        "azimuth_count_N": 36,
+        "search_distance_D_m": 10000,
+        "earth_curvature": true,
+        "parameter_selection": "由 svf-geometry-gate-v1 在读取任何 residual 之前纯几何选定，见 outputs/svf-gate-run-v1.json"
+      },
+      "distribution": {"min": 0.4361, "median": 0.8356, "max": 1.0000, "pixels": 488800},
+      "retained_reason": "v_sky 本身是有效的、已验证收敛的地形派生量。未获资格的是『它以线性加性方式调制反射率』这一假设，不是这个量。下游若有其他用途可直接引用本冻结栅格。"
+    },
+    {
+      "parameter": "beta_v",
+      "in_frozen_operator": false,
+      "role": "候选 C1 的自由参数",
+      "identity_class": "N(t)",
+      "terminal_state": "unsupported_by_evidence",
+      "estimated_value": {"median_abs_over_train": 0.03634, "ratio_to_baseline_mae": 0.82,
+                          "p5": -0.02880, "p95": 0.16751},
+      "why_not_in_operator": "参数能被估出且量级可观（达基线 MAE 的 82%），但在 held-out core 上的中位改善仅 +0.06%，且 5 个 fold 中仅 2 个方向为正。"
+    },
+    {
+      "parameter": "beta_0",
+      "in_frozen_operator": false,
+      "role": "候选 C1′ 的自由参数（经验截距，对照基线）",
+      "identity_class": "N(t)",
+      "physical_status": "empirical_offset",
+      "terminal_state": "unsupported_by_evidence",
+      "estimated_value": {"median_abs_over_train": 0.02426, "ratio_to_baseline_mae": 0.69},
+      "must_not_be_read_as": "即便本候选曾通过，它也不含地形调制，其结果不得被引用为漫射机制或路径辐射机制已获支持。本次它未通过，该限定依然适用于任何对其数值的引用。"
+    },
+    {
+      "parameter": "beta_terr",
+      "in_frozen_operator": false,
+      "role": "候选 C2a 在约束 beta_0 = −beta_v 下的共同值",
+      "identity_class": "N(t)",
+      "terminal_state": "unsupported_by_evidence",
+      "estimated_value": {"median": -0.00257, "p5": -0.25311, "p95": 0.43955,
+                          "ratio_to_baseline_mae": 2.61},
+      "instability_note": "P5 至 P95 跨越 −0.25 到 +0.44，符号在单元间翻转。参数幅度达基线 MAE 的 2.61 倍而方向不定，是在拟合噪声而非捕捉稳定效应。"
+    },
+    {
+      "parameter": "l_path",
+      "in_frozen_operator": false,
+      "role": "候选 C3 的自由参数（加性大气路径辐射）",
+      "identity_class": "non_identifiable_equivalent",
+      "terminal_state": "non_identifiable",
+      "verdict_basis": "analytic",
+      "why": "对给定 acquisition × band，路径辐射是加性常数，与 beta_0 逐点同形，观测无法区分。结论不依赖任何实验数据。"
+    }
+  ],
+
+  "dependency_graph": {
+    "nodes": [
+      {"id": "srtm_dem", "kind": "external_input", "identity_class": "G",
+       "artifact": "stages/stage2_dem_terrain/data/dem_roi_plus_20km_utm48n.tif"},
+      {"id": "solar_geometry", "kind": "exogenous", "identity_class": "E",
+       "note": "采集时已确定，不参与推断，不接受梯度"},
+      {"id": "cos_i", "kind": "derived", "identity_class": "E",
+       "note": "G 与太阳几何的确定性复合；归 E 以『G 保持锁定』为条件（Stage 7.5）",
+       "source": "Stage 7.2 cos-i-registry-v1"},
+      {"id": "mu", "kind": "derived", "formula": "max(cos_i, 0)"},
+      {"id": "v_sky", "kind": "derived", "identity_class": "G",
+       "formula": "(1/N)·Σ_φ cos²(h(φ))", "source": "本节点 outputs/v_sky_roi_grid_v1.tif"},
+      {"id": "rho_obs", "kind": "observation", "source": "Stage 7.1 observation stack"},
+      {"id": "alpha", "kind": "estimated_parameter", "identity_class": "identity_qualified_with_fixed_gauge"},
+      {"id": "rho_hat", "kind": "prediction"}
+    ],
+    "edges": [
+      {"from": "srtm_dem", "to": "cos_i", "via": "坡度/坡向 × 太阳几何"},
+      {"from": "solar_geometry", "to": "cos_i", "via": "确定性几何"},
+      {"from": "srtm_dem", "to": "v_sky", "via": "地平线角搜索（N=36, D=10km, 含曲率）"},
+      {"from": "cos_i", "to": "mu", "via": "max(·, 0)"},
+      {"from": "mu", "to": "alpha", "via": "逐 fold 最小二乘（仅训练支持区）"},
+      {"from": "rho_obs", "to": "alpha", "via": "逐 fold 最小二乘（仅训练支持区）"},
+      {"from": "mu", "to": "rho_hat", "via": "alpha · mu"},
+      {"from": "alpha", "to": "rho_hat", "via": "alpha · mu"}
+    ],
+    "severed_edges": [
+      {"from": "v_sky", "to": "rho_hat", "status": "not_established",
+       "reason": "候选 C1 与 C2a 均未获资格；v_sky 已计算并冻结，但不进入算子。"}
+    ],
+    "invariant": "held-out core 及其隔离带不出现在任何指向 alpha 的边上——这是空间阻断的图上表述。"
+  },
+
+  "operator_version_identity": {
+    "operator_id": "mountainrs-l2-optical-direct-only",
+    "version": "unchanged_since_stage_7_2",
+    "frozen_artifacts_manifest": {"relative_path": "freeze-manifest-v1.json",
+                                  "sha256": "140b40d7c3608bce"},
+    "result_artifacts": [
+      {"relative_path": "../outputs/ablation-unit-table-v1.json", "role": "逐单元拟合与评分"},
+      {"relative_path": "../outputs/verdict-table-v1.json", "role": "终态判定"},
+      {"relative_path": "../outputs/result-audit-v1.json", "role": "结果阶段 fail-closed 审计"}
+    ],
+    "hash_authority": "freeze-manifest-v1.json 是冻结件的唯一 hash 权威；结果件的 hash 由 result-freeze 段在本文件发布时一并登记。"
+  },
+
+  "scope_limits": {
+    "spatial": "单 ROI（Stage 7.1 冻结范围），非独立 fold",
+    "statistical": "不声称概率、校准置信度或统计显著性；fold 与像元均不构成独立重复",
+    "evidence_scope": "local",
+    "what_cannot_be_concluded": [
+      "不得表述为『天空漫射项在山地遥感中无用』——本结论限于本 ROI 的这套观测、这套 fold 拓扑与这一种线性加性形式。",
+      "不得表述为『地形调制不存在』——未获支持的是该假设在本数据上的可检测性，不是该物理过程的存在性。",
+      "不得以本节点结果为依据放宽或收紧下游任何阈值。"
+    ],
+    "independent_confirmation": "留给 Stage 7.10"
+  }
+}
