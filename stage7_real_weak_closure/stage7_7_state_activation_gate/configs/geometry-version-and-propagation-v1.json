@@ -1,0 +1,210 @@
+{
+  "schema": "mountainrs-stage7.7-geometry-version-and-propagation-v1",
+  "purpose": "定义几何版本的粒度与变更判据，并冻结失效传播规则。本文件必须在任何 fixture 运行之前冻结——否则会用 fixture 结果反推定义。",
+  "recorded_on": "2026-08-16",
+  "status": "frozen_before_fixture",
+  "architecture_basis": {
+    "clauses": "docs/architecture.md 第 156–161 行",
+    "requirements_taken_verbatim": [
+      "几何变化不触发包围盒内历史状态的无条件全删。",
+      "受坐标映射、可见性或辐射关系变化影响的派生状态进入 invalidated 或 quarantined，并说明失效原因。",
+      "影响范围必须包含几何变化导致的可见性与辐射传播区域，而不只是几何包围盒。"
+    ],
+    "open_problem_being_addressed": "第 212 行：『如何区分持续几何变化与随机残差，如何界定包含可见性与辐射传播的影响范围，以及如何审查和回滚，仍需小样区经验与专项验证。』本节点是该专项验证，不是该问题的最终关闭。"
+  },
+
+  "core_design_decision": {
+    "question": "几何版本应当按什么定义？",
+    "rejected_option_a": {
+      "definition": "按 artifact 字节身份（文件 sha256）",
+      "why_rejected": "Stage 7.6 提供了一个反例：外扩 DEM dem_roi_plus_20km_utm48n.tif 是全新 artifact（sha256 5be4676f6cd47b7c…），但其 ROI 窗口内与冻结 DEM 逐位相同（488,800 像元，max|d| = 0.0000 m）。按 hash 定义会令 cos_i、slope、aspect 及其全部后代失效，而这些量的输入实际上一个比特都没变。这是**假阳性失效**，代价是无谓地作废整条已验证的链。"
+    },
+    "rejected_option_b": {
+      "definition": "按几何值在自身存储范围内是否变化",
+      "why_rejected": "会漏掉真实影响。v_sky 的地平线搜索半径为 10 km，故 ROI 之外 10 km 内的地形变化会改变 ROI 内的 v_sky 值，而 ROI 内的高程可以一字未动。按存储范围比对会判「未变」，这是**假阴性失效**，代价是让失效的派生量继续被当作有效——比假阳性严重得多。"
+    },
+    "adopted": {
+      "definition": "几何版本按『值 + 消费者影响半径』定义。artifact 身份只是载体，不是版本本身。",
+      "rule": "对每个几何消费者 c，其几何版本 gv(c) = 该消费者影响域内几何值的摘要。两次几何状态对 c 而言同版本，当且仅当在 c 的影响域内逐元素相等。",
+      "why_this_resolves_both": "ROI 内值不变而 artifact 变 → 对影响半径为 0 的消费者同版本，不失效（避免假阳性）；ROI 外值变而 ROI 内不变 → 对影响半径 10 km 的消费者不同版本，失效（避免假阴性）。同一次几何变更对不同消费者可以有不同结论，这是正确的，不是不一致。"
+    }
+  },
+
+  "consumer_registry": {
+    "note": "每个几何消费者必须声明其影响半径。未声明者一律按 unbounded 处理并 fail closed——不许默认 0。",
+    "entries": [
+      {
+        "consumer": "slope",
+        "influence_radius_m": 30,
+        "basis": "有限差分坡度只用相邻像元，半径为一个像元。",
+        "radius_kind": "structural"
+      },
+      {
+        "consumer": "aspect",
+        "influence_radius_m": 30,
+        "basis": "同 slope。",
+        "radius_kind": "structural"
+      },
+      {
+        "consumer": "cos_i",
+        "influence_radius_m": 30,
+        "basis": "cos_i 由本像元的 slope/aspect 与太阳几何（E 类，非几何）确定性复合，故其几何影响半径等于 slope 的半径。",
+        "radius_kind": "structural"
+      },
+      {
+        "consumer": "v_sky",
+        "influence_radius_m": 10000,
+        "basis": "地平线角搜索距离 D*，由 Stage 7.6 的 svf-geometry-gate 纯几何收敛测试选定并冻结。",
+        "radius_kind": "frozen_parameter",
+        "caveat": "该半径随 D 的冻结值而定。若未来 D 改变，本条目必须同步更新——影响半径不是消费者的固有属性，而是其配置的函数。"
+      }
+    ],
+    "unregistered_consumer_policy": "fail_closed：遇到未登记的几何消费者时停机，不得猜测其半径，也不得默认为 0。默认 0 会系统性地产生假阴性失效。"
+  },
+
+  "change_classification": {
+    "note": "三类几何变更，处置不同。分类本身必须可机械判定。",
+    "classes": [
+      {
+        "id": "artifact_only",
+        "definition": "artifact 身份改变，但在消费者 c 的影响域内几何值逐元素相等。",
+        "propagation": "对 c 不传播。c 及其后代保持有效。",
+        "must_record": "变更源、新旧 artifact hash、逐元素比对的结论与比对像元数——不传播也必须留痕，否则无法与「漏检」区分。",
+        "real_example": "Stage 7.6 引入 dem_roi_plus_20km_utm48n.tif 对 cos_i/slope/aspect 的效应。"
+      },
+      {
+        "id": "value_change_in_scope",
+        "definition": "在消费者 c 的影响域内存在几何值变化。",
+        "propagation": "c 标记 invalidated；c 的后代标记 quarantined。",
+        "must_record": "变更源、影响域定义、发生变化的像元数与范围、原因码。"
+      },
+      {
+        "id": "scope_extension",
+        "definition": "几何覆盖范围扩大，新覆盖区域此前无值；原有覆盖区域内值不变。",
+        "propagation": "对影响域完全落在原覆盖内的消费者不传播；对影响域伸出原覆盖之外的消费者，若该消费者此前曾在缺数据下产出过结果，其结果标记 invalidated（此前的产出建立在被截断的搜索域上）；若该消费者此前无产出，则不适用失效，属新增能力。",
+        "must_record": "新旧覆盖范围、每个消费者影响域与旧覆盖的包含关系。",
+        "real_example": "Stage 7.6 的外扩 DEM 对 v_sky 的效应属『此前无产出』分支——v_sky 在本次之前不存在，故不涉及失效。"
+      }
+    ]
+  },
+
+  "propagation_rules": {
+    "direct_dependent": {
+      "marking": "invalidated",
+      "definition": "以变更后的几何为直接输入的 artifact。",
+      "semantics": "其值已知不再对应当前几何，必须重算后方可使用。"
+    },
+    "descendant": {
+      "marking": "quarantined",
+      "definition": "不直接消费几何，但（传递地）消费了某个 invalidated artifact 的 artifact。",
+      "semantics": "其值是否改变尚未确定，须在上游重算后重新评估。quarantined 不等于错误，等于未经确认。",
+      "why_two_markings": "区分『已知失效』与『待确认』使重算可以按拓扑序推进，且使审计能分辨哪些是被直接推翻的、哪些只是受牵连的。合并成一个标记会丢失这个信息。"
+    },
+    "unaffected": {
+      "marking": "valid",
+      "rule": "与变更几何无依赖路径的 artifact 保持有效。架构第 156 行明确禁止对包围盒内历史状态无条件全删——『在同一个空间范围内』不构成依赖关系。"
+    },
+    "no_manual_release": "不得人工放行 invalidated 或 quarantined artifact（本节点 explicitExclusions）。解除只能通过重算并通过验证。",
+    "cache_rule": {
+      "requirement": "旧 cache 不得静默载入。",
+      "mechanism": "任何 cache 条目必须携带其依赖的 geometry version 摘要；载入时比对，不匹配即 fail closed 并报出不匹配的消费者与摘要差异，不得回退到重算之外的任何路径。",
+      "silent_fallback_prohibited": "禁止『缓存不匹配就当作没有缓存、悄悄重算』——那会掩盖版本漂移的发生频率。必须报出。"
+    }
+  },
+
+  "manifest_requirements": {
+    "note": "passCriteria 4 要求 manifest 记录变更源、传播路径和原因码。",
+    "required_fields": [
+      "change_source：触发变更的 artifact 及其新旧 hash",
+      "change_class：artifact_only / value_change_in_scope / scope_extension 三者之一",
+      "per_consumer_verdict：每个登记消费者的影响域比对结论与所得标记",
+      "propagation_path：从变更源到每个被标记 artifact 的依赖路径（不只是终点集合）",
+      "reason_code：每个标记的原因码",
+      "unaffected_artifacts：明确列出保持有效者——只列失效项无法与『漏检』区分"
+    ]
+  },
+
+  "rollback_requirements": {
+    "raw_observation_permanence": {
+      "requirement": "原始观测永久保留并可按 receipt 回滚。",
+      "upstream_basis": "Stage 7.1-R 已冻结 evidence_membership 在 universe version 内不可撤销；架构 v3.3 §2.2 明确永久保留的对象是证据身份与可追溯性，不必然是本地热存储字节。",
+      "implication": "回滚验证的对象是身份与可追溯性链条的完整性，不是字节是否躺在本地磁盘上。"
+    },
+    "receipt_based": "每次传播必须产出 receipt，据其可回到传播前的标记状态。"
+  },
+
+  "fixture_specification": {
+    "note": "fixture 用例在此冻结，运行在此之后。每个用例都必须能区分一个具体的错误实现。",
+    "cases": [
+      {
+        "id": "F1",
+        "name": "artifact 变而影响域内值不变",
+        "setup": "以 Stage 7.6 的真实素材为准：新 DEM artifact，ROI 内与冻结 DEM 逐位相同。",
+        "expected": "cos_i / slope / aspect 判 artifact_only，保持 valid；其后代保持 valid。",
+        "kills_which_wrong_implementation": "只比对文件 hash 的实现（会产生假阳性全链失效）。"
+      },
+      {
+        "id": "F2",
+        "name": "影响域外的值变化，对小半径消费者",
+        "setup": "修改距 ROI 5 km 处的高程；比对 cos_i（半径 30 m）。",
+        "expected": "cos_i 判 artifact_only 或无变更，保持 valid。",
+        "kills_which_wrong_implementation": "按整个 artifact 范围比值的实现（会产生假阳性）。"
+      },
+      {
+        "id": "F3",
+        "name": "影响域外的值变化，对大半径消费者",
+        "setup": "同 F2 的几何变更；比对 v_sky（半径 10 km）。",
+        "expected": "v_sky 判 value_change_in_scope → invalidated；其后代 quarantined。",
+        "kills_which_wrong_implementation": "只比对消费者自身存储范围的实现（会产生假阴性——最危险的一类）。"
+      },
+      {
+        "id": "F4",
+        "name": "无依赖 artifact 保持有效",
+        "setup": "几何变更后，检查与地形无依赖路径的 artifact（如观测栈 QA 掩膜）。",
+        "expected": "保持 valid，不因空间范围重叠而被牵连。",
+        "kills_which_wrong_implementation": "按空间包围盒失效的实现（违反架构第 156 行）。"
+      },
+      {
+        "id": "F5",
+        "name": "后代与直接依赖的标记区分",
+        "setup": "几何变更影响 v_sky，v_sky 被某下游 artifact 消费。",
+        "expected": "v_sky 得 invalidated，下游得 quarantined，两者不混用。",
+        "kills_which_wrong_implementation": "把两级标记合并的实现（丢失『已知失效』与『待确认』的区分）。"
+      },
+      {
+        "id": "F6",
+        "name": "旧 cache 不得静默载入",
+        "setup": "构造一个携带旧 geometry version 摘要的 cache 条目，在几何变更后尝试载入。",
+        "expected": "fail closed 并报出不匹配的消费者与摘要差异，不得静默重算。",
+        "kills_which_wrong_implementation": "缓存不匹配即静默回退的实现。"
+      },
+      {
+        "id": "F7",
+        "name": "未登记消费者 fail closed",
+        "setup": "引入一个未在 consumer_registry 中登记的几何消费者。",
+        "expected": "停机报错，不得默认半径为 0。",
+        "kills_which_wrong_implementation": "对未知消费者默认 0 半径的实现（系统性假阴性）。"
+      },
+      {
+        "id": "F8",
+        "name": "回滚可达",
+        "setup": "执行一次传播后按 receipt 回滚。",
+        "expected": "标记状态回到传播前，且原始观测的证据身份与可追溯性未受影响。"
+      }
+    ],
+    "boundary_case_not_avoided": {
+      "id": "F9",
+      "name": "ROI 边界接缝是否构成几何变化",
+      "setup": "Stage 7.6 的外扩 DEM 在 ROI 边界存在接缝（mean +0.049 m / std 7.792 m / max 103.6 m），该处新旧数据不同。",
+      "question": "该接缝落在 v_sky 的影响域内（10 km）但落在 cos_i 影响域外（30 m）。按本文件规则，v_sky 应判 value_change_in_scope。",
+      "expected": "规则必须给出确定答案而非回避。fixture 须验证该判定为 invalidated，且原因码指向接缝而非笼统的『DEM 变了』。",
+      "why_included": "这是本项目里真实存在的边界案例。若规则只在干净的合成用例上成立，它在第一次真实几何变更时就会失灵。"
+    }
+  },
+
+  "what_this_does_not_close": [
+    "架构第 212 行的未决问题只被部分处置：本文件给出了『影响范围如何界定』的一个可执行答案（按消费者影响半径），但『如何区分持续几何变化与随机残差』未处理——本文件的变更判据是逐元素精确比对，不含噪声容差，故无法区分微小真实变化与数值噪声。该问题保持开放。",
+    "本文件只覆盖光学链路的几何消费者。SAR 斜距几何的消费者及其影响半径属 Stage 8.0，未在此登记。",
+    "fixture 首验不等于 v3.1 §7H 几何变化检测已解决（本节点 explicitExclusions）。"
+  ]
+}
