@@ -50,12 +50,22 @@ def climate_and_vegetation(region: ee.Geometry) -> dict:
     lc = (ee.ImageCollection("MODIS/061/MCD12Q1")
           .filterDate(f"{MODIS_YEAR}-01-01", f"{MODIS_YEAR}-12-31").first()
           .select("LC_Type1"))
-    mode = lc.reduceRegion(ee.Reducer.mode(), region, 500,
-                           maxPixels=int(1e9), bestEffort=True).get("LC_Type1")
+    # 主导类别由频率直方图取最大者确定，不用 ee.Reducer.mode()——后者在
+    # reduceRegion 的重采样之后对离散类别值失效，会返回占比不足 1% 的伪主导。
+    # 该错误已在本节点实测确认（基准返回占比 1.1% 的类别而非 46.1% 的真主导）。
     hist = lc.reduceRegion(ee.Reducer.frequencyHistogram(), region, 500,
                            maxPixels=int(1e9), bestEffort=True).get("LC_Type1")
-    return ee.Dictionary({"annual_precip_mm": precip, "annual_mean_temp_x10": temp,
-                          "igbp_mode": mode, "igbp_histogram": hist}).getInfo()
+    got = ee.Dictionary({"annual_precip_mm": precip, "annual_mean_temp_x10": temp,
+                         "igbp_histogram": hist}).getInfo()
+    histogram = got["igbp_histogram"] or {}
+    total = sum(histogram.values()) or 1
+    dominant = max(histogram.items(), key=lambda kv: kv[1]) if histogram else ("0", 0)
+    got["igbp_dominant"] = int(dominant[0])
+    got["igbp_dominant_fraction"] = dominant[1] / total
+    got["igbp_top5"] = [
+        {"class": int(k), "name": IGBP_NAMES.get(int(k), "?"), "fraction": v / total}
+        for k, v in sorted(histogram.items(), key=lambda kv: -kv[1])[:5]]
+    return got
 
 
 def main() -> int:
@@ -69,10 +79,10 @@ def main() -> int:
     base_region = region_of(32648, base_bounds)
     base = climate_and_vegetation(base_region)
     base_precip = base["annual_precip_mm"]
-    base_igbp = int(base["igbp_mode"])
+    base_igbp = base["igbp_dominant"]
     print(f"基准 D0_minshan：年降水 {base_precip:.0f} mm   "
           f"年均温 {base['annual_mean_temp_x10']/10:.1f} °C   "
-          f"IGBP 主导 {base_igbp} {IGBP_NAMES.get(base_igbp, '?')}\n")
+          f"IGBP 主导 {base_igbp} {IGBP_NAMES.get(base_igbp, '?')} ({base['igbp_dominant_fraction']*100:.1f}%)\n")
 
     records = []
     for record in stage1["candidates"]:      # 已按候选 ID 字典序
@@ -81,7 +91,7 @@ def main() -> int:
         cid = record["candidate_id"]
         region = region_of(record["roi"]["epsg"], record["roi"]["bounds"])
         got = climate_and_vegetation(region)
-        precip, igbp = got["annual_precip_mm"], int(got["igbp_mode"])
+        precip, igbp = got["annual_precip_mm"], got["igbp_dominant"]
 
         climate_break = abs(precip - base_precip) >= PRECIP_DELTA_MM
         vegetation_break = igbp != base_igbp
@@ -94,7 +104,9 @@ def main() -> int:
             "measured": {
                 "annual_precip_mm": precip,
                 "annual_mean_temp_c": got["annual_mean_temp_x10"] / 10,
-                "igbp_mode": igbp, "igbp_name": IGBP_NAMES.get(igbp, "?"),
+                "igbp_dominant": igbp, "igbp_name": IGBP_NAMES.get(igbp, "?"),
+                "igbp_dominant_fraction": got["igbp_dominant_fraction"],
+                "igbp_top5": got["igbp_top5"],
                 "precip_delta_vs_baseline_mm": precip - base_precip,
             },
             "climate_break": {"criterion": f"|年降水差| ≥ {PRECIP_DELTA_MM} mm",
@@ -122,7 +134,8 @@ def main() -> int:
         records.append(entry)
         mark = "✓" if entry["a6_category_passed"] else "✗"
         print(f"  [{mark}] {cid:<26} 降水 {precip:>5.0f} mm (Δ{precip-base_precip:+6.0f})  "
-              f"IGBP {igbp:>2} {IGBP_NAMES.get(igbp,'?'):<10} "
+              f"IGBP {igbp:>2} {IGBP_NAMES.get(igbp,'?'):<8}"
+              f"{got['igbp_dominant_fraction']*100:4.0f}%  "
               f"成立: {'+'.join(established) if established else '无'}")
 
     output = {
@@ -130,7 +143,9 @@ def main() -> int:
         "purpose": "准入核验第三阶段：A6 的真断裂类别部分。",
         "baseline": {"id": "D0_minshan", "annual_precip_mm": base_precip,
                      "annual_mean_temp_c": base["annual_mean_temp_x10"] / 10,
-                     "igbp_mode": base_igbp, "igbp_name": IGBP_NAMES.get(base_igbp, "?")},
+                     "igbp_dominant": base_igbp, "igbp_name": IGBP_NAMES.get(base_igbp, "?"),
+                     "igbp_dominant_fraction": base["igbp_dominant_fraction"],
+                     "igbp_top5": base["igbp_top5"]},
         "data_sources": {
             "climate": "WORLDCLIM/V1/BIO（bio12 年降水、bio01 年均温）",
             "vegetation": f"MODIS/061/MCD12Q1 LC_Type1（IGBP），{MODIS_YEAR} 年",

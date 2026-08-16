@@ -1,0 +1,90 @@
+{
+  "schema": "mountainrs-stage7.8-screening-findings-v2",
+  "record_type": "findings_and_correction_of_v1",
+  "recorded_on": "2026-08-16",
+  "recorded_by": "执行手（克克）",
+  "supersedes": "screening-findings-v1.json",
+  "supersede_policy": "v1 字节保留不改（历史证据区 append-only）。本文件撤回 v1 的两项 finding 并说明原因，v1 的结论不得被继续引用。",
+
+  "correction": {
+    "title": "screening-findings-v1 的 F1 与 F2 均建立在一处实现错误上，二者一并撤回",
+    "the_bug": {
+      "what": "第三阶段用 ee.Reducer.mode() 求 IGBP 主导类别。该 reducer 在 reduceRegion 的重采样之后对离散类别值失效，返回的不是众数。",
+      "how_it_was_caught": "为给 F2 补充事实依据而单独查询频率直方图时，发现直方图与 mode 的结果完全对不上。",
+      "quantitative_evidence": [
+        "基准 D0_minshan：mode 返回类别 9「稀树草原」，而该类别在直方图中仅占 1.1%；真实主导为类别 10「草地」，占 46.1%。",
+        "C6_liupanshan_loess：mode 返回类别 11「永久湿地」，该类别未进入直方图前五（< 0.6%）；真实主导为类别 12「农田」，占 54.1%。"
+      ],
+      "fix": "改由频率直方图取最大者确定主导类别，并一并记录占比与前五类别构成。scripts/screen_domains_break_v1.py 已修正并重跑。",
+      "why_the_fraction_is_now_recorded": "只报主导类别而不报其占比，无法区分「54% 的明确主导」与「1.1% 的伪主导」。占比字段的缺失正是这个错误能存活到裁决请求阶段的原因。"
+    },
+    "f1_withdrawn": {
+      "v1_claim": "MODIS IGBP 分类在高山区可靠性有限，基准被判为稀树草原即是证据。",
+      "status": "撤回。该判断的唯一依据是错误的 mode 结果。基准的真实主导类别为草地（46.1%），对高程 2491–5796 m、年均温 0.5 °C 的高山区完全合理。MODIS IGBP 在本项目条件下未被证明不可靠。",
+      "consequence_of_withdrawal": "v1 中『C7 与 C5 的真断裂依据存疑』这一推论随之失效。二者的植被断裂建立在可信的分类结果上。"
+    },
+    "f2_restated": {
+      "v1_claim": "C6 主导类别为永久湿地，与山地 domain 定位不符。",
+      "status": "事实错误，撤回。C6 的真实主导类别为农田，占 54.1%；永久湿地占比不足 0.6%。",
+      "what_remains_true": "见下 F2'——农田主导是真实的，只是与 v1 所述的湿地问题不是同一件事，其性质与严重程度也不同。"
+    },
+    "self_assessment": {
+      "statement": "该错误若未被发现，会使所有者基于两项虚假事实作出裁决，且两项都指向『判据不可靠、需要修改冻结件』——即可能促成一次本不必要的规则修改。",
+      "what_made_it_survivable": "它被抓住不是因为审查流程，而是因为在准备裁决请求时坚持补充事实依据。若当时直接以 mode 结果提交裁决，错误会一路传到规则修改。",
+      "mechanism_note": "记录此点是为了说明：本次的防线是『给所有者的材料必须有可核查的事实底座』这一习惯，不是任何自动检查。同类错误在别处不会被同样地拦住。"
+    }
+  },
+
+  "corrected_results": {
+    "baseline": {"id": "D0_minshan", "igbp_dominant": "10 草地", "fraction": 0.461,
+                 "annual_precip_mm": 1036, "annual_mean_temp_c": 0.5},
+    "per_candidate": [
+      {"id": "C1_tianshan_central", "igbp": "10 草地 (100%)", "precip_delta_mm": -763, "breaks": ["climate"]},
+      {"id": "C2_qilian_central", "igbp": "10 草地 (90%)", "precip_delta_mm": -705, "breaks": ["climate"]},
+      {"id": "C3_nyainqentanglha_east", "igbp": "10 草地 (58%)", "precip_delta_mm": -629, "breaks": ["climate"]},
+      {"id": "C4_changbaishan", "igbp": "5 混交林 (47%)", "precip_delta_mm": -146, "breaks": ["vegetation"]},
+      {"id": "C5_gaoligong", "igbp": "1 常绿针叶林 (52%)", "precip_delta_mm": 319, "breaks": ["vegetation"]},
+      {"id": "C6_liupanshan_loess", "igbp": "12 农田 (54%)", "precip_delta_mm": -462, "breaks": ["climate", "vegetation"]},
+      {"id": "C7_taibaishan_qinling", "igbp": "4 落叶阔叶林 (44%)", "precip_delta_mm": -127, "breaks": ["vegetation"]},
+      {"id": "C8_altai_central", "igbp": "10 草地 (95%)", "precip_delta_mm": -800, "breaks": ["climate"]}
+    ],
+    "what_changed_vs_v1": "四个候选（C1/C2/C3/C8）此前被误记为 climate+vegetation 双断裂，实际只有气候断裂——它们的主导类别与基准同为草地。合格集与选择结果均未改变（A6 只要求至少一类成立），改变的是每个候选的断裂依据构成。",
+    "selection_unchanged": ["C1_tianshan_central", "C7_taibaishan_qinling", "C2_qilian_central",
+                            "C6_liupanshan_loess", "C5_gaoligong"],
+    "selection_unchanged_reason": "确定性排序的主键是合格 acquisition 数，与断裂类别构成无关。"
+  },
+
+  "F2_prime": {
+    "title": "C6_liupanshan_loess 的主导地表类型为农田（54.1%）",
+    "status": "真实观察，需所有者判断是否处置",
+    "facts": {
+      "igbp_composition": "农田 54.1% / 落叶阔叶林 20.1% / 草地 16.8% / 混交林 8.3%",
+      "relief_m": 1041,
+      "relief_note": "该值是八个候选中唯一勉强越过 A5 门槛（1000 m）的。",
+      "rank": 4,
+      "breaks_established": ["climate", "vegetation"]
+    },
+    "why_it_may_matter": "农田是人为改造的地表。其反射率随耕作周期（播种、生长、收割、裸土）发生与地形无关的时间变化，而本项目的核心问题是地形对辐射的调制。农田主导的 domain 会在观测中混入一个强的、与 cos_i 无关的时间信号。这不使该 domain 无效，但会改变其证据性质。",
+    "why_it_may_not_matter": "黄土区的坡耕地本身具有显著地形起伏，地形调制依然存在；且本节点只建设证据不做推断，耕作信号的影响属下游节点评估其可用性时的问题。合同 passCriteria 5 要求逐域报告 domain labels，该信息届时会随证据一并交付。",
+    "why_not_self_handled": "现有准入条件 A1–A6 无一条涉及地表人为改造程度。以『农田太多』为由剔除 C6，等于在看过核验结果之后新增准入条件——方向是排除并不改变其性质。冻结时序约束的是规则不得在看过结果后改动，与改动方向无关。",
+    "minimum_fix_options": {
+      "note": "按改动量列出，不含倾向性排序。",
+      "option_a": "维持现状。C6 保留在选定集，其农田主导比例作为 domain label 在证据中登记并在报告中声明。改动量：零，仅需在逐域报告中如实记录。",
+      "option_b": "新增准入条件 A7（人为改造地表占比上限）。改动量：admission_criteria 增一条 + 重跑第三阶段与选择。若阈值设为 50%，C6 出局，替补 C8_altai_central 递补（草地 95%，气候断裂 Δ-800 mm）。注意此阈值的选择本身发生在已知 C6 为 54% 之后。",
+      "option_c": "不改准入条件，但在 domain 的用途上区分——C6 保留为证据成员，在涉及时间序列的评估中标注其耕作信号风险。改动量：需在 split 与指标协议中增加一条限定。"
+    }
+  },
+
+  "other_observations_not_requiring_decision": {
+    "grassland_dominance_is_widespread": "C1/C2/C3/C8 与基准同为草地主导（58–100%）。这意味着这四个域相对基准的差异集中在气候维度（降水差 629–800 mm）而非地表覆盖类型。跨域验证因此更多检验的是干湿条件的迁移，而非地表类型的迁移——该限定应在跨域结论中声明。",
+    "vegetation_only_candidates": "C4/C5/C7 的降水差为 127–319 mm，均未达气候断裂门槛，其真断裂完全由植被类别差异支撑。在修正后的测量下这一支撑是可信的，但依据单一。",
+    "landsat_and_dem_ample": "八域合格 acquisition 58–270、强景 38–223，SRTM 外扩 10 km 覆盖率全为 1.0000。数据可得性不是本节点瓶颈。"
+  },
+
+  "what_was_not_done": [
+    "未修改任何冻结的准入条件或判据——修正的是执行手的实现错误，不是规则。",
+    "未改变选择结果：C1、C7、C2、C6、C5 仍为选定集，其确定性排序未受本次修正影响。",
+    "未获取任何选定 domain 的完整观测栈。",
+    "未删除或改写 screening-findings-v1.json 的字节。"
+  ]
+}
