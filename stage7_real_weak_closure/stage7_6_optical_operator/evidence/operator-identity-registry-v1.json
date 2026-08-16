@@ -13,28 +13,33 @@
     "note": "本节点不向该文件追加任何条目。alpha、mu、cos_i、G 系列等既有对象的身份以该文件为准。"
   },
   "recorded_on": "2026-08-15",
-
   "operators_not_in_identity_system": [
     {
       "operator_id": "sky_diffuse_operator",
       "identity_class": "not_applicable",
       "not_applicable_reason": "算子是函数/计算路径，不是模型的状态、参数、结构约束或条件量。进入身份体系的是它引入的 beta_v 与 v_sky。",
-      "introduces": ["beta_v", "v_sky"]
+      "introduces": [
+        "beta_v",
+        "v_sky"
+      ]
     },
     {
       "operator_id": "constant_offset_operator",
       "identity_class": "not_applicable",
       "not_applicable_reason": "同上。",
-      "introduces": ["beta_0"]
+      "introduces": [
+        "beta_0"
+      ]
     },
     {
       "operator_id": "atmospheric_path_radiance_operator",
       "identity_class": "not_applicable",
       "not_applicable_reason": "同上。",
-      "introduces": ["l_path"]
+      "introduces": [
+        "l_path"
+      ]
     }
   ],
-
   "entries": [
     {
       "object_id": "v_sky",
@@ -46,13 +51,21 @@
       "temporal_support": "static_within_universe_version",
       "granularity": "per_pixel",
       "observation_status": "derived",
-      "derived_from": ["terrain_elevation"],
+      "derived_from": [
+        "terrain_elevation"
+      ],
       "availability": "train_and_inference",
       "anchor": null,
       "prior": null,
       "normalization": "取值 [0,1]，表示该点可见天空立体角占半球的比例",
-      "gauge": {"fixed": false, "rule": null, "rationale": null},
-      "allowed_paths": ["sky_diffuse_term_modulation"],
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "sky_diffuse_term_modulation"
+      ],
       "forbidden_paths": [
         "作为可拟合量",
         "作为梯度落点",
@@ -70,7 +83,7 @@
       "leakage_note": "v_sky 使用全域 DEM 计算不构成 fold 泄漏——DEM 属已冻结的 G，空间 fold 隔离的是目标观测与拟合信息，不是已知地形。但其算法参数必须在读取任何 residual 之前冻结：泄漏通道不在『读了全域地形』，而在『用留出结果挑了几何算法』。",
       "source_binding": {
         "relative_path": "../configs/svf-geometry-gate-v1.json",
-        "sha256": "PENDING_GATE_SHA",
+        "sha256": "b6155cf4034cf279772637f3086247d5b325e7679890058e18f3b7ee2a6a1fdf",
         "note": "算法定义、参数与收敛 Gate 由该文件唯一给出；本条目的 hash 在 Gate 冻结后回填。"
       }
     },
@@ -89,8 +102,14 @@
       "anchor": null,
       "prior": null,
       "normalization": null,
-      "gauge": {"fixed": false, "rule": null, "rationale": null},
-      "allowed_paths": ["L2_forward_synthesis_additive_diffuse_term"],
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "L2_forward_synthesis_additive_diffuse_term"
+      ],
       "forbidden_paths": [
         "由 held-out core 或其隔离带内的观测估计",
         "在支持不足时回退到全域参数",
@@ -101,7 +120,8 @@
       "evidence_scope_justification": "在 C_full 框架下与 beta_0 的可分性取决于 v_sky 在该 fold 训练支持区内是否有足够变化——这是数据性质而非模型结构性质，故只能给 local。若 v_sky 在某 fold 内近似常数，该 fold 的 beta_v 与 beta_0 实际不可辨识（Stage 7.5 fixture F6 的情形），须按 Gate 判为 unsupported 而非硬解。",
       "source_binding": {
         "relative_path": "../configs/optical-operator-config-v1.json",
-        "sha256": "PENDING_CONFIG_SHA"
+        "binding": "same_change_set",
+        "note": "与本文件在同一变更集内冻结；权威 hash 见 evidence/freeze-manifest-v1.json"
       }
     },
     {
@@ -120,8 +140,14 @@
       "anchor": null,
       "prior": null,
       "normalization": null,
-      "gauge": {"fixed": false, "rule": null, "rationale": null},
-      "allowed_paths": ["L2_forward_synthesis_additive_constant_term"],
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
+      "allowed_paths": [
+        "L2_forward_synthesis_additive_constant_term"
+      ],
       "forbidden_paths": [
         "由 held-out core 或其隔离带内的观测估计",
         "在支持不足时回退到全域参数",
@@ -132,7 +158,8 @@
       "evidence_scope_justification": "与 beta_v 同理，其可分性取决于 v_sky 在该 fold 内的变化幅度，属数据性质。",
       "source_binding": {
         "relative_path": "../configs/optical-operator-config-v1.json",
-        "sha256": "PENDING_CONFIG_SHA"
+        "binding": "same_change_set",
+        "note": "与本文件在同一变更集内冻结；权威 hash 见 evidence/freeze-manifest-v1.json"
       }
     },
     {
@@ -150,7 +177,11 @@
       "anchor": null,
       "prior": null,
       "normalization": null,
-      "gauge": {"fixed": false, "rule": null, "rationale": null},
+      "gauge": {
+        "fixed": false,
+        "rule": null,
+        "rationale": null
+      },
       "allowed_paths": [],
       "forbidden_paths": [
         "与 beta_0 同时自由激活",
@@ -167,11 +198,11 @@
       ],
       "source_binding": {
         "relative_path": "../configs/optical-operator-config-v1.json",
-        "sha256": "PENDING_CONFIG_SHA"
+        "binding": "same_change_set",
+        "note": "与本文件在同一变更集内冻结；权威 hash 见 evidence/freeze-manifest-v1.json"
       }
     }
   ],
-
   "deferred_identities": [
     {
       "object_id": "terrain_adjacency_reflectance",
@@ -190,15 +221,20 @@
       }
     }
   ],
-
   "degrees_of_freedom_ledger": {
-    "existing": {"alpha": "acquisition×band（Stage 7.5 登记，36 实例）"},
+    "existing": {
+      "alpha": "acquisition×band（Stage 7.5 登记，36 实例）"
+    },
     "introduced_here": {
       "beta_0": "acquisition×band×fold",
       "beta_v": "acquisition×band×fold"
     },
-    "condition_quantities_added": ["v_sky"],
-    "registered_but_not_run": ["l_path"],
+    "condition_quantities_added": [
+      "v_sky"
+    ],
+    "registered_but_not_run": [
+      "l_path"
+    ],
     "note": "本节点引入的自由参数上限为 2 个（C_full 框架）。C1、C1′、C2a 均为 C_full 的一维约束子模型，各自只有 1 个自由参数，不额外增加自由度。"
   }
 }

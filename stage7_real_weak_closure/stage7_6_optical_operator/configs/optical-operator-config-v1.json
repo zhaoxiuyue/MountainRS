@@ -235,16 +235,20 @@
   "upstream_bindings": {
     "svf_geometry_gate": {
       "relative_path": "svf-geometry-gate-v1.json",
-      "sha256": "PENDING_SELF_FREEZE"
-    },
-    "operator_identity_registry": {
-      "relative_path": "../evidence/operator-identity-registry-v1.json",
-      "sha256": "PENDING_SELF_FREEZE"
+      "sha256": "b6155cf4034cf279772637f3086247d5b325e7679890058e18f3b7ee2a6a1fdf"
     },
     "result_blind_declaration": {
       "relative_path": "../evidence/result-blind-declaration-v1.json",
-      "sha256": "PENDING_SELF_FREEZE"
+      "sha256": "88ab11ab1a4d525fb653b687d86ad3c035de30ddbcbeac1ed440cdff8620c43c"
     },
-    "note": "三份自产冻结件的 hash 在交叉审计通过、同一变更集内一并冻结时回填。上游外部件的绑定见 result-blind-declaration-v1 的 upstream_bindings（13 项，已复验）。"
+    "operator_identity_registry": {
+      "relative_path": "../evidence/operator-identity-registry-v1.json",
+      "binding": "same_change_set",
+      "note": "与本文件在同一变更集内冻结，互相引用 hash 会形成循环。两者的权威 hash 由 evidence/freeze-manifest-v1.json 唯一给出。"
+    },
+    "v_sky_raster": {
+      "relative_path": "../outputs/v_sky_roi_grid_v1.tif",
+      "sha256": "8444955a0dc40e474c6be4e173b259e0303937c0f206d78d47d4024a59370244"
+    }
   }
 }

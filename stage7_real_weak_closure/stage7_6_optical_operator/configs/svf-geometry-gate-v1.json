@@ -3,12 +3,10 @@
   "purpose": "唯一定义天空可视因子 v_sky 的算法、参数与精度准入 Gate。精度选择是纯几何过程：全程只比较 v_sky 本身，不看任何 residual、不看 C1/C1′ 表现。",
   "frozen_before": "本节点任何 residual 的读取",
   "recorded_on": "2026-08-15",
-
   "why_precision_is_chosen_geometrically": {
     "statement": "若先用两种精度各跑一次科学实验、再依据判定是否一致来选精度，则无论最终选哪一版都是事后选择——降级规则也救不回来，因为两次判定都已被看见。因此精度必须在读取任何 residual 之前、仅凭几何量选定，选定后冻结唯一一版栅格与 hash，科学实验只跑一次。",
     "leakage_channel_closed": "泄漏通道不在『用了全域 DEM』——DEM 属已冻结的 G，空间 fold 隔离的是目标观测与拟合信息。通道在『用留出结果挑几何算法』：方位采样、搜索距离、曲率开关、边界处理中任何一项若依据 held-out residual 调节，泄漏即已发生。本 Gate 冻结全部这些参数。"
   },
-
   "algorithm": {
     "method": "horizon_angle_hemispherical_integration",
     "definition": "对每个目标像元，沿 N 个等间隔方位角向外搜索至距离 D，求每个方位上的最大地平线仰角 h(φ)；可见天空立体角占半球的比例按 v_sky = (1/N) · Σ_φ cos²(h(φ)) 计算（各向同性天空假设下的标准形式）。",
@@ -24,19 +22,40 @@
     "output": {
       "raster": "v_sky",
       "dtype": "float32",
-      "valid_range": [0.0, 1.0],
+      "valid_range": [
+        0.0,
+        1.0
+      ],
       "nodata": -9999.0
     }
   },
-
   "frozen_parameters_pending_gate": {
-    "azimuth_count_N": {"candidates": [36, 72, 144], "selected": null},
-    "search_distance_D_m": {"candidates": [5000, 10000, 20000], "selected": null},
-    "earth_curvature": {"selected": null, "rule": "由 D 机械决定，见 curvature_rule"},
-    "dem_buffer_m": {"rule": "必须 ≥ 选定的 D；DEM 覆盖不足以完成某像元的地平线搜索时，该像元按 boundary_handling 处置", "selected": null},
-    "note": "selected 字段在 Gate 执行后回填，回填即冻结；此后不得依据任何 residual 调整。"
+    "azimuth_count_N": {
+      "candidates": [
+        36,
+        72,
+        144
+      ],
+      "selected": 36
+    },
+    "search_distance_D_m": {
+      "candidates": [
+        5000,
+        10000,
+        20000
+      ],
+      "selected": 10000
+    },
+    "earth_curvature": {
+      "selected": true,
+      "rule": "由 D 机械决定，见 curvature_rule"
+    },
+    "dem_buffer_m": {
+      "rule": "必须 ≥ 选定的 D；DEM 覆盖不足以完成某像元的地平线搜索时，该像元按 boundary_handling 处置",
+      "selected": 20010
+    },
+    "note": "selected 已由 svf-geometry-gate 执行回填并冻结（outputs/svf-gate-run-v1.json）。此后不得依据任何 residual 调整。"
   },
-
   "convergence_test": {
     "principle": "方位采样与搜索距离是两个独立的收敛维度，必须分开测。二者还可能耦合——D 越大，远处山体张角越小，越需要更密的方位采样才抓得住。只测方位不测 D，会得到一个『在错误的 D 下收敛得很好』的结果。",
     "step_1_azimuth": {
@@ -55,21 +74,31 @@
       "rationale": "两个维度各自收敛不蕴含联合收敛；交叉复核防止在耦合方向上漏掉未收敛。"
     }
   },
-
   "convergence_criteria": {
     "evaluated_on": "全部通过 boundary_handling 的有效像元",
     "metrics": [
-      {"name": "max_abs_delta_v_sky", "threshold": 0.01, "operator": "<=",
-       "rationale": "v_sky 取值域 [0,1]，1% 的最大偏差。相对 C1 的效应量级（beta_v·v_sky 与 MAE 0.03–0.05 相比）属保守。"},
-      {"name": "p99_abs_delta_v_sky", "threshold": 0.005, "operator": "<=",
-       "rationale": "限制尾部像元的偏差，防止少数极端地形点主导。"},
-      {"name": "spearman_rho_of_pixel_ranking", "threshold": 0.999, "operator": ">=",
-       "rationale": "单独判排序稳定性。C1 与 C1′ 比较的是 v_sky 携带的空间格局，不是其绝对值——v_sky 整体平移不影响结论，排序翻转却会。绝对值指标通过而排序不通过时，仍判未收敛。"}
+      {
+        "name": "max_abs_delta_v_sky",
+        "threshold": 0.01,
+        "operator": "<=",
+        "rationale": "v_sky 取值域 [0,1]，1% 的最大偏差。相对 C1 的效应量级（beta_v·v_sky 与 MAE 0.03–0.05 相比）属保守。"
+      },
+      {
+        "name": "p99_abs_delta_v_sky",
+        "threshold": 0.005,
+        "operator": "<=",
+        "rationale": "限制尾部像元的偏差，防止少数极端地形点主导。"
+      },
+      {
+        "name": "spearman_rho_of_pixel_ranking",
+        "threshold": 0.999,
+        "operator": ">=",
+        "rationale": "单独判排序稳定性。C1 与 C1′ 比较的是 v_sky 携带的空间格局，不是其绝对值——v_sky 整体平移不影响结论，排序翻转却会。绝对值指标通过而排序不通过时，仍判未收敛。"
+      }
     ],
     "all_must_pass": true,
     "thresholds_are_engineering_choices": "上述三个阈值是本项目的保守工程取值，不是普适物理常数。它们在读取任何 residual 之前冻结，此后不得调整。"
   },
-
   "curvature_rule": {
     "principle": "曲率是否纳入由搜索距离 D 与可接受的角度误差机械决定，不是独立的是否题。",
     "threshold_m": 15000,
@@ -83,7 +112,6 @@
     },
     "threshold_is_project_choice": "15 km 是本项目的保守工程阈值，不是普适物理常数。"
   },
-
   "bias_directions": {
     "note": "两类几何近似造成的偏差方向相反，不得合并陈述。",
     "search_truncation": {
@@ -98,7 +126,6 @@
     },
     "combined": "二者方向相反，净效应取决于 D 与地形起伏，不得假定相互抵消，也不得只登记其中一个。"
   },
-
   "boundary_handling": {
     "rule": "若某像元在任一方位上的地平线搜索在到达 D 之前触及 DEM 数据边界，该像元标记 svf_boundary_truncated。",
     "consequence": "被标记像元不参与本节点任何候选的评分。",
@@ -106,7 +133,6 @@
     "denominator_rule": "被标记像元仍留在机会分母中并携带 reason code svf_boundary_truncated，不得静默消失（架构 v3.3 §2.2）。",
     "mitigation": "通过 dem_buffer_m ≥ D 的外扩数据减少被标记像元数量；外扩后仍被标记的像元照常排除。"
   },
-
   "gate_outcomes": {
     "pass": {
       "condition": "存在满足全部收敛指标的 (N*, D*) 组合并通过交叉复核",
@@ -120,7 +146,6 @@
       "semantics": "尚无合格的几何输入。这不是关于 C1 科学价值的结论，只是说本节点尚未造出可用的 v_sky。"
     }
   },
-
   "post_experiment_sensitivity": {
     "purpose": "主实验完成后，按预注册规则用备用精度组合复核判定是否翻转。",
     "prohibition": "若发生翻转，不得改用『看起来更可信』的那一版结果。",
@@ -129,11 +154,24 @@
     "semantics": "已有合格几何输入，但科学结论在允许的几何误差范围内不稳定。",
     "distinction_from_gate_fail": "gate_fail 是『还没有合格输入』，本项是『有输入但结论脆』。两者不得合并为同一终态——前者可通过改进几何解决，后者说明该效应在当前数据上本就不足以支撑结论。"
   },
-
   "uncovered_and_registered": [
     "各向同性天空假设（真实天空亮度分布随太阳位置与大气状态变化）",
     "地形反射对天空半球的贡献（周围坡面反射的光并非天空，但在半球积分中占据被遮挡的那部分立体角）",
     "多次散射",
     "D ≤ 15 km 时未纳入的曲率修正（若适用）"
-  ]
+  ],
+  "gate_execution": {
+    "executed_on": "2026-08-16",
+    "run_record": {
+      "relative_path": "../outputs/svf-gate-run-v1.json"
+    },
+    "outcome": "pass",
+    "curvature_in_convergence_tests": true,
+    "curvature_note": "Gate 允许 D ≤ 15 km 省略曲率，但省略会使 10→20 km 的比较同时改变距离与曲率两个量。收敛测试全程纳入曲率，取更严格一侧，使每步都是单变量对照；最终配置亦纳入。",
+    "boundary_truncation": {
+      "affected_pixels": 0,
+      "reason": "DEM 外扩 20010 m > D 10000 m，全部 ROI 像元的搜索均落在数据范围内"
+    },
+    "distance_sampling": "递增步长：≤1 km 用 30 m，1–5 km 用 60 m，>5 km 用 120 m（冻结）"
+  }
 }

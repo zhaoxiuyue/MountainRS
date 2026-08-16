@@ -1,0 +1,65 @@
+{
+  "schema": "mountainrs-stage7.6-freeze-manifest-v1",
+  "purpose": "本节点冻结件的唯一 hash 权威。文件之间只引用路径，hash 一律以本清单为准，以避免互相引用造成的循环依赖。",
+  "frozen_on": "2026-08-16",
+  "frozen_before": "本节点任何结果值的读取",
+  "artifacts": {
+    "svf_geometry_gate_v1": {
+      "relative_path": "../configs/svf-geometry-gate-v1.json",
+      "sha256": "b6155cf4034cf279772637f3086247d5b325e7679890058e18f3b7ee2a6a1fdf"
+    },
+    "optical_operator_config_v1": {
+      "relative_path": "../configs/optical-operator-config-v1.json",
+      "sha256": "87d8c78dc3c6f77839a476043dcd73ba4618b8c2cfe8630942b5630f3c8200b6"
+    },
+    "operator_identity_registry_v1": {
+      "relative_path": "operator-identity-registry-v1.json",
+      "sha256": "2d303d33d5d983ebfce323dbda44b41d2a25652103925a5f0651aaa4e0f5f374"
+    },
+    "result_blind_declaration_v1": {
+      "relative_path": "result-blind-declaration-v1.json",
+      "sha256": "88ab11ab1a4d525fb653b687d86ad3c035de30ddbcbeac1ed440cdff8620c43c"
+    },
+    "dem_extension_provenance_v1": {
+      "relative_path": "dem-extension-provenance-v1.json",
+      "sha256": "5042df8be408d36f9677423605da0793f98b3c88bc4f7b70d936d2a9a5dd439f"
+    },
+    "svf_search_distance_probe_v1": {
+      "relative_path": "svf-search-distance-probe-v1.json",
+      "sha256": "011b0a1ba1b47f5f8c3d1019eb1cfb055fc107db458995b8dba7bbbd329334d2"
+    },
+    "v_sky_roi_grid_v1": {
+      "relative_path": "../outputs/v_sky_roi_grid_v1.tif",
+      "sha256": "8444955a0dc40e474c6be4e173b259e0303937c0f206d78d47d4024a59370244"
+    },
+    "svf_gate_run_v1": {
+      "relative_path": "../outputs/svf-gate-run-v1.json",
+      "sha256": "e87c4c12b60d24682bb5d7cb68205708eba23f22481b0ff4d47734abbe36626b"
+    }
+  },
+  "scripts": {
+    "compute_svf_v1": {
+      "relative_path": "../scripts/compute_svf_v1.py",
+      "sha256": "c15c77af012501e4e12f496b6678c5662072a4bc6138015ca77b2c522ae07979"
+    },
+    "run_svf_gate_v1": {
+      "relative_path": "../scripts/run_svf_gate_v1.py",
+      "sha256": "6d01c86c6a05b4bacf6e90947d2debbe5309861e6ae9591eb033846b1a018d02"
+    },
+    "cross_audit_freeze_v1": {
+      "relative_path": "../scripts/cross_audit_freeze_v1.py",
+      "sha256": "c92d39b04f86a05a23d710b0376433502584fb4e2fdd5878a7375ea0d65b0462"
+    }
+  },
+  "selected_geometry": {
+    "azimuth_count_N": 36,
+    "search_distance_D_m": 10000,
+    "earth_curvature": true,
+    "dem_buffer_m": 20010,
+    "boundary_truncated_pixels": 0
+  },
+  "not_yet_run": [
+    "消融（C0/C1p/C1/C2a）",
+    "任何本节点结果值的读取"
+  ]
+}
