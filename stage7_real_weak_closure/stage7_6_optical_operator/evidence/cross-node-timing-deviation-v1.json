@@ -1,0 +1,71 @@
+{
+  "schema": "mountainrs-stage7.6-cross-node-timing-deviation-v1",
+  "record_type": "operational_deviation",
+  "recorded_on": "2026-08-16",
+  "recorded_by": "执行手（克克）",
+  "disclosure_basis": "项目规则 pr_1878db6f32b5 第 3 条：不掩盖已发生的 operational deviation；事实照实记录，处置按其信息增量与对设计自由度的实际影响定级。",
+
+  "what_was_violated": {
+    "constraint_id": "nc_e3a7a30f1aaa",
+    "target_node": "nd_716cb550b7a2（Stage 7.7｜L1 状态激活 Gate 与几何失效传播首验）",
+    "requirement_verbatim": "该冻结的时点必须早于 Stage 7.6 首次结果值产出，并以指向本节点的证据记录固定时点，不靠记忆或口头交接。",
+    "governing_project_rule": "pr_d4a37fa568df 第 5 条（跨节点冻结时序）",
+    "also_stated_in": "Stage 7.6 合同 stateReason：「第 5 条跨节点义务由本节点承担：Stage 7.7 的候选状态 universe 须在本节点首次产出结果值之前冻结。」"
+  },
+
+  "what_actually_happened": {
+    "sequence": [
+      "1. Stage 7.6 的 protocol/config 冻结与 PF3 写回读回完成（回执 rc_8603d0824173，route revision 91）。",
+      "2. 执行手直接进入消融执行，产出 outputs/ablation-unit-table-v1.json —— 这是本节点首次结果值产出。",
+      "3. 随后完成终态判定、结果审计、合同与报告撰写。",
+      "4. 在准备执行 Stage 7.7 activation preflight 时，复读 nc_e3a7a30f1aaa 原文，发现其时序要求是「早于 7.6 首次结果值产出」，而非执行手记忆中的「7.6 关闭之前」。"
+    ],
+    "deviation": "Stage 7.7 的候选状态 universe 在 Stage 7.6 首次结果值产出时尚未冻结，且截至本记录仍未冻结。",
+    "root_cause": "执行手在跨节点义务上依赖了记忆中的措辞（「关闭前」）而非约束原文（「首次结果值产出前」）。约束原文在 Stage 7.6 合同 stateReason 中亦有完整复述，执行手在冻结 protocol 阶段读过该 stateReason 但未将该义务纳入当时的动作清单——PF3 写回的 resume_first_action 只登记了消融执行，未登记该前置义务。",
+    "not_caused_by": "该偏差不是为了迁就结果而推迟冻结。7.6 的消融在冻结时点已完全确定，执行手当时并不知道结果值。但动机与后果无关——时序义务的意义正在于不依赖执行手的自述动机。"
+  },
+
+  "consequence_under_existing_rules": {
+    "rule_prescribed_handling": "pr_d4a37fa568df 第 5 条已内置处置：该时点之后对后继合同的任何修改，一律在 exposure audit 中标记 post-result exploratory，不得再声称 preregistered；未修改项保持 preregistered。",
+    "therefore": [
+      "Stage 7.7 合同的现有 objective / passCriteria / boundaries / explicitExclusions 在 Stage 7.6 结果产出前即已存在且未被修改，按规则保持 preregistered。",
+      "Stage 7.7 的候选状态 universe 若在此后冻结，必须标记为 post-result exploratory，不得声称 preregistered。"
+    ],
+    "not_self_dispositioned": "本记录不代替所有者裁决，也不自行执行上述标记。执行手的动作到登记事实为止。"
+  },
+
+  "impact_assessment": {
+    "caveat": "以下评估由造成该偏差的同一执行手作出，且作于已知结果之后。事后论证影响小是所有偏差都会伴随的说法，故本评估应被当作待核查的主张，不是结论。",
+    "argument": {
+      "premise_1": "Stage 7.7 的 passCriteria 1 规定「候选状态只能依赖 Stage 7.6 的 qualified 算子」。该条款在 7.6 结果产出前即已冻结，保持 preregistered 地位。",
+      "premise_2": "Stage 7.6 的执行结果为零个 qualified 候选（C1 / C1′ / C2a 全部 unsupported_by_evidence，C3 non_identifiable，严格邻接项 deferred_missing_required_input）。",
+      "conclusion": "在 premise_1 的依赖约束下，可用于支撑候选状态的 qualified 算子集合为空集，故候选状态 universe 被唯一确定为空集。执行手在此不存在挑选空间。",
+      "residual_risk": "该论证依赖 premise_1 的措辞确实排除了「依赖非 qualified 算子的候选状态」。若所有者认为该措辞留有解释余地，则挑选空间不为零，本次偏差的实际影响相应上升。此判断权属所有者。"
+    }
+  },
+
+  "downstream_finding_more_consequential_than_the_deviation": {
+    "statement": "比本次时序偏差更需要所有者注意的是它暴露出的下游事实：Stage 7.6 产出零个 qualified 算子，而 Stage 7.7 的候选状态 universe 在当前合同下只能依赖 qualified 算子，故 Stage 7.7 若按现合同激活，其候选 universe 必为空集，激活 Gate 将无对象可判。",
+    "anticipated_by_constraint": "nc_e3a7a30f1aaa 第 3 条已预见空集情形：「若在冻结时点尚无任何候选满足 passCriteria 2 的激活条件，须如实冻结为空集并说明理由，不得为凑候选而临时发明状态。」",
+    "what_this_forecloses": "架构 §1.4 与 Stage 7.7 的 explicitExclusions 均禁止为修复 residual 临时增加状态。因此「7.6 没通过，那就在 7.7 加个状态试试」这条路是被明确关闭的。",
+    "owner_decision_surface": "Stage 7.7 是按空集如实执行并关闭，还是其定位需要重新考虑——此为所有者裁决事项，执行手不预设方案。"
+  },
+
+  "evidence_references": {
+    "ablation_first_result_artifact": {
+      "relative_path": "../outputs/ablation-unit-table-v1.json",
+      "sha256": "acd662fa299bf23f",
+      "sha256_authority": "result-freeze-manifest-v1.json",
+      "significance": "该文件的产生即「首次结果值产出」时点。"
+    },
+    "commit_containing_results": "4c27e9d",
+    "pf3_receipt_before_results": "rc_8603d0824173（protocol/config 冻结写回，route revision 91）"
+  },
+
+  "does_not_authorize": [
+    "本记录不冻结 Stage 7.7 的候选状态 universe。",
+    "不改变 Stage 7.6 任何候选的终态——本次偏差是跨节点时序问题，不触及节点内部的结果盲时序，后者已完整执行并可独立复核。",
+    "不改变 Stage 7.7 合同现有条款的 preregistered 地位。",
+    "不关闭 Stage 7.6。"
+  ]
+}

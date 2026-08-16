@@ -1,0 +1,39 @@
+{
+  "schema": "mountainrs-stage7.6-result-freeze-manifest-v1",
+  "purpose": "登记本节点结果件的字节身份。仓库 .gitignore 排除 **/outputs/（既有约定，Stage 7.3 同），故结果件本体不入 git；可核验性由本清单的 sha256 承担。",
+  "recorded_on": "2026-08-16",
+  "relationship_to_freeze_manifest": "freeze-manifest-v1.json 登记结果读取之前冻结的协议与配置；本清单登记结果读取之后产生的结果件。二者不重叠，v_sky 与 svf-gate-run 因跨越该分界而在两处均出现，sha256 必须一致。",
+  "reproduction": "python3 scripts/run_ablation_v1.py --output outputs/ablation-unit-table-v1.json；随后 decide_verdicts_v1.py 与 audit_results_v1.py。全部输入均经 sha256 校验，脚本无随机性，重跑应逐位一致。",
+  "artifacts": {
+    "ablation_unit_table_v1": {
+      "relative_path": "../outputs/ablation-unit-table-v1.json",
+      "sha256": "acd662fa299bf23fa97c16f89368f1c82a91c977c80e72e832757945a30ef16e",
+      "size_bytes": 397624,
+      "role": "180 单元逐候选拟合与评分，含逐 fold 泄漏审计"
+    },
+    "verdict_table_v1": {
+      "relative_path": "../outputs/verdict-table-v1.json",
+      "sha256": "58d97215932c8dd7686d84b4b8e2fc9a09b00fd087b4c33c808c6bbb5ecdb90f",
+      "size_bytes": 12432,
+      "role": "终态判定、闭集排除依据、tie 规则执行"
+    },
+    "result_audit_v1": {
+      "relative_path": "../outputs/result-audit-v1.json",
+      "sha256": "fbc4d84ee6214f1432367be267ae4dceeb0e48d44986a7004a629d5f2403f518",
+      "size_bytes": 2742,
+      "role": "结果阶段 fail-closed 审计 Y1–Y11 与负例自检"
+    },
+    "svf_gate_run_v1": {
+      "relative_path": "../outputs/svf-gate-run-v1.json",
+      "sha256": "e87c4c12b60d24682bb5d7cb68205708eba23f22481b0ff4d47734abbe36626b",
+      "size_bytes": 2076,
+      "role": "几何 Gate 执行记录（结果前）"
+    },
+    "v_sky_roi_grid_v1": {
+      "relative_path": "../outputs/v_sky_roi_grid_v1.tif",
+      "sha256": "8444955a0dc40e474c6be4e173b259e0303937c0f206d78d47d4024a59370244",
+      "size_bytes": 1624882,
+      "role": "v_sky 全图"
+    }
+  }
+}
