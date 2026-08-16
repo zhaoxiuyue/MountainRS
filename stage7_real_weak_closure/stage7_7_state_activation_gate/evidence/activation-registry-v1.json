@@ -1,0 +1,16 @@
+{
+  "schema": "mountainrs-stage7.7-activation-registry-v1",
+  "purpose": "L1 状态激活登记表。",
+  "entries": [],
+  "counts": {
+    "activated": 0,
+    "inactive_non_identifiable": 0,
+    "inactive_redundant": 0,
+    "inactive_insufficient_evidence": 0,
+    "deferred_missing_anchor": 0
+  },
+  "activated_count": 0,
+  "derivation": "由 passCriteria 1 的依赖绑定与 Stage 7.6 的零 qualified 算子唯一推出。",
+  "exposure_status": "post_result_exploratory",
+  "downstream_constraint": "activated_count = 0 使 Stage 7.9 无法激活，见节点约束 nc_8fe5b4709440。"
+}

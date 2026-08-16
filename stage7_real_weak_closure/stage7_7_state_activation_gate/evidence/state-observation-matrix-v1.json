@@ -1,0 +1,13 @@
+{
+  "schema": "mountainrs-stage7.7-state-observation-matrix-v1",
+  "purpose": "状态与观测的对应矩阵。",
+  "rows_states": [],
+  "columns_observations": [
+    "Landsat SR_B4",
+    "Landsat SR_B5"
+  ],
+  "cells": [],
+  "matrix_is_empty": true,
+  "why_empty": "候选状态 universe 为空集（见 evidence/candidate-state-universe-v1.json）。矩阵无行，不是无列——观测侧存在且已冻结，缺的是状态侧。",
+  "must_not_be_read_as": "空矩阵不表示状态与观测无关系，只表示当前无任何状态获准进入。"
+}

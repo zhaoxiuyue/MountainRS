@@ -1,0 +1,105 @@
+{
+  "schema": "mountainrs-stage7.7-dependency-graph-v1",
+  "purpose": "几何失效传播所依据的 artifact 依赖图。只登记与几何有依赖关系的对象及一个对照对象。",
+  "scope_limit": "本图覆盖光学链路。SAR 斜距几何的消费者属 Stage 8.0，未登记。",
+  "nodes": [
+    {
+      "id": "dem",
+      "kind": "geometry",
+      "consumer_name": null,
+      "depends_on": []
+    },
+    {
+      "id": "slope",
+      "kind": "geometry_consumer",
+      "consumer_name": "slope",
+      "depends_on": [
+        "dem"
+      ]
+    },
+    {
+      "id": "aspect",
+      "kind": "geometry_consumer",
+      "consumer_name": "aspect",
+      "depends_on": [
+        "dem"
+      ]
+    },
+    {
+      "id": "cos_i",
+      "kind": "geometry_consumer",
+      "consumer_name": "cos_i",
+      "depends_on": [
+        "dem"
+      ]
+    },
+    {
+      "id": "v_sky",
+      "kind": "geometry_consumer",
+      "consumer_name": "v_sky",
+      "depends_on": [
+        "dem"
+      ]
+    },
+    {
+      "id": "alpha_fit",
+      "kind": "derived",
+      "consumer_name": null,
+      "depends_on": [
+        "cos_i"
+      ]
+    },
+    {
+      "id": "ablation_table",
+      "kind": "derived",
+      "consumer_name": null,
+      "depends_on": [
+        "alpha_fit",
+        "v_sky"
+      ]
+    },
+    {
+      "id": "qa_mask",
+      "kind": "observation",
+      "consumer_name": null,
+      "depends_on": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "dem",
+      "to": "slope"
+    },
+    {
+      "from": "dem",
+      "to": "aspect"
+    },
+    {
+      "from": "dem",
+      "to": "cos_i"
+    },
+    {
+      "from": "dem",
+      "to": "v_sky"
+    },
+    {
+      "from": "cos_i",
+      "to": "alpha_fit"
+    },
+    {
+      "from": "alpha_fit",
+      "to": "ablation_table"
+    },
+    {
+      "from": "v_sky",
+      "to": "ablation_table"
+    }
+  ],
+  "influence_radii_m": {
+    "slope": 30,
+    "aspect": 30,
+    "cos_i": 30,
+    "v_sky": 10000
+  },
+  "why_radii_matter": "依赖图给出『谁依赖谁』，影响半径给出『依赖到多远』。只有前者会把ROI 外 10 km 的地形变化对 v_sky 的影响判成无关。"
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "mountainrs-stage7.7-fixture-manifest-v1",
+  "purpose": "fixture、oracle 与实现的字节身份，以及本次运行结果。",
+  "rules_frozen_before_fixture": {
+    "path": "configs/geometry-version-and-propagation-v1.json",
+    "sha256": "b5bcfb7bf144882f712071c4edec14dc524f1705d8507d68f15dbf857ca775c8"
+  },
+  "implementation": {
+    "path": "scripts/geometry_propagation_v1.py",
+    "sha256": "772afe611a9dd6178a506be7a04f96674a82f59b4fa7e351ddd50d32c73a61eb"
+  },
+  "fixture": {
+    "path": "scripts/tests/test_geometry_propagation_v1.py",
+    "sha256": "8c9d06d7c3f286e86b0a8c8c6405796c0209fcb6bbe750f0df31cbeb7920d293"
+  },
+  "run_result": {
+    "exit_code": 0,
+    "summary_line": "22/22 通过"
+  },
+  "cases": [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F9"
+  ],
+  "adjustments_to_frozen_spec": [
+    {
+      "case": "F1",
+      "adjustment": "compute_rect 内缩一个像元（30 m）",
+      "reason": "冻结 DEM 覆盖恰等于 ROI 且无余量，ROI 最外一圈的 cos_i 影响域已伸出其外。这是既有事实，fixture 使其显形并单独断言（不内缩时判 scope_extension）。"
+    },
+    {
+      "case": "F9",
+      "adjustment": "采用真实接缝的统计量级（std 7.792 m）但构造扰动位置",
+      "reason": "Stage 7.6 的替换前 DEM 版本未归档，无法取得纯真实的接缝前后对照。本用例因此是半合成的，如实标注，不冒充真实素材。"
+    }
+  ],
+  "each_case_kills_a_wrong_implementation": {
+    "F1": "只比对文件 hash 的实现（会产生假阳性全链失效）。",
+    "F2": "按整个 artifact 范围比值的实现（会产生假阳性）。",
+    "F3": "只比对消费者自身存储范围的实现（会产生假阴性——最危险的一类）。",
+    "F4": "按空间包围盒失效的实现（违反架构第 156 行）。",
+    "F5": "把两级标记合并的实现（丢失『已知失效』与『待确认』的区分）。",
+    "F6": "缓存不匹配即静默回退的实现。",
+    "F7": "对未知消费者默认 0 半径的实现（系统性假阴性）。",
+    "F8": "—"
+  }
+}

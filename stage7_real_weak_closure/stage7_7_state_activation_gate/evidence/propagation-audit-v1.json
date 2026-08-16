@@ -1,0 +1,127 @@
+{
+  "schema": "mountainrs-stage7.7-propagation-audit-v1",
+  "purpose": "对一次真实发生的几何 artifact 变更执行失效传播，并留全量留痕。",
+  "change_source": {
+    "old_artifact": {
+      "path": "stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_shadowrisk_grid.tif",
+      "sha256": "05515f1ffcc9ea31afe2035e1f70643be96a3f192e81cb6c0d8cb78683f5feb4"
+    },
+    "new_artifact": {
+      "path": "stages/stage2_dem_terrain/data/dem_roi_plus_20km_utm48n.tif",
+      "sha256": "5be4676f6cd47b7cfca47f688308af9ec9a2171557a371758d9a7514e625b04a"
+    },
+    "context": "Stage 7.6 为计算 v_sky 引入外扩 DEM。ROI 窗口内与冻结 DEM 逐位相同。"
+  },
+  "compute_rect_note": "slope / aspect / cos_i 的 compute_rect 取 ROI 内缩一个像元（30 m）。冻结 DEM 的覆盖恰好等于 ROI 且无余量，故 ROI 最外一圈像元的影响域已伸出其外——这是既有事实，非本次引入。不内缩时该三者判 scope_extension。",
+  "per_consumer_verdict": [
+    {
+      "consumer": "slope",
+      "influence_radius_m": 30.0,
+      "influence_rect": [
+        292230.0,
+        3451230.0,
+        311730.0,
+        3473790.0
+      ],
+      "old_artifact_hash": "f82824bb568ab6ac",
+      "new_artifact_hash": "52b2ee814f59882e",
+      "pixels_compared": 488800,
+      "pixels_differing": 0,
+      "change_class": "artifact_only",
+      "reason": "影响域内几何值逐元素相等；artifact 身份改变不构成几何版本改变。"
+    },
+    {
+      "consumer": "aspect",
+      "influence_radius_m": 30.0,
+      "influence_rect": [
+        292230.0,
+        3451230.0,
+        311730.0,
+        3473790.0
+      ],
+      "old_artifact_hash": "f82824bb568ab6ac",
+      "new_artifact_hash": "52b2ee814f59882e",
+      "pixels_compared": 488800,
+      "pixels_differing": 0,
+      "change_class": "artifact_only",
+      "reason": "影响域内几何值逐元素相等；artifact 身份改变不构成几何版本改变。"
+    },
+    {
+      "consumer": "cos_i",
+      "influence_radius_m": 30.0,
+      "influence_rect": [
+        292230.0,
+        3451230.0,
+        311730.0,
+        3473790.0
+      ],
+      "old_artifact_hash": "f82824bb568ab6ac",
+      "new_artifact_hash": "52b2ee814f59882e",
+      "pixels_compared": 488800,
+      "pixels_differing": 0,
+      "change_class": "artifact_only",
+      "reason": "影响域内几何值逐元素相等；artifact 身份改变不构成几何版本改变。"
+    },
+    {
+      "consumer": "v_sky",
+      "influence_radius_m": 10000.0,
+      "influence_rect": [
+        282230.0,
+        3441230.0,
+        321730.0,
+        3483790.0
+      ],
+      "old_artifact_hash": "f82824bb568ab6ac",
+      "new_artifact_hash": "52b2ee814f59882e",
+      "change_class": "scope_extension",
+      "old_covers_influence_rect": false,
+      "consumer_had_prior_output": false,
+      "reason": "影响域伸出旧覆盖之外。此前若有产出，该产出建立在被截断的搜索域上，故失效；此前若无产出，属新增能力，不涉及失效。"
+    }
+  ],
+  "marks_before": {
+    "dem": "valid",
+    "slope": "valid",
+    "aspect": "valid",
+    "cos_i": "valid",
+    "v_sky": "valid",
+    "alpha_fit": "valid",
+    "ablation_table": "valid",
+    "qa_mask": "valid"
+  },
+  "marks_after": {
+    "ablation_table": "valid",
+    "alpha_fit": "valid",
+    "aspect": "valid",
+    "cos_i": "valid",
+    "dem": "valid",
+    "qa_mask": "valid",
+    "slope": "valid",
+    "v_sky": "valid"
+  },
+  "reason_codes": {},
+  "propagation_path": {},
+  "unaffected_artifacts": [
+    "ablation_table",
+    "alpha_fit",
+    "aspect",
+    "cos_i",
+    "dem",
+    "qa_mask",
+    "slope",
+    "v_sky"
+  ],
+  "counts": {
+    "invalidated": 0,
+    "quarantined": 0,
+    "valid": 8
+  },
+  "outcome": "本次变更不触发任何失效。slope/aspect/cos_i 判 artifact_only——影响域内 488,800 像元逐位相同；v_sky 判 scope_extension 且此前无产出，属新增能力而非失效。",
+  "why_recording_a_no_op_matters": "不传播也必须留痕。若只记录发生了传播的事件，『规则判定不传播』与『规则漏检』在事后无法区分。",
+  "geometry_version_digests": {
+    "slope": "8803a2a78f6324616a5d350db6b0c1bffa89bcd3c9aff279cb744463ce6308c6",
+    "aspect": "d7b799ab6a89f52c41920fa27adafe85eca29b79266cb2bdeb552da71d8c9777",
+    "cos_i": "5b68b3091ee7b204bba3f011df8672e3350d1029a73e33959615a3bebdf037cf",
+    "v_sky": "b9a85d8f09e023c529a4cda488e3661a4a5655d5fb64fea6e80d98ddb2c1137f"
+  }
+}

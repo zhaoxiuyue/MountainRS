@@ -1,0 +1,34 @@
+{
+  "schema": "mountainrs-stage7.7-propagation-receipt-v1",
+  "purpose": "fail-closed receipt：据其可回滚到传播前的标记状态。",
+  "marks_before": {
+    "dem": "valid",
+    "slope": "valid",
+    "aspect": "valid",
+    "cos_i": "valid",
+    "v_sky": "valid",
+    "alpha_fit": "valid",
+    "ablation_table": "valid",
+    "qa_mask": "valid"
+  },
+  "marks_after": {
+    "ablation_table": "valid",
+    "alpha_fit": "valid",
+    "aspect": "valid",
+    "cos_i": "valid",
+    "dem": "valid",
+    "qa_mask": "valid",
+    "slope": "valid",
+    "v_sky": "valid"
+  },
+  "rollback_contract": "rollback(marks_before, receipt) 在 receipt 与给定状态不符时拒绝执行。",
+  "raw_observation_permanence": {
+    "statement": "原始观测的证据身份与可追溯性不受本次传播影响。",
+    "basis": "Stage 7.1-R 冻结 evidence_membership 在 universe version 内不可撤销；架构 v3.3 §2.2 明确永久保留的对象是证据身份与可追溯性，不必然是本地热存储字节。"
+  },
+  "fail_closed_points": [
+    "未登记的几何消费者 → UnregisteredConsumer，停机（不默认半径 0）",
+    "cache 的 geometry version 摘要不符 → CacheVersionMismatch，停机（不静默重算）",
+    "receipt 与给定状态不符 → 拒绝回滚"
+  ]
+}
