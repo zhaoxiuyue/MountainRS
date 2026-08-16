@@ -1,0 +1,90 @@
+{
+  "schema": "mountainrs-stage7.8-reconciliation-report-v1",
+  "checks": [
+    {
+      "id": "R1",
+      "description": "选择结果与 manifest 的 domain 集合一致",
+      "passed": true,
+      "detail": "['C1_tianshan_central', 'C7_taibaishan_qinling', 'C2_qilian_central', 'C5_gaoligong', 'C8_altai_central'] vs ['C1_tianshan_central', 'C7_taibaishan_qinling', 'C2_qilian_central', 'C5_gaoligong', 'C8_altai_central']"
+    },
+    {
+      "id": "R2",
+      "description": "每个 domain 恰好归属一个 split 角色且无遗漏",
+      "passed": true,
+      "detail": "多重归属 无；未归属 无"
+    },
+    {
+      "id": "R3",
+      "description": "逐域观测机会账目闭合且与筛选阶段一致",
+      "passed": true,
+      "detail": "不符项 无"
+    },
+    {
+      "id": "R4",
+      "description": "manifest 的参考匹配数与 Reference Registry 一致",
+      "passed": true,
+      "detail": "不符 无"
+    },
+    {
+      "id": "R5",
+      "description": "Gate 覆盖全部选定 domain",
+      "passed": true,
+      "detail": "5/5"
+    },
+    {
+      "id": "R6",
+      "description": "冻结清单登记的产物字节未漂移",
+      "passed": true,
+      "detail": "无"
+    },
+    {
+      "id": "R7",
+      "description": "参考分类取自协议闭集",
+      "passed": true,
+      "detail": "{'COPERNICUS/S2_SR_HARMONIZED': 'reference_observation', 'ground_based_radiation_and_reflectance_measurements': 'unavailable'}"
+    },
+    {
+      "id": "R8",
+      "description": "至少一个参考通过全部独立性与泄漏审计",
+      "passed": true,
+      "detail": "通过审计 ['COPERNICUS/S2_SR_HARMONIZED']"
+    },
+    {
+      "id": "R9",
+      "description": "无 ground_truth 时不得出现真值措辞",
+      "passed": true,
+      "detail": "本节点无 ground_truth 类，报告与结论一律不得使用真值/GT 措辞"
+    },
+    {
+      "id": "R10",
+      "description": "Gate 结论未解除 nc_8fe5b4709440",
+      "passed": true,
+      "detail": "Stage 7.9 的阻断独立于本 Gate 结论"
+    }
+  ],
+  "outcome": "pass",
+  "terminal_state": "qualified_multidomain_evidence_frozen",
+  "terminal_basis": {
+    "domain_count": 5,
+    "domain_count_requirement": "3–5（passCriteria 6）",
+    "qualifying_reference": [
+      "COPERNICUS/S2_SR_HARMONIZED"
+    ],
+    "reference_requirement": "至少一个 ground_truth 或 reference_observation 通过全部独立性与泄漏审计",
+    "note": "proxy 数量再多也不能使终态从 deferred 变为 qualified（协议 verdict_impact）。"
+  },
+  "what_qualified_means": [
+    "qualified 只表示证据可用于评估（合同 boundaries），不表示模型跨域成功。",
+    "本节点不训练、不运行、不比较任何候选模型。",
+    "本节点无 ground_truth 类参考，任何结论不得使用真值措辞。"
+  ],
+  "requalification_gate": {
+    "verdict": "requalification_not_warranted",
+    "consequence": "保持 Stage 7.6 的负结果与 Stage 7.7 的空集不变。禁止凭空增加状态，禁止放宽 Stage 7.6 的判定阈值，禁止以『方向为正但未达标』作部分翻案依据——本 Gate 判据二值化，无部分满足档位。",
+    "independent_of_terminal_state": "Gate 判 not_warranted 不影响本节点终态——证据是否合格与既有负结果是否值得重开，是两个独立问题。"
+  },
+  "downstream_blocks_not_released": [
+    "nc_8fe5b4709440：Stage 7.9 因 activated_count = 0 被独立阻断。合同 passCriteria 7 的『deferred 不阻断 7.9』只声明本节点的 deferred 不构成阻断，无权声明 7.9 没有其他阻断源；且本节点终态为 qualified 而非 deferred，该句更不适用。",
+    "Stage 7.10 Track B 须保持 deferred（passCriteria 7）。"
+  ]
+}

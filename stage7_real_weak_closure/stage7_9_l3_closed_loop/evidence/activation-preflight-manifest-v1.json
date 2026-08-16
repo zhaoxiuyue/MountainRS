@@ -1,0 +1,82 @@
+{
+  "schema": "mountainrs-stage7.9-activation-preflight-manifest-v1",
+  "governing_rule": "pr_d4a37fa568df：关闭前激活预检与结果盲冻结时序",
+  "governing_constraint": "nc_8fe5b4709440：Stage 7.9 在 activated_count = 0 时 activation preflight 必须判 blocked",
+  "performed_by": "执行手（克克）",
+  "performed_on": "2026-08-16",
+  "target_node": {"id": "nd_59cb52139f59", "title": "Stage 7.9｜单 ROI L3 证据栈反演与物理自监督最小闭环", "state": "planned"},
+  "predecessor_node": {"id": "nd_89bdfb553afb", "title": "Stage 7.8｜多域 L0 证据与独立参考的结果盲冻结", "state": "active"},
+
+  "read_only_attestation": {
+    "statement": "本预检只读。未修改任何节点或路线对象，未运行 Stage 7.9 的任何实验或模型，未制造新证据（本裁决文件除外），未激活 Stage 7.9。"
+  },
+
+  "outcome": "activation_preflight_blocked",
+  "blocking_reason_code": "evidence_missing",
+  "reason_code_selection": {
+    "constraint_requirement": "nc_8fe5b4709440 第 2 条要求在 evidence_missing 与 upstream_invalidated 之间择一并说明理由，且明确禁止使用 decision_required——本情形缺的是对象而非裁决。",
+    "chosen": "evidence_missing",
+    "why_not_upstream_invalidated": "upstream_invalidated 会错误暗示 Stage 7.6 或 7.7 的结论出了问题。事实相反：二者均正常执行、通过各自的 fail-closed 审计并正常关闭，产出的是有效的负结果与空集。上游没有失效，它准确地完成了工作。缺的是本节点 objective 所需的对象。",
+    "why_not_decision_required": "所有者无可裁决之事。activated_count 与 qualified_operators_count 是既成事实，不是待决选项。用 decision_required 会把一个客观事实伪装成待决事项。"
+  },
+
+  "blocking_items": [
+    {
+      "id": "BLK1",
+      "item": "activated_count = 0",
+      "evidence": {
+        "source": "../../stage7_7_state_activation_gate/evidence/activation-registry-v1.json",
+        "value": "activated_count = 0，五类终态计数全为 0，entries 为空数组"
+      },
+      "contract_clause_violated": "本节点 objective 原文：「只使用 Stage 7.7 已激活状态与 Stage 7.6 已资格化算子，在单 ROI 多时相证据栈上完成首个真实 L3 闭环：状态经 L2 重建观测」。无状态则「状态经 L2 重建观测」无对象可执行。",
+      "clause_exposure": "该 objective 在 Stage 7.6 首次结果值产出之前即已冻结，保持 preregistered。"
+    },
+    {
+      "id": "BLK2",
+      "item": "qualified_operators_count = 0",
+      "evidence": {
+        "source": "../../stage7_6_optical_operator/outputs/verdict-table-v1.json",
+        "value": "frozen_l2_stack_entry.qualified_candidates = []；C1/C1′/C2a 判 unsupported_by_evidence，C3 判 non_identifiable，严格邻接项判 deferred_missing_required_input"
+      },
+      "contract_clause_violated": "同一 objective 句的另一半：「Stage 7.6 已资格化算子」。L2 光学算子仍为 direct-only，本节点无新算子可用。"
+    }
+  ],
+
+  "bypasses_explicitly_closed": {
+    "note": "nc_8fe5b4709440 第 3、4 条列出的两条绕行路径，逐条核验其在当前状态下确实关闭。",
+    "direct_only_substitution": {
+      "attempted_reading": "改用 direct-only 算子做闭环。",
+      "why_closed": "direct-only 中不含任何 L1 状态，用它做的闭环不是本节点 objective 所指的闭环。若确需如此，属修改合同，须走 planned 修订窗口并按 pr_d4a37fa568df 第 5 条标记暴露地位。",
+      "additional_note": "本节点 explicitExclusions 另有「不新增未通过 Stage 7.7 的状态」，故也不能在本节点内自行引入状态来填补。"
+    },
+    "activate_anyway_for_fixtures": {
+      "attempted_reading": "先激活，反正有别的部分能跑。",
+      "why_closed": "本节点无独立于状态的分支。这一点与 Stage 7.7 不同——7.7 的几何失效传播 fixture 不依赖 qualified 算子，故其合同有实质可执行的另一半；本节点的 passCriteria 1–9 全部围绕 L3 闭环，无对应的独立半边。"
+    }
+  },
+
+  "stage_7_8_does_not_change_this": {
+    "clarification": "Stage 7.8 已判终态 qualified_multidomain_evidence_frozen（5 个合格 domain + 1 个通过全部审计的独立参考）。该结果不解除本节点的阻断。",
+    "why": "Stage 7.8 提供的是跨域 L0 证据与参考，不是 L1 状态或 qualified 算子。本节点缺的两样东西，7.8 一样都没有产出，其合同本也不以此为目标（7.8 boundaries：只建设和冻结证据与评估设计）。",
+    "misreading_to_prevent": "Stage 7.8 的 passCriteria 7 有一句「deferred 不阻断 Stage 7.9 单 ROI 主线」。该句只声明 7.8 自身的 deferred 不构成阻断，无权声明 7.9 没有其他阻断源；且 7.8 实际判的是 qualified 而非 deferred，该句更不适用于当前情形。",
+    "requalification_gate_result": "Stage 7.8 关闭前执行的重新资格化 Gate 判 requalification_not_warranted（G1/G2/G3 全部 not_satisfied），故 Stage 7.6 的负结果与 Stage 7.7 的空集均保持不变，阻断的两个成因原样存续。"
+  },
+
+  "release_condition": {
+    "unique_condition": "经 Stage 7.8 之后的重新资格化 Gate（nc_b6d6ef3e44f2），Stage 7.6 产出至少一个 qualified 算子且 Stage 7.7 产出至少一个 activated 状态。二者缺一，本 blocker 不解除。",
+    "current_status": "本轮 Gate 已执行并判 not_warranted，条件未满足。",
+    "what_would_have_to_happen": [
+      "取得能解除 Stage 7.5 某个 deferred_missing_anchor 判定的独立锚点（Gate 判据 G2），或",
+      "取得 v_sky 变化范围显著更大的证据（Gate 判据 G1，阈值 IQR 中位 ≥ 0.10），或",
+      "取得对某个具体 L1 状态的独立观测约束且存在不经未资格化算子的信息通路（Gate 判据 G3）",
+      "上述任一成立后 reopen Stage 7.6 / 7.7 并按其冻结时序重跑，产出非空的 qualified 与 activated 集合。"
+    ]
+  },
+
+  "does_not_authorize": [
+    "本预检不激活 Stage 7.9，也不修改其合同。",
+    "不解除 nc_8fe5b4709440。",
+    "不改变 Stage 7.8 的终态。",
+    "不构成对 Stage 7.6 / 7.7 结论的重新评估。"
+  ]
+}

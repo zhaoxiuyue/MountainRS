@@ -43,6 +43,26 @@
       "relative_path": "reference-registry-v1.json",
       "sha256": "e85eb8007bd5718475f894b00346bda29b0d90c0a75666eaa71ec4e1f34b20a2",
       "role": "参考源分类、独立性 I1–I4、泄漏 L1–L4、逐域时间匹配统计"
+    },
+    "domain_split_and_leakage_v1": {
+      "relative_path": "../configs/domain-split-and-leakage-v1.json",
+      "sha256": "b8045d74d0e51fda08c70037355c7ca7ff12f9ad5cc5e47abc5bf08643f90175",
+      "role": "split、每域指标、宏平均规则、泄漏边界"
+    },
+    "dataset_domain_split_manifest_v1": {
+      "relative_path": "dataset-domain-split-manifest-v1.json",
+      "sha256": "6a54eb0b6c3c18171e36b60805a8296555919b965cb345e1fdf64cd80713f761",
+      "role": "不可变 dataset/domain/split manifest"
+    },
+    "requalification_gate_result_v1": {
+      "relative_path": "requalification-gate-result-v1.json",
+      "sha256": "214102d80eacc987dca26d0e87e87f617242fef1fd1d402acf5156a4a9028667",
+      "role": "Gate 执行结果与同尺度对照"
+    },
+    "reconciliation_report_v1": {
+      "relative_path": "reconciliation-report-v1.json",
+      "sha256": "1b331c7d5a6255d32fbdd598b5730bbb3da3b39a5f7d3c817656b318ff57dfee",
+      "role": "对账 R1–R10 与终态判定"
     }
   },
   "amendment_note": "A7 属结果后修订，其 hash 一并登记但暴露地位与 A1–A6 不同。本清单登记字节身份，不代表其中每一项都是结果前冻结。",
