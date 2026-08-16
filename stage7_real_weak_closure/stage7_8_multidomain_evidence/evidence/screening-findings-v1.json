@@ -1,0 +1,94 @@
+{
+  "schema": "mountainrs-stage7.8-screening-findings-v1",
+  "record_type": "findings_requiring_owner_decision",
+  "recorded_on": "2026-08-16",
+  "recorded_by": "执行手（克克）",
+  "status": "执行手已停机，等待所有者裁决。冻结的准入条件与判据未被修改。",
+
+  "trigger": {
+    "frozen_stop_condition": "本节点写回（rc_fdf8442e9200）登记的 unique_stop_condition：「在核验中发现须修改 A1–A6 任一条——应停机并如实登记，不得静默调整准入条件使某域合格」。",
+    "what_happened": "核验按冻结规则完整执行并产出了选择结果（8 候选全部合格，前 5 已按确定性排序选定）。但核验过程本身暴露出两项问题，二者都指向判据的数据基础而非某个候选的表现。"
+  },
+
+  "F1": {
+    "title": "植被断裂判据所依赖的 MODIS IGBP 分类，在本项目的地形条件下可靠性有限",
+    "evidence": {
+      "observation": "基准 domain D0_minshan 的 IGBP 主导类别被判为 9「稀树草原」（savanna）。",
+      "why_this_is_implausible": "该 ROI 高程 2491–5796 m、年均温 0.5 °C、高差 3305 m，属高山区。稀树草原是热带/亚热带疏林草地类型，与该处的气候与海拔条件不符。合理的类别应为草地、裸地或永久冰雪。",
+      "inference": "MODIS MCD12Q1 的 500 m IGBP 分类在高山区存在系统性误判。基准自身的误判即是直接证据——不需要额外实验即可确认。"
+    },
+    "impact": {
+      "affected_criterion": "true_break_criteria.vegetation（IGBP 主导类别与基准不同）",
+      "affected_candidates": [
+        {"id": "C7_taibaishan_qinling", "rank": 2,
+         "issue": "仅靠植被断裂通过。年降水差 127 mm，远低于气候断裂的 400 mm 门槛。"},
+        {"id": "C5_gaoligong", "rank": 5,
+         "issue": "仅靠植被断裂通过。年降水差 319 mm，低于 400 mm 门槛。"},
+        {"id": "C4_changbaishan", "rank": 8,
+         "issue": "仅靠植被断裂通过。年降水差 146 mm。当前为替补，未进入前 5。"}
+      ],
+      "not_affected": "C1、C2、C3、C6、C8 五个候选另有气候断裂成立（年降水差 629–800 mm，均远超门槛），其真断裂依据不依赖 IGBP 分类。",
+      "severity_note": "若植被断裂判据不成立，则 C7 与 C5 的真断裂未获可靠证实，而二者当前排在选定集的第 2 与第 5 位。"
+    },
+    "minimum_fix_options": {
+      "note": "以下为最小修复量，不是推荐方案。任一选项都涉及修改已冻结的判据，须所有者授权。",
+      "option_a": "在 configs/domain-candidate-universe-v1.json 的 true_break_criteria.vegetation 中，将数据源由 MODIS MCD12Q1（500 m）改为 ESA WorldCover v200（10 m，已验证可达）。改动量：一处 verification_source 字段 + 重跑 screen_domains_break_v1.py。不保证 10 m 产品在高山区就可靠，仍须复核基准的分类结果是否合理。",
+      "option_b": "声明本轮仅以气候断裂为可靠依据，植被断裂降级为参考信息。后果：C7、C5、C4 的真断裂不成立，合格 domain 降为 5 个（C1、C2、C3、C6、C8），恰好等于目标上限，无替补空间。改动量：true_break_criteria 增加一条数据可靠性限定。",
+      "option_c": "维持现状不改。后果：选定集包含两个真断裂依据存疑的 domain，该存疑须在本节点报告与终态中显式声明，并在任何引用跨域结论时一并携带。"
+    }
+  },
+
+  "F2": {
+    "title": "C6_liupanshan_loess 的 IGBP 主导类别为「永久湿地」，与其作为山地 domain 的定位不符",
+    "evidence": {
+      "observation": "C6 的 IGBP 主导类别为 11「永久湿地」，年降水 574 mm，高差 1041 m。",
+      "why_this_matters": "该候选登记的预期断裂为黄土堆积地貌与半干旱气候。主导类别为永久湿地，或说明 ROI 中心落在水体、河谷或灌溉区，或说明 MODIS 在该区域同样误判。两种情形都使该 ROI 是否适合作为山地遥感 domain 存疑。",
+      "additional_concern": "C6 的高差 1041 m 是八个候选中唯一勉强越过 A5 门槛（1000 m）的，边际通过与类别异常同时出现。"
+    },
+    "impact": {
+      "current_status": "C6 通过了全部准入条件 A1–A6，按确定性排序位列第 4，已进入选定集。",
+      "why_not_self_handled": "现有准入条件中没有任何一条排除主导地表类型为水体或湿地的候选。以「看起来不像山地」为由将其剔除，等于在看过核验结果之后新增一条准入条件——这正是冻结时序所禁止的，方向是排除而非纳入并不改变其性质。"
+    },
+    "minimum_fix_options": {
+      "note": "同样须所有者授权。",
+      "option_a": "新增准入条件 A7：主导地表类型不得为水体或永久湿地。改动量：admission_criteria 增加一条 + 重跑第三阶段与选择。后果：C6 出局，替补 C8_altai_central 递补进入前 5（C8 有气候断裂，依据可靠）。",
+      "option_b": "核实 C6 的 ROI 实际地表构成后再定。改动量：对 C6 的 ROI 做一次 IGBP 类别频率统计（已在第三阶段记录 igbp_histogram，可直接读取），确认湿地占比。若湿地仅为相对多数而非绝对主导，问题的严重性下降。此选项是先补充事实再裁决，不预设结论。",
+      "option_c": "维持现状不改，在报告中声明该 domain 的地表类型异常。"
+    }
+  },
+
+  "what_was_not_done": [
+    "未修改任何冻结的准入条件或判据。",
+    "未调整选择结果——按冻结排序选定的仍是 C1、C7、C2、C6、C5。",
+    "未获取任何选定 domain 的完整观测栈——数据获取待裁决后进行。",
+    "未预设推荐方案：F1 与 F2 的选项均按改动量列出，不含执行手的倾向性排序。"
+  ],
+
+  "why_reported_rather_than_fixed": {
+    "principle": "两项问题都指向判据的数据基础。修正它们必然改变某些候选的资格，而资格判定的规则已在读取任何新域统计之前冻结。此刻的任何调整都发生在结果之后，无论方向是纳入还是排除。",
+    "the_asymmetry_that_does_not_excuse": "F2 的修正方向是排除一个候选，看似比纳入更保守、更安全。但冻结时序约束的是「规则不得在看过结果后改动」，与改动方向无关——允许事后收紧，等于允许事后按结果挑选。",
+    "reference": "项目规则 pr_d4a37fa568df 第 5 条与本节点写回登记的 unique_stop_condition。"
+  },
+
+  "current_selection_under_frozen_rules": {
+    "note": "以下是严格按冻结规则得出的结果，作为裁决的基线。",
+    "selected": [
+      {"rank": 1, "id": "C1_tianshan_central", "qualified_acquisitions": 270, "breaks": ["climate", "vegetation"]},
+      {"rank": 2, "id": "C7_taibaishan_qinling", "qualified_acquisitions": 226, "breaks": ["vegetation"]},
+      {"rank": 3, "id": "C2_qilian_central", "qualified_acquisitions": 167, "breaks": ["climate", "vegetation"]},
+      {"rank": 4, "id": "C6_liupanshan_loess", "qualified_acquisitions": 138, "breaks": ["climate", "vegetation"]},
+      {"rank": 5, "id": "C5_gaoligong", "qualified_acquisitions": 124, "breaks": ["vegetation"]}
+    ],
+    "reserves": [
+      {"rank": 6, "id": "C8_altai_central", "qualified_acquisitions": 104, "breaks": ["climate", "vegetation"]},
+      {"rank": 7, "id": "C3_nyainqentanglha_east", "qualified_acquisitions": 102, "breaks": ["climate", "vegetation"]},
+      {"rank": 8, "id": "C4_changbaishan", "qualified_acquisitions": 58, "breaks": ["vegetation"]}
+    ]
+  },
+
+  "unrelated_positive_findings": {
+    "note": "核验中另有两项结果值得记录，不需裁决。",
+    "landsat_support_is_ample": "八个候选的合格 acquisition 数为 58–270，全部远超 A2 门槛（10）；强景数 38–223，远超 A3 要求（5）。Landsat 可用性不是本节点的瓶颈。",
+    "dem_coverage_universally_satisfied": "八个候选的 SRTM 在 ROI 外扩 10 km 域内覆盖率均为 1.0000。A4 这条从 Stage 7.6 教训前置而来的准入条件，在本轮未淘汰任何候选——但它的价值在于此刻已确认无需再为任一域补取 DEM，而不在于淘汰了谁。"
+  }
+}
