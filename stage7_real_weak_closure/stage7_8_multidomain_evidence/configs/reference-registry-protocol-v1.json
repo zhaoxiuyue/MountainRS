@@ -1,0 +1,149 @@
+{
+  "schema": "mountainrs-stage7.8-reference-registry-protocol-v1",
+  "purpose": "冻结 Reference Registry 的四类定义、provenance 要求、独立性判据、时间匹配容差与泄漏审计规则。本文件履行 Stage 7.8 passCriteria 3。",
+  "recorded_on": "2026-08-16",
+  "status": "frozen_before_any_reference_source_retrieved",
+
+  "freeze_discipline": {
+    "statement": "本协议冻结于检索任何具体参考数据之前。",
+    "why": "先定分类判据再看有什么可用，否则会按手头有什么来定义什么算独立参考。该风险不是假设的——本节点预检 B1 已登记项目当前无任何地面测量，若先检索再定义，「独立参考」的门槛会被自然而然地降到手头能拿到的那一档。",
+    "same_logic_as": "domain 准入条件与重新资格化 Gate 判据的冻结时序。"
+  },
+
+  "four_classes": {
+    "note": "四类互斥且穷尽。每个参考源必须唯一落入其一，分类须在使用该参考之前完成。",
+    "ground_truth": {
+      "definition": "独立的地面原位测量。",
+      "criteria": [
+        "物理接触式或原位观测，不经遥感反演得出",
+        "测量对象与被评估量为同一物理量或其直接定义式的组成部分",
+        "测量位置可定位到本项目 ROI 网格内"
+      ],
+      "naming_privilege": "只有本类可称『真值』（passCriteria 3）。其余三类在任何报告、图表、变量名中均不得使用真值、ground truth、GT 或等价措辞。",
+      "examples_for_this_project": "地面光谱仪实测地表反射率、辐射观测站的下行/上行短波辐射、积雪观测点的雪深与反照率实测。"
+    },
+    "reference_observation": {
+      "definition": "来自独立传感器与独立处理链的遥感观测或其标准产品。",
+      "criteria": [
+        "传感器平台与 Landsat 8/9 不同",
+        "处理链不以任何 Landsat 数据为输入（融合产品因此被排除）",
+        "产品的定义量与被评估量在物理上可比，或其差异可被解析说明"
+      ],
+      "usable_for": "可作为本节点『协议允许的独立参考』（passCriteria 6），前提是通过下述独立性判据与泄漏审计。",
+      "not_usable_for": "不得称真值。以其为基准得出的一致性结论，其误差包含参考自身的不确定度，不得表述为被评估量的绝对精度。"
+    },
+    "proxy": {
+      "definition": "与目标量相关但不是同一量的观测或派生产品。",
+      "criteria": ["与目标量存在相关关系但无定义式等价", "或来源虽独立但物理量不同"],
+      "usable_for": "仅描述性说明与情境刻画。",
+      "not_usable_for": [
+        "不得用于验证、精度评估或资格判定",
+        "不得在独立参考不足时充数——那正是本节点最直接的自欺路径（预检 B1）",
+        "不得称真值"
+      ]
+    },
+    "unavailable": {
+      "definition": "经检索确认在本节点条件下不可得的参考。",
+      "requirement": "必须登记检索过程本身：检索了哪些来源、用了什么条件、为何判定不可得。**不得以未检索默认为不可得**——未检索与不可得是两件事，混同会使『独立参考不足』这一结论失去可核查性。",
+      "consequence": "若全部候选参考落入本类，按 passCriteria 6 判 deferred_insufficient_domains_or_references。该终态合法。"
+    }
+  },
+
+  "independence_criteria": {
+    "note": "独立性不是来源不同这么简单。以下四条须逐条核验并登记结论，任一条不满足即降级。",
+    "I1_no_shared_observation": {
+      "requirement": "参考的处理链不得以被评估的同一次观测为输入。",
+      "why": "同一观测的两种反演不构成独立验证，只构成一致性自检。"
+    },
+    "I2_no_shared_sensor_lineage": {
+      "requirement": "参考不得来自 Landsat 8/9 的任何版本、重处理或以其为主要输入的融合产品。",
+      "examples_excluded": "HLS（Harmonized Landsat-Sentinel）因融合 Landsat 而被排除，尽管其含 Sentinel-2 成分。"
+    },
+    "I3_terrain_processing_disclosure": {
+      "requirement": "参考产品是否做过地形校正、用的什么 DEM、什么方法，必须登记。若未做地形校正，同样明确登记。",
+      "why_this_is_the_subtle_one": "本项目要检验的正是『地形对辐射的调制』。任何做过地形校正的参考产品，其地形处理本身携带一个未经本项目验证的假设。用它去验证我们的地形处理，等于用一个未验证的假设去验证另一个——两者若恰好犯同向的错误，一致性会很好看，而两者同时是错的。",
+      "grading": {
+        "preferred": "未做地形校正的产品——其与我们预测的差异可完整归因，不含参考侧的地形假设。",
+        "acceptable_with_disclosure": "做了地形校正但方法与所用 DEM 均已公开且与本项目不同——差异中含两套地形假设，须在结论中声明不可分离。",
+        "unacceptable": "做了地形校正但方法不明，或使用与本项目相同的 SRTM 且方法未公开——此情形下一致性与不一致性都无法解释。"
+      }
+    },
+    "I4_no_shared_ancillary_dependency": {
+      "requirement": "参考与被评估量若共享关键辅助输入（同一大气廓线产品、同一气溶胶产品、同一 DEM），须逐项登记该共享。",
+      "not_automatically_disqualifying": "共享辅助输入不自动取消资格，但会缩小可主张的独立性范围。共享 DEM 的参考不能用于验证地形几何本身；共享气溶胶产品的参考不能用于验证大气项。",
+      "recording_requirement": "每个参考须列出其可验证的范围与因共享而不可验证的范围。"
+    }
+  },
+
+  "temporal_matching": {
+    "tolerance_tiers": [
+      {"tier": "tight", "max_days": 3,
+       "usable_for": "定量比较与一致性评估",
+       "rationale": "山地地表在数日尺度上可发生实质变化——积雪覆盖、物候、地表湿度。±3 天是使『同一地表状态』这一前提大体成立的上限。该值为工程取值。"},
+      {"tier": "loose", "max_days": 7,
+       "usable_for": "仅描述性比较，须标注时间差",
+       "rationale": "放宽到 7 天可显著增加匹配对数量，但不再能主张地表状态相同。"},
+      {"tier": "unmatched", "max_days": null,
+       "usable_for": "不可用于任何比较",
+       "rule": "时间差超过 7 天即判 unmatched，不得以『季节相同』或『年际同期』替代。"}
+    ],
+    "additional_rules": [
+      "时间差按 UTC 采集时刻计，不按日期字符串——跨日的数小时差与跨日历日不是一回事。",
+      "若参考为时间合成产品（如 8 天或月合成），其合成窗口必须完整包含被匹配的 acquisition 时刻，否则判 unmatched；且合成产品一律不进入 tight 档。",
+      "积雪期的匹配须单独标注。雪面反照率变化快于本容差的假定，该期间的 tight 档结论须降级为描述性。"
+    ]
+  },
+
+  "leakage_audit": {
+    "note": "每个进入 Registry 的参考须逐条通过，结论登记在案。",
+    "L1_split_leakage": {
+      "check": "参考数据不得用于选择、调整或替换任何 domain、acquisition 或 split。",
+      "why": "domain 选择只能使用结果前可得的可用性、支持、几何与 reference 质量（passCriteria 4）。『reference 质量』指参考本身的质量属性，不指参考与预测的比较结果——后者是结果。"
+    },
+    "L2_self_reference": {
+      "check": "参考的时间匹配窗口内不得包含被评估的那次 acquisition 自身，也不得包含由其派生的任何产品。"
+    },
+    "L3_tuning_leakage": {
+      "check": "参考不得用于调整任何算子参数、阈值或几何配置。",
+      "current_status": "本节点不运行模型，故该通道在本节点内不可能被触发；但登记该条是为了约束下游——Stage 7.9/7.10 引用本 Registry 时该禁令随之生效。"
+    },
+    "L4_circular_provenance": {
+      "check": "参考产品的 provenance 链中不得出现本项目产出的任何 artifact。",
+      "why": "本项目已向 GEE 请求过数据但未向任何公开产品贡献输入，故当前该通道为空。仍须逐个核验而非假定——假定为空正是循环依赖最常见的成因。"
+    }
+  },
+
+  "provenance_requirements": {
+    "required_fields_per_reference": [
+      "source_id：数据集或观测网络的正式标识",
+      "provider 与 version：提供方与产品版本号",
+      "spatial_coverage：覆盖哪些选定 domain，逐域登记而非笼统声明",
+      "temporal_coverage：与各 domain 的 acquisition 时间范围的交集",
+      "native_resolution 与 projection",
+      "class：四类之一",
+      "independence_verdict：I1–I4 逐条结论",
+      "temporal_tier：tight / loose / unmatched",
+      "leakage_verdict：L1–L4 逐条结论",
+      "verifiable_scope：该参考可验证什么",
+      "unverifiable_scope：因共享依赖而不可验证什么",
+      "retrieval_record：检索时间、条件与结果（unavailable 亦必须填写）"
+    ],
+    "hash_requirement": "凡实际获取的参考数据须登记 sha256；未获取而仅登记为 unavailable 者，登记检索记录代替。"
+  },
+
+  "verdict_impact": {
+    "on_node_terminal_state": {
+      "qualified_multidomain_evidence_frozen": "须有 3–5 个合格 domain 且至少一个参考落入 ground_truth 或 reference_observation 并通过全部独立性与泄漏审计。",
+      "deferred_insufficient_domains_or_references": "合格 domain < 3，或无任何参考通过上述条件。",
+      "explicitly_stated": "proxy 数量再多也不能使终态从 deferred 变为 qualified。"
+    },
+    "on_downstream": "本 Registry 的分类与 verifiable_scope 随证据一并交付。下游任何跨域一致性结论，其可主张范围以此处登记的 verifiable_scope 为上限。"
+  },
+
+  "what_this_protocol_does_not_do": [
+    "不检索任何具体参考源——检索是本协议冻结之后的动作。",
+    "不预判任何参考源的分类结果。",
+    "不改变已冻结的 domain 选择或准入条件。",
+    "不解除 nc_8fe5b4709440（Stage 7.9 的独立阻断）。"
+  ]
+}

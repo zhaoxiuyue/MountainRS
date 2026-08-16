@@ -33,13 +33,19 @@
       "relative_path": "screening-findings-v2.json",
       "sha256": "67fd19ef5bee89b4d0dec4b943cf09d2f408095df8c467250e8112cde60da03f",
       "role": "撤回 v1 的两项 finding（建立在 mode reducer 实现错误上），保留 F2′ 农田主导观察。"
+    },
+    "reference_registry_protocol_v1": {
+      "relative_path": "../configs/reference-registry-protocol-v1.json",
+      "sha256": "19bdfd45a89829d105808379a614e4aee27836dfc238c5caf25327f206b4d29e",
+      "role": "四类定义、独立性判据 I1–I4、时间匹配容差、泄漏审计 L1–L4、provenance 要求"
     }
   },
   "amendment_note": "A7 属结果后修订，其 hash 一并登记但暴露地位与 A1–A6 不同。本清单登记字节身份，不代表其中每一项都是结果前冻结。",
   "pre_result_frozen": [
     "domain_candidate_universe_v1",
     "requalification_gate_criteria_v1",
-    "activation_preflight_manifest_v1"
+    "activation_preflight_manifest_v1",
+    "reference_registry_protocol_v1"
   ],
   "post_result_amended": [
     "domain_candidate_universe_v2"
