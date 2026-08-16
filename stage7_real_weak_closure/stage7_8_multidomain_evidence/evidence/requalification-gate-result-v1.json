@@ -1,0 +1,148 @@
+{
+  "schema": "mountainrs-stage7.8-requalification-gate-result-v1",
+  "constraint": "nc_b6d6ef3e44f2",
+  "criteria_source": "configs/requalification-gate-criteria-v1.json（冻结于任何新域统计可见之前）",
+  "executed_on": "2026-08-16",
+  "G1_variation_range": {
+    "threshold": 0.1,
+    "measured_median_iqr_domain_level": 0.06549788925963163,
+    "per_domain": [
+      {
+        "domain_id": "C1_tianshan_central",
+        "split_role": "evaluation",
+        "n_sample": 4000,
+        "v_sky_min": 0.7937405032862817,
+        "v_sky_median": 0.9961736374660515,
+        "v_sky_max": 0.9999628008268979,
+        "iqr": 0.006944336481409019,
+        "fraction_below_stage76_support_gate": 0.0,
+        "dem_sha256_note": "DEM 为按 manifest 参数从 GEE 重取，缓存于 outputs/dem_cache（不入 git）"
+      },
+      {
+        "domain_id": "C7_taibaishan_qinling",
+        "split_role": "evaluation",
+        "n_sample": 4000,
+        "v_sky_min": 0.5840471490989896,
+        "v_sky_median": 0.8799429417067604,
+        "v_sky_max": 0.9995554213096902,
+        "iqr": 0.08493012589858306,
+        "fraction_below_stage76_support_gate": 0.0,
+        "dem_sha256_note": "DEM 为按 manifest 参数从 GEE 重取，缓存于 outputs/dem_cache（不入 git）"
+      },
+      {
+        "domain_id": "C2_qilian_central",
+        "split_role": "evaluation",
+        "n_sample": 4000,
+        "v_sky_min": 0.6124740869135038,
+        "v_sky_median": 0.9502504836334256,
+        "v_sky_max": 0.9985807991517357,
+        "iqr": 0.06549788925963163,
+        "fraction_below_stage76_support_gate": 0.0,
+        "dem_sha256_note": "DEM 为按 manifest 参数从 GEE 重取，缓存于 outputs/dem_cache（不入 git）"
+      },
+      {
+        "domain_id": "C5_gaoligong",
+        "split_role": "evaluation",
+        "n_sample": 4000,
+        "v_sky_min": 0.6215622051475278,
+        "v_sky_median": 0.8974199740712452,
+        "v_sky_max": 0.9990341634957274,
+        "iqr": 0.06650255476542632,
+        "fraction_below_stage76_support_gate": 0.0,
+        "dem_sha256_note": "DEM 为按 manifest 参数从 GEE 重取，缓存于 outputs/dem_cache（不入 git）"
+      },
+      {
+        "domain_id": "C8_altai_central",
+        "split_role": "calibration",
+        "n_sample": 4000,
+        "v_sky_min": 0.5324997822597601,
+        "v_sky_median": 0.9506632034609608,
+        "v_sky_max": 0.9993171878048283,
+        "iqr": 0.054960306097307954,
+        "fraction_below_stage76_support_gate": 0.0,
+        "dem_sha256_note": "DEM 为按 manifest 参数从 GEE 重取，缓存于 outputs/dem_cache（不入 git）"
+      }
+    ],
+    "baseline_reference": {
+      "value": 0.062,
+      "level": "fold（Stage 7.6 的 train 单元）",
+      "comparability_caveat": "基准值是 fold 级，本次测量是 domain 级，二者不同尺度，不可直接相减比较大小差。列出仅供量级参照。"
+    },
+    "measurement_level": "domain（非判据要求的 fold 级）",
+    "one_way_validity": {
+      "reason": "fold 训练区是 domain 支持区的子集，子集的 IQR 不大于全集。",
+      "if_below_threshold": "可确定判 G1 不满足",
+      "if_at_or_above_threshold": "不足以判 G1 满足——须有 fold 结构方能严格执行判据"
+    },
+    "verdict": "not_satisfied",
+    "implementation_consistency": {
+      "n_compared": 2000,
+      "max_abs_difference": 2.9782625032837018e-08,
+      "mean_abs_difference": 1.495938934054086e-08,
+      "frozen_sha256": "8444955a0dc40e474c6be4e173b259e0303937c0f206d78d47d4024a59370244"
+    },
+    "v_sky_parameters": {
+      "N_azimuth": 36,
+      "D_search_m": 10000.0,
+      "earth_curvature": true,
+      "source": "Stage 7.6 svf-geometry-gate 冻结值，未因新域调整"
+    },
+    "same_level_baseline_comparison": {
+      "baseline_domain_level_iqr": 0.0762,
+      "baseline_domain_level_v_sky": {
+        "min": 0.51,
+        "median": 0.8374,
+        "max": 0.999,
+        "fraction_below_0.05": 0.0
+      },
+      "measured_with": "同一实现、同一参数（N=36, D=10000 m, 含曲率）、同一采样规模（4000 点）与同一随机种子",
+      "new_domains_vs_baseline": [
+        {
+          "domain": "C7_taibaishan_qinling",
+          "iqr": 0.0849,
+          "vs_baseline": "higher"
+        },
+        {
+          "domain": "C5_gaoligong",
+          "iqr": 0.0665,
+          "vs_baseline": "lower"
+        },
+        {
+          "domain": "C2_qilian_central",
+          "iqr": 0.0655,
+          "vs_baseline": "lower"
+        },
+        {
+          "domain": "C8_altai_central",
+          "iqr": 0.055,
+          "vs_baseline": "lower"
+        },
+        {
+          "domain": "C1_tianshan_central",
+          "iqr": 0.0069,
+          "vs_baseline": "far lower"
+        }
+      ],
+      "finding": "五个断裂域中只有一个（太白山秦岭）的 v_sky 变化范围高于基准，其余四个更低，天山中段低一个数量级。新增 domain 在这一维度上整体不优于基准。",
+      "why_this_matters": "Stage 7.6 负结果的主要备选解释之一是「单 ROI 的 v_sky 变化范围不足」。本对照削弱了该解释：跨越 542–2522 km、覆盖干旱到湿润、草地到常绿阔叶林的五个域，其地形遮挡变化范围并不比基准更大。这不证明该解释错误——五个域的选择依据是断裂与可用性，不是 v_sky 变化范围，故它们不是为「最大化 v_sky 变化」而选的样本。但它确实说明：靠换区域来获得更大的地形遮挡变化，在本次选出的这批域上没有实现。",
+      "incidental_limitation_of_A5": "C1 天山中段高差 1415 m 满足 A5（≥ 1000 m），但 v_sky 中位 0.9962、IQR 0.0069——地形开阔，几乎无遮挡。高差达标不蕴含地形遮挡有变化。A5 作为山地性的最低支持条件是有效的，但它不是 v_sky 变化范围的代理。该局限在准入阶段不可见——v_sky 计算发生在 Gate 阶段。如实登记，不追认为准入条件的缺陷。"
+    }
+  },
+  "G2_independent_anchor": {
+    "verdict": "not_satisfied",
+    "basis": "Reference Registry 中 ground_truth 类为 0 项。唯一的 reference_observation （Sentinel-2）其 unverifiable_scope 明确包含『不可用于验证绝对辐射定标』与『不可用于验证 DEM 几何本身』，故不能解除 Stage 7.5 的任何 deferred_missing_anchor 判定，也不能独立约束 alpha 所折叠的透过率、辐照度与平均反照率中的任何一个。",
+    "what_would_change_it": "取得落于选定 domain 内、时间与 Landsat acquisition 有交集的地面原位测量（见 Reference Registry 的 recovery_condition）。"
+  },
+  "G3_state_constraint": {
+    "verdict": "not_satisfied",
+    "basis": "判据要求指明具体状态、具体新证据与不依赖任何未 qualified 算子的具体信息通路。本节点新增的证据是同一类 Landsat 光学观测的更多区域样本，以及一个独立的光学参考观测；二者都须经由 L2 算子才能连到任何 L1 状态，而 Stage 7.6 的 qualified 算子集合为空。故不存在绕开未资格化算子的信息通路。",
+    "explicitly_rejected_reasoning": "『新域数据更多，或许有助于状态激活』属判据明确排除的笼统表述。"
+  },
+  "verdict": "requalification_not_warranted",
+  "satisfied_categories": [],
+  "consequence": "保持 Stage 7.6 的负结果与 Stage 7.7 的空集不变。禁止凭空增加状态，禁止放宽 Stage 7.6 的判定阈值，禁止以『方向为正但未达标』作部分翻案依据——本 Gate 判据二值化，无部分满足档位。",
+  "does_not_affect": [
+    "不解除 nc_8fe5b4709440——Stage 7.9 因 activated_count = 0 被独立阻断，与本 Gate 结论无关。",
+    "不改变本节点的 domain 证据与 Reference Registry——它们独立于本 Gate 结论而有效。"
+  ]
+}

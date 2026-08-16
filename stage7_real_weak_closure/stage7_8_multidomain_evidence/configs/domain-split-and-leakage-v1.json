@@ -1,0 +1,98 @@
+{
+  "schema": "mountainrs-stage7.8-domain-split-and-leakage-v1",
+  "purpose": "冻结 train / calibration / evaluation domain 划分、每域指标、宏平均规则与空间/时间/来源/处理链泄漏边界。本文件履行 Stage 7.8 passCriteria 4。",
+  "recorded_on": "2026-08-16",
+
+  "authorization_for_using_availability": {
+    "clause": "合同 passCriteria 4 原文：「domain 选择只能使用结果前可得的可用性、支持、几何与 reference 质量」。",
+    "reading": "该条明确授权以可用性与支持量做 domain 层面的设计决策，故下述以合格 acquisition 数决定 calibration 域的规则在合同授权范围内。",
+    "boundary_of_this_authorization": "该授权仅及于 domain 划分设计，不外溢到重新资格化 Gate 的判据——后者已在 requalification-gate-criteria-v1.json 中独立冻结于任何新域统计可见之前，其时序纪律不因本条授权而放宽。",
+    "why_the_distinction_matters": "split 是评估设计，用支持量安排它是合理的工程决策；Gate 判据是「负结果要不要翻案」的裁定标准，用结果安排它就是按期望结论定规则。两者性质不同，授权不可混用。"
+  },
+
+  "split": {
+    "train": {
+      "domains": ["D0_minshan"],
+      "basis": "基准 ROI。Stage 7.0–7.7 的全部既有工作、冻结件与已公开结果均产生于此。",
+      "note": "本节点不改变 D0 的任何既有 split（其内部的 acquisition 级 10/3/5 划分由 Stage 7.1-R 冻结，不受本节点影响）。"
+    },
+    "calibration": {
+      "domains": ["C8_altai_central"],
+      "selection_rule": "在选定的五个新域中取合格 acquisition 数最少者；并列时取确定性排序的末位。",
+      "rule_rationale": "把数据最充裕的域留给 evaluation。calibration 域的作用是在下游确有跨域超参需要调整时提供一个不污染 evaluation 的场地。",
+      "applied_result": "C8 合格 acquisition 104，为五域最少（其余为 270 / 226 / 167 / 124）。",
+      "break_balance_check": "移出 C8（气候断裂）后，evaluation 仍为 2 个气候断裂（C1、C2）+ 2 个植被断裂（C7、C5），断裂类型保持平衡。该检查是事后确认而非选择依据——选择依据只有合格景数一条。"
+    },
+    "evaluation": {
+      "domains": ["C1_tianshan_central", "C7_taibaishan_qinling",
+                  "C2_qilian_central", "C5_gaoligong"],
+      "basis": "五个新域中除 calibration 域外的全部。",
+      "usage_restriction": "evaluation 域不得用于任何参数、阈值、算子或几何配置的选择与调整。其唯一用途是按预注册规则报告跨域表现。"
+    }
+  },
+
+  "per_domain_metrics": {
+    "note": "沿用 Stage 7.0 evaluation protocol 与 Stage 7.3/7.6 的口径，本节点不新定义指标。",
+    "reporting_unit": "acquisition × band（domain 内），与 Stage 7.6 一致",
+    "metrics": ["MAE_of_accepted_pixels（主指标，越低越好）", "signed_bias",
+                "P90_absolute_residual", "coverage", "unsupported 计数与 reason code"],
+    "weighting_within_domain": "equal_per_acquisition_band，禁止像元池化产生伪样本量"
+  },
+
+  "macro_averaging": {
+    "rule": "跨域汇总一律用 domain 级宏平均：先在每个 domain 内按 equal_per_acquisition_band 聚合，再对 domain 等权平均。",
+    "why_not_pooled": "各域的合格 acquisition 数相差 2.6 倍（104–270）。按 acquisition 池化会让天山一个域主导跨域结论，而跨域验证的目的恰恰是检验结论能否离开任一具体区域。",
+    "prohibited": "不得以像元数量或 acquisition 数量补足独立 domain 数量（passCriteria 7）。四个 evaluation 域就是四个独立单元，不因某域景多而加权。",
+    "minimum_reporting": "跨域结论必须同时报告 domain 级散布（逐域值与极差），不得只报宏平均——宏平均掩盖分歧，而分歧正是跨域验证要暴露的东西。"
+  },
+
+  "leakage_boundaries": {
+    "spatial": {
+      "rule": "各 domain 之间无空间重叠，且与基准中心的大圆距离 ≥ 200 km（A6 已核验，实测 542–2522 km）。",
+      "verified": true,
+      "inter_domain_check": "五个新域两两之间亦无重叠——各域 ROI 为 19.5 × 22.56 km，而两两中心距离最小者远大于该尺度。"
+    },
+    "temporal": {
+      "rule": "各 domain 的 acquisition 集合互不相交——不同区域的 Landsat 场景本就是不同的观测，不存在共享。",
+      "note": "同一日期在多个域各有观测是正常的，不构成泄漏：它们是不同地点的独立观测，不是同一观测被用两次。"
+    },
+    "source": {
+      "rule": "全部 domain 使用同一来源类别：Landsat 8/9 Collection 2 Level-2（A1 冻结）。参考侧 Sentinel-2 不进入任何 domain 的训练或标定，只用于按 Reference Registry 登记的 verifiable_scope 做对照。",
+      "reference_side_isolation": "Reference Registry 的 L1 已核验：domain 选择与 split 均未使用任何 Sentinel-2 数据。"
+    },
+    "processing_chain": {
+      "rule": "全部 domain 复用 Stage 7.1-R 冻结的同一 L0 schema、质量因子、来源类别与网格/配准审计（passCriteria 2）。不得为单域临场改定义。",
+      "verified_items": ["base_valid_land 的构成定义", "SR 缩放与值域", "QA_PIXEL 位约定",
+                         "geometry_visibility 代理（cos_i > 0.1）", "最小支持阈值"]
+    },
+    "cross_node_exposure": {
+      "statement": "基准 D0 的 residual 与 Stage 7.6 的判定结果均已公开。故本节点建立的跨域证据，相对既有结果为 post-result exploratory。",
+      "what_this_does_not_taint": "新域的 acquisition 集合、支持统计与参考匹配本身不受该暴露影响——它们是新观测，此前不存在。受影响的是「以这些新域检验既有结论」这一动作的预注册地位。",
+      "practical_consequence": "下游任何用这五个域检验 Stage 7.6 结论的分析，不得声称 preregistered；但其内部的冻结时序仍须完整执行。"
+    }
+  },
+
+  "acquisition_time_window": {
+    "frozen_range": ["2013-01-01", "2024-12-31"],
+    "source": "domain-candidate-universe-v1.json 的 A1，结果前冻结",
+    "sentinel2_era_note": "Sentinel-2 数据自 2015-06-23 起可得，故参考匹配只覆盖该日之后的 Landsat acquisition。各域在 S2 时代之前的 acquisition 仍属证据成员，只是无参考匹配——该部分已在 Reference Registry 中逐域记录，不静默丢弃。"
+  },
+
+  "evidence_stack_form": {
+    "decision": "本节点产出的 domain 证据栈形式为不可变 manifest，不是本地数据副本。",
+    "basis": [
+      "合同 passCriteria 8 原文要求「发布不可变 dataset/domain/split manifest」——是 manifest。",
+      "架构 v3.3 §2.2：永久保留的对象是证据身份与可追溯性，不必然是本地热存储字节。",
+      "Stage 7.6 的外扩 DEM 已确立先例：本体不入 git，依赖已验证的可复现获取。"
+    ],
+    "manifest_must_contain": ["逐域 acquisition 清单与其身份", "获取参数（集合 ID、时间、ROI、投影、网格）",
+                              "逐域支持统计", "参考匹配结果", "可复现获取的验证记录"],
+    "if_local_copies_are_later_required": "manifest 中的获取参数足以重建全部数据。届时按同参数重取并比对 sha256 即可验证一致性——该方法已在 Stage 7.6 的 DEM 上实测通过（重取字节一致）。"
+  },
+
+  "what_this_freeze_does_not_cover": [
+    "不改变 Stage 7.6 的任何判定或 Stage 7.7 的空集。",
+    "不解除 nc_8fe5b4709440（Stage 7.9 因 activated_count = 0 而被独立阻断）。",
+    "不预判重新资格化 Gate 的结论——该 Gate 的判据已独立冻结，执行在本节点关闭之前。"
+  ]
+}
