@@ -1,0 +1,136 @@
+{
+  "schema": "mountainrs-stage7.7-activation-preflight-manifest-v1",
+  "governing_rule": "pr_d4a37fa568df：关闭前激活预检与结果盲冻结时序",
+  "performed_by": "执行手（克克）",
+  "performed_on": "2026-08-16",
+  "target_node": {"id": "nd_716cb550b7a2", "title": "Stage 7.7｜L1 状态激活 Gate 与几何失效传播首验", "state": "planned"},
+  "predecessor_node": {"id": "nd_5fc273b560f7", "title": "Stage 7.6｜光学 L2 算子资格化", "state": "active"},
+
+  "read_only_attestation": {
+    "statement": "本预检只读。未修改任何节点或路线对象，未运行 Stage 7.7 的实验、候选模型或 fixture，未制造新证据（本裁决文件除外），未激活 Stage 7.7。",
+    "actions_taken": ["读取 Stage 7.7 合同", "读取项目规则与节点约束 nc_e3a7a30f1aaa",
+                      "在仓库内检索失效传播机制、几何版本机制与依赖图的现存基础",
+                      "读取架构 §156–161 与第 212 行", "写入本裁决"]
+  },
+
+  "outcome": "activation_preflight_ready",
+  "outcome_qualification": "ready 的判定以下述三项激活时必须处置的事项被显式承接为条件。其中第一项已由所有者裁决授权，第二、三项是本合同内可完成的工作而非上游缺口，故不构成 blocked。",
+
+  "contract_bisection": {
+    "finding": "Stage 7.7 的通过条件分为互不依赖的两半，其可执行性截然不同。",
+    "half_a_state_activation_gate": {
+      "criteria": ["passCriteria 1", "passCriteria 2", "passCriteria 3"],
+      "status": "候选 universe 为空集，全部条件空真",
+      "derivation": "passCriteria 1 规定候选状态只能依赖 Stage 7.6 的 qualified 算子（该条款在 7.6 结果产出前即冻结，保持 preregistered）。Stage 7.6 产出零个 qualified 算子（C1/C1′/C2a 判 unsupported_by_evidence，C3 判 non_identifiable，严格邻接项判 deferred_missing_required_input）。故可用于支撑候选状态的算子集合为空，候选 universe 唯一确定为空集。",
+      "consequence": "passCriteria 2 的激活条件无对象可施加；passCriteria 3 的『每个状态只能获得五类终态之一』在空集上空真。",
+      "must_not_be_reported_as": "关闭 Stage 7.7 时不得表述为『passCriteria 1–3 全部通过』。空真的通过不是验收，必须逐条标注其空真性质，否则读者会把『没有状态可判』误读为『状态都判过了』。"
+    },
+    "half_b_geometry_invalidation_fixture": {
+      "criteria": ["passCriteria 4", "passCriteria 5 的 fixture 部分", "passCriteria 6"],
+      "status": "完全不依赖 Stage 7.6 的 qualified 算子，是本节点的实质工作",
+      "significance": "Stage 7.7 因此不是空转节点。其实质验收全部落在这一半上。"
+    }
+  },
+
+  "existing_basis_survey": {
+    "purpose": "判断 passCriteria 4 所需的机制是本节点的产出还是未满足的上游依赖。",
+    "findings": [
+      {
+        "item": "失效传播机制（invalidated / quarantined）",
+        "exists": false,
+        "evidence": "仓库内 invalidat|quarantin 的命中仅有 docs/architecture.md（规范条款）与 Stage 7.4 的两份事故记录、一份 preflight manifest（均为事故语境，非机制实现）。无任何实现代码或规则文件。",
+        "disposition": "属本节点产出。passCriteria 4 的动词是『冻结规则并完成首个版本化 fixture』，即建立该机制本身就是任务内容，不是前置条件。"
+      },
+      {
+        "item": "几何版本/hash 机制",
+        "exists": "partial",
+        "evidence": "仅 stage7_1_observation_stack/configs/observation-schema.yaml 有相关字段；无跨节点统一的 geometry version 定义。",
+        "disposition": "本节点须定义 geometry version 的粒度与变更判据——这正是架构第 212 行所列未决问题之一。"
+      },
+      {
+        "item": "artifact 依赖图",
+        "exists": "material_scattered",
+        "evidence": "依赖信息散布于各节点 evidence 的 upstream_bindings、hash 引用与 freeze manifest 中（例如 Stage 7.6 的 optical-operator-contract-v1 已含局部 dependency_graph），但无全局图。",
+        "disposition": "本节点须汇聚为可执行的依赖图。素材充足，无需新增数据获取。"
+      },
+      {
+        "item": "原始观测永久保留与 receipt 回滚",
+        "exists": true,
+        "evidence": "Stage 7.1-R 已冻结 evidence_membership 在 universe version 内不可撤销；PF3 提供 receipt 与 undo。架构 v3.3 §2.2 另已明确『永久保留的对象是证据身份与可追溯性，不必然是本地热存储字节』。",
+        "disposition": "该条通过条件的上游基础已就位，本节点只需在 fixture 中验证其可回滚性。"
+      }
+    ],
+    "architecture_alignment": {
+      "clauses": "docs/architecture.md 第 156–161 行给出规范：几何变化不触发包围盒内历史状态的无条件全删；受影响的派生状态进入 invalidated 或 quarantined 并说明原因；影响范围必须包含可见性与辐射传播区域，而不只是几何包围盒。",
+      "open_problem_quote": "第 212 行：『如何区分持续几何变化与随机残差，如何界定包含可见性与辐射传播的影响范围，以及如何审查和回滚，仍需小样区经验与专项验证。』",
+      "reading": "架构自身把该问题登记为未决并指向小样区专项验证，Stage 7.7 passCriteria 4 正是该验证。故本节点的这一半具有独立于 L2 算子结果的科学必要性。"
+    }
+  },
+
+  "real_fixture_material_available": {
+    "observation": "Stage 7.6 期间发生了一次真实的几何 artifact 变更，可作为 fixture 的现实素材而非纯合成用例。",
+    "the_change": "为计算 v_sky 引入 stages/stage2_dem_terrain/data/dem_roi_plus_20km_utm48n.tif（外扩 20010 m），sha256 5be4676f6cd47b7c…。",
+    "why_it_is_a_good_test": "该 artifact 是新对象，但其 ROI 窗口内与冻结 DEM 逐位相同（max|d| = 0.0000 m，488,800 像元）。因此正确的传播结果是：cos_i、slope、aspect 及其全部后代**不应**被 invalidated——ROI 内的几何值没有变化。",
+    "what_it_tests": "规则必须能区分『artifact 身份变了』与『几何值变了』。若规则只比对文件 hash，它会错误地令整条链失效；若只看几何值，它会漏掉真正的版本漂移。这个用例恰好落在两种错误实现的交叉点上。",
+    "caveat": "该 DEM 在 ROI 边界存在一条接缝（mean +0.049 m / std 7.792 m / max 103.6 m），已在 Stage 7.6 登记为未覆盖项。fixture 设计须决定该接缝是否构成 ROI 外围区域的几何变化——这是判定影响范围的真实边界案例，不应回避。",
+    "not_a_substitute": "真实素材不替代合成 fixture。passCriteria 4 要求验证多条传播路径（直接依赖 invalidated、后代 quarantined、无依赖保持有效），单一真实用例覆盖不全。"
+  },
+
+  "must_be_handled_at_activation": [
+    {
+      "id": "A1",
+      "item": "候选状态 universe 的冻结时点已晚于 Stage 7.6 首次结果值产出",
+      "basis": "nc_e3a7a30f1aaa 要求该冻结早于 7.6 首次结果值产出；实际未做，偏差已登记于 Stage 7.6 的 evidence/cross-node-timing-deviation-v1.json。",
+      "required_handling": "按 pr_d4a37fa568df 第 5 条，空集 universe 的冻结须标记 post-result exploratory，不得声称 preregistered；Stage 7.7 合同现有条款未被修改，保持 preregistered。",
+      "owner_decision": "所有者已裁决按空集如实执行并关闭（本次会话）。",
+      "decision_required": false
+    },
+    {
+      "id": "A2",
+      "item": "passCriteria 1–3 在空集上空真，须显式标注",
+      "required_handling": "激活协议与关闭结论中逐条标注空真性质，禁止表述为『状态激活 Gate 已通过』。实质验收仅由 passCriteria 4–6 承担。",
+      "decision_required": false
+    },
+    {
+      "id": "A3",
+      "item": "geometry version 的粒度与变更判据尚未定义",
+      "required_handling": "本节点须在 fixture 之前冻结该定义，且该定义必须能正确处理上述真实素材（artifact 变但几何值不变的情形）。定义先于 fixture 冻结，避免用 fixture 结果反推定义。",
+      "decision_required": false
+    },
+    {
+      "id": "A4",
+      "item": "Stage 7.9 将因 activated_count = 0 而无法激活，该停止条件须落成节点约束",
+      "basis": "Stage 7.9 的 objective 原文为『只使用 Stage 7.7 已激活状态与 Stage 7.6 已资格化算子……状态经 L2 重建观测』，explicitExclusions 另有『不新增未通过 Stage 7.7 的状态』。二者均在本次结果之前冻结，保持 preregistered。当 activated_count = 0 且 qualified_operators = 0 时，该 objective 无对象可执行。",
+      "required_handling": "以指向 nd_59cb52139f59 的节点约束固定该停止条件：Stage 7.9 的 activation preflight 在 activated_count = 0 时必须判 blocked，不得以任何方式自动推进。理由与 Stage 7.6 本次时序偏差同源——跨节点义务只要仅存在于对话或记忆中，换一个执行窗口就会丢失。",
+      "decision_required": false,
+      "owner_decided": true
+    }
+  ],
+
+  "owner_decision_and_route_plan": {
+    "decided_by": "Elara",
+    "decided_on": "2026-08-16",
+    "decision": "采用方案 1：按空集如实执行并关闭 Stage 7.7。",
+    "plan_verbatim": [
+      "将 7.7 空 universe 冻结为 post-result exploratory，同时注明空集由既有 preregistered dependency 唯一推出。",
+      "7.6 → done，保留其有效负结果和时序偏差。",
+      "激活 7.7：state activation 分支空集、0 activated；geometry invalidation/quarantine fixture 正常执行。",
+      "fixture 通过后 7.7 → done。",
+      "进入 7.8，扩大多域 L0 与独立参考。",
+      "7.8 完成后设置一次重新资格化 Gate：若新增 domain/reference 提供了当前缺失的变化范围、anchor 或状态约束，再考虑 reopen 7.6 / reopen 7.7；若仍没有，就保持当前负结果，不凭空增加状态。",
+      "7.9 不得自动激活：当前合同明确要求只使用 7.7 已激活状态和 7.6 已资格化算子，只要 activated_count = 0，7.9 activation preflight 就必须停止。"
+    ],
+    "execution_note": "计划的后两条跨越本节点范围，故分别以指向 nd_89bdfb553afb（7.8 重新资格化 Gate）与 nd_59cb52139f59（7.9 停止条件）的节点约束固定，不依赖记忆或口头交接。",
+    "why_this_is_not_a_dead_end": "空集不是路线终点而是一个诚实的中间状态。Stage 7.6 的负结果很可能受单 ROI 数据限制——fold 内 v_sky 的 IQR 中位仅 0.062，26% 的 train 单元变化不足。Stage 7.8 正是补足多域证据与独立参考的节点。重新资格化 Gate 使『补数据之后再判』成为预先声明的路径，而不是事后为翻案找的理由。"
+  },
+
+  "blocking_items": [],
+  "blocking_reason_code": null,
+
+  "does_not_authorize": [
+    "本预检不激活 Stage 7.7。",
+    "不冻结候选状态 universe——该冻结属激活后的动作。",
+    "不关闭 Stage 7.6。",
+    "不定义 geometry version，也不设计 fixture。"
+  ]
+}
