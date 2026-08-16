@@ -1,0 +1,28 @@
+{
+  "schema": "mountainrs-stage7.8-freeze-manifest-v1",
+  "purpose": "Stage 7.8 结果盲冻结件的唯一 hash 权威。文件之间只引路径不引 hash，避免循环引用。",
+  "recorded_on": "2026-08-16",
+  "freeze_point": "在获取任何新域数据、读取任何新域几何或支持统计之前。",
+  "same_change_set": [
+    "domain_candidate_universe_v1",
+    "requalification_gate_criteria_v1"
+  ],
+  "same_change_set_reason": "domain 准入核验会读到合格 acquisition 数与覆盖率，已触及 requalification gate 对「结果值」的界定，故两份必须同时冻结。",
+  "artifacts": {
+    "domain_candidate_universe_v1": {
+      "relative_path": "../configs/domain-candidate-universe-v1.json",
+      "sha256": "9ab6ad4389117cc1bffb1bb2c67709dfb1077c790a206b38c0d694824ecbde11",
+      "role": "候选全集、真断裂判据、准入条件、确定性排序与替补规则"
+    },
+    "requalification_gate_criteria_v1": {
+      "relative_path": "../configs/requalification-gate-criteria-v1.json",
+      "sha256": "dba9608cd8a556cf78ebc1d4252a3a18ae3d4d3043fb7762524e40f73091c50a",
+      "role": "重新资格化 Gate 判据（履行 nc_b6d6ef3e44f2 第 5 条）"
+    },
+    "activation_preflight_manifest_v1": {
+      "relative_path": "activation-preflight-manifest-v1.json",
+      "sha256": "afcba3b13dea6d06753901411cd34ae834ee20bb3e270d2c779835f60c45d95e",
+      "role": "只读激活预检"
+    }
+  }
+}

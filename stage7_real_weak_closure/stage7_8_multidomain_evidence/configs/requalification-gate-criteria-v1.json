@@ -1,0 +1,91 @@
+{
+  "schema": "mountainrs-stage7.8-requalification-gate-criteria-v1",
+  "purpose": "冻结重新资格化 Gate 的判据。本文件履行节点约束 nc_b6d6ef3e44f2 第 5 条。",
+  "recorded_on": "2026-08-16",
+  "status": "frozen_before_any_new_domain_statistic_observed",
+  "constraint_source": "nc_b6d6ef3e44f2（Stage 7.8 完成后须设置一次重新资格化 Gate，判定是否 reopen Stage 7.6 / 7.7）",
+
+  "why_frozen_now_rather_than_later": {
+    "the_deadline": "nc_b6d6ef3e44f2 第 5 条：本 Gate 的判据须在本节点读取任何新域结果值之前冻结。",
+    "the_precision_problem": "Stage 7.8 的 boundaries 明确不训练、运行或比较候选模型，故本节点不产生 residual 或 score。字面上看似乎没有『结果值』，判据便可以随时冻结——这个读法是错的。",
+    "the_resolution": "本 Gate 要判断新增 domain 是否补足了『当前缺失的变化范围』，而判断变化范围必须看新域的几何统计（v_sky 的分布跨度与 IQR）与支持统计（合格 acquisition 数、覆盖率）。这些量不是 residual，却正是 Gate 所看的对象。故在本节点语境下，『结果值』界定为**包含新域的几何统计与支持统计**。",
+    "consequence": "domain 准入核验会读到合格 acquisition 数与覆盖率，即已触及上述界定。因此本判据必须与 domain 候选全集在同一次动作中冻结，不能等到核验之后。二者属同一 change set。",
+    "what_this_prevents": "若判据在看过新域统计之后才定，『是否值得 reopen』会退化为一个可按期望结果调节的问题——人拿到新数据时天然倾向于把它解读为『够了，可以翻案』。"
+  },
+
+  "gate_scope": {
+    "question_answered": "新增的 domain 与独立参考，是否提供了 Stage 7.6 与 Stage 7.7 当前缺失的东西？",
+    "not_answered_here": [
+      "不判定 Stage 7.6 的任何候选是否会通过——那须由 reopen 后的 7.6 按其自身冻结规则重跑。",
+      "不判定任何 L1 状态是否可激活——那属 reopen 后的 7.7。",
+      "本 Gate 只判定『是否值得重开』，不预判重开后的结论。"
+    ],
+    "execution_timing": "Stage 7.8 关闭之前执行，判定写入证据。"
+  },
+
+  "criteria": {
+    "note": "三类缺失中任一类被补足即可判 requalification_warranted。三类的判据各自独立，不可互相折抵。",
+    "categories": [
+      {
+        "id": "G1",
+        "missing_item": "关键维度上的变化范围",
+        "background": "Stage 7.6 的 support_gate 要求训练支持区内 v_sky 的 IQR ≥ 0.05 方可辨识 beta_0 与 beta_v。基准 domain 的 train 单元 IQR 中位为 0.062，仅略高于该阈值，且 26/100 的 train 单元因变化不足被判 unsupported。变化范围不足是 Stage 7.6 负结果的主要嫌疑成因之一。",
+        "criterion": "新增合格 domain 的全部 train 单元合并统计后，v_sky 的 IQR 中位数 ≥ 0.10。",
+        "threshold_rationale": "0.10 为 Stage 7.6 support_gate 阈值（0.05）的两倍。取两倍而非略高于基准的 0.062，是因为『略微改善』不足以改变 7.6 的处境——若新域中位仅 0.07，仍会有可观比例的单元卡在阈值附近，重开一轮的预期收益不抵成本。该值是工程取值，不是普适常数，在读取任何新域几何统计之前冻结。",
+        "measurement_protocol": "v_sky 按 Stage 7.6 冻结的参数计算（N = 36、D = 10000 m、含地球曲率），逐 domain 逐 fold 在其训练支持区内取 IQR，再对全部新域 train 单元取中位数。计算参数不得因新域而调整——调整即使两组数字不可比。",
+        "additional_report": "无论是否达标，须一并报告每个 domain 的 IQR 分布与低于 0.05 的单元占比，使『差多少』可见而非只有通过与否。"
+      },
+      {
+        "id": "G2",
+        "missing_item": "独立锚点",
+        "background": "Stage 7.5 将光学有效粗糙度与 SAR 尺度粗糙度判为 deferred_missing_anchor，二者已登记独立身份但缺乏可解除该判定的外部参考。alpha 则判 identity_qualified_with_fixed_gauge——模型无独立的透过率、辐照度与平均反照率项，三者被折进 alpha。",
+        "criterion": "获得一项独立的外部参考，且该参考能解除上述 deferred_missing_anchor 判定之一，或能独立约束 alpha 所折叠的三个物理量中的至少一个。",
+        "must_satisfy": [
+          "该参考须在 Reference Registry 中分类为 ground truth 或 reference observation，不得是 proxy",
+          "其独立性须经泄漏审计——不得直接或间接来自本项目已使用的同一 Landsat 处理链",
+          "时间匹配须落在 Reference Registry 冻结的容差内"
+        ],
+        "explicitly_insufficient": "同源产品的另一版本、由同一观测反演的派生量、或空间插值的气候态，均不构成独立锚点。"
+      },
+      {
+        "id": "G3",
+        "missing_item": "对候选状态的独立约束",
+        "background": "Stage 7.7 的候选状态 universe 为空集，因为 passCriteria 1 要求候选状态只能依赖 Stage 7.6 的 qualified 算子，而后者为零。",
+        "criterion": "获得对某个具体 L1 状态的独立观测约束，使该状态在允许的观测与锚点下可辨识——即存在一条不经由未获资格算子的信息通路。",
+        "must_specify": "判定为满足时，须指明是哪一个状态、由哪些新证据提供约束、以及该通路为何不依赖任何未 qualified 的算子。笼统的『新数据可能有助于状态激活』不满足本条。"
+      }
+    ]
+  },
+
+  "verdict": {
+    "closed_set": ["requalification_warranted", "requalification_not_warranted"],
+    "requalification_warranted": {
+      "condition": "G1、G2、G3 中至少一类被判满足。",
+      "required_record": "须指明补足的是哪一类、由哪些新证据提供、预期解除哪一个具体判定（精确到 Stage 7.6 的候选 ID 或 Stage 7.5 的对象 ID）。",
+      "consequence": "据此可 reopen Stage 7.6 或 Stage 7.7。reopen 的节点须按新证据重走其冻结时序，且不得复用 Stage 7.6 已公开的结果值来预调新一轮的候选集或阈值——重新资格化相对已公开结果为 post-result exploratory，须如实声明。"
+    },
+    "requalification_not_warranted": {
+      "condition": "三类均未被判满足。",
+      "consequence": "保持 Stage 7.6 的负结果与 Stage 7.7 的空集不变。",
+      "prohibited_on_this_verdict": [
+        "不得以任何理由凭空增加状态（架构 §1.4、Stage 7.7 explicitExclusions）",
+        "不得放宽 Stage 7.6 的判定阈值——该阈值在结果前冻结，事后放宽即使动机正当也构成对该冻结的破坏",
+        "不得以『新域虽未达标但方向为正』作为部分翻案的依据。本 Gate 的判据是二值的，没有『部分 warranted』"
+      ]
+    },
+    "no_third_option": "不设『待定』或『部分满足』。判据在结果前冻结正是为了让这个判定二值化——留一个模糊档位，等于把裁量重新放回结果之后。"
+  },
+
+  "self_deception_paths_explicitly_closed": [
+    "把 G1 的阈值在看过新域 IQR 之后下调——本文件的 sha256 与 change set 使该修改可被检出。",
+    "把 proxy 重新分类为 reference observation 以满足 G2——Reference Registry 的分类判据独立冻结，且分类须在 Gate 执行前完成。",
+    "把 G3 解释为『只要新域数据更多就算约束』——G3 要求指明具体状态与具体信息通路。",
+    "以『三类都差一点，合起来应该够了』判 warranted——三类不可互相折抵，已在 criteria.note 明确。"
+  ],
+
+  "relationship_to_other_frozen_items": {
+    "same_change_set_as": "configs/domain-candidate-universe-v1.json",
+    "why_same_change_set": "domain 准入核验会读到合格 acquisition 数与覆盖率，已触及本文件对『结果值』的界定，故两份必须同时冻结。",
+    "does_not_supersede": "本文件不改变 Stage 7.6 的任何终态、不改变 Stage 7.7 的空集、不解除 nc_8fe5b4709440。"
+  }
+}
