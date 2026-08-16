@@ -62,6 +62,9 @@ def climate_and_vegetation(region: ee.Geometry) -> dict:
     dominant = max(histogram.items(), key=lambda kv: kv[1]) if histogram else ("0", 0)
     got["igbp_dominant"] = int(dominant[0])
     got["igbp_dominant_fraction"] = dominant[1] / total
+    ANTHROPOGENIC = {12, 13, 14}
+    got["anthropogenic_fraction"] = sum(
+        v for k, v in histogram.items() if int(k) in ANTHROPOGENIC) / total
     got["igbp_top5"] = [
         {"class": int(k), "name": IGBP_NAMES.get(int(k), "?"), "fraction": v / total}
         for k, v in sorted(histogram.items(), key=lambda kv: -kv[1])[:5]]
@@ -119,6 +122,13 @@ def main() -> int:
             "geomorphology_break": {"verified": False,
                                     "reason": "缺乏可核验的全球栅格；判据规定无权威栅格时须以已发表分区图为准并登记出处，不得由执行手凭印象填写。"},
             "lithology_break": {"verified": False, "reason": "同上。"},
+            "A7_anthropogenic": {
+                "criterion": "人为改造地表（IGBP 12/13/14）占比 ≤ 0.50",
+                "value": got["anthropogenic_fraction"],
+                "threshold": 0.50,
+                "passed": got["anthropogenic_fraction"] <= 0.50,
+                "exposure": "post_result——本条在核验结果已知后由所有者裁决加入",
+            },
             "established_categories": established,
             "a6_category_passed": len(established) > 0,
             "expected_break_declared": record and next(
@@ -131,12 +141,16 @@ def main() -> int:
             "note": "declared 是冻结时登记的预期，verified 是本次核验成立的类别。"
                     "二者不一致不影响判定——判定只看 verified。",
         }
+        entry["a7_passed"] = entry["A7_anthropogenic"]["passed"]
+        entry["stage3_passed"] = entry["a6_category_passed"] and entry["a7_passed"]
         records.append(entry)
-        mark = "✓" if entry["a6_category_passed"] else "✗"
+        mark = "✓" if entry["stage3_passed"] else "✗"
         print(f"  [{mark}] {cid:<26} 降水 {precip:>5.0f} mm (Δ{precip-base_precip:+6.0f})  "
               f"IGBP {igbp:>2} {IGBP_NAMES.get(igbp,'?'):<8}"
               f"{got['igbp_dominant_fraction']*100:4.0f}%  "
-              f"成立: {'+'.join(established) if established else '无'}")
+              f"人为 {got['anthropogenic_fraction']*100:4.1f}%  "
+              f"成立: {'+'.join(established) if established else '无'}"
+              + ("" if entry["a7_passed"] else "  ← A7 不通过"))
 
     output = {
         "schema": "mountainrs-stage7.8-domain-screening-stage3-v1",
@@ -160,11 +174,13 @@ def main() -> int:
         },
         "candidates": records,
         "a6_category_passed_count": sum(1 for r in records if r["a6_category_passed"]),
+        "stage3_passed_count": sum(1 for r in records if r["stage3_passed"]),
+        "a7_note": "A7 于核验结果已知后由所有者裁决加入，暴露地位见 configs/domain-candidate-universe-v2.json",
     }
-    out_path = CONTAINER / "outputs/domain-screening-stage3-v1.json"
+    out_path = CONTAINER / "outputs/domain-screening-stage3-v2.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"\n真断裂类别成立 {output['a6_category_passed_count']}/{len(records)}")
+    print(f"\n真断裂成立 {output['a6_category_passed_count']}/{len(records)}   A6+A7 全过 {output['stage3_passed_count']}/{len(records)}")
     return 0
 
 

@@ -23,6 +23,25 @@
       "relative_path": "activation-preflight-manifest-v1.json",
       "sha256": "afcba3b13dea6d06753901411cd34ae834ee20bb3e270d2c779835f60c45d95e",
       "role": "只读激活预检"
+    },
+    "domain_candidate_universe_v2": {
+      "relative_path": "../configs/domain-candidate-universe-v2.json",
+      "sha256": "74d36e81d534c4f82c73f1c49eccb6226808dad55a25043090386541a5ade3bf",
+      "role": "v1 + 准入条件 A7（人为改造地表 ≤ 50%）。A7 于核验结果已知后由所有者裁决加入，暴露地位见文件内 v2_amendment_exposure_audit。"
+    },
+    "screening_findings_v2": {
+      "relative_path": "screening-findings-v2.json",
+      "sha256": "67fd19ef5bee89b4d0dec4b943cf09d2f408095df8c467250e8112cde60da03f",
+      "role": "撤回 v1 的两项 finding（建立在 mode reducer 实现错误上），保留 F2′ 农田主导观察。"
     }
-  }
+  },
+  "amendment_note": "A7 属结果后修订，其 hash 一并登记但暴露地位与 A1–A6 不同。本清单登记字节身份，不代表其中每一项都是结果前冻结。",
+  "pre_result_frozen": [
+    "domain_candidate_universe_v1",
+    "requalification_gate_criteria_v1",
+    "activation_preflight_manifest_v1"
+  ],
+  "post_result_amended": [
+    "domain_candidate_universe_v2"
+  ]
 }

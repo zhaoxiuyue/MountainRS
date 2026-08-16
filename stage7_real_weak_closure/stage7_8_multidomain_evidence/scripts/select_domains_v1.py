@@ -23,7 +23,7 @@ def load(name: str) -> dict:
 def main() -> int:
     s1 = load("domain-screening-stage1-v1.json")
     s2 = load("domain-screening-stage2-v1.json")
-    s3 = load("domain-screening-stage3-v1.json")
+    s3 = load("domain-screening-stage3-v2.json")
 
     by_id = {}
     for record in s1["candidates"]:
@@ -44,8 +44,8 @@ def main() -> int:
         entry = by_id[record["candidate_id"]]
         entry["stage3"] = {k: record[k] for k in
                            ("climate_break", "vegetation_break", "established_categories",
-                            "measured")}
-        entry["stage3_passed"] = record["a6_category_passed"]
+                            "measured", "A7_anthropogenic")}
+        entry["stage3_passed"] = record["stage3_passed"]
 
     rows = list(by_id.values())
     for row in rows:
@@ -57,7 +57,10 @@ def main() -> int:
         if not row.get("stage2_passed"):
             row["reason_codes"].append("insufficient_landsat_support")
         if not row.get("stage3_passed"):
-            row["reason_codes"].append("no_true_break_established")
+            if not row["stage3"]["A7_anthropogenic"]["passed"]:
+                row["reason_codes"].append("anthropogenic_surface_exceeds_limit")
+            if not row["stage3"]["established_categories"]:
+                row["reason_codes"].append("no_true_break_established")
 
     admitted = [r for r in rows if r["admitted"]]
     ranked = sorted(admitted, key=lambda r: (-r["qualified_acquisitions"],
@@ -74,7 +77,8 @@ def main() -> int:
     output = {
         "schema": "mountainrs-stage7.8-domain-selection-v1",
         "purpose": "准入汇总与确定性选择结果。",
-        "rules_source": "configs/domain-candidate-universe-v1.json#deterministic_selection",
+        "rules_source": "configs/domain-candidate-universe-v2.json#deterministic_selection",
+        "a7_exposure": "A7 于核验结果已知后由所有者裁决加入，本次选择因此带 post-result 修订成分；A1–A6、真断裂判据与排序规则仍为结果前冻结。",
         "ranking_keys": ["合格 acquisition 数降序", "与基准大圆距离降序", "候选 ID 字典序"],
         "candidates_evaluated": len(rows),
         "admitted_count": len(admitted),
@@ -96,7 +100,7 @@ def main() -> int:
         "substitution_note": "冻结后若某域资格失效，只能按 reserves_in_order 顺序替补，"
                              "不得按模型表现换域。本节点不运行模型。",
     }
-    out_path = CONTAINER / "outputs/domain-selection-v1.json"
+    out_path = CONTAINER / "outputs/domain-selection-v2.json"
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"候选 {len(rows)}   合格 {len(admitted)}   判定 {verdict}\n")

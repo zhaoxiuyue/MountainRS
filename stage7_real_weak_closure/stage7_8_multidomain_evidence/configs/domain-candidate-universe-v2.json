@@ -1,0 +1,279 @@
+{
+  "schema": "mountainrs-stage7.8-domain-candidate-universe-v2",
+  "purpose": "结果盲冻结 domain 候选全集、真断裂判据、准入/排除条件、最低支持条件与确定性筛选/排序/替补规则。本文件履行 Stage 7.8 passCriteria 1。",
+  "recorded_on": "2026-08-16",
+  "status": "frozen_before_any_new_domain_data_acquired",
+  "result_blindness": {
+    "statement": "冻结时未获取任何新域数据，未查看任何候选模型输出、residual、排名或定性预览。",
+    "what_was_used": "先验地理分区知识与结构性数据可用性判断（Landsat 与 SRTM 的覆盖是全球性的，不依赖具体区域的实测结果）。",
+    "what_was_not_used": "任何新域的实际观测、支持统计、几何统计或模型输出。",
+    "permitted_by": "合同 passCriteria 4：domain 选择只能使用结果前可得的可用性、支持、几何与 reference 质量。先验地理分区属结果前可得信息。"
+  },
+  "baseline_domain": {
+    "id": "D0_minshan",
+    "role": "基准，不参与候选排序，作为判定其余 domain 是否构成真断裂的参照",
+    "bounds_utm48n": [
+      292230.0,
+      3451230.0,
+      311730.0,
+      3473790.0
+    ],
+    "bounds_lonlat": {
+      "lon_min": 102.8152,
+      "lon_max": 103.0243,
+      "lat_min": 31.1767,
+      "lat_max": 31.3834
+    },
+    "size_m": [
+      19500,
+      22560
+    ],
+    "elevation_range_m": [
+      2491,
+      5796
+    ],
+    "relief_m": 3305,
+    "informal_description": "横断山北段/岷山，亚热带季风影响的高山区。",
+    "classification_values": "按下述判据在核验阶段填入并登记。本文件冻结的是判据，不是分类结论——分类值须由公开分类数据核验得出，不得由执行手凭印象填写。"
+  },
+  "true_break_criteria": {
+    "definition": "真断裂 = 相对基准 domain 在气候、地貌、地质或植被上存在**类别级**差异，而非同一类别内的位置差异。",
+    "requirement": "至少一类断裂成立，且必须同时满足地理分离条件。",
+    "categories": [
+      {
+        "id": "climate",
+        "criterion": "Köppen-Geiger 气候分类主类型（第一字母层级）与基准不同，或年降水量与基准相差 ≥ 400 mm",
+        "verification_source": "公开的 Köppen-Geiger 分类栅格与降水气候态产品；核验时登记所用数据集与版本"
+      },
+      {
+        "id": "geomorphology",
+        "criterion": "主导地貌成因类型与基准不同（冰川侵蚀 / 流水侵蚀 / 黄土堆积 / 火山堆积 / 构造抬升剥蚀等）",
+        "verification_source": "公开地貌区划；无权威栅格时以已发表分区图为准并登记出处"
+      },
+      {
+        "id": "vegetation",
+        "criterion": "主要植被型与基准不同（常绿阔叶林 / 落叶阔叶林 / 针叶林 / 高寒草甸 / 荒漠或稀疏植被等）",
+        "verification_source": "公开土地覆盖产品的主导类别统计；核验时登记产品与年份"
+      },
+      {
+        "id": "lithology",
+        "criterion": "主导岩性与基准不同（碎屑岩 / 碳酸盐岩 / 火成岩 / 变质岩 / 黄土等）",
+        "verification_source": "公开地质图或岩性分区；登记出处"
+      }
+    ],
+    "geographic_separation": {
+      "criterion": "候选 domain 中心与基准 domain 中心的大圆距离 ≥ 200 km",
+      "rationale": "防止以相邻 ROI 冒充新 domain（本节点 explicitExclusions）。200 km 是工程取值——它明显大于单个山系内部的尺度，同时不至于严苛到把同一气候带内的真实地貌断裂排除掉。该阈值在读取任何新域数据前冻结。"
+    },
+    "not_sufficient": "高程或高差不同**不**构成真断裂——它们是同一类别内的位置差异。高差另有独立的最低支持要求，见 admission_criteria。"
+  },
+  "candidate_universe": {
+    "note": "候选数量（8）大于所需数量（3–5），差额即替补空间。每个候选的 ROI 由确定性规则从中心点生成，见 roi_construction_rule。expected_break 是**待核验的预期**，不是已确认的结论——核验不通过者按替补规则处理。",
+    "roi_construction_rule": {
+      "rule": "以候选中心点所在 UTM 带的投影坐标为准，构造与基准 domain 同尺寸（19500 m × 22560 m）的轴对齐窗口，中心对齐后将四至各自向下取整到 30 m 网格。",
+      "why_same_size": "同尺寸使各域的观测机会分母在量级上可比，避免以面积差异制造支持量差异。"
+    },
+    "candidates": [
+      {
+        "id": "C1_tianshan_central",
+        "informal_name": "天山中段",
+        "center_lonlat": [
+          84.0,
+          43.0
+        ],
+        "expected_break": [
+          "climate",
+          "vegetation"
+        ],
+        "expected_break_note": "温带大陆性干旱，冰川补给，植被稀疏——相对基准的季风湿润高山属气候与植被双重类别差异。"
+      },
+      {
+        "id": "C2_qilian_central",
+        "informal_name": "祁连山中段",
+        "center_lonlat": [
+          99.5,
+          38.5
+        ],
+        "expected_break": [
+          "climate"
+        ],
+        "expected_break_note": "高寒半干旱，冰川与冻土发育。"
+      },
+      {
+        "id": "C3_nyainqentanglha_east",
+        "informal_name": "念青唐古拉东段",
+        "center_lonlat": [
+          93.5,
+          30.0
+        ],
+        "expected_break": [
+          "climate",
+          "geomorphology"
+        ],
+        "expected_break_note": "海洋性冰川作用显著的高寒山地。纬度与基准接近，故气候断裂须经核验确认而非假定。"
+      },
+      {
+        "id": "C4_changbaishan",
+        "informal_name": "长白山",
+        "center_lonlat": [
+          128.0,
+          42.0
+        ],
+        "expected_break": [
+          "climate",
+          "lithology",
+          "geomorphology"
+        ],
+        "expected_break_note": "温带湿润季风，火山堆积地貌与火成岩——三类断裂的候选。"
+      },
+      {
+        "id": "C5_gaoligong",
+        "informal_name": "高黎贡山",
+        "center_lonlat": [
+          98.7,
+          25.8
+        ],
+        "expected_break": [
+          "vegetation",
+          "climate"
+        ],
+        "expected_break_note": "南亚热带山地，植被覆盖极高。高覆盖本身会压缩裸露地表的观测机会，属真实的证据条件差异。"
+      },
+      {
+        "id": "C6_liupanshan_loess",
+        "informal_name": "六盘山与陇东黄土区",
+        "center_lonlat": [
+          106.2,
+          35.5
+        ],
+        "expected_break": [
+          "lithology",
+          "geomorphology",
+          "climate"
+        ],
+        "expected_break_note": "黄土堆积地貌，半干旱。地貌成因与基准的构造抬升剥蚀属类别差异。"
+      },
+      {
+        "id": "C7_taibaishan_qinling",
+        "informal_name": "太白山与秦岭主脊",
+        "center_lonlat": [
+          107.8,
+          33.9
+        ],
+        "expected_break": [
+          "climate",
+          "vegetation"
+        ],
+        "expected_break_note": "暖温带与亚热带过渡带。与基准的地理距离较近，须严格核验 200 km 分离条件与气候类别差异，不通过即淘汰。"
+      },
+      {
+        "id": "C8_altai_central",
+        "informal_name": "阿尔泰山中段",
+        "center_lonlat": [
+          88.0,
+          48.5
+        ],
+        "expected_break": [
+          "climate",
+          "vegetation"
+        ],
+        "expected_break_note": "寒温带干旱，高纬度带来显著不同的太阳几何分布——后者对本项目的地形辐射问题具有独立价值。"
+      }
+    ]
+  },
+  "admission_criteria": {
+    "note": "全部条件均为结果前可得的可用性、支持与几何量，不含任何模型输出。",
+    "conditions": [
+      {
+        "id": "A1",
+        "condition": "acquisition 时间范围限 2013-01-01 至 2024-12-31，仅 Landsat 8/9 Collection 2 Level-2 地表反射率",
+        "rationale": "与基准 domain 同一传感器世代与处理链。跨世代会引入处理链差异，与 domain 断裂混淆。"
+      },
+      {
+        "id": "A2",
+        "condition": "合格 acquisition 数 ≥ 10",
+        "rationale": "基准 domain 为 18 个合格 acquisition。10 是保证 train/calibration/evaluation 三分可行的下限（按基准的 10/3/5 比例，最少需 10 个才能三者非空且 train 不至过小）。低于 10 判该域不合格。"
+      },
+      {
+        "id": "A3",
+        "condition": "每景 base_valid_land 覆盖率 ≥ 0.30，且合格景中至少 5 景 ≥ 0.50",
+        "rationale": "沿用 Stage 7.1-R 的 base_valid_land 定义（上游有效性 ∩ QA clear ∩ 非水体 ∩ 地形有效 ∩ 反射率在域）。阈值为工程取值，用于排除整景几乎无有效像元的情形。"
+      },
+      {
+        "id": "A4",
+        "condition": "DEM 覆盖须自 ROI 边界外扩 ≥ 10000 m",
+        "rationale": "v_sky 的地平线搜索距离 D* = 10 km（Stage 7.6 几何 Gate 冻结）。外扩不足会使边界像元的 v_sky 被截断，这正是 Stage 7.6 花了一轮数据获取才补上的教训——此处前置为准入条件，不留到执行中再发现。"
+      },
+      {
+        "id": "A5",
+        "condition": "ROI 内高差 ≥ 1000 m",
+        "rationale": "保证是山地且地形调制有变化空间。高差不构成真断裂判据（见 true_break_criteria.not_sufficient），但构成最低支持条件——平原上的地形辐射问题无内容可验。"
+      },
+      {
+        "id": "A6",
+        "condition": "至少一类 true_break_criteria 成立，且地理分离 ≥ 200 km",
+        "rationale": "真断裂是本节点的核心要求。不满足者不是『支持不足』而是『不构成新 domain』，两种不合格的原因码必须分开登记。"
+      },
+      {
+        "id": "A7",
+        "condition": "人为改造地表占比 ≤ 0.50。人为改造地表定义为 IGBP 类别 12（农田）、13（城市建成区）与 14（农田/自然植被镶嵌）之和。",
+        "rationale": "农田与建成区的反射率随耕作周期或人类活动发生与地形无关的时间变化，会在观测中混入强的、与 cos_i 无关的时间信号，而本项目的核心问题正是地形对辐射的调制。",
+        "threshold_is_engineering_choice": true,
+        "exposure": "post_result——本条及其阈值在核验结果已知后加入，见 v2_amendment_exposure_audit。",
+        "baseline_reference": "基准 D0_minshan 的人为改造地表占比约为 0（其构成为草地 46.1% / 混交林 23.0% / 木本稀树草原 15.6% / 裸地 13.9%），故本条不会反过来使基准自身不合格。"
+      }
+    ],
+    "exclusions": [
+      "不以相邻 ROI 冒充新 domain（explicitExclusions）",
+      "不因某域困难而删除其证据身份——不合格的域仍以 reason code 保留在候选账本中，不静默消失",
+      "不为单域临场修改 L0 schema、质量因子、来源类别或网格/配准审计（passCriteria 2）"
+    ]
+  },
+  "deterministic_selection": {
+    "step_1_screen": "对全部 8 个候选逐一核验 A1–A6，产出合格/不合格与 reason code。核验顺序按候选 ID 字典序，与结果无关。",
+    "step_2_rank": {
+      "primary_key": "合格 acquisition 数降序",
+      "tiebreak_1": "与基准 domain 中心的大圆距离降序（更远者优先——地理分离越大，真断裂越不易被同一区域效应混淆）",
+      "tiebreak_2": "候选 ID 字典序升序",
+      "why_deterministic": "三级键在任何数据实现下都唯一确定排序，不留裁量余地。"
+    },
+    "step_3_select": "按排序取前 5 个合格候选构成 domain 集合。若合格候选不足 5 个但 ≥ 3 个，取全部合格者。若 < 3 个，判 deferred_insufficient_domains_or_references。",
+    "substitution_rule": {
+      "rule": "冻结后若某域资格失效（例如数据获取失败、hash 不可复现、事后发现违反 A1–A6），只能按本排序取下一个合格候选替补。",
+      "prohibited": "不得按模型表现换域（passCriteria 5）。本节点不运行模型，故任何以『某域效果不好』为由的替换在本节点内即属违规。",
+      "exhaustion": "8 个候选全部用尽仍不足 3 个合格 domain 时，判 deferred，不得扩充候选全集——扩充等于在看过筛选结果之后改候选集。"
+    }
+  },
+  "supportable_language_bounds": {
+    "note": "passCriteria 1 要求冻结可支持的措辞边界。",
+    "permitted": [
+      "『N 个 domain 的 L0 证据已冻结且可用于评估』（N 为实际合格数）",
+      "『这些 domain 相对基准存在 X 类断裂』（X 须为经核验成立的类别）"
+    ],
+    "prohibited": [
+      "把少于 3 个合格 domain 包装成跨域验证完成（explicitExclusions）",
+      "以像元数量补足独立 domain 数量（passCriteria 7）",
+      "把 qualified_multidomain_evidence_frozen 表述为模型跨域成功——qualified 只表示证据可用于评估（boundaries）",
+      "把 deferred 表述为模型跨域失败——本节点不运行模型（boundaries）",
+      "让 proxy 冒充真值（explicitExclusions，另见 Reference Registry 协议）"
+    ]
+  },
+  "what_this_freeze_does_not_cover": [
+    "Reference Registry 的类别定义、独立性判据与时间匹配容差——另行冻结，属 passCriteria 3。",
+    "train/calibration/evaluation domain 的划分与泄漏边界——另行冻结，属 passCriteria 4。",
+    "重新资格化 Gate 的判据——见 requalification-gate-criteria-v1.json，与本文件同一 change set 冻结。"
+  ],
+  "supersedes": "domain-candidate-universe-v1.json",
+  "supersede_policy": "v1 字节保留不改（历史证据区 append-only）。v2 相对 v1 的唯一改动是新增准入条件 A7，其余条款逐字不变。",
+  "v2_amendment_exposure_audit": {
+    "status": "post_result_amendment",
+    "must_not_claim": "本次修订不得声称 preregistered。",
+    "what_changed": "admission_criteria 新增 A7（人为改造地表占比上限 50%）。",
+    "when_relative_to_results": "在三阶段准入核验全部完成、八个候选的 IGBP 构成与确定性排序均已产出之后。换言之，本条准入条件是在已知 C6_liupanshan_loess 的农田占比为 54.1% 的情况下加入的，其 50% 阈值的选择同样发生在该数值已知之后。",
+    "authorized_by": "所有者 Elara 于 2026-08-16 裁决（在执行手提出的三个选项中选定新增 A7 一项）。",
+    "executor_recommendation_was": "执行手推荐的是维持现状（选项 a），理由是阈值选择发生在结果已知之后。所有者选择了新增 A7。裁决权属所有者，执行手照实执行并如实标记暴露地位，该标记不因裁决合法而免除。",
+    "known_consequence_at_amendment_time": "加入 A7 之前即已知：C6 将出局，替补 C8_altai_central 递补进入选定集。这一后果在裁决作出时对双方均为已知，不是修订后才发现的。",
+    "why_recorded_this_way": "冻结时序约束的是『规则不得在看过结果后改动』，与改动方向无关——允许事后收紧等于允许事后按结果挑选。本条修订确实发生在结果之后，故如实标记；标记的作用不是否定该修订，而是使任何引用本节点 domain 集合的下游都能看到这一条的产生时点。",
+    "scope_of_taint": "仅 A7 及其直接后果（C6 出局、C8 递补）带 post-result 标记。A1–A6、真断裂判据、确定性排序规则与替补规则均在结果前冻结，保持 preregistered。"
+  }
+}
