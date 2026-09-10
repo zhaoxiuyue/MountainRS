@@ -119,3 +119,7 @@ temp/
 
 # 个人学习笔记库，不随仓库公开（文件仍在本地）
 MRS Obsidian/
+
+# 例外：Stage 7.6 的结果表是纯文本且体量小（合计 ~416K），入库以便外部读者复核判定
+!stage7_real_weak_closure/stage7_6_optical_operator/outputs/
+!stage7_real_weak_closure/stage7_6_optical_operator/outputs/*.json

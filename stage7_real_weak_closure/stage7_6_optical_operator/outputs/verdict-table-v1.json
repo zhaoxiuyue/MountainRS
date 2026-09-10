@@ -1,0 +1,272 @@
+{
+  "schema": "mountainrs-stage7.6-verdict-table-v1",
+  "source_unit_table": {
+    "relative_path": "outputs/ablation-unit-table-v1.json",
+    "unit_count": 180
+  },
+  "rules_source": "configs/optical-operator-config-v1.json#verdict_rules",
+  "baseline": "C0",
+  "candidates": {
+    "C1p": {
+      "comparison_set_size_by_split": {
+        "test": 32,
+        "train": 70,
+        "validation": 30
+      },
+      "excluded_coverage_mismatch": 0,
+      "terminal_state": "unsupported_by_evidence",
+      "reason_code": "improvement_below_threshold_on_heldout_core",
+      "closed_set_exclusion_basis": {
+        "qualified": "qualified_criteria 未全部成立，未通过项：['median_relative_improvement', 'fold_direction_consistency']",
+        "non_identifiable": "已排除：support_gate 保证进入比较集的每个单元 v_sky IQR ≥ 0.05，且设计矩阵最大条件数 13.9 远低于 Stage 7.5 的秩亏判据 1e10。参数是可辨识的，问题不在辨识性。",
+        "deferred_missing_required_input": "已排除：本候选所需的全部输入均已就位——v_sky 已由几何 Gate 选参并全图计算冻结，不依赖任何未激活的 latent 状态。",
+        "redundant_equivalent": "已排除：新参数的估计值中位为 |0.03305|，达基线 MAE 的 0.69 倍，且 alpha 相对 C0 被系统性改变；预测函数与基线明显不同，不构成「加了等于没加」的冗余等价。模型确实变了，只是没有变好。"
+      },
+      "median_abs_new_parameter": 0.033047916394601036,
+      "new_parameter_to_baseline_mae_ratio": 0.6864048689040363,
+      "train_unit_count": 70,
+      "median_relative_improvement": 0.0031355956862564203,
+      "mean_relative_improvement": -0.028465795790162684,
+      "fold_median_improvements": {
+        "1": 0.0023137160223827844,
+        "2": 0.009423495775489333,
+        "3": -0.012517572637319348,
+        "4": 0.01709318237851823,
+        "5": -0.01708181614939773
+      },
+      "alpha_absorption": {
+        "median_alpha_baseline": 0.24457058976630597,
+        "median_alpha_candidate": 0.175009583641154,
+        "median_relative_shift": -0.17154138582677242,
+        "why_reported": "合同 passCriteria 5：新增自由度不得吸收其他层错误。alpha 的系统性位移是该吸收的直接证据，必须与误差改善并列报告，不能只报后者。"
+      },
+      "median_signed_bias": 0.016444309698032712,
+      "median_p90_abs": 0.09276285560077874,
+      "median_coverage": 0.9401395740584767,
+      "boundary_hit_fraction": 0.0,
+      "checks": {
+        "median_relative_improvement": {
+          "value": 0.0031355956862564203,
+          "threshold": 0.05,
+          "passed": false
+        },
+        "fold_direction_consistency": {
+          "value": 3,
+          "of_folds": 5,
+          "threshold": 4,
+          "passed": false
+        },
+        "parameter_boundary_hits": {
+          "value": 0.0,
+          "threshold": 0.1,
+          "passed": true
+        },
+        "numerical_stability": {
+          "max_condition_number": 13.884543201928789,
+          "rtol_basis": "Stage 7.5 identifiability_toolbox rtol=1e-10",
+          "passed": true
+        },
+        "support_gate": {
+          "note": "unsupported 单元已在单元表按 support_gate 排除，进入比较集者即通过",
+          "passed": true
+        }
+      },
+      "all_criteria_hold": false,
+      "descriptive_transfer": {
+        "validation": {
+          "unit_count": 30,
+          "median_relative_improvement": -0.004327087879051299,
+          "role": "descriptive_only_does_not_affect_verdict"
+        },
+        "test": {
+          "unit_count": 32,
+          "median_relative_improvement": 0.022312438151897356,
+          "role": "descriptive_only_does_not_affect_verdict"
+        }
+      }
+    },
+    "C1": {
+      "comparison_set_size_by_split": {
+        "test": 32,
+        "train": 70,
+        "validation": 30
+      },
+      "excluded_coverage_mismatch": 0,
+      "terminal_state": "unsupported_by_evidence",
+      "reason_code": "improvement_below_threshold_on_heldout_core",
+      "closed_set_exclusion_basis": {
+        "qualified": "qualified_criteria 未全部成立，未通过项：['median_relative_improvement', 'fold_direction_consistency']",
+        "non_identifiable": "已排除：support_gate 保证进入比较集的每个单元 v_sky IQR ≥ 0.05，且设计矩阵最大条件数 12.9 远低于 Stage 7.5 的秩亏判据 1e10。参数是可辨识的，问题不在辨识性。",
+        "deferred_missing_required_input": "已排除：本候选所需的全部输入均已就位——v_sky 已由几何 Gate 选参并全图计算冻结，不依赖任何未激活的 latent 状态。",
+        "redundant_equivalent": "已排除：新参数的估计值中位为 |0.03951|，达基线 MAE 的 0.82 倍，且 alpha 相对 C0 被系统性改变；预测函数与基线明显不同，不构成「加了等于没加」的冗余等价。模型确实变了，只是没有变好。"
+      },
+      "median_abs_new_parameter": 0.039509008019727426,
+      "new_parameter_to_baseline_mae_ratio": 0.8206016726288959,
+      "train_unit_count": 70,
+      "median_relative_improvement": 0.0006440661344858792,
+      "mean_relative_improvement": -0.022755867415915326,
+      "fold_median_improvements": {
+        "1": -0.02738879945315125,
+        "2": 0.00416363869061305,
+        "3": -0.028305895040279642,
+        "4": 0.026039510871465662,
+        "5": -0.018682986440776327
+      },
+      "alpha_absorption": {
+        "median_alpha_baseline": 0.24457058976630597,
+        "median_alpha_candidate": 0.18490611983330887,
+        "median_relative_shift": -0.1986407206004387,
+        "why_reported": "合同 passCriteria 5：新增自由度不得吸收其他层错误。alpha 的系统性位移是该吸收的直接证据，必须与误差改善并列报告，不能只报后者。"
+      },
+      "median_signed_bias": 0.018931129820424816,
+      "median_p90_abs": 0.09348486397258467,
+      "median_coverage": 0.9401395740584767,
+      "boundary_hit_fraction": 0.0,
+      "checks": {
+        "median_relative_improvement": {
+          "value": 0.0006440661344858792,
+          "threshold": 0.05,
+          "passed": false
+        },
+        "fold_direction_consistency": {
+          "value": 2,
+          "of_folds": 5,
+          "threshold": 4,
+          "passed": false
+        },
+        "parameter_boundary_hits": {
+          "value": 0.0,
+          "threshold": 0.1,
+          "passed": true
+        },
+        "numerical_stability": {
+          "max_condition_number": 12.905822552751832,
+          "rtol_basis": "Stage 7.5 identifiability_toolbox rtol=1e-10",
+          "passed": true
+        },
+        "support_gate": {
+          "note": "unsupported 单元已在单元表按 support_gate 排除，进入比较集者即通过",
+          "passed": true
+        }
+      },
+      "all_criteria_hold": false,
+      "descriptive_transfer": {
+        "validation": {
+          "unit_count": 30,
+          "median_relative_improvement": -0.003364742626712409,
+          "role": "descriptive_only_does_not_affect_verdict"
+        },
+        "test": {
+          "unit_count": 32,
+          "median_relative_improvement": 0.004763269214524062,
+          "role": "descriptive_only_does_not_affect_verdict"
+        }
+      }
+    },
+    "C2a": {
+      "comparison_set_size_by_split": {
+        "test": 32,
+        "train": 70,
+        "validation": 30
+      },
+      "excluded_coverage_mismatch": 0,
+      "terminal_state": "unsupported_by_evidence",
+      "reason_code": "improvement_below_threshold_on_heldout_core",
+      "closed_set_exclusion_basis": {
+        "qualified": "qualified_criteria 未全部成立，未通过项：['median_relative_improvement']",
+        "non_identifiable": "已排除：support_gate 保证进入比较集的每个单元 v_sky IQR ≥ 0.05，且设计矩阵最大条件数 17 远低于 Stage 7.5 的秩亏判据 1e10。参数是可辨识的，问题不在辨识性。",
+        "deferred_missing_required_input": "已排除：本候选所需的全部输入均已就位——v_sky 已由几何 Gate 选参并全图计算冻结，不依赖任何未激活的 latent 状态。",
+        "redundant_equivalent": "已排除：新参数的估计值中位为 |0.12550|，达基线 MAE 的 2.61 倍，且 alpha 相对 C0 被系统性改变；预测函数与基线明显不同，不构成「加了等于没加」的冗余等价。模型确实变了，只是没有变好。"
+      },
+      "median_abs_new_parameter": 0.1255038982619281,
+      "new_parameter_to_baseline_mae_ratio": 2.606714620214236,
+      "train_unit_count": 70,
+      "median_relative_improvement": 0.0019672621323604893,
+      "mean_relative_improvement": -0.005985552874673068,
+      "fold_median_improvements": {
+        "1": 0.000311163751176787,
+        "2": 0.0038447616151513118,
+        "3": 0.002148491838602205,
+        "4": -0.01375285137225404,
+        "5": 0.004555512568774179
+      },
+      "alpha_absorption": {
+        "median_alpha_baseline": 0.24457058976630597,
+        "median_alpha_candidate": 0.22884086252552818,
+        "median_relative_shift": 0.0027538652480953996,
+        "why_reported": "合同 passCriteria 5：新增自由度不得吸收其他层错误。alpha 的系统性位移是该吸收的直接证据，必须与误差改善并列报告，不能只报后者。"
+      },
+      "median_signed_bias": 0.011912010026325765,
+      "median_p90_abs": 0.0947328309536592,
+      "median_coverage": 0.9401395740584767,
+      "boundary_hit_fraction": 0.0,
+      "checks": {
+        "median_relative_improvement": {
+          "value": 0.0019672621323604893,
+          "threshold": 0.05,
+          "passed": false
+        },
+        "fold_direction_consistency": {
+          "value": 4,
+          "of_folds": 5,
+          "threshold": 4,
+          "passed": true
+        },
+        "parameter_boundary_hits": {
+          "value": 0.0,
+          "threshold": 0.1,
+          "passed": true
+        },
+        "numerical_stability": {
+          "max_condition_number": 16.960543932624674,
+          "rtol_basis": "Stage 7.5 identifiability_toolbox rtol=1e-10",
+          "passed": true
+        },
+        "support_gate": {
+          "note": "unsupported 单元已在单元表按 support_gate 排除，进入比较集者即通过",
+          "passed": true
+        }
+      },
+      "all_criteria_hold": false,
+      "descriptive_transfer": {
+        "validation": {
+          "unit_count": 30,
+          "median_relative_improvement": 0.020462207481301883,
+          "role": "descriptive_only_does_not_affect_verdict"
+        },
+        "test": {
+          "unit_count": 32,
+          "median_relative_improvement": 0.02296266959885304,
+          "role": "descriptive_only_does_not_affect_verdict"
+        }
+      }
+    },
+    "C0": {
+      "role": "baseline",
+      "terminal_state": "not_subject_to_qualification",
+      "note": "C0 是本节点的对照基线，其资格由 Stage 7.2/7.3 确立，不在本节点重新资格化。"
+    },
+    "C3": {
+      "role": "registered_not_run",
+      "terminal_state": "non_identifiable",
+      "verdict_basis": "analytic",
+      "identity_side_verdict": "non_identifiable_equivalent",
+      "why_not_run": "路径辐射对给定 acquisition×band 是加性常数，与 C1′ 的 beta_0 逐点同形，观测无法区分。运行它只会重现 C1′ 的结果。判定依据是解析的，不依赖任何实验；显式登记并显式判定，比默默不提更诚实。",
+      "note": "终态在读取任何结果前即由解析论证冻结，本次执行未改变它。"
+    }
+  },
+  "tie_resolution": {
+    "pair": [
+      "C1",
+      "C1p"
+    ],
+    "improvement_gap": 0.002491529551770541,
+    "tie_triggered": true,
+    "resolution": "C1（两者自由参数数相同，按规则取不含 empirical_offset 者）",
+    "critical_caveat": "tie 规则只决定两个候选之间的相对次序，不授予任何一方 qualified。二者均未满足 qualified_criteria，故『C1 优于 C1p』不得被解读为 v_sky 的地形调制已获证据支持——它只说明在两个都不成立的假设之间，规则指定了哪一个优先。"
+  },
+  "frozen_l2_stack_entry": {
+    "qualified_candidates": [],
+    "consequence": "没有任何候选进入冻结 L2 栈；L2 光学算子在本节点结束时仍为 direct-only。"
+  }
+}

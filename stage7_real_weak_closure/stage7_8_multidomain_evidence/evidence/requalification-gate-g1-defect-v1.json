@@ -1,0 +1,48 @@
+{
+  "schema": "mountainrs-stage7.8-requalification-gate-g1-defect-v1",
+  "record_type": "defect_in_prior_reasoning_found_by_external_review",
+  "recorded_on": "2026-09-10",
+  "recorded_by": "执行手（克克）",
+  "found_by": "外部审查（弦），在仓库公开前的对外可读性与正确性复核中发现",
+  "affects": {
+    "reasoning_in": "reports/multidomain-evidence-report-v1.md 「G1 的测量层级问题」一节",
+    "same_reasoning_in": "scripts/run_requalification_gate_v1.py",
+    "verdict_affected": "evidence/requalification-gate-result-v1.json 中 G1 的 not_satisfied 判定"
+  },
+  "supersede_policy": "上述文件字节保留不改（历史证据区 append-only）。本文件撤回其中一项推理，不撤回 G2/G3 的判定，也不改写任何测量值。被撤回的推理不得被继续引用。",
+
+  "the_defect": {
+    "claim_as_written": "「fold 训练区是 domain 支持区的子集，子集的 IQR 不大于全集」，据此推出「domain 级 < 0.10 ⇒ fold 级必然 < 0.10 ⇒ 可确定判不满足」。",
+    "why_it_is_false": "IQR 对取子集不具单调性。子集的四分位距可以严格大于全集——只要子集相对全集改变了分布的形状。仅当子集是排序后的连续区间时才有单调性，而空间 fold 不是值序上的连续区间。",
+    "counterexample": {
+      "full_set": "8 个 0 与 2 个 1，IQR = 0.0",
+      "subset": "2 个 0 与 2 个 1，IQR = 1.0",
+      "verification": "numpy.percentile 线性插值法，subset IQR > full set IQR 成立",
+      "note": "反例只需证明单调性不普遍成立；它不主张本项目的 v_sky 分布一定呈此形状。"
+    }
+  },
+
+  "what_this_changes": {
+    "g1_verdict": "由 not_satisfied 改为 **not_established**。实测 domain 级 v_sky IQR 中位 0.0655 这个数值本身没有问题，改变的是它不足以推出 fold 级的结论——两个方向都推不出。",
+    "measurement_level_problem_remains": "冻结判据要求的是 fold 级测量，而本节点不产出 fold 结构（fold 是 Stage 7.3 针对单 ROI 的构造）。因此 G1 在本节点条件下更准确的地位是「按判据所要求的层级不可评价」，而不是「已测且不满足」。",
+    "gate_outcome": "Gate 的整体结论由 requalification_not_warranted 减弱为 **not_established**。G2 与 G3 的 not_satisfied 判定不受本缺陷影响，但三者中只要 G1 未定，就不能断言 warranted 不成立。",
+    "what_is_NOT_changed": [
+      "Stage 7.6 的三个候选终态（unsupported_by_evidence）不受影响——那是本节点之外、依另一套冻结判据得出的。",
+      "Stage 7.7 的 activated_count = 0 不受影响。",
+      "Stage 7.9 的阻断不受影响。nc_8fe5b4709440 的触发条件是 activated_count = 0，是独立于本 Gate 的客观计数；本缺陷不解除该阻断，也不构成解除理由。",
+      "五个 domain 的选定、891 个合格 acquisition、Sentinel-2 参考的 I1–I4 与 L1–L4 审计，均不依赖本推理。"
+    ]
+  },
+
+  "what_would_have_to_happen_to_settle_g1": [
+    "在判据所要求的层级上取得有效测量——即为这些 domain 构造 fold 结构后逐 fold 测 v_sky IQR；或",
+    "由所有者裁决修订 G1 的测量层级定义（属修改冻结判据，须按 pr_d4a37fa568df 标记暴露地位）；或",
+    "如实保留 not_established，并在任何引用 Gate 结论处一并携带该限定。"
+  ],
+
+  "self_assessment": {
+    "how_it_survived": "这段推理形式上很像一个显然为真的引理，且结论方向与当时的判定一致（都指向不满足），因此未被单独检验。与 v1/v2 那次 mode() 错误不同，本次没有任何内部环节把它拦下——它是在仓库准备对外公开、由外部审查逐行核对时才被发现的。",
+    "generalization": "『子集不会比全集更分散』这类直觉在均值、极差上部分成立，在分位数量上不成立。项目内其他使用分位数做层级推断的地方，若有同型论证，应一并复核。本次未做该项普查，如实登记。",
+    "why_it_is_recorded_rather_than_quietly_fixed": "冻结件与已发布报告的更正只能以 supersede 形式追加，不能覆盖。而且这条缺陷正是本仓库对外声称的那种东西——如果只在私下改掉，仓库首页关于『保留全部』的说法就不成立了。"
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "schema": "mountainrs-stage7.6-result-audit-v1",
+  "checks": [
+    {
+      "id": "Y1",
+      "description": "判定所用配置与冻结清单逐位一致",
+      "passed": true,
+      "detail": "单元表记录 87d8c78dc3c6… / 磁盘 87d8c78dc3c6… / 冻结清单 87d8c78dc3c6…"
+    },
+    {
+      "id": "Y2",
+      "description": "无未登记候选进入单元表或判定表",
+      "passed": true,
+      "detail": "未登记候选 无"
+    },
+    {
+      "id": "Y3",
+      "description": "全部终态取自候选闭集",
+      "passed": true,
+      "detail": "越界终态 无"
+    },
+    {
+      "id": "Y4",
+      "description": "qualified 必须满足全部判据",
+      "passed": true,
+      "detail": "qualified 但未满足全部判据 无（本次无 qualified 候选，条件空真）"
+    },
+    {
+      "id": "Y5",
+      "description": "split 纪律：validation/test 仅描述性",
+      "passed": true,
+      "detail": "split 纪律违规 无"
+    },
+    {
+      "id": "Y6",
+      "description": "unsupported 单元保留 reason code 与机会分母",
+      "passed": true,
+      "detail": "缺 reason code 或机会分母的 unsupported 单元 0 个"
+    },
+    {
+      "id": "Y7",
+      "description": "逐 fold 泄漏审计零违规",
+      "passed": true,
+      "detail": "泄漏违规 0"
+    },
+    {
+      "id": "Y8",
+      "description": "比较集 coverage 可比",
+      "passed": true,
+      "detail": "coverage 超容差且仍被比较的单元 0（容差 0.001）"
+    },
+    {
+      "id": "Y9",
+      "description": "两套闭集未混用",
+      "passed": true,
+      "detail": "两套闭集混用 无"
+    },
+    {
+      "id": "Y10",
+      "description": "单元数 = acquisition × band × fold",
+      "passed": true,
+      "detail": "18×2×5 = 180，实得 180"
+    },
+    {
+      "id": "Y11",
+      "description": "新增自由度对 alpha 的吸收已报告",
+      "passed": true,
+      "detail": "缺 alpha 吸收报告的候选 无"
+    }
+  ],
+  "self_test": [
+    {
+      "id": "Y1",
+      "violation_caught": true
+    },
+    {
+      "id": "Y2",
+      "violation_caught": true
+    },
+    {
+      "id": "Y3",
+      "violation_caught": true
+    },
+    {
+      "id": "Y4",
+      "violation_caught": true
+    },
+    {
+      "id": "Y5",
+      "violation_caught": true
+    },
+    {
+      "id": "Y6",
+      "violation_caught": true
+    },
+    {
+      "id": "Y7",
+      "violation_caught": true
+    },
+    {
+      "id": "Y8",
+      "violation_caught": true
+    },
+    {
+      "id": "Y9",
+      "violation_caught": true
+    },
+    {
+      "id": "Y10",
+      "violation_caught": true
+    },
+    {
+      "id": "Y11",
+      "violation_caught": true
+    }
+  ],
+  "outcome": "pass",
+  "failed_ids": []
+}

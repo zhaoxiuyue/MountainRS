@@ -1,0 +1,88 @@
+{
+  "n_sample": 3000,
+  "curvature_in_tests": true,
+  "step_1_azimuth": [
+    {
+      "N": 36,
+      "v_sky_mean": 0.8316604796511183,
+      "verdict": "baseline"
+    },
+    {
+      "N": 72,
+      "compared_to": 36,
+      "v_sky_mean": 0.8316699679633217,
+      "metrics": {
+        "max_abs_delta_v_sky": 0.0018441138600020501,
+        "p99_abs_delta_v_sky": 0.0012427840149059378,
+        "spearman_rho_of_pixel_ranking": 0.9999678262186472
+      },
+      "converged": true
+    },
+    {
+      "N": 144,
+      "compared_to": 72,
+      "v_sky_mean": 0.8316676943214306,
+      "metrics": {
+        "max_abs_delta_v_sky": 0.0007172399264928631,
+        "p99_abs_delta_v_sky": 0.00035543717833017973,
+        "spearman_rho_of_pixel_ranking": 0.9999962235551358
+      },
+      "converged": true
+    }
+  ],
+  "step_2_distance": [
+    {
+      "D_m": 5000,
+      "v_sky_mean": 0.8329823745082843,
+      "verdict": "baseline"
+    },
+    {
+      "D_m": 10000,
+      "compared_to": 5000,
+      "v_sky_mean": 0.8317984622053278,
+      "metrics": {
+        "max_abs_delta_v_sky": 0.008612138288375815,
+        "p99_abs_delta_v_sky": 0.006173812306019374,
+        "spearman_rho_of_pixel_ranking": 0.9996161052906782
+      },
+      "converged": false
+    },
+    {
+      "D_m": 20000,
+      "compared_to": 10000,
+      "v_sky_mean": 0.8316604796511183,
+      "metrics": {
+        "max_abs_delta_v_sky": 0.0012993285269743415,
+        "p99_abs_delta_v_sky": 0.000908932102599327,
+        "spearman_rho_of_pixel_ranking": 0.9999920164435572
+      },
+      "converged": true
+    }
+  ],
+  "step_3_cross_check": {
+    "pair": [
+      [
+        36,
+        10000
+      ],
+      [
+        72,
+        20000
+      ]
+    ],
+    "metrics": {
+      "max_abs_delta_v_sky": 0.0017793255706818334,
+      "p99_abs_delta_v_sky": 0.001330115629492119,
+      "spearman_rho_of_pixel_ranking": 0.9999616706624076
+    },
+    "passed": true
+  },
+  "n_star": 36,
+  "d_star": 10000,
+  "outcome": "pass",
+  "selected": {
+    "azimuth_count_N": 36,
+    "search_distance_D_m": 10000,
+    "earth_curvature": true
+  }
+}
