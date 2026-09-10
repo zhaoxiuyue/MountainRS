@@ -223,3 +223,24 @@ resources:
   stage_7_3_report:
     resolver: relative_path
     relative_path: stage7_real_weak_closure/stage7_3_spatial_blocking/reports/spatial-blocking-report-v1.md
+  stage_7_6_svf_geometry_gate:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_6_optical_operator/configs/svf-geometry-gate-v1.json
+  stage_7_6_v_sky_roi_grid:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_6_optical_operator/outputs/v_sky_roi_grid_v1.tif
+  stage_7_6_dem_extension_provenance:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_6_optical_operator/evidence/dem-extension-provenance-v1.json
+  stage_7_7_geometry_propagation:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_7_state_activation_gate/configs/geometry-version-and-propagation-v1.json
+  stage_7_8_domain_split_manifest:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_8_multidomain_evidence/evidence/dataset-domain-split-manifest-v1.json
+  stage_7_8_reference_registry:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_8_multidomain_evidence/evidence/reference-registry-v1.json
+  stage_7_8_domain_dem_cache:
+    resolver: relative_path
+    relative_path: stage7_real_weak_closure/stage7_8_multidomain_evidence/outputs/dem_cache
