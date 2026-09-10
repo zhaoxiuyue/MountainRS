@@ -53,6 +53,9 @@ passCriteria 4 的对齐验证环节被用到——这个区分是 B1 能判 rea
 预检判 ready，但 ready 以下述三项**被显式承接**为条件。它们必须在激活时即被接住，
 不能等写验证报告时才发现。完整论证见 `evidence/activation-preflight-manifest-v1.json`。
 
+**这三项加上一条冻结时序义务，已由节点约束 `nc_8b4b5b3a8d8c` 钉在本节点上（回执
+`rc_09cbcd26390a`），本节点关闭时必须逐条处置。** 合同正文未改动，保持 `preregistered`。
+
 **B1｜GRD 已被 SRTM 正射校正，与本项目共享同一 DEM——这构成对 passCriteria 4 的循环性。**
 GEE 的 `COPERNICUS/S1_GRD` 元数据含 `S1TBX_SAR_Processing_vers = 7.0.2` 与
 `SNAP_Graph_Processing_Framework_GPF_vers = 7.0.3`，即已经 SNAP 流水线的
@@ -86,6 +89,11 @@ SAR 几何算子以 DEM 为输入但**不得反过来调整它**。若执行中�
 **其一，本容器落在 `stages/` 而不是 `stage7_real_weak_closure/`，是规则结论不是偏好。**
 历史证据区冻结不迁（规则第一条）。Stage 7.x 的容器留在其中，是因为它们被区内的冻结合同与
 审计器**按路径引用**。Stage 8 是新阶段，无此约束，故按规则第二条落于工作包区。
+
+**其一点五，直接后继 Stage 8.1 的合同修订窗口在本节点第一次结果值产出时关闭。**
+按 `pr_d4a37fa568df` 第五条，8.1 的 objective/passCriteria/boundaries/explicitExclusions
+须在那之前冻结。8.1 侧的窗口状态与一项待裁决观察（B1 循环性向下游传递，可能与 Stage 7.8
+的 I3 判据冲突）已记于 `nc_1cebedfc14e0`。
 
 **其二，SAR 覆盖零缺失不等于 passCriteria 1 已满足。**
 预检核到六个 domain（含基准）的 Sentinel-1 场景数为 499–895，全部 IW 模式、升降轨齐备、
