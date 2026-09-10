@@ -2,7 +2,7 @@
 
 ## 输入文件
 
-- 文件路径：`/Users/zhaoxiuyue/MountainRS/stage1_geotiff_health/data/srtm_dem.tif`
+- 文件路径：`stages/stage1_geotiff_health/data/srtm_dem.tif`
 
 ## 基础信息
 
@@ -32,7 +32,7 @@
 
 ## 可视化
 
-- 第一波段预览图：`/Users/zhaoxiuyue/MountainRS/stage1_geotiff_health/outputs/geotiff_band1_preview.png`
+- 第一波段预览图：`stages/stage1_geotiff_health/outputs/geotiff_band1_preview.png`
 - 直方图 bins：`50`
 - 当前预览图使用 row/column 坐标，仅用于快速查看数组形态，不代表地理坐标图。
 

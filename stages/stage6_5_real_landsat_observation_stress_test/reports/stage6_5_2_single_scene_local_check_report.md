@@ -8,23 +8,23 @@
 
 ## 输入文件列表
 
-- B4 red: `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif`
-- B5 NIR: `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif`
-- QA_PIXEL: `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif`
-- metadata CSV: `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv`
-- DEM: `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
-- slope: `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/slope_degree.tif`
-- aspect: `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/aspect_degree.tif`
+- B4 red: `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif`
+- B5 NIR: `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif`
+- QA_PIXEL: `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif`
+- metadata CSV: `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv`
+- DEM: `stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
+- slope: `stages/stage2_dem_terrain/outputs/slope_degree.tif`
+- aspect: `stages/stage2_dem_terrain/outputs/aspect_degree.tif`
 
 ## 文件存在性检查
 
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif`: **PASS**
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif`: **PASS**
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif`: **PASS**
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv`: **PASS**
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`: **PASS**
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/slope_degree.tif`: **PASS**
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/aspect_degree.tif`: **PASS**
+- `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b4_red.tif`: **PASS**
+- `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_b5_nir.tif`: **PASS**
+- `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_qa_pixel.tif`: **PASS**
+- `stages/stage6_5_real_landsat_observation_stress_test/data/stage6_5_single_scene_l8_l2sr_metadata.csv`: **PASS**
+- `stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`: **PASS**
+- `stages/stage2_dem_terrain/outputs/slope_degree.tif`: **PASS**
+- `stages/stage2_dem_terrain/outputs/aspect_degree.tif`: **PASS**
 
 ## Metadata 关键字段
 
@@ -100,9 +100,9 @@ B4 / B5 应表现为 scaled reflectance，主要位于 `[-0.05, 1.0]`。本阶�
 
 已生成：
 
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif`
 
 重采样策略：
 
@@ -142,15 +142,15 @@ confidence = sigmoid(k_conf * (cos_i - tau))
 
 ## 输出文件
 
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2_single_scene_local_check_preview.png`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/dem_on_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/slope_on_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/aspect_on_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/cos_i_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/confidence_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/qa_valid_mask_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/near_zero_mask_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/shadow_mask_single_scene_grid.tif`
+- `stages/stage6_5_real_landsat_observation_stress_test/outputs/stage6_5_2_single_scene_local_check_preview.png`
 
 ## PASS / WARNING / FAIL 总结
 

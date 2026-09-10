@@ -15,7 +15,7 @@ It does not:
 - modify Stage 1-6 data
 
 Recommended runtime:
-/Users/zhaoxiuyue/miniforge3/bin/python stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2_single_scene_local_check.py
+~/miniforge3/bin/python stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2_single_scene_local_check.py
 """
 
 import csv

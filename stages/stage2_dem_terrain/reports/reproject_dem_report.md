@@ -2,9 +2,9 @@
 
 ## 文件路径
 
-- 输入文件路径：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem.tif`
-- 输出文件路径：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
-- 预览图路径：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/dem_utm48n_preview.png`
+- 输入文件路径：`stages/stage2_dem_terrain/data/srtm_dem.tif`
+- 输出文件路径：`stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
+- 预览图路径：`stages/stage2_dem_terrain/outputs/dem_utm48n_preview.png`
 
 ## CRS
 

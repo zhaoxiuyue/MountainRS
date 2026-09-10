@@ -24,10 +24,10 @@ Stage 2 已形成一个共同 DEM 网格框架：
 
 已有数据：
 
-- DEM：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
-- slope：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/slope_degree.tif`
-- aspect：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/aspect_degree.tif`
-- curvature：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/curvature.tif`
+- DEM：`stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
+- slope：`stages/stage2_dem_terrain/outputs/slope_degree.tif`
+- aspect：`stages/stage2_dem_terrain/outputs/aspect_degree.tif`
+- curvature：`stages/stage2_dem_terrain/outputs/curvature.tif`
 
 这些 Stage 2 产物已经共 CRS、共 bounds、共 resolution、共 transform、共 shape。
 

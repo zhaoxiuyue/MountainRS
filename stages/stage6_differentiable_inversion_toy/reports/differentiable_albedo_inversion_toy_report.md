@@ -83,8 +83,8 @@ k_conf = 30
 
 ## 输出文件
 
-- `/Users/zhaoxiuyue/MountainRS/stage6_differentiable_inversion_toy/outputs/inversion_loss_curves.png`
-- `/Users/zhaoxiuyue/MountainRS/stage6_differentiable_inversion_toy/outputs/inversion_summary.png`
-- `/Users/zhaoxiuyue/MountainRS/stage6_differentiable_inversion_toy/reports/differentiable_albedo_inversion_toy_report.md`
-- `/Users/zhaoxiuyue/MountainRS/stage6_differentiable_inversion_toy/obsidian_drafts/Result_可微反演ToyModel_01.md`
-- `/Users/zhaoxiuyue/MountainRS/stage6_differentiable_inversion_toy/obsidian_drafts/Physics_Gate_可微反演ToyModel.md`
+- `stages/stage6_differentiable_inversion_toy/outputs/inversion_loss_curves.png`
+- `stages/stage6_differentiable_inversion_toy/outputs/inversion_summary.png`
+- `stages/stage6_differentiable_inversion_toy/reports/differentiable_albedo_inversion_toy_report.md`
+- `stages/stage6_differentiable_inversion_toy/obsidian_drafts/Result_可微反演ToyModel_01.md`
+- `stages/stage6_differentiable_inversion_toy/obsidian_drafts/Physics_Gate_可微反演ToyModel.md`

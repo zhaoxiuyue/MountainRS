@@ -2,17 +2,17 @@
 
 ## 输入文件
 
-- Landsat B4 red：`/Users/zhaoxiuyue/MountainRS/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif`
-- Landsat B5 nir：`/Users/zhaoxiuyue/MountainRS/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif`
-- DEM：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
+- Landsat B4 red：`stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif`
+- Landsat B5 nir：`stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif`
+- DEM：`stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
 
 ## Metadata 与统计
 
 | 数据 | 文件路径 | CRS | dtype | nodata | resolution | shape | Min | Max | Mean | Std | Valid Pixel Count | Total Pixel Count | NaN Count | Inf Count |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| B4 red | `/Users/zhaoxiuyue/MountainRS/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif` | `EPSG:32648` | `float64` | `None` | `(30.0000000000, 30.0000000000)` | `(2642, 3852)` | -0.199093 | 1.022251 | 0.048851 | 0.043173 | 9844882 | 10176984 | 332102 | 0 |
-| B5 nir | `/Users/zhaoxiuyue/MountainRS/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif` | `EPSG:32648` | `float64` | `None` | `(30.0000000000, 30.0000000000)` | `(2642, 3852)` | -0.164663 | 0.930195 | 0.159644 | 0.089024 | 9844917 | 10176984 | 332067 | 0 |
-| DEM | `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif` | `EPSG:32648` | `int16` | `-32768.0` | `(27.6422871066, 27.6422871066)` | `(2867, 4179)` | 522.000000 | 6022.000000 | 2523.109947 | 1316.833854 | 11620222 | 11981193 | 0 | 0 |
+| B4 red | `stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b4_red.tif` | `EPSG:32648` | `float64` | `None` | `(30.0000000000, 30.0000000000)` | `(2642, 3852)` | -0.199093 | 1.022251 | 0.048851 | 0.043173 | 9844882 | 10176984 | 332102 | 0 |
+| B5 nir | `stages/stage3_image_dem_alignment/data/stage3_landsat_composite_sr_b5_nir.tif` | `EPSG:32648` | `float64` | `None` | `(30.0000000000, 30.0000000000)` | `(2642, 3852)` | -0.164663 | 0.930195 | 0.159644 | 0.089024 | 9844917 | 10176984 | 332067 | 0 |
+| DEM | `stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif` | `EPSG:32648` | `int16` | `-32768.0` | `(27.6422871066, 27.6422871066)` | `(2867, 4179)` | 522.000000 | 6022.000000 | 2523.109947 | 1316.833854 | 11620222 | 11981193 | 0 | 0 |
 
 ## Transform
 
@@ -56,7 +56,7 @@
 - std：`20.336107`
 - valid pixel count：`9844882`
 - total pixel count：`10176984`
-- 预览图：`/Users/zhaoxiuyue/MountainRS/stage3_image_dem_alignment/outputs/landsat_preview.png`
+- 预览图：`stages/stage3_image_dem_alignment/outputs/landsat_preview.png`
 
 ## Nodata / Mask 说明
 

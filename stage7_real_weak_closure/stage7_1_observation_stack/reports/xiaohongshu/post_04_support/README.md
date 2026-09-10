@@ -16,8 +16,8 @@
 从本目录运行：
 
 ```sh
-NODE_PATH=/Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
-  /Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node render_post_04.js
+NODE_PATH=~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
+  ~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node render_post_04.js
 ```
 
 脚本从 `stage7_1_observation_stack` 容器根解析证据路径；没有复用 post 03 的 `../../../..` 根深度。出图前会校验：21 个完整候选/导出/完成任务、18 个 `stack_eligible` 成员的 10/3/5 划分、三景 QA-clear=0、协议的预查询冻结与完整导出条款，以及网格冻结日期。

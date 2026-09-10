@@ -18,7 +18,7 @@ It does not:
 - overwrite the Stage 6.5.1-A / 6.5.2-A clean baseline outputs
 
 Recommended runtime:
-/Users/zhaoxiuyue/miniforge3/bin/python stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2b_shadowrisk_local_check.py
+~/miniforge3/bin/python stages/stage6_5_real_landsat_observation_stress_test/scripts/stage6_5_2b_shadowrisk_local_check.py
 """
 
 import csv

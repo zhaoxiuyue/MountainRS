@@ -16,8 +16,8 @@
 从本目录运行：
 
 ```sh
-NODE_PATH=/Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
-  /Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node render_post_06.js
+NODE_PATH=~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
+  ~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node render_post_06.js
 ```
 
 脚本出图前会校验：18 × 488,800 = 8,798,400；81,005 / 8,798,400 = 0.92%；35,525 + 45,480 = 81,005；最低太阳角与最低 lit 比例均对应 order 1、21；Mconf 只覆盖自阴影、五类未覆盖项、唯一禁令和“乐观上界”冻结原文；同时拒绝把 v1 的 76.26% 对比或“云雪”桶简称渲染进任何图卡。

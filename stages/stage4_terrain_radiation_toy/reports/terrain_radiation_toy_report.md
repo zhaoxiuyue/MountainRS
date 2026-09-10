@@ -2,9 +2,9 @@
 
 ## 输入文件
 
-- DEM：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
-- slope：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/slope_degree.tif`
-- aspect：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/aspect_degree.tif`
+- DEM：`stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
+- slope：`stages/stage2_dem_terrain/outputs/slope_degree.tif`
+- aspect：`stages/stage2_dem_terrain/outputs/aspect_degree.tif`
 
 ## DEM Grid
 
@@ -86,11 +86,11 @@ corrected_albedo = observed_brightness / cos_i, only where cos_i > 0.1
 
 ## 输出文件
 
-- `cos_i.tif`：`/Users/zhaoxiuyue/MountainRS/stage4_terrain_radiation_toy/outputs/cos_i.tif`
-- `shadow_mask.tif`：`/Users/zhaoxiuyue/MountainRS/stage4_terrain_radiation_toy/outputs/shadow_mask.tif`
-- `observed_brightness_toy.tif`：`/Users/zhaoxiuyue/MountainRS/stage4_terrain_radiation_toy/outputs/observed_brightness_toy.tif`
-- `corrected_albedo_toy.tif`：`/Users/zhaoxiuyue/MountainRS/stage4_terrain_radiation_toy/outputs/corrected_albedo_toy.tif`
-- preview：`/Users/zhaoxiuyue/MountainRS/stage4_terrain_radiation_toy/outputs/terrain_radiation_toy_preview.png`
+- `cos_i.tif`：`stages/stage4_terrain_radiation_toy/outputs/cos_i.tif`
+- `shadow_mask.tif`：`stages/stage4_terrain_radiation_toy/outputs/shadow_mask.tif`
+- `observed_brightness_toy.tif`：`stages/stage4_terrain_radiation_toy/outputs/observed_brightness_toy.tif`
+- `corrected_albedo_toy.tif`：`stages/stage4_terrain_radiation_toy/outputs/corrected_albedo_toy.tif`
+- preview：`stages/stage4_terrain_radiation_toy/outputs/terrain_radiation_toy_preview.png`
 
 ## 本次未做
 

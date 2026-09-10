@@ -113,5 +113,5 @@ confidence 是可微的软权重，不是硬 mask。它表示 `cos_i` 是否足�
 
 ## 输出图
 
-- `/Users/zhaoxiuyue/MountainRS/stage5_gradient_friendly_model/outputs/gradient_friendly_response_curves.png`
-- `/Users/zhaoxiuyue/MountainRS/stage5_gradient_friendly_model/outputs/synthetic_cases_gradient_check.png`
+- `stages/stage5_gradient_friendly_model/outputs/gradient_friendly_response_curves.png`
+- `stages/stage5_gradient_friendly_model/outputs/synthetic_cases_gradient_check.png`

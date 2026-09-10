@@ -16,8 +16,8 @@
 从本目录运行：
 
 ```sh
-NODE_PATH=/Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
-  /Users/zhaoxiuyue/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node render_post_07.js
+NODE_PATH=~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules \
+  ~/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node render_post_07.js
 ```
 
 脚本出图前会校验：180 个单元由 B4/B5 各 90 个组成；B4 主判定为 0/25/41/24/0，B5 主判定为 1/48/17/24/0，且每组严格合计 90；全部 720 个判定为 19/177/204/248/72；风险代理为 `1-cos_i`、按低分优先读取，五类 verdict 构成冻结闭集，并且残差结果没有在冻结前读取。

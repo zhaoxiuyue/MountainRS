@@ -47,7 +47,7 @@
 
 ## 可视化
 
-- 边界测试预览图：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/terrain_factor_boundary_test.png`
+- 边界测试预览图：`stages/stage2_dem_terrain/outputs/terrain_factor_boundary_test.png`
 
 ## PASS / WARNING / FAIL
 

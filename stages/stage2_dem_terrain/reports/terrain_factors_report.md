@@ -2,7 +2,7 @@
 
 ## 输入 DEM
 
-- 输入 DEM 路径：`/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
+- 输入 DEM 路径：`stages/stage2_dem_terrain/data/srtm_dem_utm48n.tif`
 - CRS：`EPSG:32648`
 - resolution：`(27.6422871066, 27.6422871066)`，单位为米
 - shape：`(2867, 4179)`，格式为 `(height, width)`
@@ -22,13 +22,13 @@
 
 ## 输出文件列表
 
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/slope_degree.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/aspect_degree.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/curvature.tif`
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/hillshade.png`
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/outputs/terrain_factors_preview.png`
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/reports/terrain_factors_report.md`
-- `/Users/zhaoxiuyue/MountainRS/stage2_dem_terrain/obsidian_drafts/Result_DEM_地形因子实验_01.md`
+- `stages/stage2_dem_terrain/outputs/slope_degree.tif`
+- `stages/stage2_dem_terrain/outputs/aspect_degree.tif`
+- `stages/stage2_dem_terrain/outputs/curvature.tif`
+- `stages/stage2_dem_terrain/outputs/hillshade.png`
+- `stages/stage2_dem_terrain/outputs/terrain_factors_preview.png`
+- `stages/stage2_dem_terrain/reports/terrain_factors_report.md`
+- `stages/stage2_dem_terrain/obsidian_drafts/Result_DEM_地形因子实验_01.md`
 
 ## 地形因子的物理意义
 
