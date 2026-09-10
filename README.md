@@ -110,8 +110,9 @@ stage7_6_optical_operator/outputs/result-audit-v1.json        Y1–Y11 审计与
 比较还须满足 coverage 可比性（容差 0.001，超出则该单元不进入比较集并登记
 `coverage_mismatch`）。以 config 为准，上面是摘要不是替代。
 
-**其余多数 stage 的 `outputs/` 不入 git**（体量原因，主要是 GeoTIFF），字节身份由 `evidence/`
-里的 manifest 与 SHA-256 承担。这意味着：**结论可追溯，但外部读者尚不能端到端重跑全部环节。**
+**其余多数 stage 的 `outputs/` 与 `obsidian_drafts/` 不入 git**（前者体量原因、主要是 GeoTIFF，
+后者是早期脚本生成的笔记草稿），字节身份由 `evidence/` 里的 manifest 与 SHA-256 承担。
+早期报告中出现的 `obsidian_drafts/...` 引用是当年产出的真实记录，路径本身不随仓库分发。这意味着：**结论可追溯，但外部读者尚不能端到端重跑全部环节。**
 这是当前仓库的已知限制，不掩饰。
 
 ---

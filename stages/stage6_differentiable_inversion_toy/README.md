@@ -18,7 +18,7 @@ gradient-friendly 正向模型与 forward prediction loss 反演 `albedo`，同�
 |---|---|
 | `outputs/` | `inversion_loss_curves.png`、`inversion_summary.png` |
 | `scripts/` | `differentiable_albedo_inversion_toy.py` |
-| `reports/` | `differentiable_albedo_inversion_toy_report.md`、Obsidian 收口报告 |
+| `reports/` | `differentiable_albedo_inversion_toy_report.md` |
 
 ## 依赖哪些兄弟容器与冻结件
 

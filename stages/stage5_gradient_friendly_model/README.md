@@ -22,7 +22,7 @@ L2 → L3 的桥：把 Stage 4 的非可微 toy model 改写成可微版本，�
 |---|---|
 | `outputs/` | `gradient_friendly_response_curves.png`、`synthetic_cases_gradient_check.png` |
 | `scripts/` | `gradient_friendly_forward_check.py` |
-| `reports/` | `gradient_friendly_forward_check_report.md`、Obsidian 收口报告 |
+| `reports/` | `gradient_friendly_forward_check_report.md` |
 
 ## 依赖哪些兄弟容器与冻结件
 

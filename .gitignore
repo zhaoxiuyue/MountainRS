@@ -123,3 +123,7 @@ MRS Obsidian/
 # 例外：Stage 7.6 的结果表是纯文本且体量小（合计 ~416K），入库以便外部读者复核判定
 !stage7_real_weak_closure/stage7_6_optical_operator/outputs/
 !stage7_real_weak_closure/stage7_6_optical_operator/outputs/*.json
+
+# Obsidian 笔记草稿与整理过程报告：个人学习材料，不随仓库公开（文件仍在本地）
+**/obsidian_drafts/
+**/reports/*obsidian*

@@ -20,7 +20,7 @@ Stage 6.5 的三分区 `shadow=cos_i<=0` / `near_zero=0<cos_i<=0.1` / `lit=cos_i
 |---|---|
 | `outputs/` | `cos_i.tif`、`shadow_mask.tif`、`observed_brightness_toy.tif`、`corrected_albedo_toy.tif`、预览图 |
 | `scripts/` | `terrain_radiation_toy_model.py` |
-| `reports/` | `terrain_radiation_toy_report.md`、Obsidian 收口报告 |
+| `reports/` | `terrain_radiation_toy_report.md` |
 
 `data/` 为空——本容器不持有原始输入，地形全部取自 Stage 2。
 

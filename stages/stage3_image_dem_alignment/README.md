@@ -24,7 +24,7 @@ Stage 6.5 的溯源审计给出两条结论（见
 | `data/` | `stage3_landsat_composite_sr_b4_red.tif`、`..._b5_nir.tif`（composite，见上方警示） |
 | `outputs/` | `landsat_b4_red_aligned_to_dem.tif`、`..._b5_nir_...tif`、`ndvi_aligned_to_dem.tif`、对齐预览 |
 | `scripts/` | `check_landsat_and_dem_spatial_match.py`、`align_landsat_to_dem_grid.py` |
-| `reports/` | 空间检查、对齐、数据需求、Obsidian 收口四份 |
+| `reports/` | 空间检查、对齐、数据需求三份 |
 
 ## 依赖哪些兄弟容器与冻结件
 

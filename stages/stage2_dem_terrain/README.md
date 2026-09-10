@@ -18,7 +18,7 @@ curvature / hillshade。
 | `data/` | `srtm_dem.tif`（源）、`srtm_dem_utm48n.tif`（重投影结果，**下游都用这个**）、`dem_roi_plus_20km_utm48n.tif`（外扩 20 km 版） |
 | `outputs/` | `slope_degree.tif`（0–87.09°）、`aspect_degree.tif`（0–359.85°）、`curvature.tif`、`hillshade.png`、预览与边界测试图 |
 | `scripts/` | `reproject_dem_to_utm.py`、`compute_terrain_factors.py`、`test_terrain_factor_boundaries.py` |
-| `reports/` | 重投影、地形因子、边界测试三份报告，及 Obsidian 收口报告 |
+| `reports/` | 重投影、地形因子、边界测试三份报告 |
 
 脚本用 `Path(__file__).resolve().parent.parent` 定位容器根，不写仓库名或绝对路径。
 

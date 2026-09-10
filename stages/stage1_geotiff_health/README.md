@@ -16,7 +16,7 @@
 | `reports/` | `geotiff_health_check_report.md` |
 | `outputs/` | `geotiff_band1_preview.png` |
 
-根目录另有 `obsidian_drafts/`（Result Card 草稿，正式版已入 Obsidian vault）与 `requirements.txt`。
+根目录另有 `requirements.txt`。
 
 ## 依赖哪些兄弟容器与冻结件
 
