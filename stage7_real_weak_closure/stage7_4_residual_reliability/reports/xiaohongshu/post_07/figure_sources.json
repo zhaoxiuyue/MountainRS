@@ -1,0 +1,330 @@
+{
+  "schema": "mountainrs-xiaohongshu-post-07-figure-sources-v1",
+  "rendering": {
+    "renderer": "render_post_07.js",
+    "dimensions": "1080x1350",
+    "source_base": "stage7_real_weak_closure/stage7_4_residual_reliability",
+    "numeric_policy": "Every displayed result count is read from frozen Stage 7.4 aggregation/ledger/curve artifacts or derived after exact equality checks. Post 05/06 callbacks are read from their frozen Stage 7.1/7.2 ledgers.",
+    "curve_policy": "No measured curve is drawn. Card 02 contains one fixed SVG mechanism sketch labeled non-measured. Card 04 reads only frozen fixed-grid MAE rows to derive paired counts and a median; it does not plot any measured curve.",
+    "grid_policy": "Card 03 renders exactly two 10x9 primary grids. Each square is one verdict count; squares are grouped by verdict category and encode no temporal or spatial ordering.",
+    "paired_curve_policy": "Card 04 pairs only primary unit_all_scored curves with reachable fixed-grid q=0.75 and q=0.25 endpoints by acquisition, band, fold, and curve_scope. Relative MAE change is 100*(MAE_q025/MAE_q075-1); the displayed +18.3% is the median of 114 per-curve changes.",
+    "visual_system": "Warm-paper series system with ink headlines, yellow marker, orange annotations, mountain footer, quote mark, and a season-final badge."
+  },
+  "derived_values": {
+    "unit_count": 180,
+    "scope_decision_count": 720,
+    "all_verdict_counts": {
+      "ordered": 19,
+      "none": 177,
+      "adverse": 204,
+      "insufficient": 248,
+      "degenerate": 72
+    },
+    "B4_primary_counts": {
+      "ordered": 0,
+      "none": 25,
+      "adverse": 41,
+      "insufficient": 24,
+      "degenerate": 0
+    },
+    "B5_primary_counts": {
+      "ordered": 1,
+      "none": 48,
+      "adverse": 17,
+      "insufficient": 24,
+      "degenerate": 0
+    },
+    "post06_geometry_rejection_lower_bound_percent": 0.92,
+    "post05_retained_failure_records": 3,
+    "primary_fixed_grid_75_to_25": {
+      "from_percent": 75,
+      "to_percent": 25,
+      "comparable_primary_curves": 114,
+      "mae_rise": 93,
+      "mae_fall": 21,
+      "mae_equal": 0,
+      "paired_median_relative_mae_percent_exact": 18.2733791182489,
+      "paired_median_relative_mae_percent_displayed": 18.3
+    }
+  },
+  "figures": [
+    {
+      "file": "01_cover.png",
+      "claim": "SR_B4 的 90 个 primary 判定中，有序为 0，方向相反为 41。",
+      "sources": [
+        {
+          "source_file": "outputs/risk-proxy-aggregation-table-v1.json",
+          "fields": [
+            "rows[band=SR_B4,curve_scope=unit_all_scored].risk_proxy_verdict_counts"
+          ],
+          "values": {
+            "ordered": 0,
+            "none": 25,
+            "adverse": 41,
+            "insufficient": 24,
+            "degenerate": 0
+          }
+        },
+        {
+          "source_file": "configs/risk-proxy-config-v2.json",
+          "fields": [
+            "curve_scopes.roles.unit_all_scored"
+          ],
+          "values": {
+            "role": "primary"
+          }
+        }
+      ]
+    },
+    {
+      "file": "02_exam_rules.png",
+      "claim": "结果盲冻结的 risk_proxy=1-cos_i 只在已有可评分支持的像元内按低风险优先接纳，并在读取受保护残差前冻结五态 verdict 闭集；曲线仅为机制示意。",
+      "sources": [
+        {
+          "source_file": "configs/risk-proxy-config-v2.json",
+          "fields": [
+            "lifecycle_freeze",
+            "risk_proxy",
+            "verdict.risk_proxy_verdict_closed_set"
+          ],
+          "values": {
+            "freeze_phase": "after_unanimous_single_cross_audit_before_protected_result_read",
+            "result_values_read_before_freeze": false,
+            "risk_proxy": {
+              "expression": "1-cos_i",
+              "order": "ascending_low_first",
+              "raw_score_range": {
+                "population": "all finite scored supported per-pixel raw risk_proxy values in each curve scope",
+                "stage": "before point filtering and fixed-grid mapping",
+                "s_min": "min(raw_risk_proxy)",
+                "s_max": "max(raw_risk_proxy)",
+                "score_range": "s_max-s_min",
+                "rounding_quantization_binning_or_tie_collapse_before_range": false,
+                "zero_scored_values": "s_min/s_max/score_range are null and insufficient-support precedence applies"
+              }
+            },
+            "verdict_closed_set": [
+              "not_evaluable_insufficient_scored_support",
+              "not_evaluable_score_degenerate",
+              "descriptive_ordering_signal",
+              "directionally_adverse",
+              "descriptive_non_discriminative"
+            ]
+          }
+        },
+        {
+          "source_file": "docs/risk-proxy-protocol-v2.md",
+          "fields": [
+            "§2 scoreable mask, support and permanent abstention",
+            "§8 shape and verdict"
+          ],
+          "values": {
+            "expression": "risk_proxy = 1 - cos_i",
+            "acceptance": "ascending risk_proxy, low first"
+          }
+        }
+      ]
+    },
+    {
+      "file": "03_real_verdict_counts.png",
+      "claim": "B4/B5 primary 各 90 个判定严格按冻结五态计数绘制；全部 720 个 scope 判定为 {\"ordered\":19,\"none\":177,\"adverse\":204,\"insufficient\":248,\"degenerate\":72}。",
+      "sources": [
+        {
+          "source_file": "outputs/risk-proxy-aggregation-table-v1.json",
+          "fields": [
+            "rows[].band",
+            "rows[].curve_scope",
+            "rows[].risk_proxy_verdict_counts"
+          ],
+          "values": {
+            "B4_unit_all_scored": {
+              "ordered": 0,
+              "none": 25,
+              "adverse": 41,
+              "insufficient": 24,
+              "degenerate": 0
+            },
+            "B5_unit_all_scored": {
+              "ordered": 1,
+              "none": 48,
+              "adverse": 17,
+              "insufficient": 24,
+              "degenerate": 0
+            },
+            "all_8_band_scope_rows": {
+              "ordered": 19,
+              "none": 177,
+              "adverse": 204,
+              "insufficient": 248,
+              "degenerate": 72
+            }
+          }
+        },
+        {
+          "source_file": "evidence/risk-proxy-unit-status-ledger-v1.json",
+          "fields": [
+            "rows[].band"
+          ],
+          "values": {
+            "unit_count": 180,
+            "B4_units": 90,
+            "B5_units": 90
+          }
+        },
+        {
+          "source_file": "configs/risk-proxy-config-v2.json",
+          "fields": [
+            "curve_scopes.roles.unit_all_scored"
+          ],
+          "values": {
+            "unit_all_scored": "primary"
+          }
+        }
+      ]
+    },
+    {
+      "file": "04_frozen_season_ledger.png",
+      "claim": "季终卡把 Post 05/06 的冻结缺口、程序验收结果与固定网格 q=75%→25% 的 114 条可比主曲线并列存档；配对 MAE 变化中位数为 +18.3%。",
+      "sources": [
+        {
+          "source_file": "../stage7_2_baseline_fit/evidence/support-loss-ledger-v1.json",
+          "fields": [
+            "totals.mconf_mechanism_zero",
+            "per_acquisition[].target_pixel_count",
+            "per_acquisition[].mconf_mechanism_zero.self_shadow",
+            "per_acquisition[].mconf_mechanism_zero.near_zero"
+          ],
+          "values": {
+            "geometry_rejection_count": 81005,
+            "geometry_rejection_components": {
+              "self_shadow": 35525,
+              "near_zero": 45480
+            },
+            "lower_bound_percent": 0.92
+          }
+        },
+        {
+          "source_file": "../stage7_2_baseline_fit/evidence/mconf-registry-v1.json",
+          "fields": [
+            "factor_identity.coverage",
+            "factor_identity.not_covered",
+            "factor_identity.coverage_caveat"
+          ],
+          "values": {
+            "coverage": "self_shadow_only",
+            "not_covered": [
+              "cast_shadow",
+              "horizon_occlusion",
+              "disocclusion_boundary",
+              "geometric_instability_boundary",
+              "view_angle_occlusion"
+            ]
+          }
+        },
+        {
+          "source_file": "../stage7_1_observation_stack/evidence/observation-evidence-manifest-v1.json",
+          "fields": [
+            "counts.target_surface_zero_base_valid_land",
+            "counts.evidence_membership_included"
+          ],
+          "values": {
+            "retained_failure_records": 3,
+            "evidence_membership_included": 21
+          }
+        },
+        {
+          "source_file": "evidence/risk-proxy-runtime-freeze-audit-v2.json",
+          "fields": [
+            "formal_cross_audit.votes",
+            "formal_cross_audit.effective_votes_after_owner_adjudication",
+            "formal_cross_audit.overall_effect",
+            "validation_evidence.synthetic_tests"
+          ],
+          "values": {
+            "original_votes": {
+              "pass": 2,
+              "block": 1
+            },
+            "effective_votes_after_owner_adjudication": {
+              "pass": 3,
+              "block": 0
+            },
+            "overall_effect": "pass",
+            "synthetic_tests": {
+              "status": "pass",
+              "tests_run": 17
+            }
+          }
+        },
+        {
+          "source_file": "evidence/risk-proxy-reconciliation-manifest-v1.json",
+          "fields": [
+            "coverage_denominator_reconciliation",
+            "fold_ledger_reconciliation",
+            "mask_reconciliation",
+            "member_hash_reconciliation",
+            "unit_terminal_state_reconciliation",
+            "verdict_reconciliation"
+          ],
+          "values": {
+            "coverage_denominator_reconciliation": "pass",
+            "fold_ledger_reconciliation": "pass",
+            "mask_reconciliation": "pass",
+            "member_hash_reconciliation": "pass",
+            "unit_terminal_state_reconciliation": "pass",
+            "verdict_reconciliation": "pass"
+          }
+        },
+        {
+          "source_file": "outputs/risk-proxy-risk-curve-table-v1.json",
+          "source_sha256": "6d65f6dd9c8919b53a83545e98b30c2492119ed30f5764490641f32dd022cea2",
+          "fields": [
+            "rows[].point_kind",
+            "rows[].scope_role",
+            "rows[].curve_scope",
+            "rows[].acquisition",
+            "rows[].band",
+            "rows[].fold",
+            "rows[].target_q",
+            "rows[].canonical_target_q",
+            "rows[].grid_status",
+            "rows[].scope_gate",
+            "rows[].exact_point_index",
+            "rows[].selective_prediction_coverage",
+            "rows[].accepted_set_MAE"
+          ],
+          "values": {
+            "filters": {
+              "point_kind": "fixed_grid",
+              "scope_role": "primary",
+              "curve_scope": "unit_all_scored",
+              "grid_status": "reachable",
+              "target_q": [
+                0.25,
+                0.75
+              ],
+              "both_endpoints_required": true
+            },
+            "pairing_key": [
+              "acquisition",
+              "band",
+              "fold",
+              "curve_scope"
+            ],
+            "formula": "100 * (accepted_set_MAE[q=0.25] / accepted_set_MAE[q=0.75] - 1)",
+            "derived": {
+              "from_percent": 75,
+              "to_percent": 25,
+              "comparable_primary_curves": 114,
+              "mae_rise": 93,
+              "mae_fall": 21,
+              "mae_equal": 0,
+              "paired_median_relative_mae_percent_exact": 18.2733791182489,
+              "paired_median_relative_mae_percent_displayed": 18.3
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
