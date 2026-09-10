@@ -116,3 +116,6 @@ temp/
 *.qgs~
 *.lock
 *.lck
+
+# 个人学习笔记库，不随仓库公开（文件仍在本地）
+MRS Obsidian/
