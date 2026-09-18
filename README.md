@@ -134,8 +134,8 @@ stage7_6_optical_operator/outputs/result-audit-v1.json        Y1–Y11 审计与
 这个仓库里没有一个 issue、没有一块看板、没有一份进度表。项目状态、路线、节点、
 规则、判据，全在**另一处**：一棵树。
 
-那棵树跑在 [**PF3**](https://github.com/zhaoxiuyue/pf3) 上——我自己写的一台 MCP 服务器，
-专门用来让多个 AI 窗口不打架。这个项目是它管出来的第一个案例：
+那棵树跑在 **PF3** 上——我自己写的一台 MCP 服务器，
+专门用来让多个 AI 窗口围绕同一份项目状态工作。[公开展示与设计说明](https://github.com/zhaoxiuyue/pf3-showcase)介绍这套做法；完整实现目前保留私有。这个项目是它管出来的第一个案例：
 
 - **三个客户端写同一棵树。** `claude-code`、`oauth:chatgpt`、`codex` —— 分属两家模型厂商的
   工具，写的是同一份状态，不是各存各的。每次写入要带上你读到的那个版本号，对不上就拒绝；
